@@ -226,7 +226,7 @@ def checkDTSdocument(val, modelDocument):
                     _('Any reported XBRL instance document MUST contain only one xbrli:xbrl/link:schemaRef node, but %(entryPointCount)s.'),
                     modelObject=schemaRefElts, entryPointCount=len(schemaRefElts))
         filingIndicators = {}
-        for fIndicator in modelXbrl.factsByQname[qnFilingIndicator]:
+        for fIndicator in modelXbrl.factsByQname(qnFilingIndicator):
             if fIndicator.xValue in filingIndicators:
                 modelXbrl.error("EBA.1.6.1",
                         _('Multiple filing indicators facts for indicator %(filingIndicator)s.'),
@@ -238,11 +238,11 @@ def checkDTSdocument(val, modelDocument):
                     _('Missing filing indicators.  Reported XBRL instances MUST include appropriate filing indicator elements'),
                     modelObject=modelDocument)
             
-        numFilingIndicatorTuples = len(modelXbrl.factsByQname[qnFilingIndicators])
+        numFilingIndicatorTuples = len(modelXbrl.factsByQname(qnFilingIndicators))
         if numFilingIndicatorTuples > 1 and not getattr(modelXbrl, "isStreamingMode", False):
             modelXbrl.info("EBA.1.6.2",                            
                     _('Multiple filing indicators tuples when not in streaming mode (info).'),
-                    modelObject=modelXbrl.factsByQname[qnFilingIndicators])
+                    modelObject=modelXbrl.factsByQname(qnFilingIndicators))
                     
         # note EBA 2.1 is in ModelDocument.py
         
@@ -292,7 +292,7 @@ def checkDTSdocument(val, modelDocument):
         nilFacts = []
         unitIDsUsed = set()
         currenciesUsed = {}
-        for qname, facts in modelXbrl.factsByQname.items():
+        for facts in modelXbrl.factsInInstance:
             for f in facts:
                 concept = f.concept
                 k = (f.context.contextDimAwareHash if f.context is not None else None,
