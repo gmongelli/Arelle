@@ -226,7 +226,7 @@ def checkDTSdocument(val, modelDocument):
                     _('Any reported XBRL instance document MUST contain only one xbrli:xbrl/link:schemaRef node, but %(entryPointCount)s.'),
                     modelObject=schemaRefElts, entryPointCount=len(schemaRefElts))
         filingIndicators = {}
-        for fIndicator in modelXbrl.factsByQname(qnFilingIndicator):
+        for fIndicator in modelXbrl.factsByQname(qnFilingIndicator, ()):
             if fIndicator.xValue in filingIndicators:
                 modelXbrl.error("EBA.1.6.1",
                         _('Multiple filing indicators facts for indicator %(filingIndicator)s.'),
@@ -238,7 +238,7 @@ def checkDTSdocument(val, modelDocument):
                     _('Missing filing indicators.  Reported XBRL instances MUST include appropriate filing indicator elements'),
                     modelObject=modelDocument)
             
-        numFilingIndicatorTuples = len(modelXbrl.factsByQname(qnFilingIndicators))
+        numFilingIndicatorTuples = len(modelXbrl.factsByQname(qnFilingIndicators, ()))
         if numFilingIndicatorTuples > 1 and not getattr(modelXbrl, "isStreamingMode", False):
             modelXbrl.info("EBA.1.6.2",                            
                     _('Multiple filing indicators tuples when not in streaming mode (info).'),
@@ -293,52 +293,53 @@ def checkDTSdocument(val, modelDocument):
         unitIDsUsed = set()
         currenciesUsed = {}
         for facts in modelXbrl.factsInInstance:
-            for f in facts:
-                concept = f.concept
-                k = (f.context.contextDimAwareHash if f.context is not None else None,
-                     f.unit.hash if f.unit is not None else None,
-                     hash(f.xmlLang))
-                if k not in otherFacts:
-                    otherFacts[k] = {f}
+            f = facts
+            concept = f.concept
+            k = (f.context.contextDimAwareHash if f.context is not None else None,
+                 f.unit.hash if f.unit is not None else None,
+                 hash(f.xmlLang))
+            if k not in otherFacts:
+                otherFacts[k] = {f}
+            else:
+                matches = [o
+                           for o in otherFacts[k]
+                           if f.qname == o.qname and
+                              (f.context.isEqualTo(o.context) if f.context is not None and o.context is not None else True) and
+                              (f.unit.isEqualTo(o.unit) if f.unit is not None and o.unit is not None else True) and
+                              (f.xmlLang == o.xmlLang)]
+                if matches:
+                    modelXbrl.error("EBA.2.16",
+                                    _('Facts are duplicates %(fact)s and %(otherFacts)s.'),
+                                    modelObject=[f] + matches, fact=f.qname, otherFacts=', '.join(str(f.qname) for f in matches))
                 else:
-                    matches = [o
-                               for o in otherFacts[k]
-                               if (f.context.isEqualTo(o.context) if f.context is not None and o.context is not None else True) and
-                                  (f.unit.isEqualTo(o.unit) if f.unit is not None and o.unit is not None else True) and
-                                  (f.xmlLang == o.xmlLang)]
-                    if matches:
-                        modelXbrl.error("EBA.2.16",
-                                        _('Facts are duplicates %(fact)s and %(otherFacts)s.'),
-                                        modelObject=[f] + matches, fact=f.qname, otherFacts=', '.join(str(f.qname) for f in matches))
-                    else:
-                        otherFacts[k].add(f)    
-                if concept is not None and concept.isNumeric:
-                    if f.precision:
-                        modelXbrl.error("EBA.2.17",
-                            _("Numeric fact %(fact)s of context %(contextID)s has a precision attribute '%(precision)s'"),
-                            modelObject=f, fact=f.qname, contextID=f.contextID, precision=f.precision)
-                    '''' (not intended by EBA 2.18)
-                    if f.decimals and f.decimals != "INF" and not f.isNil and getattr(f,"xValid", 0) == 4:
-                        try:
-                            insignificance = insignificantDigits(f.xValue, decimals=f.decimals)
-                            if insignificance: # if not None, returns (truncatedDigits, insiginficantDigits)
-                                modelXbrl.error(("EFM.6.05.37", "GFM.1.02.26"),
-                                    _("Fact %(fact)s of context %(contextID)s decimals %(decimals)s value %(value)s has nonzero digits in insignificant portion %(insignificantDigits)s."),
-                                    modelObject=f1, fact=f1.qname, contextID=f1.contextID, decimals=f1.decimals, 
-                                    value=f1.xValue, truncatedDigits=insignificance[0], insignificantDigits=insignificance[1])
-                        except (ValueError,TypeError):
+                    otherFacts[k].add(f)    
+            if concept is not None and concept.isNumeric:
+                if f.precision:
+                    modelXbrl.error("EBA.2.17",
+                        _("Numeric fact %(fact)s of context %(contextID)s has a precision attribute '%(precision)s'"),
+                        modelObject=f, fact=f.qname, contextID=f.contextID, precision=f.precision)
+                '''' (not intended by EBA 2.18)
+                if f.decimals and f.decimals != "INF" and not f.isNil and getattr(f,"xValid", 0) == 4:
+                    try:
+                        insignificance = insignificantDigits(f.xValue, decimals=f.decimals)
+                        if insignificance: # if not None, returns (truncatedDigits, insiginficantDigits)
                             modelXbrl.error(("EFM.6.05.37", "GFM.1.02.26"),
-                                _("Fact %(fact)s of context %(contextID)s decimals %(decimals)s value %(value)s causes Value Error exception."),
-                                modelObject=f1, fact=f1.qname, contextID=f1.contextID, decimals=f1.decimals, value=f1.value)
-                    '''
-                    unit = f.unit
-                    if concept.isMonetary and unit is not None and unit.measures[0]:
-                        currenciesUsed[unit.measures[0][0]] = unit
-                if f.unitID is not None:
-                    unitIDsUsed.add(f.unitID)
-                if f.isNil:
-                    nilFacts.append(f)
-                    
+                                _("Fact %(fact)s of context %(contextID)s decimals %(decimals)s value %(value)s has nonzero digits in insignificant portion %(insignificantDigits)s."),
+                                modelObject=f1, fact=f1.qname, contextID=f1.contextID, decimals=f1.decimals, 
+                                value=f1.xValue, truncatedDigits=insignificance[0], insignificantDigits=insignificance[1])
+                    except (ValueError,TypeError):
+                        modelXbrl.error(("EFM.6.05.37", "GFM.1.02.26"),
+                            _("Fact %(fact)s of context %(contextID)s decimals %(decimals)s value %(value)s causes Value Error exception."),
+                            modelObject=f1, fact=f1.qname, contextID=f1.contextID, decimals=f1.decimals, value=f1.value)
+                '''
+                unit = f.unit
+                if concept.isMonetary and unit is not None and unit.measures[0]:
+                    currenciesUsed[unit.measures[0][0]] = unit
+            if f.unitID is not None:
+                unitIDsUsed.add(f.unitID)
+            if f.isNil:
+                nilFacts.append(f)
+                
         if nilFacts:
             modelXbrl.warning("EBA.2.19",
                     _('Nil facts SHOULD NOT be present in the instance: %(nilFacts)s.'),
