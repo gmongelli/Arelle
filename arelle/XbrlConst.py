@@ -215,6 +215,9 @@ qnVariableSetAssertion = qname("{http://xbrl.org/2008/validation}validation:vari
 qnAssertionSet = qname("{http://xbrl.org/2008/validation}validation:assertionSet")
 qnAssertionSeverity = qname("{http://xbrl.org/PWD/2014-08-13/assertion-severity}severity")
 assertionSet = "http://xbrl.org/arcrole/2008/assertion-set"
+assertionSatisfiedSeverity = "http://xbrl.org/arcrole/2014/assertion-satisfied-severity"
+assertionUnsatisfiedSeverity = "http://xbrl.org/arcrole/2014/assertion-unsatisfied-severity"
+qnAssertionSeverity = qname("{http://xbrl.org/2014/assertion-severity}sev:severity")
 
 acf = "http://xbrl.org/2010/filter/aspect-cover"
 qnAspectCover = qname("{http://xbrl.org/2010/filter/aspect-cover}acf:aspectCover")
@@ -472,7 +475,8 @@ errMsgPrefixNS = {
     "xbrlte": "http://xbrl.org/PWD/2014-MM-DD/table/error",
     "utre": "http://www.xbrl.org/2009/utr/errors",
     "enumte": "http://xbrl.org/PR/2014-03-26/extensible-enumerations/taxonomy-errors",
-    "enumie": "http://xbrl.org/PR/2014-03-26/extensible-enumerations/instance-errors"
+    "enumie": "http://xbrl.org/PR/2014-03-26/extensible-enumerations/instance-errors",
+    "seve": "http://xbrl.org/2014/assertion-severity/error"
     }
 
 arcroleGroupDetect = "*detect*"
@@ -723,6 +727,8 @@ def isFormulaArcrole(arcrole):
                        "http://xbrl.org/arcrole/2010/function-implementation",
                        "http://xbrl.org/arcrole/2010/assertion-satisfied-message",
                        "http://xbrl.org/arcrole/2010/assertion-unsatisfied-message",
+                       "http://xbrl.org/arcrole/2014/assertion-satisfied-severity",
+                       "http://xbrl.org/arcrole/2014/assertion-unsatisfied-severity",
                        "http://xbrl.org/arcrole/2010/instance-variable",
                        "http://xbrl.org/arcrole/2010/formula-instance",
                        "http://xbrl.org/arcrole/2010/function-implementation",
