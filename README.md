@@ -4,6 +4,13 @@ The intent began to meet needs that are not commercially viable, such as to
 support under-development extension modules and test suite facilities, in a
 compact framework, and to support academic training and projects.
 
+About this fork
+===============
+This version is better suited for using the Arelle GUI to create EBA and EIOPA compliant XBRL instances.
+
+It improves the table rendering capabilities of the Arelle GUI in order to make the
+input of EBA and EIOPA tables more comfortable and adds a module to help Arelle comply with the EBA/EIOPA filing rules.
+
 Features
 ========
 * Support for XBRL versioning. 
