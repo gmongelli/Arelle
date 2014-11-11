@@ -9,9 +9,10 @@ This module is Arelle's controller in command line non-interactive mode
 (c) Copyright 2010 Mark V Systems Limited, All rights reserved.
 '''
 from arelle import PythonUtil # define 2.x or 3.x string types
-import gettext, time, datetime, os, shlex, sys, traceback
+import gettext, time, datetime, os, shlex, sys, traceback, fnmatch
 from lxml import etree
 from optparse import OptionParser, SUPPRESS_HELP
+import re
 from arelle import (Cntlr, FileSource, ModelDocument, XmlUtil, Version, 
                     ViewFileDTS, ViewFileFactList, ViewFileFactTable, ViewFileConcepts, 
                     ViewFileFormulae, ViewFileRelationshipSet, ViewFileTests, ViewFileRssFeed,
@@ -166,6 +167,9 @@ def parseAndRun(args):
     parser.add_option("--skipDTS", action="store_true", dest="skipDTS",
                       help=_("Skip DTS activities (loading, discovery, validation), useful when an instance needs only to be parsed."))
     parser.add_option("--skipdts", action="store_true", dest="skipDTS", help=SUPPRESS_HELP)
+    parser.add_option("--skipLoading", action="store", dest="skipLoading",
+                      help=_("Skip loading discovered or schemaLocated files matching pattern (unix-style file name patterns separated by '|'), useful when not all linkbases are needed."))
+    parser.add_option("--skiploading", action="store", dest="skipLoading", help=SUPPRESS_HELP)
     parser.add_option("--logFile", action="store", dest="logFile",
                       help=_("Write log messages into file, otherwise they go to standard output.  " 
                              "If file ends in .xml it is xml-formatted, otherwise it is text. "))
@@ -319,7 +323,7 @@ def parseAndRun(args):
     
     if not args and cntlr.isGAE:
         args = ["--webserver=::gae"]
-    elif not args and cntlr.isCGI:
+    elif cntlr.isCGI:
         args = ["--webserver=::cgi"]
     elif cntlr.isMSW:
         # if called from java on Windows any empty-string arguments are lost, see:
@@ -346,7 +350,7 @@ def parseAndRun(args):
     if options.about:
         print(_("\narelle(r) {0}bit {1}\n\n"
                 "An open source XBRL platform\n"
-                "(c) 2010-2013 Mark V Systems Limited\n"
+                "(c) 2010-2014 Mark V Systems Limited\n"
                 "All rights reserved\nhttp://www.arelle.org\nsupport@arelle.org\n\n"
                 "Licensed under the Apache License, Version 2.0 (the \"License\"); "
                 "you may not \nuse this file except in compliance with the License.  "
@@ -373,7 +377,7 @@ def parseAndRun(args):
             print(text)
         except UnicodeEncodeError:
             print(text.encode("ascii", "replace").decode("ascii"))
-    elif len(leftoverArgs) != 0:
+    elif len(leftoverArgs) != 0 and (not hasWebServer or options.webserver is None):
         parser.error(_("unrecognized arguments: {}".format(', '.join(leftoverArgs))))
     elif (options.entrypointFile is None and 
           ((not options.proxy) and (not options.plugins) and
@@ -614,6 +618,9 @@ class CntlrCmdLine(Cntlr.Cntlr):
             # can be set now because the utr is first loaded at validation time 
         if options.skipDTS: # skip DTS loading, discovery, etc
             self.modelManager.skipDTS = True
+        if options.skipLoading: # skip loading matching files (list of unix patterns)
+            self.modelManager.skipLoading = re.compile(
+                '|'.join(fnmatch.translate(f) for f in options.skipLoading.split('|')))
             
         # disclosure system sets logging filters, override disclosure filters, if specified by command line
         if options.logLevelFilter:
@@ -835,12 +842,18 @@ class CntlrCmdLine(Cntlr.Cntlr):
                     pluginXbrlMethod(self, options, modelXbrl)
                                         
             except (IOError, EnvironmentError) as err:
-                self.addToLog(_("[IOError] Failed to save output:\n {0}").format(err))
+                self.addToLog(_("[IOError] Failed to save output:\n {0}").format(err),
+                              messageCode="IOError", 
+                              file=options.entrypointFile, 
+                              level=logging.CRITICAL)
                 success = False
             except Exception as err:
                 self.addToLog(_("[Exception] Failed to complete request: \n{0} \n{1}").format(
-                            err,
-                            traceback.format_tb(sys.exc_info()[2])))
+                                err,
+                                traceback.format_tb(sys.exc_info()[2])),
+                              messageCode=err.__class__.__name__, 
+                              file=options.entrypointFile, 
+                              level=logging.CRITICAL)
                 success = False
         if modelXbrl:
             modelXbrl.profileStat(_("total"), time.time() - firstStartedAt)
