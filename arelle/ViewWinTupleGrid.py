@@ -65,7 +65,9 @@ class ViewTuplesGrid(ViewWinGrid.ViewGrid):
                 wraplength=200)
         self.xAxis(self.dataFirstCol, self.colHdrTopRow, self.colHdrTopRow + self.colHdrRows - 1, 
                    self.tupleFact.modelTupleFacts, xFilters, True, True, True)
-        self.bodyCells(self.dataFirstRow, 0, self.parentFacts, xFilters, True)
+        #Because the different tuples of the same concept might have
+        #different structures, they cannot all be displayed with one header.
+        self.bodyCells(self.dataFirstRow, 0, [self.tupleFact], xFilters, True)
             
         # data cells
                 
@@ -155,7 +157,8 @@ class ViewTuplesGrid(ViewWinGrid.ViewGrid):
                         objectId = None
                     if value is not None:
                         gridCell(self.gridBody, self.dataFirstCol + i, row, value, justify=justify, width=12,
-                                 objectId=objectId, onClick=self.onClick)
+                                 objectId=objectId, onClick=self.onClick,
+                                 state=["readonly"])
                     else:
                         gridSpacer(self.gridBody, self.dataFirstCol + i, row, CENTERCELL)
                     gridSpacer(self.gridBody, self.dataFirstCol + i, row, RIGHTBORDER)

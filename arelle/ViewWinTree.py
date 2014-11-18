@@ -13,7 +13,7 @@ from arelle.CntlrWinTooltip import ToolTip
 import os
 
 class ViewTree:
-    def __init__(self, modelXbrl, tabWin, tabTitle, hasToolTip=False, lang=None):
+    def __init__(self, modelXbrl, tabWin, tabTitle, hasToolTip=False, lang=None, editableColumns=[]):
         self.tabWin = tabWin
         self.viewFrame = Frame(tabWin)
         self.viewFrame.view = self
@@ -37,6 +37,7 @@ class ViewTree:
         self.treeViewSelection = ()
         self.treeView.bind("<<TreeviewSelect>>", self.viewSelectionChange, '+')
         self.treeView.bind("<1>", self.onViewClick, '+')
+        self.treeView.bind("<Double-1>", self.onDoubleClick, '+')
         hScrollbar["command"] = self.treeView.xview
         hScrollbar.grid(row=1, column=0, sticky=(E,W))
         vScrollbar["command"] = self.treeView.yview
@@ -65,7 +66,9 @@ class ViewTree:
             modelXbrl.views.append(self)
             if not lang: 
                 self.lang = modelXbrl.modelManager.defaultLang
-                
+        self.editableColumns = editableColumns
+        self.entryPopup = None
+
     def clearTreeView(self):
         self.treeViewSelection = ()
         for node in self.treeView.get_children():
@@ -73,18 +76,25 @@ class ViewTree:
                 
     def viewSelectionChange(self, event=None):
         for node in self.treeViewSelection:
-            if self.treeView.exists(node):
-                priorTags = self.treeView.item(node)["tags"]
-                if priorTags:
-                    priorBgTag = priorTags[0]
-                    if priorBgTag.startswith("selected-"):
-                        self.treeView.item(node, tags=(priorBgTag[9:],))
+            self.removeSelection(node)
         self.treeViewSelection = self.treeView.selection()
         for node in self.treeViewSelection:
+            self.addSelection(node)
+            
+    def removeSelection(self, node):
+        if self.treeView.exists(node):
             priorTags = self.treeView.item(node)["tags"]
             if priorTags:
-                self.treeView.item(node, tags=("selected-" + priorTags[0],))
-            
+                newTags = tuple((i[9:] if i.startswith("selected-") else i) for i in priorTags)
+                self.treeView.item(node, tags=newTags)
+
+
+    def addSelection(self, node):
+        priorTags = self.treeView.item(node)["tags"]
+        if priorTags:
+            newTags = tuple(("selected-"+i if i in ['even', 'odd'] else i) for i in priorTags)
+            self.treeView.item(node, tags=newTags)
+
     def onViewClick(self, *args):
         self.modelXbrl.modelManager.cntlr.currentView = self
 
@@ -383,3 +393,69 @@ class ViewTree:
             lines.append('\t'.join([indent + self.treeView.item(node)['text']] +
                                    [self.treeView.set(node,c) for c in cols]))
             self.tabLines(node, indent+'    ', cols, lines)
+
+    def onDoubleClick(self, event):
+        ''' Executed, when a row is double-clicked. Opens 
+        a EntryPopup above the item's column, so it is possible
+        to edit the text '''
+        # do nothing if no column is editable
+        if len(self.editableColumns)<=0:
+            return
+        
+        # delete any open Entry Popup
+        if self.entryPopup:
+            self.entryPopup.destroy()
+            self.entryPopup = None
+
+        # what row and column was clicked on
+        rowID = self.treeView.identify_row(event.y)
+        column = self.treeView.identify_column(event.x)
+
+        if not (column in self.editableColumns and (self.treeView.tag_has("editable", rowID))):
+            return
+
+        # get column position info
+        x,y,width,height = self.treeView.bbox(rowID, column)
+    
+        # y-axis offset
+        pady = height // 2
+    
+        # place Entry popup properly
+        data = self.treeView.set(rowID, column=column)
+        self.entryPopup = EntryPopup(self.treeView, rowID, column, data)
+        self.entryPopup.place( x=x, y=y+pady, anchor=W, relwidth=1)
+
+class EntryPopup(Entry):
+    def __init__(self, parent, rowID, column, text, **kw):
+        ''' If relwidth is set, then width is ignored '''
+        super().__init__(parent, **kw)
+
+        self.valueVar = StringVar()
+        self.valueVar.trace('w', lambda name, index, mode, vv=self.valueVar: self.valueChanged(vv))
+        self.config(textvariable=self.valueVar)
+        self.rowID = rowID
+        self.column = column
+        self.parent = parent
+        self['exportselection'] = False
+
+        self.focus_force()
+        if text is not None:
+            self.valueVar.set(text)
+        self.bind("<Control-a>", self.selectAll)
+        self.bind("<Escape>", lambda *ignore: self.restoreValue(text))
+        self.bind("<Return>", lambda *ignore: self.destroy())
+        self.bind("<FocusOut>", lambda *ignore: self.destroy())
+
+    def selectAll(self, *ignore):
+        ''' Set selection on the whole text '''
+        self.selection_range(0, 'end')
+
+        # returns 'break' to interrupt default key-bindings
+        return 'break'
+
+    def valueChanged(self, value):
+        self.parent.set(self.rowID, self.column, value.get())
+
+    def restoreValue(self, text):
+        self.valueVar.set(text)
+        self.destroy()

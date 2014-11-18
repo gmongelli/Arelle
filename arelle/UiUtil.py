@@ -173,7 +173,7 @@ class gridHdr(Label):
             self.bind("<1>", onClick)
   
 class gridCell(Entry): 
-    def __init__(self, master, x, y, value="", width=None, justify=None, objectId=None, onClick=None): 
+    def __init__(self, master, x, y, value="", width=None, justify=None, objectId=None, onClick=None, state=[]): 
         Entry.__init__(self, master=master)
         self.valueVar = StringVar() 
         self.valueVar.trace('w', self.valueChanged)
@@ -204,6 +204,8 @@ class gridCell(Entry):
         if onClick:
             self.bind("<1>", onClick)
         self.isChanged = False
+        if state != None and len(state)>0: 
+            self.state(state)
         
     @property
     def value(self):
