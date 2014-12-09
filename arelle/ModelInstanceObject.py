@@ -467,7 +467,8 @@ class ModelFact(ModelObject):
     def md5sum(self):  # note this must work in --skipDTS and streaming modes
         _toHash = [self.qname]
         if self.context is not None: # not a tuple and has a valid unit
-            _lang = self.xmlLang
+            # don't use self.xmlLang because its value may depend on disclosure system (assumption)
+            _lang = XmlUtil.ancestorOrSelfAttr(self, "{http://www.w3.org/XML/1998/namespace}lang")
             if _lang:
                 _toHash.append(XbrlConst.qnXmlLang)
                 _toHash.append(_lang)
@@ -476,8 +477,7 @@ class ModelFact(ModelObject):
                 _toHash.append("true")
             elif self.value:
                 _toHash.append(self.value)
-            if self.context is not None:
-                _toHash.append(self.context.md5sum)
+            _toHash.append(self.context.md5sum)
             if self.unit is not None:
                 _toHash.append(self.unit.md5sum)
         return md5hash(_toHash)
@@ -1299,7 +1299,16 @@ class ModelUnit(ModelObject):
         try:
             return self._md5hash
         except AttributeError:
-            self._md5hash = md5hash(self.measures)
+            md5hash = md5()
+            for i, measures in enumerate(self.measures):
+                if i:
+                    md5hash.update(b"divisor")
+                for measure in measures:
+                    if measure.namespaceURI:
+                        md5hash.update(measure.namespaceURI.encode('utf-8','replace'))
+                    md5hash.update(measure.localName.encode('utf-8','replace'))
+            # should this use frozenSet of each measures element?
+            self._md5hash = md5hash.hexdigest()
             return self._md5hash
     
     @property

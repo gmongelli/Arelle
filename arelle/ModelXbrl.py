@@ -288,6 +288,9 @@ class ModelXbrl:
         self.schemaDocsToValidate = set()
         self.modelXbrl = self # for consistency in addressing modelXbrl
         self.factIndex = FactIndex()
+        for pluginXbrlMethod in pluginClassMethods("ModelXbrl.Init"):
+            pluginXbrlMethod(self)
+
 
     def close(self):
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
