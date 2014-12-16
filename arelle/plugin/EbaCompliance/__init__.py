@@ -121,7 +121,6 @@ def removeFactInModel(dts, fact):
     if fact in dts.undefinedFacts:
         dts.undefinedFacts.remove(fact)
     dts.modelObjects[fact.objectIndex] = None # objects found by index, can't remove position from list
-    fact.modelDocument.modelObjects.remove(fact)
     
     parent = fact.getparent()
     parent.remove(fact)
