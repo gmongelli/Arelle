@@ -416,9 +416,7 @@ class XbrlSemanticRdfDatabaseConnection():
         g.add( (self.reportURI, Filing.filing, self.filingURI) )
             
         # relationshipSets are a dts property
-        self.relationshipSets = [(arcrole, ELR, linkqname, arcqname)
-                                 for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
-                                 if ELR and (arcrole.startswith("XBRL-") or (linkqname and arcqname))]
+        self.relationshipSets = self.modelXbrl.allArcKeysNullValuesIncluded()
         
     def identifyPreexistingDocuments(self):
         self.existingDocumentUris = set()

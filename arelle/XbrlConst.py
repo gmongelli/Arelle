@@ -496,6 +496,11 @@ def baseSetArcroleLabel(arcrole): # with sort char in first position
     if arcrole == summationItem: return _("1Calculation")
     return "2" + os.path.basename(arcrole).title()
 
+specialArcroles = {"XBRL-footnotes",
+                   "XBRL-dimensions",
+                   "XBRL-formulae",
+                   "Table-rendering"}
+
 def labelroleLabel(role): # with sort char in first position
     if role == standardLabel: return _("1Standard Label")
     elif role == conceptNameLabelRole: return _("0Name")
@@ -688,9 +693,11 @@ def isStandardArcQname(qName):
           qname("{http://www.xbrl.org/2003/linkbase}labelArc"),
           qname("{http://www.xbrl.org/2003/linkbase}referenceArc"), 
           qname("{http://www.xbrl.org/2003/linkbase}footnoteArc")}
-    
+
+dimensionArcRolePrefix = "http://xbrl.org/int/dim/arcrole/"
+
 def isDimensionArcrole(arcrole):
-    return arcrole.startswith("http://xbrl.org/int/dim/arcrole/")
+    return arcrole.startswith(dimensionArcRolePrefix)
 
 consecutiveArcrole = { # can be list of or single arcrole
     all: (dimensionDomain,hypercubeDimension), notAll: (dimensionDomain,hypercubeDimension),
@@ -699,52 +706,54 @@ consecutiveArcrole = { # can be list of or single arcrole
     domainMember: (domainMember, all, notAll),
     dimensionDefault: ()}
 
-def isTableRenderingArcrole(arcrole):
-    return arcrole in {# current PWD 2013-05-17
-                       tableBreakdown, tableBreakdownTree, tableFilter, tableParameter,
-                       tableDefinitionNodeSubtree, tableAspectNodeFilter,
-                       # current IWD
-                       tableBreakdownMMDD, tableBreakdownTreeMMDD, tableFilterMMDD, tableParameterMMDD,
-                       tableDefinitionNodeSubtreeMMDD, tableAspectNodeFilterMMDD, 
-                       # Prior PWD, Montreal and 2013-01-16 
-                       tableBreakdown201305, tableBreakdownTree201305, tableFilter201305,
-                       tableDefinitionNodeSubtree201305, tableAspectNodeFilter201305,
-                       
-                       tableBreakdown201301, tableFilter201301,
-                       tableDefinitionNodeSubtree201301, 
-                       tableTupleContent201301, 
-                       tableDefinitionNodeMessage201301, tableDefinitionNodeSelectionMessage201301,
-                       
-                       tableAxis2011, tableFilter2011, 
-                       tableAxisSubtree2011, 
-                       tableFilterNodeFilter2011, tableAxisFilter2011, tableAxisFilter201205,
-                       tableTupleContent201301, tableTupleContent2011,
-                       tableAxisSubtree2011, tableAxisFilter2011,
-                       # original Eurofiling
-                       euTableAxis, euAxisMember,
+tableRenderingArcroles = {# current PWD 2013-05-17
+                          tableBreakdown, tableBreakdownTree, tableFilter, tableParameter,
+                          tableDefinitionNodeSubtree, tableAspectNodeFilter,
+                          # current IWD
+                          tableBreakdownMMDD, tableBreakdownTreeMMDD, tableFilterMMDD, tableParameterMMDD,
+                          tableDefinitionNodeSubtreeMMDD, tableAspectNodeFilterMMDD, 
+                          # Prior PWD, Montreal and 2013-01-16 
+                          tableBreakdown201305, tableBreakdownTree201305, tableFilter201305,
+                          tableDefinitionNodeSubtree201305, tableAspectNodeFilter201305,
+                          
+                         tableBreakdown201301, tableFilter201301,
+                         tableDefinitionNodeSubtree201301, 
+                         tableTupleContent201301, 
+                         tableDefinitionNodeMessage201301, tableDefinitionNodeSelectionMessage201301,
+                         
+                         tableAxis2011, tableFilter2011, 
+                         tableAxisSubtree2011, 
+                         tableFilterNodeFilter2011, tableAxisFilter2011, tableAxisFilter201205,
+                         tableTupleContent201301, tableTupleContent2011,
+                         tableAxisSubtree2011, tableAxisFilter2011,
+                         # original Eurofiling
+                         euTableAxis, euAxisMember,
                        }
+def isTableRenderingArcrole(arcrole):
+    return arcrole in tableRenderingArcroles
    
 tableIndexingArcroles = frozenset((euGroupTable,))
 def isTableIndexingArcrole(arcrole):
     return arcrole in tableIndexingArcroles
-    
+
+formulaArcroles = {"http://xbrl.org/arcrole/2008/assertion-set",
+                    "http://xbrl.org/arcrole/2008/variable-set",
+                    "http://xbrl.org/arcrole/2008/variable-set-filter",
+                    "http://xbrl.org/arcrole/2008/variable-filter",
+                    "http://xbrl.org/arcrole/2008/boolean-filter",
+                    "http://xbrl.org/arcrole/2008/variable-set-precondition",
+                    "http://xbrl.org/arcrole/2008/consistency-assertion-formula",
+                    "http://xbrl.org/arcrole/2010/function-implementation",
+                    "http://xbrl.org/arcrole/2010/assertion-satisfied-message",
+                    "http://xbrl.org/arcrole/2010/assertion-unsatisfied-message",
+                    "http://xbrl.org/arcrole/2014/assertion-satisfied-severity",
+                    "http://xbrl.org/arcrole/2014/assertion-unsatisfied-severity",
+                    "http://xbrl.org/arcrole/2010/instance-variable",
+                    "http://xbrl.org/arcrole/2010/formula-instance",
+                    "http://xbrl.org/arcrole/2010/function-implementation",
+                    "http://xbrl.org/arcrole/2010/variables-scope"}
 def isFormulaArcrole(arcrole):
-    return arcrole in {"http://xbrl.org/arcrole/2008/assertion-set",
-                       "http://xbrl.org/arcrole/2008/variable-set",
-                       "http://xbrl.org/arcrole/2008/variable-set-filter",
-                       "http://xbrl.org/arcrole/2008/variable-filter",
-                       "http://xbrl.org/arcrole/2008/boolean-filter",
-                       "http://xbrl.org/arcrole/2008/variable-set-precondition",
-                       "http://xbrl.org/arcrole/2008/consistency-assertion-formula",
-                       "http://xbrl.org/arcrole/2010/function-implementation",
-                       "http://xbrl.org/arcrole/2010/assertion-satisfied-message",
-                       "http://xbrl.org/arcrole/2010/assertion-unsatisfied-message",
-                       "http://xbrl.org/arcrole/2014/assertion-satisfied-severity",
-                       "http://xbrl.org/arcrole/2014/assertion-unsatisfied-severity",
-                       "http://xbrl.org/arcrole/2010/instance-variable",
-                       "http://xbrl.org/arcrole/2010/formula-instance",
-                       "http://xbrl.org/arcrole/2010/function-implementation",
-                       "http://xbrl.org/arcrole/2010/variables-scope"}
+    return arcrole in formulaArcroles
 
 def isResourceArcrole(arcrole):
     return (arcrole in {"http://www.xbrl.org/2003/arcrole/concept-label",

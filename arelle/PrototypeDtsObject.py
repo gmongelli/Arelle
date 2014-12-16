@@ -19,6 +19,7 @@ class LinkPrototype():      # behaves like a ModelLink for relationship prototyp
         if role:
             self.attributes["{http://www.w3.org/1999/xlink}role"] = role 
         self.labeledResources = defaultdict(list)
+        self.objectIndex = None
         
     def clear(self):
         self.__dict__.clear() # dereference here, not an lxml object, don't use superclass clear()

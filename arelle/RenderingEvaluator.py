@@ -25,12 +25,11 @@ def init(modelXbrl):
     hasXbrlTables = False
     
     # validate table linkbase dimensions
-    for baseSetKey in modelXbrl.baseSets.keys():
+    for baseSetKey in modelXbrl.findArcs((XbrlConst.tableRenderingArcroles, set(), set(), set()), returnArcRole=True, returnLinkRole=True, returnQNameLink=True, returnQNameArc=True, returnObjects=False):
         arcrole, ELR, linkqname, arcqname = baseSetKey
-        if ELR and linkqname and arcqname and XbrlConst.isTableRenderingArcrole(arcrole):
-            ValidateFormula.checkBaseSet(modelXbrl, arcrole, ELR, modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname))
-            if arcrole in (XbrlConst.tableBreakdown, XbrlConst.tableBreakdownMMDD, XbrlConst.tableBreakdown201305, XbrlConst.tableBreakdown201301, XbrlConst.tableAxis2011):
-                hasXbrlTables = True
+        ValidateFormula.checkBaseSet(modelXbrl, arcrole, ELR, modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname))
+        if arcrole in (XbrlConst.tableBreakdown, XbrlConst.tableBreakdownMMDD, XbrlConst.tableBreakdown201305, XbrlConst.tableBreakdown201301, XbrlConst.tableAxis2011):
+            hasXbrlTables = True
 
     # provide context for view
     if modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:

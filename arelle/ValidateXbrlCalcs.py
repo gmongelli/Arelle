@@ -77,132 +77,136 @@ class ValidateXbrlCalcs:
                     
         # identify concepts participating in essence-alias relationships
         # identify calcluation & essence-alias base sets (by key)
-        for baseSetKey in self.modelXbrl.baseSets.keys():
+        for baseSetKey in self.modelXbrl.findArcs(((XbrlConst.essenceAlias, XbrlConst.requiresElement),
+                                                   set(), set(), set()),
+                                                  returnArcRole=True, returnLinkRole=True,
+                                                  returnQNameLink=True, returnQNameArc=True,
+                                                  returnObjects=False):
             arcrole, ELR, linkqname, arcqname = baseSetKey
-            if ELR and linkqname and arcqname:
-                if arcrole in (XbrlConst.essenceAlias, XbrlConst.requiresElement):
-                    conceptsSet = {XbrlConst.essenceAlias:self.conceptsInEssencesAlias,
-                                   XbrlConst.requiresElement:self.conceptsInRequiresElement}[arcrole]
-                    for modelRel in self.modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname).modelRelationships:
-                        for concept in (modelRel.fromModelObject, modelRel.toModelObject):
-                            if concept is not None and concept.qname is not None:
-                                conceptsSet.add(concept)
+            conceptsSet = {XbrlConst.essenceAlias:self.conceptsInEssencesAlias,
+                           XbrlConst.requiresElement:self.conceptsInRequiresElement}[arcrole]
+            for modelRel in self.modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname).modelRelationships:
+                for concept in (modelRel.fromModelObject, modelRel.toModelObject):
+                    if concept is not None and concept.qname is not None:
+                        conceptsSet.add(concept)
         self.modelXbrl.profileActivity("... identify requires-element and esseance-aliased concepts", minTimeToShow=1.0)
 
         self.bindFacts(self.modelXbrl.facts,[self.modelXbrl.modelDocument.xmlRootElement])
         self.modelXbrl.profileActivity("... bind facts", minTimeToShow=1.0)
         
-        # identify calcluation & essence-alias base sets (by key)
-        for baseSetKey in self.modelXbrl.baseSets.keys():
+        # identify calculation & essence-alias base sets (by key)
+        for baseSetKey in self.modelXbrl.findArcs(((XbrlConst.summationItem, XbrlConst.essenceAlias, XbrlConst.requiresElement),
+                                                   set(), set(), set()),
+                                                  returnArcRole=True, returnLinkRole=True,
+                                                  returnQNameLink=True, returnQNameArc=True,
+                                                  returnObjects=False):
             arcrole, ELR, linkqname, arcqname = baseSetKey
-            if ELR and linkqname and arcqname:
-                if arcrole in (XbrlConst.summationItem, XbrlConst.essenceAlias, XbrlConst.requiresElement):
-                    relsSet = self.modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname)
-                    if arcrole == XbrlConst.summationItem:
-                        fromRelationships = relsSet.fromModelObjects()
-                        for sumConcept, modelRels in fromRelationships.items():
-                            sumBindingKeys = self.sumConceptBindKeys[sumConcept]
-                            dupBindingKeys = set()
-                            boundSumKeys = set()
-                            # determine boundSums
-                            for modelRel in modelRels:
-                                itemConcept = modelRel.toModelObject
-                                if itemConcept is not None and itemConcept.qname is not None:
-                                    itemBindingKeys = self.itemConceptBindKeys[itemConcept]
-                                    boundSumKeys |= sumBindingKeys & itemBindingKeys
-                            # add up rounded items
-                            boundSums = defaultdict(decimal.Decimal) # sum of facts meeting factKey
-                            boundSummationItems = defaultdict(list) # corresponding fact refs for messages
-                            for modelRel in modelRels:
-                                weight = modelRel.weightDecimal
-                                itemConcept = modelRel.toModelObject
-                                if itemConcept is not None:
-                                    for itemBindKey in boundSumKeys:
-                                        ancestor, contextHash, unit = itemBindKey
-                                        factKey = (itemConcept, ancestor, contextHash, unit)
-                                        if factKey in self.itemFacts:
-                                            for fact in self.itemFacts[factKey]:
-                                                if fact in self.duplicatedFacts:
-                                                    dupBindingKeys.add(itemBindKey)
-                                                else:
-                                                    roundedValue = roundFact(fact, self.inferDecimals)
-                                                    boundSums[itemBindKey] += roundedValue * weight
-                                                    boundSummationItems[itemBindKey].append(wrappedFactWithWeight(fact,weight,roundedValue))
-                            for sumBindKey in boundSumKeys:
-                                ancestor, contextHash, unit = sumBindKey
-                                factKey = (sumConcept, ancestor, contextHash, unit)
-                                if factKey in self.sumFacts:
-                                    sumFacts = self.sumFacts[factKey]
-                                    for fact in sumFacts:
+            relsSet = self.modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname)
+            if arcrole == XbrlConst.summationItem:
+                fromRelationships = relsSet.fromModelObjects()
+                for sumConcept, modelRels in fromRelationships.items():
+                    sumBindingKeys = self.sumConceptBindKeys[sumConcept]
+                    dupBindingKeys = set()
+                    boundSumKeys = set()
+                    # determine boundSums
+                    for modelRel in modelRels:
+                        itemConcept = modelRel.toModelObject
+                        if itemConcept is not None and itemConcept.qname is not None:
+                            itemBindingKeys = self.itemConceptBindKeys[itemConcept]
+                            boundSumKeys |= sumBindingKeys & itemBindingKeys
+                    # add up rounded items
+                    boundSums = defaultdict(decimal.Decimal) # sum of facts meeting factKey
+                    boundSummationItems = defaultdict(list) # corresponding fact refs for messages
+                    for modelRel in modelRels:
+                        weight = modelRel.weightDecimal
+                        itemConcept = modelRel.toModelObject
+                        if itemConcept is not None:
+                            for itemBindKey in boundSumKeys:
+                                ancestor, contextHash, unit = itemBindKey
+                                factKey = (itemConcept, ancestor, contextHash, unit)
+                                if factKey in self.itemFacts:
+                                    for fact in self.itemFacts[factKey]:
                                         if fact in self.duplicatedFacts:
-                                            dupBindingKeys.add(sumBindKey)
-                                        elif sumBindKey not in dupBindingKeys:
-                                            roundedSum = roundFact(fact, self.inferDecimals)
-                                            roundedItemsSum = roundFact(fact, self.inferDecimals, vDecimal=boundSums[sumBindKey])
-                                            if roundedItemsSum  != roundFact(fact, self.inferDecimals):
-                                                d = inferredDecimals(fact)
-                                                if isnan(d) or isinf(d): d = 4
-                                                _boundSummationItems = boundSummationItems[sumBindKey]
-                                                unreportedContribingItemQnames = [] # list the missing/unreported contributors in relationship order
-                                                for modelRel in modelRels:
-                                                    itemConcept = modelRel.toModelObject
-                                                    if (itemConcept is not None and 
-                                                        (itemConcept, ancestor, contextHash, unit) not in self.itemFacts):
-                                                        unreportedContribingItemQnames.append(str(itemConcept.qname))
-                                                self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.5.2:calcInconsistency",
-                                                    _("Calculation inconsistent from %(concept)s in link role %(linkrole)s reported sum %(reportedSum)s computed sum %(computedSum)s context %(contextID)s unit %(unitID)s unreportedContributingItems %(unreportedContributors)s"),
-                                                    modelObject=wrappedSummationAndItems(fact, roundedSum, _boundSummationItems),
-                                                    concept=sumConcept.qname, linkrole=ELR, 
-                                                    linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR),
-                                                    reportedSum=Locale.format_decimal(self.modelXbrl.locale, roundedSum, 1, max(d,0)),
-                                                    computedSum=Locale.format_decimal(self.modelXbrl.locale, roundedItemsSum, 1, max(d,0)), 
-                                                    contextID=fact.context.id, unitID=fact.unit.id,
-                                                    unreportedContributors=", ".join(unreportedContribingItemQnames) or "none")
-                                                del unreportedContribingItemQnames[:]
-                            boundSummationItems.clear() # dereference facts in list
-                    elif arcrole == XbrlConst.essenceAlias:
-                        for modelRel in relsSet.modelRelationships:
-                            essenceConcept = modelRel.fromModelObject
-                            aliasConcept = modelRel.toModelObject
-                            essenceBindingKeys = self.esAlConceptBindKeys[essenceConcept]
-                            aliasBindingKeys = self.esAlConceptBindKeys[aliasConcept]
-                            for esAlBindKey in essenceBindingKeys & aliasBindingKeys:
-                                ancestor, contextHash = esAlBindKey
-                                essenceFactsKey = (essenceConcept, ancestor, contextHash)
-                                aliasFactsKey = (aliasConcept, ancestor, contextHash)
-                                if essenceFactsKey in self.esAlFacts and aliasFactsKey in self.esAlFacts:
-                                    for eF in self.esAlFacts[essenceFactsKey]:
-                                        for aF in self.esAlFacts[aliasFactsKey]:
-                                            essenceUnit = self.mapUnit.get(eF.unit,eF.unit)
-                                            aliasUnit = self.mapUnit.get(aF.unit,aF.unit)
-                                            if essenceUnit != aliasUnit:
-                                                self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency",
-                                                    _("Essence-Alias inconsistent units from %(essenceConcept)s to %(aliasConcept)s in link role %(linkrole)s context %(contextID)s"),
-                                                    modelObject=(modelRel, eF, aF), 
-                                                    essenceConcept=essenceConcept.qname, aliasConcept=aliasConcept.qname, 
-                                                    linkrole=ELR, 
-                                                    linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR),
-                                                    contextID=eF.context.id)
-                                            if not XbrlUtil.vEqual(eF, aF):
-                                                self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency",
-                                                    _("Essence-Alias inconsistent value from %(essenceConcept)s to %(aliasConcept)s in link role %(linkrole)s context %(contextID)s"),
-                                                    modelObject=(modelRel, eF, aF), 
-                                                    essenceConcept=essenceConcept.qname, aliasConcept=aliasConcept.qname, 
-                                                    linkrole=ELR,
-                                                    linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR),
-                                                    contextID=eF.context.id)
-                    elif arcrole == XbrlConst.requiresElement:
-                        for modelRel in relsSet.modelRelationships:
-                            sourceConcept = modelRel.fromModelObject
-                            requiredConcept = modelRel.toModelObject
-                            if sourceConcept in self.requiresElementFacts and \
-                               not requiredConcept in self.requiresElementFacts:
-                                    self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.6.2.4:requiresElementInconsistency",
-                                        _("Requires-Element %(requiringConcept)s missing required fact for %(requiredConcept)s in link role %(linkrole)s"),
-                                        modelObject=sourceConcept, 
-                                        requiringConcept=sourceConcept.qname, requiredConcept=requiredConcept.qname, 
-                                        linkrole=ELR,
-                                        linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR))
+                                            dupBindingKeys.add(itemBindKey)
+                                        else:
+                                            roundedValue = roundFact(fact, self.inferDecimals)
+                                            boundSums[itemBindKey] += roundedValue * weight
+                                            boundSummationItems[itemBindKey].append(wrappedFactWithWeight(fact,weight,roundedValue))
+                    for sumBindKey in boundSumKeys:
+                        ancestor, contextHash, unit = sumBindKey
+                        factKey = (sumConcept, ancestor, contextHash, unit)
+                        if factKey in self.sumFacts:
+                            sumFacts = self.sumFacts[factKey]
+                            for fact in sumFacts:
+                                if fact in self.duplicatedFacts:
+                                    dupBindingKeys.add(sumBindKey)
+                                elif sumBindKey not in dupBindingKeys:
+                                    roundedSum = roundFact(fact, self.inferDecimals)
+                                    roundedItemsSum = roundFact(fact, self.inferDecimals, vDecimal=boundSums[sumBindKey])
+                                    if roundedItemsSum  != roundFact(fact, self.inferDecimals):
+                                        d = inferredDecimals(fact)
+                                        if isnan(d) or isinf(d): d = 4
+                                        _boundSummationItems = boundSummationItems[sumBindKey]
+                                        unreportedContribingItemQnames = [] # list the missing/unreported contributors in relationship order
+                                        for modelRel in modelRels:
+                                            itemConcept = modelRel.toModelObject
+                                            if (itemConcept is not None and 
+                                                (itemConcept, ancestor, contextHash, unit) not in self.itemFacts):
+                                                unreportedContribingItemQnames.append(str(itemConcept.qname))
+                                        self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.5.2:calcInconsistency",
+                                            _("Calculation inconsistent from %(concept)s in link role %(linkrole)s reported sum %(reportedSum)s computed sum %(computedSum)s context %(contextID)s unit %(unitID)s unreportedContributingItems %(unreportedContributors)s"),
+                                            modelObject=wrappedSummationAndItems(fact, roundedSum, _boundSummationItems),
+                                            concept=sumConcept.qname, linkrole=ELR, 
+                                            linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR),
+                                            reportedSum=Locale.format_decimal(self.modelXbrl.locale, roundedSum, 1, max(d,0)),
+                                            computedSum=Locale.format_decimal(self.modelXbrl.locale, roundedItemsSum, 1, max(d,0)), 
+                                            contextID=fact.context.id, unitID=fact.unit.id,
+                                            unreportedContributors=", ".join(unreportedContribingItemQnames) or "none")
+                                        del unreportedContribingItemQnames[:]
+                    boundSummationItems.clear() # dereference facts in list
+            elif arcrole == XbrlConst.essenceAlias:
+                for modelRel in relsSet.modelRelationships:
+                    essenceConcept = modelRel.fromModelObject
+                    aliasConcept = modelRel.toModelObject
+                    essenceBindingKeys = self.esAlConceptBindKeys[essenceConcept]
+                    aliasBindingKeys = self.esAlConceptBindKeys[aliasConcept]
+                    for esAlBindKey in essenceBindingKeys & aliasBindingKeys:
+                        ancestor, contextHash = esAlBindKey
+                        essenceFactsKey = (essenceConcept, ancestor, contextHash)
+                        aliasFactsKey = (aliasConcept, ancestor, contextHash)
+                        if essenceFactsKey in self.esAlFacts and aliasFactsKey in self.esAlFacts:
+                            for eF in self.esAlFacts[essenceFactsKey]:
+                                for aF in self.esAlFacts[aliasFactsKey]:
+                                    essenceUnit = self.mapUnit.get(eF.unit,eF.unit)
+                                    aliasUnit = self.mapUnit.get(aF.unit,aF.unit)
+                                    if essenceUnit != aliasUnit:
+                                        self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency",
+                                            _("Essence-Alias inconsistent units from %(essenceConcept)s to %(aliasConcept)s in link role %(linkrole)s context %(contextID)s"),
+                                            modelObject=(modelRel, eF, aF), 
+                                            essenceConcept=essenceConcept.qname, aliasConcept=aliasConcept.qname, 
+                                            linkrole=ELR, 
+                                            linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR),
+                                            contextID=eF.context.id)
+                                    if not XbrlUtil.vEqual(eF, aF):
+                                        self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency",
+                                            _("Essence-Alias inconsistent value from %(essenceConcept)s to %(aliasConcept)s in link role %(linkrole)s context %(contextID)s"),
+                                            modelObject=(modelRel, eF, aF), 
+                                            essenceConcept=essenceConcept.qname, aliasConcept=aliasConcept.qname, 
+                                            linkrole=ELR,
+                                            linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR),
+                                            contextID=eF.context.id)
+            elif arcrole == XbrlConst.requiresElement:
+                for modelRel in relsSet.modelRelationships:
+                    sourceConcept = modelRel.fromModelObject
+                    requiredConcept = modelRel.toModelObject
+                    if sourceConcept in self.requiresElementFacts and \
+                       not requiredConcept in self.requiresElementFacts:
+                            self.modelXbrl.log('INCONSISTENCY', "xbrl.5.2.6.2.4:requiresElementInconsistency",
+                                _("Requires-Element %(requiringConcept)s missing required fact for %(requiredConcept)s in link role %(linkrole)s"),
+                                modelObject=sourceConcept, 
+                                requiringConcept=sourceConcept.qname, requiredConcept=requiredConcept.qname, 
+                                linkrole=ELR,
+                                linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR))
         self.modelXbrl.profileActivity("... find inconsistencies", minTimeToShow=1.0)
         self.modelXbrl.profileActivity() # reset
     

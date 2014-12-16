@@ -892,19 +892,20 @@ class ModelDocument:
                     if isinstance(lbElement, ModelLink):
                         self.schemalocateElementNamespace(lbElement)
                         arcrolesFound = set()
-                        dimensionArcFound = False
-                        formulaArcFound = False
+#                        dimensionArcFound = False
+#                        formulaArcFound = False
                         tableRenderingArcFound = False
                         linkQn = qname(lbElement)
                         linkrole = lbElement.get("{http://www.w3.org/1999/xlink}role")
                         isStandardExtLink = XbrlConst.isStandardResourceOrExtLinkElement(lbElement)
-                        if inInstance:
-                            #index footnote links even if no arc children
-                            baseSetKeys = (("XBRL-footnotes",None,None,None), 
-                                           ("XBRL-footnotes",linkrole,None,None))
-                            for baseSetKey in baseSetKeys:
-                                self.modelXbrl.baseSets[baseSetKey].append(lbElement)
+#                        if inInstance:
+#                            #index footnote links even if no arc children
+#                            baseSetKeys = (("XBRL-footnotes",None,None,None), 
+#                                           ("XBRL-footnotes",linkrole,None,None))
+#                            for baseSetKey in baseSetKeys:
+#                                self.modelXbrl.baseSets[baseSetKey].append(lbElement)
                         linkElementSequence = 0
+                        numberOfFoundArcs = 0
                         for linkElement in lbElement.iterchildren():
                             if isinstance(linkElement,ModelObject):
                                 linkElementSequence += 1
@@ -935,26 +936,29 @@ class ModelDocument:
                                         if linkrole == "":
                                             linkrole = XbrlConst.defaultLinkRole
                                         #index by both arcrole and linkrole#arcrole and dimensionsions if applicable
-                                        baseSetKeys = [(arcrole, linkrole, linkQn, arcQn)]
-                                        baseSetKeys.append((arcrole, linkrole, None, None))
-                                        baseSetKeys.append((arcrole, None, None, None))
-                                        if XbrlConst.isDimensionArcrole(arcrole) and not dimensionArcFound:
-                                            baseSetKeys.append(("XBRL-dimensions", None, None, None)) 
-                                            baseSetKeys.append(("XBRL-dimensions", linkrole, None, None))
-                                            dimensionArcFound = True
-                                        if XbrlConst.isFormulaArcrole(arcrole) and not formulaArcFound:
-                                            baseSetKeys.append(("XBRL-formulae", None, None, None)) 
-                                            baseSetKeys.append(("XBRL-formulae", linkrole, None, None))
-                                            formulaArcFound = True
+#                                        baseSetKeys = [(arcrole, linkrole, linkQn, arcQn)]
+                                        baseSetKey = (arcrole, linkrole, linkQn, arcQn)
+                                        self.modelXbrl.addRelationshipToBaseSet(baseSetKey, lbElement, inInstance, False)
+                                        numberOfFoundArcs += 1
+#                                        baseSetKeys.append((arcrole, linkrole, None, None))
+#                                        baseSetKeys.append((arcrole, None, None, None))
+#                                        if XbrlConst.isDimensionArcrole(arcrole) and not dimensionArcFound:
+#                                            baseSetKeys.append(("XBRL-dimensions", None, None, None)) 
+#                                            baseSetKeys.append(("XBRL-dimensions", linkrole, None, None))
+#                                            dimensionArcFound = True
+#                                        if XbrlConst.isFormulaArcrole(arcrole) and not formulaArcFound:
+#                                            baseSetKeys.append(("XBRL-formulae", None, None, None)) 
+#                                            baseSetKeys.append(("XBRL-formulae", linkrole, None, None))
+#                                            formulaArcFound = True
                                         if XbrlConst.isTableRenderingArcrole(arcrole) and not tableRenderingArcFound:
-                                            baseSetKeys.append(("Table-rendering", None, None, None)) 
-                                            baseSetKeys.append(("Table-rendering", linkrole, None, None)) 
+#                                            baseSetKeys.append(("Table-rendering", None, None, None)) 
+#                                            baseSetKeys.append(("Table-rendering", linkrole, None, None)) 
                                             tableRenderingArcFound = True
                                             self.modelXbrl.hasTableRendering = True
                                         if XbrlConst.isTableIndexingArcrole(arcrole):
                                             self.modelXbrl.hasTableIndexing = True
-                                        for baseSetKey in baseSetKeys:
-                                            self.modelXbrl.baseSets[baseSetKey].append(lbElement)
+#                                        for baseSetKey in baseSetKeys:
+#                                            self.modelXbrl.baseSets[baseSetKey].append(lbElement)
                                         arcrolesFound.add(arcrole)
                                 elif xlinkType == "resource": 
                                     # create resource and make accessible by id for document
@@ -962,6 +966,10 @@ class ModelDocument:
                                 if modelResource is not None:
                                     lbElement.labeledResources[linkElement.get("{http://www.w3.org/1999/xlink}label")] \
                                         .append(modelResource)
+                        if numberOfFoundArcs<=0 and inInstance:
+                            #index footnote links even if no arc children
+                            baseSetKey = (None,linkrole,linkQn,None)
+                            self.modelXbrl.addRelationshipToBaseSet(baseSetKey, lbElement, inInstance, False)
                     else:
                         self.modelXbrl.error("xbrl:schemaDefinitionMissing",
                                 _("Linkbase extended link %(element)s missing schema definition"),
@@ -1277,12 +1285,14 @@ def inlineIxdsDiscover(modelXbrl):
                 else:
                     linkPrototype = LinkPrototype(mdlDoc, mdlDoc.xmlRootElement, XbrlConst.qnLinkFootnoteLink, linkrole)
                     footnoteLinkPrototypes[linkrole] = linkPrototype
-                    for baseSetKey in (("XBRL-footnotes",None,None,None), 
-                                       ("XBRL-footnotes",linkrole,None,None),
-                                       (arcrole,linkrole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc), 
-                                       (arcrole,linkrole,None,None),
-                                       (arcrole,None,None,None)):
-                        modelXbrl.baseSets[baseSetKey].append(linkPrototype)
+#                    for baseSetKey in (("XBRL-footnotes",None,None,None), 
+#                                       ("XBRL-footnotes",linkrole,None,None),
+#                                       (arcrole,linkrole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc), 
+#                                       (arcrole,linkrole,None,None),
+#                                       (arcrole,None,None,None)):
+#                        modelXbrl.baseSets[baseSetKey].append(linkPrototype)
+                    baseSetKey = (arcrole,linkrole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc)
+                    modelXbrl.addRelationshipToBaseSet(baseSetKey, linkPrototype, True, True)
                 # locs
                 for modelFact in footnoteRefs[footnoteID]:
                     locPrototype = LocPrototype(mdlDoc, linkPrototype, footnoteLocLabel, modelFact)
@@ -1302,7 +1312,8 @@ def inlineIxdsDiscover(modelXbrl):
                 locateContinuation(modelInlineFootnote)
                 linkPrototype = LinkPrototype(mdlDoc, mdlDoc.xmlRootElement, XbrlConst.qnLinkFootnoteLink, XbrlConst.defaultLinkRole)
                 baseSetKey = (XbrlConst.factFootnote,XbrlConst.defaultLinkRole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc)
-                modelXbrl.baseSets[baseSetKey].append(linkPrototype) # allows generating output instance with this loc
+#                modelXbrl.baseSets[baseSetKey].append(linkPrototype) # allows generating output instance with this loc
+                modelXbrl.addRelationshipToBaseSet(baseSetKey, linkPrototype, False, True)
                 linkPrototype.childElements.append(modelInlineFootnote)
 
         for modelInlineRel in htmlElement.iterdescendants(tag="{http://www.xbrl.org/CR-2013-08-21/inlineXBRL}relationship"):
@@ -1310,10 +1321,12 @@ def inlineIxdsDiscover(modelXbrl):
                 linkrole = modelInlineRel.get("linkRole", XbrlConst.defaultLinkRole)
                 arcrole = modelInlineRel.get("arcrole", XbrlConst.factFootnote)
                 linkPrototype = LinkPrototype(mdlDoc, mdlDoc.xmlRootElement, XbrlConst.qnLinkFootnoteLink, linkrole)
-                for baseSetKey in ((arcrole,linkrole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc), 
-                                   (arcrole,linkrole,None,None),
-                                   (arcrole,None,None,None)):
-                    modelXbrl.baseSets[baseSetKey].append(linkPrototype)
+#                for baseSetKey in ((arcrole,linkrole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc), 
+#                                   (arcrole,linkrole,None,None),
+#                                   (arcrole,None,None,None)):
+#                    modelXbrl.baseSets[baseSetKey].append(linkPrototype)
+                baseSetKey = (arcrole,linkrole,XbrlConst.qnLinkFootnoteLink, XbrlConst.qnLinkFootnoteArc)
+                modelXbrl.addRelationshipToBaseSet(baseSetKey, linkPrototype, False, True)
                 for fromId in modelInlineRel.get("fromRefs","").split():
                     locPrototype = LocPrototype(mdlDoc, linkPrototype, "from_loc", fromId)
                     linkPrototype.childElements.append(locPrototype)

@@ -1501,214 +1501,223 @@ class ValidateFiling(ValidateXbrl.ValidateXbrl):
         # do calculation, then presentation, then other arcroles
         self.summationItemRelsSetAllELRs = modelXbrl.relationshipSet(XbrlConst.summationItem)
         for arcroleFilter in (XbrlConst.summationItem, XbrlConst.parentChild, "*"):
-            for baseSetKey, baseSetModelLinks  in modelXbrl.baseSets.items():
-                arcrole, ELR, linkqname, arcqname = baseSetKey
-                if ELR and linkqname and arcqname and not arcrole.startswith("XBRL-"):
-                    # assure summationItem, then parentChild, then others
-                    if not (arcroleFilter == arcrole or
-                            arcroleFilter == "*" and arcrole not in (XbrlConst.summationItem, XbrlConst.parentChild)):
-                        continue
-                    if self.validateEFMorGFM or (self.validateSBRNL and arcrole == XbrlConst.parentChild):
-                        ineffectiveArcs = ModelRelationshipSet.ineffectiveArcs(baseSetModelLinks, arcrole)
-                        #validate ineffective arcs
-                        for modelRel in ineffectiveArcs:
-                            if modelRel.fromModelObject is not None and modelRel.toModelObject is not None:
-                                modelXbrl.error(("EFM.6.09.03", "GFM.1.04.03", "SBR.NL.2.3.4.06"),
-                                    _("Ineffective arc %(arc)s in \nlink role %(linkrole)s \narcrole %(arcrole)s \nfrom %(conceptFrom)s \nto %(conceptTo)s \n%(ineffectivity)s"),
-                                    modelObject=modelRel, arc=modelRel.qname, arcrole=modelRel.arcrole,
-                                    linkrole=modelRel.linkrole, linkroleDefinition=modelXbrl.roleTypeDefinition(modelRel.linkrole), 
-                                    conceptFrom=modelRel.fromModelObject.qname, conceptTo=modelRel.toModelObject.qname, 
-                                    ineffectivity=modelRel.ineffectivity)
-                    if arcrole == XbrlConst.parentChild:
-                        isStatementSheet = any(linkroleDefinitionStatementSheet.match(roleType.definition or '')
-                                               for roleType in self.modelXbrl.roleTypes.get(ELR,()))
-                        conceptsPresented = set()
-                        # 6.12.2 check for distinct order attributes
-                        parentChildRels = modelXbrl.relationshipSet(arcrole, ELR)
-                        for relFrom, siblingRels in parentChildRels.fromModelObjects().items():
-                            targetConceptPreferredLabels = defaultdict(dict)
-                            orderRels = {}
-                            firstRel = True
-                            relFromUsed = True
-                            for rel in siblingRels:
-                                if firstRel:
-                                    firstRel = False
-                                    if relFrom in conceptsUsed:
-                                        conceptsUsed[relFrom] = True # 6.12.3, has a pres relationship
-                                        relFromUsed = True
-                                relTo = rel.toModelObject
-                                preferredLabel = rel.preferredLabel
-                                if relTo in conceptsUsed:
-                                    conceptsUsed[relTo] = True # 6.12.3, has a pres relationship
-                                    if preferredLabel and preferredLabel != "":
-                                        conceptRelsUsedWithPreferredLabels[relTo].append(rel)
-                                        if self.validateSBRNL and preferredLabel in ("periodStart","periodEnd"):
-                                            modelXbrl.error("SBR.NL.2.3.4.03",
-                                                _("Preferred label on presentation relationships not allowed"), modelObject=modelRel)
-                                    # 6.12.5 distinct preferred labels in base set
-                                    preferredLabels = targetConceptPreferredLabels[relTo]
-                                    if (preferredLabel in preferredLabels or
-                                        (self.validateSBRNL and not relFrom.isTuple and
-                                         (not preferredLabel or None in preferredLabels))):
-                                        if preferredLabel in preferredLabels:
-                                            rel2, relTo2 = preferredLabels[preferredLabel]
-                                        else:
-                                            rel2 = relTo2 = None
-                                        modelXbrl.error(("EFM.6.12.05", "GFM.1.06.05", "SBR.NL.2.3.4.06"),
-                                            _("Concept %(concept)s has duplicate preferred label %(preferredLabel)s in link role %(linkrole)s"),
-                                            modelObject=(rel, relTo, rel2, relTo2), 
-                                            concept=relTo.qname, fromConcept=rel.fromModelObject.qname,
-                                            preferredLabel=preferredLabel, linkrole=rel.linkrole, linkroleDefinition=modelXbrl.roleTypeDefinition(rel.linkrole))
+            for baseSetKey in (modelXbrl.findArcs((arcroleFilter, set(), set(), set()),
+                                                  returnArcRole=True, returnLinkRole=True,
+                                                  returnQNameLink=True, returnQNameArc=True,
+                                                  returnObjects=False)
+                               if arcroleFilter!='*'
+                               else modelXbrl.allArcs(returnArcRole=True, returnLinkRole=True,
+                                                      returnQNameLink=True, returnQNameArc=True,
+                                                      returnObjects=False)):
+                arcrole, ELR, linkqname, arcqname = baseSetKey  # @UnusedVariable
+                # assure summationItem, then parentChild, then others
+                if not (arcroleFilter == arcrole or
+                        arcroleFilter == "*" and arcrole not in (XbrlConst.summationItem, XbrlConst.parentChild)):
+                    continue
+                # In the next line would it not be better to have:
+                # if (self.validateEFMorGFM or self.validateSBRNL) and arcrole == XbrlConst.parentChild: # ?
+                if self.validateEFMorGFM or (self.validateSBRNL and arcrole == XbrlConst.parentChild):
+                    baseSetModelLinks = modelXbrl.findArcs(baseSetKey)
+                    ineffectiveArcs = ModelRelationshipSet.ineffectiveArcs(baseSetModelLinks, arcrole)
+                    #validate ineffective arcs
+                    for modelRel in ineffectiveArcs:
+                        if modelRel.fromModelObject is not None and modelRel.toModelObject is not None:
+                            modelXbrl.error(("EFM.6.09.03", "GFM.1.04.03", "SBR.NL.2.3.4.06"),
+                                _("Ineffective arc %(arc)s in \nlink role %(linkrole)s \narcrole %(arcrole)s \nfrom %(conceptFrom)s \nto %(conceptTo)s \n%(ineffectivity)s"),
+                                modelObject=modelRel, arc=modelRel.qname, arcrole=modelRel.arcrole,
+                                linkrole=modelRel.linkrole, linkroleDefinition=modelXbrl.roleTypeDefinition(modelRel.linkrole), 
+                                conceptFrom=modelRel.fromModelObject.qname, conceptTo=modelRel.toModelObject.qname, 
+                                ineffectivity=modelRel.ineffectivity)
+                if arcrole == XbrlConst.parentChild:
+                    isStatementSheet = any(linkroleDefinitionStatementSheet.match(roleType.definition or '')
+                                           for roleType in self.modelXbrl.roleTypes.get(ELR,()))
+                    conceptsPresented = set()
+                    # 6.12.2 check for distinct order attributes
+                    parentChildRels = modelXbrl.relationshipSet(arcrole, ELR)
+                    for relFrom, siblingRels in parentChildRels.fromModelObjects().items():
+                        targetConceptPreferredLabels = defaultdict(dict)
+                        orderRels = {}
+                        firstRel = True
+                        relFromUsed = True
+                        for rel in siblingRels:
+                            if firstRel:
+                                firstRel = False
+                                if relFrom in conceptsUsed:
+                                    conceptsUsed[relFrom] = True # 6.12.3, has a pres relationship
+                                    relFromUsed = True
+                            relTo = rel.toModelObject
+                            preferredLabel = rel.preferredLabel
+                            if relTo in conceptsUsed:
+                                conceptsUsed[relTo] = True # 6.12.3, has a pres relationship
+                                if preferredLabel and preferredLabel != "":
+                                    conceptRelsUsedWithPreferredLabels[relTo].append(rel)
+                                    if self.validateSBRNL and preferredLabel in ("periodStart","periodEnd"):
+                                        modelXbrl.error("SBR.NL.2.3.4.03",
+                                            _("Preferred label on presentation relationships not allowed"), modelObject=modelRel)
+                                # 6.12.5 distinct preferred labels in base set
+                                preferredLabels = targetConceptPreferredLabels[relTo]
+                                if (preferredLabel in preferredLabels or
+                                    (self.validateSBRNL and not relFrom.isTuple and
+                                     (not preferredLabel or None in preferredLabels))):
+                                    if preferredLabel in preferredLabels:
+                                        rel2, relTo2 = preferredLabels[preferredLabel]
                                     else:
-                                        preferredLabels[preferredLabel] = (rel, relTo)
-                                    if relFromUsed:
-                                        # 6.14.5
-                                        conceptsPresented.add(relFrom.objectIndex)
-                                        conceptsPresented.add(relTo.objectIndex)
-                                order = rel.order
-                                if order in orderRels:
-                                    modelXbrl.error(("EFM.6.12.02", "GFM.1.06.02", "SBR.NL.2.3.4.05"),
-                                        _("Duplicate presentation relations from concept %(conceptFrom)s for order %(order)s in base set role %(linkrole)s to concept %(conceptTo)s and to concept %(conceptTo2)s"),
-                                        modelObject=(rel, orderRels[order]), conceptFrom=relFrom.qname, order=rel.arcElement.get("order"), linkrole=rel.linkrole, linkroleDefinition=modelXbrl.roleTypeDefinition(rel.linkrole),
-                                        conceptTo=rel.toModelObject.qname, conceptTo2=orderRels[order].toModelObject.qname)
+                                        rel2 = relTo2 = None
+                                    modelXbrl.error(("EFM.6.12.05", "GFM.1.06.05", "SBR.NL.2.3.4.06"),
+                                        _("Concept %(concept)s has duplicate preferred label %(preferredLabel)s in link role %(linkrole)s"),
+                                        modelObject=(rel, relTo, rel2, relTo2), 
+                                        concept=relTo.qname, fromConcept=rel.fromModelObject.qname,
+                                        preferredLabel=preferredLabel, linkrole=rel.linkrole, linkroleDefinition=modelXbrl.roleTypeDefinition(rel.linkrole))
                                 else:
-                                    orderRels[order] = rel
-                                if self.validateSBRNL and not relFrom.isTuple:
-                                    if relTo in localPreferredLabels:
-                                        if {None, preferredLabel} & localPreferredLabels[relTo]:
-                                            self.modelXbrl.error("SBR.NL.2.3.4.06",
-                                                _("Non-distinguished preferredLabel presentation relations from concept %(conceptFrom)s in base set role %(linkrole)s"),
-                                                modelObject=rel, conceptFrom=relFrom.qname, linkrole=rel.linkrole, conceptTo=relTo.qname)
-                                    localPreferredLabels[relTo].add(preferredLabel)
-                            targetConceptPreferredLabels.clear()
-                            orderRels.clear()
-                        localPreferredLabels.clear() # clear for next relationship
-                        for conceptPresented in conceptsPresented:
-                            if conceptPresented in usedCalcsPresented:
-                                usedCalcPairingsOfConcept = usedCalcsPresented[conceptPresented]
-                                if len(usedCalcPairingsOfConcept & conceptsPresented) > 0:
-                                    usedCalcPairingsOfConcept -= conceptsPresented
-                        # 6.15.02, 6.15.03 semantics checks for totals and calc arcs (by tree walk)
-                        if validateLoggingSemantic:
-                            for rootConcept in parentChildRels.rootConcepts:
-                                self.checkCalcsTreeWalk(parentChildRels, rootConcept, isStatementSheet, False, conceptsUsed, set())
-                    elif arcrole == XbrlConst.summationItem:
-                        if self.validateEFMorGFM:
-                            # 6.14.3 check for relation concept periods
-                            fromRelationships = modelXbrl.relationshipSet(arcrole,ELR).fromModelObjects()
-                            allElrRelSet = modelXbrl.relationshipSet(arcrole)
-                            for relFrom, rels in fromRelationships.items():
-                                orderRels = {}
-                                for rel in rels:
-                                    relTo = rel.toModelObject
-                                    # 6.14.03 must have matched period types across relationshp
-                                    if isinstance(relTo, ModelConcept) and relFrom.periodType != relTo.periodType:
-                                        self.modelXbrl.error(("EFM.6.14.03", "GFM.1.07.03"),
-                                            "Calculation relationship period types mismatched in base set role %(linkrole)s from %(conceptFrom)s to %(conceptTo)s",
-                                            modelObject=rel, linkrole=rel.linkrole, conceptFrom=relFrom.qname, conceptTo=relTo.qname, linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR))
-                                    # 6.14.5 concepts used must have pres in same ext link
-                                    if relFrom in conceptsUsed and relTo in conceptsUsed:
-                                        fromObjId = relFrom.objectIndex
-                                        toObjId = relTo.objectIndex
-                                        if fromObjId < toObjId:
-                                            usedCalcsPresented[fromObjId].add(toObjId)
-                                        else:
-                                            usedCalcsPresented[toObjId].add(fromObjId)
-                                            
-                                    order = rel.order
-                                    if order in orderRels and disclosureSystem.GFM:
-                                        self.modelXbrl.error(("EFM.N/A", "GFM.1.07.06"),
-                                            _("Duplicate calculations relations from concept %(conceptFrom)s for order %(order)s in base set role %(linkrole)s to concept %(conceptTo)s and to concept %(conceptTo2)s"),
-                                            modelObject=(rel, orderRels[order]), linkrole=rel.linkrole, conceptFrom=relFrom.qname, order=order,
-                                            conceptTo=rel.toModelObject.qname, conceptTo2=orderRels[order].toModelObject.qname)
-                                    else:
-                                        orderRels[order] = rel
-                                directedCycleRels = self.directedCycle(relFrom,relFrom,fromRelationships,{relFrom})
-                                if directedCycleRels is not None:
-                                    self.modelXbrl.error(("EFM.6.14.04", "GFM.1.07.04"),
-                                        _("Calculation relationships have a directed cycle in base set role %(linkrole)s starting from %(concept)s"),
-                                        modelObject=[relFrom] + directedCycleRels, linkrole=ELR, concept=relFrom.qname, linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR))
-                                orderRels.clear()
-                                # if relFrom used by fact and multiple calc networks from relFrom, test 6.15.04
-                                if rels and relFrom in conceptsUsed:
-                                    relFromAndTos = (relFrom.objectIndex,) + tuple(sorted((rel.toModelObject.objectIndex 
-                                                                                           for rel in rels if isinstance(rel.toModelObject, ModelConcept))))
-                                    if relFromAndTos in usedCalcFromTosELR:
-                                        otherRels = usedCalcFromTosELR[relFromAndTos]
-                                        otherELR = otherRels[0].linkrole
-                                        self.modelXbrl.log("WARNING-SEMANTIC", ("EFM.6.15.04", "GFM.2.06.04"),
-                                            _("Calculation relationships should have a same set of targets in %(linkrole)s and %(linkrole2)s starting from %(concept)s"),
-                                            modelObject=[relFrom] + rels + otherRels, linkrole=ELR, linkrole2=otherELR, concept=relFrom.qname)
-                                    else:
-                                        usedCalcFromTosELR[relFromAndTos] = rels
-                                    
-                        elif self.validateSBRNL:
-                            # find a calc relationship to get the containing document name
-                            for modelRel in self.modelXbrl.relationshipSet(arcrole, ELR).modelRelationships:
-                                self.modelXbrl.error("SBR.NL.2.3.9.01",
-                                    _("Calculation linkbase linkrole %(linkrole)s"),
-                                    modelObject=modelRel, linkrole=ELR)
-                                break
-                                
-                    elif arcrole == XbrlConst.all or arcrole == XbrlConst.notAll:
-                        drsELRs.add(ELR)
-                        
-                    elif arcrole == XbrlConst.dimensionDomain or arcrole == XbrlConst.dimensionDefault and \
-                         self.validateEFMorGFM:
-                        # 6.16.3 check domain targets in extension linkbases are domain items
+                                    preferredLabels[preferredLabel] = (rel, relTo)
+                                if relFromUsed:
+                                    # 6.14.5
+                                    conceptsPresented.add(relFrom.objectIndex)
+                                    conceptsPresented.add(relTo.objectIndex)
+                            order = rel.order
+                            if order in orderRels:
+                                modelXbrl.error(("EFM.6.12.02", "GFM.1.06.02", "SBR.NL.2.3.4.05"),
+                                    _("Duplicate presentation relations from concept %(conceptFrom)s for order %(order)s in base set role %(linkrole)s to concept %(conceptTo)s and to concept %(conceptTo2)s"),
+                                    modelObject=(rel, orderRels[order]), conceptFrom=relFrom.qname, order=rel.arcElement.get("order"), linkrole=rel.linkrole, linkroleDefinition=modelXbrl.roleTypeDefinition(rel.linkrole),
+                                    conceptTo=rel.toModelObject.qname, conceptTo2=orderRels[order].toModelObject.qname)
+                            else:
+                                orderRels[order] = rel
+                            if self.validateSBRNL and not relFrom.isTuple:
+                                if relTo in localPreferredLabels:
+                                    if {None, preferredLabel} & localPreferredLabels[relTo]:
+                                        self.modelXbrl.error("SBR.NL.2.3.4.06",
+                                            _("Non-distinguished preferredLabel presentation relations from concept %(conceptFrom)s in base set role %(linkrole)s"),
+                                            modelObject=rel, conceptFrom=relFrom.qname, linkrole=rel.linkrole, conceptTo=relTo.qname)
+                                localPreferredLabels[relTo].add(preferredLabel)
+                        targetConceptPreferredLabels.clear()
+                        orderRels.clear()
+                    localPreferredLabels.clear() # clear for next relationship
+                    for conceptPresented in conceptsPresented:
+                        if conceptPresented in usedCalcsPresented:
+                            usedCalcPairingsOfConcept = usedCalcsPresented[conceptPresented]
+                            if len(usedCalcPairingsOfConcept & conceptsPresented) > 0:
+                                usedCalcPairingsOfConcept -= conceptsPresented
+                    # 6.15.02, 6.15.03 semantics checks for totals and calc arcs (by tree walk)
+                    if validateLoggingSemantic:
+                        for rootConcept in parentChildRels.rootConcepts:
+                            self.checkCalcsTreeWalk(parentChildRels, rootConcept, isStatementSheet, False, conceptsUsed, set())
+                elif arcrole == XbrlConst.summationItem:
+                    if self.validateEFMorGFM:
+                        # 6.14.3 check for relation concept periods
                         fromRelationships = modelXbrl.relationshipSet(arcrole,ELR).fromModelObjects()
-                        for relFrom, rels in fromRelationships.items():
-                            for rel in rels:
-                                relTo = rel.toModelObject
-    
-                                if not (isinstance(relTo, ModelConcept) and relTo.type is not None and relTo.type.isDomainItemType) and not self.isStandardUri(rel.modelDocument.uri):
-                                    self.modelXbrl.error(("EFM.6.16.03", "GFM.1.08.03"),
-                                        _("Definition relationship from %(conceptFrom)s to %(conceptTo)s in role %(linkrole)s requires domain item target"),
-                                        modelObject=(rel, relFrom, relTo), conceptFrom=relFrom.qname, conceptTo=(relTo.qname if relTo is not None else None), linkrole=rel.linkrole)
-
-                    elif self.validateSBRNL:
-                        if arcrole == XbrlConst.dimensionDefault:
-                            for modelRel in self.modelXbrl.relationshipSet(arcrole).modelRelationships:
-                                self.modelXbrl.error("SBR.NL.2.3.6.05",
-                                    _("Dimension-default in from %(conceptFrom)s to %(conceptTo)s in role %(linkrole)s is not allowed"),
-                                    modelObject=modelRel, conceptFrom=modelRel.fromModelObject.qname, conceptTo=modelRel.toModelObject.qname, 
-                                    linkrole=modelRel.linkrole)
-                        ''' removed per RH 2013-01-11
-                        if not (XbrlConst.isStandardArcrole(arcrole) or XbrlConst.isDefinitionOrXdtArcrole(arcrole)):
-                            for modelRel in self.modelXbrl.relationshipSet(arcrole).modelRelationships:
-                                relTo = modelRel.toModelObject
-                                relFrom = modelRel.fromModelObject
-                                if not ((isinstance(relFrom,ModelConcept) and isinstance(relTo,ModelConcept)) or
-                                        (relFrom.modelDocument.inDTS and
-                                         (relTo.qname == XbrlConst.qnGenLabel and modelRel.arcrole == XbrlConst.elementLabel) or
-                                         (relTo.qname == XbrlConst.qnGenReference and modelRel.arcrole == XbrlConst.elementReference) or
-                                         (relTo.qname == self.qnSbrLinkroleorder))):
-                                    self.modelXbrl.error("SBR.NL.2.3.2.07",
-                                        _("The source and target of an arc must be in the DTS from %(elementFrom)s to %(elementTo)s, in linkrole %(linkrole)s, arcrole %(arcrole)s"),
-                                        modelObject=modelRel, elementFrom=relFrom.qname, elementTo=relTo.qname, 
-                                        linkrole=modelRel.linkrole, arcrole=arcrole)
-                            '''
-                           
-                    # definition tests (GFM only, for now)
-                    if XbrlConst.isDefinitionOrXdtArcrole(arcrole) and disclosureSystem.GFM: 
-                        fromRelationships = modelXbrl.relationshipSet(arcrole,ELR).fromModelObjects()
+                        allElrRelSet = modelXbrl.relationshipSet(arcrole)
                         for relFrom, rels in fromRelationships.items():
                             orderRels = {}
                             for rel in rels:
                                 relTo = rel.toModelObject
+                                # 6.14.03 must have matched period types across relationshp
+                                if isinstance(relTo, ModelConcept) and relFrom.periodType != relTo.periodType:
+                                    self.modelXbrl.error(("EFM.6.14.03", "GFM.1.07.03"),
+                                        "Calculation relationship period types mismatched in base set role %(linkrole)s from %(conceptFrom)s to %(conceptTo)s",
+                                        modelObject=rel, linkrole=rel.linkrole, conceptFrom=relFrom.qname, conceptTo=relTo.qname, linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR))
+                                # 6.14.5 concepts used must have pres in same ext link
+                                if relFrom in conceptsUsed and relTo in conceptsUsed:
+                                    fromObjId = relFrom.objectIndex
+                                    toObjId = relTo.objectIndex
+                                    if fromObjId < toObjId:
+                                        usedCalcsPresented[fromObjId].add(toObjId)
+                                    else:
+                                        usedCalcsPresented[toObjId].add(fromObjId)
+                                        
                                 order = rel.order
                                 if order in orderRels and disclosureSystem.GFM:
-                                    self.modelXbrl.error("GFM.1.08.10",
-                                        _("Duplicate definitions relations from concept %(conceptFrom)s for order %(order)s in base set role %(linkrole)s to concept %(conceptTo)s and to concept %(conceptTo2)s"),
-                                        modelObject=(rel, relFrom, relTo), conceptFrom=relFrom.qname, order=order, linkrole=rel.linkrole, 
+                                    self.modelXbrl.error(("EFM.N/A", "GFM.1.07.06"),
+                                        _("Duplicate calculations relations from concept %(conceptFrom)s for order %(order)s in base set role %(linkrole)s to concept %(conceptTo)s and to concept %(conceptTo2)s"),
+                                        modelObject=(rel, orderRels[order]), linkrole=rel.linkrole, conceptFrom=relFrom.qname, order=order,
                                         conceptTo=rel.toModelObject.qname, conceptTo2=orderRels[order].toModelObject.qname)
                                 else:
                                     orderRels[order] = rel
-                                if (arcrole not in (XbrlConst.dimensionDomain, XbrlConst.domainMember) and
-                                    rel.get("{http://xbrl.org/2005/xbrldt}usable") == "false"):
-                                    self.modelXrl.error("GFM.1.08.11",
-                                        _("Disallowed xbrldt:usable='false' attribute on %(arc)s relationship from concept %(conceptFrom)s in base set role %(linkrole)s to concept %(conceptTo)s"),
-                                        modelObject=(rel, relFrom, relTo), arc=rel.qname, conceptFrom=relFrom.qname, linkrole=rel.linkrole, conceptTo=rel.toModelObject.qname)
+                            directedCycleRels = self.directedCycle(relFrom,relFrom,fromRelationships,{relFrom})
+                            if directedCycleRels is not None:
+                                self.modelXbrl.error(("EFM.6.14.04", "GFM.1.07.04"),
+                                    _("Calculation relationships have a directed cycle in base set role %(linkrole)s starting from %(concept)s"),
+                                    modelObject=[relFrom] + directedCycleRels, linkrole=ELR, concept=relFrom.qname, linkroleDefinition=self.modelXbrl.roleTypeDefinition(ELR))
+                            orderRels.clear()
+                            # if relFrom used by fact and multiple calc networks from relFrom, test 6.15.04
+                            if rels and relFrom in conceptsUsed:
+                                relFromAndTos = (relFrom.objectIndex,) + tuple(sorted((rel.toModelObject.objectIndex 
+                                                                                       for rel in rels if isinstance(rel.toModelObject, ModelConcept))))
+                                if relFromAndTos in usedCalcFromTosELR:
+                                    otherRels = usedCalcFromTosELR[relFromAndTos]
+                                    otherELR = otherRels[0].linkrole
+                                    self.modelXbrl.log("WARNING-SEMANTIC", ("EFM.6.15.04", "GFM.2.06.04"),
+                                        _("Calculation relationships should have a same set of targets in %(linkrole)s and %(linkrole2)s starting from %(concept)s"),
+                                        modelObject=[relFrom] + rels + otherRels, linkrole=ELR, linkrole2=otherELR, concept=relFrom.qname)
+                                else:
+                                    usedCalcFromTosELR[relFromAndTos] = rels
+                                
+                    elif self.validateSBRNL:
+                        # find a calc relationship to get the containing document name
+                        for modelRel in self.modelXbrl.relationshipSet(arcrole, ELR).modelRelationships:
+                            self.modelXbrl.error("SBR.NL.2.3.9.01",
+                                _("Calculation linkbase linkrole %(linkrole)s"),
+                                modelObject=modelRel, linkrole=ELR)
+                            break
+                            
+                elif arcrole == XbrlConst.all or arcrole == XbrlConst.notAll:
+                    drsELRs.add(ELR)
+                    
+                elif arcrole == XbrlConst.dimensionDomain or arcrole == XbrlConst.dimensionDefault and \
+                     self.validateEFMorGFM:
+                    # 6.16.3 check domain targets in extension linkbases are domain items
+                    fromRelationships = modelXbrl.relationshipSet(arcrole,ELR).fromModelObjects()
+                    for relFrom, rels in fromRelationships.items():
+                        for rel in rels:
+                            relTo = rel.toModelObject
+
+                            if not (isinstance(relTo, ModelConcept) and relTo.type is not None and relTo.type.isDomainItemType) and not self.isStandardUri(rel.modelDocument.uri):
+                                self.modelXbrl.error(("EFM.6.16.03", "GFM.1.08.03"),
+                                    _("Definition relationship from %(conceptFrom)s to %(conceptTo)s in role %(linkrole)s requires domain item target"),
+                                    modelObject=(rel, relFrom, relTo), conceptFrom=relFrom.qname, conceptTo=(relTo.qname if relTo is not None else None), linkrole=rel.linkrole)
+
+                elif self.validateSBRNL:
+                    if arcrole == XbrlConst.dimensionDefault:
+                        for modelRel in self.modelXbrl.relationshipSet(arcrole).modelRelationships:
+                            self.modelXbrl.error("SBR.NL.2.3.6.05",
+                                _("Dimension-default in from %(conceptFrom)s to %(conceptTo)s in role %(linkrole)s is not allowed"),
+                                modelObject=modelRel, conceptFrom=modelRel.fromModelObject.qname, conceptTo=modelRel.toModelObject.qname, 
+                                linkrole=modelRel.linkrole)
+                    ''' removed per RH 2013-01-11
+                    if not (XbrlConst.isStandardArcrole(arcrole) or XbrlConst.isDefinitionOrXdtArcrole(arcrole)):
+                        for modelRel in self.modelXbrl.relationshipSet(arcrole).modelRelationships:
+                            relTo = modelRel.toModelObject
+                            relFrom = modelRel.fromModelObject
+                            if not ((isinstance(relFrom,ModelConcept) and isinstance(relTo,ModelConcept)) or
+                                    (relFrom.modelDocument.inDTS and
+                                     (relTo.qname == XbrlConst.qnGenLabel and modelRel.arcrole == XbrlConst.elementLabel) or
+                                     (relTo.qname == XbrlConst.qnGenReference and modelRel.arcrole == XbrlConst.elementReference) or
+                                     (relTo.qname == self.qnSbrLinkroleorder))):
+                                self.modelXbrl.error("SBR.NL.2.3.2.07",
+                                    _("The source and target of an arc must be in the DTS from %(elementFrom)s to %(elementTo)s, in linkrole %(linkrole)s, arcrole %(arcrole)s"),
+                                    modelObject=modelRel, elementFrom=relFrom.qname, elementTo=relTo.qname, 
+                                    linkrole=modelRel.linkrole, arcrole=arcrole)
+                        '''
+                       
+                # definition tests (GFM only, for now)
+                if XbrlConst.isDefinitionOrXdtArcrole(arcrole) and disclosureSystem.GFM: 
+                    fromRelationships = modelXbrl.relationshipSet(arcrole,ELR).fromModelObjects()
+                    for relFrom, rels in fromRelationships.items():
+                        orderRels = {}
+                        for rel in rels:
+                            relTo = rel.toModelObject
+                            order = rel.order
+                            if order in orderRels and disclosureSystem.GFM:
+                                self.modelXbrl.error("GFM.1.08.10",
+                                    _("Duplicate definitions relations from concept %(conceptFrom)s for order %(order)s in base set role %(linkrole)s to concept %(conceptTo)s and to concept %(conceptTo2)s"),
+                                    modelObject=(rel, relFrom, relTo), conceptFrom=relFrom.qname, order=order, linkrole=rel.linkrole, 
+                                    conceptTo=rel.toModelObject.qname, conceptTo2=orderRels[order].toModelObject.qname)
+                            else:
+                                orderRels[order] = rel
+                            if (arcrole not in (XbrlConst.dimensionDomain, XbrlConst.domainMember) and
+                                rel.get("{http://xbrl.org/2005/xbrldt}usable") == "false"):
+                                self.modelXrl.error("GFM.1.08.11",
+                                    _("Disallowed xbrldt:usable='false' attribute on %(arc)s relationship from concept %(conceptFrom)s in base set role %(linkrole)s to concept %(conceptTo)s"),
+                                    modelObject=(rel, relFrom, relTo), arc=rel.qname, conceptFrom=relFrom.qname, linkrole=rel.linkrole, conceptTo=rel.toModelObject.qname)
 
         del localPreferredLabels # dereference
         del usedCalcFromTosELR

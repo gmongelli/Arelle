@@ -95,20 +95,16 @@ def saveTargetDocument(modelXbrl, targetDocumentFilename, targetDocumentSchemaRe
     createFacts(modelXbrl.facts, None)
     # footnote links
     modelXbrl.modelManager.showStatus(_("Creating and validating footnotes & relationships"))
-    for linkKey, linkPrototypes in modelXbrl.baseSets.items():
-        arcrole, linkrole, linkqname, arcqname = linkKey
-        if (linkrole and linkqname and arcqname and # fully specified roles
-            any(lP.modelDocument.type == Type.INLINEXBRL for lP in linkPrototypes)):
-            for linkPrototype in linkPrototypes:
-                newLink = XmlUtil.addChild(targetInstance.modelDocument.xmlRootElement, linkqname, 
-                                           attributes=linkPrototype.attributes)
-                for linkChild in linkPrototype:
-                    if isinstance(linkChild, LocPrototype) and "{http://www.w3.org/1999/xlink}href" not in linkChild.attributes:
-                        linkChild.attributes["{http://www.w3.org/1999/xlink}href"] = \
-                        "#" + XmlUtil.elementFragmentIdentifier(newFactForOldObjId[linkChild.dereference().objectIndex])
-                    XmlUtil.addChild(newLink, linkChild.qname, 
-                                     attributes=linkChild.attributes,
-                                     text=linkChild.textValue)
+    for linkqname, linkPrototype in modelXbrl.allArcs(returnQNameLink=True):
+        newLink = XmlUtil.addChild(targetInstance.modelDocument.xmlRootElement, linkqname, 
+                                   attributes=linkPrototype.attributes)
+        for linkChild in linkPrototype:
+            if isinstance(linkChild, LocPrototype) and "{http://www.w3.org/1999/xlink}href" not in linkChild.attributes:
+                linkChild.attributes["{http://www.w3.org/1999/xlink}href"] = \
+                "#" + XmlUtil.elementFragmentIdentifier(newFactForOldObjId[linkChild.dereference().objectIndex])
+            XmlUtil.addChild(newLink, linkChild.qname, 
+                             attributes=linkChild.attributes,
+                             text=linkChild.textValue)
             
     targetInstance.saveInstance(overrideFilepath=targetUrl)
     modelXbrl.modelManager.showStatus(_("Saved extracted instance"), 5000)
