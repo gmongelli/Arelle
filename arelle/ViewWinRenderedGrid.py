@@ -876,10 +876,10 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                             self.viewReloadDueToMenuAction()
                     self.deferredReloadCount = getattr(self, "deferredReloadCount", 0) + 1
                     self.viewFrame.after(1500, deferredReload)
-                            
+
     def onQuitView(self, event, *args):
         self.updateInstanceFromFactPrototypes()
-            
+
     def hasChangesToSave(self):
         for bodyCell in self.gridRowHdr.winfo_children():
             if isinstance(bodyCell, (gridCell,gridCombobox)) and bodyCell.isChanged:
@@ -888,7 +888,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
             if isinstance(bodyCell, (gridCell,gridCombobox)) and bodyCell.isChanged:
                 return True
         return False
-    
+
     def updateInstanceFromFactPrototypes(self):
         # Only update the model if it already exists
         if self.modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:
@@ -896,24 +896,35 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
             newCntx = ModelXbrl.AUTO_LOCATE_ELEMENT
             newUnit = ModelXbrl.AUTO_LOCATE_ELEMENT
             # check user keyed changes to aspects
-            aspectEntryChanges = {}  # index = widget ID,  value = widget contents
+            aspectEntryChanges = {} # index = widget ID,  value = widget contents
             for bodyCell in self.gridRowHdr.winfo_children():
-                if isinstance(bodyCell, (gridCell,gridCombobox)) and bodyCell.isChanged:
+                if isinstance(bodyCell, (gridCell, gridCombobox)) and bodyCell.isChanged:
                     objId = bodyCell.objectId
                     if objId:
                         if objId[0] == OPEN_ASPECT_ENTRY_SURROGATE:
-                            bodyCell.isChanged = False  # clear change flag
+                            bodyCell.isChanged = False # clear change flag
                             aspectEntryChanges[objId] = bodyCell.value
+
             aspectEntryChangeIds = _DICT_SET(aspectEntryChanges.keys())
             # check user keyed changes to facts
             for bodyCell in self.gridBody.winfo_children():
-                if isinstance(bodyCell, gridCell) and bodyCell.isChanged:
-                    value = bodyCell.value
+                if isinstance(bodyCell, (gridCell, gridCombobox)) and bodyCell.isChanged:
+                    if (isinstance(bodyCell, gridCombobox)):
+                        codeDict = bodyCell.codes
+                        if len(codeDict)>0: # the drop-down list shows labels, we want to have the actual values
+                            bodyCellValue = bodyCell.value
+                            value = codeDict.get(bodyCellValue, None)
+                            if value is None:
+                                value = bodyCellValue # this must be a qname!
+                        else:
+                            value = bodyCell.value
+                    else:
+                        value = bodyCell.value
                     objId = bodyCell.objectId
                     if objId:
                         if (objId[0] == "f" and 
                             (bodyCell.isChanged or # change in fact value widget or any open aspect widget
-                             self.factPrototypeAspectEntryObjectIds[objId] & aspectEntryChangeIds)):
+                                self.factPrototypeAspectEntryObjectIds[objId] & aspectEntryChangeIds)):
                             factPrototypeIndex = int(objId[1:])
                             factPrototype = self.factPrototypes[factPrototypeIndex]
                             concept = factPrototype.concept
@@ -923,24 +934,31 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                             periodStart = self.newFactItemOptions.startDateDate if periodType == "duration" else None
                             periodEndInstant = self.newFactItemOptions.endDateDate
                             qnameDims = factPrototype.context.qnameDims
-                            qnameDims.update(self.newFactOpenAspects(objId))
+                            newAspectValues = self.newFactOpenAspects(objId)
+                            if newAspectValues is None:
+                                self.modelXbrl.modelManager.showStatus(_("Some open values are missing in an axis, the save is incomplete"), 5000)
+                                continue
+                            qnameDims.update(newAspectValues)
                             # open aspects widgets
                             prevCntx = instance.matchContext(
-                                 entityIdentScheme, entityIdentValue, periodType, periodStart, periodEndInstant, 
-                                 qnameDims, [], [])
+                                entityIdentScheme, entityIdentValue, periodType, periodStart, periodEndInstant, 
+                                qnameDims, [], [])
                             if prevCntx is not None:
                                 cntxId = prevCntx.id
-                            else: # need new context
+                                if self.modelXbrl.factAlreadyExists(concept.qname, cntxId):
+                                    self.modelXbrl.modelManager.addToLog(_("Value %s will not be saved, because fact '%s' already exists somewhere else") % (value, concept.label()), level=logging.ERROR)
+                                    continue
+                            else:
                                 newCntx = instance.createContext(entityIdentScheme, entityIdentValue, 
-                                              periodType, periodStart, periodEndInstant, 
-                                              concept.qname, qnameDims, [], [],
-                                              afterSibling=newCntx)
-                                cntxId = newCntx.id
-                                # new context
+                                    periodType, periodStart, periodEndInstant, 
+                                    concept.qname, qnameDims, [], [], 
+                                    afterSibling=newCntx)
+                                cntxId = newCntx.id # need new context
+                            # new context
                             if concept.isNumeric:
                                 if concept.isMonetary:
                                     unitMeasure = qname(XbrlConst.iso4217, self.newFactItemOptions.monetaryUnit)
-                                    unitMeasure.prefix = "iso4217"  # want to save with a recommended prefix
+                                    unitMeasure.prefix = "iso4217" # want to save with a recommended prefix
                                     decimals = self.newFactItemOptions.monetaryDecimals
                                 elif concept.isShares:
                                     unitMeasure = XbrlConst.qnXbrliShares
@@ -948,37 +966,63 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                 else:
                                     unitMeasure = XbrlConst.qnXbrliPure
                                     decimals = self.newFactItemOptions.nonMonetaryDecimals
-                                prevUnit = instance.matchUnit([unitMeasure],[])
+                                prevUnit = instance.matchUnit([unitMeasure], [])
                                 if prevUnit is not None:
                                     unitId = prevUnit.id
                                 else:
-                                    newUnit = instance.createUnit([unitMeasure],[], afterSibling=newUnit)
+                                    newUnit = instance.createUnit([unitMeasure], [], afterSibling=newUnit)
                                     unitId = newUnit.id
                             attrs = [("contextRef", cntxId)]
                             if concept.isNumeric:
                                 attrs.append(("unitRef", unitId))
-                                attrs.append(("decimals", decimals))
                                 value = Locale.atof(self.modelXbrl.locale, value, str.strip)
+                                # Check if there is a custom method to compute the decimals
+                                for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.ComputeDecimals"):
+                                    stopPlugin, decimals = pluginXbrlMethod(instance.locale, value, concept, decimals)
+                                    if stopPlugin == True:
+                                        break;
+                                attrs.append(("decimals", decimals))
                             newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
-                            bodyCell.objectId = newFact.objectId()  # switch cell to now use fact ID
+                            bodyCell.objectId = newFact.objectId() # switch cell to now use fact ID
                             if self.factPrototypes[factPrototypeIndex] is not None:
                                 self.factPrototypes[factPrototypeIndex].clear()
                             self.factPrototypes[factPrototypeIndex] = None #dereference fact prototype
-                            bodyCell.isChanged = False  # clear change flag
+                            bodyCell.isChanged = False # clear change flag
                         elif objId[0] != "a": # instance fact, not prototype
                             fact = self.modelXbrl.modelObject(objId)
                             if fact.concept.isNumeric:
                                 value = Locale.atof(self.modelXbrl.locale, value, str.strip)
-                            if fact.value != value:
-                                if fact.concept.isNumeric and fact.isNil != (not value):
+                                if fact.concept.isMonetary:
+                                    unitMeasure = qname(XbrlConst.iso4217, self.newFactItemOptions.monetaryUnit)
+                                    unitMeasure.prefix = "iso4217" # want to save with a recommended prefix
+                                    decimals = self.newFactItemOptions.monetaryDecimals
+                                elif fact.concept.isShares:
+                                    unitMeasure = XbrlConst.qnXbrliShares
+                                    decimals = self.newFactItemOptions.nonMonetaryDecimals
+                                else:
+                                    unitMeasure = XbrlConst.qnXbrliPure
+                                    decimals = self.newFactItemOptions.nonMonetaryDecimals
+                                # Check if there is a custom method to compute the decimals
+                                for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.ComputeDecimals"):
+                                    stopPlugin, decimals = pluginXbrlMethod(instance.locale, value, fact.concept, decimals)
+                                    if stopPlugin == True:
+                                        break;
+                            if fact.value != str(value):
+                                if fact.isNil != (not value):
                                     fact.isNil = not value
-                                    if value: # had been nil, now it needs decimals
-                                        fact.decimals = (self.newFactItemOptions.monetaryDecimals
-                                                         if fact.concept.isMonetary else
-                                                         self.newFactItemOptions.nonMonetaryDecimals)
-                                fact.text = value
+                                    instance.factIndex.updateFact(fact) # for the time being, only the isNil value can change
+                                if fact.concept.isNumeric and (not fact.isNil): # if nil, there is no need to update these values
+                                    fact.decimals = decimals
+                                    prevUnit = instance.matchUnit([unitMeasure], [])
+                                    if prevUnit is not None:
+                                        unitId = prevUnit.id
+                                    else:
+                                        newUnit = instance.createUnit([unitMeasure], [], afterSibling=newUnit)
+                                        unitId = newUnit.id
+                                    fact.unitID = unitId
+                                fact.text = str(value)
                                 XmlValidate.validate(instance, fact)
-                            bodyCell.isChanged = False  # clear change flag
+                            bodyCell.isChanged = False # clear change flag
                         
     def saveInstance(self, newFilename=None, onSaved=None):
         if (not self.newFactItemOptions.entityIdentScheme or  # not initialized yet
