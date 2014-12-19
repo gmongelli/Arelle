@@ -320,8 +320,14 @@ class ModelFact(ModelObject):
             self.set("{http://www.w3.org/2001/XMLSchema-instance}nil", "true")
             self.attrib.pop("decimals", "0")  # can't leave decimals or precision
             self.attrib.pop("precision", "0")
-            del self._decimals
-            del self._precision
+            try:
+                del self._decimals
+            except AttributeError:
+                pass
+            try:
+                del self._precision
+            except AttributeError:
+                pass
         else: # also remove decimals and precision, if they were there
             self.attrib.pop("{http://www.w3.org/2001/XMLSchema-instance}nil", "false")
     
