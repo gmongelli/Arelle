@@ -118,23 +118,6 @@ class QName:
             return '{{{0}}}{1}'.format(self.namespaceURI, self.localName)
         else:
             return self.localName
-    def serialise(self):
-        p = self.prefix or ''
-        n = self.namespaceURI or ''
-        l = self.localName or ''
-        return "".join([l.ljust(128, ' '), n.ljust(128, ' '), p.ljust(128, ' ')])
-    @classmethod
-    def deserialise(cls, serialisedString):
-        localName = serialisedString[:128].rstrip()
-        namespaceURI = serialisedString[128:256].rstrip()
-        prefix = serialisedString[256:384].rstrip()
-        if localName == '':
-            localName = None
-        if namespaceURI == '':
-            namespaceURI = None
-        if prefix == '':
-            prefix = None
-        return cls(prefix, namespaceURI, localName)
     def __repr__(self):
         return self.__str__() 
     def __str__(self):

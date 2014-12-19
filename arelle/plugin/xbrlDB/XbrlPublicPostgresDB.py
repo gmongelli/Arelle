@@ -264,7 +264,9 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
         
     def identifyConceptsUsed(self):
         # relationshipSets are a dts property
-        self.relationshipSets = self.modelXbrl.allArcKeysNullValuesIncluded()
+        self.relationshipSets = [(arcrole, ELR, linkqname, arcqname)
+                                 for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
+                                 if ELR and (arcrole.startswith("XBRL-") or (linkqname and arcqname))]
 
         
         conceptsUsed = set(f.qname for f in self.modelXbrl.factsInInstance)
@@ -470,11 +472,8 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
                                      self.uriId[arcrole],
                                      None if ELR in XbrlConst.standardRoles else
                                      self.modelXbrl.roleTypes[ELR][0].definition)
-                                    for arcrole, ELR, linkqname, arcqname in self.modelXbrl.allArcs(returnArcRole=True,
-                                                                                                    returnLinkRole=True,
-                                                                                                    returnQNameLink=True,
-                                                                                                    returnQNameArc=True,
-                                                                                                    returnObjects=False)))
+                                    for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
+                                    if ELR and linkqname and arcqname and not arcrole.startswith("XBRL-")))
         self.networkId = dict(((accId, linkQnId, linkRoleId, arcQnId, arcRoleId), id)
                               for id, accId, linkQnId, linkRoleId, arcQnId, arcRoleId in table)
         # do tree walk to build relationships with depth annotated, no targetRole navigation
@@ -490,20 +489,17 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
                     visited.remove(rel)
             return seq
         
-        for arcrole, ELR, linkqname, arcqname in self.modelXbrl.allArcs(returnArcRole=True,
-                                                                        returnLinkRole=True,
-                                                                        returnQNameLink=True,
-                                                                        returnQNameArc=True,
-                                                                        returnObjects=False):
-            networkId = self.networkId[(self.accessionId,
-                                        self.qnameId[linkqname],
-                                        self.uriId[ELR],
-                                        self.qnameId[arcqname],
-                                        self.uriId[arcrole])]
-            relationshipSet = self.modelXbrl.relationshipSet(arcrole, ELR, linkqname, arcqname)
-            seq = 1               
-            for rootConcept in relationshipSet.rootConcepts:
-                seq = walkTree(relationshipSet.fromModelObject(rootConcept), seq, 1, relationshipSet, set(), dbRels, networkId)
+        for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys():
+            if ELR and linkqname and arcqname and not arcrole.startswith("XBRL-"):
+                networkId = self.networkId[(self.accessionId,
+                                            self.qnameId[linkqname],
+                                            self.uriId[ELR],
+                                            self.qnameId[arcqname],
+                                            self.uriId[arcrole])]
+                relationshipSet = self.modelXbrl.relationshipSet(arcrole, ELR, linkqname, arcqname)
+                seq = 1               
+                for rootConcept in relationshipSet.rootConcepts:
+                    seq = walkTree(relationshipSet.fromModelObject(rootConcept), seq, 1, relationshipSet, set(), dbRels, networkId)
 
         def resourceResourceId(resource):
             if isinstance(resource, ModelResource):

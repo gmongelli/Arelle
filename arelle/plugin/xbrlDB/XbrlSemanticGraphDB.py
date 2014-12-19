@@ -322,7 +322,9 @@ class XbrlSemanticGraphDatabaseConnection():
             self.filing_id = int(id)
             
         # relationshipSets are a dts property
-        self.relationshipSets = self.modelXbrl.allArcKeysNullValuesIncluded()
+        self.relationshipSets = [(arcrole, ELR, linkqname, arcqname)
+                                 for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
+                                 if ELR and (arcrole.startswith("XBRL-") or (linkqname and arcqname))]
         
     def insertDocuments(self):
         # filing->documents

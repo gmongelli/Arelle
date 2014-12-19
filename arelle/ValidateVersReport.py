@@ -406,7 +406,8 @@ class ValidateVersReport():
                                     modelObject=relSetChange, event=relSetChange.name, relSet=name,
                                     linkrole=relationshipSet.linkrole)
                                 relationshipSetValid = False
-                            elif len(versReport.modelXbrl.findArcs((None, relationshipSet.linkrole, None, None), returnLinkRole=True, returnObjects=False))==0:
+                            elif not any(linkrole == relationshipSet.linkrole
+                                         for arcrole, linkrole, linkqname, arcqname in dts.baseSets.keys()):
                                 self.modelVersReport.error("verrelse:invalidLinkrole",
                                     _("%(event)s %(relSet)s linkrole %(linkrole)s is not used in its DTS"),
                                     modelObject=relSetChange, event=relSetChange.name, relSet=name,
@@ -420,7 +421,8 @@ class ValidateVersReport():
                                     modelObject=relSetChange, event=relSetChange.name, relSet=name,
                                     arcrole=relationshipSet.arcrole)
                                 relationshipSetValid = False
-                            elif len(versReport.modelXbrl.findArcs((relationshipSet.arcrole, None, None, None), returnArcRole=True, returnObjects=False))==0:
+                            elif not any(arcrole == relationshipSet.arcrole
+                                         for arcrole, linkrole, linkqname, arcqname in dts.baseSets.keys()):
                                 self.modelVersReport.error("verrelse:invalidArcrole",
                                     _("%(event)s %(relSet)s arcrole %(arcrole)s is not used in its DTS"),
                                     modelObject=relSetChange, event=relSetChange.name, relSet=name,
@@ -504,7 +506,8 @@ class ValidateVersReport():
                                             self.modelVersReport.error("verdime:invalidURI",
                                                 _("%(event)s arcrole %(arcrole)s is not defined in its DTS"),
                                                 modelObject=aspect, event=iaChange.name, arcrole=relatedConcept.arcrole)
-                                        elif len(versReport.modelXbrl.findArcs((relatedConcept.arcrole, None, None, None), returnArcRole=True, returnObjects=False))==0:
+                                        elif not any(arcrole == relatedConcept.arcrole
+                                                     for arcrole, linkrole, linkqname, arcqname in dts.baseSets.keys()):
                                             self.modelVersReport.error("verdime:invalidURI",
                                                 _("%(event)s arcrole %(arcrole)s is not used in its DTS"),
                                                 modelObject=aspect, event=iaChange.name, linkrole=relatedConcept.arcrole)
@@ -514,7 +517,8 @@ class ValidateVersReport():
                                             self.modelVersReport.error("verdime:invalidURI",
                                                 _("%(event)s linkrole %(linkrole)s is not defined in its DTS"),
                                                 modelObject=aspect, event=iaChange.name, linkrole=relatedConcept.linkrole)
-                                        elif len(versReport.modelXbrl.findArcs((None, relatedConcept.linkrole, None, None), returnLinkRole=True, returnObjects=False))==0:
+                                        elif not any(linkrole == relatedConcept.linkrole
+                                                     for arcrole, linkrole, linkqname, arcqname in dts.baseSets.keys()):
                                             self.modelVersReport.error("verdime:invalidURI",
                                                 _("%(event)s linkrole %(linkrole)s is not used in its DTS"),
                                                 modelObject=aspect, event=iaChange.name, linkrole=relatedConcept.linkrole)

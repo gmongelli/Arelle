@@ -275,7 +275,9 @@ def dropUnit(modelXbrl, unit):
     dropObject(modelXbrl, unit)
     
 def dropFootnoteLink(modelXbrl, footnoteLink):
-    modelXbrl.deleteArc(footnoteLink)
+    for baseSet in modelXbrl.baseSets.values():
+        if footnoteLink in baseSet:
+            baseSet.remove(footnoteLink)
     dropObject(modelXbrl, footnoteLink)
     
 def dropFact(modelXbrl, fact, facts):

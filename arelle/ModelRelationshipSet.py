@@ -81,10 +81,8 @@ def ineffectiveArcs(baseSetModelLinks, arcrole, arcqname=None):
 
 def baseSetArcroles(modelXbrl):
     # returns sorted list of tuples of arcrole basename and uri
-    return sorted(set((XbrlConst.baseSetArcroleLabel(b[0]),b[0])
-                      for b in (modelXbrl.allArcs(returnArcRole=True, returnObjects=False)
-                                .union(XbrlConst.specialArcroles))))
-
+    return sorted(set((XbrlConst.baseSetArcroleLabel(b[0]),b[0]) for b in modelXbrl.baseSets.keys()))
+    
 def labelroles(modelXbrl, includeConceptName=False):
     # returns sorted list of tuples of arcrole basename and uri
     return sorted(set((XbrlConst.labelroleLabel(r),r) 
@@ -117,7 +115,12 @@ class ModelRelationshipSet:
         relationshipSetKey = (arcrole, linkrole, linkqname, arcqname, includeProhibits) 
             
         # base sets does not care about the #includeProhibits
-        modelLinks = self.modelXbrl.findArcs((arcrole, linkrole, linkqname, arcqname))
+        if not isinstance(arcrole,(tuple,frozenset)):
+            modelLinks = self.modelXbrl.baseSets.get((arcrole, linkrole, linkqname, arcqname), [])
+        else: # arcrole is a set of arcroles
+            modelLinks = []
+            for ar in arcrole:
+                modelLinks.extend(self.modelXbrl.baseSets.get((ar, linkrole, linkqname, arcqname), []))
             
         # gather arcs
         relationships = {}

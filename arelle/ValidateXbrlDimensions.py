@@ -18,13 +18,10 @@ def loadDimensionDefaults(val):
     val.modelXbrl.dimensionDefaultConcepts = {}
     val.modelXbrl.qnameDimensionDefaults = {}
     val.modelXbrl.qnameDimensionContextElement = {}
-    for baseSetKey in val.modelXbrl.findArcs(((XbrlConst.all, XbrlConst.dimensionDefault),
-                                              set(), set(), set()),
-                                             returnArcRole=True, returnLinkRole=True,
-                                             returnQNameLink=True, returnQNameArc=True,
-                                             returnObjects=False):
+    for baseSetKey in val.modelXbrl.baseSets.keys():
         arcrole, ELR, linkqname, arcqname = baseSetKey
-        checkBaseSet(val, arcrole, ELR, val.modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname))
+        if ELR and linkqname and arcqname and arcrole in (XbrlConst.all, XbrlConst.dimensionDefault):
+            checkBaseSet(val, arcrole, ELR, val.modelXbrl.relationshipSet(arcrole,ELR,linkqname,arcqname))
     val.modelXbrl.isDimensionsValidated = True
 
 def checkBaseSet(val, arcrole, ELR, relsSet):

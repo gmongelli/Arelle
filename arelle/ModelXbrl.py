@@ -7,8 +7,7 @@ Created on Oct 3, 2010
 from collections import defaultdict
 import os, sys, traceback, uuid
 import logging
-from arelle import UrlUtil, XmlUtil, ModelValue, XbrlConst, XmlValidate,\
-    PrototypeDtsObject
+from arelle import UrlUtil, XmlUtil, ModelValue, XbrlConst, XmlValidate
 from arelle.FileSource import FileNamedStringIO
 from arelle.ModelObject import ModelObject, ObjectPropertyViewWrapper
 from arelle.Locale import format_string
@@ -146,13 +145,13 @@ class ModelXbrl:
 
         Dict by qname of all top level and anonymous types
 
-        .. attribute:: linkPrototypes
-
-        Dict of linkPrototype indexed by ID
+        .. attribute:: baseSets
+        
+        Dict of base sets by (arcrole, linkrole, arc qname, link qname), (arcrole, linkrole, *, *), (arcrole, *, *, *), and in addition, collectively for dimensions, formula,  and rendering, as arcroles 'XBRL-dimensions', 'XBRL-formula', and 'Table-rendering'.
 
         .. attribute:: relationshipSets
 
-        Dict of effective relationship sets indexed by (arcrole, linkrole, arc qname, link qname, includeProhibits), lazily resolved when requested.
+        Dict of effective relationship sets indexed same as baseSets (including collective indices), but lazily resolved when requested.
 
         .. attribute:: qnameDimensionDefaults
 
@@ -257,7 +256,7 @@ class ModelXbrl:
         self.qnameAttributeGroups = {}
         self.qnameGroupDefinitions = {}
         self.qnameTypes = {} # contains ModelTypes by qname key of type
-        self.linkPrototypes = dict() # contains the list of all generated linkPrototypes indexed by ID
+        self.baseSets = defaultdict(list) # contains ModelLinks for keys arcrole, arcrole#linkrole
         self.relationshipSets = {} # contains ModelRelationshipSets by bas set keys
         self.qnameDimensionDefaults = {} # contains qname of dimension (index) and default member(value)
         self.facts = []
@@ -366,11 +365,10 @@ class ModelXbrl:
         return self.relationshipSets[key]
     
     def baseSetModelLink(self, linkElement):
-        dataResult = self.factIndex.arcsByKey(('XBRL-footnotes', None, None, None), self)
-        if linkElement in dataResult:
-            return linkElement
-        else:
-            return None
+        for modelLink in self.baseSets[("XBRL-footnotes",None,None,None)]:
+            if modelLink == linkElement:
+                return modelLink
+        return None
     
     def roleTypeDefinition(self, roleURI):
         modelRoles = self.roleTypes.get(roleURI, ())
@@ -1133,37 +1131,3 @@ class ModelXbrl:
                   _("DTS of %(entryFile)s has %(numberOfFiles)s files packaged into %(packageOutputFile)s"), 
                 modelObject=self,
                 entryFile=os.path.basename(entryFilename), packageOutputFile=pkgFilename, numberOfFiles=numFiles)
-
-    def addRelationshipToBaseSet(self, key, modelObject, isFootnote, isPrototype):
-        if isPrototype:
-            newId = len(self.linkPrototypes)
-            modelObject.objectIndex = newId
-            self.linkPrototypes[newId] = modelObject
-        self.factIndex.insertArc(key, modelObject, isFootnote, isPrototype)
-
-    def allArcs(self, returnArcRole=False, returnLinkRole=False, returnQNameLink=False, returnQNameArc=False, returnObjects=True):
-        return self.factIndex.arcsByKey((set(), set(), set(), set()), self, returnArcRole=returnArcRole, returnLinkRole=returnLinkRole, returnQNameLink=returnQNameLink, returnQNameArc=returnQNameArc, returnObjects=returnObjects)
-
-    def allArcKeysNullValuesIncluded(self):
-        keys = self.allArcs(returnArcRole=True, returnLinkRole=True, returnQNameLink=True,
-                            returnQNameArc=True, returnObjects=False)
-        keys.update(set(('XBRL-footnotes', arc[0], None, None)
-                    for arc in self.findArcs(('XBRL-footnotes', set(), None, None), returnArcRole=False,
-                                              returnLinkRole=True, returnQNameLink=False, returnQNameArc=False,
-                                              returnObjects=False)),
-                    set(('XBRL-dimensions', arc[0], None, None)
-                    for arc in self.findArcs(('XBRL-dimensions', set(), None, None), returnArcRole=False,
-                                             returnLinkRole=True, returnQNameLink=False, returnQNameArc=False,
-                                             returnObjects=False)),
-                    set(('XBRL-formulae', arc[0], None, None)
-                    for arc in self.findArcs(('XBRL-formulae', set(), None, None), returnArcRole=False,
-                                             returnLinkRole=True, returnQNameLink=False, returnQNameArc=False,
-                                             returnObjects=False)))
-        return keys
-
-    def findArcs(self, keyOrKeys, returnArcRole=False, returnLinkRole=False, returnQNameLink=False, returnQNameArc=False, returnObjects=True):
-        return self.factIndex.arcsByKey(keyOrKeys, self, returnArcRole=returnArcRole, returnLinkRole=returnLinkRole, returnQNameLink=returnQNameLink, returnQNameArc=returnQNameArc, returnObjects=returnObjects)
-
-    def deleteArc(self, modelObject):
-        isPrototype = isinstance(modelObject, PrototypeDtsObject.LinkPrototype)
-        return self.factIndex.deleteArc(modelObject, isPrototype)

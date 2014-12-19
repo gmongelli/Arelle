@@ -81,9 +81,12 @@ class ValidateXbrl:
         # xlink validation
         modelXbrl.profileStat(None)
         modelXbrl.modelManager.showStatus(_("validating links"))
+        modelLinks = set()
         self.remoteResourceLocElements = set()
         self.genericArcArcroles = set()
-        modelLinks = modelXbrl.findArcs((None, None, None, None)) # ext links are unique (no dups)
+        for baseSetExtLinks in modelXbrl.baseSets.values():
+            for baseSetExtLink in baseSetExtLinks:
+                modelLinks.add(baseSetExtLink)    # ext links are unique (no dups)
         self.checkLinks(modelLinks)
         modelXbrl.profileStat(_("validateLinks"))
 
@@ -92,8 +95,7 @@ class ValidateXbrl:
         modelXbrl.qnameDimensionContextElement = {}
         # check base set cycles, dimensions
         modelXbrl.modelManager.showStatus(_("validating relationship sets"))
-        for baseSetKey in modelXbrl.allArcs(returnArcRole=True, returnLinkRole=True, returnQNameLink=True,
-                                            returnQNameArc=True, returnObjects=False):
+        for baseSetKey in modelXbrl.baseSets.keys():
             arcrole, ELR, linkqname, arcqname = baseSetKey
             if arcrole.startswith("XBRL-") or ELR is None or \
                 linkqname is None or arcqname is None:

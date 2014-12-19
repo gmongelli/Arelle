@@ -213,11 +213,8 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
         # check whether relationship_set is completely in instance or part/all in taxonomy
         self.arcroleInInstance = {}
         self.arcroleHasResource = {}
-        for arcrole, ELR, linkqname, arcqname in self.modelXbrl.findArcs((None, None, None, None), 
-                                                                         returnArcRole=True, returnLinkRole=True,
-                                                                         returnQNameLink=True, returnQNameArc=True,
-                                                                         returnObjects=False):
-            if ELR is None and linkqname is None and arcqname is None:
+        for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys():
+            if ELR is None and linkqname is None and arcqname is None and not arcrole.startswith("XBRL-"):
                 inInstance = False
                 hasResource = False
                 for rel in self.modelXbrl.relationshipSet(arcrole).modelRelationships:
@@ -383,7 +380,9 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                  
     def identifyAspectsUsed(self):
         # relationshipSets are a dts property
-        self.relationshipSets = self.modelXbrl.allArcKeysNullValuesIncluded()
+        self.relationshipSets = [(arcrole, ELR, linkqname, arcqname)
+                                 for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
+                                 if ELR and (arcrole.startswith("XBRL-") or (linkqname and arcqname))]
 
         
         aspectsUsed = set(f.concept
@@ -773,13 +772,8 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
         # deduplicate resources (may be on multiple arcs)
         arcroles = [arcrole
                     # check whether relationship_set is completely in instance or part/all in taxonomy
-                    for arcrole, ELR, linkqname, arcqname in self.modelXbrl.findArcs((None, None, None, None), 
-                                                                                     returnArcRole=True,
-                                                                                     returnLinkRole=True,
-                                                                                     returnQNameLink=True,
-                                                                                     returnQNameArc=True,
-                                                                                     returnObjects=False)
-                    if ELR is None and linkqname is None and arcqname is None
+                    for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
+                    if ELR is None and linkqname is None and arcqname is None and not arcrole.startswith("XBRL-")
                        and self.arcroleHasResource[arcrole]
                        and (self.arcroleInInstance[arcrole] or not self.isExistingTaxonomyRelSetsOwner)]
         # note that lxml has no column numbers, use objectIndex as pseudo-column number
@@ -832,12 +826,9 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                                      arcrole,
                                      linkqname.clarkNotation,
                                      arcqname.clarkNotation)
-                                    for arcrole, ELR, linkqname, arcqname in self.modelXbrl.allArcs(returnArcRole=True,
-                                                                                                    returnLinkRole=True,
-                                                                                                    returnQNameLink=True,
-                                                                                                    returnQNameArc=True,
-                                                                                                    returnObjects=False)
-                                    if not self.isExistingTaxonomyRelSetsOwner or self.arcroleInInstance[arcrole]))
+                                    for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys()
+                                    if ELR and linkqname and arcqname and not arcrole.startswith("XBRL-")
+                                           and (not self.isExistingTaxonomyRelSetsOwner or self.arcroleInInstance[arcrole])))
         self.relSetId = dict(((linkRole, arcRole, lnkQn, arcQn), id)
                              for id, document_id, linkRole, arcRole, lnkQn, arcQn in table)
         # do tree walk to build relationships with depth annotated, no targetRole navigation
@@ -853,10 +844,9 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                     visited.remove(rel)
             return seq
         
-        for arcrole, ELR, linkqname, arcqname in self.modelXbrl.allArcs(returnArcRole=True, returnLinkRole=True,
-                                                                        returnQNameLink=True, returnQNameArc=True,
-                                                                        returnObjects=False):
-            if (not self.isExistingTaxonomyRelSetsOwner or self.arcroleInInstance[arcrole]):
+        for arcrole, ELR, linkqname, arcqname in self.modelXbrl.baseSets.keys():
+            if (ELR and linkqname and arcqname and not arcrole.startswith("XBRL-")
+                and (not self.isExistingTaxonomyRelSetsOwner or self.arcroleInInstance[arcrole])):
                 relSetId = self.relSetId[(ELR,
                                           arcrole,
                                           linkqname.clarkNotation,
