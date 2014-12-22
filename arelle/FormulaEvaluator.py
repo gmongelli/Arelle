@@ -23,17 +23,6 @@ ModelDimensionValue = None
 
 expressionVariablesPattern = re.compile(r"([^$]*)([$]\w[\w:.-]*)([^$]*)")
 
-def outputEvaluatedValues(xpCtx, varSet, result, traceOf=''):
-    if xpCtx.formulaOptions.traceVariableSetExpressionInError:
-        expression = varSet.expression
-        xpCtx.modelXbrl.info("formula:" + (varSet.id or varSet.xlinkLabel or _("unlabeled variableSet")),
-             _("%(variableSetType)s %(xlinkLabel)s{0} \n    Expression: %(expression)s \n    Evaluated: %(evaluatedExpression)s \n    Result: %(result)s"),
-             modelObject=varSet, variableSetType=traceOf, xlinkLabel=varSet.xlinkLabel, 
-             result=result, expression=expression,
-             evaluatedExpression=''.join(xpCtx.traceEffectiveVariableValue(varSet,expr)
-                                         for grp in expressionVariablesPattern.findall(expression)
-                                         for expr in grp))
-
 def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
     # for each dependent variable, find bindings
     if variablesInScope:
@@ -69,6 +58,15 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                 result = varSet.evaluationsCount > 0
             if result: varSet.countSatisfied += 1
             else: varSet.countNotSatisfied += 1
+            if ((xpCtx.formulaOptions.traceSatisfiedAssertions and result) or
+                ((xpCtx.formulaOptions.traceUnsatisfiedAssertions or
+                  xpCtx.formulaOptions.errorUnsatisfiedAssertions ) and not result)):
+                xpCtx.modelXbrl.log(
+                    "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
+                    "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
+                    _("%(label)s"),
+                    modelObject=varSet, label=varSet.logLabel(),
+                    messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 xpCtx.modelXbrl.info("formula:trace",
                      _("Existence Assertion %(xlinkLabel)s \nResult: %(result)s"), 
@@ -79,15 +77,32 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                 xpCtx.modelXbrl.info("message:" + (varSet.id or varSet.xlinkLabel or _("unlabeled variableSet")),
                     msg.evaluate(xpCtx),
                     modelObject=varSet,
-                    messageCodes=("message:{variableSetID|xlinkLabel}"))
+                    messageCodes=("message:{variableSetID|xlinkLabel}",))
                 xpCtx.inScopeVars.pop(XbrlConst.qnEaTestExpression)
-                outputEvaluatedValues(xpCtx, varSet, result)
-            elif varSet.countNotSatisfied > 0:
-                # Assume that there is a problem in the taxonomy (i. e EBA COREP/FINREP prior to 2014/07/31).
-                # Assume that a message simplified message should be displayed if there are some rules that are not
-                # satisfied.
-                xpCtx.modelXbrl.info("rule not satisfied:", varSet.logLabel())
-                outputEvaluatedValues(xpCtx, varSet, result)
+            if ((xpCtx.formulaOptions.traceSatisfiedAssertions and result) or
+                ((xpCtx.formulaOptions.traceUnsatisfiedAssertions or
+                  xpCtx.formulaOptions.errorUnsatisfiedAssertions ) and not result)):
+                _modelObjects = [varSet]
+                factVarBindings = []
+                for vb in sorted(xpCtx.varBindings.values(), key=lambda _vb: _vb.qname):
+                    if vb.isFallback:
+                        factVarBindings.append(", \n${}: fallback {}".format(vb.qname, xpCtx.flattenSequence(vb.values)))
+                    else:
+                        if vb.isBindAsSequence:
+                            _modelObjects.extend(vb.yieldedEvaluation)
+                        else:
+                            _modelObjects.append(vb.yieldedFact)
+                            factVarBindings.append(", \n${}: {} context {} value {}".format(vb.qname, vb.yieldedFact.qname,
+                                                                                            vb.yieldedFactContext.id,
+                                                                                            xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname))))
+                xpCtx.modelXbrl.log(
+                    "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
+                    "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
+                    _("%(label)s%(factVarBindings)s"),
+                    modelObject=_modelObjects, label=varSet.expression,
+                    factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
+                    messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
+                del _modelObjects[:]
         if xpCtx.formulaOptions.traceVariableSetExpressionResult and initialTraceCount == xpCtx.modelXbrl.logCount.get(logging._checkLevel('INFO'), 0):
             xpCtx.modelXbrl.info("formula:trace",
                  _("Variable set %(xlinkLabel)s had no xpCtx.evaluations"),
@@ -100,8 +115,8 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
         xpCtx.variableSet = None
     except XPathContext.XPathException as err:
         xpCtx.modelXbrl.error(err.code,
-                 _("Variable set %(logLabel)s:\nException: %(error)s"), 
-                 modelObject=varSet, logLabel=varSet.logLabel(), error=err.message)
+                 _("Variable set %(label)s \nException: %(error)s"), 
+                 modelObject=varSet, label=varSet.logLabel(), error=err.message)
         xpCtx.variableSet = None
     if xpCtx.formulaOptions.traceVariableSetExpressionResult:
         xpCtx.modelXbrl.info("formula:trace",
@@ -192,22 +207,39 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                 if result: varSet.countSatisfied += 1
                 else: varSet.countNotSatisfied += 1
                 msg = varSet.message(result)
-                traceOf = "Value Assertion"
                 if msg is not None:
                     xpCtx.inScopeVars[XbrlConst.qnVaTestExpression] = varSet.test
                     xpCtx.modelXbrl.info("message:" + (varSet.id or varSet.xlinkLabel or  _("unlabeled variableSet")),
                         msg.evaluate(xpCtx),
                         modelObject=varSet,
                         label=varSet.logLabel(),
-                        messageCodes=("message:{variableSetID|xlinkLabel}"))
+                        messageCodes=("message:{variableSetID|xlinkLabel}",))
                     xpCtx.inScopeVars.pop(XbrlConst.qnVaTestExpression)
-                    outputEvaluatedValues(xpCtx, varSet, result, traceOf)
-                elif varSet.countNotSatisfied > 0:
-                    # Assume that there is a problem in the taxonomy (i. e EBA COREP/FINREP prior to 2014/07/31).
-                    # Assume that a message simplified message should be displayed if there are some rules that are not
-                    # satisfied.
-                    xpCtx.modelXbrl.info("evaluation not satisfied:", varSet.logLabel())
-                    outputEvaluatedValues(xpCtx, varSet, result, traceOf)
+                if ((xpCtx.formulaOptions.traceSatisfiedAssertions and result) or
+                    ((xpCtx.formulaOptions.traceUnsatisfiedAssertions or
+                      xpCtx.formulaOptions.errorUnsatisfiedAssertions ) and not result)):
+                    _modelObjects = [varSet]
+                    factVarBindings = []
+                    for vb in sorted(xpCtx.varBindings.values(), key=lambda _vb: _vb.qname):
+                        if vb.isFallback:
+                            factVarBindings.append(", \n${}: fallback {}".format(vb.qname, xpCtx.flattenSequence(vb.values)))
+                        else:
+                            if vb.isBindAsSequence:
+                                _modelObjects.extend(vb.yieldedEvaluation)
+                            else:
+                                _modelObjects.append(vb.yieldedFact)
+                            factVarBindings.append(", \n${}: {} context {} value {}".format(vb.qname, vb.yieldedFact.qname,
+                                                                                           vb.yieldedFactContext.id,
+                                                                                           xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname))))
+                    xpCtx.modelXbrl.log(
+                        "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
+                        "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
+                        _("%(label)s%(factVarBindings)s"),
+                        modelObject=_modelObjects, label=varSet.expression,
+                        factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
+                        messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
+                    del _modelObjects[:]
+                traceOf = "Value Assertion"
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 label = varSet.logLabel()
                 expression = varSet.expression
@@ -260,8 +292,8 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                         vb.close() # dereference
                 except XPathContext.XPathException as err:
                     xpCtx.modelXbrl.error(err.code,
-                        _("Variable set chained in scope of variable set %(variableSet)s \nException: \n%(error)s"), 
-                        modelObject=varScopeRel.toModelObject, variableSet=varSet.logLabel(), error=err.message)
+                        _("Variable set chained in scope of variable set %(variableset)s \nException: \n%(error)s"), 
+                        modelObject=(varSet, varScopeRel.toModelObject), variableSet=varSet.logLabel(), error=err.message)
             
     else:
         # produce variable bindings
@@ -608,15 +640,15 @@ def produceOutputFact(xpCtx, formula, result):
     conceptQname = formulaAspectValue(xpCtx, formula, Aspect.CONCEPT, "xbrlfe:missingConceptRule")
     if isinstance(conceptQname, VariableBindingError):
         xpCtx.modelXbrl.error(conceptQname.err,
-           _("Formula %(logLabel)s concept: %(concept)s"), 
-           modelObject=formula, logLabel=formula.logLabel(), concept=conceptQname.msg)
+           _("Formula %(label)s concept: %(concept)s"), 
+           modelObject=formula, label=formula.logLabel(), concept=conceptQname.msg)
         modelConcept = None
     else:
         modelConcept = xpCtx.modelXbrl.qnameConcepts[conceptQname]
         if modelConcept is None or (not modelConcept.isTuple if isTuple else not modelConcept.isItem):
             xpCtx.modelXbrl.error("xbrlfe:missingConceptRule",
-               _("Formula %(logLabel)s concept %(concept)s is not a %(element)s"), 
-               modelObject=formula, logLabel=formula.logLabel(), concept=conceptQname, element=formula.localName)
+               _("Formula %(label)s concept %(concept)s is not a %(element)s"), 
+               modelObject=formula, label=formula.logLabel(), concept=conceptQname, element=formula.localName)
     
     outputLocation = formulaAspectValue(xpCtx, formula, Aspect.LOCATION_RULE, None)
 
@@ -625,15 +657,15 @@ def produceOutputFact(xpCtx, formula, result):
         entityIdentScheme = formulaAspectValue(xpCtx, formula, Aspect.SCHEME, "xbrlfe:missingEntityIdentifierRule")
         if isinstance(entityIdentScheme, VariableBindingError):
             xpCtx.modelXbrl.error(str(entityIdentScheme),
-                  _("Formula %(logLabel)s entity identifier scheme: %(scheme)s"),
-                  modelObject=formula, logLabel=formula.logLabel(), scheme=entityIdentScheme.msg)
+                  _("Formula %(label)s entity identifier scheme: %(scheme)s"),
+                  modelObject=formula, label=formula.logLabel(), scheme=entityIdentScheme.msg)
             entityIdentValue = None
         else:
             entityIdentValue = formulaAspectValue(xpCtx, formula, Aspect.VALUE, "xbrlfe:missingEntityIdentifierRule")
             if isinstance(entityIdentValue, VariableBindingError):
                 xpCtx.modelXbrl.error(str(entityIdentScheme),
-                      _("Formula %(logLabel)s entity identifier value: %(entityIdentifier)s"), 
-                      modelObject=formula, logLabel=formula.logLabel(), entityIdentifier=entityIdentValue.msg)
+                      _("Formula %(label)s entity identifier value: %(entityIdentifier)s"), 
+                      modelObject=formula, label=formula.logLabel(), entityIdentifier=entityIdentValue.msg)
         
         # period
         periodType = formulaAspectValue(xpCtx, formula, Aspect.PERIOD_TYPE, "xbrlfe:missingPeriodRule")
@@ -641,25 +673,25 @@ def produceOutputFact(xpCtx, formula, result):
         periodEndInstant = None
         if isinstance(periodType, VariableBindingError):
             xpCtx.modelXbrl.error(str(periodType),
-                   _("Formula %(logLabel)s period type: %(periodType)s"),
-                   modelObject=formula, logLabel=formula.logLabel(), periodType=periodType.msg)
+                   _("Formula %(label)s period type: %(periodType)s"),
+                   modelObject=formula, label=formula.logLabel(), periodType=periodType.msg)
         elif periodType == "instant":
             periodEndInstant = formulaAspectValue(xpCtx, formula, Aspect.INSTANT, "xbrlfe:missingPeriodRule")
             if isinstance(periodEndInstant, VariableBindingError):
                 xpCtx.modelXbrl.error(str(periodEndInstant),
-                   _("Formula %(logLabel)s period end: %(period)s"), 
-                   modelObject=formula, logLabel=formula.logLabel(), period=periodEndInstant.msg)
+                   _("Formula %(label)s period end: %(period)s"), 
+                   modelObject=formula, label=formula.logLabel(), period=periodEndInstant.msg)
         elif periodType == "duration":
             periodStart = formulaAspectValue(xpCtx, formula, Aspect.START, "xbrlfe:missingPeriodRule")
             if isinstance(periodStart, VariableBindingError):
                 xpCtx.modelXbrl.error(str(periodStart),
-                   _("Formula %(logLabel)s period start: %(period)s"), 
-                   modelObject=formula, logLabel=formula.logLabel(), period=periodStart.msg)
+                   _("Formula %(label)s period start: %(period)s"), 
+                   modelObject=formula, label=formula.logLabel(), period=periodStart.msg)
             periodEndInstant = formulaAspectValue(xpCtx, formula, Aspect.END, "xbrlfe:missingPeriodRule")
             if isinstance(periodEndInstant, VariableBindingError):
                 xpCtx.modelXbrl.error(str(periodEndInstant),
-                   _("Formula %(logLabel)s period end: %(period)s"),
-                   modelObject=formula, logLabel=formula.logLabel(), period=periodEndInstant.msg)
+                   _("Formula %(label)s period end: %(period)s"),
+                   modelObject=formula, label=formula.logLabel(), period=periodEndInstant.msg)
             
         # unit
         if modelConcept is not None and modelConcept.isNumeric:
@@ -667,15 +699,15 @@ def produceOutputFact(xpCtx, formula, result):
             multDivBy = formulaAspectValue(xpCtx, formula, Aspect.MULTIPLY_BY, "xbrlfe:missingUnitRule")
             if isinstance(multDivBy, VariableBindingError):
                 xpCtx.modelXbrl.error(str(multDivBy) if isinstance(multDivBy, VariableBindingError) else "xbrlfe:missingUnitRule",
-                   _("Formula %(logLabel)s unit: %(unit)s"),
-                   modelObject=formula, logLabel=formula.logLabel(), unit=multDivBy.msg)
+                   _("Formula %(label)s unit: %(unit)s"),
+                   modelObject=formula, label=formula.logLabel(), unit=multDivBy.msg)
                 multiplyBy = (); divideBy = () # prevent errors later if bad
             else:
                 divMultBy = formulaAspectValue(xpCtx, formula, Aspect.DIVIDE_BY, "xbrlfe:missingUnitRule")
                 if isinstance(divMultBy, VariableBindingError):
                     xpCtx.modelXbrl.error(str(multDivBy) if isinstance(divMultBy, VariableBindingError) else "xbrlfe:missingUnitRule",
-                       _("Formula %(logLabel)s unit: %(unit)s"), 
-                       modelObject=formula, logLabel=formula.logLabel(), unit=divMultBy.msg)
+                       _("Formula %(label)s unit: %(unit)s"), 
+                       modelObject=formula, label=formula.logLabel(), unit=divMultBy.msg)
                     multiplyBy = (); divideBy = () # prevent errors later if bad
                 else:
                     multiplyBy = unitSource[0] + multDivBy[0] + divMultBy[1]
@@ -694,8 +726,8 @@ def produceOutputFact(xpCtx, formula, result):
                         if (Aspect.MULTIPLY_BY not in formula.aspectValues and Aspect.MULTIPLY_BY not in formula.aspectProgs and
                             Aspect.DIVIDE_BY not in formula.aspectValues and Aspect.DIVIDE_BY not in formula.aspectProgs):
                             xpCtx.modelXbrl.error("xbrlfe:missingUnitRule",
-                               _("Formula %(logLabel)s"), 
-                               modelObject=formula, logLabel=formula.logLabel())
+                               _("Formula %(label)s"), 
+                               modelObject=formula, label=formula.logLabel())
                         multiplyBy.append(XbrlConst.qnXbrliPure)
                             
         
@@ -712,15 +744,15 @@ def produceOutputFact(xpCtx, formula, result):
                     dimValue = formulaAspectValue(xpCtx, formula, dimQname, dimErr)
                     if isinstance(dimValue, VariableBindingError):
                         xpCtx.modelXbrl.error(dimErr,
-                           _("Formula %(logLabel)s dimension %(dimension)s: %(value)s"),
-                           modelObject=formula, logLabel=formula.logLabel(), 
+                           _("Formula %(label)s dimension %(dimension)s: %(value)s"),
+                           modelObject=formula, label=formula.logLabel(), 
                            dimension=dimQname, value=dimValue.msg)
                     elif dimConcept.isTypedDimension:
                         if isinstance(dimValue, list): # result of flatten, always a list
                             if len(dimValue) != 1 or not isinstance(dimValue[0], ModelObject):
                                 xpCtx.modelXbrl.error("xbrlfe:wrongXpathResultForTypedDimensionRule",
-                                   _("Formula %(logLabel)s dimension %(dimension)s value is not a node: %(value)s"),
-                                   modelObject=formula, logLabel=formula.logLabel(), 
+                                   _("Formula %(label)s dimension %(dimension)s value is not a node: %(value)s"),
+                                   modelObject=formula, label=formula.logLabel(), 
                                    dimension=dimQname, value=dimValue)
                                 continue
                             dimValue = dimValue[0]
@@ -732,8 +764,8 @@ def produceOutputFact(xpCtx, formula, result):
             for occElt in xpCtx.flattenSequence((segOCCs, scenOCCs)):
                 if isinstance(occElt, ModelObject) and occElt.namespaceURI == XbrlConst.xbrldi:
                     xpCtx.modelXbrl.error("xbrlfe:badSubsequentOCCValue",
-                       _("Formula %(logLabel)s OCC element %(occ)s covers a dimensional aspect"),
-                       modelObject=(formula,occElt), logLabel=formula.logLabel(), 
+                       _("Formula %(label)s OCC element %(occ)s covers a dimensional aspect"),
+                       modelObject=(formula,occElt), label=formula.logLabel(), 
                        occ=occElt.elementQname)
         else:
             dimAspects = None   # non-dimensional
@@ -793,8 +825,8 @@ def produceOutputFact(xpCtx, formula, result):
         valueSeqLen = len(value)
         if valueSeqLen > 1:
             xpCtx.modelXbrl.error("xbrlfe:nonSingletonOutputValue",
-                _("Formula %(logLabel)s value is a sequence of length %(valueSequenceLength)s"),
-                modelObject=formula, logLabel=formula.logLabel(), valueSequenceLength=valueSeqLen) 
+                _("Formula %(label)s value is a sequence of length %(valueSequenceLength)s"),
+                modelObject=formula, label=formula.logLabel(), valueSequenceLength=valueSeqLen) 
         else: 
             if valueSeqLen == 0: #xsi:nil if no value
                 attrs.append((XbrlConst.qnXsiNil, "true"))
