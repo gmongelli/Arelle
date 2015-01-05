@@ -891,7 +891,8 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
 
     def updateInstanceFromFactPrototypes(self):
         # Only update the model if it already exists
-        if self.modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:
+        if self.modelXbrl is not None \
+           and self.modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:
             instance = self.modelXbrl
             newCntx = ModelXbrl.AUTO_LOCATE_ELEMENT
             newUnit = ModelXbrl.AUTO_LOCATE_ELEMENT

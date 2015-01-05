@@ -213,7 +213,7 @@ def improveEbaComplianceMenuExtender(cntlr, menu):
 def improveEbaComplianceMenuCommand(cntlr):
     # improve EBA compliance menu item has been invoked
     if cntlr.modelManager is None or cntlr.modelManager.modelXbrl is None:
-        cntlr.addToLog("No DTS loaded.")
+        cntlr.addToLog(_("No DTS loaded."))
         return
     dts = cntlr.modelManager.modelXbrl
     getFactItemOptions(dts, cntlr)
