@@ -10,12 +10,18 @@ import os, sys, time, traceback
 from arelle import ModelDocument, RenderingEvaluator
 from arelle.ModelDocument import Type
 from arelle.XbrlConst import assertionSet
-from arelle.CntlrWinMain import CntlrWinMain
 from arelle.FileSource import openFileSource
 from arelle.Locale import format_string
 
-linkbaseReferences = {'aset-c_03.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/aset-c_03.00.xml',
+linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/aset-c_01.00.xml',
+                      'aset-c_03.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/aset-c_03.00.xml',
                       'cssf-find-prec.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/cssf-find-prec.xml',
+                      'vr_cssf001_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf001_m-err-en.xml',
+                      'vr_cssf001_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf001_m-lab-en.xml',
+                      'vr_cssf002_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf002_m-err-en.xml',
+                      'vr_cssf002_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf002_m-lab-en.xml',
+                      'vr_cssf003_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf003_m-err-en.xml',
+                      'vr_cssf003_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf003_m-lab-en.xml',
                       'vr_cssf004_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf004_p-err-en.xml',
                       'vr_cssf004_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf004_p-lab-en.xml',
                       'vr_cssf005_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf005_p-err-en.xml',
