@@ -27,7 +27,13 @@ linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws
                       'vr_cssf005_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf005_p-err-en.xml',
                       'vr_cssf005_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf005_p-lab-en.xml',
                       'vr_cssf006_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf006_p-err-en.xml',
-                      'vr_cssf006_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf006_p-lab-en.xml'}
+                      'vr_cssf006_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf006_p-lab-en.xml',
+                      'vr_cssf007_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf007_p-err-en.xml',
+                      'vr_cssf007_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf007_p-lab-en.xml',
+                      'vr_cssf008_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf008_p-err-en.xml',
+                      'vr_cssf008_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf008_p-lab-en.xml',
+                      'vr_cssf009_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf009_p-err-en.xml',
+                      'vr_cssf009_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf009_p-lab-en.xml'}
 sampleCssfID = 'cssfC_03.00'
 
 def loadXML(filesource, selectTopView, reloadViews, modelXbrl, controller):
