@@ -54,9 +54,10 @@ class ValidateHmrc(ValidateXbrl.ValidateXbrl):
             
             companyReferenceNumberContexts = defaultdict(list)
             for c1 in modelXbrl.contexts.values():
-                scheme, identifier = c1.entityIdentifier
-                if scheme == "http://www.companieshouse.gov.uk/":
-                    companyReferenceNumberContexts[identifier].append(c1.id)
+                if c1 is not None:
+                    scheme, identifier = c1.entityIdentifier
+                    if scheme == "http://www.companieshouse.gov.uk/":
+                        companyReferenceNumberContexts[identifier].append(c1.id)
 
             busLocalNames = {
                 "EntityCurrentLegalOrRegisteredName", 

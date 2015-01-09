@@ -389,12 +389,13 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                           for f in self.modelXbrl.factsInInstance)
         
         for cntx in self.modelXbrl.contexts.values():
-            for dim in cntx.qnameDims.values():
-                aspectsUsed.add(dim.dimension)
-                if dim.isExplicit:
-                    aspectsUsed.add(dim.member)
-                else:
-                    aspectsUsed.add(self.modelXbrl.qnameConcepts[dim.typedMember.qname])
+            if cntx is not None:
+                for dim in cntx.qnameDims.values():
+                    aspectsUsed.add(dim.dimension)
+                    if dim.isExplicit:
+                        aspectsUsed.add(dim.member)
+                    else:
+                        aspectsUsed.add(self.modelXbrl.qnameConcepts[dim.typedMember.qname])
         for defaultDimQn, defaultDimMemberQn in self.modelXbrl.qnameDimensionDefaults.items():
             aspectsUsed.add(self.modelXbrl.qnameConcepts[defaultDimQn])
             aspectsUsed.add(self.modelXbrl.qnameConcepts[defaultDimMemberQn])
@@ -966,7 +967,7 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                               set((reportId,
                                    cntx.entityIdentifier[0],
                                    cntx.entityIdentifier[1])
-                                for cntx in self.modelXbrl.contexts.values()),
+                                for cntx in self.modelXbrl.contexts.values() if cntx is not None),
                               checkIfExisting=True) # entities shared across multiple instance/inline docs
         self.entityIdentifierId = dict(((_reportId, entScheme, entIdent), id)
                                        for id, _reportId, entScheme, entIdent in table)
@@ -978,7 +979,7 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                                    cntx.endDatetime if (cntx.isStartEndPeriod or cntx.isInstantPeriod) else None,
                                    cntx.isInstantPeriod,
                                    cntx.isForeverPeriod)
-                                for cntx in self.modelXbrl.contexts.values()),
+                                for cntx in self.modelXbrl.contexts.values() if cntx is not None),
                               checkIfExisting=True) # periods shared across multiple instance/inline docs
         self.periodId = dict(((_reportId, start, end, isInstant, isForever), id)
                              for id, _reportId, start, end, isInstant, isForever in table)
@@ -992,7 +993,7 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                              if modelDimValue.dimensionQname in self.aspectQnameId)
         
         cntxAspectValueSelectionSet = dict((cntx, cntxDimsSet(cntx))
-                                            for cntx in self.modelXbrl.contexts.values())
+                                            for cntx in self.modelXbrl.contexts.values() if cntx is not None)
         
         aspectValueSelections = set(aspectValueSelectionSet
                                     for cntx, aspectValueSelectionSet in cntxAspectValueSelectionSet.items()

@@ -56,45 +56,46 @@ class ViewFacts(ViewFile.View):
         self.periodContexts = defaultdict(set)
         contextStartDatetimes = {}
         for context in self.modelXbrl.contexts.values():
-            if self.type in (CSV, HTML):
-                if self.ignoreDims:
-                    if context.isForeverPeriod:
-                        contextkey = datetime.datetime(datetime.MINYEAR,1,1)
+            if context is not None:
+                if self.type in (CSV, HTML):
+                    if self.ignoreDims:
+                        if context.isForeverPeriod:
+                            contextkey = datetime.datetime(datetime.MINYEAR,1,1)
+                        else:
+                            contextkey = context.endDatetime
                     else:
-                        contextkey = context.endDatetime
-                else:
-                    if context.isForeverPeriod:
-                        contextkey = "forever"
-                    else:
-                        contextkey = (context.endDatetime - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-                    
-                    values = []
-                    dims = context.qnameDims
-                    if len(dims) > 0:
-                        for dimQname in sorted(dims.keys(), key=lambda d: str(d)):
-                            dimvalue = dims[dimQname]
-                            if dimvalue.isExplicit:
-                                values.append(dimvalue.member.label(self.labelrole,lang=self.lang)
-                                              if dimvalue.member is not None 
-                                              else str(dimvalue.memberQname))
-                            else:
-                                values.append(XmlUtil.innerText(dimvalue.typedMember))
-                                
-                    nonDimensions = context.nonDimValues("segment") + context.nonDimValues("scenario")
-                    if len(nonDimensions) > 0:
-                        for element in sorted(nonDimensions, key=lambda e: e.localName):
-                            values.append(XmlUtil.innerText(element))
-    
-                    if len(values) > 0:
+                        if context.isForeverPeriod:
+                            contextkey = "forever"
+                        else:
+                            contextkey = (context.endDatetime - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+                        
+                        values = []
+                        dims = context.qnameDims
+                        if len(dims) > 0:
+                            for dimQname in sorted(dims.keys(), key=lambda d: str(d)):
+                                dimvalue = dims[dimQname]
+                                if dimvalue.isExplicit:
+                                    values.append(dimvalue.member.label(self.labelrole,lang=self.lang)
+                                                  if dimvalue.member is not None 
+                                                  else str(dimvalue.memberQname))
+                                else:
+                                    values.append(XmlUtil.innerText(dimvalue.typedMember))
+                                    
+                        nonDimensions = context.nonDimValues("segment") + context.nonDimValues("scenario")
+                        if len(nonDimensions) > 0:
+                            for element in sorted(nonDimensions, key=lambda e: e.localName):
+                                values.append(XmlUtil.innerText(element))
         
-                        contextkey += " - " + ', '.join(values)
-            else:
-                contextkey = context.id
-
-            objectId = context.objectId()
-            self.periodContexts[contextkey].add(objectId)
-            if context.isStartEndPeriod:
-                contextStartDatetimes[objectId] = context.startDatetime
+                        if len(values) > 0:
+            
+                            contextkey += " - " + ', '.join(values)
+                else:
+                    contextkey = context.id
+    
+                objectId = context.objectId()
+                self.periodContexts[contextkey].add(objectId)
+                if context.isStartEndPeriod:
+                    contextStartDatetimes[objectId] = context.startDatetime
         self.periodKeys = list(self.periodContexts.keys())
         self.periodKeys.sort()
         

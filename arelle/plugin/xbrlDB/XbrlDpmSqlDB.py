@@ -256,12 +256,13 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
         self.cntxDates = set()
         self.entityIdentifiers = set()
         for cntx in self.modelXbrl.contexts.values():
-            if cntx.isInstantPeriod:
-                entityIdentifier = cntx.entityIdentifier[1]
-                periodInstantDate = cntx.endDatetime.date() - datetime.timedelta(1)  # convert to end date
-                self.cntxDates.add(cntx.endDatetime) # for error checks
-                self.entityIdentifiers.add(entityIdentifier)
-                break
+            if cntx is not None:
+                if cntx.isInstantPeriod:
+                    entityIdentifier = cntx.entityIdentifier[1]
+                    periodInstantDate = cntx.endDatetime.date() - datetime.timedelta(1)  # convert to end date
+                    self.cntxDates.add(cntx.endDatetime) # for error checks
+                    self.entityIdentifiers.add(entityIdentifier)
+                    break
         if not periodInstantDate:
             return False # needed context not yet available
         entityCurrency = None

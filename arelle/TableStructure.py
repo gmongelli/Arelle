@@ -272,14 +272,15 @@ def evaluateTableIndex(modelXbrl):
             prevMinStart = thisEnd - timedelta(duration * 1.1)
             nextEnd = None
             for cntx in modelXbrl.contexts.values():
-                if (cntx.isStartEndPeriod and not cntx.qnameDims and thisEnd == cntx.endDatetime and
-                    prevMinStart <= cntx.startDatetime <= prevMaxStart):
-                    reportingPeriods.add((None, cntx.endDatetime))
-                    reportingPeriods.add((cntx.startDatetime, cntx.endDatetime))
-                    nextEnd = cntx.startDatetime
-                    break
-                elif (cntx.isInstantPeriod and not cntx.qnameDims and thisEnd == cntx.endDatetime):
-                    reportingPeriods.add((None, cntx.endDatetime))
+                if cntx is not None:
+                    if (cntx.isStartEndPeriod and not cntx.qnameDims and thisEnd == cntx.endDatetime and
+                        prevMinStart <= cntx.startDatetime <= prevMaxStart):
+                        reportingPeriods.add((None, cntx.endDatetime))
+                        reportingPeriods.add((cntx.startDatetime, cntx.endDatetime))
+                        nextEnd = cntx.startDatetime
+                        break
+                    elif (cntx.isInstantPeriod and not cntx.qnameDims and thisEnd == cntx.endDatetime):
+                        reportingPeriods.add((None, cntx.endDatetime))
         stmtReportingPeriods = set(reportingPeriods)       
 
         sortedRoleTypes.reverse() # now in descending order
@@ -290,7 +291,7 @@ def evaluateTableIndex(modelXbrl):
             tableGroup, tableSeq, tableName = roleType._tableIndex
             roleURIdims, priItemQNames = EFMlinkRoleURIstructure(modelXbrl, roleType.roleURI)
             for priItemQName in priItemQNames:
-                for fact in factsByQname[priItemQName]:
+                for fact in modelXbrl.factsByQname(priItemQName):
                     cntx = fact.context
                     # non-explicit dims must be default
                     if (cntx is not None and

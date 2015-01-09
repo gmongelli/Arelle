@@ -154,7 +154,7 @@ def loadPrimaryDocumentFacts(dts, rssItem, entityInformation):
             if any(itemKey in parts for itemKey in itemSpan.keys()):
                 # find default context
                 for cntx in dts.contexts.values():
-                    if cntx.isStartEndPeriod:
+                    if cntx is not None and cntx.isStartEndPeriod:
                         if not cntx.hasSegment:
                             # use c as default context
                             # load extra datapoints taxonomy but not as discovered in DTS

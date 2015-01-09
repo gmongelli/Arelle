@@ -272,12 +272,13 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
         conceptsUsed = set(f.qname for f in self.modelXbrl.factsInInstance)
         
         for cntx in self.modelXbrl.contexts.values():
-            for dim in cntx.qnameDims.values():
-                conceptsUsed.add(dim.dimensionQname)
-                if dim.isExplicit:
-                    conceptsUsed.add(dim.memberQname)
-                else:
-                    conceptsUsed.add(dim.typedMember.qname)
+            if cntx is not None:
+                for dim in cntx.qnameDims.values():
+                    conceptsUsed.add(dim.dimensionQname)
+                    if dim.isExplicit:
+                        conceptsUsed.add(dim.memberQname)
+                    else:
+                        conceptsUsed.add(dim.typedMember.qname)
         for defaultDim, defaultDimMember in self.modelXbrl.qnameDimensionDefaults.items():
             conceptsUsed.add(defaultDim)
             conceptsUsed.add(defaultDimMember)
@@ -580,29 +581,30 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
                                      cntx.id,
                                      cntx.entityIdentifier[0],
                                      cntx.entityIdentifier[1])
-                                    for cntx in self.modelXbrl.contexts.values()))
+                                    for cntx in self.modelXbrl.contexts.values() if cntx is not None))
         self.cntxId = dict(((_accsId, xmlId), id)
                            for id, _accsId, xmlId in table)
         # context_dimension
         values = []
         for cntx in self.modelXbrl.contexts.values():
-            for dim in cntx.qnameDims.values():
-                values.append((self.cntxId[(accsId,cntx.id)],
-                               self.qnameId[dim.dimensionQname],
-                               self.qnameId.get(dim.memberQname), # may be None
-                               self.qnameId.get(dim.typedMember.qname) if dim.isTyped else None,
-                               False, # not default
-                               dim.contextElement == "segment",
-                               dim.typedMember.stringValue if dim.isTyped else None))
-            for dimQname, memQname in self.modelXbrl.qnameDimensionDefaults.items():
-                if dimQname not in cntx.qnameDims:
+            if cntx is not None:
+                for dim in cntx.qnameDims.values():
                     values.append((self.cntxId[(accsId,cntx.id)],
-                                   self.qnameId[dimQname],
-                                   self.qnameId[memQname],
-                                   None,
-                                   True, # is default
-                                   True, # ambiguous and irrelevant for the XDT model
-                                   None))
+                                   self.qnameId[dim.dimensionQname],
+                                   self.qnameId.get(dim.memberQname), # may be None
+                                   self.qnameId.get(dim.typedMember.qname) if dim.isTyped else None,
+                                   False, # not default
+                                   dim.contextElement == "segment",
+                                   dim.typedMember.stringValue if dim.isTyped else None))
+                for dimQname, memQname in self.modelXbrl.qnameDimensionDefaults.items():
+                    if dimQname not in cntx.qnameDims:
+                        values.append((self.cntxId[(accsId,cntx.id)],
+                                       self.qnameId[dimQname],
+                                       self.qnameId[memQname],
+                                       None,
+                                       True, # is default
+                                       True, # ambiguous and irrelevant for the XDT model
+                                       None))
         table = self.getTable('context_dimension', 'context_dimension_id', 
                               ('context_id', 'dimension_qname_id', 'member_qname_id', 'typed_qname_id', 'is_default', 'is_segment', 'typed_text_content'), 
                               ('context_id', 'dimension_qname_id', 'member_qname_id'), # shouldn't typed_qname_id be here?  not good idea because it's not indexed in XBRL-US DDL

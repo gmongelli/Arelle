@@ -818,30 +818,32 @@ class ValidateXbrl:
                 
     def checkContexts(self, contexts):
         for cntx in contexts:
-            if cntx.isStartEndPeriod:
-                try: # if no datetime value would have been a schema error at loading time
-                    if (cntx.endDatetime is not None and cntx.startDatetime is not None and
-                        cntx.endDatetime <= cntx.startDatetime):
-                        self.modelXbrl.error("xbrl.4.7.2:periodStartBeforeEnd",
-                            _("Context %(contextID)s must have startDate less than endDate"),
-                            modelObject=cntx, contextID=cntx.id)
-                except (TypeError, ValueError) as err:
-                    self.modelXbrl.error("xbrl.4.7.2:contextDateError",
-                        _("Context %(contextID) startDate or endDate: %(error)s"),
-                        modelObject=cntx, contextID=cntx.id, error=err)
-            elif cntx.isInstantPeriod:
-                try:
-                    cntx.instantDatetime #parse field
-                except ValueError as err:
-                    self.modelXbrl.error("xbrl.4.7.2:contextDateError",
-                        _("Context %(contextID)s instant date: %(error)s"),
-                        modelObject=cntx, contextID=cntx.id, error=err)
-            self.segmentScenario(cntx.segment, cntx.id, "segment", "4.7.3.2")
-            self.segmentScenario(cntx.scenario, cntx.id, "scenario", "4.7.4")
+            if cntx is not None:
+                if cntx.isStartEndPeriod:
+                    try: # if no datetime value would have been a schema error at loading time
+                        if (cntx.endDatetime is not None and cntx.startDatetime is not None and
+                            cntx.endDatetime <= cntx.startDatetime):
+                            self.modelXbrl.error("xbrl.4.7.2:periodStartBeforeEnd",
+                                _("Context %(contextID)s must have startDate less than endDate"),
+                                modelObject=cntx, contextID=cntx.id)
+                    except (TypeError, ValueError) as err:
+                        self.modelXbrl.error("xbrl.4.7.2:contextDateError",
+                            _("Context %(contextID) startDate or endDate: %(error)s"),
+                            modelObject=cntx, contextID=cntx.id, error=err)
+                elif cntx.isInstantPeriod:
+                    try:
+                        cntx.instantDatetime #parse field
+                    except ValueError as err:
+                        self.modelXbrl.error("xbrl.4.7.2:contextDateError",
+                            _("Context %(contextID)s instant date: %(error)s"),
+                            modelObject=cntx, contextID=cntx.id, error=err)
+                self.segmentScenario(cntx.segment, cntx.id, "segment", "4.7.3.2")
+                self.segmentScenario(cntx.scenario, cntx.id, "scenario", "4.7.4")
                 
     def checkContextsDimensions(self, contexts):
         for cntx in contexts:
-            ValidateXbrlDimensions.checkContext(self,cntx)
+            if cntx is not None:
+                ValidateXbrlDimensions.checkContext(self,cntx)
         
     def checkUnits(self, units):
         for unit in units:

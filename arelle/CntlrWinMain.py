@@ -1234,6 +1234,16 @@ class CntlrWinMain (Cntlr.Cntlr):
         for view in modelXbrl.views:
             view.view()
 
+    # worker threads viewModelObject                 
+    def reloadTableView(self, modelXbrl):
+        self.uiThreadQueue.put((self.uiReloadTableView, [modelXbrl]))
+
+    # ui thread viewModelObject
+    def uiReloadTableView(self, modelXbrl):
+        for view in modelXbrl.views:
+            if isinstance(view, ViewWinRenderedGrid.ViewRenderedGrid):
+                view.view()
+
     # worker threads showStatus                 
     def showStatus(self, message, clearAfter=None):
         self.uiThreadQueue.put((self.uiShowStatus, [message, clearAfter]))

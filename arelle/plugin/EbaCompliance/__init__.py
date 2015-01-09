@@ -54,7 +54,6 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
         groupTableRels = dts.modelXbrl.relationshipSet(XbrlConst.euGroupTable)
         modelTables = []
 
-
         def viewTable(modelTable, factWalkingAction):
             if isinstance(modelTable, (ModelEuTable, ModelTable)):
                 # status
@@ -82,6 +81,7 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
 
         createOrReplaceFilingIndicators(dts, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
         dts.modelManager.showStatus(_("EBA compliance improved"), 5000)
+        cntlr.reloadTableView(dts)
     except Exception as ex:
         dts.error("exception",
             _("EBA compliance improvements generation exception: %(error)s"), error=ex,
@@ -135,7 +135,7 @@ def deleteUnusedContexts(dts):
                                        if fact.contextID}
     for cntxID in unusedCntxIDs:
         context = allContexts[cntxID]
-        del allContexts[cntxID]
+        allContexts[cntxID] = None # contexts cannot be deleted in this list because of the context numbering
         parent = context.getparent()
         parent.remove(context)
     return len(unusedCntxIDs)>0

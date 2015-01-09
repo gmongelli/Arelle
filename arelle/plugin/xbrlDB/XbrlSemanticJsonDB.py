@@ -391,12 +391,13 @@ class XbrlSemanticJsonDatabaseConnection():
         conceptsUsed = set(f.qname for f in self.modelXbrl.factsInInstance)
         
         for cntx in self.modelXbrl.contexts.values():
-            for dim in cntx.qnameDims.values():
-                conceptsUsed.add(dim.dimensionQname)
-                if dim.isExplicit:
-                    conceptsUsed.add(dim.memberQname)
-                else:
-                    conceptsUsed.add(dim.typedMember.qname)
+            if cntx is not None:
+                for dim in cntx.qnameDims.values():
+                    conceptsUsed.add(dim.dimensionQname)
+                    if dim.isExplicit:
+                        conceptsUsed.add(dim.memberQname)
+                    else:
+                        conceptsUsed.add(dim.typedMember.qname)
         for defaultDim, defaultDimMember in self.modelXbrl.qnameDimensionDefaults.items():
             conceptsUsed.add(defaultDim)
             conceptsUsed.add(defaultDimMember)

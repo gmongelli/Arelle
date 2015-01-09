@@ -79,41 +79,42 @@ def validateFacts(val, factsToCheck):
     
     timelessDatePattern = re.compile(r"\s*([0-9]{4})-([0-9]{2})-([0-9]{2})\s*$")
     for cntx in modelXbrl.contexts.values():
-        if getattr(cntx, "_batchChecked", False):
-            continue # prior streaming batch already checked
-        cntx._batchChecked = True
-        val.cntxEntities.add(cntx.entityIdentifier)
-        dateElts = XmlUtil.descendants(cntx, XbrlConst.xbrli, ("startDate","endDate","instant"))
-        if any(not timelessDatePattern.match(e.textValue) for e in dateElts):
-            modelXbrl.error("EBA.2.10",
-                    _('Period dates must be whole dates without time or timezone: %(dates)s.'),
-                    modelObject=cntx, dates=", ".join(e.text for e in dateElts))
-        if cntx.isForeverPeriod:
-            modelXbrl.error("EBA.2.11",
-                    _('Forever context period is not allowed.'),
-                    modelObject=cntx)
-        elif cntx.isStartEndPeriod:
-            modelXbrl.error("EBA.2.13",
-                    _('Start-End (flow) context period is not allowed.'),
-                    modelObject=cntx)
-        elif cntx.isInstantPeriod:
-            # cannot pass context object to final() below, for error logging, if streaming mode
-            val.cntxDates[cntx.instantDatetime].add(modelXbrl if getattr(val.modelXbrl, "isStreamingMode", False)
-                                                    else cntx)
-        if XmlUtil.hasChild(cntx, XbrlConst.xbrli, "segment"):
-            modelXbrl.error("EBA.2.14",
-                _("The segment element not allowed in context Id: %(context)s"),
-                modelObject=cntx, context=cntx.contextID)
-        for scenElt in XmlUtil.descendants(cntx, XbrlConst.xbrli, "scenario"):
-            childTags = ", ".join([child.prefixedName for child in scenElt.iterchildren()
-                                   if isinstance(child,ModelObject) and 
-                                   child.tag != "{http://xbrl.org/2006/xbrldi}explicitMember" and
-                                   child.tag != "{http://xbrl.org/2006/xbrldi}typedMember"])
-            if len(childTags) > 0:
-                modelXbrl.error("EBA.2.15",
-                    _("Scenario of context Id %(context)s has disallowed content: %(content)s"),
-                    modelObject=cntx, context=cntx.id, content=childTags)
-        val.unusedCntxIDs.add(cntx.id)
+        if cntx is not None:
+            if getattr(cntx, "_batchChecked", False):
+                continue # prior streaming batch already checked
+            cntx._batchChecked = True
+            val.cntxEntities.add(cntx.entityIdentifier)
+            dateElts = XmlUtil.descendants(cntx, XbrlConst.xbrli, ("startDate","endDate","instant"))
+            if any(not timelessDatePattern.match(e.textValue) for e in dateElts):
+                modelXbrl.error("EBA.2.10",
+                        _('Period dates must be whole dates without time or timezone: %(dates)s.'),
+                        modelObject=cntx, dates=", ".join(e.text for e in dateElts))
+            if cntx.isForeverPeriod:
+                modelXbrl.error("EBA.2.11",
+                        _('Forever context period is not allowed.'),
+                        modelObject=cntx)
+            elif cntx.isStartEndPeriod:
+                modelXbrl.error("EBA.2.13",
+                        _('Start-End (flow) context period is not allowed.'),
+                        modelObject=cntx)
+            elif cntx.isInstantPeriod:
+                # cannot pass context object to final() below, for error logging, if streaming mode
+                val.cntxDates[cntx.instantDatetime].add(modelXbrl if getattr(val.modelXbrl, "isStreamingMode", False)
+                                                        else cntx)
+            if XmlUtil.hasChild(cntx, XbrlConst.xbrli, "segment"):
+                modelXbrl.error("EBA.2.14",
+                    _("The segment element not allowed in context Id: %(context)s"),
+                    modelObject=cntx, context=cntx.contextID)
+            for scenElt in XmlUtil.descendants(cntx, XbrlConst.xbrli, "scenario"):
+                childTags = ", ".join([child.prefixedName for child in scenElt.iterchildren()
+                                       if isinstance(child,ModelObject) and 
+                                       child.tag != "{http://xbrl.org/2006/xbrldi}explicitMember" and
+                                       child.tag != "{http://xbrl.org/2006/xbrldi}typedMember"])
+                if len(childTags) > 0:
+                    modelXbrl.error("EBA.2.15",
+                        _("Scenario of context Id %(context)s has disallowed content: %(content)s"),
+                        modelObject=cntx, context=cntx.id, content=childTags)
+            val.unusedCntxIDs.add(cntx.id)
 
     for unit in modelXbrl.units.values():
         if getattr(unit, "_batchChecked", False):
@@ -377,7 +378,7 @@ def final(val):
         if val.unusedCntxIDs:
             modelXbrl.warning("EBA.2.7",
                     _('Unused xbrli:context nodes SHOULD NOT be present in the instance: %(unusedContextIDs)s.'),
-                    modelObject=[modelXbrl.contexts[unusedCntxID] for unusedCntxID in val.unusedCntxIDs if unusedCntxID in modelXbrl.contexts], 
+                    modelObject=[modelXbrl.contexts[unusedCntxID] for unusedCntxID in val.unusedCntxIDs if unusedCntxID in modelXbrl.contexts and modelXbrl.contexts[unusedCntxID] is not None], 
                     unusedContextIDs=", ".join(sorted(val.unusedCntxIDs)))
     
         if len(val.cntxEntities) > 1:

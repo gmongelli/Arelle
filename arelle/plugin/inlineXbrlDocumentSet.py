@@ -54,16 +54,17 @@ def saveTargetDocument(modelXbrl, targetDocumentFilename, targetDocumentSchemaRe
     
     # contexts
     for context in modelXbrl.contexts.values():
-        newCntx = targetInstance.createContext(context.entityIdentifier[0],
-                                               context.entityIdentifier[1],
-                                               'instant' if context.isInstantPeriod else
-                                               'duration' if context.isStartEndPeriod
-                                               else 'forever',
-                                               context.startDatetime,
-                                               context.endDatetime,
-                                               None, 
-                                               context.qnameDims, [], [],
-                                               id=context.id)
+        if context is not None:
+            newCntx = targetInstance.createContext(context.entityIdentifier[0],
+                                                   context.entityIdentifier[1],
+                                                   'instant' if context.isInstantPeriod else
+                                                   'duration' if context.isStartEndPeriod
+                                                   else 'forever',
+                                                   context.startDatetime,
+                                                   context.endDatetime,
+                                                   None, 
+                                                   context.qnameDims, [], [],
+                                                   id=context.id)
     for unit in modelXbrl.units.values():
         measures = unit.measures
         newUnit = targetInstance.createUnit(measures[0], measures[1], id=unit.id)

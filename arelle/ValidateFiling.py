@@ -197,71 +197,72 @@ class ValidateFiling(ValidateXbrl.ValidateXbrl):
             contextsWithDisallowedOCEs = []
             contextsWithDisallowedOCEcontent = []
             for context in contexts:
-                contextID = context.id
-                contextIDs.add(contextID)
-                h = context.contextDimAwareHash
-                if h in uniqueContextHashes:
-                    if context.isEqualTo(uniqueContextHashes[h]):
-                        modelXbrl.error(("EFM.6.05.07", "GFM.1.02.07"),
-                            _("Context ID %(context)s is equivalent to context ID %(context2)s"),
-                            modelObject=(context, uniqueContextHashes[h]), context=contextID, context2=uniqueContextHashes[h].id)
-                else:
-                    uniqueContextHashes[h] = context
-                    
-                #GFM no time in contexts
-                if self.validateGFM:
-                    for dateElt in XmlUtil.children(context, XbrlConst.xbrli, ("startDate", "endDate", "instant")):
-                        dateText = XmlUtil.text(dateElt)
-                        if not GFMcontextDatePattern.match(dateText):
-                            modelXbrl.error("GFM.1.02.25",
-                                _("Context id %(context)s %(elementName)s invalid content %(value)s"),
-                                modelObject=dateElt, context=contextID, 
-                                elementName=dateElt.prefixedName, value=dateText)
-                #6.5.4 scenario
-                hasSegment = XmlUtil.hasChild(context, XbrlConst.xbrli, "segment")
-                hasScenario = XmlUtil.hasChild(context, XbrlConst.xbrli, "scenario")
-                notAllowed = None
-                if disclosureSystem.contextElement == "segment" and hasScenario:
-                    notAllowed = _("Scenario")
-                elif disclosureSystem.contextElement == "scenario" and hasSegment:
-                    notAllowed = _("Segment")
-                elif disclosureSystem.contextElement == "either" and hasSegment and hasScenario:
-                    notAllowed = _("Both segment and scenario")
-                elif disclosureSystem.contextElement == "none" and (hasSegment or hasScenario):
-                    notAllowed = _("Neither segment nor scenario")
-                if notAllowed:
-                    if validateEFMpragmatic:
-                        contextsWithDisallowedOCEs.append(context)
+                if context is not None:
+                    contextID = context.id
+                    contextIDs.add(contextID)
+                    h = context.contextDimAwareHash
+                    if h in uniqueContextHashes:
+                        if context.isEqualTo(uniqueContextHashes[h]):
+                            modelXbrl.error(("EFM.6.05.07", "GFM.1.02.07"),
+                                _("Context ID %(context)s is equivalent to context ID %(context2)s"),
+                                modelObject=(context, uniqueContextHashes[h]), context=contextID, context2=uniqueContextHashes[h].id)
                     else:
-                        modelXbrl.error(("EFM.6.05.04", "GFM.1.02.04", "SBR.NL.2.3.5.06"),
-                            _("%(elementName)s element not allowed in context Id: %(context)s"),
-                            modelObject=context, elementName=notAllowed, context=contextID, count=1)
-        
-                #6.5.5 segment only explicit dimensions
-                for contextName in {"segment": ("{http://www.xbrl.org/2003/instance}segment",),
-                                    "scenario": ("{http://www.xbrl.org/2003/instance}scenario",),
-                                    "either": ("{http://www.xbrl.org/2003/instance}segment","{http://www.xbrl.org/2003/instance}scenario"),
-                                    "both": ("{http://www.xbrl.org/2003/instance}segment","{http://www.xbrl.org/2003/instance}scenario"),
-                                    "none": [], None:[]
-                                    }[disclosureSystem.contextElement]:
-                    for segScenElt in context.iterdescendants(contextName):
-                        if isinstance(segScenElt,ModelObject):
-                            childTags = ", ".join([child.prefixedName for child in segScenElt.iterchildren()
-                                                   if isinstance(child,ModelObject) and 
-                                                   child.tag != "{http://xbrl.org/2006/xbrldi}explicitMember"])
-                            if len(childTags) > 0:
-                                if validateEFMpragmatic:
-                                    contextsWithDisallowedOCEcontent.append(context)
-                                else:
-                                    modelXbrl.error(("EFM.6.05.05", "GFM.1.02.05"),
-                                                    _("%(elementName)s of context Id %(context)s has disallowed content: %(content)s"),
-                                                    modelObject=context, context=contextID, content=childTags, 
-                                                    elementName=contextName.partition("}")[2].title())
-                #6.5.38 period forever
-                if context.isForeverPeriod:
-                    self.modelXbrl.error("EFM.6.05.38",
-                        _("Context %(contextID)s has a forever period."),
-                        modelObject=context, contextID=contextID)
+                        uniqueContextHashes[h] = context
+                        
+                    #GFM no time in contexts
+                    if self.validateGFM:
+                        for dateElt in XmlUtil.children(context, XbrlConst.xbrli, ("startDate", "endDate", "instant")):
+                            dateText = XmlUtil.text(dateElt)
+                            if not GFMcontextDatePattern.match(dateText):
+                                modelXbrl.error("GFM.1.02.25",
+                                    _("Context id %(context)s %(elementName)s invalid content %(value)s"),
+                                    modelObject=dateElt, context=contextID, 
+                                    elementName=dateElt.prefixedName, value=dateText)
+                    #6.5.4 scenario
+                    hasSegment = XmlUtil.hasChild(context, XbrlConst.xbrli, "segment")
+                    hasScenario = XmlUtil.hasChild(context, XbrlConst.xbrli, "scenario")
+                    notAllowed = None
+                    if disclosureSystem.contextElement == "segment" and hasScenario:
+                        notAllowed = _("Scenario")
+                    elif disclosureSystem.contextElement == "scenario" and hasSegment:
+                        notAllowed = _("Segment")
+                    elif disclosureSystem.contextElement == "either" and hasSegment and hasScenario:
+                        notAllowed = _("Both segment and scenario")
+                    elif disclosureSystem.contextElement == "none" and (hasSegment or hasScenario):
+                        notAllowed = _("Neither segment nor scenario")
+                    if notAllowed:
+                        if validateEFMpragmatic:
+                            contextsWithDisallowedOCEs.append(context)
+                        else:
+                            modelXbrl.error(("EFM.6.05.04", "GFM.1.02.04", "SBR.NL.2.3.5.06"),
+                                _("%(elementName)s element not allowed in context Id: %(context)s"),
+                                modelObject=context, elementName=notAllowed, context=contextID, count=1)
+            
+                    #6.5.5 segment only explicit dimensions
+                    for contextName in {"segment": ("{http://www.xbrl.org/2003/instance}segment",),
+                                        "scenario": ("{http://www.xbrl.org/2003/instance}scenario",),
+                                        "either": ("{http://www.xbrl.org/2003/instance}segment","{http://www.xbrl.org/2003/instance}scenario"),
+                                        "both": ("{http://www.xbrl.org/2003/instance}segment","{http://www.xbrl.org/2003/instance}scenario"),
+                                        "none": [], None:[]
+                                        }[disclosureSystem.contextElement]:
+                        for segScenElt in context.iterdescendants(contextName):
+                            if isinstance(segScenElt,ModelObject):
+                                childTags = ", ".join([child.prefixedName for child in segScenElt.iterchildren()
+                                                       if isinstance(child,ModelObject) and 
+                                                       child.tag != "{http://xbrl.org/2006/xbrldi}explicitMember"])
+                                if len(childTags) > 0:
+                                    if validateEFMpragmatic:
+                                        contextsWithDisallowedOCEcontent.append(context)
+                                    else:
+                                        modelXbrl.error(("EFM.6.05.05", "GFM.1.02.05"),
+                                                        _("%(elementName)s of context Id %(context)s has disallowed content: %(content)s"),
+                                                        modelObject=context, context=contextID, content=childTags, 
+                                                        elementName=contextName.partition("}")[2].title())
+                    #6.5.38 period forever
+                    if context.isForeverPeriod:
+                        self.modelXbrl.error("EFM.6.05.38",
+                            _("Context %(contextID)s has a forever period."),
+                            modelObject=context, contextID=contextID)
             if validateEFMpragmatic: # output combined count message
                 if contextsWithDisallowedOCEs:
                     modelXbrl.error(("EFM.6.05.04", "GFM.1.02.04"),

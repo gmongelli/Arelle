@@ -488,7 +488,8 @@ class ModelXbrl:
         if dims: segAspect, scenAspect = (Aspect.NON_XDT_SEGMENT, Aspect.NON_XDT_SCENARIO)
         else: segAspect, scenAspect = (Aspect.COMPLETE_SEGMENT, Aspect.COMPLETE_SCENARIO)
         for c in self.contexts.values():
-            if (c.entityIdentifier == (entityIdentScheme, entityIdentValue) and
+            if (c is not None and
+                c.entityIdentifier == (entityIdentScheme, entityIdentValue) and
                 ((c.isInstantPeriod and periodType == "instant" and dateUnionEqual(c.instantDatetime, periodEndInstant, instantEndDate=True)) or
                  (c.isStartEndPeriod and periodType == "duration" and dateUnionEqual(c.startDatetime, periodStart) and dateUnionEqual(c.endDatetime, periodEndInstant, instantEndDate=True)) or
                  (c.isForeverPeriod and periodType == "forever")) and

@@ -55,12 +55,13 @@ class ValidateXbrlCalcs:
         self.modelXbrl.profileActivity()
         uniqueContextHashes = {}
         for context in self.modelXbrl.contexts.values():
-            h = context.contextDimAwareHash
-            if h in uniqueContextHashes:
-                if context.isEqualTo(uniqueContextHashes[h]):
-                    self.mapContext[context] = uniqueContextHashes[h]
-            else:
-                uniqueContextHashes[h] = context
+            if context is not None:
+                h = context.contextDimAwareHash
+                if h in uniqueContextHashes:
+                    if context.isEqualTo(uniqueContextHashes[h]):
+                        self.mapContext[context] = uniqueContextHashes[h]
+                else:
+                    uniqueContextHashes[h] = context
         del uniqueContextHashes
         self.modelXbrl.profileActivity("... identify equal contexts", minTimeToShow=1.0)
 

@@ -523,10 +523,13 @@ class LogFormatter(logging.Formatter):
             href = ref.get("href")
             if href:
                 fileLines[href.partition("#")[0]].add(ref.get("sourceLine", 0))
-        record.file = ", ".join(file + " " + ', '.join(str(line) 
-                                                       for line in sorted(lines, key=lambda l: l)
-                                                       if line)
-                                for file, lines in sorted(fileLines.items()))
+        try:
+            record.file = ", ".join(file + " " + ', '.join(str(line) 
+                                                           for line in sorted(lines, key=lambda l: l)
+                                                           if line)
+                                    for file, lines in sorted(fileLines.items()))
+        except TypeError:
+            record.file = ", unknown location"
         try:
             formattedMessage = super(LogFormatter, self).format(record)
         except (KeyError, TypeError, ValueError) as ex:
