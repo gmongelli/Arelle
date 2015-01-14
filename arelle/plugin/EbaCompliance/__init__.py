@@ -135,9 +135,10 @@ def deleteUnusedContexts(dts):
                                        if fact.contextID}
     for cntxID in unusedCntxIDs:
         context = allContexts[cntxID]
-        allContexts[cntxID] = None # contexts cannot be deleted in this list because of the context numbering
-        parent = context.getparent()
-        parent.remove(context)
+        if context is not None: # ignore already deleted contexts
+            allContexts[cntxID] = None # contexts cannot be deleted in this list because of the context numbering
+            parent = context.getparent()
+            parent.remove(context)
     return len(unusedCntxIDs)>0
 
 def createOrReplaceFilingIndicators(dts, allFilingIndicatorCodes, newFactItemOptions):
