@@ -74,13 +74,14 @@ def validateFacts(val, factsToCheck):
     
     modelXbrl = val.modelXbrl
     modelDocument = modelXbrl.modelDocument
+    isStreamingMode = getattr(modelXbrl, "isStreamingMode", False)
     
     # note EBA 2.1 is in ModelDocument.py
     
     timelessDatePattern = re.compile(r"\s*([0-9]{4})-([0-9]{2})-([0-9]{2})\s*$")
     for cntx in modelXbrl.contexts.values():
         if cntx is not None:
-            if getattr(cntx, "_batchChecked", False):
+            if getattr(cntx, "_batchChecked", False) and isStreamingMode:
                 continue # prior streaming batch already checked
             cntx._batchChecked = True
             val.cntxEntities.add(cntx.entityIdentifier)
@@ -99,7 +100,7 @@ def validateFacts(val, factsToCheck):
                         modelObject=cntx)
             elif cntx.isInstantPeriod:
                 # cannot pass context object to final() below, for error logging, if streaming mode
-                val.cntxDates[cntx.instantDatetime].add(modelXbrl if getattr(val.modelXbrl, "isStreamingMode", False)
+                val.cntxDates[cntx.instantDatetime].add(modelXbrl if isStreamingMode
                                                         else cntx)
             if XmlUtil.hasChild(cntx, XbrlConst.xbrli, "segment"):
                 modelXbrl.error("EBA.2.14",
@@ -117,7 +118,7 @@ def validateFacts(val, factsToCheck):
             val.unusedCntxIDs.add(cntx.id)
 
     for unit in modelXbrl.units.values():
-        if getattr(unit, "_batchChecked", False):
+        if getattr(unit, "_batchChecked", False) and isStreamingMode:
             continue # prior streaming batch already checked
         unit._batchChecked = True
         val.unusedUnitIDs.add(unit.id)
