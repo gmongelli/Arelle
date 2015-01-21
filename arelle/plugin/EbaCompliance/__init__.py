@@ -112,7 +112,10 @@ def deleteNilFacts(dts, contlr):
         XmlValidate.validate(dts, dts.modelDocument.xmlRootElement)
     elif parent is not None:
         XmlValidate.validate(dts, parent)
-    contlr.addToLog(_("Removal of empty facts and unused contexts finished successfully. %s empty facts deleted." % len(nilFacts)))
+    numberOfNilFacts = len(nilFacts)
+    if numberOfNilFacts>0:
+        dts.setIsModified()
+    contlr.addToLog(_("Removal of empty facts and unused contexts finished successfully. %s empty facts deleted." % numberOfNilFacts))
 
 def removeFactInModel(dts, fact):
     dts.factsInInstance.remove(fact)
@@ -139,7 +142,10 @@ def deleteUnusedContexts(dts):
             allContexts[cntxID] = None # contexts cannot be deleted in this list because of the context numbering
             parent = context.getparent()
             parent.remove(context)
-    return len(unusedCntxIDs)>0
+    someContextsHaveBeenDeleted = len(unusedCntxIDs)>0
+    if someContextsHaveBeenDeleted:
+        dts.setIsModified()
+    return someContextsHaveBeenDeleted
 
 def createOrReplaceFilingIndicators(dts, allFilingIndicatorCodes, newFactItemOptions):
     filingIndicatorsElements = dts.factsByQname(qnFindFilingIndicators, set())
@@ -177,6 +183,7 @@ def removeUselessFilingIndicatorsInModel(dts):
         dts.factsInInstance.remove(fact)
         dts.factIndex.deleteFact(fact)
         # non-top-level elements are not in 'facts'
+    dts.setIsModified()
 
 def createFilingIndicatorsElement(dts, newFactItemOptions):
     dts.createContext(newFactItemOptions.entityIdentScheme,

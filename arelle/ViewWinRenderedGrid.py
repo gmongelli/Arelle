@@ -1023,6 +1023,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                         unitId = newUnit.id
                                     fact.unitID = unitId
                                 fact.text = str(value)
+                                instance.setIsModified()
                                 XmlValidate.validate(instance, fact)
                             bodyCell.isChanged = False # clear change flag
                         
