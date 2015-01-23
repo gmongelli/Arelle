@@ -3,8 +3,7 @@ Improve the EBA compliance of the currently loaded facts.
 
 For the time being, there are only two improvements that are implemented:
 1. The filing indicators are regenerated using a fixed context with ID "c".
-2. The decimals attribute is computed according to the actually supplied value.
-3. The nil facts and the unused contexts are removed
+2. The nil facts and the unused contexts are removed
 
 (c) Copyright 2014 Acsone S. A., All rights reserved.
 '''
@@ -20,7 +19,6 @@ from .FactWalkingAction import FactWalkingAction
 EbaURL = "www.eba.europa.eu/xbrl"
 qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
 qnFindFilingIndicator = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:filingIndicator")
-qnPercentItemType = qname("{http://www.xbrl.org/dtr/type/numeric}num:percentItemType")
 
 def improveEbaCompliance(dts, cntlr, lang="en"):
     ':type dts: ModelXbrl'
@@ -232,81 +230,13 @@ def improveEbaComplianceMenuCommand(cntlr):
     thread.daemon = True
     thread.start()
 
-def decimalsComputer(locale, value, concept, defaultDecimals):
-    '''
-    :type locale: dict
-    :type value: string
-    :type concept: ModelConcept
-    :type defaultDecimals: str
-    :rtype (boolean, str)
-    '''
-    if len(defaultDecimals)==0:
-        defaultDecimals = 'INF'
-    if concept.isNumeric and defaultDecimals != 'INF' and len(value)>0:
-        decimalPoint = locale["decimal_point"]
-        explodedNumber = value.split(decimalPoint)
-        integerPart = ""
-        if len(explodedNumber)==2:
-            # If there is a decimal point and if there are decimals after that point,
-            # count the decimals!
-            integerPart, fractionalPart = explodedNumber
-            return (True, str(len(fractionalPart)))
-        else:
-            integerPart = value
-        #Count the trailing zeros in the part before the decimal point
-        if integerPart == '0':
-            return (True, '0')
-        else:
-            index = 0
-            for index, char in enumerate(reversed(integerPart)):
-                if char != '0':
-                    break;
-            return (True, ('0' if index==0 or (index+1==len(integerPart) and integerPart[0]=='0') else "-"+str(index)))
-    else:
-        return (False, defaultDecimals)
-
-def ebaDecimals(locale, value, concept, defaultDecimals):
-    '''
-    :type locale: dict
-    :type value: string
-    :type concept: ModelConcept
-    :type defaultDecimals: str
-    :rtype (boolean, str)
-    '''
-    isPercent = concept.typeQname == qnPercentItemType
-    isInteger = XbrlConst.isIntegerXsdType(concept.type.baseXsdType)
-    isMonetary = concept.isMonetary
-    decimalsFound, decimals = decimalsComputer(locale, value, concept, defaultDecimals)
-    if not(decimalsFound) or decimals == 'INF':
-        return (decimalsFound, decimals)
-    else:
-        # the default values are for non-monetary items
-        lowerBound = -20
-        upperBound = 20
-        decimalsAsInteger = int(decimals)
-        if isMonetary:
-            lowerBound = -3
-        elif isInteger:
-            lowerBound = upperBound = 0
-        elif isPercent: # percent values
-            lowerBound = 4
-            upperBound = 20
-        if decimalsAsInteger<lowerBound:
-            decimals = str(lowerBound)
-            decimalsAsInteger = lowerBound
-        if decimalsAsInteger>upperBound:
-            decimals = 'INF' # approximation
-            decimalsAsInteger = upperBound
-        return (decimalsFound, decimals)
-
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.1',
-    'description': "This module regenerates EBA filing indicators if needed and supplies a custom method for computing the decimals attribute according to the actually supplied value.",
+    'version': '1.2',
+    'description': "This module regenerates EBA filing indicators if needed and removes unused contexts.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',
-    'copyright': '(c) Copyright 2014 Acsone S. A.',
+    'copyright': '(c) Copyright 2014, 2015 Acsone S. A.',
     # classes of mount points (required)
-    'CntlrWinMain.Menu.Tools': improveEbaComplianceMenuExtender,
-    'CntlrWinMain.Rendering.ComputeDecimals': ebaDecimals
+    'CntlrWinMain.Menu.Tools': improveEbaComplianceMenuExtender
 }
