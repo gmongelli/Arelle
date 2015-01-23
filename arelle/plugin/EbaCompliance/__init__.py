@@ -4,6 +4,7 @@ Improve the EBA compliance of the currently loaded facts.
 For the time being, there are only two improvements that are implemented:
 1. The filing indicators are regenerated using a fixed context with ID "c".
 2. The nil facts and the unused contexts are removed
+3. The entity scheme, the entity ID, the period start and the period end date are updated for every fact.
 
 (c) Copyright 2014 Acsone S. A., All rights reserved.
 '''
@@ -15,6 +16,7 @@ from lxml import etree
 from arelle.ViewWinRenderedGrid import ViewRenderedGrid
 from .ViewWalkerRenderedGrid import viewWalkerRenderedGrid
 from .FactWalkingAction import FactWalkingAction
+from arelle.ModelInstanceObject import NewFactItemOptions
 
 EbaURL = "www.eba.europa.eu/xbrl"
 qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
@@ -78,6 +80,7 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
             viewTable(modelTable, factWalkingAction)
 
         createOrReplaceFilingIndicators(dts, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
+        updateFactItemOptions(dts, newFactItemOptions, cntlr)
         dts.modelManager.showStatus(_("EBA compliance improved"), 5000)
         cntlr.reloadTableView(dts)
     except Exception as ex:
@@ -209,6 +212,25 @@ def getFactItemOptions(dts, cntlr):
             newFactItemOptions = view.newFactItemOptions
             break
     return newFactItemOptions
+
+def updateFactItemOptions(dts, newFactItemOptions, contlr):
+    ''':type dts: ModelXbrl
+       :type newFactItemOptions: NewFactItemOptions
+    '''
+    
+    contlr.addToLog(_("Update of fact options started."))
+    changedContexts = 0
+    for fact in dts.facts:
+        context = fact.context
+        if context is not None:
+            context.updateEntityIdentifierElement(newFactItemOptions.entityIdentScheme,
+                                                  newFactItemOptions.entityIdentValue)
+            context.updatePeriod(newFactItemOptions.startDate,
+                                 newFactItemOptions.endDate)
+            changedContexts += 1
+    if changedContexts>0:
+        dts.setIsModified()
+    contlr.addToLog(_("Update of fact options finished successfully. %s facts updated." % changedContexts))
 
 def improveEbaComplianceMenuExtender(cntlr, menu):
     # Extend menu with an item for the improve compliance menu

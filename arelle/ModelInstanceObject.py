@@ -795,6 +795,24 @@ class ModelContext(ModelObject):
             self._startDatetime = XmlUtil.datetimeValue(XmlUtil.child(self.period, XbrlConst.xbrli, "startDate"))
             return self._startDatetime
 
+    def updateStartDate(self, date):
+        """(datetime) -- update startDate attribute"""
+        el = XmlUtil.child(self.period, XbrlConst.xbrli, "startDate")
+        if el is not None:
+            el.text = date
+        try:
+            delattr(self, "_startDatetime")
+        except AttributeError:
+            pass
+        try:
+            delattr(self, "_periodHash")
+        except AttributeError:
+            pass
+        try:
+            delattr(self, "_md5sum")
+        except AttributeError:
+            pass
+
     @property
     def endDatetime(self):
         """(datetime) -- endDate or instant attribute, with adjustment to end-of-day midnight as needed"""
@@ -804,6 +822,24 @@ class ModelContext(ModelObject):
             self._endDatetime = XmlUtil.datetimeValue(XmlUtil.child(self.period, XbrlConst.xbrli, ("endDate","instant")), addOneDay=True)
             return self._endDatetime
         
+    def updateEndDate(self, date):
+        """(datetime) -- update endDate attribute"""
+        el = XmlUtil.child(self.period, XbrlConst.xbrli, "endDate")
+        if el is not None:
+            el.text = date
+        try:
+            delattr(self, "_endDatetime")
+        except AttributeError:
+            pass
+        try:
+            delattr(self, "_periodHash")
+        except AttributeError:
+            pass
+        try:
+            delattr(self, "_md5sum")
+        except AttributeError:
+            pass
+
     @property
     def instantDatetime(self):
         """(datetime) -- instant attribute, with adjustment to end-of-day midnight as needed"""
@@ -813,6 +849,24 @@ class ModelContext(ModelObject):
             self._instantDatetime = XmlUtil.datetimeValue(XmlUtil.child(self.period, XbrlConst.xbrli, "instant"), addOneDay=True)
             return self._instantDatetime
     
+    def updateInstantDate(self, date):
+        """(datetime) -- update instant attribute"""
+        el = XmlUtil.child(self.period, XbrlConst.xbrli, "instant")
+        if el is not None:
+            el.text = date
+        try:
+            delattr(self, "_instantDatetime")
+        except AttributeError:
+            pass
+        try:
+            delattr(self, "_periodHash")
+        except AttributeError:
+            pass
+        try:
+            delattr(self, "_md5sum")
+        except AttributeError:
+            pass
+
     @property
     def period(self):
         """(ModelObject) -- period element"""
@@ -821,6 +875,15 @@ class ModelContext(ModelObject):
         except AttributeError:
             self._period = XmlUtil.child(self, XbrlConst.xbrli, "period")
             return self._period
+
+    def updatePeriod(self, startDate, endDate):
+        """(ModelObject) -- update period element"""
+        if self.isInstantPeriod:
+            self.updateInstantDate(endDate)
+        elif self.isStartEndPeriod:
+            self.updateStartDate(startDate)
+            self.updateEndDate(endDate)
+        # Forever periods are not updated...
 
     @property
     def periodHash(self):
@@ -848,6 +911,22 @@ class ModelContext(ModelObject):
         except AttributeError:
             self._entityIdentifierElement = XmlUtil.child(self.entity, XbrlConst.xbrli, "identifier")
             return self._entityIdentifierElement
+
+    def updateEntityIdentifierElement(self, scheme, identifier):
+        """(ModelObject) -- update entity identifier element"""
+        el = self.entityIdentifierElement
+        if el is not None:
+            schemeAttribute = "scheme"
+            el.text = identifier
+            el.set(schemeAttribute, scheme)
+            try:
+                delattr(self, "_entityIdentifierHash")
+            except AttributeError:
+                pass
+            try:
+                delattr(self, "_md5sum")
+            except AttributeError:
+                pass
 
     @property
     def entityIdentifier(self):
