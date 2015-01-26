@@ -213,7 +213,9 @@ class StructuralNode:
     def objectId(self, refId=""):
         return self.definitionNode.objectId(refId)
         
-    def header(self, role=None, lang=None, evaluate=True, returnGenLabel=True, returnMsgFormatString=False, recurseParent=True):
+    def header(self, role=None, lang=None, evaluate=True, returnGenLabel=True, returnMsgFormatString=False, recurseParent=True, inheritedAspects=None):
+        if inheritedAspects is None:
+            inheritedAspects = recurseParent
         # if ord is a nested selectionAxis selection, use selection-message or text contents instead of axis headers
         isZSelection = isinstance(self.definitionNode, ModelSelectionDefinitionNode) and hasattr(self, "zSelection")
         if role is None:
@@ -243,12 +245,14 @@ class StructuralNode:
             return OPEN_ASPECT_ENTRY_SURROGATE # sort pretty high, work ok for python 2.7/3.2 as well as 3.3
         # if there's a child roll up, check for it
         if self.rollUpStructuralNode is not None:  # check the rolling-up child too
-            return self.rollUpStructuralNode.header(role, lang, evaluate, returnGenLabel, returnMsgFormatString, recurseParent)
+            return self.rollUpStructuralNode.header(role=role, lang=lang, evaluate=evaluate,
+                                                    returnGenLabel=returnGenLabel, returnMsgFormatString=returnMsgFormatString,
+                                                    recurseParent=recurseParent, inheritedAspects=inheritedAspects)
         # if aspect is a concept of dimension, return its standard label
         concept = None
         if role is None:
             for aspect in self.aspectsCovered():
-                aspectValue = self.aspectValue(aspect, inherit=recurseParent)
+                aspectValue = self.aspectValue(aspect, inherit=inheritedAspects)
                 if isinstance(aspect, QName) or aspect == Aspect.CONCEPT: # dimension or concept
                     if isinstance(aspectValue, QName):
                         concept = self.modelXbrl.qnameConcepts[aspectValue]
@@ -269,7 +273,9 @@ class StructuralNode:
                 return label
         # if there is a role, check if it's available on a parent node
         if role and recurseParent and self.parentStructuralNode is not None:
-            return self.parentStructuralNode.header(role, lang, evaluate, returnGenLabel, returnMsgFormatString, recurseParent)
+            return self.parentStructuralNode.header(role=role, lang=lang, evaluate=evaluate,
+                                                    returnGenLabel=returnGenLabel, returnMsgFormatString=returnMsgFormatString,
+                                                    recurseParent=recurseParent, inheritedAspects=inheritedAspects)
         return None
     
     def evaluate(self, evalObject, evalMethod, otherAxisStructuralNode=None, evalArgs=()):
