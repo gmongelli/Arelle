@@ -6,7 +6,7 @@ For the time being, there are only two improvements that are implemented:
 2. The nil facts and the unused contexts are removed
 3. The entity scheme, the entity ID, the period start and the period end date are updated for every fact.
 
-(c) Copyright 2014 Acsone S. A., All rights reserved.
+(c) Copyright 2014, 2015 Acsone S. A., All rights reserved.
 '''
 
 from arelle import ModelDocument, XmlValidate, ModelXbrl, XbrlConst
@@ -17,8 +17,8 @@ from arelle.ViewWinRenderedGrid import ViewRenderedGrid
 from .ViewWalkerRenderedGrid import viewWalkerRenderedGrid
 from .FactWalkingAction import FactWalkingAction
 from arelle.ModelInstanceObject import NewFactItemOptions
+from arelle.EbaUtil import getFactItemOptions,isEbaInstance
 
-EbaURL = "www.eba.europa.eu/xbrl"
 qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
 qnFindFilingIndicator = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:filingIndicator")
 
@@ -88,18 +88,6 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
             _("EBA compliance improvements generation exception: %(error)s"), error=ex,
             modelXbrl=dts,
             exc_info=True)
-
-def isEbaInstance(dts):
-    if dts.modelDocument.type == ModelDocument.Type.INSTANCE:
-        doc = dts.modelDocument.xmlDocument
-        for el in doc.iter("*"):
-            if isinstance(el, etree._Element):
-                for _, NS in _DICT_SET(el.nsmap.items()):  # @UndefinedVariable
-                    if EbaURL in NS:
-                        return True;
-        return False
-    else:
-        return False
 
 def deleteNilFacts(dts, contlr):
     contlr.addToLog(_("Removal of empty facts and unused contexts started."))
@@ -200,19 +188,6 @@ def createFilingIndicatorsElement(dts, newFactItemOptions):
                                            validate=False)
     return filingIndicatorsTuple
 
-def getFactItemOptions(dts, cntlr):
-    newFactItemOptions = None
-    for view in dts.views:
-        if isinstance(view, ViewRenderedGrid):
-            if (not view.newFactItemOptions.entityIdentScheme or  # not initialized yet
-            not view.newFactItemOptions.entityIdentValue or
-            not view.newFactItemOptions.startDateDate or not view.newFactItemOptions.endDateDate):
-                if not getNewFactItemOptions(cntlr, view.newFactItemOptions):
-                    return None
-            newFactItemOptions = view.newFactItemOptions
-            break
-    return newFactItemOptions
-
 def updateFactItemOptions(dts, newFactItemOptions, contlr):
     ''':type dts: ModelXbrl
        :type newFactItemOptions: NewFactItemOptions
@@ -254,7 +229,7 @@ def improveEbaComplianceMenuCommand(cntlr):
 
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.2',
+    'version': '1.3',
     'description': "This module regenerates EBA filing indicators if needed and removes unused contexts.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',

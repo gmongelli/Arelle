@@ -468,7 +468,8 @@ class CntlrWinMain (Cntlr.Cntlr):
         else:
             return reply
         
-    def fileSave(self, event=None, view=None, fileType=None, filenameFromInstance=False, *ignore):
+    def fileSave(self, event=None, view=None, fileType=None,
+                 filenameFromInstance=False, initialfile=None, *ignore):
         if view is None:
             view = getattr(self, "currentView", None)
         if view is not None:
@@ -507,9 +508,11 @@ class CntlrWinMain (Cntlr.Cntlr):
                                     title=_("arelle - Save XBRL Instance or HTML-rendered Table"),
                                     initialdir=initialdir,
                                     filetypes=[(_("XBRL instance .xbrl"), "*.xbrl"), (_("XBRL instance .xml"), "*.xml"), (_("HTML table .html"), "*.html"), (_("HTML table .htm"), "*.htm")],
-                                    defaultextension=".html")
+                                    defaultextension=".html",
+                                    initialfile=initialfile)
                         if filename and (filename.endswith(".xbrl") or filename.endswith(".xml")):
                             view.saveInstance(filename)
+                            self.addToLog(_("{0} saved").format(filename))
                             return True
                     if not filename:
                         return False
@@ -1335,7 +1338,7 @@ class CntlrWinMain (Cntlr.Cntlr):
                 callback(*args)
         widget.after(delayMsecs, lambda: self.uiThreadChecker(widget))
         
-    def uiFileDialog(self, action, title=None, initialdir=None, filetypes=[], defaultextension=None, owner=None, multiple=False, parent=None):
+    def uiFileDialog(self, action, title=None, initialdir=None, filetypes=[], defaultextension=None, owner=None, multiple=False, parent=None, initialfile=None):
         if parent is None: parent = self.parent
         if multiple and action == "open":  # return as simple list of file names
             multFileNames = tkinter.filedialog.askopenfilename(
@@ -1344,7 +1347,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                                     initialdir=initialdir,
                                     filetypes=[] if self.isMac else filetypes,
                                     defaultextension=defaultextension,
-                                    parent=parent)
+                                    parent=parent,
+                                    initialfile=initialfile)
             if self.isMac:
                 return multFileNames
             return re.findall("[{]([^}]+)[}]",  # multiple returns "{file1} {file2}..."
@@ -1360,7 +1364,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                             MaxFile=4096,
                             InitialDir=initialdir,
                             Title=title,
-                            DefExt=defaultextension)
+                            DefExt=defaultextension,
+                            File=initialfile)
                 return filename
             except win32gui.error:
                 return ''
@@ -1371,7 +1376,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                             initialdir=initialdir,
                             filetypes=[] if self.isMac else filetypes,
                             defaultextension=defaultextension,
-                            parent=parent)
+                            parent=parent,
+                            initialfile=initialfile)
 
 from arelle import DialogFormulaParameters
 
