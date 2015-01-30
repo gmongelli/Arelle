@@ -1058,6 +1058,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
 
         self.updateInstanceFromFactPrototypes()
         instance.saveInstance(newFilename) # may override prior filename for instance from main menu
+        cntlr.addToLog(_("{0} saved").format(newFilename if newFilename is not None else instance.modelDocument.filepath))
         cntlr.showStatus(_("Saved {0}").format(instance.modelDocument.basename), clearAfter=3000)
         if onSaved is not None:
             self.modelXbrl.modelManager.cntlr.uiThreadQueue.put((onSaved, []))
