@@ -92,9 +92,9 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                             _modelObjects.extend(vb.yieldedEvaluation)
                         else:
                             _modelObjects.append(vb.yieldedFact)
-                            factVarBindings.append(", \n${}: {} context {} value {}".format(vb.qname, vb.yieldedFact.qname,
-                                                                                            vb.yieldedFactContext.id,
-                                                                                            xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname))))
+                            factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
+                                                                                        vb.yieldedFact.qname,
+                                                                                        vb.yieldedFactContext.id))
                 xpCtx.modelXbrl.log(
                     "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                     "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
@@ -228,9 +228,9 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                                 _modelObjects.extend(vb.yieldedEvaluation)
                             else:
                                 _modelObjects.append(vb.yieldedFact)
-                            factVarBindings.append(", \n${}: {} context {} value {}".format(vb.qname, vb.yieldedFact.qname,
-                                                                                           vb.yieldedFactContext.id,
-                                                                                           xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname))))
+                            factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
+                                                                                        vb.yieldedFact.qname,
+                                                                                        vb.yieldedFactContext.id))
                     xpCtx.modelXbrl.log(
                         "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                         "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
