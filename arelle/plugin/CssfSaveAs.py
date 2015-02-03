@@ -1,6 +1,6 @@
 '''
 Created on Jan 27, 2015
-Inspired by https://code.google.com/p/python-ttk/wiki/ttkWizard
+This modules provides a 'Save As CSSF' menu.
 
 @author: Gregorio Mongelli (Acsone S. A.)
 (c) Copyright 2015 Acsone S. A., All rights reserved.

@@ -1,10 +1,13 @@
 '''
 Improve the EBA compliance of the currently loaded facts.
 
-For the time being, there are only two improvements that are implemented:
+For the time being, there are only three improvements that are implemented:
 1. The filing indicators are regenerated using a fixed context with ID "c".
 2. The nil facts and the unused contexts and units are removed
 3. The entity scheme, the entity ID, the period start and the period end date are updated for every fact.
+
+Moreover, a new File > New EBA File... menu entry is provided to ease the creation of the
+latest EBA instances.
 
 (c) Copyright 2014, 2015 Acsone S. A., All rights reserved.
 '''
@@ -18,9 +21,141 @@ from .ViewWalkerRenderedGrid import viewWalkerRenderedGrid
 from .FactWalkingAction import FactWalkingAction
 from arelle.ModelInstanceObject import NewFactItemOptions
 from arelle.EbaUtil import getFactItemOptions,isEbaInstance
+from arelle.UiUtil import gridCombobox, label
+from arelle.CntlrWinTooltip import ToolTip
+
+from tkinter import Toplevel, N, S, E, W, messagebox
+try:
+    from tkinter.ttk import Button, Frame
+except ImportError:
+    from ttk import Button, Frame
+try:
+    import regex as re
+except ImportError:
+    import re
 
 qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
 qnFindFilingIndicator = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:filingIndicator")
+
+EBA_REPORTING_INDIVIDUAL = 'Individual'
+EBA_REPORTING_CONSOLIDATED = 'Consolidated'
+EBA_REPORTING_TYPES_VALUES = (EBA_REPORTING_INDIVIDUAL, EBA_REPORTING_CONSOLIDATED)
+EBA_ENTRY_POINTS_INDIVIDUAL = {'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
+                               'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_ind.xsd',
+                               'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_ind.xsd',
+                               'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_ind.xsd',
+                               'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_ind.xsd'}
+
+EBA_ENTRY_POINTS_CONSOLIDATED = {'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
+                                 'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_gaap.xsd',
+                                 'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_ifrs.xsd',
+                                 'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_con.xsd',
+                                 'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_con.xsd',
+                                 'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_con.xsd',
+                                 'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_con.xsd'}
+
+class EbaNewFileOptions(object):
+    def __init__(self, ebaReportingType, ebaEntryPoint):
+        self.ebaReportingType = ebaReportingType
+        self.ebaEntryPoint = ebaEntryPoint
+
+class DialogNewFileOptions(Toplevel):
+    def __init__(self, mainWin):
+        self.mainWin = mainWin
+        parent = mainWin
+        super(DialogNewFileOptions, self).__init__(parent)
+        self.parent = parent
+        parentGeometry = re.match("(\d+)x(\d+)[+]?([-]?\d+)[+]?([-]?\d+)", parent.geometry())
+        dialogX = int(parentGeometry.group(3))
+        dialogY = int(parentGeometry.group(4))
+        self.accepted = False
+        self.ebaEntryPointValues = sorted(EBA_ENTRY_POINTS_INDIVIDUAL.keys())
+        self.options = EbaNewFileOptions(EBA_REPORTING_TYPES_VALUES[0],
+                                         self.ebaEntryPointValues[0])
+        options = self.options
+
+        self.transient(self.parent)
+        self.title(_("New EBA File"))
+        
+        frame = Frame(self)
+
+        label(frame, 1, 1, _("EBA reporting type:"))
+        self.cellReportType = gridCombobox(frame, 2, 1, getattr(options,"ebaReportingType", ""),
+                                           values=EBA_REPORTING_TYPES_VALUES,
+                                           comboboxselected=self.onReportTypeChanged,
+                                           width=40)
+        ToolTip(self.cellReportType, text=_("Select a report type"), wraplength=240)
+        label(frame, 1, 2, _("Entry point:"))
+        self.cellEntryPoint = gridCombobox(frame, 2, 2, getattr(options,"ebaEntryPoint", ""),
+                                           values=self.ebaEntryPointValues,
+                                           width=40)
+        ToolTip(self.cellEntryPoint, text=_("Select an EBA entry point"), wraplength=240)
+        currentRow = 3
+
+        cancelButton = Button(frame, text=_("Cancel"), width=8, command=self.close)
+        ToolTip(cancelButton, text=_("Cancel operation"))
+        okButton = Button(frame, text=_("New"), width=8, command=self.ok)
+        ToolTip(okButton, text=_("Create a new file"))
+        cancelButton.grid(row=currentRow, column=1, columnspan=3, sticky=E, pady=3, padx=3)
+        okButton.grid(row=currentRow, column=1, columnspan=3, sticky=E, pady=3, padx=86)
+        
+        frame.grid(row=0, column=0, sticky=(N,S,E,W))
+        frame.columnconfigure(2, weight=1)
+        window = self.winfo_toplevel()
+        window.columnconfigure(0, weight=1)
+        self.geometry("+{0}+{1}".format(dialogX+50,dialogY+100))
+        self.protocol("WM_DELETE_WINDOW", self.close)
+        self.grab_set()
+        self.wait_window(self)
+        
+    def checkEntries(self):
+        errors = []
+        if self.cellReportType.value is None or self.cellReportType.value not in EBA_REPORTING_TYPES_VALUES:
+            errors.append(_("Please select a report type."))
+        if self.cellEntryPoint.value is None or self.cellEntryPoint.value not in self.ebaEntryPointValues:
+            errors.append(_("Please select an EBA entry point."))
+
+        if errors:
+            messagebox.showwarning(_("Dialog validation error(s)"),
+                                "\n".join(errors), parent=self)
+            return False
+        return True
+
+    def setOptions(self):
+        options = self.options
+        options.ebaReportingType = self.cellReportType.value
+        options.ebaEntryPoint = self.cellEntryPoint.value
+
+    def ok(self, event=None):
+        if not self.checkEntries():
+            return
+        self.setOptions()
+        self.accepted = True
+        self.close()
+
+    def close(self, event=None):
+        self.parent.focus_set()
+        self.destroy()
+
+    def onReportTypeChanged(self, event):
+        combobox = event.widget
+        value = combobox.value
+        if value == EBA_REPORTING_INDIVIDUAL:
+            self.ebaEntryPointValues = sorted(EBA_ENTRY_POINTS_INDIVIDUAL.keys())
+        else:
+            self.ebaEntryPointValues = sorted(EBA_ENTRY_POINTS_CONSOLIDATED.keys())
+        self.cellEntryPoint['values']=self.ebaEntryPointValues
+        if self.cellEntryPoint.value not in self.ebaEntryPointValues:
+            self.cellEntryPoint.current(0)
+
+    @property
+    def newUrl(self):
+        options = self.options
+        if options.ebaReportingType == EBA_REPORTING_INDIVIDUAL:
+            urls = EBA_ENTRY_POINTS_INDIVIDUAL
+        else:
+            urls = EBA_REPORTING_CONSOLIDATED
+        return urls[options.ebaEntryPoint]
 
 def improveEbaCompliance(dts, cntlr, lang="en"):
     ':type dts: ModelXbrl'
@@ -245,13 +380,23 @@ def improveEbaComplianceMenuCommand(cntlr):
     thread.daemon = True
     thread.start()
 
+def customNewFile(cntlr):
+    dialog = DialogNewFileOptions(cntlr.parent)
+    if dialog.accepted:
+        newUrl = dialog.newUrl
+        cntlr.fileOpenFile(newUrl)
+
+def fileOpenExtender(cntlr, menu):
+    menu.add_command(label=_('New EBA File...'), underline=0, command=lambda: customNewFile(cntlr) )
+
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.4',
-    'description': "This module regenerates EBA filing indicators if needed and removes unused contexts and units.",
+    'version': '1.5',
+    'description': "This module extends the File menu and regenerates EBA filing indicators if needed and removes unused contexts and units.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',
     'copyright': '(c) Copyright 2014, 2015 Acsone S. A.',
     # classes of mount points (required)
-    'CntlrWinMain.Menu.Tools': improveEbaComplianceMenuExtender
+    'CntlrWinMain.Menu.Tools': improveEbaComplianceMenuExtender,
+    'CntlrWinMain.Menu.File.Open': fileOpenExtender
 }
