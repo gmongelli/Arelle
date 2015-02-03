@@ -507,6 +507,14 @@ class ModelXbrl:
                     return c
         return None
                  
+    def findNewId(self, idTemplate, existingDictionary):
+        candidateNumber = len(existingDictionary)+1
+        candidateId = idTemplate.format(candidateNumber)
+        while candidateId in existingDictionary:
+            candidateNumber += 1
+            candidateId = idTemplate.format(candidateNumber)
+        return candidateId
+
     def createContext(self, entityIdentScheme, entityIdentValue, periodType, periodStart, periodEndInstant, priItem, dims, segOCCs, scenOCCs,
                       afterSibling=None, beforeSibling=None, id=None):
         """Creates a new ModelContext and validates (integrates into modelDocument object model).
@@ -538,7 +546,7 @@ class ModelXbrl:
         xbrlElt = self.modelDocument.xmlRootElement
         if afterSibling == AUTO_LOCATE_ELEMENT:
             afterSibling = XmlUtil.lastChild(xbrlElt, XbrlConst.xbrli, ("schemaLocation", "roleType", "arcroleType", "context"))
-        cntxId = id if id else 'c-{0:02n}'.format( len(self.contexts) + 1)
+        cntxId = id if id else self.findNewId('c-{0:02n}', self.contexts)
         newCntxElt = XmlUtil.addChild(xbrlElt, XbrlConst.xbrli, "context", attributes=("id", cntxId),
                                       afterSibling=afterSibling, beforeSibling=beforeSibling)
         entityElt = XmlUtil.addChild(newCntxElt, XbrlConst.xbrli, "entity")
@@ -633,7 +641,7 @@ class ModelXbrl:
         multiplyBy.sort()
         divideBy.sort()
         for u in self.units.values():
-            if u.measures == (multiplyBy,divideBy):
+            if u is not None and u.measures == (multiplyBy,divideBy):
                 return u
         return None
 
@@ -655,7 +663,7 @@ class ModelXbrl:
         xbrlElt = self.modelDocument.xmlRootElement
         if afterSibling == AUTO_LOCATE_ELEMENT:
             afterSibling = XmlUtil.lastChild(xbrlElt, XbrlConst.xbrli, ("schemaLocation", "roleType", "arcroleType", "context", "unit"))
-        unitId = id if id else 'u-{0:02n}'.format( len(self.units) + 1)
+        unitId = id if id else self.findNewId('u-{0:02n}', self.units)
         newUnitElt = XmlUtil.addChild(xbrlElt, XbrlConst.xbrli, "unit", attributes=("id", unitId),
                                       afterSibling=afterSibling, beforeSibling=beforeSibling)
         if len(divideBy) == 0:

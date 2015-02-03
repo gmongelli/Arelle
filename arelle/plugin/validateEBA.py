@@ -118,7 +118,7 @@ def validateFacts(val, factsToCheck):
             val.unusedCntxIDs.add(cntx.id)
 
     for unit in modelXbrl.units.values():
-        if getattr(unit, "_batchChecked", False) and isStreamingMode:
+        if unit is None or (getattr(unit, "_batchChecked", False) and isStreamingMode):
             continue # prior streaming batch already checked
         unit._batchChecked = True
         val.unusedUnitIDs.add(unit.id)
@@ -256,13 +256,14 @@ def validateFacts(val, factsToCheck):
         
     unitHashes = {}
     for unit in modelXbrl.units.values():
-        h = hash(unit)
-        if h in unitHashes and unit.isEqualTo(unitHashes[h]):
-            modelXbrl.warning("EBA.2.32",
-                _("Duplicate units SHOULD NOT be reported, units %(unit1)s and %(unit2)s have same measures.'"),
-                modelObject=(unit, unitHashes[h]), unit1=unit.id, unit2=unitHashes[h].id)
-        else:
-            unitHashes[h] = unit
+        if unit is not None:
+            h = hash(unit)
+            if h in unitHashes and unit.isEqualTo(unitHashes[h]):
+                modelXbrl.warning("EBA.2.32",
+                    _("Duplicate units SHOULD NOT be reported, units %(unit1)s and %(unit2)s have same measures.'"),
+                    modelObject=(unit, unitHashes[h]), unit1=unit.id, unit2=unitHashes[h].id)
+            else:
+                unitHashes[h] = unit
 
     for elt in modelDocument.xmlRootElement.iter():
         if isinstance(elt, ModelObject): # skip comments and processing instructions

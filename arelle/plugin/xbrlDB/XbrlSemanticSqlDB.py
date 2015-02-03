@@ -947,7 +947,7 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                                      elementChildSequence(unit),
                                      unit.md5hash)
                                     for unit in dict((unit.md5hash,unit) # deduplicate by md5hash
-                                                     for unit in self.modelXbrl.units.values()).values()))
+                                                     for unit in self.modelXbrl.units.values() if unit is not None).values()))
         self.unitId = dict(((_reportId, measuresHash), id)
                            for id, _reportId, measuresHash in table)
         # measures
@@ -958,7 +958,7 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
                               tuple((self.unitId[(reportId,unit.md5hash)],
                                      measure.clarkNotation,
                                      i == 0)
-                                    for unit in self.modelXbrl.units.values()
+                                    for unit in self.modelXbrl.units.values() if unit is not None
                                     for i in range(2)
                                     for measure in unit.measures[i]))
         table = self.getTable('entity_identifier', 'entity_identifier_id', 

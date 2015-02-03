@@ -226,7 +226,7 @@ class ValidateXbrl:
            modelXbrl.modelDocument.type == ModelDocument.Type.INLINEXBRL:
             self.checkFacts(modelXbrl.facts)
             self.checkContexts(self.modelXbrl.contexts.values())
-            self.checkUnits(self.modelXbrl.units.values())
+            self.checkUnits([unit for unit in self.modelXbrl.units.values() if unit is not None])
 
             modelXbrl.profileStat(_("validateInstance"))
 

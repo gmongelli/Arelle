@@ -267,7 +267,7 @@ class XbrlSqlDatabaseConnection(SqlDbConnection):
             return False # needed context not yet available
         entityCurrency = None
         for unit in self.modelXbrl.units.values():
-            if unit.isSingleMeasure and unit.measures[0] and unit.measures[0][0].namespaceURI == XbrlConst.iso4217:
+            if unit is not None and unit.isSingleMeasure and unit.measures[0] and unit.measures[0][0].namespaceURI == XbrlConst.iso4217:
                 entityCurrency = unit.measures[0][0].localName
                 break
         if not entityCurrency:

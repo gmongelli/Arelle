@@ -3,7 +3,7 @@ Improve the EBA compliance of the currently loaded facts.
 
 For the time being, there are only two improvements that are implemented:
 1. The filing indicators are regenerated using a fixed context with ID "c".
-2. The nil facts and the unused contexts are removed
+2. The nil facts and the unused contexts and units are removed
 3. The entity scheme, the entity ID, the period start and the period end date are updated for every fact.
 
 (c) Copyright 2014, 2015 Acsone S. A., All rights reserved.
@@ -89,6 +89,23 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
             modelXbrl=dts,
             exc_info=True)
 
+def deleteUnusedUnits(dts):
+    allUnits = dts.units
+    unitIDs = set(allUnits.keys())
+    unusedUnitIDs = unitIDs - {fact.unitID 
+                                       for fact in dts.factsInInstance
+                                       if fact.unitID}
+    for unitID in unusedUnitIDs:
+        unit = allUnits[unitID]
+        if unit is not None: # ignore already deleted units
+            allUnits[unitID] = None # units cannot be deleted in this list because of the unit numbering
+            parent = unit.getparent()
+            parent.remove(unit)
+    someUnitsHaveBeenDeleted = len(unusedUnitIDs)>0
+    if someUnitsHaveBeenDeleted:
+        dts.setIsModified()
+    return someUnitsHaveBeenDeleted
+
 def deleteNilFacts(dts, contlr):
     contlr.addToLog(_("Removal of empty facts and unused contexts started."))
     nilFacts = dts.factIndex.nilFacts(dts)
@@ -96,7 +113,8 @@ def deleteNilFacts(dts, contlr):
     for fact in nilFacts:
         parent = removeFactInModel(dts, fact)
     contextsDeleted = deleteUnusedContexts(dts)
-    if contextsDeleted:
+    unitsDeleted = deleteUnusedUnits(dts)
+    if contextsDeleted or unitsDeleted:
         # Validate everything
         XmlValidate.validate(dts, dts.modelDocument.xmlRootElement)
     elif parent is not None:
@@ -229,8 +247,8 @@ def improveEbaComplianceMenuCommand(cntlr):
 
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.3',
-    'description': "This module regenerates EBA filing indicators if needed and removes unused contexts.",
+    'version': '1.4',
+    'description': "This module regenerates EBA filing indicators if needed and removes unused contexts and units.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',
     'copyright': '(c) Copyright 2014, 2015 Acsone S. A.',

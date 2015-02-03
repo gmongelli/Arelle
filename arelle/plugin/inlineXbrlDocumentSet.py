@@ -66,8 +66,9 @@ def saveTargetDocument(modelXbrl, targetDocumentFilename, targetDocumentSchemaRe
                                                    context.qnameDims, [], [],
                                                    id=context.id)
     for unit in modelXbrl.units.values():
-        measures = unit.measures
-        newUnit = targetInstance.createUnit(measures[0], measures[1], id=unit.id)
+        if unit is not None:
+            measures = unit.measures
+            newUnit = targetInstance.createUnit(measures[0], measures[1], id=unit.id)
 
     modelXbrl.modelManager.showStatus(_("Creating and validating facts"))
     newFactForOldObjId = {}

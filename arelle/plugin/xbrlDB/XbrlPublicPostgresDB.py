@@ -221,7 +221,7 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
                   _DICT_SET(self.modelXbrl.qnameAttributes.keys()) |
                   _DICT_SET(self.modelXbrl.qnameTypes.keys()) |
                   set(measure
-                      for unit in self.modelXbrl.units.values()
+                      for unit in self.modelXbrl.units.values() if unit is not None
                       for measures in unit.measures
                       for measure in measures))
         self.showStatus("insert qnames")
@@ -552,7 +552,7 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
                               ('accession_id', 'unit_xml_id'), 
                               tuple((accsId,
                                      unitId)
-                                    for unitId in self.modelXbrl.units.keys()))
+                                    for unitId in self.modelXbrl.units.keys() if self.modelXbrl.units[unitId] is not None))
         self.unitId = dict(((_accsId, xmlId), id)
                            for id, _accsId, xmlId in table)
         # measures
@@ -562,7 +562,7 @@ class XbrlPostgresDatabaseConnection(SqlDbConnection):
                               tuple((self.unitId[(accsId,unit.id)],
                                      self.qnameId[measure],
                                      1 if (not unit.measures[1]) else (i + 1))
-                                    for unit in self.modelXbrl.units.values()
+                                    for unit in self.modelXbrl.units.values() if unit is not None
                                     for i in range(2)
                                     for measure in unit.measures[i]))
         #table = self.getTable('enumeration_measure_location', 'enumeration_measure_location_id', 

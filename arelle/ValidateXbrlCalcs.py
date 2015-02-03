@@ -68,12 +68,13 @@ class ValidateXbrlCalcs:
         # identify equal contexts
         uniqueUnitHashes = {}
         for unit in self.modelXbrl.units.values():
-            h = unit.hash
-            if h in uniqueUnitHashes:
-                if unit.isEqualTo(uniqueUnitHashes[h]):
-                    self.mapUnit[unit] = uniqueUnitHashes[h]
-            else:
-                uniqueUnitHashes[h] = unit
+            if unit is not None:
+                h = unit.hash
+                if h in uniqueUnitHashes:
+                    if unit.isEqualTo(uniqueUnitHashes[h]):
+                        self.mapUnit[unit] = uniqueUnitHashes[h]
+                else:
+                    uniqueUnitHashes[h] = unit
         self.modelXbrl.profileActivity("... identify equal units", minTimeToShow=1.0)
                     
         # identify concepts participating in essence-alias relationships
