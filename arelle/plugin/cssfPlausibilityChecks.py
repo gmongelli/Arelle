@@ -14,6 +14,7 @@ from arelle.FileSource import openFileSource
 from arelle.Locale import format_string
 
 linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/aset-c_01.00.xml',
+                      'aset-c_02.00_c_04.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/aset-c_02.00_c_04.00.xml',
                       'aset-c_03.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/aset-c_03.00.xml',
                       'cssf-find-prec.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/cssf-find-prec.xml',
                       'vr_cssf001_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf001_m-err-en.xml',
@@ -33,7 +34,17 @@ linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws
                       'vr_cssf008_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf008_p-err-en.xml',
                       'vr_cssf008_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf008_p-lab-en.xml',
                       'vr_cssf009_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf009_p-err-en.xml',
-                      'vr_cssf009_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf009_p-lab-en.xml'}
+                      'vr_cssf009_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf009_p-lab-en.xml',
+                      'vr_cssf010_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf010_m-err-en.xml',
+                      'vr_cssf010_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf010_m-lab-en.xml',
+                      'vr_cssf011_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf011_m-err-en.xml',
+                      'vr_cssf011_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf011_m-lab-en.xml',
+                      'vr_cssf012_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf012_m-err-en.xml',
+                      'vr_cssf012_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf012_m-lab-en.xml',
+                      'vr_cssf013_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf013_m-err-en.xml',
+                      'vr_cssf013_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf013_m-lab-en.xml',
+                      'vr_cssf014_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf014_m-err-en.xml',
+                      'vr_cssf014_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-01-09/val/vr_cssf014_m-lab-en.xml'}
 sampleCssfID = 'cssfC_03.00'
 
 def loadXML(filesource, selectTopView, reloadViews, modelXbrl, controller):
@@ -126,8 +137,8 @@ def cssfToolsMenuExtender(cntlr, menu):
 __pluginInfo__ = {
     # Do not use _( ) in pluginInfo itself (it is applied later, after loading
     'name': 'CSSF plausibility checks',
-    'version': '1.0',
-    'description': '''CSSF plausibility check in conformance with http://www.cssf.lu/fileadmin/files/Reporting_legal/Recueil_banques/CSSF_Plausibility_checks_Public_version_240914.pdf.''',
+    'version': '1.1',
+    'description': '''CSSF plausibility check in conformance with http://www.cssf.lu/fileadmin/files/Reporting_legal/Recueil_banques/CSSF_Plausibility_checks_Clean_version_260115.pdf.''',
     'license': 'Apache-2',
     'author': 'Acsone S. A.',
     'copyright': '(c) Copyright Acsone S. A., All rights reserved.',
