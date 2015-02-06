@@ -14,7 +14,6 @@ latest EBA instances.
 
 from arelle import ModelDocument, XmlValidate, ModelXbrl, XbrlConst
 from arelle.ModelValue import qname
-from arelle.DialogNewFactItem import getNewFactItemOptions
 from lxml import etree
 from arelle.ViewWinRenderedGrid import ViewRenderedGrid
 from .ViewWalkerRenderedGrid import viewWalkerRenderedGrid

@@ -16,6 +16,8 @@ def decimalsComputer(locale, value, concept, defaultDecimals):
     :type defaultDecimals: str
     :rtype (boolean, str)
     '''
+    if defaultDecimals is None or len(defaultDecimals)==0:
+        defaultDecimals = 'INF'
     if len(defaultDecimals)==0:
         defaultDecimals = 'INF'
     if concept.isNumeric and defaultDecimals != 'INF' and len(value)>0:
@@ -77,7 +79,7 @@ def ebaDecimals(locale, value, concept, defaultDecimals):
 
 __pluginInfo__ = {
     'name': 'Decimal Attribute computer (EBA compliant)',
-    'version': '1.0',
+    'version': '1.1',
     'description': "This module supplies a custom method for computing the decimals attribute according to the actually supplied value. Do not use it in conjunction with ebaDecimalsImprovement.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',

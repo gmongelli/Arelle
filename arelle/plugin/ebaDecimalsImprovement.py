@@ -16,6 +16,8 @@ def ebaDecimals(locale, value, concept, defaultDecimals):
     :type defaultDecimals: str
     :rtype (boolean, str)
     '''
+    if defaultDecimals is None or len(defaultDecimals)==0:
+        defaultDecimals = 'INF'
     isPercent = concept.typeQname == qnPercentItemType
     isInteger = XbrlConst.isIntegerXsdType(concept.type.baseXsdType)
     isMonetary = concept.isMonetary
@@ -45,7 +47,7 @@ def ebaDecimals(locale, value, concept, defaultDecimals):
 
 __pluginInfo__ = {
     'name': 'EBA decimals improvement',
-    'version': '1.0',
+    'version': '1.1',
     'description': "This module changes the decimal attribute if does not conform with the EBA recommendations. Do not use it in conjunction with ebaDecimalsFromAmounts",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',

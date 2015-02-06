@@ -17,6 +17,7 @@ def getFactItemOptions(dts, cntlr):
         if isinstance(view, ViewRenderedGrid):
             if (not view.newFactItemOptions.entityIdentScheme or  # not initialized yet
             not view.newFactItemOptions.entityIdentValue or
+            not view.newFactItemOptions.monetaryUnit or
             not view.newFactItemOptions.startDateDate or not view.newFactItemOptions.endDateDate):
                 if not getNewFactItemOptions(cntlr, view.newFactItemOptions):
                     return None

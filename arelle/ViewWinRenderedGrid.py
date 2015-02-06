@@ -248,6 +248,11 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
         self.modelXbrl.profileStat("viewTable_" + os.path.basename(viewTblELR), time.time() - startedAt)
 
         #self.gridView.config(scrollregion=self.gridView.bbox(constants.ALL))
+        if (not self.newFactItemOptions.entityIdentScheme or  # not initialized yet
+            not self.newFactItemOptions.entityIdentValue or
+            not self.newFactItemOptions.monetaryUnit or
+            not self.newFactItemOptions.startDateDate or not self.newFactItemOptions.endDateDate):
+            getNewFactItemOptions(self.modelXbrl.modelManager.cntlr, self.newFactItemOptions)
         self.blockMenuEvents -= 1
 
             
@@ -1028,11 +1033,6 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                             bodyCell.isChanged = False # clear change flag
                         
     def saveInstance(self, newFilename=None, onSaved=None):
-        if (not self.newFactItemOptions.entityIdentScheme or  # not initialized yet
-            not self.newFactItemOptions.entityIdentValue or
-            not self.newFactItemOptions.startDateDate or not self.newFactItemOptions.endDateDate):
-            if not getNewFactItemOptions(self.modelXbrl.modelManager.cntlr, self.newFactItemOptions):
-                return # new instance not set
         # newFilename = None # only used when a new instance must be created
         
         self.updateInstanceFromFactPrototypes()
