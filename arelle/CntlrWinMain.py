@@ -513,7 +513,6 @@ class CntlrWinMain (Cntlr.Cntlr):
                                     initialfile=initialfile)
                         if filename and (filename.endswith(".xbrl") or filename.endswith(".xml")):
                             view.saveInstance(filename)
-                            self.addToLog(_("{0} saved").format(filename))
                             return True
                     if not filename:
                         return False
