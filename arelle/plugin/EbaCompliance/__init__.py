@@ -159,7 +159,7 @@ class DialogNewFileOptions(Toplevel):
 def improveEbaCompliance(dts, cntlr, lang="en"):
     ':type dts: ModelXbrl'
     try:
-        if not isEbaInstance(dts):
+        if not isEbaInstance(dts, checkAlsoEiopa=True):
             dts.modelManager.showStatus(_("Only applicable to EBA instances"), 5000)
             return
         dts.modelManager.showStatus(_("Improving the EBA compliance"))

@@ -10,6 +10,7 @@ from arelle.ViewWinRenderedGrid import ViewRenderedGrid
 from arelle.DialogNewFactItem import getNewFactItemOptions
 
 EbaURL = "www.eba.europa.eu/xbrl"
+EiopaURL = "eiopa.europa.eu/xbrl"
 
 def getFactItemOptions(dts, cntlr):
     newFactItemOptions = None
@@ -25,14 +26,16 @@ def getFactItemOptions(dts, cntlr):
             break
     return newFactItemOptions
 
-def isEbaInstance(modelXbrl):
+def isEbaInstance(modelXbrl, checkAlsoEiopa=False):
     if modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:
         doc = modelXbrl.modelDocument.xmlDocument
         for el in doc.iter("*"):
             if isinstance(el, etree._Element):
                 for _, NS in _DICT_SET(el.nsmap.items()):  # @UndefinedVariable
                     if EbaURL in NS:
-                        return True;
+                        return True
+                    elif checkAlsoEiopa and EiopaURL in NS:
+                        return True
         return False
     else:
         return False

@@ -716,10 +716,16 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                 justify = "right" if modelConcept.isNumeric else "left"
                             if modelConcept.isEnumeration:
                                 myValidationObject = ValidateXbrl(self.modelXbrl)
-                                enumerationValues = [""]+ValidateXbrlDimensions.usableEnumerationMembers(myValidationObject, modelConcept)
+                                enumerationSet = ValidateXbrlDimensions.usableEnumerationMembers(myValidationObject, modelConcept)
+                                enumerationDict = dict()
+                                for enumerationItem in enumerationSet:
+                                    enumerationDict[enumerationItem.label()] = enumerationItem.qname
+                                enumerationValues = sorted(list(enumerationDict.keys()))
+                                enumerationQNameStrings = [""]+list(str(enumerationDict[enumerationItem]) for enumerationItem in enumerationValues)
+                                enumerationValues = [""]+enumerationValues
                                 try:
-                                    selectedIdx = enumerationValues.index(value)
-                                    effectiveValue = value
+                                    selectedIdx = enumerationQNameStrings.index(value)
+                                    effectiveValue = enumerationValues[selectedIdx]
                                 except ValueError:
                                     effectiveValue = enumerationValues[0]
                                     selectedIdx = 0
@@ -731,7 +737,8 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                              objectId=objectId,
                                              selectindex=selectedIdx,
                                              state=["readonly"],
-                                             onClick=self.onClick)
+                                             onClick=self.onClick,
+                                             codes=enumerationDict)
                             elif modelConcept.type.qname == XbrlConst.qnXbrliQNameItemType:
                                 if eurofilingModelPrefix in concept.nsmap and concept.nsmap.get(eurofilingModelPrefix) == eurofilingModelNamespace:
                                     hierarchy = concept.get("{" + eurofilingModelNamespace + "}" + "hierarchy", None)
@@ -740,7 +747,6 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                         newAspectValues = [""]
                                         newAspectQNames = dict()
                                         newAspectQNames[""] = None
-                                        displayedValue = ""
                                         domPrefix, _, domLocalName = domainQNameAsString.strip().rpartition(":")
                                         domNamespace = concept.nsmap.get(domPrefix)
                                         relationships = concept_relationships(self.rendrCntx, 
