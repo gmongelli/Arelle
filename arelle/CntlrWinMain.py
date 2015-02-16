@@ -7,7 +7,7 @@ This module is Arelle's controller in windowing interactive UI mode
 (c) Copyright 2010 Mark V Systems Limited, All rights reserved.
 '''
 from arelle import PythonUtil # define 2.x or 3.x string types
-import os, sys, subprocess, pickle, time, locale, re
+import os, sys, subprocess, pickle, time, locale, re, os.path
 from tkinter import (Tk, TclError, Toplevel, Menu, PhotoImage, StringVar, BooleanVar, N, S, E, W, EW, 
                      HORIZONTAL, VERTICAL, END, font as tkFont)
 try:
@@ -48,6 +48,7 @@ from arelle.ModelFormulaObject import FormulaOptions
 from arelle.FileSource import openFileSource
 
 restartMain = True
+readCommandLineArguments = True
 
 class CntlrWinMain (Cntlr.Cntlr):
 
@@ -1426,7 +1427,7 @@ class TkinterCallWrapper:
 
 def main():
     # this is the entry called by arelleGUI.pyw for windows
-    global restartMain
+    global restartMain, readCommandLineArguments
     while restartMain:
         restartMain = False
         application = Tk()
@@ -1438,6 +1439,12 @@ def main():
             application.call('wm', 'attributes', '.', '-topmost', True)
             cntlrWinMain.uiThreadQueue.put((application.call, ['wm', 'attributes', '.', '-topmost', False]))
             os.system('''/usr/bin/osascript -e 'tell app "Finder" to set frontmost of process "Python" to true' ''')
+        if readCommandLineArguments:
+            readCommandLineArguments = False
+            if len(sys.argv)>1:
+                fileName = sys.argv[1]
+                if os.path.isfile(fileName) and fileName.endswith('.xbrl') and os.access(fileName, os.R_OK) and os.access(fileName, os.W_OK):
+                    cntlrWinMain.uiThreadQueue.put((cntlrWinMain.fileOpenFile, [fileName]))
         application.mainloop()            
 
 if __name__ == "__main__":
