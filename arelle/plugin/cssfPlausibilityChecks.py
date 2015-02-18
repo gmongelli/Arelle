@@ -18,6 +18,7 @@ linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws
                       'aset-c_03.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/aset-c_03.00.xml',
                       'aset-c_04.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/aset-c_04.00.xml',
                       'aset-c_05.01.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/aset-c_05.01.xml',
+                      'aset-c_26.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/aset-c_26.00.xml',
                       'cssf-find-prec.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/cssf-find-prec.xml',
                       'vr_cssf001_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf001_m-err-en.xml',
                       'vr_cssf001_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf001_m-lab-en.xml',
@@ -355,6 +356,12 @@ linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws
                       'vr_cssf018dw_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf018dw_p-lab-en.xml',
                       'vr_cssf018dy_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf018dy_p-err-en.xml',
                       'vr_cssf018dy_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf018dy_p-lab-en.xml',
+                      'vr_cssf019_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf019_p-err-en.xml',
+                      'vr_cssf019_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf019_p-lab-en.xml',
+                      'vr_cssf020_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf020_p-err-en.xml',
+                      'vr_cssf020_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf020_p-lab-en.xml',
+                      'vr_cssf021_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf021_p-err-en.xml',
+                      'vr_cssf021_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf021_p-lab-en.xml'
 }
 sampleCssfID = 'cssfC_03.00'
 
