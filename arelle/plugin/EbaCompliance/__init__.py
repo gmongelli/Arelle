@@ -153,7 +153,7 @@ class DialogNewFileOptions(Toplevel):
         if options.ebaReportingType == EBA_REPORTING_INDIVIDUAL:
             urls = EBA_ENTRY_POINTS_INDIVIDUAL
         else:
-            urls = EBA_REPORTING_CONSOLIDATED
+            urls = EBA_ENTRY_POINTS_CONSOLIDATED
         return urls[options.ebaEntryPoint]
 
 def improveEbaCompliance(dts, cntlr, lang="en"):
