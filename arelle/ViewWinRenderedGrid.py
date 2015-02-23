@@ -714,7 +714,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                             modelConcept = fp.concept
                             if (justify is None) and modelConcept is not None:
                                 justify = "right" if modelConcept.isNumeric else "left"
-                            if modelConcept.isEnumeration:
+                            if modelConcept is not None and modelConcept.isEnumeration:
                                 myValidationObject = ValidateXbrl(self.modelXbrl)
                                 enumerationSet = ValidateXbrlDimensions.usableEnumerationMembers(myValidationObject, modelConcept)
                                 enumerationDict = dict()
@@ -739,7 +739,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                              state=["readonly"],
                                              onClick=self.onClick,
                                              codes=enumerationDict)
-                            elif modelConcept.type.qname == XbrlConst.qnXbrliQNameItemType:
+                            elif modelConcept is not None and modelConcept.type.qname == XbrlConst.qnXbrliQNameItemType:
                                 if eurofilingModelPrefix in concept.nsmap and concept.nsmap.get(eurofilingModelPrefix) == eurofilingModelNamespace:
                                     hierarchy = concept.get("{" + eurofilingModelNamespace + "}" + "hierarchy", None)
                                     domainQNameAsString = concept.get("{" + eurofilingModelNamespace + "}" + "domain", None)
@@ -792,7 +792,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                                  state=["readonly"],
                                                  onClick=self.onClick,
                                                  codes=newAspectQNames)
-                            elif modelConcept.type.qname == XbrlConst.qnXbrliBooleanItemType:
+                            elif modelConcept is not None and modelConcept.type.qname == XbrlConst.qnXbrliBooleanItemType:
                                 booleanValues = ["",
                                                  XbrlConst.booleanValueTrue,
                                                  XbrlConst.booleanValueFalse]
