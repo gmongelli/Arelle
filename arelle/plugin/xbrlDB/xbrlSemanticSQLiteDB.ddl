@@ -72,7 +72,7 @@ CREATE INDEX entity_index05 ON entity (legal_entity_number, file_number);
 
 CREATE TABLE former_entity (
     entity_id INTEGER NOT NULL,
-    date_changed DATE,
+    date_changed TEXT,
     former_name TEXT
 );
 CREATE INDEX former_entity_index02 ON former_entity (entity_id);
@@ -83,9 +83,9 @@ CREATE TABLE filing (
     form_type TEXT,
     entity_id INTEGER NOT NULL,
     reference_number TEXT, -- external code, e.g. CIK
-    accepted_timestamp DATE DEFAULT (datetime('now','localtime')),
+    accepted_timestamp TEXT,
     is_most_current BOOLEAN DEFAULT false NOT NULL,
-    filing_date DATE NOT NULL,
+    filing_date TEXT NOT NULL,
     creation_software TEXT,
     authority_html_url TEXT,
     entry_url TEXT
@@ -190,7 +190,7 @@ CREATE TABLE resource (
     xml_id TEXT,
     xml_child_seq TEXT,
     qname TEXT NOT NULL,  -- clark notation qname (do we need this?)
-    role TEXT NOT NULL,
+    role TEXT,
     value TEXT,
     xml_lang TEXT
 );
