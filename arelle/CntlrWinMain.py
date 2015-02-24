@@ -774,6 +774,9 @@ class CntlrWinMain (Cntlr.Cntlr):
         currentAction = "setting title"
         topView = None
         self.currentView = None
+        displayTaxonomyTabs = True
+        for displayTaxonomyTabsMethod in pluginClassMethods("CntlrWinMain.Tabs.DisplayTaxonomyTabs"):
+            displayTaxonomyTabs = displayTaxonomyTabs and displayTaxonomyTabsMethod() # runs in GUI thread
         try:
             if attach:
                 modelXbrl.closeViews()
@@ -823,27 +826,29 @@ class CntlrWinMain (Cntlr.Cntlr):
                     if not modelXbrl.hasTableRendering: # table view only if not grid rendered view
                         ViewWinFactTable.viewFacts(modelXbrl, self.tabWinTopRt, linkrole=firstTableLinkroleURI, lang=self.labelLang, expandAll=firstTableLinkroleURI)
                         if topView is None: topView = modelXbrl.views[-1]
-                    currentAction = "tree/list of facts"
-                    ViewWinFactList.viewFacts(modelXbrl, self.tabWinTopRt, lang=self.labelLang)
+                    if displayTaxonomyTabs:
+                        currentAction = "tree/list of facts"
+                        ViewWinFactList.viewFacts(modelXbrl, self.tabWinTopRt, lang=self.labelLang)
+                        if topView is None: topView = modelXbrl.views[-1]
+                if displayTaxonomyTabs:
+                    if modelXbrl.hasFormulae:
+                        currentAction = "formulae view"
+                        ViewWinFormulae.viewFormulae(modelXbrl, self.tabWinTopRt)
+                        if topView is None: topView = modelXbrl.views[-1]
+                    currentAction = "presentation linkbase view"
+                    ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, XbrlConst.parentChild, lang=self.labelLang)
                     if topView is None: topView = modelXbrl.views[-1]
-                if modelXbrl.hasFormulae:
-                    currentAction = "formulae view"
-                    ViewWinFormulae.viewFormulae(modelXbrl, self.tabWinTopRt)
-                    if topView is None: topView = modelXbrl.views[-1]
-                currentAction = "presentation linkbase view"
-                ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, XbrlConst.parentChild, lang=self.labelLang)
-                if topView is None: topView = modelXbrl.views[-1]
-                currentAction = "calculation linkbase view"
-                ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, XbrlConst.summationItem, lang=self.labelLang)
-                currentAction = "dimensions relationships view"
-                ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, "XBRL-dimensions", lang=self.labelLang)
-                if modelXbrl.hasTableRendering:
-                    currentAction = "rendering view"
-                    ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, "Table-rendering", lang=self.labelLang)
-                for name, arcroles in sorted(self.config.get("arcroleGroups", {}).items()):
-                    if XbrlConst.arcroleGroupDetect in arcroles:
-                        currentAction = name + " view"
-                        ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, (name, arcroles), lang=self.labelLang)
+                    currentAction = "calculation linkbase view"
+                    ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, XbrlConst.summationItem, lang=self.labelLang)
+                    currentAction = "dimensions relationships view"
+                    ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, "XBRL-dimensions", lang=self.labelLang)
+                    if modelXbrl.hasTableRendering:
+                        currentAction = "rendering view"
+                        ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, "Table-rendering", lang=self.labelLang)
+                    for name, arcroles in sorted(self.config.get("arcroleGroups", {}).items()):
+                        if XbrlConst.arcroleGroupDetect in arcroles:
+                            currentAction = name + " view"
+                            ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, (name, arcroles), lang=self.labelLang)
             currentAction = "property grid"
             ViewWinProperties.viewProperties(modelXbrl, self.tabWinTopLeft)
             currentAction = "log view creation time"
