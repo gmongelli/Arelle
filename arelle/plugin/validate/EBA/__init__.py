@@ -12,6 +12,7 @@ from arelle.ModelDtsObject import ModelConcept, ModelType, ModelLocator, ModelRe
 from arelle.ModelFormulaObject import Aspect
 from arelle.ModelObject import ModelObject
 from arelle.ModelValue import qname
+from arelle.ValidateUtr import ValidateUtr
 try:
     import regex as re
 except ImportError:
@@ -28,17 +29,23 @@ integerItemTypes = {"integerItemType", "nonPositiveIntegerItemType", "negativeIn
                     "unsignedShortItemType", "unsignedByteItemType", "positiveIntegerItemType"}
 
 def dislosureSystemTypes(disclosureSystem):
+    # return ((disclosure system name, variable name), ...)
     return (("EBA", "EBA"),
             ("EIOPA", "EIOPA"))
 
 def disclosureSystemConfigURL(disclosureSystem):
-    return os.path.join(os.path.dirname(__file__), "validateEBAconfig.xml")
+    return os.path.join(os.path.dirname(__file__), "config.xml")
 
-def validateSetup(val):
+def validateSetup(val, parameters=None):
     val.validateEBA = val.validateDisclosureSystem and getattr(val.disclosureSystem, "EBA", False)
     val.validateEIOPA = val.validateDisclosureSystem and getattr(val.disclosureSystem, "EIOPA", False)
     if not (val.validateEBA or val.validateEIOPA):
         return
+    
+    val.validateUTR = False # do not use default UTR validation, it's at error level and not streamable
+    val.utrValidator = ValidateUtr(val.modelXbrl, 
+                                   "WARNING",  # EBA specifies SHOULD on UTR validation
+                                   "EBA.2.23") # override utre error-severity message code
 
     val.prefixNamespace = {}
     val.namespacePrefix = {}
@@ -143,7 +150,7 @@ def validateFacts(val, factsToCheck):
                 
     otherFacts = {} # (contextHash, unitHash, xmlLangHash) : fact
     nilFacts = []
-    stringFactsWithoutXmlLang = []
+    # removed in current draft: stringFactsWithoutXmlLang = []
     nonMonetaryNonPureFacts = []
     for qname, facts in factsByQname.items():
         for f in facts:
@@ -179,7 +186,7 @@ def validateFacts(val, factsToCheck):
                            if (f.getparent().objectIndex == o.getparent().objectIndex and
                                f.qname == o.qname and
                                f.context.isEqualTo(o.context) if f.context is not None and o.context is not None else True) and
-                              (f.unit.isEqualTo(o.unit) if f.unit is not None and o.unit is not None else True) and
+                               # (f.unit.isEqualTo(o.unit) if f.unit is not None and o.unit is not None else True) and
                               (f.xmlLang == o.xmlLang)]
                 if matches:
                     contexts = [f.contextID] + [o.contextID for o in matches]
@@ -234,9 +241,11 @@ def validateFacts(val, factsToCheck):
                             val.currenciesUsed[unit.measures[0][0]] = unit
                     elif not unit.isSingleMeasure or unit.measures[0][0] != XbrlConst.qnXbrliPure:
                         nonMonetaryNonPureFacts.append(f)
+            ''' removed in current draft
             elif isString: 
                 if not f.xmlLang:
                     stringFactsWithoutXmlLang.append(f)
+            '''
                         
             if f.isNil:
                 nilFacts.append(f)
@@ -245,21 +254,25 @@ def validateFacts(val, factsToCheck):
         modelXbrl.error("EBA.2.19",
                 _('Nil facts MUST NOT be present in the instance: %(nilFacts)s.'),
                 modelObject=nilFacts, nilFacts=", ".join(str(f.qname) for f in nilFacts))
+    ''' removed in current draft
     if stringFactsWithoutXmlLang:
         modelXbrl.error("EBA.2.20",
                         _("String facts need to report xml:lang: '%(langLessFacts)s'"),
                         modelObject=stringFactsWithoutXmlLang, langLessFacts=", ".join(set(str(f.qname) for f in stringFactsWithoutXmlLang)))
+    '''
     if nonMonetaryNonPureFacts:
         modelXbrl.error("EBA.3.2",
                         _("Non monetary (numeric) facts MUST use the pure unit: '%(langLessFacts)s'"),
                         modelObject=nonMonetaryNonPureFacts, langLessFacts=", ".join(set(str(f.qname) for f in nonMonetaryNonPureFacts)))
+
+    val.utrValidator.validateFacts() # validate facts for UTR at logLevel WARNING
         
     unitHashes = {}
     for unit in modelXbrl.units.values():
         if unit is not None:
             h = hash(unit)
             if h in unitHashes and unit.isEqualTo(unitHashes[h]):
-                modelXbrl.warning("EBA.2.32",
+                modelXbrl.warning("EBA.2.22",
                     _("Duplicate units SHOULD NOT be reported, units %(unit1)s and %(unit2)s have same measures.'"),
                     modelObject=(unit, unitHashes[h]), unit1=unit.id, unit2=unitHashes[h].id)
             else:
@@ -269,7 +282,7 @@ def validateFacts(val, factsToCheck):
         if isinstance(elt, ModelObject): # skip comments and processing instructions
             val.namespacePrefixesUsed[elt.qname.namespaceURI].add(elt.qname.prefix)
             val.prefixesUnused.discard(elt.qname.prefix)
-            
+                   
 def validateNonStreamingFinish(val):
     # non-streaming EBA checks, ignore when streaming (first all from ValidateXbrl.py)
     if not getattr(val.modelXbrl, "isStreamingMode", False):
@@ -418,6 +431,7 @@ def final(val):
     modelXbrl.modelManager.showStatus(None)
 
     del val.prefixNamespace, val.namespacePrefix, val.idObjects, val.typedDomainElements
+    del val.utrValidator
                 
 __pluginInfo__ = {
     # Do not use _( ) in pluginInfo itself (it is applied later, after loading

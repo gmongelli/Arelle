@@ -79,6 +79,9 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         
     # don't try reloading if not loadable
     
+    if any(pluginMethod(modelXbrl, mappedUri, normalizedUri, isEntry=isEntry, namespace=namespace, **kwargs)
+           for pluginMethod in pluginClassMethods("ModelDocument.IsPullLoadable")):
+        filePath = normalizedUri
     if modelXbrl.fileSource.isInArchive(mappedUri):
         filepath = mappedUri
     else:
@@ -117,7 +120,7 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
     try:
         for pluginMethod in pluginClassMethods("ModelDocument.PullLoader"):
             # assumes not possible to check file in string format or not all available at once
-            modelDocument = pluginMethod(modelXbrl, mappedUri, filepath, **kwargs)
+            modelDocument = pluginMethod(modelXbrl, normalizedUri, filepath, isEntry=isEntry, namespace=namespace, **kwargs)
             if modelDocument is not None:
                 return modelDocument
         if (modelXbrl.modelManager.validateDisclosureSystem and 
@@ -896,7 +899,7 @@ class ModelDocument:
                     self.schemaLinkbaseRefDiscover(element)
 
     def schemaLinkbaseRefDiscover(self, element):
-        return self.discoverHref(element)
+        return self.discoverHref(element, urlRewritePluginClass="ModelDocument.InstanceSchemaRefRewriter")
     
     def linkbasesDiscover(self, tree):
         for linkbaseElement in tree.iterdescendants(tag="{http://www.xbrl.org/2003/linkbase}linkbase"):
@@ -999,7 +1002,7 @@ class ModelDocument:
                                 _("Linkbase extended link %(element)s missing schema definition"),
                                 modelObject=lbElement, element=lbElement.prefixedName)
                 
-    def discoverHref(self, element, nonDTS=False):
+    def discoverHref(self, element, nonDTS=False, urlRewritePluginClass=None):
         href = element.get("{http://www.w3.org/1999/xlink}href")
         if href:
             url, id = UrlUtil.splitDecodeFragment(href)
@@ -1011,6 +1014,9 @@ class ModelDocument:
                     _newDoc = DocumentPrototype
                 else:
                     _newDoc = load
+                if urlRewritePluginClass:
+                    for pluginMethod in pluginClassMethods(urlRewritePluginClass):
+                        url = pluginMethod(self, url)
                 doc = _newDoc(self.modelXbrl, url, isDiscovered=not nonDTS, base=self.baseForElement(element), referringElement=element)
                 if not nonDTS and doc is not None and doc not in self.referencesDocument:
                     self.referencesDocument[doc] = ModelDocumentReference("href", element)

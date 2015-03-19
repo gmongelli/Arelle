@@ -17,6 +17,7 @@ from arelle.UrlUtil import isHttpUrl
 from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
 from arelle.FactIndex import FactIndex
 ModelRelationshipSet = None # dynamic import
+ModelFact = None
 
 profileStatNumber = 0
 
@@ -794,6 +795,11 @@ class ModelXbrl:
         self.makeelementParentModelObject = parent
         newFact = XmlUtil.addChild(parent, conceptQname, attributes=attributes, text=text,
                                    afterSibling=afterSibling, beforeSibling=beforeSibling)
+        global ModelFact
+        if ModelFact is None:
+            from arelle.ModelInstanceObject import ModelFact
+        if not isinstance(newFact, ModelFact):
+            return None # unable to create fact for this concept
         del self.makeelementParentModelObject
         if validate:
             XmlValidate.validate(self, newFact)
@@ -864,12 +870,10 @@ class ModelXbrl:
 
     def effectiveMessageCode(self, messageCodes):        
         effectiveMessageCode = None
+        _validationType = self.modelManager.disclosureSystem.validationType
         for argCode in messageCodes if isinstance(messageCodes,tuple) else (messageCodes,):
             if (isinstance(argCode, ModelValue.QName) or
-                (self.modelManager.disclosureSystem.EFM and argCode.startswith("EFM")) or
-                (self.modelManager.disclosureSystem.GFM and argCode.startswith("GFM")) or
-                (self.modelManager.disclosureSystem.HMRC and argCode.startswith("HMRC")) or
-                (self.modelManager.disclosureSystem.SBRNL and argCode.startswith("SBR.NL")) or
+                (_validationType and argCode.startswith(_validationType)) or
                 argCode[0:3] not in ("EFM", "GFM", "HMR", "SBR")):
                 effectiveMessageCode = argCode
                 break
