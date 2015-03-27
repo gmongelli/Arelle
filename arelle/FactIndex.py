@@ -58,13 +58,20 @@ class FactIndex(object):
         factPeriodType = str(concept.periodType)
         factObjectId = fact.objectIndex
         if fact.isItem:
-            contextId = context.id
-            factsInsert = self.facts.insert().values(isNil = factIsNil,
-                                                     qName = factQName,
-                                                     datatype = factDatatype,
-                                                     periodType = factPeriodType,
-                                                     objectId = factObjectId,
-                                                     contextId = contextId)
+            if context is not None:
+                contextId = context.id
+                factsInsert = self.facts.insert().values(isNil = factIsNil,
+                                                         qName = factQName,
+                                                         datatype = factDatatype,
+                                                         periodType = factPeriodType,
+                                                         objectId = factObjectId,
+                                                         contextId = contextId)
+            else:
+                factsInsert = self.facts.insert().values(isNil = factIsNil,
+                                                         qName = factQName,
+                                                         datatype = factDatatype,
+                                                         periodType = factPeriodType,
+                                                         objectId = factObjectId)
         else:
             
             factsInsert = self.facts.insert().values(isNil = factIsNil,
@@ -76,7 +83,7 @@ class FactIndex(object):
         result = self.connection.execute(factsInsert)
         newFactId = result.inserted_primary_key
         result.close()
-        if fact.isItem and len(context.qnameDims)>0:
+        if fact.isItem and context is not None and len(context.qnameDims)>0:
             allDimensions = context.qnameDims.keys()|modelXbrl.qnameDimensionDefaults.keys()
             for dim in allDimensions:
                 dimValue = context.dimValue(dim)
