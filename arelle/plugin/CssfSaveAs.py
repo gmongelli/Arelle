@@ -128,7 +128,7 @@ class DialogCssfSaveOptions(Toplevel):
         ToolTip(self.cellEntityType, text=_("Select an entity type"), wraplength=240)
         label(frame, 1, 2, _("CSSF entity code:"))
         self.cellCssfCode = gridCell(frame, 2, 2, getattr(options,"cssfCode",""))
-        ToolTip(self.cellCssfCode, text=_("Enter a CSSF entity code (up to {0} digits").format(CSSF_CODE_LENGTH), wraplength=240)
+        ToolTip(self.cellCssfCode, text=_("Enter a CSSF entity code (up to {0} digits)").format(CSSF_CODE_LENGTH), wraplength=240)
         currentRow = 3
         if reportType.endswith(COREP_REPORT_SUFFIX):
             label(frame, 1, currentRow, _("Ratio type:"))
