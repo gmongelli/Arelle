@@ -1190,6 +1190,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     else:
                                         headerValues[header] = memConcept
                                 if memberModel.axis and memberModel.linkrole and memberModel.arcrole:
+                                    # merge of pull request 42 acsone:TABLE_Z_AXIS_DESCENDANT_OR_SELF
                                     if memberModel.axis.endswith('-or-self'):
                                         searchAxis = memberModel.axis[:len(memberModel.axis)-len('-or-self')]
                                     else:

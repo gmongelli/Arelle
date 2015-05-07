@@ -121,6 +121,8 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         for pluginMethod in pluginClassMethods("ModelDocument.PullLoader"):
             # assumes not possible to check file in string format or not all available at once
             modelDocument = pluginMethod(modelXbrl, normalizedUri, filepath, isEntry=isEntry, namespace=namespace, **kwargs)
+            if isinstance(modelDocument, Exception):
+                return None
             if modelDocument is not None:
                 return modelDocument
         if (modelXbrl.modelManager.validateDisclosureSystem and 
@@ -162,7 +164,7 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
                 modelObject=referringElement, fileName=os.path.basename(uri), error=str(err))
         modelXbrl.urlUnloadableDocs[normalizedUri] = True  # not loadable due to IO issue
         return None
-    except (etree.LxmlError,
+    except (etree.LxmlError, etree.XMLSyntaxError,
             SAXParseException,
             ValueError) as err:  # ValueError raised on bad format of qnames, xmlns'es, or parameters
         if file:
@@ -811,7 +813,7 @@ class ModelDocument:
             baseAttr = baseElt.get("{http://www.w3.org/XML/1998/namespace}base")
             if baseAttr:
                 if self.modelXbrl.modelManager.validateDisclosureSystem:
-                    self.modelXbrl.error(("EFM.6.03.11", "GFM.1.1.7", "EBA.2.1"),
+                    self.modelXbrl.error(("EFM.6.03.11", "GFM.1.1.7", "EBA.2.1", "EIOPA.2.1"),
                         _("Prohibited base attribute: %(attribute)s"),
                         modelObject=element, attribute=baseAttr, element=element.qname)
                 else:
@@ -1111,7 +1113,7 @@ class ModelDocument:
                 elif ixNS != inlineElement.namespaceURI:
                     conflictingNSelts.append(inlineElement)
         if conflictingNSelts:
-            self.modelXbrl.error("ix.3.1:multipleIxNamespaces",
+            self.modelXbrl.error("ix:multipleIxNamespaces",
                     _("Multiple ix namespaces were found"),
                     modelObject=conflictingNSelts)
         self.ixNStag = ixNStag = "{" + ixNS + "}"
