@@ -25,6 +25,7 @@ from arelle.DialogNewFactItem import getNewFactItemOptions
 from collections import defaultdict
 from arelle.ValidateXbrl import ValidateXbrl
 from arelle.XbrlConst import eurofilingModelNamespace, eurofilingModelPrefix
+from _tkinter import TclError
 
 try:
     from tkinter import ttk
@@ -194,7 +195,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.viewFrame.clearGrid()
 
         tblAxisRelSet, xTopStructuralNode, yTopStructuralNode, zTopStructuralNode = resolveAxesStructure(self, viewTblELR)
-        self.table.resizeTable(self.colHdrRows+self.dataRows, self.rowHdrCols+self.dataCols, titleRows=self.colHdrRows, titleColumns=self.rowHdrCols)
+        self.table.resizeTable(self.dataFirstRow+self.dataRows-1, self.dataFirstCol+self.dataCols-1, titleRows=self.dataFirstRow-1, titleColumns=self.dataFirstCol-1)
         self.hasTableFilters = bool(self.modelTable.filterRelationships)
         
         if tblAxisRelSet:
@@ -224,20 +225,30 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             self.factPrototypeAspectEntryObjectIds.clear()
             self.table.initHeaderCellValue((self.modelTable.genLabel(lang=self.lang, strip=True) or  # use table label, if any 
                                             self.roledefinition),
-                                           0, 0, 0, 0,
+                                           0, 0, (self.dataFirstCol - 2),
+                                           (self.dataFirstRow - 2),
                                            XbrlTable.TG_TOP_LEFT_JUSTIFIED)
+            self.table.initHeaderBorder(0, 0,
+                                        hasLeftBorder=True,
+                                        hasTopBorder=True,
+                                        hasRightBorder=False,
+                                        hasBottomBorder=False)
             self.zAspectStructuralNodes = defaultdict(set)
             self.zAxis(1, zTopStructuralNode, clearZchoices)
             xStructuralNodes = []
-            self.xAxis(self.dataFirstCol, self.colHdrTopRow, self.colHdrTopRow + self.colHdrRows - 1, 
-                       xTopStructuralNode, xStructuralNodes, self.xAxisChildrenFirst.get(), True, True)
-            self.yAxis(1, self.dataFirstRow,
-                       yTopStructuralNode, self.yAxisChildrenFirst.get(), True, True)
+            colsFoundPlus1, _, _, _ = self.xAxis(self.dataFirstCol, self.colHdrTopRow, self.colHdrTopRow + self.colHdrRows - 1, 
+                                                 xTopStructuralNode, xStructuralNodes, self.xAxisChildrenFirst.get(), True, True)
+            _, rowsFoundPlus1 = self.yAxis(1, self.dataFirstRow,
+                                           yTopStructuralNode, self.yAxisChildrenFirst.get(), True, True)
+            self.table.resizeTable(rowsFoundPlus1-1,
+                                   colsFoundPlus1-1,
+                                   clearData=False)
             for fp in self.factPrototypes: # dereference prior facts
                 if fp is not None:
                     fp.clear()
             self.factPrototypes = []
             self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, self.zAspectStructuralNodes, self.yAxisChildrenFirst.get())
+            self.table.clearModificationStatus()
                 
             # data cells
             #print("body cells done")
@@ -256,15 +267,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def zAxis(self, row, zStructuralNode, clearZchoices):
         if zStructuralNode is not None:
             label = zStructuralNode.header(lang=self.lang)
+            xValue = self.dataFirstCol-1
+            yValue = row-1
             self.table.initHeaderCellValue(label,
-                                           self.dataFirstCol, row,
+                                           xValue, yValue,
                                            1, 0,
                                            XbrlTable.TG_LEFT_JUSTIFIED,
                                            objectId=zStructuralNode.objectId())
-            self.table.initHeaderBorder(self.dataFirstCol, row,
+            self.table.initHeaderBorder(xValue, yValue,
                                         hasLeftBorder=True,
                                         hasTopBorder=True,
-                                        hasRightBorder=True)
+                                        hasRightBorder=False)
     
             if zStructuralNode.choiceStructuralNodes is not None: # combo box
                 valueHeaders = [''.ljust(zChoiceStructuralNode.indent * 4) + # indent if nested choices 
@@ -310,8 +323,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 i = -1
                             valueHeaders.append("(enter typed member)")
                             zAxisTypedDimension = dimConcept
-                combobox = self.table.initHeaderCombobox(self.dataFirstCol + 2,
-                                                         row,
+                combobox = self.table.initHeaderCombobox(self.dataFirstCol + 1,
+                                                         row-1,
                                                          colspan=1,
                                                          values=valueHeaders,
                                                          value=comboBoxValue,
@@ -324,7 +337,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 combobox.zAxisAspect = aspect
                 combobox.zChoiceOrdIndex = row - 1
                 combobox.objectId = zStructuralNode.objectId()
-                self.table.initHeaderBorder(self.dataFirstCol + 3, row,
+                self.table.initHeaderBorder(self.dataFirstCol + 2, row-1,
                                             hasRightBorder=True)
                 # add aspect for chosen node
                 self.setZStructuralNodeAspects(chosenStructuralNode)
@@ -366,19 +379,19 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         combobox = event.widget
         structuralNode = combobox.zStructuralNode
         if combobox.zAxisAspectEntryMode:
-            aspectValue = structuralNode.aspectEntryHeaderValues.get(combobox.value)
+            aspectValue = structuralNode.aspectEntryHeaderValues.get(combobox.get())
             if aspectValue is not None:
                 self.zOrdinateChoices[combobox.zStructuralNode.definitionNode] = \
-                    structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 'aspectValueLabel': combobox.value}
+                    structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 'aspectValueLabel': combobox.get()}
                 self.view() # redraw grid
-        elif combobox.zAxisIsOpenExplicitDimension and combobox.value == "(all members)":
+        elif combobox.zAxisIsOpenExplicitDimension and combobox.get() == "(all members)":
             # reload combo box
             self.comboboxLoadExplicitDimension(combobox, 
                                                structuralNode, # owner of combobox
                                                structuralNode.choiceStructuralNodes[structuralNode.choiceNodeIndex]) # aspect filter node
             structuralNode.choiceNodeIndex = -1 # use entry aspect value
             combobox.zAxisAspectEntryMode = True
-        elif combobox.zAxisTypedDimension is not None and combobox.value == "(enter typed member)":
+        elif combobox.zAxisTypedDimension is not None and combobox.get() == "(enter typed member)":
             # ask typed member entry
             import tkinter.simpledialog
             result = tkinter.simpledialog.askstring(_("Enter new typed dimension value"), 
@@ -417,11 +430,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             widthToSpanParent = 0
             sideBorder = not xStructuralNodes
             if atTop and sideBorder and childrenFirst:
-                self.table.initHeaderBorder(self.dataFirstCol, 1,
+                self.table.initHeaderBorder(self.dataFirstCol-1, 0,
+                                            cellsToTheRight=0,
+                                            cellsBelow=self.dataFirstRow-1,
                                             hasLeftBorder=True)
-                self.table.initHeaderCellValue('', self.dataFirstCol, 1,
-                                               0, self.dataFirstRow-1,
-                                               XbrlTable.TG_LEFT_JUSTIFIED)
             for xStructuralNode in xParentStructuralNode.childStructuralNodes:
                 if not xStructuralNode.isRollUp:
                     noDescendants = False
@@ -448,32 +460,39 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         columnspan = (rightCol - leftCol + (1 if nonAbstract else 0))
                         label = xStructuralNode.header(lang=self.lang,
                                                        returnGenLabel=isinstance(xStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)))
+                        xValue = leftCol-1
+                        yValue = topRow-1
                         self.table.initHeaderCellValue(label if label
                                                        else "         ",
-                                                       leftCol, topRow,
+                                                       xValue, yValue,
                                                        columnspan-1,
                                                        ((row - topRow + 1) if leafNode else 1)-1,
                                                        XbrlTable.TG_CENTERED,
                                                        objectId=xStructuralNode.objectId())
                         # Initially the rowspan was (rowBelow - topRow + 1)
-                        self.table.initHeaderBorder(leftCol, topRow,
+                        self.table.initHeaderBorder(xValue, yValue,
+                                                    cellsBelow=(rowBelow - topRow),
                                                     hasLeftBorder=hasLeftBorder,
+                                                    hasTopBorder=True,
                                                     hasRightBorder=hasRightBorder)
                         if nonAbstract:
+                            xValue = thisCol - 1
                             for i, role in enumerate(self.colHdrNonStdRoles):
-                                j = self.dataFirstRow
-                                - len(self.colHdrNonStdRoles) + i
-                                self.table.initCellValue(xStructuralNode.header(role=role, lang=self.lang),
-                                                         thisCol,
+                                j = (self.dataFirstRow
+                                     - len(self.colHdrNonStdRoles) + i)-1
+                                self.table.initHeaderCellValue(xStructuralNode.header(role=role, lang=self.lang),
+                                                         xValue,
                                                          j,
+                                                         0,
+                                                         0,
                                                          XbrlTable.TG_CENTERED,
                                                          objectId=xStructuralNode.objectId())
-                                self.table.initHeaderBorder(thisCol, j,
+                                self.table.initHeaderBorder(xValue, j,
                                                             hasLeftBorder=hasLeftBorder,
                                                             hasTopBorder=True,
                                                             hasRightBorder=hasRightBorder)
-                            self.table.initHeaderBorder(thisCol,
-                                                        self.dataFirstRow - 1,
+                            self.table.initHeaderBorder(xValue,
+                                                        self.dataFirstRow - 2,
                                                         hasBottomBorder=True)
                             xStructuralNodes.append(xStructuralNode)
                     if nonAbstract:
@@ -483,7 +502,9 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                     leftCol = rightCol
             if atTop and sideBorder and not childrenFirst:
                 # Initially, rowspan=self.dataFirstRow
-                self.table.initHeaderBorder(rightCol - 1, 1,
+                self.table.initHeaderBorder(rightCol - 2, 0,
+                                            cellsToTheRight=0,
+                                            cellsBelow=self.dataFirstRow-1,
                                             hasRightBorder=True)
             return (rightCol, parentRow, widthToSpanParent, noDescendants)
             
@@ -491,18 +512,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         if yParentStructuralNode is not None:
             nestedBottomRow = row
             if atLeft:
-                self.table.initCellSpan(self.rowHdrCols + len(self.rowHdrNonStdRoles),
-                                        self.dataFirstRow,
-                                        0, self.dataRows-1)
-                self.table.initHeaderBorder(self.rowHdrCols + len(self.rowHdrNonStdRoles),
-                                            self.dataFirstRow,
+                # initially rowspan was self.dataRows
+                self.table.initHeaderBorder(self.rowHdrCols + len(self.rowHdrNonStdRoles)-1,
+                                            self.dataFirstRow-1,
+                                            cellsToTheRight=0,
+                                            cellsBelow=self.dataRows-1,
                                             hasRightBorder=True)
-                self.table.initCellSpan(1,
-                                        self.dataFirstRow + self.dataRows - 1,
-                                        (self.rowHdrCols + len(self.rowHdrNonStdRoles))-1,
-                                        0)
-                self.table.initHeaderBorder(1,
-                                            self.dataFirstRow + self.dataRows - 1,
+                # initially colspan was (self.rowHdrCols + len(self.rowHdrNonStdRoles))
+                self.table.initHeaderBorder(0,
+                                            self.dataFirstRow + self.dataRows - 2,
+                                            cellsToTheRight=(self.rowHdrCols + len(self.rowHdrNonStdRoles))-1,
+                                            cellsBelow=0,
                                             hasBottomBorder=True)
             for yStructuralNode in yParentStructuralNode.childStructuralNodes:
                 if not yStructuralNode.isRollUp:
@@ -519,17 +539,15 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         row = nextRow
                     if renderNow and isLabeled:
                         columnspan = self.rowHdrCols - leftCol + 1 if isNonAbstract or nextRow == row else 1
-                        self.table.initCellSpan(leftCol, topRow,
-                                                (0 if childrenFirst and nextRow > row else columnspan-1),
-                                                (nestRow - topRow))
-                        self.table.initHeaderBorder(leftCol, topRow,
+                        self.table.initHeaderBorder(leftCol-1, topRow-1,
+                                                    cellsToTheRight=(0 if childrenFirst and nextRow > row else columnspan-1),
+                                                    cellsBelow=(nestRow - topRow),
                                                     hasLeftBorder=True,
                                                     hasTopBorder=True)
                         if childrenFirst and row > topRow:
-                            self.table.initCellSpan(leftCol + 1, row,
-                                                    (self.rowHdrCols - leftCol)-1,
-                                                    0)
-                            self.table.initHeaderBorder(leftCol + 1, row,
+                            self.table.initHeaderBorder(leftCol, row-1,
+                                                        cellsToTheRight=(self.rowHdrCols - leftCol)-1,
+                                                        cellsBelow=0,
                                                         hasTopBorder=True)
                         depth = yStructuralNode.depth
                         wraplength = (self.rowHdrColWidth[depth] if isAbstract else
@@ -544,35 +562,42 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             # be used:
                             # - wraplength=wraplength
                             # - minwidth=(RENDER_UNITS_PER_CHAR if isNonAbstract and nextRow > topRow else None)
-                            
+                            xValue = leftCol-1
+                            yValue = row-1
                             self.table.initHeaderCellValue(label if label is not None else "         ",
-                                                           leftCol, row,
+                                                           xValue, yValue,
                                                            columnspan-1,
                                                            (nestRow - row if isAbstract else 1)-1,
                                                            (XbrlTable.TG_LEFT_JUSTIFIED
                                                             if isNonAbstract or nestRow == row
                                                             else XbrlTable.TG_CENTERED),
                                                            objectId=yStructuralNode.objectId())
+                            self.table.initHeaderBorder(xValue, yValue,
+                                                        hasLeftBorder=True,
+                                                        hasTopBorder=True,
+                                                        hasRightBorder=True,
+                                                        hasBottomBorder=True)
                         else:
                             self.aspectEntryObjectIdsNode[yStructuralNode.aspectEntryObjectId] = yStructuralNode
                             # TODO: is the following still needed?
                             # width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5))
-                            self.aspectEntryObjectIdsCell[yStructuralNode.aspectEntryObjectId] = self.table.initHeaderCombobox(leftCol,
-                                                                                                                               row,
+                            self.aspectEntryObjectIdsCell[yStructuralNode.aspectEntryObjectId] = self.table.initHeaderCombobox(leftCol-1,
+                                                                                                                               row-1,
                                                                                                                                values=self.aspectEntryValues(yStructuralNode),
                                                                                                                                objectId=yStructuralNode.aspectEntryObjectId,
                                                                                                                                comboboxselected=self.onAspectComboboxSelection)
                         if isNonAbstract:
                             for i, role in enumerate(self.rowHdrNonStdRoles):
                                 isCode = "code" in role
-                                docCol = self.dataFirstCol - len(self.rowHdrNonStdRoles) + i
+                                docCol = self.dataFirstCol - len(self.rowHdrNonStdRoles) + i-1
+                                yValue = row-1
                                 # TODO: wraplength=40 if isCode else ENTRY_WIDTH_SCREEN_UNITS
                                 self.table.initHeaderCellValue(yStructuralNode.header(role=role, lang=self.lang),
-                                                               docCol, row,
+                                                               docCol, yValue,
                                                                0, 0,
                                                                XbrlTable.TG_CENTERED if isCode else XbrlTable.TG_RIGHT_JUSTIFIED,
                                                                objectId=yStructuralNode.objectId())
-                                self.table.initHeaderBorder(docCol, row,
+                                self.table.initHeaderBorder(docCol, yValue,
                                                             hasLeftBorder=True,
                                                             hasTopBorder=True)
                     if isNonAbstract:
@@ -609,8 +634,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 yAspectStructuralNodes[aspect].add(yStructuralNode)
                     yTagSelectors = yStructuralNode.tagSelectors
                     # TODO: check if border must be set (LEFTBORDER)
-                    self.table.initReadonlyCell(self.dataFirstCol, row,
-                                                0, 0)
+                    self.table.initHeaderBorder(self.dataFirstCol - 2,
+                                                row-2,
+                                                hasLeftBorder=True)
+    
                     # data for columns of row
                     #print ("row " + str(row) + "yNode " + yStructuralNode.definitionNode.objectId() )
                     ignoreDimValidity = self.ignoreDimValidity.get()
@@ -712,8 +739,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 # width=ENTRY_WIDTH_IN_CHARS,
                                 self.table.initCellCombobox(effectiveValue,
                                                             enumerationValues,
-                                                            self.dataFirstCol + i,
-                                                            row,
+                                                            self.dataFirstCol + i-1,
+                                                            row-1,
                                                             objectId=objectId,
                                                             selectindex=selectedIdx,
                                                             codes=enumerationDict)
@@ -752,8 +779,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     # is needed:
                                     # width=ENTRY_WIDTH_IN_CHARS
                                     self.table.initCellValue(value,
-                                                             self.dataFirstCol + i,
-                                                             row,
+                                                             self.dataFirstCol + i-1,
+                                                             row-1,
                                                              justification=justify,
                                                              objectId=objectId)
                                 else:
@@ -769,8 +796,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     # width=ENTRY_WIDTH_IN_CHARS,
                                     self.table.initCellCombobox(effectiveValue,
                                                                 qNameValues,
-                                                                self.dataFirstCol + i,
-                                                                row,
+                                                                self.dataFirstCol + i-1,
+                                                                row-1,
                                                                 objectId=objectId,
                                                                 selectindex=selectedIdx,
                                                                 codes=newAspectQNames)
@@ -789,8 +816,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 # width=ENTRY_WIDTH_IN_CHARS,
                                 self.table.initCellCombobox(effectiveValue,
                                                             booleanValues,
-                                                            self.dataFirstCol + i,
-                                                            row,
+                                                            self.dataFirstCol + i-1,
+                                                            row-1,
                                                             objectId=objectId,
                                                             selectindex=selectedIdx)
                             else:
@@ -798,18 +825,20 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 # is needed:
                                 # width=ENTRY_WIDTH_IN_CHARS
                                 self.table.initCellValue(value,
-                                                         self.dataFirstCol + i,
-                                                         row,
+                                                         self.dataFirstCol + i-1,
+                                                         row-1,
                                                          justification=justify,
                                                          objectId=objectId)
                         else:
                             fp.clear()  # dereference
-                            self.table.initReadonlyCell(self.dataFirstCol + i,
-                                                        row, 0, 0)
+                            self.table.initReadonlyCell(self.dataFirstCol + i-1,
+                                                        row-1)
                         # TODO: check if there is a need for borders:
                         # RIGHTBORDER, BOTTOMBORDER
-                        self.table.initReadonlyCell(self.dataFirstCol + i, row,
-                                                    0, 0)
+                        #self.table.initHeaderBorder(self.dataFirstCol + i-1,
+                        #                            row-1,
+                        #                            hasRightBorder=True,
+                        #                            hasBottomBorder=True)
                     row += 1
                 if not yChildrenFirst:
                     row = self.bodyCells(row, yStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst)
@@ -858,10 +887,15 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def onConfigure(self, event, *args):
         if not self.blockMenuEvents:
             lastFrameWidth = getattr(self, "lastFrameWidth", 0)
+            lastFrameHeight = getattr(self, "lastFrameHeight", 0)
             frameWidth = self.tabWin.winfo_width()
-            if lastFrameWidth != frameWidth:
+            frameHeight = self.tabWin.winfo_height()
+            if lastFrameWidth != frameWidth or lastFrameHeight != frameHeight:
                 self.updateInstanceFromFactPrototypes()
                 self.lastFrameWidth = frameWidth
+                self.lastFrameHeight = frameHeight
+                self.table.config(maxheight=frameHeight-self.viewFrame.horizontalScrollbarHeight,
+                                  maxwidth=frameWidth-self.viewFrame.verticalScrollbarWidth)
                 if lastFrameWidth:
                     # frame resized, recompute row header column widths and lay out table columns
                     """
@@ -889,6 +923,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         if self.modelXbrl is not None \
            and self.modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:
             instance = self.modelXbrl
+            cntlr =  instance.modelManager.cntlr
             newCntx = ModelXbrl.AUTO_LOCATE_ELEMENT
             newUnit = ModelXbrl.AUTO_LOCATE_ELEMENT
             tbl = self.table
@@ -903,9 +938,14 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             aspectEntryChanges[objId] = tbl.getTableValue(modifiedCell)
                     else:
                         # check user keyed changes to facts
-                        combobox = tbl.window_cget(str(modifiedCell), 'window')
-                        if (combobox is not None
-                            and isinstance(combobox, _Combobox)):
+                        cellIndex = str(modifiedCell)
+                        comboboxCells = tbl.window_names(cellIndex)
+                        if comboboxCells is not None and len(comboboxCells)>0:
+                            comboName = tbl.window_cget(cellIndex, '-window')
+                            combobox = cntlr.parent.nametowidget(comboName)
+                        else:
+                            combobox = None
+                        if isinstance(combobox, _Combobox):
                             codeDict = combobox.codes
                             if len(codeDict)>0: # the drop-down list shows labels, we want to have the actual values
                                 bodyCellValue = tbl.getTableValue(modifiedCell)
@@ -917,7 +957,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         else:
                             value = tbl.getTableValue(modifiedCell)
                         objId = tbl.getObjectId(modifiedCell)
-                        if objId:
+                        if objId is not None and len(objId)>0:
                             if objId[0] == "f":
                                 factPrototypeIndex = int(objId[1:])
                                 factPrototype = self.factPrototypes[factPrototypeIndex]
@@ -977,7 +1017,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                             break;
                                     attrs.append(("decimals", decimals))
                                 newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
-                                tbl.setObjectId(newFact.objectId()) # switch cell to now use fact ID
+                                tbl.setObjectId(modifiedCell,
+                                                newFact.objectId()) # switch cell to now use fact ID
                                 if self.factPrototypes[factPrototypeIndex] is not None:
                                     self.factPrototypes[factPrototypeIndex].clear()
                                 self.factPrototypes[factPrototypeIndex] = None #dereference fact prototype
@@ -1016,7 +1057,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     fact.text = str(value)
                                     instance.setIsModified()
                                     XmlValidate.validate(instance, fact)
-                tbl.resetModificationStatus(modifiedCell)
+            tbl.clearModificationStatus()
 
     def saveInstance(self, newFilename=None, onSaved=None):
         # newFilename = None # only used when a new instance must be created
@@ -1057,7 +1098,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if aspect != Aspect.DIMENSIONS:
                     break
             gridCellItem = self.aspectEntryObjectIdsCell[aspectObjId]
-            value = gridCellItem.value
+            value = gridCellItem.get()
             # is aspect in a childStructuralNode? 
             if value is not None and OPEN_ASPECT_ENTRY_SURROGATE in aspectObjId and len(value)==0:
                 return None # some values are missing!
@@ -1118,7 +1159,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
 
     def onAspectComboboxSelection(self, event):
         gridCombobox = event.widget
-        if gridCombobox.value == "(all members)":
+        if gridCombobox.get() == "(all members)":
             structuralNode = self.aspectEntryObjectIdsNode[gridCombobox.objectId]
             self.comboboxLoadExplicitDimension(gridCombobox, structuralNode, structuralNode)
             
