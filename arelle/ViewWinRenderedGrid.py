@@ -228,11 +228,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                            0, 0, (self.dataFirstCol - 2),
                                            (self.dataFirstRow - 2),
                                            XbrlTable.TG_TOP_LEFT_JUSTIFIED)
-            self.table.initHeaderBorder(0, 0,
-                                        hasLeftBorder=True,
-                                        hasTopBorder=True,
-                                        hasRightBorder=False,
-                                        hasBottomBorder=False)
             self.zAspectStructuralNodes = defaultdict(set)
             self.zAxis(1, zTopStructuralNode, clearZchoices)
             xStructuralNodes = []
@@ -274,10 +269,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                            1, 0,
                                            XbrlTable.TG_LEFT_JUSTIFIED,
                                            objectId=zStructuralNode.objectId())
-            self.table.initHeaderBorder(xValue, yValue,
-                                        hasLeftBorder=True,
-                                        hasTopBorder=True,
-                                        hasRightBorder=False)
     
             if zStructuralNode.choiceStructuralNodes is not None: # combo box
                 valueHeaders = [''.ljust(zChoiceStructuralNode.indent * 4) + # indent if nested choices 
@@ -337,8 +328,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 combobox.zAxisAspect = aspect
                 combobox.zChoiceOrdIndex = row - 1
                 combobox.objectId = zStructuralNode.objectId()
-                self.table.initHeaderBorder(self.dataFirstCol + 2, row-1,
-                                            hasRightBorder=True)
                 # add aspect for chosen node
                 self.setZStructuralNodeAspects(chosenStructuralNode)
             else:
@@ -428,12 +417,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             noDescendants = True
             rightCol = leftCol
             widthToSpanParent = 0
-            sideBorder = not xStructuralNodes
-            if atTop and sideBorder and childrenFirst:
-                self.table.initHeaderBorder(self.dataFirstCol-1, 0,
-                                            cellsToTheRight=0,
-                                            cellsBelow=self.dataFirstRow-1,
-                                            hasLeftBorder=True)
             for xStructuralNode in xParentStructuralNode.childStructuralNodes:
                 if not xStructuralNode.isRollUp:
                     noDescendants = False
@@ -448,14 +431,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                     if nonAbstract and isLabeled:
                         width += ENTRY_WIDTH_SCREEN_UNITS # width for this label, in screen units
                     widthToSpanParent += width
-                    hasLeftBorder = False;
-                    hasRightBorder = False;
                     if childrenFirst:
                         thisCol = rightCol
-                        hasRightBorder = True
                     else:
                         thisCol = leftCol
-                        hasLeftBorder = True
                     if renderNow and isLabeled:
                         columnspan = (rightCol - leftCol + (1 if nonAbstract else 0))
                         label = xStructuralNode.header(lang=self.lang,
@@ -468,13 +447,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                        columnspan-1,
                                                        ((row - topRow + 1) if leafNode else 1)-1,
                                                        XbrlTable.TG_CENTERED,
-                                                       objectId=xStructuralNode.objectId())
-                        # Initially the rowspan was (rowBelow - topRow + 1)
-                        self.table.initHeaderBorder(xValue, yValue,
-                                                    cellsBelow=(rowBelow - topRow),
-                                                    hasLeftBorder=hasLeftBorder,
-                                                    hasTopBorder=True,
-                                                    hasRightBorder=hasRightBorder)
+                                                       objectId=xStructuralNode.objectId(),
+                                                       isRollUp=columnspan>1 and nonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
                         if nonAbstract:
                             xValue = thisCol - 1
                             for i, role in enumerate(self.colHdrNonStdRoles):
@@ -487,43 +461,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                          0,
                                                          XbrlTable.TG_CENTERED,
                                                          objectId=xStructuralNode.objectId())
-                                self.table.initHeaderBorder(xValue, j,
-                                                            hasLeftBorder=hasLeftBorder,
-                                                            hasTopBorder=True,
-                                                            hasRightBorder=hasRightBorder)
-                            self.table.initHeaderBorder(xValue,
-                                                        self.dataFirstRow - 2,
-                                                        hasBottomBorder=True)
                             xStructuralNodes.append(xStructuralNode)
                     if nonAbstract:
                         rightCol += 1
                     if renderNow and not childrenFirst:
                         self.xAxis(leftCol + (1 if nonAbstract else 0), topRow + 1, rowBelow, xStructuralNode, xStructuralNodes, childrenFirst, True, False) # render on this pass
                     leftCol = rightCol
-            if atTop and sideBorder and not childrenFirst:
-                # Initially, rowspan=self.dataFirstRow
-                self.table.initHeaderBorder(rightCol - 2, 0,
-                                            cellsToTheRight=0,
-                                            cellsBelow=self.dataFirstRow-1,
-                                            hasRightBorder=True)
             return (rightCol, parentRow, widthToSpanParent, noDescendants)
             
     def yAxis(self, leftCol, row, yParentStructuralNode, childrenFirst, renderNow, atLeft):
         if yParentStructuralNode is not None:
             nestedBottomRow = row
-            if atLeft:
-                # initially rowspan was self.dataRows
-                self.table.initHeaderBorder(self.rowHdrCols + len(self.rowHdrNonStdRoles)-1,
-                                            self.dataFirstRow-1,
-                                            cellsToTheRight=0,
-                                            cellsBelow=self.dataRows-1,
-                                            hasRightBorder=True)
-                # initially colspan was (self.rowHdrCols + len(self.rowHdrNonStdRoles))
-                self.table.initHeaderBorder(0,
-                                            self.dataFirstRow + self.dataRows - 2,
-                                            cellsToTheRight=(self.rowHdrCols + len(self.rowHdrNonStdRoles))-1,
-                                            cellsBelow=0,
-                                            hasBottomBorder=True)
             for yStructuralNode in yParentStructuralNode.childStructuralNodes:
                 if not yStructuralNode.isRollUp:
                     isAbstract = (yStructuralNode.isAbstract or 
@@ -539,16 +487,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         row = nextRow
                     if renderNow and isLabeled:
                         columnspan = self.rowHdrCols - leftCol + 1 if isNonAbstract or nextRow == row else 1
-                        self.table.initHeaderBorder(leftCol-1, topRow-1,
-                                                    cellsToTheRight=(0 if childrenFirst and nextRow > row else columnspan-1),
-                                                    cellsBelow=(nestRow - topRow),
-                                                    hasLeftBorder=True,
-                                                    hasTopBorder=True)
-                        if childrenFirst and row > topRow:
-                            self.table.initHeaderBorder(leftCol, row-1,
-                                                        cellsToTheRight=(self.rowHdrCols - leftCol)-1,
-                                                        cellsBelow=0,
-                                                        hasTopBorder=True)
                         depth = yStructuralNode.depth
                         wraplength = (self.rowHdrColWidth[depth] if isAbstract else
                                       self.rowHdrWrapLength - sum(self.rowHdrColWidth[0:depth]))
@@ -571,12 +509,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                            (XbrlTable.TG_LEFT_JUSTIFIED
                                                             if isNonAbstract or nestRow == row
                                                             else XbrlTable.TG_CENTERED),
-                                                           objectId=yStructuralNode.objectId())
-                            self.table.initHeaderBorder(xValue, yValue,
-                                                        hasLeftBorder=True,
-                                                        hasTopBorder=True,
-                                                        hasRightBorder=True,
-                                                        hasBottomBorder=True)
+                                                           objectId=yStructuralNode.objectId(),
+                                                           isRollUp=columnspan>1 and isNonAbstract and len(yStructuralNode.childStructuralNodes)>1)
                         else:
                             self.aspectEntryObjectIdsNode[yStructuralNode.aspectEntryObjectId] = yStructuralNode
                             # TODO: is the following still needed?
@@ -597,9 +531,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                                0, 0,
                                                                XbrlTable.TG_CENTERED if isCode else XbrlTable.TG_RIGHT_JUSTIFIED,
                                                                objectId=yStructuralNode.objectId())
-                                self.table.initHeaderBorder(docCol, yValue,
-                                                            hasLeftBorder=True,
-                                                            hasTopBorder=True)
                     if isNonAbstract:
                         row += 1
                     elif childrenFirst:
@@ -633,11 +564,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             else:
                                 yAspectStructuralNodes[aspect].add(yStructuralNode)
                     yTagSelectors = yStructuralNode.tagSelectors
-                    # TODO: check if border must be set (LEFTBORDER)
-                    self.table.initHeaderBorder(self.dataFirstCol - 2,
-                                                row-2,
-                                                hasLeftBorder=True)
-    
                     # data for columns of row
                     #print ("row " + str(row) + "yNode " + yStructuralNode.definitionNode.objectId() )
                     ignoreDimValidity = self.ignoreDimValidity.get()
@@ -831,14 +757,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                          objectId=objectId)
                         else:
                             fp.clear()  # dereference
-                            self.table.initReadonlyCell(self.dataFirstCol + i-1,
-                                                        row-1)
-                        # TODO: check if there is a need for borders:
-                        # RIGHTBORDER, BOTTOMBORDER
-                        #self.table.initHeaderBorder(self.dataFirstCol + i-1,
-                        #                            row-1,
-                        #                            hasRightBorder=True,
-                        #                            hasBottomBorder=True)
                     row += 1
                 if not yChildrenFirst:
                     row = self.bodyCells(row, yStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst)

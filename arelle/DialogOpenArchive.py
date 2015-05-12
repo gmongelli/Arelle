@@ -264,7 +264,7 @@ class DialogOpenArchive(Toplevel):
             elif self.openType == ENTRY_POINTS:
                 epName = selection[0]
                 #index 0 is the remapped Url, as opposed to the canonical one used for display
-                filename = self.taxonomyPackage["nameToUrls"][epName][0]
+                filename = self.taxonomyPackage["nameToUrls"][epName][1]
                 if not filename.endswith("/"):
                     # check if it's an absolute URL rather than a path into the archive
                     if not isHttpUrl(filename) and self.metadataFilePrefix != self.taxonomyPkgMetaInf:
