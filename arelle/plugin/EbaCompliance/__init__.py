@@ -36,27 +36,89 @@ except ImportError:
 qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
 qnFindFilingIndicator = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:filingIndicator")
 
+EBA_TAXONOMY_VERSION_2_2 = '2.2'
+EBA_TAXONOMY_VERSION_2_3 = '2.3'
+EBA_TAXONOMY_VERSION_2_3_1 = '2.3.1'
+EBA_TAXONOMY_DEFAULT_VERSION = EBA_TAXONOMY_VERSION_2_3_1
+EBA_TAXONOMY_VERSIONS_VALUES = (EBA_TAXONOMY_VERSION_2_3_1, EBA_TAXONOMY_VERSION_2_3, EBA_TAXONOMY_VERSION_2_2) 
 EBA_REPORTING_INDIVIDUAL = 'Individual'
 EBA_REPORTING_CONSOLIDATED = 'Consolidated'
 EBA_REPORTING_TYPES_VALUES = (EBA_REPORTING_INDIVIDUAL, EBA_REPORTING_CONSOLIDATED)
-EBA_ENTRY_POINTS_INDIVIDUAL = {'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
-                               'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_ind.xsd',
-                               'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_ind.xsd',
-                               'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_ind.xsd',
-                               'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_ind.xsd'}
-
-EBA_ENTRY_POINTS_CONSOLIDATED = {'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
-                                 'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_gaap.xsd',
-                                 'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_ifrs.xsd',
-                                 'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_con.xsd',
-                                 'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_con.xsd',
-                                 'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_con.xsd',
-                                 'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_con.xsd'}
+EBA_REPORTING_TYPE_DEFAULT = EBA_REPORTING_INDIVIDUAL
+EBA_ENTRY_POINTS_INDIVIDUAL_2_2 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_ind.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_ind.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_ind.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_ind.xsd'
+     }
+EBA_ENTRY_POINTS_INDIVIDUAL_2_3 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_ind.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_ind.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_ind.xsd',
+      'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_ind.xsd'
+      }
+EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_ind.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_ind.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_ind.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_ind.xsd',
+     'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/mod/fp_ind.xsd',
+     'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_ind.xsd',
+     'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbpimv_ind.xsd'
+      }
+EBA_ENTRY_POINTS_INDIVIDUAL_BY_VERSION = {
+     EBA_TAXONOMY_VERSION_2_2: EBA_ENTRY_POINTS_INDIVIDUAL_2_2,
+     EBA_TAXONOMY_VERSION_2_3: EBA_ENTRY_POINTS_INDIVIDUAL_2_3,
+     EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1
+     }
+EBA_ENTRY_POINTS_CONSOLIDATED_2_2 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
+     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_ifrs.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_con.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_con.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_con.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_con.xsd'
+     }
+EBA_ENTRY_POINTS_CONSOLIDATED_2_3 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
+     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_ifrs.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_con.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_con.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_con.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_con.xsd'
+     }
+EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
+     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_ifrs.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_con.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_con.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_con.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_con.xsd',
+     'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/mod/fp_con.xsd',
+     'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_con.xsd',
+     'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbpimv_con.xsd'
+     }
+EBA_ENTRY_POINTS_CONSOLIDATED_BY_VERSION = {
+     EBA_TAXONOMY_VERSION_2_2: EBA_ENTRY_POINTS_CONSOLIDATED_2_2,
+     EBA_TAXONOMY_VERSION_2_3: EBA_ENTRY_POINTS_CONSOLIDATED_2_3,
+     EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1
+     }
+EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE = {
+     EBA_REPORTING_INDIVIDUAL: EBA_ENTRY_POINTS_INDIVIDUAL_BY_VERSION,
+     EBA_REPORTING_CONSOLIDATED: EBA_ENTRY_POINTS_CONSOLIDATED_BY_VERSION
+     }
 
 class EbaNewFileOptions(object):
-    def __init__(self, ebaReportingType, ebaEntryPoint):
+    def __init__(self, ebaTaxonomyVersion, ebaReportingType, ebaEntryPointKey):
+        self.ebaTaxonomyVersion = ebaTaxonomyVersion
         self.ebaReportingType = ebaReportingType
-        self.ebaEntryPoint = ebaEntryPoint
+        self.ebaEntryPointKey = ebaEntryPointKey
 
 class DialogNewFileOptions(Toplevel):
     def __init__(self, mainWin):
@@ -68,28 +130,43 @@ class DialogNewFileOptions(Toplevel):
         dialogX = int(parentGeometry.group(3))
         dialogY = int(parentGeometry.group(4))
         self.accepted = False
-        self.ebaEntryPointValues = sorted(EBA_ENTRY_POINTS_INDIVIDUAL.keys())
-        self.options = EbaNewFileOptions(EBA_REPORTING_TYPES_VALUES[0],
+        
+        self.ebaTaxonomyVersion = EBA_TAXONOMY_DEFAULT_VERSION
+        self.ebaReportingType = EBA_REPORTING_TYPE_DEFAULT
+        self.setEntryPoints()  
+        self.options = EbaNewFileOptions(self.ebaTaxonomyVersion, self.ebaReportingType,
                                          self.ebaEntryPointValues[0])
+        
         options = self.options
 
         self.transient(self.parent)
         self.title(_("New EBA File"))
         
         frame = Frame(self)
+        
+        label(frame, 1, 1, _("Taxonomy version:"))
+        self.cellTaxonomyVersion = gridCombobox(frame, 2, 1, getattr(options,"ebaTaxonomyVersion", ""),
+                                           values=EBA_TAXONOMY_VERSIONS_VALUES,
+                                           comboboxselected = self.onTaxonomyVersionChanged,
+                                           width=40)
+        ToolTip(self.cellTaxonomyVersion, text=_("Select a taxonomy version"), wraplength=240)
 
-        label(frame, 1, 1, _("EBA reporting type:"))
-        self.cellReportType = gridCombobox(frame, 2, 1, getattr(options,"ebaReportingType", ""),
+        label(frame, 1, 2, _("EBA reporting type:"))
+        self.cellReportType = gridCombobox(frame, 2, 2, getattr(options,"ebaReportingType", ""),
                                            values=EBA_REPORTING_TYPES_VALUES,
-                                           comboboxselected=self.onReportTypeChanged,
+                                           comboboxselected = self.onReportTypeChanged,
                                            width=40)
         ToolTip(self.cellReportType, text=_("Select a report type"), wraplength=240)
-        label(frame, 1, 2, _("Entry point:"))
-        self.cellEntryPoint = gridCombobox(frame, 2, 2, getattr(options,"ebaEntryPoint", ""),
+        label(frame, 1, 3, _("Entry point:"))
+        self.cellEntryPoint = gridCombobox(frame, 2, 3, getattr(options,"ebaEntryPointKey", ""),
                                            values=self.ebaEntryPointValues,
+                                           comboboxselected = self.onEntryPointChanged,
                                            width=40)
         ToolTip(self.cellEntryPoint, text=_("Select an EBA entry point"), wraplength=240)
-        currentRow = 3
+        currentRow = 4
+        
+        self.setEntryPointsCombo()
+
 
         cancelButton = Button(frame, text=_("Cancel"), width=8, command=self.close)
         ToolTip(cancelButton, text=_("Cancel operation"))
@@ -109,6 +186,8 @@ class DialogNewFileOptions(Toplevel):
         
     def checkEntries(self):
         errors = []
+        if self.cellTaxonomyVersion.value is None or self.cellTaxonomyVersion.value not in EBA_TAXONOMY_VERSIONS_VALUES:
+            errors.append(_("Please select a taxonomy version."))
         if self.cellReportType.value is None or self.cellReportType.value not in EBA_REPORTING_TYPES_VALUES:
             errors.append(_("Please select a report type."))
         if self.cellEntryPoint.value is None or self.cellEntryPoint.value not in self.ebaEntryPointValues:
@@ -122,8 +201,9 @@ class DialogNewFileOptions(Toplevel):
 
     def setOptions(self):
         options = self.options
-        options.ebaReportingType = self.cellReportType.value
-        options.ebaEntryPoint = self.cellEntryPoint.value
+        options.ebaTaxonomyVersion = self.ebaTaxonomyVersion
+        options.ebaReportingType = self.ebaReportingType
+        options.ebaEntryPointKey = self.ebaEntryPointKey
 
     def ok(self, event=None):
         if not self.checkEntries():
@@ -131,30 +211,46 @@ class DialogNewFileOptions(Toplevel):
         self.setOptions()
         self.accepted = True
         self.close()
+        #print("ebaTaxonomyVersion=" + self.ebaTaxonomyVersion)
+        #print("ebaReportingType=" + self.ebaReportingType)
+        #print("ebaEntryPointKey=" + self.ebaEntryPointKey)
+        #print("newURL=" + self.newUrl)
 
     def close(self, event=None):
         self.parent.focus_set()
         self.destroy()
 
+    def onEntryPointChanged(self, event):
+        combobox = event.widget
+        self.ebaEntryPointKey = combobox.value
+            
     def onReportTypeChanged(self, event):
         combobox = event.widget
-        value = combobox.value
-        if value == EBA_REPORTING_INDIVIDUAL:
-            self.ebaEntryPointValues = sorted(EBA_ENTRY_POINTS_INDIVIDUAL.keys())
-        else:
-            self.ebaEntryPointValues = sorted(EBA_ENTRY_POINTS_CONSOLIDATED.keys())
-        self.cellEntryPoint['values']=self.ebaEntryPointValues
+        self.ebaReportingType = combobox.value
+        self.setEntryPointsCombo()
+            
+    def onTaxonomyVersionChanged(self, event):
+        combobox = event.widget
+        self.ebaTaxonomyVersion = combobox.value
+        self.setEntryPointsCombo()
+    
+    def setEntryPointsCombo(self):
+        self.setEntryPoints()
+        self.cellEntryPoint['values'] = self.ebaEntryPointValues
+        # reuse the same selection if possible
         if self.cellEntryPoint.value not in self.ebaEntryPointValues:
             self.cellEntryPoint.current(0)
-
+            self.ebaEntryPointKey = self.ebaEntryPointValues[0]
+            
+    def setEntryPoints(self):
+        self.entryPoints = EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE.get(self.ebaReportingType).get(self.ebaTaxonomyVersion)
+        self.ebaEntryPointValues = sorted(self.entryPoints.keys())
+    
     @property
     def newUrl(self):
         options = self.options
-        if options.ebaReportingType == EBA_REPORTING_INDIVIDUAL:
-            urls = EBA_ENTRY_POINTS_INDIVIDUAL
-        else:
-            urls = EBA_ENTRY_POINTS_CONSOLIDATED
-        return urls[options.ebaEntryPoint]
+        urlsByEntryPoint = EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE.get(self.ebaReportingType).get(self.ebaTaxonomyVersion)
+        return urlsByEntryPoint[options.ebaEntryPointKey]
 
 def improveEbaCompliance(dts, cntlr, lang="en"):
     ':type dts: ModelXbrl'
