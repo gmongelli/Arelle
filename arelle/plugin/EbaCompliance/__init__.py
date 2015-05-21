@@ -36,15 +36,29 @@ except ImportError:
 qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
 qnFindFilingIndicator = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:filingIndicator")
 
+EBA_TAXONOMY_VERSION_2_0 = '2.0'
+EBA_TAXONOMY_VERSION_2_1 = '2.1'
 EBA_TAXONOMY_VERSION_2_2 = '2.2'
-EBA_TAXONOMY_VERSION_2_3 = '2.3'
 EBA_TAXONOMY_VERSION_2_3_1 = '2.3.1'
 EBA_TAXONOMY_DEFAULT_VERSION = EBA_TAXONOMY_VERSION_2_3_1
-EBA_TAXONOMY_VERSIONS_VALUES = (EBA_TAXONOMY_VERSION_2_3_1, EBA_TAXONOMY_VERSION_2_3, EBA_TAXONOMY_VERSION_2_2) 
+EBA_TAXONOMY_VERSIONS_VALUES = (EBA_TAXONOMY_VERSION_2_3_1, EBA_TAXONOMY_VERSION_2_2, EBA_TAXONOMY_VERSION_2_1, EBA_TAXONOMY_VERSION_2_0) 
 EBA_REPORTING_INDIVIDUAL = 'Individual'
 EBA_REPORTING_CONSOLIDATED = 'Consolidated'
 EBA_REPORTING_TYPES_VALUES = (EBA_REPORTING_INDIVIDUAL, EBA_REPORTING_CONSOLIDATED)
 EBA_REPORTING_TYPE_DEFAULT = EBA_REPORTING_INDIVIDUAL
+EBA_ENTRY_POINTS_INDIVIDUAL_2_0 = {
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_lcr_ind.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_le_ind.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_nsfr_ind.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_ind.xsd'
+     }
+EBA_ENTRY_POINTS_INDIVIDUAL_2_1 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-03-31/mod/ae_ind.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_ind.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_lcr_ind.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_le_ind.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_nsfr_ind.xsd'
+     }
 EBA_ENTRY_POINTS_INDIVIDUAL_2_2 = {
      'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
      'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_ind.xsd',
@@ -52,61 +66,65 @@ EBA_ENTRY_POINTS_INDIVIDUAL_2_2 = {
      'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_ind.xsd',
      'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_ind.xsd'
      }
-EBA_ENTRY_POINTS_INDIVIDUAL_2_3 = {
-     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
-     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_ind.xsd',
-     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_ind.xsd',
-     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_ind.xsd',
-      'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_ind.xsd'
-      }
 EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1 = {
-     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_ind.xsd',
      'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_ind.xsd',
      'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_ind.xsd',
      'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_ind.xsd',
      'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_ind.xsd',
+     'Additional Liquidity Monitoring - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_alm_ind.xsd',
      'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/mod/fp_ind.xsd',
      'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_ind.xsd',
      'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbpimv_ind.xsd'
       }
 EBA_ENTRY_POINTS_INDIVIDUAL_BY_VERSION = {
+     EBA_TAXONOMY_VERSION_2_0: EBA_ENTRY_POINTS_INDIVIDUAL_2_0,
+     EBA_TAXONOMY_VERSION_2_1: EBA_ENTRY_POINTS_INDIVIDUAL_2_1,
      EBA_TAXONOMY_VERSION_2_2: EBA_ENTRY_POINTS_INDIVIDUAL_2_2,
-     EBA_TAXONOMY_VERSION_2_3: EBA_ENTRY_POINTS_INDIVIDUAL_2_3,
      EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1
+     }
+EBA_ENTRY_POINTS_CONSOLIDATED_2_0 = {
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_con.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_lcr_con.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_le_con.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_nsfr_con.xsd',
+     'Financial Reporting, Consolidated National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-02/2013-12-01/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, Consolidated IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-02/2013-12-01/mod/finrep_con_ifrs.xsd'
+     }
+EBA_ENTRY_POINTS_CONSOLIDATED_2_1 = {
+     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-03-31/mod/ae_con.xsd',
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_con.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_lcr_con.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_le_con.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-03-31/mod/corep_nsfr_con.xsd',
+     'Financial Reporting, Consolidated National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-03-31/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, Consolidated IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-03-31/mod/finrep_con_ifrs.xsd'
      }
 EBA_ENTRY_POINTS_CONSOLIDATED_2_2 = {
      'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
-     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_gaap.xsd',
-     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_ifrs.xsd',
      'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_con.xsd',
      'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_lcr_con.xsd',
      'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_le_con.xsd',
-     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_con.xsd'
-     }
-EBA_ENTRY_POINTS_CONSOLIDATED_2_3 = {
-     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
-     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_gaap.xsd',
-     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_ifrs.xsd',
-     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_con.xsd',
-     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_con.xsd',
-     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_con.xsd',
-     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_con.xsd'
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/mod/corep_nsfr_con.xsd',
+     'Financial Reporting,National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2013-03/2014-07-31/mod/finrep_con_ifrs.xsd',
+     'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2014-07-31/mod/fp.xsd'
      }
 EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1 = {
-     'Asset Encumbrance' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/ae/its-2013-04/2014-07-31/mod/ae_con.xsd',
-     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_gaap.xsd',
-     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_ifrs.xsd',
      'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_con.xsd',
      'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_con.xsd',
      'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_le_con.xsd',
      'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_nsfr_con.xsd',
+     'Additional Liquidity Monitoring - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_alm_con.xsd',
+     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2014-05/2015-02-16/mod/finrep_con_ifrs.xsd',
      'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/mod/fp_con.xsd',
      'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_con.xsd',
      'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbpimv_con.xsd'
      }
 EBA_ENTRY_POINTS_CONSOLIDATED_BY_VERSION = {
+     EBA_TAXONOMY_VERSION_2_0: EBA_ENTRY_POINTS_CONSOLIDATED_2_0,
+     EBA_TAXONOMY_VERSION_2_1: EBA_ENTRY_POINTS_CONSOLIDATED_2_1,
      EBA_TAXONOMY_VERSION_2_2: EBA_ENTRY_POINTS_CONSOLIDATED_2_2,
-     EBA_TAXONOMY_VERSION_2_3: EBA_ENTRY_POINTS_CONSOLIDATED_2_3,
      EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1
      }
 EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE = {
