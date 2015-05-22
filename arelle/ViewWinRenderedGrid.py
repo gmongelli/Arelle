@@ -4,38 +4,48 @@ Created on Oct 5, 2010
 @author: Mark V Systems Limited
 (c) Copyright 2010 Mark V Systems Limited, All rights reserved.
 
-Note speed of using tkinter appears to be slow to render with tkinter (see profiling below)
-Typical example is an instance takes 3 secs for view() for an open table and 
-subsequently after Python operations concluded, tkinter takes additional 27 secs to render
 '''
 import os, threading, time, logging
 from tkinter import Menu, BooleanVar, font as tkFont
-from arelle import (ViewWinGrid, ModelDocument, ModelDtsObject, ModelInstanceObject, XbrlConst, 
-                    ModelXbrl, XmlValidate, XmlUtil, Locale, FunctionXfi,
+from arelle import (ViewWinTkTable, ModelDocument, ModelDtsObject, ModelInstanceObject, XbrlConst, 
+                    ModelXbrl, XmlValidate, Locale, FunctionXfi,
                     ValidateXbrlDimensions)
 from arelle.ModelValue import qname, QName
 from arelle.RenderingResolver import resolveAxesStructure, RENDER_UNITS_PER_CHAR
-from arelle.ModelFormulaObject import Aspect, aspectModels, aspectRuleAspects, aspectModelAspect
+from arelle.ModelFormulaObject import Aspect, aspectModels, aspectModelAspect
 from arelle.ModelInstanceObject import ModelDimensionValue
-from arelle.ModelRenderingObject import (ModelClosedDefinitionNode, ModelEuAxisCoord, ModelTable,
+from arelle.ModelRenderingObject import (ModelClosedDefinitionNode, ModelEuAxisCoord,
                                          ModelFilterDefinitionNode,
                                          OPEN_ASPECT_ENTRY_SURROGATE)
 from arelle.FormulaEvaluator import aspectMatches
 from arelle.PluginManager import pluginClassMethods
 from arelle.PrototypeInstanceObject import FactPrototype
-from arelle.UiUtil import (gridBorder, gridSpacer, gridHdr, gridCell, gridCombobox, 
-                           label,  
-                           TOPBORDER, LEFTBORDER, RIGHTBORDER, BOTTOMBORDER, CENTERCELL)
+from arelle.UITkTable import XbrlTable
 from arelle.DialogNewFactItem import getNewFactItemOptions
 from collections import defaultdict
 from arelle.ValidateXbrl import ValidateXbrl
 from arelle.XbrlConst import eurofilingModelNamespace, eurofilingModelPrefix
+from _tkinter import TclError
+
+try:
+    from tkinter import ttk
+    _Combobox = ttk.Combobox
+except ImportError:
+    from ttk import Combobox
+    _Combobox = Combobox
 
 emptyList = []
 
 ENTRY_WIDTH_IN_CHARS = 12 # width of a data column entry cell in characters (nominal)
 ENTRY_WIDTH_SCREEN_UNITS = 100
 PADDING = 20 # screen units of padding between entry cells
+
+qnPercentItemType = qname("{http://www.xbrl.org/dtr/type/numeric}num:percentItemType")
+qnPureItemType = qname("{http://www.xbrl.org/2003/instance}xbrli:pureItemType")
+integerItemTypes = {"integerItemType", "nonPositiveIntegerItemType", "negativeIntegerItemType",
+                    "longItemType", "intItemType", "shortItemType", "byteItemType",
+                    "nonNegativeIntegerItemType", "unsignedLongItemType", "unsignedIntItemType",
+                    "unsignedShortItemType", "unsignedByteItemType", "positiveIntegerItemType"}
 
 def viewRenderedGrid(modelXbrl, tabWin, lang=None):
     modelXbrl.modelManager.showStatus(_("viewing rendering"))
@@ -73,9 +83,10 @@ def viewRenderedGrid(modelXbrl, tabWin, lang=None):
     view.viewFrame.bind("<Configure>", view.onConfigure, '+') # frame resized, redo column header wrap length ratios
     view.blockMenuEvents = 0
             
-class ViewRenderedGrid(ViewWinGrid.ViewGrid):
+class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def __init__(self, modelXbrl, tabWin, lang):
-        super(ViewRenderedGrid, self).__init__(modelXbrl, tabWin, "Table", True, lang)
+        super(ViewRenderedGrid, self).__init__(modelXbrl, tabWin, _("Table"),
+                                               False, lang)
         self.newFactItemOptions = ModelInstanceObject.NewFactItemOptions(xbrlInstance=modelXbrl)
         self.factPrototypes = []
         self.aspectEntryObjectIdsNode = {}
@@ -190,7 +201,8 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
         # remove old widgets
         self.viewFrame.clearGrid()
 
-        tblAxisRelSet, xTopStructuralNode, yTopStructuralNode, zTopStructuralNode = resolveAxesStructure(self, viewTblELR) 
+        tblAxisRelSet, xTopStructuralNode, yTopStructuralNode, zTopStructuralNode = resolveAxesStructure(self, viewTblELR)
+        self.table.resizeTable(self.dataFirstRow+self.dataRows-1, self.dataFirstCol+self.dataCols-1, titleRows=self.dataFirstRow-1, titleColumns=self.dataFirstCol-1)
         self.hasTableFilters = bool(self.modelTable.filterRelationships)
         
         if tblAxisRelSet:
@@ -218,29 +230,28 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
             self.aspectEntryObjectIdsNode.clear()
             self.aspectEntryObjectIdsCell.clear()
             self.factPrototypeAspectEntryObjectIds.clear()
-            #print("tbl hdr width rowHdrCols {0}".format(self.rowHdrColWidth))
-            self.gridTblHdr.tblHdrWraplength = 200 # to  adjust dynamically during configure callbacks
-            self.gridTblHdr.tblHdrLabel = \
-                gridHdr(self.gridTblHdr, 0, 0, 
-                        (self.modelTable.genLabel(lang=self.lang, strip=True) or  # use table label, if any 
-                         self.roledefinition),
-                        anchor="nw",
-                        #columnspan=(self.dataFirstCol - 1),
-                        #rowspan=(self.dataFirstRow),
-                        wraplength=200) # in screen units
-                        #wraplength=sum(self.rowHdrColWidth)) # in screen units
+            self.table.initHeaderCellValue((self.modelTable.genLabel(lang=self.lang, strip=True) or  # use table label, if any 
+                                            self.roledefinition),
+                                           0, 0, (self.dataFirstCol - 2),
+                                           (self.dataFirstRow - 2),
+                                           XbrlTable.TG_TOP_LEFT_JUSTIFIED)
             self.zAspectStructuralNodes = defaultdict(set)
             self.zAxis(1, zTopStructuralNode, clearZchoices)
             xStructuralNodes = []
-            self.xAxis(self.dataFirstCol, self.colHdrTopRow, self.colHdrTopRow + self.colHdrRows - 1, 
-                       xTopStructuralNode, xStructuralNodes, self.xAxisChildrenFirst.get(), True, True)
-            self.yAxis(1, self.dataFirstRow,
-                       yTopStructuralNode, self.yAxisChildrenFirst.get(), True, True)
+            colsFoundPlus1, _, _, _ = self.xAxis(self.dataFirstCol, self.colHdrTopRow, self.colHdrTopRow + self.colHdrRows - 1, 
+                                                 xTopStructuralNode, xStructuralNodes, self.xAxisChildrenFirst.get(), True, True)
+            _, rowsFoundPlus1 = self.yAxis(1, self.dataFirstRow,
+                                           yTopStructuralNode, self.yAxisChildrenFirst.get(), True, True)
+            self.table.resizeTable(rowsFoundPlus1-1,
+                                   colsFoundPlus1-1,
+                                   clearData=False)
             for fp in self.factPrototypes: # dereference prior facts
                 if fp is not None:
                     fp.clear()
             self.factPrototypes = []
             self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, self.zAspectStructuralNodes, self.yAxisChildrenFirst.get())
+            self.table.clearModificationStatus()
+            self.table.disableUnusedCells()
                 
             # data cells
             #print("body cells done")
@@ -258,16 +269,14 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
             
     def zAxis(self, row, zStructuralNode, clearZchoices):
         if zStructuralNode is not None:
-            gridBorder(self.gridColHdr, self.dataFirstCol, row, TOPBORDER, columnspan=2)
-            gridBorder(self.gridColHdr, self.dataFirstCol, row, LEFTBORDER)
-            gridBorder(self.gridColHdr, self.dataFirstCol, row, RIGHTBORDER, columnspan=2)
             label = zStructuralNode.header(lang=self.lang)
-            hdr = gridHdr(self.gridColHdr, self.dataFirstCol, row,
-                          label, 
-                          anchor="w", columnspan=2,
-                          wraplength=200, # in screen units
-                          objectId=zStructuralNode.objectId(),
-                          onClick=self.onClick)
+            xValue = self.dataFirstCol-1
+            yValue = row-1
+            self.table.initHeaderCellValue(label,
+                                           xValue, yValue,
+                                           1, 0,
+                                           XbrlTable.TG_LEFT_JUSTIFIED,
+                                           objectId=zStructuralNode.objectId())
     
             if zStructuralNode.choiceStructuralNodes is not None: # combo box
                 valueHeaders = [''.ljust(zChoiceStructuralNode.indent * 4) + # indent if nested choices 
@@ -313,22 +322,20 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                 i = -1
                             valueHeaders.append("(enter typed member)")
                             zAxisTypedDimension = dimConcept
-                combobox = gridCombobox(
-                             self.gridColHdr, self.dataFirstCol + 2, row,
-                             values=valueHeaders,
-                             value=comboBoxValue,
-                             selectindex=zStructuralNode.choiceNodeIndex if i >= 0 else None,
-                             columnspan=2,
-                             state=["readonly"],
-                             comboboxselected=self.onZComboBoxSelected)
+                combobox = self.table.initHeaderCombobox(self.dataFirstCol + 1,
+                                                         row-1,
+                                                         colspan=1,
+                                                         values=valueHeaders,
+                                                         value=comboBoxValue,
+                                                         selectindex=zStructuralNode.choiceNodeIndex if i >= 0 else None,
+                                                         comboboxselected=self.onZComboBoxSelected)
                 combobox.zStructuralNode = zStructuralNode
                 combobox.zAxisIsOpenExplicitDimension = zAxisIsOpenExplicitDimension
                 combobox.zAxisTypedDimension = zAxisTypedDimension
                 combobox.zAxisAspectEntryMode = zAxisAspectEntryMode
                 combobox.zAxisAspect = aspect
                 combobox.zChoiceOrdIndex = row - 1
-                combobox.objectId = hdr.objectId = zStructuralNode.objectId()
-                gridBorder(self.gridColHdr, self.dataFirstCol + 3, row, RIGHTBORDER)
+                combobox.objectId = zStructuralNode.objectId()
                 # add aspect for chosen node
                 self.setZStructuralNodeAspects(chosenStructuralNode)
             else:
@@ -369,19 +376,19 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
         combobox = event.widget
         structuralNode = combobox.zStructuralNode
         if combobox.zAxisAspectEntryMode:
-            aspectValue = structuralNode.aspectEntryHeaderValues.get(combobox.value)
+            aspectValue = structuralNode.aspectEntryHeaderValues.get(combobox.get())
             if aspectValue is not None:
                 self.zOrdinateChoices[combobox.zStructuralNode.definitionNode] = \
-                    structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 'aspectValueLabel': combobox.value}
+                    structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 'aspectValueLabel': combobox.get()}
                 self.view() # redraw grid
-        elif combobox.zAxisIsOpenExplicitDimension and combobox.value == "(all members)":
+        elif combobox.zAxisIsOpenExplicitDimension and combobox.get() == "(all members)":
             # reload combo box
             self.comboboxLoadExplicitDimension(combobox, 
                                                structuralNode, # owner of combobox
                                                structuralNode.choiceStructuralNodes[structuralNode.choiceNodeIndex]) # aspect filter node
             structuralNode.choiceNodeIndex = -1 # use entry aspect value
             combobox.zAxisAspectEntryMode = True
-        elif combobox.zAxisTypedDimension is not None and combobox.value == "(enter typed member)":
+        elif combobox.zAxisTypedDimension is not None and combobox.get() == "(enter typed member)":
             # ask typed member entry
             import tkinter.simpledialog
             result = tkinter.simpledialog.askstring(_("Enter new typed dimension value"), 
@@ -418,9 +425,6 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
             noDescendants = True
             rightCol = leftCol
             widthToSpanParent = 0
-            sideBorder = not xStructuralNodes
-            if atTop and sideBorder and childrenFirst:
-                gridBorder(self.gridColHdr, self.dataFirstCol, 1, LEFTBORDER, rowspan=self.dataFirstRow)
             for xStructuralNode in xParentStructuralNode.childStructuralNodes:
                 if not xStructuralNode.isRollUp:
                     noDescendants = False
@@ -437,81 +441,45 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                     widthToSpanParent += width
                     if childrenFirst:
                         thisCol = rightCol
-                        sideBorder = RIGHTBORDER
                     else:
                         thisCol = leftCol
-                        sideBorder = LEFTBORDER
                     if renderNow and isLabeled:
                         columnspan = (rightCol - leftCol + (1 if nonAbstract else 0))
-                        gridBorder(self.gridColHdr, leftCol, topRow, TOPBORDER, columnspan=columnspan)
-                        gridBorder(self.gridColHdr, leftCol, topRow, 
-                                   sideBorder, columnspan=columnspan,
-                                   rowspan=(rowBelow - topRow + 1) )
                         label = xStructuralNode.header(lang=self.lang,
                                                        returnGenLabel=isinstance(xStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)))
-                        gridHdr(self.gridColHdr, leftCol, topRow, 
-                                label if label else "         ", 
-                                anchor="center",
-                                columnspan=(rightCol - leftCol + (1 if nonAbstract else 0)),
-                                rowspan=(row - topRow + 1) if leafNode else 1,
-                                wraplength=width, # screen units
-                                minwidth=width,
-                                objectId=xStructuralNode.objectId(),
-                                onClick=self.onClick)
+                        xValue = leftCol-1
+                        yValue = topRow-1
+                        self.table.initHeaderCellValue(label if label
+                                                       else "         ",
+                                                       xValue, yValue,
+                                                       columnspan-1,
+                                                       ((row - topRow + 1) if leafNode else 1)-1,
+                                                       XbrlTable.TG_CENTERED,
+                                                       objectId=xStructuralNode.objectId(),
+                                                       isRollUp=columnspan>1 and nonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
                         if nonAbstract:
+                            xValue = thisCol - 1
                             for i, role in enumerate(self.colHdrNonStdRoles):
-                                gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - len(self.colHdrNonStdRoles) + i, TOPBORDER)
-                                gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - len(self.colHdrNonStdRoles) + i, sideBorder)
-                                gridHdr(self.gridColHdr, thisCol, self.dataFirstRow - len(self.colHdrNonStdRoles) + i, 
-                                        xStructuralNode.header(role=role, lang=self.lang), 
-                                        anchor="center",
-                                        wraplength=ENTRY_WIDTH_SCREEN_UNITS, # screen units
-                                        minwidth=ENTRY_WIDTH_SCREEN_UNITS,
-                                        objectId=xStructuralNode.objectId(),
-                                        onClick=self.onClick)
-                            ''' was
-                            if self.colHdrDocRow:
-                                gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - 1 - self.rowHdrCodeCol, TOPBORDER)
-                                gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - 1 - self.rowHdrCodeCol, sideBorder)
-                                gridHdr(self.gridColHdr, thisCol, self.dataFirstRow - 1 - self.rowHdrCodeCol, 
-                                        xStructuralNode.header(role="http://www.xbrl.org/2008/role/documentation",
-                                                               lang=self.lang), 
-                                        anchor="center",
-                                        wraplength=ENTRY_WIDTH_SCREEN_UNITS, # screen units
-                                        objectId=xStructuralNode.objectId(),
-                                        onClick=self.onClick)
-                            if self.colHdrCodeRow:
-                                gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - 1, TOPBORDER)
-                                gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - 1, sideBorder)
-                                gridHdr(self.gridColHdr, thisCol, self.dataFirstRow - 1, 
-                                        xStructuralNode.header(role="http://www.eurofiling.info/role/2010/coordinate-code"),
-                                        anchor="center",
-                                        wraplength=ENTRY_WIDTH_SCREEN_UNITS, # screen units
-                                        objectId=xStructuralNode.objectId(),
-                                        onClick=self.onClick)
-                            '''
-                            gridBorder(self.gridColHdr, thisCol, self.dataFirstRow - 1, BOTTOMBORDER)
+                                j = (self.dataFirstRow
+                                     - len(self.colHdrNonStdRoles) + i)-1
+                                self.table.initHeaderCellValue(xStructuralNode.header(role=role, lang=self.lang),
+                                                         xValue,
+                                                         j,
+                                                         0,
+                                                         0,
+                                                         XbrlTable.TG_CENTERED,
+                                                         objectId=xStructuralNode.objectId())
                             xStructuralNodes.append(xStructuralNode)
                     if nonAbstract:
                         rightCol += 1
                     if renderNow and not childrenFirst:
                         self.xAxis(leftCol + (1 if nonAbstract else 0), topRow + 1, rowBelow, xStructuralNode, xStructuralNodes, childrenFirst, True, False) # render on this pass
                     leftCol = rightCol
-            if atTop and sideBorder and not childrenFirst:
-                gridBorder(self.gridColHdr, rightCol - 1, 1, RIGHTBORDER, rowspan=self.dataFirstRow)
             return (rightCol, parentRow, widthToSpanParent, noDescendants)
             
     def yAxis(self, leftCol, row, yParentStructuralNode, childrenFirst, renderNow, atLeft):
         if yParentStructuralNode is not None:
             nestedBottomRow = row
-            if atLeft:
-                gridBorder(self.gridRowHdr, self.rowHdrCols + len(self.rowHdrNonStdRoles), # was: self.rowHdrDocCol + self.rowHdrCodeCol, 
-                           self.dataFirstRow, 
-                           RIGHTBORDER, 
-                           rowspan=self.dataRows)
-                gridBorder(self.gridRowHdr, 1, self.dataFirstRow + self.dataRows - 1, 
-                           BOTTOMBORDER, 
-                           columnspan=(self.rowHdrCols + len(self.rowHdrNonStdRoles))) # was: self.rowHdrDocCol + self.rowHdrCodeCol))
             for yStructuralNode in yParentStructuralNode.childStructuralNodes:
                 if not yStructuralNode.isRollUp:
                     isAbstract = (yStructuralNode.isAbstract or 
@@ -526,14 +494,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                     if childrenFirst and isNonAbstract:
                         row = nextRow
                     if renderNow and isLabeled:
-                        columnspan = self.rowHdrCols - leftCol + 1 if isNonAbstract or nextRow == row else None
-                        gridBorder(self.gridRowHdr, leftCol, topRow, LEFTBORDER, 
-                                   rowspan=(nestRow - topRow + 1) )
-                        gridBorder(self.gridRowHdr, leftCol, topRow, TOPBORDER, 
-                                   columnspan=(1 if childrenFirst and nextRow > row else columnspan))
-                        if childrenFirst and row > topRow:
-                            gridBorder(self.gridRowHdr, leftCol + 1, row, TOPBORDER, 
-                                       columnspan=(self.rowHdrCols - leftCol))
+                        columnspan = self.rowHdrCols - leftCol + 1 if isNonAbstract or nextRow == row else 1
                         depth = yStructuralNode.depth
                         wraplength = (self.rowHdrColWidth[depth] if isAbstract else
                                       self.rowHdrWrapLength - sum(self.rowHdrColWidth[0:depth]))
@@ -543,61 +504,41 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                                        returnGenLabel=isinstance(yStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)),
                                                        recurseParent=not isinstance(yStructuralNode.definitionNode, ModelFilterDefinitionNode))
                         if label != OPEN_ASPECT_ENTRY_SURROGATE:
-                            gridHdr(self.gridRowHdr, leftCol, row, 
-                                    label if label is not None else "         ", 
-                                    anchor=("w" if isNonAbstract or nestRow == row else "center"),
-                                    columnspan=columnspan,
-                                    rowspan=(nestRow - row if isAbstract else None),
-                                    # wraplength is in screen units
-                                    wraplength=wraplength,
-                                    #minwidth=self.rowHdrColWidth[leftCol],
-                                    minwidth=(RENDER_UNITS_PER_CHAR if isNonAbstract and nextRow > topRow else None),
-                                    objectId=yStructuralNode.objectId(),
-                                    onClick=self.onClick)
+                            # TODO: check if the following parameters have to
+                            # be used:
+                            # - wraplength=wraplength
+                            # - minwidth=(RENDER_UNITS_PER_CHAR if isNonAbstract and nextRow > topRow else None)
+                            xValue = leftCol-1
+                            yValue = row-1
+                            self.table.initHeaderCellValue(label if label is not None else "         ",
+                                                           xValue, yValue,
+                                                           columnspan-1,
+                                                           (nestRow - row if isAbstract else 1)-1,
+                                                           (XbrlTable.TG_LEFT_JUSTIFIED
+                                                            if isNonAbstract or nestRow == row
+                                                            else XbrlTable.TG_CENTERED),
+                                                           objectId=yStructuralNode.objectId(),
+                                                           isRollUp=columnspan>1 and isNonAbstract and (len(yStructuralNode.childStructuralNodes)>1 or (len(yStructuralNode.childStructuralNodes)==1 and not(yStructuralNode.childStructuralNodes[0].isAbstract))))
                         else:
                             self.aspectEntryObjectIdsNode[yStructuralNode.aspectEntryObjectId] = yStructuralNode
-                            self.aspectEntryObjectIdsCell[yStructuralNode.aspectEntryObjectId] = gridCombobox(
-                                     self.gridRowHdr, leftCol, row, 
-                                     values=self.aspectEntryValues(yStructuralNode),  
-                                     width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5)), # width is in characters, not screen units
-                                     objectId=yStructuralNode.aspectEntryObjectId,
-                                     comboboxselected=self.onAspectComboboxSelection)
+                            # TODO: is the following still needed?
+                            # width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5))
+                            self.aspectEntryObjectIdsCell[yStructuralNode.aspectEntryObjectId] = self.table.initHeaderCombobox(leftCol-1,
+                                                                                                                               row-1,
+                                                                                                                               values=self.aspectEntryValues(yStructuralNode),
+                                                                                                                               objectId=yStructuralNode.aspectEntryObjectId,
+                                                                                                                               comboboxselected=self.onAspectComboboxSelection)
                         if isNonAbstract:
                             for i, role in enumerate(self.rowHdrNonStdRoles):
                                 isCode = "code" in role
-                                docCol = self.dataFirstCol - len(self.rowHdrNonStdRoles) + i
-                                gridBorder(self.gridRowHdr, docCol, row, TOPBORDER)
-                                gridBorder(self.gridRowHdr, docCol, row, LEFTBORDER)
-                                gridHdr(self.gridRowHdr, docCol, row, 
-                                        yStructuralNode.header(role=role, lang=self.lang), 
-                                        anchor="c" if isCode else "w",
-                                        wraplength=40 if isCode else ENTRY_WIDTH_SCREEN_UNITS, # screen units
-                                        objectId=yStructuralNode.objectId(),
-                                        onClick=self.onClick)
-                            ''' was:
-                            if self.rowHdrDocCol:
-                                docCol = self.dataFirstCol - 1 - self.rowHdrCodeCol
-                                gridBorder(self.gridRowHdr, docCol, row, TOPBORDER)
-                                gridBorder(self.gridRowHdr, docCol, row, LEFTBORDER)
-                                gridHdr(self.gridRowHdr, docCol, row, 
-                                        yStructuralNode.header(role="http://www.xbrl.org/2008/role/documentation",
-                                                             lang=self.lang), 
-                                        anchor="w",
-                                        wraplength=ENTRY_WIDTH_SCREEN_UNITS, # screen units
-                                        objectId=yStructuralNode.objectId(),
-                                        onClick=self.onClick)
-                            if self.rowHdrCodeCol:
-                                codeCol = self.dataFirstCol - 1
-                                gridBorder(self.gridRowHdr, codeCol, row, TOPBORDER)
-                                gridBorder(self.gridRowHdr, codeCol, row, LEFTBORDER)
-                                gridHdr(self.gridRowHdr, codeCol, row, 
-                                        yStructuralNode.header(role="http://www.eurofiling.info/role/2010/coordinate-code"),
-                                        anchor="center",
-                                        wraplength=40, # screen units
-                                        objectId=yStructuralNode.objectId(),
-                                        onClick=self.onClick)
-                            # gridBorder(self.gridRowHdr, leftCol, self.dataFirstRow - 1, BOTTOMBORDER)
-                            '''
+                                docCol = self.dataFirstCol - len(self.rowHdrNonStdRoles) + i-1
+                                yValue = row-1
+                                # TODO: wraplength=40 if isCode else ENTRY_WIDTH_SCREEN_UNITS
+                                self.table.initHeaderCellValue(yStructuralNode.header(role=role, lang=self.lang),
+                                                               docCol, yValue,
+                                                               0, 0,
+                                                               XbrlTable.TG_CENTERED if isCode else XbrlTable.TG_RIGHT_JUSTIFIED,
+                                                               objectId=yStructuralNode.objectId())
                     if isNonAbstract:
                         row += 1
                     elif childrenFirst:
@@ -611,7 +552,28 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                     if not childrenFirst:
                         dummy, row = self.yAxis(leftCol + isLabeled, row, yStructuralNode, childrenFirst, renderNow, False) # render on this pass
             return (nestedBottomRow, row)
-    
+
+    def getbackgroundColor(self, factPrototype):
+        bgColor = XbrlTable.TG_BG_DEFAULT # default monetary
+        concept = factPrototype.concept
+        isNumeric = concept.isNumeric
+        # isMonetary = concept.isMonetary
+        isInteger = concept.baseXbrliType in integerItemTypes
+        isPercent = concept.typeQname in (qnPercentItemType, qnPureItemType)
+        isString = concept.baseXbrliType in ("stringItemType", "normalizedStringItemType")
+        isDate = concept.baseXbrliType in ("dateTimeItemType", "dateItemType")
+        if isNumeric:
+            if concept.isShares or isInteger:
+                bgColor = XbrlTable.TG_BG_ORANGE
+            elif isPercent:
+                bgColor = XbrlTable.TG_BG_YELLOW
+            # else assume isMonetary
+        elif isDate:
+            bgColor = XbrlTable.TG_BG_GREEN
+        elif isString:
+            bgColor = XbrlTable.TG_BG_VIOLET
+        return bgColor;
+
     def bodyCells(self, row, yParentStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst):
         if yParentStructuralNode is not None:
             dimDefaults = self.modelXbrl.qnameDimensionDefaults
@@ -631,7 +593,6 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                             else:
                                 yAspectStructuralNodes[aspect].add(yStructuralNode)
                     yTagSelectors = yStructuralNode.tagSelectors
-                    gridSpacer(self.gridBody, self.dataFirstCol, row, LEFTBORDER)
                     # data for columns of row
                     #print ("row " + str(row) + "yNode " + yStructuralNode.definitionNode.objectId() )
                     ignoreDimValidity = self.ignoreDimValidity.get()
@@ -700,7 +661,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                     else:
                                         value = fact.effectiveValue
                                     objectId = fact.objectId()
-                                    justify = "right" if fact.isNumeric else "left"
+                                    justify = XbrlTable.TG_RIGHT_JUSTIFIED if fact.isNumeric else XbrlTable.TG_LEFT_JUSTIFIED
                                     break
                         if (conceptNotAbstract and
                             (value is not None or ignoreDimValidity or isFactDimensionallyValid(self, fp) or
@@ -713,7 +674,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                         self.factPrototypeAspectEntryObjectIds[objectId].add(aspectValue) 
                             modelConcept = fp.concept
                             if (justify is None) and modelConcept is not None:
-                                justify = "right" if modelConcept.isNumeric else "left"
+                                justify = XbrlTable.TG_RIGHT_JUSTIFIED if modelConcept.isNumeric else XbrlTable.TG_LEFT_JUSTIFIED
                             if modelConcept is not None and modelConcept.isEnumeration:
                                 myValidationObject = ValidateXbrl(self.modelXbrl)
                                 enumerationSet = ValidateXbrlDimensions.usableEnumerationMembers(myValidationObject, modelConcept)
@@ -729,16 +690,15 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                 except ValueError:
                                     effectiveValue = enumerationValues[0]
                                     selectedIdx = 0
-                                gridCombobox(self.gridBody,
-                                             self.dataFirstCol + i, row,
-                                             value=effectiveValue,
-                                             values=enumerationValues,
-                                             width=ENTRY_WIDTH_IN_CHARS,
-                                             objectId=objectId,
-                                             selectindex=selectedIdx,
-                                             state=["readonly"],
-                                             onClick=self.onClick,
-                                             codes=enumerationDict)
+                                # TODO: check if this is still used:
+                                # width=ENTRY_WIDTH_IN_CHARS,
+                                self.table.initCellCombobox(effectiveValue,
+                                                            enumerationValues,
+                                                            self.dataFirstCol + i-1,
+                                                            row-1,
+                                                            objectId=objectId,
+                                                            selectindex=selectedIdx,
+                                                            codes=enumerationDict)
                             elif modelConcept is not None and modelConcept.type.qname == XbrlConst.qnXbrliQNameItemType:
                                 if eurofilingModelPrefix in concept.nsmap and concept.nsmap.get(eurofilingModelPrefix) == eurofilingModelNamespace:
                                     hierarchy = concept.get("{" + eurofilingModelNamespace + "}" + "hierarchy", None)
@@ -770,10 +730,15 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                 else:
                                     newAspectValues = None
                                 if newAspectValues is None:
-                                    gridCell(self.gridBody, self.dataFirstCol + i, row, value,
-                                             justify=justify, 
-                                             width=ENTRY_WIDTH_IN_CHARS, # width is in characters, not screen units
-                                             objectId=objectId, onClick=self.onClick)
+                                    # TODO: check if the following parameter
+                                    # is needed:
+                                    # width=ENTRY_WIDTH_IN_CHARS
+                                    self.table.initCellValue(value,
+                                                             self.dataFirstCol + i-1,
+                                                             row-1,
+                                                             justification=justify,
+                                                             objectId=objectId,
+                                                             backgroundColourTag=self.getbackgroundColor(fp))
                                 else:
                                     qNameValues = newAspectValues
                                     try:
@@ -782,16 +747,16 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                     except ValueError:
                                         effectiveValue = qNameValues[0]
                                         selectedIdx = 0
-                                    gridCombobox(self.gridBody,
-                                                 self.dataFirstCol + i, row,
-                                                 value=effectiveValue,
-                                                 values=qNameValues,
-                                                 width=ENTRY_WIDTH_IN_CHARS,
-                                                 objectId=objectId,
-                                                 selectindex=selectedIdx,
-                                                 state=["readonly"],
-                                                 onClick=self.onClick,
-                                                 codes=newAspectQNames)
+                                    # TODO: check if the following parameter
+                                    # is needed:
+                                    # width=ENTRY_WIDTH_IN_CHARS,
+                                    self.table.initCellCombobox(effectiveValue,
+                                                                qNameValues,
+                                                                self.dataFirstCol + i-1,
+                                                                row-1,
+                                                                objectId=objectId,
+                                                                selectindex=selectedIdx,
+                                                                codes=newAspectQNames)
                             elif modelConcept is not None and modelConcept.type.qname == XbrlConst.qnXbrliBooleanItemType:
                                 booleanValues = ["",
                                                  XbrlConst.booleanValueTrue,
@@ -802,25 +767,27 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                                 except ValueError:
                                     effectiveValue = booleanValues[0]
                                     selectedIdx = 0
-                                gridCombobox(self.gridBody,
-                                             self.dataFirstCol + i, row,
-                                             value=effectiveValue,
-                                             values=booleanValues,
-                                             width=ENTRY_WIDTH_IN_CHARS,
-                                             objectId=objectId,
-                                             selectindex=selectedIdx,
-                                             state=["readonly"],
-                                             onClick=self.onClick)
+                                # TODO: check if the following parameter
+                                # is needed:
+                                # width=ENTRY_WIDTH_IN_CHARS,
+                                self.table.initCellCombobox(effectiveValue,
+                                                            booleanValues,
+                                                            self.dataFirstCol + i-1,
+                                                            row-1,
+                                                            objectId=objectId,
+                                                            selectindex=selectedIdx)
                             else:
-                                gridCell(self.gridBody, self.dataFirstCol + i, row, value,
-                                         justify=justify, 
-                                         width=ENTRY_WIDTH_IN_CHARS, # width is in characters, not screen units
-                                         objectId=objectId, onClick=self.onClick)
+                                # TODO: check if the following parameter
+                                # is needed:
+                                # width=ENTRY_WIDTH_IN_CHARS
+                                self.table.initCellValue(value,
+                                                         self.dataFirstCol + i-1,
+                                                         row-1,
+                                                         justification=justify,
+                                                         objectId=objectId,
+                                                         backgroundColourTag=self.getbackgroundColor(fp))
                         else:
                             fp.clear()  # dereference
-                            gridSpacer(self.gridBody, self.dataFirstCol + i, row, CENTERCELL)
-                        gridSpacer(self.gridBody, self.dataFirstCol + i, row, RIGHTBORDER)
-                        gridSpacer(self.gridBody, self.dataFirstCol + i, row, BOTTOMBORDER)
                     row += 1
                 if not yChildrenFirst:
                     row = self.bodyCells(row, yStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst)
@@ -869,10 +836,15 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
     def onConfigure(self, event, *args):
         if not self.blockMenuEvents:
             lastFrameWidth = getattr(self, "lastFrameWidth", 0)
+            lastFrameHeight = getattr(self, "lastFrameHeight", 0)
             frameWidth = self.tabWin.winfo_width()
-            if lastFrameWidth != frameWidth:
+            frameHeight = self.tabWin.winfo_height()
+            if lastFrameWidth != frameWidth or lastFrameHeight != frameHeight:
                 self.updateInstanceFromFactPrototypes()
                 self.lastFrameWidth = frameWidth
+                self.lastFrameHeight = frameHeight
+                self.table.config(maxheight=frameHeight-self.viewFrame.horizontalScrollbarHeight,
+                                  maxwidth=frameWidth-self.viewFrame.verticalScrollbarWidth)
                 if lastFrameWidth:
                     # frame resized, recompute row header column widths and lay out table columns
                     """
@@ -893,151 +865,149 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
         self.updateInstanceFromFactPrototypes()
 
     def hasChangesToSave(self):
-        for bodyCell in self.gridRowHdr.winfo_children():
-            if isinstance(bodyCell, (gridCell,gridCombobox)) and bodyCell.isChanged:
-                return True
-        for bodyCell in self.gridBody.winfo_children():
-            if isinstance(bodyCell, (gridCell,gridCombobox)) and bodyCell.isChanged:
-                return True
-        return False
+        return len(self.table.modifiedCells)
 
     def updateInstanceFromFactPrototypes(self):
         # Only update the model if it already exists
         if self.modelXbrl is not None \
            and self.modelXbrl.modelDocument.type == ModelDocument.Type.INSTANCE:
             instance = self.modelXbrl
+            cntlr =  instance.modelManager.cntlr
             newCntx = ModelXbrl.AUTO_LOCATE_ELEMENT
             newUnit = ModelXbrl.AUTO_LOCATE_ELEMENT
+            tbl = self.table
             # check user keyed changes to aspects
             aspectEntryChanges = {} # index = widget ID,  value = widget contents
-            for bodyCell in self.gridRowHdr.winfo_children():
-                if isinstance(bodyCell, (gridCell, gridCombobox)) and bodyCell.isChanged:
-                    objId = bodyCell.objectId
-                    if objId:
-                        if objId[0] == OPEN_ASPECT_ENTRY_SURROGATE:
-                            bodyCell.isChanged = False # clear change flag
-                            aspectEntryChanges[objId] = bodyCell.value
-
             aspectEntryChangeIds = _DICT_SET(aspectEntryChanges.keys())
-            # check user keyed changes to facts
-            for bodyCell in self.gridBody.winfo_children():
-                if isinstance(bodyCell, (gridCell, gridCombobox)) and bodyCell.isChanged:
-                    if (isinstance(bodyCell, gridCombobox)):
-                        codeDict = bodyCell.codes
-                        if len(codeDict)>0: # the drop-down list shows labels, we want to have the actual values
-                            bodyCellValue = bodyCell.value
-                            value = codeDict.get(bodyCellValue, None)
-                            if value is None:
-                                value = bodyCellValue # this must be a qname!
-                        else:
-                            value = bodyCell.value
+            for modifiedCell in tbl.getCoordinatesOfModifiedCells():
+                objId = tbl.getObjectId(modifiedCell)
+                if objId is not None and len(objId)>0:
+                    if tbl.isHeaderCell(modifiedCell):
+                        if objId[0] == OPEN_ASPECT_ENTRY_SURROGATE:
+                            aspectEntryChanges[objId] = tbl.getTableValue(modifiedCell)
                     else:
-                        value = bodyCell.value
-                    objId = bodyCell.objectId
-                    if objId:
-                        if (objId[0] == "f" and 
-                            (bodyCell.isChanged or # change in fact value widget or any open aspect widget
-                                self.factPrototypeAspectEntryObjectIds[objId] & aspectEntryChangeIds)):
-                            factPrototypeIndex = int(objId[1:])
-                            factPrototype = self.factPrototypes[factPrototypeIndex]
-                            concept = factPrototype.concept
-                            entityIdentScheme = self.newFactItemOptions.entityIdentScheme
-                            entityIdentValue = self.newFactItemOptions.entityIdentValue
-                            periodType = factPrototype.concept.periodType
-                            periodStart = self.newFactItemOptions.startDateDate if periodType == "duration" else None
-                            periodEndInstant = self.newFactItemOptions.endDateDate
-                            qnameDims = factPrototype.context.qnameDims
-                            newAspectValues = self.newFactOpenAspects(objId)
-                            if newAspectValues is None:
-                                self.modelXbrl.modelManager.showStatus(_("Some open values are missing in an axis, the save is incomplete"), 5000)
-                                continue
-                            qnameDims.update(newAspectValues)
-                            # open aspects widgets
-                            prevCntx = instance.matchContext(
-                                entityIdentScheme, entityIdentValue, periodType, periodStart, periodEndInstant, 
-                                qnameDims, [], [])
-                            if prevCntx is not None:
-                                cntxId = prevCntx.id
-                                if self.modelXbrl.factAlreadyExists(concept.qname, cntxId):
-                                    self.modelXbrl.modelManager.addToLog(_("Value %s will not be saved, because fact '%s' already exists somewhere else") % (value, concept.label()), level=logging.ERROR)
-                                    continue
+                        # check user keyed changes to facts
+                        cellIndex = str(modifiedCell)
+                        comboboxCells = tbl.window_names(cellIndex)
+                        if comboboxCells is not None and len(comboboxCells)>0:
+                            comboName = tbl.window_cget(cellIndex, '-window')
+                            combobox = cntlr.parent.nametowidget(comboName)
+                        else:
+                            combobox = None
+                        if isinstance(combobox, _Combobox):
+                            codeDict = combobox.codes
+                            if len(codeDict)>0: # the drop-down list shows labels, we want to have the actual values
+                                bodyCellValue = tbl.getTableValue(modifiedCell)
+                                value = codeDict.get(bodyCellValue, None)
+                                if value is None:
+                                    value = bodyCellValue # this must be a qname!
                             else:
-                                newCntx = instance.createContext(entityIdentScheme, entityIdentValue, 
-                                    periodType, periodStart, periodEndInstant, 
-                                    concept.qname, qnameDims, [], [], 
-                                    afterSibling=newCntx)
-                                cntxId = newCntx.id # need new context
-                            # new context
-                            if concept.isNumeric:
-                                if concept.isMonetary:
-                                    unitMeasure = qname(XbrlConst.iso4217, self.newFactItemOptions.monetaryUnit)
-                                    unitMeasure.prefix = "iso4217" # want to save with a recommended prefix
-                                    decimals = self.newFactItemOptions.monetaryDecimals
-                                elif concept.isShares:
-                                    unitMeasure = XbrlConst.qnXbrliShares
-                                    decimals = self.newFactItemOptions.nonMonetaryDecimals
+                                value = tbl.getTableValue(modifiedCell)
+                        else:
+                            value = tbl.getTableValue(modifiedCell)
+                        objId = tbl.getObjectId(modifiedCell)
+                        if objId is not None and len(objId)>0:
+                            if objId[0] == "f":
+                                factPrototypeIndex = int(objId[1:])
+                                factPrototype = self.factPrototypes[factPrototypeIndex]
+                                concept = factPrototype.concept
+                                entityIdentScheme = self.newFactItemOptions.entityIdentScheme
+                                entityIdentValue = self.newFactItemOptions.entityIdentValue
+                                periodType = factPrototype.concept.periodType
+                                periodStart = self.newFactItemOptions.startDateDate if periodType == "duration" else None
+                                periodEndInstant = self.newFactItemOptions.endDateDate
+                                qnameDims = factPrototype.context.qnameDims
+                                newAspectValues = self.newFactOpenAspects(objId)
+                                if newAspectValues is None:
+                                    self.modelXbrl.modelManager.showStatus(_("Some open values are missing in an axis, the save is incomplete"), 5000)
+                                    continue
+                                qnameDims.update(newAspectValues)
+                                # open aspects widgets
+                                prevCntx = instance.matchContext(
+                                    entityIdentScheme, entityIdentValue, periodType, periodStart, periodEndInstant, 
+                                    qnameDims, [], [])
+                                if prevCntx is not None:
+                                    cntxId = prevCntx.id
+                                    if self.modelXbrl.factAlreadyExists(concept.qname, cntxId):
+                                        self.modelXbrl.modelManager.addToLog(_("Value %s will not be saved, because fact '%s' already exists somewhere else") % (value, concept.label()), level=logging.ERROR)
+                                        continue
                                 else:
-                                    unitMeasure = XbrlConst.qnXbrliPure
-                                    decimals = self.newFactItemOptions.nonMonetaryDecimals
-                                prevUnit = instance.matchUnit([unitMeasure], [])
-                                if prevUnit is not None:
-                                    unitId = prevUnit.id
-                                else:
-                                    newUnit = instance.createUnit([unitMeasure], [], afterSibling=newUnit)
-                                    unitId = newUnit.id
-                            attrs = [("contextRef", cntxId)]
-                            if concept.isNumeric:
-                                attrs.append(("unitRef", unitId))
-                                value = Locale.atof(self.modelXbrl.locale, value, str.strip)
-                                # Check if there is a custom method to compute the decimals
-                                for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.ComputeDecimals"):
-                                    stopPlugin, decimals = pluginXbrlMethod(instance.locale, value, concept, decimals)
-                                    if stopPlugin == True:
-                                        break;
-                                attrs.append(("decimals", decimals))
-                            newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
-                            bodyCell.objectId = newFact.objectId() # switch cell to now use fact ID
-                            if self.factPrototypes[factPrototypeIndex] is not None:
-                                self.factPrototypes[factPrototypeIndex].clear()
-                            self.factPrototypes[factPrototypeIndex] = None #dereference fact prototype
-                            bodyCell.isChanged = False # clear change flag
-                        elif objId[0] != "a": # instance fact, not prototype
-                            fact = self.modelXbrl.modelObject(objId)
-                            if fact.concept.isNumeric:
-                                value = Locale.atof(self.modelXbrl.locale, value, str.strip)
-                                if fact.concept.isMonetary:
-                                    unitMeasure = qname(XbrlConst.iso4217, self.newFactItemOptions.monetaryUnit)
-                                    unitMeasure.prefix = "iso4217" # want to save with a recommended prefix
-                                    decimals = self.newFactItemOptions.monetaryDecimals
-                                elif fact.concept.isShares:
-                                    unitMeasure = XbrlConst.qnXbrliShares
-                                    decimals = self.newFactItemOptions.nonMonetaryDecimals
-                                else:
-                                    unitMeasure = XbrlConst.qnXbrliPure
-                                    decimals = self.newFactItemOptions.nonMonetaryDecimals
-                                # Check if there is a custom method to compute the decimals
-                                for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.ComputeDecimals"):
-                                    stopPlugin, decimals = pluginXbrlMethod(instance.locale, value, fact.concept, decimals)
-                                    if stopPlugin == True:
-                                        break;
-                            if fact.value != str(value):
-                                if fact.isNil != (not value):
-                                    fact.isNil = not value
-                                    instance.factIndex.updateFact(fact) # for the time being, only the isNil value can change
-                                if fact.concept.isNumeric and (not fact.isNil): # if nil, there is no need to update these values
-                                    fact.decimals = decimals
+                                    newCntx = instance.createContext(entityIdentScheme, entityIdentValue, 
+                                        periodType, periodStart, periodEndInstant, 
+                                        concept.qname, qnameDims, [], [], 
+                                        afterSibling=newCntx)
+                                    cntxId = newCntx.id # need new context
+                                # new context
+                                if concept.isNumeric:
+                                    if concept.isMonetary:
+                                        unitMeasure = qname(XbrlConst.iso4217, self.newFactItemOptions.monetaryUnit)
+                                        unitMeasure.prefix = "iso4217" # want to save with a recommended prefix
+                                        decimals = self.newFactItemOptions.monetaryDecimals
+                                    elif concept.isShares:
+                                        unitMeasure = XbrlConst.qnXbrliShares
+                                        decimals = self.newFactItemOptions.nonMonetaryDecimals
+                                    else:
+                                        unitMeasure = XbrlConst.qnXbrliPure
+                                        decimals = self.newFactItemOptions.nonMonetaryDecimals
                                     prevUnit = instance.matchUnit([unitMeasure], [])
                                     if prevUnit is not None:
                                         unitId = prevUnit.id
                                     else:
                                         newUnit = instance.createUnit([unitMeasure], [], afterSibling=newUnit)
                                         unitId = newUnit.id
-                                    fact.unitID = unitId
-                                fact.text = str(value)
-                                instance.setIsModified()
-                                XmlValidate.validate(instance, fact)
-                            bodyCell.isChanged = False # clear change flag
-                        
+                                attrs = [("contextRef", cntxId)]
+                                if concept.isNumeric:
+                                    attrs.append(("unitRef", unitId))
+                                    value = Locale.atof(self.modelXbrl.locale, value, str.strip)
+                                    # Check if there is a custom method to compute the decimals
+                                    for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.ComputeDecimals"):
+                                        stopPlugin, decimals = pluginXbrlMethod(instance.locale, value, concept, decimals)
+                                        if stopPlugin == True:
+                                            break;
+                                    attrs.append(("decimals", decimals))
+                                newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
+                                tbl.setObjectId(modifiedCell,
+                                                newFact.objectId()) # switch cell to now use fact ID
+                                if self.factPrototypes[factPrototypeIndex] is not None:
+                                    self.factPrototypes[factPrototypeIndex].clear()
+                                self.factPrototypes[factPrototypeIndex] = None #dereference fact prototype
+                            elif objId[0] != "a": # instance fact, not prototype
+                                fact = self.modelXbrl.modelObject(objId)
+                                if fact.concept.isNumeric:
+                                    value = Locale.atof(self.modelXbrl.locale, value, str.strip)
+                                    if fact.concept.isMonetary:
+                                        unitMeasure = qname(XbrlConst.iso4217, self.newFactItemOptions.monetaryUnit)
+                                        unitMeasure.prefix = "iso4217" # want to save with a recommended prefix
+                                        decimals = self.newFactItemOptions.monetaryDecimals
+                                    elif fact.concept.isShares:
+                                        unitMeasure = XbrlConst.qnXbrliShares
+                                        decimals = self.newFactItemOptions.nonMonetaryDecimals
+                                    else:
+                                        unitMeasure = XbrlConst.qnXbrliPure
+                                        decimals = self.newFactItemOptions.nonMonetaryDecimals
+                                    # Check if there is a custom method to compute the decimals
+                                    for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.ComputeDecimals"):
+                                        stopPlugin, decimals = pluginXbrlMethod(instance.locale, value, fact.concept, decimals)
+                                        if stopPlugin == True:
+                                            break;
+                                if fact.value != str(value):
+                                    if fact.isNil != (not value):
+                                        fact.isNil = not value
+                                        instance.factIndex.updateFact(fact) # for the time being, only the isNil value can change
+                                    if fact.concept.isNumeric and (not fact.isNil): # if nil, there is no need to update these values
+                                        fact.decimals = decimals
+                                        prevUnit = instance.matchUnit([unitMeasure], [])
+                                        if prevUnit is not None:
+                                            unitId = prevUnit.id
+                                        else:
+                                            newUnit = instance.createUnit([unitMeasure], [], afterSibling=newUnit)
+                                            unitId = newUnit.id
+                                        fact.unitID = unitId
+                                    fact.text = str(value)
+                                    instance.setIsModified()
+                                    XmlValidate.validate(instance, fact)
+            tbl.clearModificationStatus()
+
     def saveInstance(self, newFilename=None, onSaved=None):
         # newFilename = None # only used when a new instance must be created
         
@@ -1077,7 +1047,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
                 if aspect != Aspect.DIMENSIONS:
                     break
             gridCellItem = self.aspectEntryObjectIdsCell[aspectObjId]
-            value = gridCellItem.value
+            value = gridCellItem.get()
             # is aspect in a childStructuralNode? 
             if value is not None and OPEN_ASPECT_ENTRY_SURROGATE in aspectObjId and len(value)==0:
                 return None # some values are missing!
@@ -1138,7 +1108,7 @@ class ViewRenderedGrid(ViewWinGrid.ViewGrid):
 
     def onAspectComboboxSelection(self, event):
         gridCombobox = event.widget
-        if gridCombobox.value == "(all members)":
+        if gridCombobox.get() == "(all members)":
             structuralNode = self.aspectEntryObjectIdsNode[gridCombobox.objectId]
             self.comboboxLoadExplicitDimension(gridCombobox, structuralNode, structuralNode)
             

@@ -48,7 +48,7 @@ def ebaDecimals(locale, value, concept, defaultDecimals):
 __pluginInfo__ = {
     'name': 'EBA decimals improvement',
     'version': '1.1',
-    'description': "This module changes the decimal attribute if does not conform with the EBA recommendations. Do not use it in conjunction with ebaDecimalsFromAmounts",
+    'description': "This module changes the decimal attribute if it does not conform with the EBA recommendations. Do not use it in conjunction with ebaDecimalsFromAmounts",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',
     'copyright': '(c) Copyright 2015 Acsone S. A.',
