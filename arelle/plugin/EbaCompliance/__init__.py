@@ -151,7 +151,8 @@ class DialogNewFileOptions(Toplevel):
         
         self.ebaTaxonomyVersion = EBA_TAXONOMY_DEFAULT_VERSION
         self.ebaReportingType = EBA_REPORTING_TYPE_DEFAULT
-        self.setEntryPoints()  
+        self.setEntryPoints()
+        self.ebaEntryPointKey = self.ebaEntryPointValues[0]
         self.options = EbaNewFileOptions(self.ebaTaxonomyVersion, self.ebaReportingType,
                                          self.ebaEntryPointValues[0])
         
@@ -241,17 +242,17 @@ class DialogNewFileOptions(Toplevel):
     def onEntryPointChanged(self, event):
         combobox = event.widget
         self.ebaEntryPointKey = combobox.value
-            
+
     def onReportTypeChanged(self, event):
         combobox = event.widget
         self.ebaReportingType = combobox.value
         self.setEntryPointsCombo()
-            
+
     def onTaxonomyVersionChanged(self, event):
         combobox = event.widget
         self.ebaTaxonomyVersion = combobox.value
         self.setEntryPointsCombo()
-    
+
     def setEntryPointsCombo(self):
         self.setEntryPoints()
         self.cellEntryPoint['values'] = self.ebaEntryPointValues
@@ -259,11 +260,11 @@ class DialogNewFileOptions(Toplevel):
         if self.cellEntryPoint.value not in self.ebaEntryPointValues:
             self.cellEntryPoint.current(0)
             self.ebaEntryPointKey = self.ebaEntryPointValues[0]
-            
+
     def setEntryPoints(self):
         self.entryPoints = EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE.get(self.ebaReportingType).get(self.ebaTaxonomyVersion)
         self.ebaEntryPointValues = sorted(self.entryPoints.keys())
-    
+
     @property
     def newUrl(self):
         options = self.options
