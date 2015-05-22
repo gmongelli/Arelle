@@ -26,12 +26,6 @@ linkbaseReferences = {'aset-c_01.00.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws
                       'vr_cssf002_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf002_m-lab-en.xml',
                       'vr_cssf003_m-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf003_m-err-en.xml',
                       'vr_cssf003_m-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf003_m-lab-en.xml',
-                      'vr_cssf004_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf004_p-err-en.xml',
-                      'vr_cssf004_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf004_p-lab-en.xml',
-                      'vr_cssf005_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf005_p-err-en.xml',
-                      'vr_cssf005_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf005_p-lab-en.xml',
-                      'vr_cssf006_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf006_p-err-en.xml',
-                      'vr_cssf006_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf006_p-lab-en.xml',
                       'vr_cssf007_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf007_p-err-en.xml',
                       'vr_cssf007_p-lab-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf007_p-lab-en.xml',
                       'vr_cssf008_p-err-en.xml': 'http://www.cssf.lu/lu/fr/xbrl/crr/fws/corep/its-2013-02/2015-02-12/val/vr_cssf008_p-err-en.xml',
@@ -455,8 +449,8 @@ def cssfToolsMenuExtender(cntlr, menu):
 __pluginInfo__ = {
     # Do not use _( ) in pluginInfo itself (it is applied later, after loading
     'name': 'CSSF plausibility checks',
-    'version': '1.2',
-    'description': '''CSSF plausibility check in conformance with http://www.cssf.lu/fileadmin/files/Reporting_legal/Recueil_banques/CSSF_Plausibility_checks_Clean_version_260115.pdf.''',
+    'version': '1.3',
+    'description': '''CSSF plausibility check in conformance with http://www.cssf.lu/fileadmin/files/Reporting_legal/Recueil_banques/CSSF_Plausibility_checks_Clean_version_220515.pdf.''',
     'license': 'Apache-2',
     'author': 'Acsone S. A.',
     'copyright': '(c) Copyright Acsone S. A., All rights reserved.',
