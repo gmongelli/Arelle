@@ -36,16 +36,21 @@ xsdConversionTable = {'corep_ind.xsd' : SCOREP_REPORT,
                       'corep_le_ind.xsd' : 'SLAREX',
                       'corep_lcr_ind.xsd' : 'SLCRXX',
                       'corep_nsfr_ind.xsd' : 'SNSFRX',
+                      'corep_alm_ind.xsd' : 'SALMXX',
                       'corep_con.xsd' : 'CCOREP',
                       'corep_le_con.xsd' : 'CLAREX',
                       'corep_lcr_con.xsd' : 'CLCRXX',
                       'corep_nsfr_con.xsd' : 'CNSFRX',
+                      'corep_alm_con.xsd' : 'CALMXX',
                       'finrep_con_ifrs.xsd' : FINREP_REPORT,
                       'ae_con.xsd' : 'CAEXXX',
                       'ae_ind.xsd' : 'SAEXXX',
-                      'fp.xsd' : 'FPXXXX',
-                      'sbp.xsd' : 'SBPXXX',
-                      'sbpimv.xsd' : 'SBPIMV'}
+                      'fp_con.xsd' : 'CFPXXX',
+                      'fp_ind.xsd' : 'SFPXXX',
+                      'sbp_con.xsd' : 'CSBPXX',
+                      'sbp_ind.xsd' : 'SSBPXX',
+                      'sbpimv_con.xsd' : 'CSBPIM',
+                      'sbpimv_ind.xsd' : 'SSBPIM'}
 
 # The following pattern is extracted from
 # http://www.cssf.lu/fileadmin/files/Reporting_legal/transport_securisation_reporting/Convention_de_nom.pdf
@@ -286,7 +291,7 @@ def fileMenuExtender(cntlr, menu):
 __pluginInfo__ = {
     # Do not use _( ) in pluginInfo itself (it is applied later, after loading
     'name': 'CSSF custom save as',
-    'version': '1.0',
+    'version': '1.1',
     'description': '''Save the current instance as a file with a name compliant with the CSSF filing rules.''',
     'license': 'Apache-2',
     'author': 'Acsone S. A.',
