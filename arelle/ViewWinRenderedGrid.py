@@ -447,16 +447,26 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         columnspan = (rightCol - leftCol + (1 if nonAbstract else 0))
                         label = xStructuralNode.header(lang=self.lang,
                                                        returnGenLabel=isinstance(xStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)))
-                        xValue = leftCol-1
-                        yValue = topRow-1
-                        self.table.initHeaderCellValue(label if label
-                                                       else "         ",
-                                                       xValue, yValue,
-                                                       columnspan-1,
-                                                       ((row - topRow + 1) if leafNode else 1)-1,
-                                                       XbrlTable.TG_CENTERED,
-                                                       objectId=xStructuralNode.objectId(),
-                                                       isRollUp=columnspan>1 and nonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
+                        if label != OPEN_ASPECT_ENTRY_SURROGATE:
+                            xValue = leftCol-1
+                            yValue = topRow-1
+                            self.table.initHeaderCellValue(label if label
+                                                           else "         ",
+                                                           xValue, yValue,
+                                                           columnspan-1,
+                                                           ((row - topRow + 1) if leafNode else 1)-1,
+                                                           XbrlTable.TG_CENTERED,
+                                                           objectId=xStructuralNode.objectId(),
+                                                           isRollUp=columnspan>1 and nonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
+                        else:
+                            self.aspectEntryObjectIdsNode[xStructuralNode.aspectEntryObjectId] = xStructuralNode
+                            # TODO: is the following still needed?
+                            # width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5))
+                            self.aspectEntryObjectIdsCell[xStructuralNode.aspectEntryObjectId] = self.table.initHeaderCombobox(leftCol-1,
+                                                                                                                               topRow-1,
+                                                                                                                               values=self.aspectEntryValues(xStructuralNode),
+                                                                                                                               objectId=xStructuralNode.aspectEntryObjectId,
+                                                                                                                               comboboxselected=self.onAspectComboboxSelection)
                         if nonAbstract:
                             xValue = thisCol - 1
                             for i, role in enumerate(self.colHdrNonStdRoles):
