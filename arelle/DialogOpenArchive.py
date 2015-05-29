@@ -278,6 +278,12 @@ class DialogOpenArchive(Toplevel):
                     for prefix, remapping in self.taxonomyPackage["remappings"].items():
                         if isHttpUrl(remapping):
                             remapStart = remapping
+                        elif self.filesource.isArchive:
+                            remapStart = remapping[len(self.filesource.baseurl):]
+                            if remapStart.startswith('\\'):
+                                remapStart = remapStart[1:]
+                            if remapStart.endswith('\\'):
+                                remapStart = remapStart[:-1]+'/'
                         else:
                             remapStart = self.metadataFilePrefix + remapping
                         if filename.startswith(remapStart):
