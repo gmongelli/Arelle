@@ -225,15 +225,16 @@ class DialogOpenArchive(Toplevel):
                 loadedPaths.append(path)
 
         elif openType == ENTRY_POINTS:
-            self.treeView.column("#0", width=150, anchor="w")
+            self.treeView.column("#0", width=400, anchor="w")
             self.treeView.heading("#0", text="Name")
     
             self.treeView["columns"] = ("url",)
-            self.treeView.column("url", width=350, anchor="w")
+            self.treeView.column("url", width=500, anchor="w")
             self.treeView.heading("url", text="URL")
-            
-            for name, urls in self.taxonomyPackage["nameToUrls"].items():
-                displayUrl = urls[1] # display the canonical URL
+
+            nameToUrls = self.taxonomyPackage["nameToUrls"]
+            for name in sorted(nameToUrls.keys()):
+                displayUrl = nameToUrls[name][1] # display the canonical URL
                 self.treeView.insert("", "end", name, values=[displayUrl], text=name)
                 
             self.hasToolTip = True
