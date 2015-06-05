@@ -112,6 +112,7 @@ def resolveTableAxesStructure(view, table, tblAxisRelSet):
                     xTopStructuralNode.hasOpenNode = False
                     if isinstance(definitionNode,(ModelBreakdown, ModelClosedDefinitionNode)) and definitionNode.parentChildOrder is not None:
                         #addBreakdownNode(view, disposition, definitionNode)
+                        view.xAxisChildrenFirst.set(definitionNode.parentChildOrder == "children-first")
                         view.xTopRollup = CHILD_ROLLUP_LAST if definitionNode.parentChildOrder == "children-first" else CHILD_ROLLUP_FIRST
                     expandDefinition(view, xTopStructuralNode, definitionNode, definitionNode, 1, disposition, facts, i, tblAxisRels)
                     view.dataCols = xTopStructuralNode.leafNodeCount
@@ -198,6 +199,16 @@ def addBreakdownNode(view, disposition, node):
         axisBreakdowns = view.breakdownNodes[disposition]
         if node not in axisBreakdowns:
             axisBreakdowns.append(node)
+
+def childContainsOpenNodes(childStructuralNode):
+    if isinstance(childStructuralNode.definitionNode, ModelFilterDefinitionNode) \
+       and any([node.isEntryPrototype(default=False) for node in childStructuralNode.childStructuralNodes]):
+        return True
+    else:
+        for node in childStructuralNode.childStructuralNodes:
+            if childContainsOpenNodes(node):
+                return True
+        return False
 
 def expandDefinition(view, structuralNode, breakdownNode, definitionNode, depth, axisDisposition, facts, i=None, tblAxisRels=None, processOpenDefinitionNode=True):
     subtreeRelationships = view.axisSubtreeRelSet.fromModelObject(definitionNode)
@@ -309,9 +320,8 @@ def expandDefinition(view, structuralNode, breakdownNode, definitionNode, depth,
                                 structuralNode.childStructuralNodes.append(childStructuralNode)
                         if axisDisposition != "z":
                             expandDefinition(view, childStructuralNode, breakdownNode, childDefinitionNode, depth+ordDepth, axisDisposition, facts, i, tblAxisRels) #recurse
-                            if not (isinstance(childStructuralNode.definitionNode, ModelFilterDefinitionNode)
-                                    and any([node.isEntryPrototype(default=False) for node in childStructuralNode.childStructuralNodes])) :
-                                # To be computed only if the structural node is not an open node
+                            if not childContainsOpenNodes(childStructuralNode) :
+                                # To be computed only if the structural node does not contain an open node
                                 cartesianProductExpander(childStructuralNode, *cartesianProductNestedArgs)
                         else:
                             childStructuralNode.indent = depth - 1
