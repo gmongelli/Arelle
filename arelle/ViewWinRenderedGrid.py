@@ -363,17 +363,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         self.zAspectStructuralNodes[aspect].discard(zStructuralNode)
             
     def onZComboBoxSelected(self, event):
-        if self.hasChangesToSave():
-            import tkinter.messagebox
-            reply = tkinter.messagebox.askyesnocancel(
-                        _("arelle - Unsaved Changes"),
-                        _("Save unsaved changes before Z-axis change? \n(No will discard changes.)"), 
-                        parent=self.tabWin)
-            if reply is None:
-                return # cancel
-            if reply:  # yes
-                self.saveInstance(onSaved=lambda: self.onZComboBoxSelected(event))
-                return # called again after saving on ui foreground thread
         combobox = event.widget
         structuralNode = combobox.zStructuralNode
         if combobox.zAxisAspectEntryMode:
@@ -874,9 +863,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
 
     def onQuitView(self, event, *args):
         self.updateInstanceFromFactPrototypes()
-
-    def hasChangesToSave(self):
-        return len(self.table.modifiedCells)
 
     def updateInstanceFromFactPrototypes(self):
         # Only update the model if it already exists
