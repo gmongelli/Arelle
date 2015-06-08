@@ -37,6 +37,8 @@ def viewRelationshipSet(modelXbrl, tabWin, arcrole,
     view.menuAddLangs()
     view.menuAddLabelRoles(includeConceptName=True)
     view.menuAddViews()
+    if view.isEbaTableIndex:
+        view.menuAddFilingChoice()
 
     
 class ViewRelationshipSet(ViewWinTree.ViewTree):
@@ -44,6 +46,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                  arcrole, linkrole=None, linkqname=None, arcqname=None, lang=None, 
                  treeColHdr=None, showLinkroles=True, showRelationships=True, showColumns=True,
                  expandAll=False, hasTableIndex=False):
+        self.isEbaTableIndex = False
         if isinstance(arcrole, (list,tuple)):
             tabName = arcrole[0]
         else:
@@ -77,6 +80,10 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
             # set up treeView widget and tabbed pane
             hdr = self.treeColHdr if self.treeColHdr else _("{0} Relationships").format(groupRelationshipLabel(self.arcrole))
             self.treeView.heading("#0", text=hdr)
+            if self.isEbaTableIndex:
+                # settings for the filing indicator column
+                self.treeView.heading("#1", text='Filed')
+                self.treeView.column("#1", width=30, anchor="w")
             if self.showColumns:
                 if self.arcrole == XbrlConst.parentChild: # extra columns
                     self.treeView.column("#0", width=300, anchor="w")
@@ -200,12 +207,14 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
             return
         try:
             isRelation = isinstance(modelObject, ModelDtsObject.ModelRelationship)
+            isModelTable = False
+            filingIndicatorCode = ""
             if isinstance(concept, ModelDtsObject.ModelConcept):
                 text = labelPrefix + concept.label(preferredLabel,lang=self.lang,linkroleHint=relationshipSet.linkrole)
                 if (self.arcrole in ("XBRL-dimensions", XbrlConst.hypercubeDimension) and
                     concept.isTypedDimension and 
                     concept.typedDomainElement is not None):
-                    text += " (typedDomain={0})".format(concept.typedDomainElement.qname)  
+                    text += " (typedDomain={0})".format(concept.typedDomainElement.qname)
             elif isinstance(concept, ModelInstanceObject.ModelFact):
                 if concept.concept is not None:
                     text = labelPrefix + concept.concept.label(preferredLabel,lang=self.lang,linkroleHint=relationshipSet.linkrole)
@@ -217,14 +226,42 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                 text = concept.localName
             elif isinstance(concept, ModelRenderingObject.ModelTable):
                 text = (concept.genLabel(lang=self.lang, strip=True) or concept.localName)
+                # in case we are rendering a table in a EBA document instance,
+                # also prepare the filing indicator
+                filingIndicator = None
+                defaultENLanguage = "en"
+                filingIndicatorCodeRole = "http://www.eurofiling.info/xbrl/role/filing-indicator-code";
+                filingIndicatorCode = concept.genLabel(role=filingIndicatorCodeRole,
+                                                      lang=defaultENLanguage)
+                if self.isEbaTableIndex:
+                    isModelTable = True
+                    if not filingIndicatorCode in self.modelXbrl.filingIndicatorByTableFilingCode:
+                        filingIndicator = None
+                        self.modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
+                    else:
+                        filingIndicator = self.modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode]
+                    self.modelXbrl.filingCodeByTableLabel[text] = filingIndicatorCode
             elif isinstance(concept, ModelDtsObject.ModelResource):
                 if self.showReferences:
                     text = (concept.viewText() or concept.localName)
                 else:
                     text = (Locale.rtlString(concept.textValue.strip(), lang=concept.xmlLang) or concept.localName)
             else:   # just a resource
-                text = concept.localName
+                text = concept.localName            
+                
             childnode = self.treeView.insert(parentnode, "end", modelObject.objectId(self.id), text=text, tags=("odd" if n & 1 else "even",))
+            
+            if isModelTable:
+                # and again in case we are rendering a table in a EBA document instance,
+                # show that filing indicator
+                if filingIndicator == None:
+                    filingIndicatorDisplay = ""
+                else:
+                    filingIndicatorDisplay = str(filingIndicator)
+                self.treeView.set(childnode, 0, filingIndicatorDisplay)
+                self.modelXbrl.treeRowByFilingCode[filingIndicatorCode] = childnode
+                self.modelXbrl.indexTableTreeView = self.treeView
+                
             childRelationshipSet = relationshipSet
             if self.arcrole == XbrlConst.parentChild: # extra columns
                 if isRelation:

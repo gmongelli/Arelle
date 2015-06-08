@@ -328,7 +328,11 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
         for modelTable, order in sorted(modelTables, key=lambda x: x[1]):  # @UnusedVariable
             viewTable(modelTable, factWalkingAction)
 
-        createOrReplaceFilingIndicators(dts, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
+        #TODO: remove this and cleanup
+        oldStuff = False
+        if oldStuff:
+            createOrReplaceFilingIndicators(dts, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
+            
         updateFactItemOptions(dts, newFactItemOptions, cntlr)
         dts.modelManager.showStatus(_("EBA compliance improved"), 5000)
         cntlr.reloadTableView(dts)
@@ -426,10 +430,11 @@ def createOrReplaceFilingIndicators(dts, allFilingIndicatorCodes, newFactItemOpt
 def removeUselessFilingIndicatorsInModel(dts):
     ''':type dts: ModelXbrl'''
     # First remove the context
-    context = dts.contexts["c"]
-    parent = context.getparent()
-    parent.remove(context)
-    del dts.contexts["c"]
+    if 'c' in dts.contexts:
+        context = dts.contexts["c"]
+        parent = context.getparent()
+        parent.remove(context)
+        del dts.contexts["c"]
     # Remove the elements from the facts and factsInInstance data structure
     filingIndicatorsElements = dts.factsByQname(qnFindFilingIndicators, set())
     for fact in filingIndicatorsElements:

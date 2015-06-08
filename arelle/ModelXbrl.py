@@ -18,6 +18,7 @@ from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
 from arelle.FactIndex import FactIndex
 ModelRelationshipSet = None # dynamic import
 ModelFact = None
+EbaUtil = None
 
 profileStatNumber = 0
 
@@ -25,7 +26,6 @@ AUTO_LOCATE_ELEMENT = '771407c0-1d0c-11e1-be5e-028037ec0200' # singleton meaning
 DEFAULT = sys.intern(_STR_8BIT("default"))
 NONDEFAULT = sys.intern(_STR_8BIT("non-default"))
 DEFAULTorNONDEFAULT = sys.intern(_STR_8BIT("default-or-non-default"))
-    
 
 def load(modelManager, url, nextaction=None, base=None, useFileSource=None, errorCaptureLevel=None, **kwargs):
     """Each loaded instance, DTS, testcase, testsuite, versioning report, or RSS feed, is represented by an 
@@ -66,6 +66,7 @@ def load(modelManager, url, nextaction=None, base=None, useFileSource=None, erro
     #XmlValidate.xmlValidate(modelXbrl.modelDocument)
     modelManager.cntlr.webCache.saveUrlCheckTimes()
     modelManager.showStatus(_("xbrl loading finished, {0}...").format(nextaction))
+    modelXbrl.loadFilingIndicators()
     return modelXbrl
 
 def create(modelManager, newDocumentType=None, url=None, schemaRefs=None, createModelDocument=True, isEntry=False, errorCaptureLevel=None, initialXml=None, initialComment=None, base=None):
@@ -291,8 +292,25 @@ class ModelXbrl:
         self.factIndex = FactIndex()
         for pluginXbrlMethod in pluginClassMethods("ModelXbrl.Init"):
             pluginXbrlMethod(self)
+        self.filingIndicatorByTableFilingCode = {}
+        self.filingCodeByTableLabel = {}
+        self.treeRowByFilingCode = {}
+        self.indexTableTreeView = None
 
-
+    def isEba(self):
+        global EbaUtil
+        if EbaUtil is None:
+            import arelle.EbaUtil as EbaUtil
+        return EbaUtil.isEbaInstance(self, checkAlsoEiopa=True)
+    
+    def loadFilingIndicators(self):
+        if not self.isEba():
+            return
+        EbaUtil.loadFilingIndicators(self)  
+                
+    def updateFilingIndicator(self, tableLabel, filingIndicator):
+        EbaUtil.updateFilingIndicator(self, tableLabel, filingIndicator)  
+        
     def close(self):
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
         """

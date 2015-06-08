@@ -22,7 +22,13 @@ class ViewTree:
         self.tabTitle = tabTitle # for error messages
         vScrollbar = Scrollbar(self.viewFrame, orient=VERTICAL)
         hScrollbar = Scrollbar(self.viewFrame, orient=HORIZONTAL)
-        self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set)
+        if tabTitle == 'Tables' and modelXbrl.isEba():
+            # for EBA and in case of table index, add a second column with the filing indicator
+            # (OK, it is not really sound to base this test on the title)            
+            self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set, columns="Filing")
+            self.isEbaTableIndex = True
+        else:
+            self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set)
         self.treeView.grid(row=0, column=0, sticky=(N, S, E, W))
         self.treeView.tag_configure("ELR", background="#E0F0FF")
         self.treeView.tag_configure("even", background="#F0F0F0")
@@ -175,6 +181,34 @@ class ViewTree:
     def expand(self):
         self.setTreeItemOpen(self.menuRow,open=True)
         
+    def setFiling(self, filingIndicator):
+        # Set filing indicator in second row of tables index
+        # The indicator is a tri-state value
+        item = self.treeView.item(self.menuRow)
+        label = item.get('text')
+        if not label in self.modelXbrl.filingCodeByTableLabel:
+            return
+        filingIndicatorCode = self.modelXbrl.filingCodeByTableLabel[label]
+        if not filingIndicatorCode in self.modelXbrl.filingIndicatorByTableFilingCode:
+            return
+        if filingIndicator == None:
+            filingIndicatorDisplay = ""
+        else:
+            filingIndicatorDisplay = str(filingIndicator)
+        self.treeView.set(self.menuRow, 0, filingIndicatorDisplay)
+        # maintain the indicator value in the instance model
+        self.modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
+        self.modelXbrl.updateFilingIndicator(filingIndicatorCode, filingIndicator)
+        
+    def setFilingTrue(self):
+        self.setFiling(True)
+        
+    def setFilingFalse(self):
+        self.setFiling(False)
+        
+    def resetFiling(self):
+        self.setFiling(None)
+
     def expandAll(self):
         self.setTreeItemOpen("",open=True)
         
@@ -196,6 +230,12 @@ class ViewTree:
             self.menu.add_command(label=_("Collapse"), underline=0, command=self.collapse)
             self.menu.add_command(label=_("Expand all"), underline=0, command=self.expandAll)
             self.menu.add_command(label=_("Collapse all"), underline=0, command=self.collapseAll)
+            
+    def menuAddFilingChoice(self):
+        if self.menu:
+            self.menu.add_command(label=_("Filing: set filed"), underline=0, command=self.setFilingTrue)
+            self.menu.add_command(label=_("Filing; Set not filed"), underline=0, command=self.setFilingFalse)
+            self.menu.add_command(label=_("Filing: clear indicator"), underline=0, command=self.resetFiling)
         
     def menuAddClipboard(self):
         if self.menu and self.modelXbrl.modelManager.cntlr.hasClipboard:

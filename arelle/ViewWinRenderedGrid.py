@@ -963,6 +963,19 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                             break;
                                     attrs.append(("decimals", decimals))
                                 newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
+                                #check whether the current table has a None filing indicator and if so, set it to True
+                                if self.modelXbrl.filingIndicatorByTableFilingCode[self.roledefinition] == None:
+                                    filingIndicator = True
+                                    self.modelXbrl.filingIndicatorByTableFilingCode[self.roledefinition] = filingIndicator
+                                    self.modelXbrl.updateFilingIndicator(self.roledefinition, filingIndicator)
+                                    # update the treeview too
+                                    if filingIndicator == None:
+                                        filingIndicatorDisplay = ""
+                                    else:
+                                        filingIndicatorDisplay = str(filingIndicator)
+                                    treeRowId = self.modelXbrl.treeRowByFilingCode[self.roledefinition]
+                                    self.modelXbrl.indexTableTreeView.set(treeRowId, 0, filingIndicatorDisplay)
+                                    
                                 tbl.setObjectId(modifiedCell,
                                                 newFact.objectId()) # switch cell to now use fact ID
                                 if self.factPrototypes[factPrototypeIndex] is not None:
