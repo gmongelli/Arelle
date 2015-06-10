@@ -51,6 +51,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
             tabName = arcrole[0]
         else:
             tabName = XbrlConst.baseSetArcroleLabel(arcrole)[1:]
+        tabName = tabName + " (" + modelXbrl.getInstanceFilenameForView() + ")"
         super(ViewRelationshipSet, self).__init__(modelXbrl, tabWin, tabName, True, lang)
         self.arcrole = arcrole
         self.linkrole = linkrole

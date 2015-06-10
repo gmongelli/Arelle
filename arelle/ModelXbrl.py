@@ -236,6 +236,7 @@ class ModelXbrl:
         Logger for modelXbrl
 
     """
+    modelCount = 0
     
     def __init__(self, modelManager, errorCaptureLevel=None):
         self.modelManager = modelManager
@@ -296,6 +297,8 @@ class ModelXbrl:
         self.filingCodeByTableLabel = {}
         self.treeRowByFilingCode = {}
         self.indexTableTreeView = None
+        ModelXbrl.modelCount += 1
+        self.modelNumber = ModelXbrl.modelCount
 
     def isEba(self):
         global EbaUtil
@@ -1199,3 +1202,8 @@ class ModelXbrl:
                   _("DTS of %(entryFile)s has %(numberOfFiles)s files packaged into %(packageOutputFile)s"), 
                 modelObject=self,
                 entryFile=os.path.basename(entryFilename), packageOutputFile=pkgFilename, numberOfFiles=numFiles)
+        
+    def getInstanceFilenameForView(self):
+        if self.uri.endswith(".xbrl"):
+            return os.path.basename(self.uri)
+        return str(self.modelNumber)

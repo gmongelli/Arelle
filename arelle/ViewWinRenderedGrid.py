@@ -85,7 +85,9 @@ def viewRenderedGrid(modelXbrl, tabWin, lang=None):
             
 class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def __init__(self, modelXbrl, tabWin, lang):
-        super(ViewRenderedGrid, self).__init__(modelXbrl, tabWin, _("Table"),
+        viewTitle = _("Table")
+        viewTitle = viewTitle + " (" + modelXbrl.getInstanceFilenameForView() + ")"
+        super(ViewRenderedGrid, self).__init__(modelXbrl, tabWin, viewTitle,
                                                False, lang, self.onQuitView)
         self.newFactItemOptions = ModelInstanceObject.NewFactItemOptions(xbrlInstance=modelXbrl)
         self.factPrototypes = []

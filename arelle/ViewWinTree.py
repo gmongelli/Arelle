@@ -22,7 +22,7 @@ class ViewTree:
         self.tabTitle = tabTitle # for error messages
         vScrollbar = Scrollbar(self.viewFrame, orient=VERTICAL)
         hScrollbar = Scrollbar(self.viewFrame, orient=HORIZONTAL)
-        if tabTitle == 'Tables' and modelXbrl.isEba():
+        if tabTitle.startswith('Tables') and modelXbrl.isEba():
             # for EBA and in case of table index, add a second column with the filing indicator
             # (OK, it is not really sound to base this test on the title)            
             self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set, columns="Filing")
