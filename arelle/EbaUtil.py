@@ -51,27 +51,6 @@ def isEbaInstance(modelXbrl, checkAlsoEiopa=False):
         elif checkAlsoEiopa and "eiopa.europa.eu" in urlDoc.uri:
             return True
     
-def loadFilingIndicators(modelXbrl):
-    # Note: when creating a new instance with the "new EBA file" menu, the model
-    #       strangely appears to be based on a INSTANCE document model type
-    #       So, stamp the proper type anyway otherwise the indicators won't be saved
-    #       if we save right after
-    # => Now we don't need to save a new EBA file immediately anymore (as indicated in AREBA WIKI tricks and tips)
-    modelXbrl.modelDocument.type = ModelDocument.Type.INSTANCE
-    
-    filingIndicatorsElements = modelXbrl.factsByQname(qnFindFilingIndicators, set())
-    for fIndicators in filingIndicatorsElements:
-        # print(str(fIndicators))
-        for fIndicator in fIndicators.modelTupleFacts:
-            filingIndicatorCode = (fIndicator.xValue or fIndicator.value)
-            filedTable = fIndicator.get("{http://www.eurofiling.info/xbrl/ext/filing-indicators}filed", "true") in ("true", "1")
-            # print(str(tableIdentifier) + " " + str(filedTable))
-            if filedTable:
-                filingIndicator = True
-            else:
-                filingIndicator = False
-            modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
-            
 def updateFilingIndicator(modelXbrl, tableLabel, filingIndicator):
     modelXbrl.modelDocument.type = ModelDocument.Type.INSTANCE # see note above (just in case)
     

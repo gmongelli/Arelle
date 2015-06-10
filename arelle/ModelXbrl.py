@@ -304,9 +304,29 @@ class ModelXbrl:
         return EbaUtil.isEbaInstance(self, checkAlsoEiopa=True)
     
     def loadFilingIndicators(self):
-        if not self.isEba():
-            return
-        EbaUtil.loadFilingIndicators(self)  
+        from arelle import ModelDocument
+        from arelle.ModelValue import qname
+        # Note: when creating a new instance with the "new EBA file" menu, the model
+        #       strangely appears to be based on a INSTANCE document model type
+        #       So, stamp the proper type anyway otherwise the indicators won't be saved
+        #       if we save right after
+        # => Now we don't need to save a new EBA file immediately anymore (as indicated in AREBA WIKI tricks and tips)
+        self.modelDocument.type = ModelDocument.Type.INSTANCE
+        qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
+        
+        filingIndicatorsElements = self.factsByQname(qnFindFilingIndicators, set())
+        for fIndicators in filingIndicatorsElements:
+            # print(str(fIndicators))
+            for fIndicator in fIndicators.modelTupleFacts:
+                filingIndicatorCode = (fIndicator.xValue or fIndicator.value)
+                filedTable = fIndicator.get("{http://www.eurofiling.info/xbrl/ext/filing-indicators}filed", "true") in ("true", "1")
+                # print(str(tableIdentifier) + " " + str(filedTable))
+                if filedTable:
+                    filingIndicator = True
+                else:
+                    filingIndicator = False
+                self.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
+            
                 
     def updateFilingIndicator(self, tableLabel, filingIndicator):
         EbaUtil.updateFilingIndicator(self, tableLabel, filingIndicator)  
