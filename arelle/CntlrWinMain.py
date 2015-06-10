@@ -756,8 +756,8 @@ class CntlrWinMain (Cntlr.Cntlr):
             statTime = time.time() - startedAt
             modelXbrl.profileStat(profileStat, statTime)
             self.addToLog(format_string(self.modelManager.locale, 
-                                        _("%s in %.2f secs"), 
-                                        (action, statTime)))
+                                        _("%s in %.2f secs %s"), 
+                                        (action, statTime, filesource.url)))
             if modelXbrl.hasTableRendering:
                 self.showStatus(_("Initializing table rendering"))
                 RenderingEvaluator.init(modelXbrl)
@@ -766,8 +766,8 @@ class CntlrWinMain (Cntlr.Cntlr):
             self.uiThreadQueue.put((self.showLoadedXbrl, [modelXbrl, importToDTS, selectTopView]))
         else:
             self.addToLog(format_string(self.modelManager.locale, 
-                                        _("not successfully %s in %.2f secs"), 
-                                        (action, time.time() - startedAt)))
+                                        _("not successfully %s in %.2f secs %s"), 
+                                        (action, time.time() - startedAt, filesource.url)))
 
     def showLoadedXbrl(self, modelXbrl, attach, selectTopView=False):
         startedAt = time.time()
