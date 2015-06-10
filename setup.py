@@ -280,14 +280,14 @@ elif sys.platform == 'win32':
         
     options = dict( build_exe =  {
         "include_files": win32includeFiles,
-        "include_msvcr": True, # include MSVCR100
+        "include_msvcr": True, # include MSVCR100c
         "icon": 'arelle\\images\\arelle16x16and32x32.ico',
         "packages": packages,
         #
         # rdflib & isodate egg files: rename .zip cpy lib & egg-info subdirectories to site-packages directory
         #
         "includes": ['lxml', 'lxml.etree', 'lxml._elementpath', 'lxml.html',
-                     'pg8000', 'pymysql', 'cx_Oracle', 'pyodbc', 'sqlite3',
+                     'pg8000', 'pymysql', 'pyodbc', 'sqlite3',  # , 'cx_Oracle' <- temporarily left out since not used by areba
                      'sqlalchemy', 'sqlalchemy.dialects.sqlite',
                      'numpy', 'simplejson',
                      'rdflib', 'rdflib.extras', 'rdflib.tools', 
