@@ -777,6 +777,12 @@ class CntlrWinMain (Cntlr.Cntlr):
         displayTaxonomyTabs = True
         for displayTaxonomyTabsMethod in pluginClassMethods("CntlrWinMain.Tabs.DisplayTaxonomyTabs"):
             displayTaxonomyTabs = displayTaxonomyTabs and displayTaxonomyTabsMethod() # runs in GUI thread
+        viewDTS = True
+        for viewDTSMethod in pluginClassMethods("viewDTS"):
+            viewDTS = viewDTS and viewDTSMethod()
+        viewProperties = True
+        for viewPropertiesMethod in pluginClassMethods("viewProperties"):
+            viewProperties = viewProperties and viewPropertiesMethod()
         try:
             if attach:
                 modelXbrl.closeViews()
@@ -815,7 +821,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                                                                treeColHdr="Fact Table Index", showLinkroles=True, showColumns=False, showRelationships=False, expandAll=False)
                 '''
                 currentAction = "tree view of tests"
-                ViewWinDTS.viewDTS(modelXbrl, self.tabWinTopLeft, altTabWin=self.tabWinTopRt)
+                if viewDTS:
+                    ViewWinDTS.viewDTS(modelXbrl, self.tabWinTopLeft, altTabWin=self.tabWinTopRt)
                 currentAction = "view of concepts"
                 ViewWinConcepts.viewConcepts(modelXbrl, self.tabWinBtm, "Concepts", lang=self.labelLang, altTabWin=self.tabWinTopRt)
                 if modelXbrl.hasTableRendering:  # show rendering grid even without any facts
@@ -849,8 +856,9 @@ class CntlrWinMain (Cntlr.Cntlr):
                         if XbrlConst.arcroleGroupDetect in arcroles:
                             currentAction = name + " view"
                             ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, (name, arcroles), lang=self.labelLang)
-            currentAction = "property grid"
-            ViewWinProperties.viewProperties(modelXbrl, self.tabWinTopLeft)
+            if viewProperties:
+                currentAction = "property grid"
+                ViewWinProperties.viewProperties(modelXbrl, self.tabWinTopLeft)
             currentAction = "log view creation time"
             viewTime = time.time() - startedAt
             modelXbrl.profileStat("view", viewTime)

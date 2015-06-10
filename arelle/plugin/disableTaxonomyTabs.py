@@ -8,6 +8,12 @@ This plug-in only works with AREBA, not with Arelle.
 def disableDisplay():
     return False # by returning False, the display is disabled 
 
+def viewDTS():
+    return False
+
+def viewProperties():
+    return False
+
 __pluginInfo__ = {
     'name': 'Disable the display of the taxonomy tabs',
     'version': '1.0',
@@ -16,5 +22,7 @@ __pluginInfo__ = {
     'author': 'Gregorio Mongelli (Acsone S. A.)',
     'copyright': '(c) Copyright 2015 Acsone S. A.',
     # classes of mount points (required)
-    'CntlrWinMain.Tabs.DisplayTaxonomyTabs': disableDisplay
+    'CntlrWinMain.Tabs.DisplayTaxonomyTabs': disableDisplay,
+    'viewDTS': viewDTS,
+    'viewProperties': viewProperties
 }
