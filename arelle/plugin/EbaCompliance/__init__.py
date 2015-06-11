@@ -510,7 +510,7 @@ def fileOpenExtender(cntlr, menu):
 
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.5',
+    'version': '1.6',
     'description': "This module extends the File menu and regenerates EBA filing indicators if needed and removes unused contexts and units.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',

@@ -84,7 +84,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
             if self.isEbaTableIndex:
                 # settings for the filing indicator column
                 self.treeView.heading("#1", text='Filed')
-                self.treeView.column("#1", width=30, anchor="w")
+                self.treeView.column("#1", width=40, anchor="w", stretch=False)
             if self.showColumns:
                 if self.arcrole == XbrlConst.parentChild: # extra columns
                     self.treeView.column("#0", width=300, anchor="w")
@@ -229,6 +229,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                 text = (concept.genLabel(lang=self.lang, strip=True) or concept.localName)
                 # in case we are rendering a table in a EBA document instance,
                 # also prepare the filing indicator
+                # Note: several table views can have the same filing indicator
                 filingIndicator = None
                 defaultENLanguage = "en"
                 filingIndicatorCodeRole = "http://www.eurofiling.info/xbrl/role/filing-indicator-code";
@@ -236,11 +237,11 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                                                       lang=defaultENLanguage)
                 if self.isEbaTableIndex:
                     isModelTable = True
-                    if not filingIndicatorCode in self.modelXbrl.filingIndicatorByTableFilingCode:
+                    if not filingIndicatorCode in self.modelXbrl.filingIndicatorByFilingCode:
                         filingIndicator = None
-                        self.modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
+                        self.modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
                     else:
-                        filingIndicator = self.modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode]
+                        filingIndicator = self.modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode]
                     self.modelXbrl.filingCodeByTableLabel[text] = filingIndicatorCode
             elif isinstance(concept, ModelDtsObject.ModelResource):
                 if self.showReferences:
@@ -260,7 +261,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                 else:
                     filingIndicatorDisplay = str(filingIndicator)
                 self.treeView.set(childnode, 0, filingIndicatorDisplay)
-                self.modelXbrl.treeRowByFilingCode[filingIndicatorCode] = childnode
+                self.modelXbrl.treeRowByTableLabel[text] = childnode
                 self.modelXbrl.indexTableTreeView = self.treeView
                 
             childRelationshipSet = relationshipSet

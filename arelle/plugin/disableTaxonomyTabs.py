@@ -14,9 +14,12 @@ def viewDTS():
 def viewProperties():
     return False
 
+def viewConcepts():
+    return False
+
 __pluginInfo__ = {
     'name': 'Disable the display of the taxonomy tabs',
-    'version': '1.0',
+    'version': '1.1',
     'description': "This module disables the display of the following tabs: presentation linkbase, fact list, table reandering, relationships.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',
@@ -24,5 +27,6 @@ __pluginInfo__ = {
     # classes of mount points (required)
     'CntlrWinMain.Tabs.DisplayTaxonomyTabs': disableDisplay,
     'viewDTS': viewDTS,
-    'viewProperties': viewProperties
+    'viewProperties': viewProperties,
+    'viewConcepts': viewConcepts
 }

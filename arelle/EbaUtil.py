@@ -51,15 +51,15 @@ def isEbaInstance(modelXbrl, checkAlsoEiopa=False):
         elif checkAlsoEiopa and "eiopa.europa.eu" in urlDoc.uri:
             return True
     
-def updateFilingIndicator(modelXbrl, tableLabel, filingIndicator):
+def updateFilingIndicator(modelXbrl, filingCode, filingIndicator):
     modelXbrl.modelDocument.type = ModelDocument.Type.INSTANCE # see note above (just in case)
     
     filingIndicatorsElements = modelXbrl.factsByQname(qnFindFilingIndicators, set())
     if len(filingIndicatorsElements) > 0:
         for fIndicators in filingIndicatorsElements:
             for fIndicator in fIndicators.modelTupleFacts:
-                tableIdentifier = fIndicator.stringValue
-                if tableLabel == tableIdentifier:
+                fcode = fIndicator.stringValue
+                if filingCode == fcode:
                     setFilingIndicatorValue(modelXbrl, fIndicator, filingIndicator)
                     if filingIndicator == None:
                         fIndicators.modelTupleFacts.remove(fIndicator)
@@ -81,7 +81,7 @@ def updateFilingIndicator(modelXbrl, tableLabel, filingIndicator):
     fIndicator = modelXbrl.createFact(qnFindFilingIndicator, 
                    parent=filingIndicatorsElement,
                    attributes={"contextRef": "c"}, 
-                   text=tableLabel,
+                   text=filingCode,
                    validate=False)
     setFilingIndicatorValue(modelXbrl, fIndicator, filingIndicator)
     

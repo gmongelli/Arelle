@@ -293,9 +293,9 @@ class ModelXbrl:
         self.factIndex = FactIndex()
         for pluginXbrlMethod in pluginClassMethods("ModelXbrl.Init"):
             pluginXbrlMethod(self)
-        self.filingIndicatorByTableFilingCode = {}
+        self.filingIndicatorByFilingCode = {}
         self.filingCodeByTableLabel = {}
-        self.treeRowByFilingCode = {}
+        self.treeRowByTableLabel = {}
         self.indexTableTreeView = None
         ModelXbrl.modelCount += 1
         self.modelNumber = ModelXbrl.modelCount
@@ -328,11 +328,11 @@ class ModelXbrl:
                     filingIndicator = True
                 else:
                     filingIndicator = False
-                self.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
+                self.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
             
                 
-    def updateFilingIndicator(self, tableLabel, filingIndicator):
-        EbaUtil.updateFilingIndicator(self, tableLabel, filingIndicator)  
+    def updateFilingIndicator(self, filingCode, filingIndicator):
+        EbaUtil.updateFilingIndicator(self, filingCode, filingIndicator)  
         
     def close(self):
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 

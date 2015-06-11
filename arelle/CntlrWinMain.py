@@ -783,6 +783,9 @@ class CntlrWinMain (Cntlr.Cntlr):
         viewProperties = True
         for viewPropertiesMethod in pluginClassMethods("viewProperties"):
             viewProperties = viewProperties and viewPropertiesMethod()
+        viewConcepts = True
+        for viewConceptsMethod in pluginClassMethods("viewConcepts"):
+            viewConcepts = viewConcepts and viewConceptsMethod()
         try:
             if attach:
                 modelXbrl.closeViews()
@@ -823,8 +826,9 @@ class CntlrWinMain (Cntlr.Cntlr):
                 currentAction = "tree view of tests"
                 if viewDTS:
                     ViewWinDTS.viewDTS(modelXbrl, self.tabWinTopLeft, altTabWin=self.tabWinTopRt)
-                currentAction = "view of concepts"
-                ViewWinConcepts.viewConcepts(modelXbrl, self.tabWinBtm, "Concepts", lang=self.labelLang, altTabWin=self.tabWinTopRt)
+                if viewConcepts:
+                    currentAction = "view of concepts"
+                    ViewWinConcepts.viewConcepts(modelXbrl, self.tabWinBtm, "Concepts", lang=self.labelLang, altTabWin=self.tabWinTopRt)
                 if modelXbrl.hasTableRendering:  # show rendering grid even without any facts
                     ViewWinRenderedGrid.viewRenderedGrid(modelXbrl, self.tabWinTopRt, lang=self.labelLang)
                     if topView is None: topView = modelXbrl.views[-1]

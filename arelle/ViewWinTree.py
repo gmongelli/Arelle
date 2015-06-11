@@ -189,15 +189,19 @@ class ViewTree:
         if not label in self.modelXbrl.filingCodeByTableLabel:
             return
         filingIndicatorCode = self.modelXbrl.filingCodeByTableLabel[label]
-        if not filingIndicatorCode in self.modelXbrl.filingIndicatorByTableFilingCode:
+        if not filingIndicatorCode in self.modelXbrl.filingIndicatorByFilingCode:
             return
         if filingIndicator == None:
             filingIndicatorDisplay = ""
         else:
             filingIndicatorDisplay = str(filingIndicator)
-        self.treeView.set(self.menuRow, 0, filingIndicatorDisplay)
         # maintain the indicator value in the instance model
-        self.modelXbrl.filingIndicatorByTableFilingCode[filingIndicatorCode] = filingIndicator
+        self.modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
+        for tableLabel, fcode in self.modelXbrl.filingCodeByTableLabel.items():
+            if fcode == filingIndicatorCode:
+                treeRowId = self.modelXbrl.treeRowByTableLabel[tableLabel]
+                self.treeView.set(treeRowId, 0, filingIndicatorDisplay)
+        
         self.modelXbrl.updateFilingIndicator(filingIndicatorCode, filingIndicator)
         
     def setFilingTrue(self):
