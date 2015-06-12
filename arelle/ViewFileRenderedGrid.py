@@ -27,15 +27,11 @@ from arelle.XbrlConst import (tableModelMMDD as tableModelNamespace,
 from arelle import XbrlConst
 from arelle.XmlUtil import innerTextList, child, elementFragmentIdentifier, addQnameValue
 from collections import defaultdict
-import time
-from arelle.Locale import format_string
 
 emptySet = set()
 emptyList = []
 
 def viewRenderedGrid(modelXbrl, outfile, lang=None, viewTblELR=None, sourceView=None, diffToFile=False, cssExtras=""):
-    from arelle.ValidateInfoset import validateRenderingInfoset
-    print("info: start rendering to " + format(outfile))
     modelXbrl.modelManager.showStatus(_("saving rendering"))
     view = ViewRenderedGrid(modelXbrl, outfile, lang, cssExtras)
     
@@ -44,10 +40,9 @@ def viewRenderedGrid(modelXbrl, outfile, lang=None, viewTblELR=None, sourceView=
         view.ignoreDimValidity.set(sourceView.ignoreDimValidity.get())
         view.xAxisChildrenFirst.set(sourceView.xAxisChildrenFirst.get())
         view.yAxisChildrenFirst.set(sourceView.yAxisChildrenFirst.get())
-    startedAt = time.time()
     view.view(viewTblELR)
-    print("info: view created" + format_string(modelXbrl.modelManager.locale, (" in %.2f secs"), time.time() - startedAt))
     if diffToFile:
+        from arelle.ValidateInfoset import validateRenderingInfoset
         validateRenderingInfoset(modelXbrl, outfile, view.xmlDoc)
         view.close(noWrite=True)
     else:   
@@ -100,11 +95,8 @@ class ViewRenderedGrid(ViewFile.View):
             
                 
             for discriminator in range(1, 65535):
-                print("discriminator " + str(discriminator))    
-                startedAt = time.time()
                 # each table z production
                 tblAxisRelSet, xTopStructuralNode, yTopStructuralNode, zTopStructuralNode = resolveAxesStructure(self, tblELR)
-                print("resolveAxesStructure took " + format_string(self.modelXbrl.modelManager.locale, (" %.2f secs"), time.time() - startedAt))
                 self.hasTableFilters = bool(self.modelTable.filterRelationships)
                 
                 self.zStrNodesWithChoices = []
@@ -170,20 +162,15 @@ class ViewRenderedGrid(ViewFile.View):
                                                                   attrib={"axis": "x"})
                             '''
                     # rows/cols only on firstTime for infoset XML, but on each time for xhtml
-                    print("before defaultdict")
                     zAspectStructuralNodes = defaultdict(set)
-                    print("defaultdict done")
                     self.zAxis(1, zTopStructuralNode, zAspectStructuralNodes, False)
-                    print("zAxis done")
                     xStructuralNodes = []
                     if self.type == HTML or (xTopStructuralNode and xTopStructuralNode.childStructuralNodes):
                         self.xAxis(self.dataFirstCol, self.colHdrTopRow, self.colHdrTopRow + self.colHdrRows - 1, 
                                    xTopStructuralNode, xStructuralNodes, self.xAxisChildrenFirst.get(), True, True)
-                        print("xAxis done")
                     if self.type == HTML: # table/tr goes by row
                         self.yAxisByRow(1, self.dataFirstRow,
                                         yTopStructuralNode, self.yAxisChildrenFirst.get(), True, True)
-                        print("yAxisByRow done")
                     elif self.type == XML: # infoset goes by col of row header
                         if yTopStructuralNode and yTopStructuralNode.childStructuralNodes: # no row header element if no rows
                             self.yAxisByCol(1, self.dataFirstRow,
@@ -210,12 +197,9 @@ class ViewRenderedGrid(ViewFile.View):
                         for headerElt in self.headerElts.values(): # remove empty header elements
                             if not any(e is not None for e in headerElt.iterchildren()):
                                 headerElt.getparent().remove(headerElt)
-                    print("bodyCells start")
                     self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, zAspectStructuralNodes, self.yAxisChildrenFirst.get())
-                    print("bodyCells done")
                 # find next choice structural node
                 moreDiscriminators = False
-                print("self.zStrNodesWithChoices length= " + str(len(self.zStrNodesWithChoices)))
                 for zStrNodeWithChoices in self.zStrNodesWithChoices:
                     currentIndex = zStrNodeWithChoices.choiceNodeIndex + 1
                     if currentIndex < len(zStrNodeWithChoices.choiceStructuralNodes):
@@ -227,7 +211,6 @@ class ViewRenderedGrid(ViewFile.View):
                         zStrNodeWithChoices.choiceNodeIndex = 0
                         self.zOrdinateChoices[zStrNodeWithChoices.definitionNode] = 0
                         # continue incrementing next outermore z choices index
-                print("self.zStrNodesWithChoices done")
                 if not moreDiscriminators:
                     break
 
@@ -651,7 +634,6 @@ class ViewRenderedGrid(ViewFile.View):
     def bodyCells(self, row, yParentStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst):
         if yParentStructuralNode is not None:
             dimDefaults = self.modelXbrl.qnameDimensionDefaults
-            print("yParentStructuralNode.childStructuralNodes length= " + str(len(yParentStructuralNode.childStructuralNodes)))
             for yStructuralNode in yParentStructuralNode.childStructuralNodes:
                 if yChildrenFirst:
                     row = self.bodyCells(row, yStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst)
@@ -676,34 +658,19 @@ class ViewRenderedGrid(ViewFile.View):
                     yTagSelectors = yStructuralNode.tagSelectors
                     # data for columns of rows
                     ignoreDimValidity = self.ignoreDimValidity.get()
-                    startedAt = time.time()
                     for i, xStructuralNode in enumerate(xStructuralNodes):
                         xAspectStructuralNodes = defaultdict(set)
-                        
-                        countAspectInModel = 0
-                        countNodeAspects = 0
-                        countAspectDim = 0
                         for aspect in aspectModels[self.aspectModel]:
-                            countAspectInModel += 1
                             if xStructuralNode.hasAspect(aspect):
-                                countNodeAspects += 1
                                 if aspect == Aspect.DIMENSIONS:
                                     for dim in (xStructuralNode.aspectValue(Aspect.DIMENSIONS) or emptyList):
-                                        countAspectDim += 1
                                         xAspectStructuralNodes[dim].add(xStructuralNode)
                                 else:
                                     xAspectStructuralNodes[aspect].add(xStructuralNode)
-                        print("countAspectInModel= " + str(countAspectInModel) + "countNodeAspects= " + str(countNodeAspects) + "countAspectDim= " + str(countAspectDim))
-                        
                         cellTagSelectors = yTagSelectors | xStructuralNode.tagSelectors
                         cellAspectValues = {}
                         matchableAspects = set()
-                        
-                        startedAt2 = time.time()
-                        countAspectInDict = 0
-                        countCellAspectValues = 0
                         for aspect in _DICT_SET(xAspectStructuralNodes.keys()) | _DICT_SET(yAspectStructuralNodes.keys()) | _DICT_SET(zAspectStructuralNodes.keys()):
-                            countAspectInDict += 1
                             aspectValue = xStructuralNode.inheritedAspectValue(yStructuralNode,
                                                self, aspect, cellTagSelectors, 
                                                xAspectStructuralNodes, yAspectStructuralNodes, zAspectStructuralNodes)
@@ -711,13 +678,8 @@ class ViewRenderedGrid(ViewFile.View):
                             if (isinstance(aspect, _INT) or  # not a dimension
                                 dimDefaults.get(aspect) != aspectValue or # explicit dim defaulted will equal the value
                                 aspectValue is not None): # typed dim absent will be none
-                                countCellAspectValues += 1
                                 cellAspectValues[aspect] = aspectValue
                             matchableAspects.add(aspectModelAspect.get(aspect,aspect)) #filterable aspect from rule aspect
-                        print("countAspectInDict= " + str(countAspectInDict) + "countCellAspectValues= " + str(countCellAspectValues))
-                        print(" took " + format_string(self.modelXbrl.modelManager.locale, (" %.2f secs"), time.time() - startedAt2))
-                        startedAt2 = time.time()
-                        
                         cellDefaultedDims = _DICT_SET(dimDefaults) - _DICT_SET(cellAspectValues.keys())
                         priItemQname = cellAspectValues.get(Aspect.CONCEPT)
                             
@@ -734,13 +696,8 @@ class ViewRenderedGrid(ViewFile.View):
                             facts = self.modelXbrl.factsByQname(priItemQname, set()) if priItemQname else self.modelXbrl.factsInInstance
                             if self.hasTableFilters:
                                 facts = self.modelTable.filterFacts(self.rendrCntx, facts)
-                                
-                            startedAt3 = time.time()
-                            countMatchableAspects = 0
-                            
                             for aspect in matchableAspects:  # trim down facts with explicit dimensions match or just present
                                 if isinstance(aspect, QName):
-                                    countMatchableAspects += 1
                                     aspectValue = cellAspectValues.get(aspect, None)
                                     if isinstance(aspectValue, ModelDimensionValue):
                                         if aspectValue.isExplicit:
@@ -756,9 +713,6 @@ class ViewRenderedGrid(ViewFile.View):
                                     facts = facts & self.modelXbrl.factsByDimMemQname(aspect, dimMemQname)
                                     if len(facts)==0:
                                         break;
-                            print(" countMatchableAspects= " + str(countMatchableAspects))        
-                            print(" matchableAspects took " + format_string(self.modelXbrl.modelManager.locale, (" %.2f secs"), time.time() - startedAt3))
-                            
                             for fact in facts:
                                 if (all(aspectMatches(self.rendrCntx, fact, fp, aspect) 
                                         for aspect in matchableAspects) and
@@ -773,9 +727,6 @@ class ViewRenderedGrid(ViewFile.View):
                                     break
                         if justify is None:
                             justify = "right" if fp.isNumeric else "left"
-                            
-                        print(" took3 " + format_string(self.modelXbrl.modelManager.locale, (" %.2f secs"), time.time() - startedAt2))
-                        
                         if conceptNotAbstract:
                             if self.type == XML:
                                 cellsParentElt.append(etree.Comment("Cell concept {0}: segDims {1}, scenDims {2}"
@@ -841,9 +792,6 @@ class ViewRenderedGrid(ViewFile.View):
                                                  attrib={"abstract":"true"})
                         fp.clear()  # dereference
                     row += 1
-                    
-                    print("for i, xStructuralNode in enumerate(xStructuralNodes) took " + format_string(self.modelXbrl.modelManager.locale, (" %.2f secs"), time.time() - startedAt))
-
                 if not yChildrenFirst:
                     row = self.bodyCells(row, yStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst)
         return row

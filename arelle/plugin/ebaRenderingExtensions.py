@@ -62,6 +62,15 @@ def setFiling(viewtree, modelXbrl, filingIndicator):
     return True
 
 def renderConcept(isModelTable, concept, conceptText, viewRelationshipSet, modelXbrl, conceptNode):
+    '''
+    :type isModelTable: ViewTree
+    :type concept: Concept
+    :type conceptText: string
+    :type viewRelationshipSet: ViewRelationshipSet
+    :type modelXbrl: ModelXbrl
+    :type conceptNode: ViewRelationshipSet
+    :rtype boolean
+    '''    
     if not isModelTable:
         return True
     # in case we are rendering a table in a EBA document instance,
@@ -88,7 +97,19 @@ def renderConcept(isModelTable, concept, conceptText, viewRelationshipSet, model
         viewRelationshipSet.treeView.set(conceptNode, 0, filingIndicatorDisplay)
         modelXbrl.treeRowByTableLabel[conceptText] = conceptNode
         modelXbrl.indexTableTreeView = viewRelationshipSet.treeView
+
+def saveNewFileFromGUI(cntlrWinMain):
+    '''
+    :type cntlrWinMain: CntlrWinMain
+    :rtype boolean
+    '''    
+    # Note: when creating a new instance with the "new EBA file" menu, the model
+    #       strangely appears not to be based on an INSTANCE document model type
+    # => Force a save file immediately so that the user won't forget anymore (as indicated in AREBA WIKI tricks and tips)
+    cntlrWinMain.fileSave()
+    return True
     
+        
 __pluginInfo__ = {
     'name': 'EBA Model extensions (update filing indicators,...)',
     'version': '1.0',
@@ -100,4 +121,5 @@ __pluginInfo__ = {
     'CntlrWinMain.Rendering.CheckUpdateFilingIndicator': checkUpdateFilingIndicator,
     'CntlrWinMain.Rendering.SetFilingIndicator': setFiling,
     'CntlrWinMain.Rendering.RenderConcept': renderConcept,
+    'CntlrWinMain.Rendering.SaveNewFileFromGUI': saveNewFileFromGUI
 }
