@@ -971,17 +971,11 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                             break;
                                     attrs.append(("decimals", decimals))
                                 newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
-                                #check whether the current table has a None filing indicator and if so, set it to True
-                                for tableLabel, filingCode in self.modelXbrl.filingCodeByTableLabel.items():
-                                    if self.roledefinition.startswith(filingCode):
-                                        if not filingCode in self.modelXbrl.filingIndicatorByFilingCode or self.modelXbrl.filingIndicatorByFilingCode[filingCode] == None:
-                                            filingIndicator = True
-                                            self.modelXbrl.filingIndicatorByFilingCode[filingCode] = filingIndicator
-                                            filingIndicatorDisplay = str(filingIndicator)
-                                            treeRowId = self.modelXbrl.treeRowByTableLabel[tableLabel]
-                                            self.modelXbrl.indexTableTreeView.set(treeRowId, 0, filingIndicatorDisplay)
-                                            self.modelXbrl.updateFilingIndicator(filingCode, filingIndicator)
-                                            # continue looping since we may have more than one table per filing indicator
+                                # Check if there is a custom method to update filing indicators
+                                for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.CheckUpdateFilingIndicator"):
+                                    stopPlugin = pluginXbrlMethod(self.roledefinition, self.modelXbrl)
+                                    if stopPlugin:
+                                        break;
                                    
                                 tbl.setObjectId(modifiedCell,
                                                 newFact.objectId()) # switch cell to now use fact ID

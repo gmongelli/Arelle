@@ -10,6 +10,7 @@ try:
 except ImportError:
     from ttk import *
 from arelle.CntlrWinTooltip import ToolTip
+from arelle.PluginManager import pluginClassMethods
 import os
 
 class ViewTree:
@@ -22,7 +23,7 @@ class ViewTree:
         self.tabTitle = tabTitle # for error messages
         vScrollbar = Scrollbar(self.viewFrame, orient=VERTICAL)
         hScrollbar = Scrollbar(self.viewFrame, orient=HORIZONTAL)
-        if tabTitle.startswith('Tables') and modelXbrl.isEba():
+        if tabTitle.startswith('Tables') and modelXbrl.isEba:
             # for EBA and in case of table index, add a second column with the filing indicator
             # (OK, it is not really sound to base this test on the title)            
             self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set, columns="Filing")
@@ -182,27 +183,11 @@ class ViewTree:
         self.setTreeItemOpen(self.menuRow,open=True)
         
     def setFiling(self, filingIndicator):
-        # Set filing indicator in second row of tables index
-        # The indicator is a tri-state value
-        item = self.treeView.item(self.menuRow)
-        label = item.get('text')
-        if not label in self.modelXbrl.filingCodeByTableLabel:
-            return
-        filingIndicatorCode = self.modelXbrl.filingCodeByTableLabel[label]
-        if not filingIndicatorCode in self.modelXbrl.filingIndicatorByFilingCode:
-            return
-        if filingIndicator == None:
-            filingIndicatorDisplay = ""
-        else:
-            filingIndicatorDisplay = str(filingIndicator)
-        # maintain the indicator value in the instance model
-        self.modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
-        for tableLabel, fcode in self.modelXbrl.filingCodeByTableLabel.items():
-            if fcode == filingIndicatorCode:
-                treeRowId = self.modelXbrl.treeRowByTableLabel[tableLabel]
-                self.treeView.set(treeRowId, 0, filingIndicatorDisplay)
-        
-        self.modelXbrl.updateFilingIndicator(filingIndicatorCode, filingIndicator)
+        # Check if there is a custom method to set filing indicators
+        for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.SetFilingIndicator"):
+            stopPlugin = pluginXbrlMethod(self, self.modelXbrl, filingIndicator)
+            if stopPlugin:
+                break;
         
     def setFilingTrue(self):
         self.setFiling(True)

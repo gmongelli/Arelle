@@ -66,7 +66,13 @@ def load(modelManager, url, nextaction=None, base=None, useFileSource=None, erro
     #XmlValidate.xmlValidate(modelXbrl.modelDocument)
     modelManager.cntlr.webCache.saveUrlCheckTimes()
     modelManager.showStatus(_("xbrl loading finished, {0}...").format(nextaction))
-    modelXbrl.loadFilingIndicators()
+    
+    # Check if there is a custom method to load filing indicators
+    for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Modeling.LoadFilingIndicators"):
+        stopPlugin = pluginXbrlMethod(modelXbrl)
+        if stopPlugin:
+            break;
+    
     return modelXbrl
 
 def create(modelManager, newDocumentType=None, url=None, schemaRefs=None, createModelDocument=True, isEntry=False, errorCaptureLevel=None, initialXml=None, initialComment=None, base=None):
@@ -291,44 +297,12 @@ class ModelXbrl:
         self.schemaDocsToValidate = set()
         self.modelXbrl = self # for consistency in addressing modelXbrl
         self.factIndex = FactIndex()
-        for pluginXbrlMethod in pluginClassMethods("ModelXbrl.Init"):
-            pluginXbrlMethod(self)
-        self.filingIndicatorByFilingCode = {}
-        self.filingCodeByTableLabel = {}
-        self.treeRowByTableLabel = {}
-        self.indexTableTreeView = None
         ModelXbrl.modelCount += 1
         self.modelNumber = ModelXbrl.modelCount
         self.tableViewTab = None # holds the ViewRenderedGrid corresponding to an instance (used e.g. to synch after table index selection)
+        for pluginXbrlMethod in pluginClassMethods("ModelXbrl.Init"):
+            pluginXbrlMethod(self)
 
-    def isEba(self):
-        global EbaUtil
-        if EbaUtil is None:
-            import arelle.EbaUtil as EbaUtil
-        return EbaUtil.isEbaInstance(self, checkAlsoEiopa=True)
-    
-    def loadFilingIndicators(self):
-        from arelle import ModelDocument
-        from arelle.ModelValue import qname
-        qnFindFilingIndicators = qname("{http://www.eurofiling.info/xbrl/ext/filing-indicators}find:fIndicators")
-        
-        filingIndicatorsElements = self.factsByQname(qnFindFilingIndicators, set())
-        for fIndicators in filingIndicatorsElements:
-            # print(str(fIndicators))
-            for fIndicator in fIndicators.modelTupleFacts:
-                filingIndicatorCode = (fIndicator.xValue or fIndicator.value)
-                filedTable = fIndicator.get("{http://www.eurofiling.info/xbrl/ext/filing-indicators}filed", "true") in ("true", "1")
-                # print(str(tableIdentifier) + " " + str(filedTable))
-                if filedTable:
-                    filingIndicator = True
-                else:
-                    filingIndicator = False
-                self.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
-            
-                
-    def updateFilingIndicator(self, filingCode, filingIndicator):
-        EbaUtil.updateFilingIndicator(self, filingCode, filingIndicator)  
-        
     def close(self):
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
         """

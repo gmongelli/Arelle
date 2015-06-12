@@ -18,6 +18,8 @@ from arelle.ModelRenderingObject import (ModelEuTable, ModelTable, ModelBreakdow
                                          ROLLUP_NOT_ANALYZED, CHILDREN_BUT_NO_ROLLUP, CHILD_ROLLUP_FIRST, CHILD_ROLLUP_LAST,
                                          OPEN_ASPECT_ENTRY_SURROGATE)
 from arelle.PrototypeInstanceObject import FactPrototype
+import time
+from arelle.Locale import format_string
 
 RENDER_UNITS_PER_CHAR = 16 # nominal screen units per char for wrapLength computation and adjustment
 
@@ -70,6 +72,7 @@ def resolveAxesStructure(view, viewTblELR):
     return (None, None, None, None)
 
 def resolveTableAxesStructure(view, table, tblAxisRelSet):
+    startedAt = time.time()
     view.dataCols = 0
     view.dataRows = 0
     view.colHdrNonStdRoles = []
@@ -187,6 +190,7 @@ def resolveTableAxesStructure(view, table, tblAxisRelSet):
     if view.topRollup["y"]:
         view.yAxisChildrenFirst.set(view.topRollup["y"] == CHILD_ROLLUP_LAST)
 
+    print("resolveTableAxesStructure took " + format_string(view.modelXbrl.modelManager.locale, (" %.2f secs"), time.time() - startedAt))
     return (tblAxisRelSet, xTopStructuralNode, yTopStructuralNode, zTopStructuralNode)
 
 def sortkey(obj):

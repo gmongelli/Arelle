@@ -11,6 +11,7 @@ from arelle.ModelRelationshipSet import ModelRelationshipSet
 from arelle.ModelDtsObject import ModelRelationship
 from arelle.ModelFormulaObject import ModelFilter
 from arelle.ViewUtil import viewReferences, groupRelationshipSet, groupRelationshipLabel
+from arelle.PluginManager import pluginClassMethods
 
 def viewRelationshipSet(modelXbrl, tabWin, arcrole, 
                         linkrole=None, linkqname=None, arcqname=None, lang=None, 
@@ -227,22 +228,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                 text = concept.localName
             elif isinstance(concept, ModelRenderingObject.ModelTable):
                 text = (concept.genLabel(lang=self.lang, strip=True) or concept.localName)
-                # in case we are rendering a table in a EBA document instance,
-                # also prepare the filing indicator
-                # Note: several table views can have the same filing indicator
-                filingIndicator = None
-                defaultENLanguage = "en"
-                filingIndicatorCodeRole = "http://www.eurofiling.info/xbrl/role/filing-indicator-code";
-                filingIndicatorCode = concept.genLabel(role=filingIndicatorCodeRole,
-                                                      lang=defaultENLanguage)
-                if self.isEbaTableIndex:
-                    isModelTable = True
-                    if not filingIndicatorCode in self.modelXbrl.filingIndicatorByFilingCode:
-                        filingIndicator = None
-                        self.modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
-                    else:
-                        filingIndicator = self.modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode]
-                    self.modelXbrl.filingCodeByTableLabel[text] = filingIndicatorCode
+                isModelTable = True
             elif isinstance(concept, ModelDtsObject.ModelResource):
                 if self.showReferences:
                     text = (concept.viewText() or concept.localName)
@@ -253,17 +239,12 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
                 
             childnode = self.treeView.insert(parentnode, "end", modelObject.objectId(self.id), text=text, tags=("odd" if n & 1 else "even",))
             
-            if isModelTable:
-                # and again in case we are rendering a table in a EBA document instance,
-                # show that filing indicator
-                if filingIndicator == None:
-                    filingIndicatorDisplay = ""
-                else:
-                    filingIndicatorDisplay = str(filingIndicator)
-                self.treeView.set(childnode, 0, filingIndicatorDisplay)
-                self.modelXbrl.treeRowByTableLabel[text] = childnode
-                self.modelXbrl.indexTableTreeView = self.treeView
-                
+            # Check if we need special rendering of this item
+            for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.RenderConcept"):
+                stopPlugin = pluginXbrlMethod(isModelTable, concept, text, self, self.modelXbrl, childnode)
+                if stopPlugin == True:
+                    break;
+            
             childRelationshipSet = relationshipSet
             if self.arcrole == XbrlConst.parentChild: # extra columns
                 if isRelation:
