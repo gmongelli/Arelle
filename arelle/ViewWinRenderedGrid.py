@@ -831,6 +831,12 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                     objectId = modelObject.objectId()
                 if objectId in self.tablesToELR:
                     self.view(viewTblELR=self.tablesToELR[objectId])
+                    try:
+                        self.modelXbrl.modelManager.cntlr.currentView = self.modelXbrl.tableViewTab
+                        # force focus on the corresponding "Table" tab (useful in case of several instances)
+                        self.modelXbrl.tableViewTab.tabWin.select(str(self.modelXbrl.tableViewTab.viewFrame))
+                    except:
+                        pass 
             except (KeyError, AttributeError):
                     pass
             self.blockViewModelObject -= 1
@@ -966,16 +972,16 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     attrs.append(("decimals", decimals))
                                 newFact = instance.createFact(concept.qname, attributes=attrs, text=value)
                                 #check whether the current table has a None filing indicator and if so, set it to True
-                                if self.roledefinition in self.modelXbrl.filingCodeByTableLabel:
-                                    filingCode = self.modelXbrl.filingCodeByTableLabel[self.roledefinition]
-                                    if not filingCode in self.modelXbrl.filingIndicatorByFilingCode or self.modelXbrl.filingIndicatorByFilingCode[filingCode] == None:
-                                        filingIndicator = True
-                                        self.modelXbrl.filingIndicatorByFilingCode[filingCode] = filingIndicator
-                                        filingIndicatorDisplay = str(filingIndicator)
-                                        for tableLabel, fcode in self.modelXbrl.filingCodeByTableLabel.items():
-                                            if fcode == filingCode:
-                                                treeRowId = self.modelXbrl.treeRowByTableLabel[tableLabel]
-                                                self.modelXbrl.indexTableTreeView.set(treeRowId, 0, filingIndicatorDisplay)
+                                # if self.roledefinition in self.modelXbrl.filingCodeByTableLabel:
+                                for tableLabel, filingCode in self.modelXbrl.filingCodeByTableLabel.items():
+                                    if self.roledefinition == filingCode:
+                                        if not filingCode in self.modelXbrl.filingIndicatorByFilingCode or self.modelXbrl.filingIndicatorByFilingCode[filingCode] == None:
+                                            filingIndicator = True
+                                            self.modelXbrl.filingIndicatorByFilingCode[filingCode] = filingIndicator
+                                            filingIndicatorDisplay = str(filingIndicator)
+                                            treeRowId = self.modelXbrl.treeRowByTableLabel[tableLabel]
+                                            self.modelXbrl.indexTableTreeView.set(treeRowId, 0, filingIndicatorDisplay)
+                                            # continue looping since we may have more than one table per filing indicator
                                     
                                 tbl.setObjectId(modifiedCell,
                                                 newFact.objectId()) # switch cell to now use fact ID

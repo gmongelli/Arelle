@@ -871,6 +871,27 @@ class CntlrWinMain (Cntlr.Cntlr):
             if selectTopView and topView:
                 topView.select()
             self.currentView = topView
+            modelXbrl.tableViewTab = topView
+            # Note: when creating a new instance with the "new EBA file" menu, the model
+            #       strangely appears not to be based on an INSTANCE document model type
+            # => Force a save file immediately so that the user won't forget anymore (as indicated in AREBA WIKI tricks and tips)
+            if self.filename is None:
+                view = getattr(self, "currentView", None)
+                if view is not None:
+                    modelXbrl = None
+                    try:
+                        modelXbrl = view.modelXbrl
+                    except AttributeError:
+                        pass
+                    if modelXbrl is not None:
+                        try:
+                            ff = modelXbrl.modelDocument.filepath
+                            if ff.endswith('.xsd'):
+                                self.fileSave()
+                                #TODO: update "Tables" and "Table" tab titles using the new filename
+                        except AttributeError:
+                            pass
+
             for xbrlLoadedMethod in pluginClassMethods("CntlrWinMain.Xbrl.Loaded"):
                 xbrlLoadedMethod(self, modelXbrl, attach) # runs in GUI thread
         except Exception as err:

@@ -52,8 +52,6 @@ def isEbaInstance(modelXbrl, checkAlsoEiopa=False):
             return True
     
 def updateFilingIndicator(modelXbrl, filingCode, filingIndicator):
-    modelXbrl.modelDocument.type = ModelDocument.Type.INSTANCE # see note above (just in case)
-    
     filingIndicatorsElements = modelXbrl.factsByQname(qnFindFilingIndicators, set())
     if len(filingIndicatorsElements) > 0:
         for fIndicators in filingIndicatorsElements:
