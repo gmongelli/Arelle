@@ -9,8 +9,7 @@ from collections import defaultdict
 from lxml import etree
 from xml.sax import SAXParseException
 from arelle import (PackageManager, XbrlConst, XmlUtil, UrlUtil, ValidateFilingText, 
-                    XhtmlValidate, XmlValidate, XmlValidateSchema,
-    ValidateXbrlDimensions)
+                    XhtmlValidate, XmlValidate, XmlValidateSchema, ValidateXbrlDimensions)
 from arelle.ModelObject import ModelObject, ModelComment
 from arelle.ModelValue import qname
 from arelle.ModelDtsObject import ModelLink, ModelResource, ModelRelationship
@@ -324,7 +323,6 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         #modelXbrl.discoveryLevel -= 1
             
         if isEntry:
-            
             while modelXbrl.schemaDocsToValidate:
                 doc = modelXbrl.schemaDocsToValidate.pop()
                 XmlValidateSchema.validate(doc, doc.xmlRootElement, doc.targetNamespace) # validate schema elements
@@ -650,18 +648,25 @@ class ModelDocument:
             except AttributeError:
                 pass
 
-    def save(self, overrideFilepath=None):
+    def save(self, overrideFilepath=None, outputZip=None):
         """Saves current document file.
         
         :param overrideFilepath: specify to override saving in instance's modelDocument.filepath
         """
-        with open( (overrideFilepath or self.filepath), "w", encoding='utf-8') as fh:
+        if outputZip:
+            fh = io.StringIO();
             XmlUtil.writexml(fh, self.xmlDocument, encoding="utf-8")
-        if overrideFilepath:
-            self.filepath = overrideFilepath
-            self.setTitleInBackground()
-        self.updateFileHistoryIfNeeded()
-        self.isModified = False
+            fh.seek(0)
+            outputZip.writestr(os.path.basename(overrideFilepath or self.filepath),fh.read())
+            fh.close()
+        else:
+            with open( (overrideFilepath or self.filepath), "w", encoding='utf-8') as fh:
+                XmlUtil.writexml(fh, self.xmlDocument, encoding="utf-8")
+            if overrideFilepath:
+                self.filepath = overrideFilepath
+                self.setTitleInBackground()
+            self.updateFileHistoryIfNeeded()
+            self.isModified = False
     
     def close(self, visited=None, urlDocs=None):
         if visited is None: visited = []

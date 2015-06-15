@@ -46,6 +46,7 @@ utrEntries = None
 utrSymbol = None
 POSINF = float("inf")
 NEGINF = float("-inf")
+DECIMALONE = Decimal(1)
 
 class NewFactItemOptions():
     """
@@ -578,7 +579,10 @@ class ModelInlineValueObject:
                     scale = self.scale
                     if scale is not None:
                         num *= 10 ** Decimal(scale)
-                    self._ixValue = "{}".format(num * negate)
+                    num *= negate
+                    if num == num.to_integral():
+                        num = num.quantize(DECIMALONE) # drop any .0
+                    self._ixValue = "{}".format(num)
                 except (ValueError, InvalidOperation):
                     self._ixValue = ModelValue.INVALIDixVALUE
                     raise ValueError("Invalid value for {} scale {} for number {}".format(self.localName, scale, v))
@@ -1536,6 +1540,8 @@ class ModelInlineFootnote(ModelResource):
         attributes = {"{http://www.w3.org/1999/xlink}type":"resource",
                       "{http://www.w3.org/1999/xlink}label":self.xlinkLabel,
                       "{http://www.w3.org/1999/xlink}role": self.role}
+        if self.id:
+            attributes["id"] = self.id
         lang = self.xmlLang
         if lang:
             attributes["{http://www.w3.org/XML/1998/namespace}lang"] = lang
