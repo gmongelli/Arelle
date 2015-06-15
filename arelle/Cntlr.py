@@ -14,6 +14,7 @@ from arelle import ModelManager
 from arelle.Locale import getLanguageCodes
 from arelle import PluginManager, PackageManager
 from collections import defaultdict
+import arelle.Version as Version
 osPrcs = None
 isPy3 = (sys.version[0] >= '3')
 
@@ -72,7 +73,7 @@ class Cntlr:
         URL string of application download file (on arelle.org server).  Usually redirected to latest released application installable module.
         
     """
-    __version__ = "1.6.1c"
+    __version__ = Version.versionId
     
     def __init__(self, hasGui=False, logFileName=None, logFileMode=None, logFileEncoding=None, logFormat=None):
         self.hasWin32gui = False

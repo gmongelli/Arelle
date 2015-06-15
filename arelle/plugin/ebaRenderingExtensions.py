@@ -111,7 +111,7 @@ def saveNewFileFromGUI(cntlrWinMain):
     
         
 __pluginInfo__ = {
-    'name': 'EBA Model extensions (update filing indicators,...)',
+    'name': 'EBA Rendering extensions',
     'version': '1.0',
     'description': "This plugin contains GUI extensions for EBA and EIOPA (e.g update of filing indicators)",
     'license': 'Apache-2',

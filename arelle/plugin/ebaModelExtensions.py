@@ -35,7 +35,7 @@ def extendModelXbrl(modelXbrl):
     return False     
 
 __pluginInfo__ = {
-    'name': 'EBA Model extensions (Load filing indicators,...)',
+    'name': 'EBA non-GUI model extensions',
     'version': '1.0',
     'description': "This plugin contains non-GUI extensions for EBA and EIOPA (e.g. filing indicators)",
     'license': 'Apache-2',

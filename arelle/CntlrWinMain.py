@@ -125,6 +125,10 @@ class CntlrWinMain (Cntlr.Cntlr):
         
         toolsMenu = Menu(self.menubar, tearoff=0)
         
+        #TODO: useFactIndex
+        self.useFactIndex = False
+        toolsMenu.add_checkbutton(label=_("Use FactIndex"), underline=0, command=self.useFactIndexCheckUncheck)
+        
         validateMenu = Menu(self.menubar, tearoff=0)
         toolsMenu.add_cascade(label=_("Validation"), menu=validateMenu, underline=0)
         validateMenu.add_command(label=_("Validate"), underline=0, command=self.validate)
@@ -381,7 +385,9 @@ class CntlrWinMain (Cntlr.Cntlr):
             self.modelManager.validateDisclosureSystem = False
         self.setValidateTooltipText()
         
-        
+    def useFactIndexCheckUncheck(self): #TODO: useFactIndex
+        self.useFactIndex = not self.useFactIndex
+           
     def onTabChanged(self, event, *args):
         try:
             widgetIndex = event.widget.index("current")

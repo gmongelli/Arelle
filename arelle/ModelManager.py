@@ -154,6 +154,7 @@ class ModelManager:
     def create(self, newDocumentType=None, url=None, schemaRefs=None, createModelDocument=True, isEntry=False, errorCaptureLevel=None, initialXml=None, base=None):
         self.modelXbrl = ModelXbrl.create(self, newDocumentType, url, schemaRefs, createModelDocument, isEntry, errorCaptureLevel, initialXml, base)
         self.loadedModelXbrls.append(self.modelXbrl)
+        self.modelXbrl.useFactIndex = self.cntlr.useFactIndex
         return self.modelXbrl
     
     def validate(self):

@@ -23,12 +23,15 @@ class ViewTree:
         self.tabTitle = tabTitle # for error messages
         vScrollbar = Scrollbar(self.viewFrame, orient=VERTICAL)
         hScrollbar = Scrollbar(self.viewFrame, orient=HORIZONTAL)
-        if tabTitle.startswith('Tables') and modelXbrl.isEba:
-            # for EBA and in case of table index, add a second column with the filing indicator
-            # (OK, it is not really sound to base this test on the title)            
-            self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set, columns="Filing")
-            self.isEbaTableIndex = True
-        else:
+        self.isEbaTableIndex = False
+        if tabTitle.startswith('Tables'):
+            for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Modeling.LoadFilingIndicators"):
+                self.isEbaTableIndex = True
+                # for EBA and in case of table index, add a second column with the filing indicator
+                # (OK, it is not really sound to base this test on the title)            
+                self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set, columns="Filing")
+                break
+        if not self.isEbaTableIndex:
             self.treeView = Treeview(self.viewFrame, xscrollcommand=hScrollbar.set, yscrollcommand=vScrollbar.set)
         self.treeView.grid(row=0, column=0, sticky=(N, S, E, W))
         self.treeView.tag_configure("ELR", background="#E0F0FF")

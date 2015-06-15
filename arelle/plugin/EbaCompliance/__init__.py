@@ -271,16 +271,16 @@ class DialogNewFileOptions(Toplevel):
         urlsByEntryPoint = EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE.get(self.ebaReportingType).get(self.ebaTaxonomyVersion)
         return urlsByEntryPoint[options.ebaEntryPointKey]
 
-def improveEbaCompliance(dts, cntlr, lang="en"):
-    ':type dts: ModelXbrl'
+def improveEbaCompliance(modelXbrl, cntlr, lang="en"):
+    ':type modelXbrl: ModelXbrl'
     try:
-        if not isEbaInstance(dts, checkAlsoEiopa=True):
-            dts.modelManager.showStatus(_("Only applicable to EBA instances"), 5000)
+        if not isEbaInstance(modelXbrl, checkAlsoEiopa=True):
+            modelXbrl.modelManager.showStatus(_("Only applicable to EBA instances"), 5000)
             return
-        dts.modelManager.showStatus(_("Improving the EBA compliance"))
-        deleteNilFacts(dts, cntlr)
-        factWalkingAction = FactWalkingAction(dts)
-        newFactItemOptions = getFactItemOptions(dts, cntlr)
+        modelXbrl.modelManager.showStatus(_("Improving the EBA compliance"))
+        deleteNilFacts(modelXbrl, cntlr)
+        factWalkingAction = FactWalkingAction(modelXbrl)
+        newFactItemOptions = getFactItemOptions(modelXbrl, cntlr)
         if not newFactItemOptions:
             return
         from arelle.ModelRenderingObject import ModelEuTable, ModelTable
@@ -300,15 +300,15 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
                 self.xAxisChildrenFirst = nonTkBooleanVar(value=xAxisChildrenFirst)
                 self.yAxisChildrenFirst = nonTkBooleanVar(value=yAxisChildrenFirst)
 
-        groupTableRels = dts.modelXbrl.relationshipSet(XbrlConst.euGroupTable)
+        groupTableRels = modelXbrl.modelXbrl.relationshipSet(XbrlConst.euGroupTable)
         modelTables = []
 
         def viewTable(modelTable, factWalkingAction):
             if isinstance(modelTable, (ModelEuTable, ModelTable)):
                 # status
-                dts.modelManager.cntlr.addToLog("improving: " + modelTable.id)
+                modelXbrl.modelManager.cntlr.addToLog("improving: " + modelTable.id)
 
-                viewWalkerRenderedGrid(dts,
+                viewWalkerRenderedGrid(modelXbrl,
                                        factWalkingAction,
                                        lang=lang,
                                        viewTblELR=modelTable,
@@ -320,7 +320,7 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
     
         for rootConcept in groupTableRels.rootConcepts:
             sourceline = 0
-            for rel in dts.modelXbrl.relationshipSet(XbrlConst.euGroupTable).fromModelObject(rootConcept):
+            for rel in modelXbrl.modelXbrl.relationshipSet(XbrlConst.euGroupTable).fromModelObject(rootConcept):
                 sourceline = rel.sourceline
                 break
             modelTables.append((rootConcept, sourceline))
@@ -331,15 +331,15 @@ def improveEbaCompliance(dts, cntlr, lang="en"):
         #TODO: remove this and cleanup
         oldStuff = False
         if oldStuff:
-            createOrReplaceFilingIndicators(dts, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
+            createOrReplaceFilingIndicators(modelXbrl, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
             
-        updateFactItemOptions(dts, newFactItemOptions, cntlr)
-        dts.modelManager.showStatus(_("EBA compliance improved"), 5000)
-        cntlr.reloadTableView(dts)
+        updateFactItemOptions(modelXbrl, newFactItemOptions, cntlr)
+        modelXbrl.modelManager.showStatus(_("EBA compliance improved"), 5000)
+        cntlr.reloadTableView(modelXbrl)
     except Exception as ex:
-        dts.error("exception",
+        modelXbrl.error("exception",
             _("EBA compliance improvements generation exception: %(error)s"), error=ex,
-            modelXbrl=dts,
+            modelXbrl=modelXbrl,
             exc_info=True)
 
 def deleteUnusedUnits(dts):
@@ -359,27 +359,27 @@ def deleteUnusedUnits(dts):
         dts.setIsModified()
     return someUnitsHaveBeenDeleted
 
-def deleteNilFacts(dts, contlr):
+def deleteNilFacts(modelXbrl, contlr):
     contlr.addToLog(_("Removal of empty facts and unused contexts started."))
-    nilFacts = dts.factIndex.nilFacts(dts)
+    nilFacts = modelXbrl.nilFacts()
     parent = None
     for fact in nilFacts:
-        parent = removeFactInModel(dts, fact)
-    contextsDeleted = deleteUnusedContexts(dts)
-    unitsDeleted = deleteUnusedUnits(dts)
+        parent = removeFactInModel(modelXbrl, fact)
+    contextsDeleted = deleteUnusedContexts(modelXbrl)
+    unitsDeleted = deleteUnusedUnits(modelXbrl)
     if contextsDeleted or unitsDeleted:
         # Validate everything
-        XmlValidate.validate(dts, dts.modelDocument.xmlRootElement)
+        XmlValidate.validate(modelXbrl, modelXbrl.modelDocument.xmlRootElement)
     elif parent is not None:
-        XmlValidate.validate(dts, parent)
+        XmlValidate.validate(modelXbrl, parent)
     numberOfNilFacts = len(nilFacts)
     if numberOfNilFacts>0:
-        dts.setIsModified()
+        modelXbrl.setIsModified()
     contlr.addToLog(_("Removal of empty facts and unused contexts finished successfully. %s empty facts deleted." % numberOfNilFacts))
 
 def removeFactInModel(dts, fact):
     dts.factsInInstance.remove(fact)
-    dts.factIndex.deleteFact(fact)
+    dts.deleteFactIndex(fact)
     dts.facts.remove(fact)
     if fact in dts.undefinedFacts:
         dts.undefinedFacts.remove(fact)
@@ -442,7 +442,7 @@ def removeUselessFilingIndicatorsInModel(dts):
     filingIndicatorElements = dts.factsByQname(qnFindFilingIndicator, set())
     for fact in filingIndicatorElements:
         dts.factsInInstance.remove(fact)
-        dts.factIndex.deleteFact(fact)
+        dts.deleteFactIndex(fact)
         # non-top-level elements are not in 'facts'
     dts.setIsModified()
 
@@ -490,12 +490,12 @@ def improveEbaComplianceMenuCommand(cntlr):
     if cntlr.modelManager is None or cntlr.modelManager.modelXbrl is None:
         cntlr.addToLog(_("No DTS loaded."))
         return
-    dts = cntlr.modelManager.modelXbrl
-    getFactItemOptions(dts, cntlr)
+    modelXbrl = cntlr.modelManager.modelXbrl
+    getFactItemOptions(modelXbrl, cntlr)
     import threading
     thread = threading.Thread(target=lambda 
-                                  _dts=dts: 
-                                        improveEbaCompliance(_dts, cntlr))
+                                  _modelXbrl=modelXbrl: 
+                                        improveEbaCompliance(_modelXbrl, cntlr))
     thread.daemon = True
     thread.start()
 

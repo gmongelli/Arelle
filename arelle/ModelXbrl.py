@@ -57,6 +57,7 @@ def load(modelManager, url, nextaction=None, base=None, useFileSource=None, erro
     else:
         modelXbrl.fileSource = FileSource.FileSource(url, modelManager.cntlr)
         modelXbrl.closeFileSource= True
+    modelXbrl.discoveryLevel = 0 #TODO: removethis
     modelXbrl.modelDocument = ModelDocument.load(modelXbrl, url, base, isEntry=True, **kwargs)
     del modelXbrl.entryLoadingUrl
     loadSchemalocatedSchemas(modelXbrl)
@@ -87,6 +88,7 @@ def create(modelManager, newDocumentType=None, url=None, schemaRefs=None, create
             if isEntry:
                 del modelXbrl.entryLoadingUrl
                 loadSchemalocatedSchemas(modelXbrl)
+    modelXbrl.useFactIndex = modelManager.cntlr.useFactIndex #TODO: useFactIndex
     return modelXbrl
     
 def loadSchemalocatedSchemas(modelXbrl):
@@ -296,6 +298,7 @@ class ModelXbrl:
         self.profileStats = {}
         self.schemaDocsToValidate = set()
         self.modelXbrl = self # for consistency in addressing modelXbrl
+        self.useFactIndex = False
         self.factIndex = FactIndex()
         ModelXbrl.modelCount += 1
         self.modelNumber = ModelXbrl.modelCount
@@ -307,7 +310,7 @@ class ModelXbrl:
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
         """
         if not self.isClosed:
-            self.factIndex.close()
+            self.closeFactIndex()
             self.closeViews()
             if self.formulaOutputInstance:
                 self.formulaOutputInstance.close()
@@ -341,8 +344,8 @@ class ModelXbrl:
         self.modelDocument = ModelDocument.load(self, self.fileSource.url, isEntry=True, reloadCache=reloadCache)
         self.modelManager.showStatus(_("xbrl loading finished, {0}...").format(nextaction),5000)
         self.modelManager.reloadViews(self)
-        self.factIndex.close()
-        self.factIndex = FactIndex()
+        self.closeFactIndex()
+        self.newFfactIndex()
             
     def closeViews(self):
         """Close views associated with this modelXbrl
@@ -698,22 +701,37 @@ class ModelXbrl:
         
         :returns: set -- non-nil facts in instance
         """
-        _nonNilFactsInInstance = self.factIndex.nonNilFacts(self)
-        return _nonNilFactsInInstance
+        if self.useFactIndex:
+            _nonNilFactsInInstance = self.factIndex.nonNilFacts(self)
+            return _nonNilFactsInInstance
+        
+        try:
+            return self._nonNilFactsInInstance
+        except AttributeError:
+            self._nonNilFactsInInstance = set(f for f in self.factsInInstance if not f.isNil)
+            return self._nonNilFactsInInstance
         
     def factsByQname(self, qname, defaultValue=None, cntxtId=None): # indexed by fact (concept) qname
         """Facts in the instance indexed by their QName, cached
         
         :returns: dict -- indexes are QNames, values are ModelFacts
         """
-        return self.factIndex.factsByQname(qname, self, defaultValue=defaultValue, cntxtId=cntxtId)
+        if self.useFactIndex:
+            return self.factIndex.factsByQname(qname, self, defaultValue=defaultValue, cntxtId=cntxtId)
+        
+        fbqn = defaultdict(set)
+        for f in self.factsInInstance: fbqn[f.qname].add(f)
+        return fbqn.get(qname, defaultValue)
 
     def factsByQnameAll(self):
         """Facts in the instance indexed by their QName, cached
         
         :returns: list(tuple(str, set(ModelFact))) -- indexes are QNames (as string), values are ModelFacts
         """
-        return self.factIndex.factsByQnameAll(self)
+        if self.useFactIndex:
+            return self.factIndex.factsByQnameAll(self)
+        
+        #TODO: add an implementation if you happen to use it (actually not used anywhere)
 
     def factsByDatatype(self, notStrict, typeQname): # indexed by fact (concept) qname
         """Facts in the instance indexed by data type QName, cached as types are requested
@@ -722,15 +740,29 @@ class ModelXbrl:
         :type notStrict: bool
         :returns: set -- ModelFacts that have specified type or (if nonStrict) derived from specified type
         """
-        if notStrict:
-            fbdt = set()
+        if self.useFactIndex:
+            if notStrict:
+                fbdt = set()
+                for f in self.factsInInstance:
+                    c = f.concept
+                    if c.typeQname == typeQname or (c.type.isDerivedFrom(typeQname)):
+                        fbdt.add(f)
+                return fbdt
+            else:
+                return self.factIndex.factsByDatatype(typeQname, self)
+
+        try:
+            return self._factsByDatatype[notStrict, typeQname]
+        except AttributeError:
+            self._factsByDatatype = {}
+            return self.factsByDatatype(notStrict, typeQname)
+        except KeyError:
+            self._factsByDatatype[notStrict, typeQname] = fbdt = set()
             for f in self.factsInInstance:
                 c = f.concept
-                if c.typeQname == typeQname or (c.type.isDerivedFrom(typeQname)):
+                if c.typeQname == typeQname or (notStrict and c.type.isDerivedFrom(typeQname)):
                     fbdt.add(f)
             return fbdt
-        else:
-            return self.factIndex.factsByDatatype(typeQname, self)
         
     def factsByPeriodType(self, periodType): # indexed by fact (concept) qname
         """Facts in the instance indexed by periodType, cached
@@ -739,7 +771,21 @@ class ModelXbrl:
         :type periodType: str
         :returns: set -- ModelFacts that have specified periodType
         """
-        return self.factIndex.factsByPeriodType(periodType,self)
+        if self.useFactIndex:
+            return self.factIndex.factsByPeriodType(periodType,self)
+        
+        try:
+            return self._factsByPeriodType[periodType]
+        except AttributeError:
+            self._factsByPeriodType = fbpt = defaultdict(set)
+            for f in self.factsInInstance:
+                p = f.concept.periodType
+                if p:
+                    fbpt[p].add(f)
+            return self.factsByPeriodType(periodType)
+        except KeyError:
+            return set()  # no facts for this period type
+        
 
     def factsByDimMemQname(self, dimQname, memQname=None): # indexed by fact (concept) qname
         """Facts in the instance indexed by their Dimension  and Member QName, cached
@@ -749,7 +795,52 @@ class ModelXbrl:
         If Member is NONDEFAULT, returns facts that have the dimension (explicit non-default or typed)
         If Member is DEFAULT, returns facts that have the dimension (explicit non-default or typed) defaulted
         """
-        return self.factIndex.factsByDimMemQname(dimQname, self, memQname)
+        if self.useFactIndex:
+            return self.factIndex.factsByDimMemQname(dimQname, self, memQname)
+        
+        fbdq = defaultdict(set)
+        for fact in self.factsInInstance: 
+            if fact.isItem:
+                dimValue = fact.context.dimValue(dimQname)
+                if isinstance(dimValue, ModelValue.QName):  # explicit dimension default value
+                    fbdq[None].add(fact) # set of all facts that have default value for dimension
+                    if dimQname in self.modelXbrl.qnameDimensionDefaults:
+                        fbdq[self.qnameDimensionDefaults[dimQname]].add(fact) # set of facts that have this dim and mem
+                        fbdq[DEFAULT].add(fact) # set of all facts that have default value for dimension
+                elif dimValue is not None: # not default
+                    fbdq[None].add(fact) # set of all facts that have default value for dimension
+                    fbdq[NONDEFAULT].add(fact) # set of all facts that have non-default value for dimension
+                    if dimValue.isExplicit:
+                        fbdq[dimValue.memberQname].add(fact) # set of facts that have this dim and mem
+                else: # default typed dimension
+                    fbdq[DEFAULT].add(fact)
+        return fbdq[memQname]
+        """
+        try:
+            fbdq = self._factsByDimQname[dimQname]
+            return fbdq[memQname]
+        except AttributeError:
+            self._factsByDimQname = {}
+            return self.factsByDimMemQname(dimQname, memQname)
+        except KeyError:
+            self._factsByDimQname[dimQname] = fbdq = defaultdict(set)
+            for fact in self.factsInInstance: 
+                if fact.isItem and fact.context is not None:
+                    dimValue = fact.context.dimValue(dimQname)
+                    if isinstance(dimValue, ModelValue.QName):  # explicit dimension default value
+                        fbdq[None].add(fact) # set of all facts that have default value for dimension
+                        if dimQname in self.modelXbrl.qnameDimensionDefaults:
+                            fbdq[self.qnameDimensionDefaults[dimQname]].add(fact) # set of facts that have this dim and mem
+                            fbdq[DEFAULT].add(fact) # set of all facts that have default value for dimension
+                    elif dimValue is not None: # not default
+                        fbdq[None].add(fact) # set of all facts that have default value for dimension
+                        fbdq[NONDEFAULT].add(fact) # set of all facts that have non-default value for dimension
+                        if dimValue.isExplicit:
+                            fbdq[dimValue.memberQname].add(fact) # set of facts that have this dim and mem
+                    else: # default typed dimension
+                        fbdq[DEFAULT].add(fact)
+            return fbdq[memQname]
+        """
         
     def factAlreadyExists(self, factQName, contextId):
         """Find matching fact by QName and c-equality.
@@ -1176,3 +1267,37 @@ class ModelXbrl:
         if self.uri.endswith(".xbrl"):
             return os.path.basename(self.uri)
         return str(self.modelNumber)
+
+    def closeFactIndex(self):
+        if self.useFactIndex:
+            self.factIndex.close()
+    
+    def newFfactIndex(self):
+        if self.useFactIndex:
+            self.factIndex = FactIndex()
+    
+    def insertFactIndex(self, fact):
+        if self.useFactIndex:
+            self.factIndex.insertFact(fact, self.modelXbrl)
+    
+    def deleteFactIndex(self, fact):
+        if self.useFactIndex:
+            self.factIndex.deleteFact(fact)
+    
+    def updateFactIndex(self, fact):
+        if self.useFactIndex:
+            self.factIndex.updateFact(fact)
+            
+    def nilFacts(self):
+        if self.useFactIndex:
+            return self.factIndex.nilFacts(self.modelXbr)
+        
+        nilFacts = set()
+        for f in self.factsInInstance:
+            try:
+                if f.isNil or f.c.isNil:
+                    nilFacts.add(f)
+            except:
+                pass
+        return nilFacts      
+        

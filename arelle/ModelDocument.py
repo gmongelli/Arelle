@@ -18,6 +18,11 @@ from arelle.ModelInstanceObject import ModelFact, ModelInlineFact
 from arelle.ModelObjectFactory import parser
 from arelle.PrototypeDtsObject import LinkPrototype, LocPrototype, ArcPrototype, DocumentPrototype
 from arelle.PluginManager import pluginClassMethods
+import time #TODO: removethis
+from arelle.Locale import format_string #TODO: removethis
+from arelle.Locale import getUserLocale #TODO: removethis
+locale = getUserLocale("en") #TODO: removethis        
+from numpy.core.defchararray import endswith
 creationSoftwareNames = None
 
 def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDiscovered=False, isIncluded=None, namespace=None, reloadCache=False, **kwargs):
@@ -284,6 +289,10 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         if isEntry or isDiscovered:
             modelDocument.inDTS = True
         
+        #startedAt = time.time() #TODO: removethis
+        #modelXbrl.discoveryLevel += 1
+        if modelDocument.uri.endswith("s.19.01.01.13-def.xml"):
+            pass
         # discovery (parsing)
         if any(pluginMethod(modelDocument)
                for pluginMethod in pluginClassMethods("ModelDocument.Discover")):
@@ -310,8 +319,12 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
             modelDocument.versioningReportDiscover(rootNode)
         elif _type == Type.RSSFEED:
             modelDocument.rssFeedDiscover(rootNode)
+        #msg = " " * modelXbrl.discoveryLevel
+        #print(msg + "discovery" + format_string(locale, (" %.2f s "), time.time() - startedAt) + modelDocument.uri) #TODO: removethis
+        #modelXbrl.discoveryLevel -= 1
             
         if isEntry:
+            
             while modelXbrl.schemaDocsToValidate:
                 doc = modelXbrl.schemaDocsToValidate.pop()
                 XmlValidateSchema.validate(doc, doc.xmlRootElement, doc.targetNamespace) # validate schema elements
@@ -1144,9 +1157,9 @@ class ModelDocument:
             else:
                 parentModelFacts = self.modelXbrl.facts
         if isinstance(modelFact, ModelFact):
-            parentModelFacts.append( modelFact )
-            self.modelXbrl.factsInInstance.add( modelFact )
-            self.modelXbrl.factIndex.insertFact( modelFact, self.modelXbrl )
+            parentModelFacts.append(modelFact)
+            self.modelXbrl.factsInInstance.add(modelFact)
+            self.modelXbrl.insertFactIndex(modelFact)
             tupleElementSequence = 0
             for tupleElement in modelFact:
                 if isinstance(tupleElement,ModelObject):
@@ -1286,8 +1299,8 @@ def inlineIxdsDiscover(modelXbrl):
         for tag in factTags:
             for modelInlineFact in htmlElement.iterdescendants(tag=tag):
                 if isinstance(modelInlineFact,ModelInlineFact):
-                    mdlDoc.modelXbrl.factsInInstance.add( modelInlineFact )
-                    mdlDoc.modelXbrl.factIndex.insertFact( modelInlineFact, mdlDoc.modelXbrl )
+                    mdlDoc.modelXbrl.factsInInstance.add(modelInlineFact)
+                    mdlDoc.modelXbrl.insertFactIndex(modelInlineFact)
                     locateFactInTuple(modelInlineFact, tuplesByTupleID, ixNStag)
                     locateContinuation(modelInlineFact)
                     for r in modelInlineFact.footnoteRefs:

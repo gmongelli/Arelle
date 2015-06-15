@@ -91,7 +91,7 @@ def setFilingIndicatorValue(modelXbrl, fIndicator, filingIndicator):
         fIndicator.set(pname, "false")
     else:
         modelXbrl.factsInInstance.remove(fIndicator)
-        modelXbrl.factIndex.deleteFact(fIndicator)
+        modelXbrl.deleteFactIndex(fIndicator)
     modelXbrl.setIsModified()
     
 def createFilingIndicatorsElement(modelXbrl, newFactItemOptions):
