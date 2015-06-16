@@ -26,6 +26,7 @@ from collections import defaultdict
 from arelle.ValidateXbrl import ValidateXbrl
 from arelle.XbrlConst import eurofilingModelNamespace, eurofilingModelPrefix
 from _tkinter import TclError
+from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
 
 try:
     from tkinter import ttk
@@ -82,7 +83,40 @@ def viewRenderedGrid(modelXbrl, tabWin, lang=None):
     view.viewFrame.bind("<1>", view.onClick, '+')
     view.viewFrame.bind("<Configure>", view.onConfigure, '+') # frame resized, redo column header wrap length ratios
     view.blockMenuEvents = 0
-            
+
+class FactsByDimMemQnameCache:
+    def __init__(self, modelXbrl):
+        self.modelXbrl = modelXbrl
+        self.factsByDimMemQnameDict = {}
+        self.numHits = 0
+        self.numCalls = 0
+    
+    def clear(self):
+        self.factsByDimMemQnameDict = {}
+        
+    def factsByDimMemQname(self, aspect, dimMemQname=None):
+        # This is an attempt to speed up the viewing of some tables
+        # the dictionary is not updated during edition, so we need to
+        # initialize it at the beginning of table and clear it at the end
+        
+        # This could be enhanced by moving the use to ModelXbrl and
+        # partitioning by grid and listening to fact insertions and deletions
+        self.numCalls += 1
+        key = str(aspect) + str(dimMemQname)
+        try:
+            value = self.factsByDimMemQnameDict[key]
+            self.numHits += 1
+        except KeyError:
+            value = self.modelXbrl.factsByDimMemQname(aspect, dimMemQname)
+            self.factsByDimMemQnameDict[key] = value
+        return value
+    
+    def getStats(self):
+        return (self.numCalls, self.numHits, len(self.factsByDimMemQnameDict))
+    
+    def printStats(self):
+        print("numCalls= " + str(self.numCalls) + " numHits= " + str(self.numHits) + " size=" + str(len(self.factsByDimMemQnameDict)))
+                
 class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def __init__(self, modelXbrl, tabWin, lang):
         viewTitle = _("Table")
@@ -101,6 +135,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.ignoreDimValidity = BooleanVar(value=self.options.setdefault("ignoreDimValidity",True))
         self.xAxisChildrenFirst = BooleanVar(value=self.options.setdefault("xAxisChildrenFirst",True))
         self.yAxisChildrenFirst = BooleanVar(value=self.options.setdefault("yAxisChildrenFirst",False))
+        self.factsByDimMemQnameCache = FactsByDimMemQnameCache(modelXbrl)
             
     def close(self):
         super(ViewRenderedGrid, self).close()
@@ -252,7 +287,12 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if fp is not None:
                     fp.clear()
             self.factPrototypes = []
+            self.factsByDimMemQnameCache.clear()
             self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, self.zAspectStructuralNodes, self.yAxisChildrenFirst.get())
+            #print("bodyCells took " + "{:.2f}".format(time.time() - startedAt)) #TODO: removethis  
+            #self.factsByDimMemQnameCache.printStats()
+            self.factsByDimMemQnameCache.clear()
+ 
             self.table.clearModificationStatus()
             self.table.disableUnusedCells()
                 
@@ -575,7 +615,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         elif isString:
             bgColor = XbrlTable.TG_BG_VIOLET
         return bgColor;
-
+    
     def bodyCells(self, row, yParentStructuralNode, xStructuralNodes, zAspectStructuralNodes, yChildrenFirst):
         if yParentStructuralNode is not None:
             dimDefaults = self.modelXbrl.qnameDimensionDefaults
@@ -596,7 +636,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 yAspectStructuralNodes[aspect].add(yStructuralNode)
                     yTagSelectors = yStructuralNode.tagSelectors
                     # data for columns of row
-                    #print ("row " + str(row) + "yNode " + yStructuralNode.definitionNode.objectId() )
                     ignoreDimValidity = self.ignoreDimValidity.get()
                     for i, xStructuralNode in enumerate(xStructuralNodes):
                         xAspectStructuralNodes = defaultdict(set)
@@ -625,11 +664,11 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             
                         concept = self.modelXbrl.qnameConcepts.get(priItemQname)
                         conceptNotAbstract = concept is None or not concept.isAbstract
-                        from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
                         value = None
                         objectId = None
                         justify = None
                         fp = FactPrototype(self, cellAspectValues)
+                        
                         if conceptNotAbstract:
                             # reduce set of matchable facts to those with pri item qname and have dimension aspects
                             facts = self.modelXbrl.factsByQname(priItemQname, set()) if priItemQname else self.modelXbrl.factsInInstance
@@ -649,7 +688,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                         dimMemQname = ModelXbrl.DEFAULT
                                     else:
                                         dimMemQname = None # match facts that report this dimension
-                                    facts = facts & self.modelXbrl.factsByDimMemQname(aspect, dimMemQname)
+                                    newFacts = self.factsByDimMemQnameCache.factsByDimMemQname(aspect, dimMemQname)
+                                    facts = facts & newFacts
                                     if len(facts)==0:
                                         break;
                             for fact in facts:
