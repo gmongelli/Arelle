@@ -4,7 +4,7 @@ Created on Sep 13, 2011
 @author: Mark V Systems Limited
 (c) Copyright 2011 Mark V Systems Limited, All rights reserved.
 '''
-import os
+import os, time
 from arelle import ViewFile
 from lxml import etree
 from arelle.RenderingResolver import resolveAxesStructure, RENDER_UNITS_PER_CHAR
@@ -19,6 +19,9 @@ from arelle.ModelXbrl import DEFAULT
 from arelle.ModelRenderingObject import (ModelClosedDefinitionNode, ModelEuAxisCoord, ModelFilterDefinitionNode,
                                          OPEN_ASPECT_ENTRY_SURROGATE)
 from arelle.PrototypeInstanceObject import FactPrototype
+from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
+from arelle.ViewWinRenderedGrid import FactsByDimMemQnameCache
+
 # change tableModel for namespace needed for consistency suite
 '''
 from arelle.XbrlConst import (tableModelMMDD as tableModelNamespace, 
@@ -73,6 +76,7 @@ class ViewRenderedGrid(ViewFile.View):
         self.ignoreDimValidity = nonTkBooleanVar(value=True)
         self.xAxisChildrenFirst = nonTkBooleanVar(value=True)
         self.yAxisChildrenFirst = nonTkBooleanVar(value=False)
+        self.factsByDimMemQnameCache = FactsByDimMemQnameCache(modelXbrl)
         
 
     def tableModelQName(self, localName):
@@ -197,7 +201,12 @@ class ViewRenderedGrid(ViewFile.View):
                         for headerElt in self.headerElts.values(): # remove empty header elements
                             if not any(e is not None for e in headerElt.iterchildren()):
                                 headerElt.getparent().remove(headerElt)
+                    #startedAt = time.time()
+                    self.factsByDimMemQnameCache.clear()
                     self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, zAspectStructuralNodes, self.yAxisChildrenFirst.get())
+                    #print("bodyCells took " + "{:.2f}".format(time.time() - startedAt)) #TODO: removethis  
+                    #self.factsByDimMemQnameCache.printStats()
+                    self.factsByDimMemQnameCache.clear()
                 # find next choice structural node
                 moreDiscriminators = False
                 for zStrNodeWithChoices in self.zStrNodesWithChoices:
@@ -685,7 +694,6 @@ class ViewRenderedGrid(ViewFile.View):
                             
                         concept = self.modelXbrl.qnameConcepts.get(priItemQname)
                         conceptNotAbstract = concept is None or not concept.isAbstract
-                        from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
                         fact = None
                         value = None
                         objectId = None
@@ -710,7 +718,8 @@ class ViewRenderedGrid(ViewFile.View):
                                         dimMemQname = DEFAULT
                                     else:
                                         dimMemQname = None # match facts that report this dimension
-                                    facts = facts & self.modelXbrl.factsByDimMemQname(aspect, dimMemQname)
+                                    newFacts = self.factsByDimMemQnameCache.factsByDimMemQname(aspect, dimMemQname)
+                                    facts = facts & newFacts
                                     if len(facts)==0:
                                         break;
                             for fact in facts:
