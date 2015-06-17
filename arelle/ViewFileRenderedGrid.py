@@ -94,6 +94,7 @@ class ViewRenderedGrid(ViewFile.View):
         if self.type == XML:
             self.tblElt.append(etree.Comment("Entry point file: {0}".format(self.modelXbrl.modelDocument.basename)))
         
+        self.factsByDimMemQnameCache.clear()
         for tblELR in tblELRs:
             self.zOrdinateChoices = {}
             
@@ -201,12 +202,10 @@ class ViewRenderedGrid(ViewFile.View):
                         for headerElt in self.headerElts.values(): # remove empty header elements
                             if not any(e is not None for e in headerElt.iterchildren()):
                                 headerElt.getparent().remove(headerElt)
-                    #startedAt = time.time()
-                    self.factsByDimMemQnameCache.clear()
+                    startedAt = time.time()
                     self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, zAspectStructuralNodes, self.yAxisChildrenFirst.get())
-                    #print("bodyCells took " + "{:.2f}".format(time.time() - startedAt)) #TODO: removethis  
-                    #self.factsByDimMemQnameCache.printStats()
-                    self.factsByDimMemQnameCache.clear()
+                    print("bodyCells took " + "{:.2f}".format(time.time() - startedAt) + " " + str(self.outfile)) #TODO: removethis  
+                    self.factsByDimMemQnameCache.printStats()
                 # find next choice structural node
                 moreDiscriminators = False
                 for zStrNodeWithChoices in self.zStrNodesWithChoices:
@@ -222,6 +221,7 @@ class ViewRenderedGrid(ViewFile.View):
                         # continue incrementing next outermore z choices index
                 if not moreDiscriminators:
                     break
+            self.factsByDimMemQnameCache.clear()
 
             
     def zAxis(self, row, zStructuralNode, zAspectStructuralNodes, discriminatorsTable):
