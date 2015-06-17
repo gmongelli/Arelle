@@ -625,7 +625,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if not (yStructuralNode.isAbstract or 
                         (yStructuralNode.childStructuralNodes and
                          not isinstance(yStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)))) and yStructuralNode.isLabeled:
-                    isEntryPrototype = yStructuralNode.isEntryPrototype(default=False) # row to enter open aspects
+                    isYEntryPrototype = yStructuralNode.isEntryPrototype(default=False) # row to enter open aspects
                     yAspectStructuralNodes = defaultdict(set)
                     for aspect in aspectModels[self.aspectModel]:
                         if yStructuralNode.hasAspect(aspect):
@@ -638,6 +638,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                     # data for columns of row
                     ignoreDimValidity = self.ignoreDimValidity.get()
                     for i, xStructuralNode in enumerate(xStructuralNodes):
+                        isEntryPrototype = isYEntryPrototype or xStructuralNode.isEntryPrototype(default=False)
                         xAspectStructuralNodes = defaultdict(set)
                         for aspect in aspectModels[self.aspectModel]:
                             if xStructuralNode.hasAspect(aspect):
