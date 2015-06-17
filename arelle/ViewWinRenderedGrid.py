@@ -289,8 +289,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             self.factPrototypes = []
             self.factsByDimMemQnameCache.clear()
             self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, self.zAspectStructuralNodes, self.yAxisChildrenFirst.get())
-            #print("bodyCells took " + "{:.2f}".format(time.time() - startedAt)) #TODO: removethis  
-            #self.factsByDimMemQnameCache.printStats()
+            print("bodyCells took " + "{:.2f}".format(time.time() - startedAt)) #TODO: removethis  
+            self.factsByDimMemQnameCache.printStats()
             self.factsByDimMemQnameCache.clear()
  
             self.table.clearModificationStatus()
@@ -598,6 +598,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def getbackgroundColor(self, factPrototype):
         bgColor = XbrlTable.TG_BG_DEFAULT # default monetary
         concept = factPrototype.concept
+        if concept == None:
+            return bgColor
         isNumeric = concept.isNumeric
         # isMonetary = concept.isMonetary
         isInteger = concept.baseXbrliType in integerItemTypes
