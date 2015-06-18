@@ -82,6 +82,7 @@ class Cntlr:
         self.isGAE = False
         self.isCGI = False
         self.systemWordSize = int(round(math.log(sys.maxsize, 2)) + 1) # e.g., 32 or 64
+        self.useFactIndex = False #TODO: useFactIndex
 
         self.moduleDir = os.path.dirname(__file__)
         # for python 3.2 remove __pycache__

@@ -125,8 +125,6 @@ class CntlrWinMain (Cntlr.Cntlr):
         
         toolsMenu = Menu(self.menubar, tearoff=0)
         
-        #TODO: useFactIndex
-        self.useFactIndex = False
         toolsMenu.add_checkbutton(label=_("Use FactIndex"), underline=0, command=self.useFactIndexCheckUncheck)
         
         validateMenu = Menu(self.menubar, tearoff=0)

@@ -16,11 +16,11 @@ from arelle.FunctionXs import xsString
 from arelle.ModelInstanceObject import ModelDimensionValue
 from arelle.ModelValue import QName
 from arelle.ModelXbrl import DEFAULT
+from arelle.ModelXbrl import FactsByDimMemQnameCache
 from arelle.ModelRenderingObject import (ModelClosedDefinitionNode, ModelEuAxisCoord, ModelFilterDefinitionNode,
                                          OPEN_ASPECT_ENTRY_SURROGATE)
 from arelle.PrototypeInstanceObject import FactPrototype
 from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
-from arelle.ViewWinRenderedGrid import FactsByDimMemQnameCache
 
 # change tableModel for namespace needed for consistency suite
 '''

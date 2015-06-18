@@ -1299,5 +1299,39 @@ class ModelXbrl:
                     nilFacts.add(f)
             except:
                 pass
-        return nilFacts      
+        return nilFacts
+    
+class FactsByDimMemQnameCache:
+    def __init__(self, modelXbrl):
+        self.modelXbrl = modelXbrl
+        self.factsByDimMemQnameDict = {}
+        self.numHits = 0
+        self.numCalls = 0
+    
+    def clear(self):
+        self.factsByDimMemQnameDict = {}
+        
+    def factsByDimMemQname(self, aspect, dimMemQname=None):
+        # This is an attempt to speed up the viewing of some tables
+        # the dictionary is not updated during edition, so we need to
+        # initialize it at the beginning of table and clear it at the end
+        
+        # This could be enhanced by moving the use to ModelXbrl and
+        # partitioning by grid and listening to fact insertions and deletions
+        self.numCalls += 1
+        key = str(aspect) + str(dimMemQname)
+        try:
+            value = self.factsByDimMemQnameDict[key]
+            self.numHits += 1
+        except KeyError:
+            value = self.modelXbrl.factsByDimMemQname(aspect, dimMemQname)
+            self.factsByDimMemQnameDict[key] = value
+        return value
+    
+    def getStats(self):
+        return (self.numCalls, self.numHits, len(self.factsByDimMemQnameDict))
+    
+    def printStats(self):
+        print("numCalls= " + str(self.numCalls) + " numHits= " + str(self.numHits) + " size=" + str(len(self.factsByDimMemQnameDict)))
+                
         
