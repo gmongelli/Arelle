@@ -888,11 +888,18 @@ class CntlrWinMain (Cntlr.Cntlr):
                         try:
                             ff = modelXbrl.modelDocument.filepath
                             if ff.endswith('.xsd'):
+                                saved = False
                                 for pluginXbrlMethod in pluginClassMethods("CntlrWinMain.Rendering.SaveNewFileFromGUI"):
-                                    stopPlugin = pluginXbrlMethod(self)
+                                    stopPlugin, saved = pluginXbrlMethod(self)
                                     if stopPlugin:
                                         break;
                                 #TODO: update "Tables" and "Table" tab titles using the new filename
+                                if not saved:
+                                    self.modelManager.close()
+                                    #TODO: fix title in case of remaining instance loaded
+                                    # (anyway, it was not correct before either)
+                                    self.parent.title(_("arelle - Unnamed"))  
+                                    self.currentView = None
                         except AttributeError:
                             pass
 

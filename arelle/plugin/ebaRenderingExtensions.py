@@ -106,8 +106,8 @@ def saveNewFileFromGUI(cntlrWinMain):
     # Note: when creating a new instance with the "new EBA file" menu, the model
     #       strangely appears not to be based on an INSTANCE document model type
     # => Force a save file immediately so that the user won't forget anymore (as indicated in AREBA WIKI tricks and tips)
-    cntlrWinMain.fileSave()
-    return True
+    saved = cntlrWinMain.fileSave()
+    return (True, saved)
     
         
 __pluginInfo__ = {
