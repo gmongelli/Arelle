@@ -103,7 +103,13 @@ def loadSchemalocatedSchemas(modelXbrl):
             modelDocument = modelDocuments.pop()
             modelDocumentsSchemaLocated.add(modelDocument)
             modelDocument.loadSchemalocatedSchemas()
-        
+            
+class GuiViews:
+    # provides a shorter access to some views/frames (to be completed)
+    def __init__(self):
+        self.tableIndexView = None # actually used to refresh tab label with filename
+        self.tableView = None # holds the ViewRenderedGrid corresponding to an instance (used e.g. to synch after table index selection)
+            
 class ModelXbrl:
     """
     .. class:: ModelXbrl(modelManager)
@@ -273,6 +279,9 @@ class ModelXbrl:
         self.facts = []
         self.factsInInstance = set()
         self.undefinedFacts = [] # elements presumed to be facts but not defined
+        self._nonNilFactsInInstance = None
+        self._factsByDatatype = None
+        self._factsByPeriodType = None
         self.contexts = {}
         self.units = {}
         self.modelObjects = []
@@ -302,9 +311,9 @@ class ModelXbrl:
         self.factIndex = FactIndex()
         ModelXbrl.modelCount += 1
         self.modelNumber = ModelXbrl.modelCount
-        self.tableViewTab = None # holds the ViewRenderedGrid corresponding to an instance (used e.g. to synch after table index selection)
         for pluginXbrlMethod in pluginClassMethods("ModelXbrl.Init"):
             pluginXbrlMethod(self)
+        self.guiViews = GuiViews()
 
     def close(self):
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
@@ -782,7 +791,7 @@ class ModelXbrl:
                 p = f.concept.periodType
                 if p:
                     fbpt[p].add(f)
-            return self.factsByPeriodType(periodType)
+            return self._factsByPeriodType[periodType]
         except KeyError:
             return set()  # no facts for this period type
         
@@ -906,17 +915,15 @@ class ModelXbrl:
             XmlValidate.validate(self, newFact)
         self.modelDocument.factDiscover(newFact, parentElement=parent)
         # update cached sets
-        if not newFact.isNil and hasattr(self, "_nonNilFactsInInstance"):
+        if not newFact.isNil and self._nonNilFactsInInstance:
             self._nonNilFactsInInstance.add(newFact)
         if hasattr(self, "_factsByQname"):
             self._factsByQname[newFact.qname].add(newFact)
         if newFact.concept is not None:
-            if hasattr(self, "_factsByDatatype"):
-                del self._factsByDatatype # would need to iterate derived type ancestry to populate
-            if hasattr(self, "_factsByPeriodType"):
+            if self._factsByDatatype:
+                _factsByDatatype = None # would need to iterate derived type ancestry to populate
+            if self._factsByPeriodType:
                 self._factsByPeriodType[newFact.concept.periodType].add(newFact)
-            if hasattr(self, "_factsByDimQname"):
-                del self._factsByDimQname
         self.setIsModified()
         return newFact    
         
@@ -1264,9 +1271,30 @@ class ModelXbrl:
                 entryFile=os.path.basename(entryFilename), packageOutputFile=pkgFilename, numberOfFiles=numFiles)
         
     def getInstanceFilenameForView(self):
-        if self.uri.endswith(".xbrl"):
-            return os.path.basename(self.uri)
+        fn = self.uri
+        if self.modelDocument and self.modelDocument.filepath:    
+            fn = self.modelDocument.filepath
+        if fn.endswith(".xbrl"):
+            return os.path.basename(fn)
         return str(self.modelNumber)
+    
+    def insertFact(self, fact):
+        self.factsInInstance.add(fact)
+        if self.useFactIndex:
+            self.factIndex.insertFact(fact, self.modelXbrl)
+        # yes,  this is rather crude
+        self._nonNilFactsInInstance = None
+        self._factsByDatatype = None
+        self._factsByPeriodType = None
+        
+    def removeFact(self, fact):
+        self.factsInInstance.discard(fact)
+        if self.useFactIndex:
+            self.factIndex.deleteFact(fact)
+        # yes, again
+        self._nonNilFactsInInstance = None
+        self._factsByDatatype = None
+        self._factsByPeriodType = None
 
     def closeFactIndex(self):
         if self.useFactIndex:
@@ -1275,14 +1303,6 @@ class ModelXbrl:
     def newFfactIndex(self):
         if self.useFactIndex:
             self.factIndex = FactIndex()
-    
-    def insertFactIndex(self, fact):
-        if self.useFactIndex:
-            self.factIndex.insertFact(fact, self.modelXbrl)
-    
-    def deleteFactIndex(self, fact):
-        if self.useFactIndex:
-            self.factIndex.deleteFact(fact)
     
     def updateFactIndex(self, fact):
         if self.useFactIndex:

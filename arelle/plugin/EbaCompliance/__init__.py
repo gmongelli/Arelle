@@ -377,13 +377,12 @@ def deleteNilFacts(modelXbrl, contlr):
         modelXbrl.setIsModified()
     contlr.addToLog(_("Removal of empty facts and unused contexts finished successfully. %s empty facts deleted." % numberOfNilFacts))
 
-def removeFactInModel(dts, fact):
-    dts.factsInInstance.remove(fact)
-    dts.deleteFactIndex(fact)
-    dts.facts.remove(fact)
-    if fact in dts.undefinedFacts:
-        dts.undefinedFacts.remove(fact)
-    dts.modelObjects[fact.objectIndex] = None # objects found by index, can't remove position from list
+def removeFactInModel(modelXbrl, fact):
+    modelXbrl.removeFact(fact)
+    modelXbrl.facts.remove(fact)
+    if fact in modelXbrl.undefinedFacts:
+        modelXbrl.undefinedFacts.remove(fact)
+    modelXbrl.modelObjects[fact.objectIndex] = None # objects found by index, can't remove position from list
     
     parent = fact.getparent()
     parent.remove(fact)
@@ -427,24 +426,23 @@ def createOrReplaceFilingIndicators(dts, allFilingIndicatorCodes, newFactItemOpt
                            validate=False)
         XmlValidate.validate(dts, filingIndicatorsElement) # must validate after content is created
 
-def removeUselessFilingIndicatorsInModel(dts):
+def removeUselessFilingIndicatorsInModel(modelXbrl):
     ''':type dts: ModelXbrl'''
     # First remove the context
-    if 'c' in dts.contexts:
-        context = dts.contexts["c"]
+    if 'c' in modelXbrl.contexts:
+        context = modelXbrl.contexts["c"]
         parent = context.getparent()
         parent.remove(context)
-        del dts.contexts["c"]
+        del modelXbrl.contexts["c"]
     # Remove the elements from the facts and factsInInstance data structure
-    filingIndicatorsElements = dts.factsByQname(qnFindFilingIndicators, set())
+    filingIndicatorsElements = modelXbrl.factsByQname(qnFindFilingIndicators, set())
     for fact in filingIndicatorsElements:
-        removeFactInModel(dts, fact)
-    filingIndicatorElements = dts.factsByQname(qnFindFilingIndicator, set())
+        removeFactInModel(modelXbrl, fact)
+    filingIndicatorElements = modelXbrl.factsByQname(qnFindFilingIndicator, set())
     for fact in filingIndicatorElements:
-        dts.factsInInstance.remove(fact)
-        dts.deleteFactIndex(fact)
+        modelXbrl.removeFact(fact)
         # non-top-level elements are not in 'facts'
-    dts.setIsModified()
+    modelXbrl.setIsModified()
 
 def createFilingIndicatorsElement(dts, newFactItemOptions):
     dts.createContext(newFactItemOptions.entityIdentScheme,

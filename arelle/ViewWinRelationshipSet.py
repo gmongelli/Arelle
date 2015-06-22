@@ -41,6 +41,7 @@ def viewRelationshipSet(modelXbrl, tabWin, arcrole,
     view.menuAddViews()
     if view.isEbaTableIndex:
         view.menuAddFilingChoice()
+    return view
 
     
 class ViewRelationshipSet(ViewWinTree.ViewTree):
@@ -66,7 +67,7 @@ class ViewRelationshipSet(ViewWinTree.ViewTree):
         self.expandAllOnFirstDisplay = expandAll
         self.hasTableIndex = hasTableIndex
         self.isResourceArcrole = False
-        
+    
     def view(self, firstTime=False, relationshipSet=None):
         self.blockSelectEvent = 1
         self.blockViewModelObject = 0

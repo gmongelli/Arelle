@@ -9,6 +9,7 @@ from lxml import etree
 from arelle.ViewWinRenderedGrid import ViewRenderedGrid
 from arelle.DialogNewFactItem import getNewFactItemOptions
 from arelle.ModelValue import qname
+from arelle import XmlUtil
 
 EbaURL = "www.eba.europa.eu/xbrl"
 EiopaURL = "eiopa.europa.eu/xbrl"
@@ -90,8 +91,7 @@ def setFilingIndicatorValue(modelXbrl, fIndicator, filingIndicator):
     elif filingIndicator == False:
         fIndicator.set(pname, "false")
     else:
-        modelXbrl.factsInInstance.remove(fIndicator)
-        modelXbrl.deleteFactIndex(fIndicator)
+        modelXbrl.removeFact(fIndicator)
     modelXbrl.setIsModified()
     
 def createFilingIndicatorsElement(modelXbrl, newFactItemOptions):
@@ -104,6 +104,13 @@ def createFilingIndicatorsElement(modelXbrl, newFactItemOptions):
                       {}, [], [],
                       id='c',
                       afterSibling=ModelXbrl.AUTO_LOCATE_ELEMENT)
+    # should place the filing indicators before any other fact
+    parent = modelXbrl.modelDocument.xmlRootElement
+    if parent is not None:
+        firstChild = XmlUtil.child(parent)
+        if firstChild is not None:
+            filingIndicatorsTuple = modelXbrl.createFact(qnFindFilingIndicators, validate=False, beforeSibling=firstChild)
+            return filingIndicatorsTuple
     filingIndicatorsTuple = modelXbrl.createFact(qnFindFilingIndicators, validate=False)
     return filingIndicatorsTuple
         

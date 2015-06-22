@@ -283,8 +283,7 @@ def dropFootnoteLink(modelXbrl, footnoteLink):
 def dropFact(modelXbrl, fact, facts):
     while fact.modelTupleFacts:
         dropFact(modelXbrl, fact.modelTupleFacts[0], fact.modelTupleFacts)
-    modelXbrl.factsInInstance.discard(fact)
-    modelXbrl.deleteFactIndex(fact) 
+    modelXbrl.removeFact(fact)
     facts.remove(fact)
     modelXbrl.modelObjects[fact.objectIndex] = None # objects found by index, can't remove position from list
     fact.modelDocument.modelObjects.remove(fact)

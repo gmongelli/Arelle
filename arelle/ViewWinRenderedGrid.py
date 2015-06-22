@@ -83,6 +83,7 @@ def viewRenderedGrid(modelXbrl, tabWin, lang=None):
     view.viewFrame.bind("<1>", view.onClick, '+')
     view.viewFrame.bind("<Configure>", view.onConfigure, '+') # frame resized, redo column header wrap length ratios
     view.blockMenuEvents = 0
+    return view
 
 class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def __init__(self, modelXbrl, tabWin, lang):
@@ -104,6 +105,13 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.yAxisChildrenFirst = BooleanVar(value=self.options.setdefault("yAxisChildrenFirst",False))
         self.factsByDimMemQnameCache = ModelXbrl.FactsByDimMemQnameCache(modelXbrl)
             
+    def refreshTitle(self):
+        tid = str(self.modelXbrl.guiViews.tableView.viewFrame)
+        text = _("Table")
+        text += " (" + self.modelXbrl.getInstanceFilenameForView() + ")"
+        self.tabWin.tab(tid, text=text)
+        self.tabTitle = text
+
     def close(self):
         super(ViewRenderedGrid, self).close()
         if self.modelXbrl:
@@ -471,7 +479,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             for i, role in enumerate(self.colHdrNonStdRoles):
                                 j = (self.dataFirstRow
                                      - len(self.colHdrNonStdRoles) + i)-1
-                                self.table.initHeaderCellValue(xStructuralNode.header(role=role, lang=self.lang),
+                                cellValue = xStructuralNode.header(role=role, lang=self.lang)
+                                self.table.initHeaderCellValue(cellValue,
                                                          xValue,
                                                          j,
                                                          0,
@@ -842,9 +851,9 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if objectId in self.tablesToELR:
                     self.view(viewTblELR=self.tablesToELR[objectId])
                     try:
-                        self.modelXbrl.modelManager.cntlr.currentView = self.modelXbrl.tableViewTab
-                        # force focus on the corresponding "Table" tab (useful in case of several instances)
-                        self.modelXbrl.tableViewTab.tabWin.select(str(self.modelXbrl.tableViewTab.viewFrame))
+                        self.modelXbrl.modelManager.cntlr.currentView = self.modelXbrl.guiViews.tableView
+                        # force focus (synch) on the corresponding "Table" tab (useful in case of several instances)
+                        self.modelXbrl.guiViews.tableView.tabWin.select(str(self.modelXbrl.guiViews.tableView.viewFrame))
                     except:
                         pass 
             except (KeyError, AttributeError):
@@ -1058,6 +1067,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
 
         self.updateInstanceFromFactPrototypes()
         instance.saveInstance(newFilename) # may override prior filename for instance from main menu
+        self.modelXbrl.guiViews.tableIndexView.refreshTitle()
+        self.modelXbrl.guiViews.tableView.refreshTitle()
         cntlr.addToLog(_("{0} saved").format(newFilename if newFilename is not None else instance.modelDocument.filepath))
         cntlr.showStatus(_("Saved {0}").format(instance.modelDocument.basename), clearAfter=3000)
         if onSaved is not None:

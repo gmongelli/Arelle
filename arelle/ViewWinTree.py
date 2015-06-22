@@ -79,6 +79,12 @@ class ViewTree:
         self.editableColumns = editableColumns
         self.entryPopup = None
 
+    def refreshTitle(self):
+        tid = str(self.viewFrame)
+        text = "Tables (" + self.modelXbrl.getInstanceFilenameForView() + ")"
+        self.tabWin.tab(tid, text=text)
+        self.tabTitle = text
+            
     def clearTreeView(self):
         self.treeViewSelection = ()
         for node in self.treeView.get_children():

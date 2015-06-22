@@ -157,14 +157,16 @@ class ModelManager:
         self.modelXbrl.useFactIndex = self.cntlr.useFactIndex
         return self.modelXbrl
     
-    def validate(self):
+    def validate(self, modelXbrl=None):
         """Validates the most recently loaded modelXbrl (according to validation properties).
         
         Results of validation will be in log.
         """
+        if modelXbrl is None:
+            modelXbrl = self.modelXbrl
         try:
-            if self.modelXbrl:
-                Validate.validate(self.modelXbrl)
+            if modelXbrl:
+                Validate.validate(modelXbrl)
         except Exception as err:
             self.addToLog(_("[exception] Validation exception: {0} at {1}").format(
                            err,

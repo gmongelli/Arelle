@@ -54,6 +54,7 @@ class CntlrWinMain (Cntlr.Cntlr):
 
     def __init__(self, parent):
         super(CntlrWinMain, self).__init__(hasGui=True)
+        self.fileHistorySize = 20
         self.parent = parent
         self.filename = None
         self.dirty = False
@@ -371,8 +372,7 @@ class CntlrWinMain (Cntlr.Cntlr):
         if 10 < topLeftH < h - 60:
             self.tabWinTopLeft.config(height=topLeftH)
         
-        self.parent.title(_("arelle - Unnamed"))
-        
+        self.showTitle(filename=None)
         self.logFile = None
         
         self.uiThreadQueue = queue.Queue()     # background processes communicate with ui thread
@@ -382,10 +382,18 @@ class CntlrWinMain (Cntlr.Cntlr):
             self.validateDisclosureSystem.set(False)
             self.modelManager.validateDisclosureSystem = False
         self.setValidateTooltipText()
-        
+    
     def useFactIndexCheckUncheck(self): #TODO: useFactIndex
         self.useFactIndex = not self.useFactIndex
-           
+    
+    def showTitle(self, modelXbrl=None, filename=None):
+        if filename is None:
+            if modelXbrl is None:
+                filename = "Unnamed"
+            else:
+                filename = os.path.basename(modelXbrl.modelDocument.uri)            
+        self.parent.title(_("arelle - {0}").format(filename))    
+
     def onTabChanged(self, event, *args):
         try:
             widgetIndex = event.widget.index("current")
@@ -393,6 +401,8 @@ class CntlrWinMain (Cntlr.Cntlr):
             for widget in event.widget.winfo_children():
                 if str(widget) == tabId:
                     self.currentView = widget.view
+                    modelXbrl = self.getModelXbrl()
+                    self.showTitle(modelXbrl=modelXbrl)
                     break
         except (AttributeError, TypeError, TclError):
             pass
@@ -401,14 +411,14 @@ class CntlrWinMain (Cntlr.Cntlr):
         self.fileMenu.delete(self.fileMenuLength, self.fileMenuLength + 2)
         fileHistory = self.config.setdefault("fileHistory", [])
         self.recentFilesMenu = Menu(self.menubar, tearoff=0)
-        for i in range( min( len(fileHistory), 10 ) ):
+        for i in range( min( len(fileHistory), self.fileHistorySize ) ):
             self.recentFilesMenu.add_command(
                  label=fileHistory[i], 
                  command=lambda j=i: self.fileOpenFile(self.config["fileHistory"][j]))
         self.fileMenu.add_cascade(label=_("Recent files"), menu=self.recentFilesMenu, underline=0)
         importHistory = self.config.setdefault("importHistory", [])
         self.recentAttachMenu = Menu(self.menubar, tearoff=0)
-        for i in range( min( len(importHistory), 10 ) ):
+        for i in range( min( len(importHistory), self.fileHistorySize ) ):
             self.recentAttachMenu.add_command(
                  label=importHistory[i], 
                  command=lambda j=i: self.fileOpenFile(self.config["importHistory"][j],importToDTS=True))
@@ -438,7 +448,7 @@ class CntlrWinMain (Cntlr.Cntlr):
         self.dirty = False
         self.filename = None
         self.data = {}
-        self.parent.title(_("arelle - Unnamed"));
+        self.showTitle(filename=None)
         self.modelManager.load(None);
     
     def getViewAndModelXbrl(self):
@@ -451,6 +461,10 @@ class CntlrWinMain (Cntlr.Cntlr):
             except AttributeError:
                 return (view, None)
         return (None, None)
+
+    def getModelXbrl(self):
+        view, modelXbrl = self.getViewAndModelXbrl()
+        return modelXbrl        
 
     def okayToContinue(self):
         view, modelXbrl = self.getViewAndModelXbrl()
@@ -522,7 +536,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                     if not filename:
                         return False
                     try:
-                        ViewFileRenderedGrid.viewRenderedGrid(modelXbrl, filename, lang=self.labelLang, sourceView=view)
+                        view = ViewFileRenderedGrid.viewRenderedGrid(modelXbrl, filename, lang=self.labelLang, sourceView=view)
+                        modelXbrl.guiViews.tableView = view
                     except (IOError, EnvironmentError) as err:
                         tkinter.messagebox.showwarning(_("arelle - Error"),
                                         _("Failed to save {0}:\n{1}").format(
@@ -673,8 +688,8 @@ class CntlrWinMain (Cntlr.Cntlr):
         fileHistory = self.config.setdefault(key, [])
         while fileHistory.count(url) > 0:
             fileHistory.remove(url)
-        if len(fileHistory) > 10:
-            fileHistory[10:] = []
+        if len(fileHistory) > self.fileHistorySize:
+            fileHistory[self.fileHistorySize:] = []
         fileHistory.insert(0, url)
         self.config[key] = fileHistory
         self.loadFileMenuHistory()
@@ -793,8 +808,7 @@ class CntlrWinMain (Cntlr.Cntlr):
         try:
             if attach:
                 modelXbrl.closeViews()
-            self.parent.title(_("arelle - {0}").format(
-                            os.path.basename(modelXbrl.modelDocument.uri)))
+            self.showTitle(modelXbrl=modelXbrl)
             self.setValidateTooltipText()
             if modelXbrl.modelDocument.type in ModelDocument.Type.TESTCASETYPES:
                 currentAction = "tree view of tests"
@@ -812,14 +826,16 @@ class CntlrWinMain (Cntlr.Cntlr):
             else:
                 if modelXbrl.hasTableIndexing:
                     currentAction = "table index view"
-                    ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopLeft, ("Tables", (XbrlConst.euGroupTable,)), lang=self.labelLang,
+                    view = ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopLeft, ("Tables", (XbrlConst.euGroupTable,)), lang=self.labelLang,
                                                                treeColHdr="Table Index", showLinkroles=False, showColumns=False, expandAll=True)
+                    modelXbrl.guiViews.tableIndexView = view
                 elif modelXbrl.modelDocument.type in (ModelDocument.Type.INSTANCE, ModelDocument.Type.INLINEXBRL, ModelDocument.Type.INLINEXBRLDOCUMENTSET):
                     currentAction = "table index view"
                     firstTableLinkroleURI = TableStructure.evaluateTableIndex(modelXbrl)
                     if firstTableLinkroleURI:
-                        ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopLeft, ("Tables", (XbrlConst.parentChild,)), lang=self.labelLang,
+                        view = ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopLeft, ("Tables", (XbrlConst.parentChild,)), lang=self.labelLang,
                                                                    treeColHdr="Table Index", showRelationships=False, showColumns=False, expandAll=False, hasTableIndex=True)
+                        modelXbrl.guiViews.tableIndexView = view
                 '''
                 elif (modelXbrl.modelDocument.type in (ModelDocument.Type.INSTANCE, ModelDocument.Type.INLINEXBRL, ModelDocument.Type.INLINEXBRLDOCUMENTSET) and
                       not modelXbrl.hasTableRendering):
@@ -834,8 +850,9 @@ class CntlrWinMain (Cntlr.Cntlr):
                     currentAction = "view of concepts"
                     ViewWinConcepts.viewConcepts(modelXbrl, self.tabWinBtm, "Concepts", lang=self.labelLang, altTabWin=self.tabWinTopRt)
                 if modelXbrl.hasTableRendering:  # show rendering grid even without any facts
-                    ViewWinRenderedGrid.viewRenderedGrid(modelXbrl, self.tabWinTopRt, lang=self.labelLang)
+                    view = ViewWinRenderedGrid.viewRenderedGrid(modelXbrl, self.tabWinTopRt, lang=self.labelLang)
                     if topView is None: topView = modelXbrl.views[-1]
+                    modelXbrl.guiViews.tableView = view
                 if modelXbrl.modelDocument.type in (ModelDocument.Type.INSTANCE, ModelDocument.Type.INLINEXBRL, ModelDocument.Type.INLINEXBRLDOCUMENTSET):
                     currentAction = "table view of facts"
                     if not modelXbrl.hasTableRendering: # table view only if not grid rendered view
@@ -875,7 +892,6 @@ class CntlrWinMain (Cntlr.Cntlr):
             if selectTopView and topView:
                 topView.select()
             self.currentView = topView
-            modelXbrl.tableViewTab = topView
             if self.filename is None:
                 view = getattr(self, "currentView", None)
                 if view is not None:
@@ -893,12 +909,9 @@ class CntlrWinMain (Cntlr.Cntlr):
                                     stopPlugin, saved = pluginXbrlMethod(self)
                                     if stopPlugin:
                                         break;
-                                #TODO: update "Tables" and "Table" tab titles using the new filename
                                 if not saved:
                                     self.modelManager.close()
-                                    #TODO: fix title in case of remaining instance loaded
-                                    # (anyway, it was not correct before either)
-                                    self.parent.title(_("arelle - Unnamed"))  
+                                    self.showTitle(filename=None)
                                     self.currentView = None
                         except AttributeError:
                             pass
@@ -940,17 +953,18 @@ class CntlrWinMain (Cntlr.Cntlr):
         modelXbrl = self.modelManager.modelXbrl
         if modelXbrl and self.modelManager.collectProfileStats:
             modelXbrl.profileStats.clear()
-        
+            
     def fileClose(self, *ignore):
         if not self.okayToContinue():
             return
-        self.modelManager.close()
-        self.parent.title(_("arelle - Unnamed"))
+        modelXbrl = self.getModelXbrl()
+        self.modelManager.close(modelXbrl=modelXbrl)
+        self.showTitle(filename=None)
         self.setValidateTooltipText()
         self.currentView = None
 
     def validate(self):
-        modelXbrl = self.modelManager.modelXbrl
+        modelXbrl = self.getModelXbrl()
         if modelXbrl:
             if (modelXbrl.modelManager.validateDisclosureSystem and 
                 not modelXbrl.modelManager.disclosureSystem.selection):
@@ -967,13 +981,13 @@ class CntlrWinMain (Cntlr.Cntlr):
             
     def backgroundValidate(self):
         startedAt = time.time()
-        modelXbrl = self.modelManager.modelXbrl
+        modelXbrl = self.getModelXbrl()
         priorOutputInstance = modelXbrl.formulaOutputInstance
         modelXbrl.formulaOutputInstance = None # prevent closing on background thread by validateFormula
-        self.modelManager.validate()
+        self.modelManager.validate(modelXbrl=modelXbrl)
         self.addToLog(format_string(self.modelManager.locale, 
                                     _("validated in %.2f secs"), 
-                                    time.time() - startedAt))
+                                    time.time() - startedAt), file=modelXbrl.modelDocument.filepath)
         if not modelXbrl.isClosed and (priorOutputInstance or modelXbrl.formulaOutputInstance):
             self.uiThreadQueue.put((self.showFormulaOutputInstance, [priorOutputInstance, modelXbrl.formulaOutputInstance]))
             
@@ -1026,9 +1040,7 @@ class CntlrWinMain (Cntlr.Cntlr):
             self.showStatus(_("Loaded {0} items from {1}").format(
                             self.listbox.size(),
                             self.filename), clearAfter=5000)
-            self.parent.title(_("arelle - {0}").format(
-                            os.path.basename(self.filename)))
-                            
+            self.showTitle(filename=self.filename)                            
         except (EnvironmentError, pickle.PickleError) as err:
             tkinter.messagebox.showwarning(_("arelle - Error"),
                             _("Failed to load {0}\n{1}").format(
