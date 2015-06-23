@@ -435,14 +435,14 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             for xStructuralNode in xParentStructuralNode.childStructuralNodes:
                 if not xStructuralNode.isRollUp:
                     noDescendants = False
-                    rightCol, row, width, leafNode = self.xAxis(leftCol, topRow + 1, rowBelow, xStructuralNode, xStructuralNodes, # nested items before totals
+                    isLabeled = xStructuralNode.isLabeled
+                    nonAbstract = not xStructuralNode.isAbstract and isLabeled
+                    rightCol, row, width, leafNode = self.xAxis(leftCol, topRow + isLabeled, rowBelow, xStructuralNode, xStructuralNodes, # nested items before totals
                                                                 childrenFirst, childrenFirst, False)
                     if row - 1 < parentRow:
                         parentRow = row - 1
                     #if not leafNode: 
                     #    rightCol -= 1
-                    isLabeled = xStructuralNode.isLabeled
-                    nonAbstract = not xStructuralNode.isAbstract and isLabeled
                     if nonAbstract and isLabeled:
                         width += ENTRY_WIDTH_SCREEN_UNITS # width for this label, in screen units
                     widthToSpanParent += width
@@ -491,7 +491,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                     if nonAbstract:
                         rightCol += 1
                     if renderNow and not childrenFirst:
-                        self.xAxis(leftCol + (1 if nonAbstract else 0), topRow + 1, rowBelow, xStructuralNode, xStructuralNodes, childrenFirst, True, False) # render on this pass
+                        self.xAxis(leftCol + (1 if nonAbstract else 0), topRow + isLabeled, rowBelow, xStructuralNode, xStructuralNodes, childrenFirst, True, False) # render on this pass
                     leftCol = rightCol
             return (rightCol, parentRow, widthToSpanParent, noDescendants)
             
