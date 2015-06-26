@@ -436,14 +436,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if not xStructuralNode.isRollUp:
                     noDescendants = False
                     isLabeled = xStructuralNode.isLabeled
-                    nonAbstract = not xStructuralNode.isAbstract and isLabeled
+                    isAbstract = (xStructuralNode.isAbstract or
+                                  (xStructuralNode.childStructuralNodes and
+                                   not isinstance(xStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord))))
+                    isNonAbstract = not isAbstract
                     rightCol, row, width, leafNode = self.xAxis(leftCol, topRow + isLabeled, rowBelow, xStructuralNode, xStructuralNodes, # nested items before totals
                                                                 childrenFirst, childrenFirst, False)
                     if row - 1 < parentRow:
                         parentRow = row - 1
                     #if not leafNode: 
                     #    rightCol -= 1
-                    if nonAbstract and isLabeled:
+                    if isNonAbstract and isLabeled:
                         width += ENTRY_WIDTH_SCREEN_UNITS # width for this label, in screen units
                     widthToSpanParent += width
                     if childrenFirst:
@@ -451,7 +454,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                     else:
                         thisCol = leftCol
                     if renderNow and isLabeled:
-                        columnspan = (rightCol - leftCol + (1 if nonAbstract else 0))
+                        columnspan = (rightCol - leftCol + (1 if isNonAbstract else 0))
                         label = xStructuralNode.header(lang=self.lang,
                                                        returnGenLabel=isinstance(xStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)))
                         if label != OPEN_ASPECT_ENTRY_SURROGATE:
@@ -464,7 +467,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                            ((row - topRow + 1) if leafNode else 1)-1,
                                                            XbrlTable.TG_CENTERED,
                                                            objectId=xStructuralNode.objectId(),
-                                                           isRollUp=columnspan>1 and nonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
+                                                           isRollUp=columnspan>1 and isNonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
                         else:
                             self.aspectEntryObjectIdsNode[xStructuralNode.aspectEntryObjectId] = xStructuralNode
                             # TODO: is the following still needed?
@@ -474,7 +477,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                                                                                                values=self.aspectEntryValues(xStructuralNode),
                                                                                                                                objectId=xStructuralNode.aspectEntryObjectId,
                                                                                                                                comboboxselected=self.onAspectComboboxSelection)
-                        if nonAbstract:
+                        if isNonAbstract:
                             xValue = thisCol - 1
                             for i, role in enumerate(self.colHdrNonStdRoles):
                                 j = (self.dataFirstRow
@@ -488,10 +491,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                          XbrlTable.TG_CENTERED,
                                                          objectId=xStructuralNode.objectId())
                             xStructuralNodes.append(xStructuralNode)
-                    if nonAbstract:
+                    if isNonAbstract:
                         rightCol += 1
                     if renderNow and not childrenFirst:
-                        self.xAxis(leftCol + (1 if nonAbstract else 0), topRow + isLabeled, rowBelow, xStructuralNode, xStructuralNodes, childrenFirst, True, False) # render on this pass
+                        self.xAxis(leftCol + (1 if isNonAbstract else 0), topRow + isLabeled, rowBelow, xStructuralNode, xStructuralNodes, childrenFirst, True, False) # render on this pass
                     leftCol = rightCol
             return (rightCol, parentRow, widthToSpanParent, noDescendants)
             
