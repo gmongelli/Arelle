@@ -53,15 +53,20 @@ def viewRenderedGrid(modelXbrl, outfile, lang=None, viewTblELR=None, sourceView=
     modelXbrl.modelManager.showStatus(_("rendering saved to {0}").format(outfile), clearAfter=5000)
     
 class ViewRenderedGrid(ViewFile.View):
-    def __init__(self, modelXbrl, outfile, lang, cssExtras):
+    def __init__(self, modelXbrl, outfile, lang, cssExtras, tableModelNamespace=None, rootElementName=None):
         # find table model namespace based on table namespace
-        self.tableModelNamespace = XbrlConst.tableModel
-        for xsdNs in modelXbrl.namespaceDocs.keys():
-            if xsdNs in (XbrlConst.tableMMDD, XbrlConst.table, XbrlConst.table201305, XbrlConst.table201301, XbrlConst.table2011):
-                self.tableModelNamespace = xsdNs + "/model"
-                break
+        if tableModelNamespace is None:
+            self.tableModelNamespace = XbrlConst.tableModel
+            for xsdNs in modelXbrl.namespaceDocs.keys():
+                if xsdNs in (XbrlConst.tableMMDD, XbrlConst.table, XbrlConst.table201305, XbrlConst.table201301, XbrlConst.table2011):
+                    self.tableModelNamespace = xsdNs + "/model"
+                    break
+        else:
+            self.tableModelNamespace = tableModelNamespace
+        if rootElementName is None:
+            rootElementName = "tableModel"
         super(ViewRenderedGrid, self).__init__(modelXbrl, outfile, 
-                                               'tableModel xmlns="{0}"'.format(self.tableModelNamespace), 
+                                               '{0} xmlns="{1}"'.format(rootElementName, self.tableModelNamespace), 
                                                lang, 
                                                style="rendering",
                                                cssExtras=cssExtras)
