@@ -280,8 +280,8 @@ class ModelXbrl:
         self.factsInInstance = set()
         self.undefinedFacts = [] # elements presumed to be facts but not defined
         self._nonNilFactsInInstance = None
-        self._factsByDatatype = None
-        self._factsByPeriodType = None
+        self._factsByDatatype = {}
+        self._factsByPeriodType = {}
         self.contexts = {}
         self.units = {}
         self.modelObjects = []
@@ -714,9 +714,9 @@ class ModelXbrl:
             _nonNilFactsInInstance = self.factIndex.nonNilFacts(self)
             return _nonNilFactsInInstance
         
-        try:
+        if self._nonNilFactsInInstance is not None:
             return self._nonNilFactsInInstance
-        except AttributeError:
+        else:
             self._nonNilFactsInInstance = set(f for f in self.factsInInstance if not f.isNil)
             return self._nonNilFactsInInstance
         
@@ -762,9 +762,6 @@ class ModelXbrl:
 
         try:
             return self._factsByDatatype[notStrict, typeQname]
-        except AttributeError:
-            self._factsByDatatype = {}
-            return self.factsByDatatype(notStrict, typeQname)
         except KeyError:
             self._factsByDatatype[notStrict, typeQname] = fbdt = set()
             for f in self.factsInInstance:
@@ -1284,8 +1281,8 @@ class ModelXbrl:
             self.factIndex.insertFact(fact, self.modelXbrl)
         # yes,  this is rather crude
         self._nonNilFactsInInstance = None
-        self._factsByDatatype = None
-        self._factsByPeriodType = None
+        self._factsByDatatype = {}
+        self._factsByPeriodType = {}
         
     def removeFact(self, fact):
         self.factsInInstance.discard(fact)
@@ -1293,8 +1290,8 @@ class ModelXbrl:
             self.factIndex.deleteFact(fact)
         # yes, again
         self._nonNilFactsInInstance = None
-        self._factsByDatatype = None
-        self._factsByPeriodType = None
+        self._factsByDatatype = {}
+        self._factsByPeriodType = {}
 
     def closeFactIndex(self):
         if self.useFactIndex:
