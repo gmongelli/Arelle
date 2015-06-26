@@ -304,18 +304,21 @@ def improveEbaCompliance(modelXbrl, cntlr, lang="en"):
         modelTables = []
 
         def viewTable(modelTable, factWalkingAction):
-            if isinstance(modelTable, (ModelEuTable, ModelTable)):
-                # status
-                modelXbrl.modelManager.cntlr.addToLog("improving: " + modelTable.id)
+            # Use this code to walk through the tables.
+            # For the time being, it is no longer needed.
+            #if isinstance(modelTable, (ModelEuTable, ModelTable)):
+            #    # status
+            #    modelXbrl.modelManager.cntlr.addToLog("improving: " + modelTable.id)
 
-                viewWalkerRenderedGrid(modelXbrl,
-                                       factWalkingAction,
-                                       lang=lang,
-                                       viewTblELR=modelTable,
-                                       sourceView=View(modelTable, False, False, True))
+            #    viewWalkerRenderedGrid(modelXbrl,
+            #                           factWalkingAction,
+            #                           lang=lang,
+            #                           viewTblELR=modelTable,
+            #                           sourceView=View(modelTable, False, False, True))
 
-            for rel in groupTableRels.fromModelObject(modelTable):
-                viewTable(rel.toModelObject, factWalkingAction)
+            #for rel in groupTableRels.fromModelObject(modelTable):
+            #    viewTable(rel.toModelObject, factWalkingAction)
+            pass
 
     
         for rootConcept in groupTableRels.rootConcepts:
