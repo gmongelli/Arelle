@@ -47,10 +47,7 @@ def setFiling(viewtree, modelXbrl, filingIndicator):
     filingIndicatorCode = modelXbrl.filingCodeByTableLabel[label]
     if not filingIndicatorCode in modelXbrl.filingIndicatorByFilingCode:
         return
-    if filingIndicator == None:
-        filingIndicatorDisplay = ""
-    else:
-        filingIndicatorDisplay = str(filingIndicator)
+    filingIndicatorDisplay = getFilingIndicatorDisplay(filingIndicator)
     # maintain the indicator value in the instance model
     modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
     for tableLabel, fcode in modelXbrl.filingCodeByTableLabel.items():
@@ -89,15 +86,17 @@ def renderConcept(isModelTable, concept, conceptText, viewRelationshipSet, model
         else:
             filingIndicator = modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode]
         modelXbrl.filingCodeByTableLabel[conceptText] = filingIndicatorCode
-        
-        if filingIndicator == None:
-            filingIndicatorDisplay = ""
-        else:
-            filingIndicatorDisplay = str(filingIndicator)
-        viewRelationshipSet.treeView.set(conceptNode, 0, filingIndicatorDisplay)
+        viewRelationshipSet.treeView.set(conceptNode, 0, getFilingIndicatorDisplay(filingIndicator))
         modelXbrl.treeRowByTableLabel[conceptText] = conceptNode
         modelXbrl.indexTableTreeView = viewRelationshipSet.treeView
 
+def getFilingIndicatorDisplay(filingIndicator):
+    if filingIndicator == None:
+        filingIndicatorDisplay = ""
+    else:
+        filingIndicatorDisplay = "Yes" if filingIndicator else "No"
+    return filingIndicatorDisplay
+    
 def saveNewFileFromGUI(cntlrWinMain):
     '''
     :type cntlrWinMain: CntlrWinMain
