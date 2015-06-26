@@ -232,8 +232,8 @@ class ViewTree:
     def menuAddFilingChoice(self):
         if self.menu:
             self.menu.add_command(label=_("Filing: set filed"), underline=0, command=self.setFilingTrue)
-            self.menu.add_command(label=_("Filing; Set not filed"), underline=0, command=self.setFilingFalse)
-            self.menu.add_command(label=_("Filing: clear indicator"), underline=0, command=self.resetFiling)
+            self.menu.add_command(label=_("Filing: set not filed"), underline=0, command=self.setFilingFalse)
+            self.menu.add_command(label=_("Filing: clear"), underline=0, command=self.resetFiling)
         
     def menuAddClipboard(self):
         if self.menu and self.modelXbrl.modelManager.cntlr.hasClipboard:
