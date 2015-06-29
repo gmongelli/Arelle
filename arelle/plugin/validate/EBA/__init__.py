@@ -527,9 +527,15 @@ def final(val):
                 modelObject=val.currenciesUsed.values(), numCurrencies=len(val.currenciesUsed), currencies=", ".join(str(c) for c in val.currenciesUsed.keys()))
             
         if val.prefixesUnused:
+            
+            try:
+                unusedPrefixes = ', '.join(sorted(val.prefixesUnused))
+            except:
+                # It happened that None was included in the set
+                unusedPrefixes = str(val.prefixesUnused)
             modelXbrl.warning(("EBA.3.4", "EIOPA.3.4"),
                 _("There SHOULD be no unused prefixes but these were declared: %(unusedPrefixes)s.'"),
-                modelObject=modelDocument, unusedPrefixes=', '.join(sorted(val.prefixesUnused)))
+                modelObject=modelDocument, unusedPrefixes=unusedPrefixes)
         for ns, prefixes in val.namespacePrefixesUsed.items():
             nsDocs = modelXbrl.namespaceDocs.get(ns)
             if nsDocs:
