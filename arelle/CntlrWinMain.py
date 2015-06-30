@@ -126,7 +126,9 @@ class CntlrWinMain (Cntlr.Cntlr):
         
         toolsMenu = Menu(self.menubar, tearoff=0)
         
-        toolsMenu.add_checkbutton(label=_("Use FactIndex"), underline=0, command=self.useFactIndexCheckUncheck)
+        # This menu item triggers the default option which is not to use the factindex sqlite DB
+        # (temporarily removed)
+        #toolsMenu.add_checkbutton(label=_("Use FactIndex"), underline=0, command=self.useFactIndexCheckUncheck)
         
         validateMenu = Menu(self.menubar, tearoff=0)
         toolsMenu.add_cascade(label=_("Validation"), menu=validateMenu, underline=0)
