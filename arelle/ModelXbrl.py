@@ -109,6 +109,7 @@ class GuiViews:
     def __init__(self):
         self.tableIndexView = None # actually used to refresh tab label with filename
         self.tableView = None # holds the ViewRenderedGrid corresponding to an instance (used e.g. to synch after table index selection)
+        self.propertiesView = None
             
 class ModelXbrl:
     """

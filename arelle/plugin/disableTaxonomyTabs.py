@@ -12,7 +12,7 @@ def viewDTS():
     return False
 
 def viewProperties():
-    return False
+    return True
 
 def viewConcepts():
     return False

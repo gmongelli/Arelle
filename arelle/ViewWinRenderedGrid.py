@@ -1072,6 +1072,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         instance.saveInstance(newFilename) # may override prior filename for instance from main menu
         if self.modelXbrl.guiViews.tableIndexView is not None:
             self.modelXbrl.guiViews.tableIndexView.refreshTitle()
+        if self.modelXbrl.guiViews.propertiesView is not None:
+            self.modelXbrl.guiViews.propertiesView.refreshTitle()
         self.modelXbrl.guiViews.tableView.refreshTitle()
         cntlr.addToLog(_("{0} saved").format(newFilename if newFilename is not None else instance.modelDocument.filepath))
         cntlr.showStatus(_("Saved {0}").format(instance.modelDocument.basename), clearAfter=3000)

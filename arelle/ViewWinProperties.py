@@ -17,10 +17,12 @@ def viewProperties(modelXbrl, tabWin):
     view.treeView.heading("value", text="Value")
     view.treeView["displaycolumns"] = ("value")
     view.view()
+    return view
     
 class ViewProperties(ViewWinTree.ViewTree):
     def __init__(self, modelXbrl, tabWin, editableColumns=[]):
-        super(ViewProperties, self).__init__(modelXbrl, tabWin, "Properties", True, editableColumns=editableColumns)
+        tabName = "Properties (" + modelXbrl.getInstanceFilenameForView() + ")"
+        super(ViewProperties, self).__init__(modelXbrl, tabWin, tabName, True, editableColumns=editableColumns)
         self.openProperties = set()
                 
     def view(self):
@@ -69,3 +71,10 @@ class ViewProperties(ViewWinTree.ViewTree):
     
     def viewModelObject(self, modelObject):
         self.viewProperties(modelObject, "")
+        
+    def refreshTitle(self):
+        tid = str(self.viewFrame)
+        text = "Properties (" + self.modelXbrl.getInstanceFilenameForView() + ")"
+        self.tabWin.tab(tid, text=text)
+        self.tabTitle = text
+            

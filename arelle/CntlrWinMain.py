@@ -884,8 +884,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                             currentAction = name + " view"
                             ViewWinRelationshipSet.viewRelationshipSet(modelXbrl, self.tabWinTopRt, (name, arcroles), lang=self.labelLang)
             if viewProperties:
-                currentAction = "property grid"
-                ViewWinProperties.viewProperties(modelXbrl, self.tabWinTopLeft)
+                currentAction = "property grid"                
+                modelXbrl.guiViews.propertiesView = ViewWinProperties.viewProperties(modelXbrl, self.tabWinTopLeft)
             currentAction = "log view creation time"
             viewTime = time.time() - startedAt
             modelXbrl.profileStat("view", viewTime)
