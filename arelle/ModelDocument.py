@@ -44,9 +44,15 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
     :type reloadCache: bool
     """
     
+    # return already loaded document as soon as possible (actually saving 20s on 53s for loading largest corep 2.3.1)
+    normalizedUri = modelXbrl.modelManager.cntlr.webCache.normalizeUrl(uri, base)
+    modelDocument = modelXbrl.urlDocs.get(normalizedUri)
+    if modelDocument:
+        return modelDocument
+    elif modelXbrl.urlUnloadableDocs.get(normalizedUri):  # only return None if in this list and marked True (really not loadable)
+        return None
     if referringElement is None: # used for error messages
         referringElement = modelXbrl
-    normalizedUri = modelXbrl.modelManager.cntlr.webCache.normalizeUrl(uri, base)
     if isEntry:
         modelXbrl.entryLoadingUrl = normalizedUri   # for error loggiong during loading
         modelXbrl.uri = normalizedUri
@@ -82,10 +88,10 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         modelXbrl.entryLoadingUrl = mappedUri   # for error loggiong during loading
         
     # don't try reloading if not loadable
-    
-    if any(pluginMethod(modelXbrl, mappedUri, normalizedUri, isEntry=isEntry, namespace=namespace, **kwargs)
-           for pluginMethod in pluginClassMethods("ModelDocument.IsPullLoadable")):
-        filePath = normalizedUri
+    if False: # subsequent code does not appear to be usedful
+        if any(pluginMethod(modelXbrl, mappedUri, normalizedUri, isEntry=isEntry, namespace=namespace, **kwargs)
+               for pluginMethod in pluginClassMethods("ModelDocument.IsPullLoadable")):
+            filePath = normalizedUri
     if modelXbrl.fileSource.isInArchive(mappedUri):
         filepath = mappedUri
     else:
@@ -110,13 +116,6 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
                 _("File can not be loaded, requires loadFromExcel plug-in: %(fileName)s"),
                 modelObject=referringElement, fileName=normalizedUri)
         return None
-    
-    modelDocument = modelXbrl.urlDocs.get(normalizedUri)
-    if modelDocument:
-        return modelDocument
-    elif modelXbrl.urlUnloadableDocs.get(normalizedUri):  # only return None if in this list and marked True (really not loadable)
-        return None
-
     
     # load XML and determine type of model document
     modelXbrl.modelManager.showStatus(_("parsing {0}").format(uri))
@@ -290,8 +289,6 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         
         #startedAt = time.time() #TODO: removethis
         #modelXbrl.discoveryLevel += 1
-        if modelDocument.uri.endswith("s.19.01.01.13-def.xml"):
-            pass
         # discovery (parsing)
         if any(pluginMethod(modelDocument)
                for pluginMethod in pluginClassMethods("ModelDocument.Discover")):
