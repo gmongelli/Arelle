@@ -1022,6 +1022,7 @@ class ModelXbrl:
         # determine message and extra arguments
         fmtArgs = {}
         extras = {"messageCode":messageCode}
+        modelObjectArgs = ()
 
         for argName, argValue in codedArgs.items():
             if argName in ("modelObject", "modelXbrl", "modelDocument"):
@@ -1033,7 +1034,8 @@ class ModelXbrl:
                     except AttributeError:
                         entryUrl = self.fileSource.url
                 refs = []
-                for arg in (argValue if isinstance(argValue, (tuple,list,set)) else (argValue,)):
+                modelObjectArgs = argValue if isinstance(argValue, (tuple,list,set)) else (argValue,)
+                for arg in modelObjectArgs:
                     if arg is not None:
                         if isinstance(arg, _STR_BASE):
                             objectUrl = arg
@@ -1127,6 +1129,8 @@ class ModelXbrl:
                 except:
                     file = ""
             extras["refs"] = [{"href": file}]
+        for pluginXbrlMethod in pluginClassMethods("Logging.Message.Parameters"):
+            pluginXbrlMethod(messageCode, msg, modelObjectArgs, fmtArgs)
         return (messageCode, 
                 (msg, fmtArgs) if fmtArgs else (msg,), 
                 extras)

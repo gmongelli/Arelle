@@ -218,14 +218,15 @@ class gridCell(Entry):
         self.isChanged = True
     
 class gridCombobox(_Combobox): 
-    def __init__(self, master, x, y, value="", values=(), width=None, objectId=None, columnspan=None, selectindex=None, comboboxselected=None, state=[], onClick=None, codes=dict()): 
+    def __init__(self, master, x, y, value="", values=(), width=None, objectId=None, columnspan=None, selectindex=None, comboboxselected=None, state=None, onClick=None, codes=dict()): 
         _Combobox.__init__(self, master=master) 
         self.valueVar = StringVar() 
         self.valueVar.trace('w', self.valueChanged)
         self.config(textvariable=self.valueVar,
                     background="#ff8ff8ff8", foreground="#000000000", 
                    # justify='center'
-                    width=width
+                    width=width,
+                    state=state
                     ) 
         self["values"] = values
         self.codes = codes
