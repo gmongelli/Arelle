@@ -553,6 +553,9 @@ def aspectMatches(xpCtx, fact1, fact2, aspect):
                         break
             '''
         elif isinstance(aspect, QName):
+            global ModelDimensionValue
+            if ModelDimensionValue is None:
+                from arelle.ModelInstanceObject import ModelDimensionValue
             dimValue1 = c1.dimValue(aspect)
             if c2 is None:
                 if dimValue1 is None: # neither fact nor matching facts have this dimension aspect
