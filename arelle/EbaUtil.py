@@ -105,11 +105,30 @@ def createFilingIndicatorsElement(modelXbrl, newFactItemOptions):
                       id='c',
                       afterSibling=ModelXbrl.AUTO_LOCATE_ELEMENT)
     # should place the filing indicators before any other fact
+    # but after the following sequence: schemaRef, linkbaseRef, roleRef, arcroleRef
     parent = modelXbrl.modelDocument.xmlRootElement
     if parent is not None:
-        firstChild = XmlUtil.child(parent)
-        if firstChild is not None:
-            filingIndicatorsTuple = modelXbrl.createFact(qnFindFilingIndicators, validate=False, beforeSibling=firstChild)
+        child = XmlUtil.child(parent)
+        if child is not None:
+            beforeSibling = child
+            afterSibling = None
+            if str(child.qname) == "link:schemaRef":
+                afterSibling = child
+            child = child.getnext()
+            if child is not None:
+                if str(child.qname) == "link:linkbaseRef":
+                    afterSibling = child
+                child = child.getnext()
+                if child is not None:
+                    if str(child.qname) == "link:roleRef":
+                        afterSibling = child
+                    child = child.getnext()
+                    if child is not None:
+                        if str(child.qname) == "link:arcroleRef":
+                            afterSibling = child
+            if afterSibling is not None:
+                beforeSibling = None
+            filingIndicatorsTuple = modelXbrl.createFact(qnFindFilingIndicators, validate=False, afterSibling=afterSibling, beforeSibling=beforeSibling)
             return filingIndicatorsTuple
     filingIndicatorsTuple = modelXbrl.createFact(qnFindFilingIndicators, validate=False)
     return filingIndicatorsTuple
