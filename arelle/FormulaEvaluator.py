@@ -235,14 +235,12 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                             if vb.isBindAsSequence:
                                 _modelObjects.extend(vb.yieldedEvaluation)
                             else:
-                                _modelObjects.append(vb.yieldedFact)
-                                
-                            # old code
-                            #factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
-                            #                                                            vb.yieldedFact.qname,
-                            #                                                            vb.yieldedFactContext.id))
+                                _modelObjects.append(vb.yieldedFact)                                
                             if vb.yieldedFact.isItem:
-                                factVarBindings.append(", \n${}: {} context {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFactContext.id))
+                                #factVarBindings.append(", \n${}: {} context {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFactContext.id))
+                                factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
+                                                                                            vb.yieldedFact.qname,
+                                                                                            vb.yieldedFactContext.id))
                             elif vb.yieldedFact.isTuple and isinstance(vb.yieldedFact.parentElement, ModelFact):
                                 factVarBindings.append(", \n${}: {} tuple {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFact.parentElement.qname))
                     xpCtx.modelXbrl.log(
