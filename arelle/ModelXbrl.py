@@ -320,6 +320,13 @@ class ModelXbrl:
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
         """
         if not self.isClosed:
+            for modelObject in self.modelObjects:
+                # drop some references and break circularity for this dumb gc
+                try:
+                    if isinstance(modelObject, ModelObject):
+                        modelObject.modelDocument = None
+                except:
+                    pass            
             self.closeFactIndex()
             self.closeViews()
             if self.formulaOutputInstance:
