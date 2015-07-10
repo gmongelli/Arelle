@@ -535,7 +535,10 @@ class ModelVariableSetAssertion(ModelVariableSet):
 
     @property
     def expression(self):
-        return XPathParser.normalizeExpr(self.get("test"))
+        expr = self.get("test")
+        if expr is None:
+            return None
+        return XPathParser.normalizeExpr(expr)
 
     def message(self,satisfied,preferredMessage='*',lang=None):
         msgsRelationshipSet = self.modelXbrl.relationshipSet(XbrlConst.assertionSatisfiedMessage if satisfied else XbrlConst.assertionUnsatisfiedMessage)

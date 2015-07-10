@@ -100,11 +100,14 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                             factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
                                                                                         vb.yieldedFact.qname,
                                                                                         vb.yieldedFactContext.id))
+                varSetExpr = varSet.expression
+                if varSetExpr is None:
+                    varSetExpr = str(varSet)
                 xpCtx.modelXbrl.log(
                     "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                     "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
                     _("%(label)s%(factVarBindings)s"),
-                    modelObject=_modelObjects, label=varSet.expression,
+                    modelObject=_modelObjects, label=varSetExpr,
                     factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
                     messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
                 del _modelObjects[:]
