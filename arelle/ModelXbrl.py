@@ -320,13 +320,31 @@ class ModelXbrl:
         """Closes any views, formula output instances, modelDocument(s), and dereferences all memory used 
         """
         if not self.isClosed:
-            for modelObject in self.modelObjects:
-                # drop some references and break circularity for this dumb gc
-                try:
+            modelObjects = self.modelObjects
+            if True:
+                for modelObject in modelObjects:
                     if isinstance(modelObject, ModelObject):
                         modelObject.modelDocument = None
-                except:
-                    pass            
+                        try:
+                            modelObject.particlesList.clear()
+                            modelObject.particlesList = None
+                        except:
+                            pass
+            if True:
+                self.nameConcepts.clear()
+                self.qnameConcepts.clear()
+                self.qnameAttributeGroups.clear()
+                self.qnameGroupDefinitions.clear()
+                self.qnameTypes.clear()
+                self.indexTableTreeView = None
+                self.labelroles.clear()
+                self.modelRenderingTables.clear()
+                self.namespaceDocs.clear()
+                self._nonNilFactsInInstance = None
+                self.roleTypes.clear()
+                self.arcroleTypes.clear()
+            self.guiViews = None
+            
             self.closeFactIndex()
             self.closeViews()
             if self.formulaOutputInstance:
@@ -338,8 +356,14 @@ class ModelXbrl:
             for relSet in self.relationshipSets.values():
                 relSet.clear()
             self.__dict__.clear() # dereference everything before closing document
+            
             if modelDocument:
                 modelDocument.close(urlDocs=urlDocs)
+            #clear additional model objects not already cleared when closing model documents   
+            if True:
+                for modelObject in modelObjects:
+                    if  modelObject.__dict__:
+                        modelObject.__dict__.clear()
             
     @property
     def isClosed(self):
@@ -460,7 +484,10 @@ class ModelXbrl:
             schemaRefUri = self.uri
         else:   # relativize local paths
             schemaRefUri = os.path.relpath(self.uri, os.path.dirname(url))
+        oldDoc = self.modelDocument
         self.modelDocument = ModelDocument.create(self, ModelDocument.Type.INSTANCE, url, schemaRefs=[schemaRefUri], isEntry=True)
+        if False and oldDoc is not None:
+            oldDoc.close() #TODO: check if this would be needed
         if priorFileSource:
             priorFileSource.close()
         self.closeFileSource= True
@@ -1364,4 +1391,7 @@ class FactsByDimMemQnameCache:
     def printStats(self):
         print("numCalls= " + str(self.numCalls) + " numHits= " + str(self.numHits) + " size=" + str(len(self.factsByDimMemQnameDict)))
                 
-        
+    def close(self):
+        self.clear()
+        self.modelXbrl = None
+            

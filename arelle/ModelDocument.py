@@ -677,6 +677,8 @@ class ModelDocument:
             self.isModified = False
     
     def close(self, visited=None, urlDocs=None):
+        if self.modelXbrl is not None:
+            self.modelXbrl = None
         if visited is None: visited = []
         visited.append(self)
         # note that self.modelXbrl has been closed/dereferenced already, do not use in plug in
@@ -696,8 +698,14 @@ class ModelDocument:
             urlDocs.pop(self.uri,None)
             xmlDocument = self.xmlDocument
             dummyRootElement = self.parser.makeelement("{http://dummy}dummy") # may fail for streaming
-            for modelObject in self.xmlRootElement.iter():
-                modelObject.__dict__.clear() # clear python variables of modelObjects (not lxml)
+            try:
+                for o in self.xmlRootElement.iter():
+                    if isinstance(o, ModelObject):
+                        o.__dict__.clear() # clear python variables of modelObjects (not lxml)
+            except AttributeError:
+                # argh! this may fail when iterating on the elements causes instantiation of new ModelObject's
+                # for which needed ModelXbrl information is already cleared (qnameConcepts related stuff,...)
+                pass
             self.xmlRootElement.clear() # clear entire lxml subtree
             self.parserLookupName.__dict__.clear()
             self.parserLookupClass.__dict__.clear()

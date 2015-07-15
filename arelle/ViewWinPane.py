@@ -44,9 +44,11 @@ class ViewPane:
     def close(self):
         del self.viewFrame.view
         self.tabWin.forget(self.viewFrame)
+        self.viewFrame = None
         if self in self.modelXbrl.views:
             self.modelXbrl.views.remove(self)
         self.modelXbrl = None
+        self.tabWin = None
         
     def select(self):
         self.tabWin.select(self.viewFrame)

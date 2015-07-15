@@ -28,6 +28,8 @@ def getNewFactItemOptions(mainWin, newInstanceOptions=None):
     for prevOptionKey, prevOptionValue in mainWin.config.get("newFactItemOptions",{}).items():
         if not getattr(newInstanceOptions, prevOptionKey, None):
             newInstanceOptions.__dict__[prevOptionKey] = prevOptionValue
+    if mainWin.testMode:
+        return False
     dialog = DialogNewFactItemOptions(mainWin, newInstanceOptions)
     if dialog.accepted:
         if dialog.options is not None: # pickle as strings, DateTime won't unpickle right

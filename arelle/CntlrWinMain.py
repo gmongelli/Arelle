@@ -525,6 +525,9 @@ class CntlrWinMain (Cntlr.Cntlr):
                                 filetypes=[(_("Layout model file .xml"), "*.xml")],
                                 defaultextension=".xml")
                     else: # ask file type
+                        if self.testMode:
+                            for pluginMenuExtender in pluginClassMethods("DevTesting.GetFilePath"):
+                                filename = pluginMenuExtender(self, modelXbrl)        
                         if filename is None:
                             filename = self.uiFileDialog("save",
                                     title=_("arelle - Save XBRL Instance or HTML-rendered Table"),
@@ -716,9 +719,12 @@ class CntlrWinMain (Cntlr.Cntlr):
                 if not isHttpUrl(filename):
                     self.config["fileOpenDir"] = os.path.dirname(filesource.baseurl if filesource.isArchive else filename)
             self.updateFileHistory(filename, importToDTS)
-            thread = threading.Thread(target=lambda: self.backgroundLoadXbrl(filesource,importToDTS,selectTopView))
-            thread.daemon = True
-            thread.start()
+            if self.testMode:
+                self.backgroundLoadXbrl(filesource,importToDTS,selectTopView)
+            else:
+                thread = threading.Thread(target=lambda: self.backgroundLoadXbrl(filesource,importToDTS,selectTopView))
+                thread.daemon = True
+                thread.start()
             
     def webOpen(self, *ignore):
         if not self.okayToContinue():
@@ -783,8 +789,11 @@ class CntlrWinMain (Cntlr.Cntlr):
                 self.showStatus(_("Initializing table rendering"))
                 RenderingEvaluator.init(modelXbrl)
             self.showStatus(_("{0}, preparing views").format(action))
-            self.waitForUiThreadQueue() # force status update
-            self.uiThreadQueue.put((self.showLoadedXbrl, [modelXbrl, importToDTS, selectTopView]))
+            if self.testMode:
+                self.showLoadedXbrl(modelXbrl, importToDTS, selectTopView)
+            else:
+                self.waitForUiThreadQueue() # force status update
+                self.uiThreadQueue.put((self.showLoadedXbrl, [modelXbrl, importToDTS, selectTopView]))
         else:
             self.addToLog(format_string(self.modelManager.locale, 
                                         _("not successfully %s in %.2f secs %s"), 
@@ -959,11 +968,26 @@ class CntlrWinMain (Cntlr.Cntlr):
     def fileClose(self, *ignore):
         if not self.okayToContinue():
             return
+
         modelXbrl = self.getModelXbrl()
+        if modelXbrl is None:
+            modelXbrl = self.modelManager.modelXbrl
+            
+        filename = modelXbrl.uri
+        if self.testMode:
+            for pluginMenuExtender in pluginClassMethods("DevTesting.FileCloseStart"):
+                pluginMenuExtender(self, modelXbrl)        
+        
         self.modelManager.close(modelXbrl=modelXbrl)
         self.showTitle(filename=None)
         self.setValidateTooltipText()
         self.currentView = None
+        modelXbrl = None
+
+        if self.testMode:
+            for pluginMenuExtender in pluginClassMethods("DevTesting.FileCloseEnd"):
+                pluginMenuExtender(self, filename)
+        
 
     def validate(self):
         modelXbrl = self.getModelXbrl()
@@ -1294,7 +1318,10 @@ class CntlrWinMain (Cntlr.Cntlr):
                 message += " - " + file
         if isinstance(messageArgs, dict):
             message = message % messageArgs
-        self.uiThreadQueue.put((self.uiAddToLog, [message]))
+        if self.testMode:
+            self.uiAddToLog(message)
+        else:
+            self.uiThreadQueue.put((self.uiAddToLog, [message]))
         
     # ui thread addToLog
     def uiAddToLog(self, message):
@@ -1357,7 +1384,10 @@ class CntlrWinMain (Cntlr.Cntlr):
 
     # worker threads showStatus                 
     def showStatus(self, message, clearAfter=None):
-        self.uiThreadQueue.put((self.uiShowStatus, [message, clearAfter]))
+        if self.testMode:
+            self.uiShowStatus(message, clearAfter)
+        else:
+            self.uiThreadQueue.put((self.uiShowStatus, [message, clearAfter]))
         
     # ui thread showStatus
     def uiClearStatusTimerEvent(self):
@@ -1447,6 +1477,10 @@ class CntlrWinMain (Cntlr.Cntlr):
                             defaultextension=defaultextension,
                             parent=parent,
                             initialfile=initialfile)
+                    
+    def setTestMode(self, testMode):
+        self.testMode = testMode
+
 
 from arelle import DialogFormulaParameters
 
@@ -1491,8 +1525,6 @@ class TkinterCallWrapper:
             tkinter.messagebox.showerror(_("Exception"), 
                                          _("{0}\nCall trace\n{1}").format(msg, tracebk))
                 
-
-
 def main():
     # this is the entry called by arelleGUI.pyw for windows
     global restartMain, readCommandLineArguments

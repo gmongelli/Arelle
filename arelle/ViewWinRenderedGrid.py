@@ -116,6 +116,11 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.tabTitle = text
 
     def close(self):
+        if True:
+            try:
+                self.tablesMenu.destroy()
+            except AttributeError:
+                pass
         super(ViewRenderedGrid, self).close()
         if self.modelXbrl:
             for fp in self.factPrototypes:
@@ -123,6 +128,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             self.factPrototypes = None
             self.aspectEntryObjectIdsNode.clear()
             self.aspectEntryObjectIdsCell.clear()
+        self.factsByDimMemQnameCache.close()
+        self.factsByDimMemQnameCache = None
+        if True:
+            self.rendrCntx.inputXbrlInstance = None
+            self.rendrCntx.modelXbrl = None
+            self.rendrCntx.inScopeVars = None
+            self.rendrCntx = None
+            self.table = None
+            self.options = None
+            self.tblELR = None
+            self.tablesToELR = None
         
     def loadTablesMenu(self):
         tblMenuEntries = {}             
@@ -217,6 +233,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.viewFrame.clearGrid()
 
         tblAxisRelSet, xTopStructuralNode, yTopStructuralNode, zTopStructuralNode = resolveAxesStructure(self, viewTblELR)
+    
         colAdjustment = 1 if zTopStructuralNode is not None else 0
         self.table.resizeTable(self.dataFirstRow+self.dataRows-1, self.dataFirstCol+self.dataCols+colAdjustment-1, titleRows=self.dataFirstRow-1, titleColumns=self.dataFirstCol-1)
         self.hasTableFilters = bool(self.modelTable.filterRelationships)
@@ -1053,9 +1070,12 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             if not newFilename:
                 return  # saving cancelled
         # continue saving in background
-        thread = threading.Thread(target=lambda: self.backgroundSaveInstance(newFilename, onSaved))
-        thread.daemon = True
-        thread.start()
+        if self.modelXbrl.modelManager.cntlr.testMode:
+            self.backgroundSaveInstance(newFilename, onSaved)
+        else:
+            thread = threading.Thread(target=lambda: self.backgroundSaveInstance(newFilename, onSaved))
+            thread.daemon = True
+            thread.start()
         
 
     def backgroundSaveInstance(self, newFilename=None, onSaved=None):
@@ -1078,7 +1098,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         cntlr.addToLog(_("{0} saved").format(newFilename if newFilename is not None else instance.modelDocument.filepath))
         cntlr.showStatus(_("Saved {0}").format(instance.modelDocument.basename), clearAfter=3000)
         if onSaved is not None:
-            self.modelXbrl.modelManager.cntlr.uiThreadQueue.put((onSaved, []))
+            if self.modelXbrl.modelManager.cntlr.testMode:
+                onSaved()
+            else:
+                self.modelXbrl.modelManager.cntlr.uiThreadQueue.put((onSaved, []))
 
     def newFactOpenAspects(self, factObjectId):
         aspectValues = {}
