@@ -677,8 +677,11 @@ class ModelDocument:
             self.isModified = False
     
     def close(self, visited=None, urlDocs=None):
-        if self.modelXbrl is not None:
-            self.modelXbrl = None
+        try:
+            if self.modelXbrl is not None:
+                self.modelXbrl = None
+        except:
+            pass
         if visited is None: visited = []
         visited.append(self)
         # note that self.modelXbrl has been closed/dereferenced already, do not use in plug in
