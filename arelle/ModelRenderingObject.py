@@ -26,6 +26,8 @@ OPEN_ASPECT_ENTRY_SURROGATE = '~' #'\uDBFF' replacing this nasty code trick with
 
 EMPTY_SET = set()
 
+TRACE_HEADER = False
+
 def definitionNodes(nodes):
     return [(ord.definitionNodeObject if isinstance(node, StructuralNode) else node) for node in nodes]
 
@@ -951,7 +953,11 @@ class ModelConstraintSet(ModelFormulaRules):
         if self.aspectValues or self.aspectProgs or structuralNode.header(evaluate=False) is not None:
             return (1, 1)
         else:
-            return (0, 0)
+            if TRACE_HEADER:
+                # Note: we still get an empty header cell but it was already there: would be nice to remove it...
+                print("Warning: patch fixing S.04.02.01.01")
+            return(1, 1)
+            #was return (0, 0)
 
 class ModelRuleSet(ModelConstraintSet, ModelFormulaResource):
     def init(self, modelDocument):

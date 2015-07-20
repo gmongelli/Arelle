@@ -16,8 +16,8 @@ import os, sys
 
 USING_EQUIVALENCE_KEY = sys.intern(_STR_8BIT("using_equivalence_key")) # indicates hash entry replaced with keyed entry
 
-def create(modelXbrl, arcrole, linkrole=None, linkqname=None, arcqname=None, includeProhibits=False):
-    return ModelRelationshipSet(modelXbrl, arcrole, linkrole, linkqname, arcqname, includeProhibits)
+def create(modelXbrl, arcrole, linkrole=None, linkqname=None, arcqname=None, includeProhibits=False, key=None):
+    return ModelRelationshipSet(modelXbrl, arcrole, linkrole, linkqname, arcqname, includeProhibits, key)
 
 def ineffectiveArcs(baseSetModelLinks, arcrole, arcqname=None):
     hashEquivalentRels = defaultdict(list)
@@ -104,18 +104,22 @@ class ModelRelationshipSet:
                  "modelRelationships", "_testHintedLabelLinkrole")
     
     # arcrole can either be a single string or a tuple or frozenset of strings
-    def __init__(self, modelXbrl, arcrole, linkrole=None, linkqname=None, arcqname=None, includeProhibits=False):
+    def __init__(self, modelXbrl, arcrole, linkrole=None, linkqname=None, arcqname=None, includeProhibits=False, key=None):
         self.isChanged = False
         self.modelXbrl = modelXbrl
         self.arcrole = arcrole
         self.linkrole = linkrole
         self.linkqname = linkqname
         self.arcqname = arcqname
-
-        relationshipSetKey = (arcrole, linkrole, linkqname, arcqname, includeProhibits) 
+        
+        if key is None:
+            relationshipSetKey = (arcrole, linkrole, linkqname, arcqname, includeProhibits)
+        else:
+            relationshipSetKey = key 
             
         # base sets does not care about the #includeProhibits
-        if not isinstance(arcrole,(tuple,frozenset)):
+        notATupleOrFrozenSetArcRole = not isinstance(arcrole,(tuple,frozenset))
+        if notATupleOrFrozenSetArcRole:
             modelLinks = self.modelXbrl.baseSets.get((arcrole, linkrole, linkqname, arcqname), [])
         else: # arcrole is a set of arcroles
             modelLinks = []
@@ -128,7 +132,7 @@ class ModelRelationshipSet:
         isFormulaRel =  self.arcrole == "XBRL-formulae" # all formula relationship arcroles
         isTableRenderingRel = self.arcrole == "Table-rendering"
         isFootnoteRel =  self.arcrole == "XBRL-footnotes" # all footnote relationship arcroles
-        if not isinstance(arcrole,(tuple,frozenset)):
+        if notATupleOrFrozenSetArcRole:
             arcrole = (arcrole,)
         
         for modelLink in modelLinks:
@@ -136,7 +140,7 @@ class ModelRelationshipSet:
             linkEltQname = modelLink.qname
             for linkChild in modelLink:
                 linkChildArcrole = linkChild.get("{http://www.w3.org/1999/xlink}arcrole")
-                if linkChild.get("{http://www.w3.org/1999/xlink}type") == "arc" and linkChildArcrole:
+                if linkChildArcrole and linkChild.get("{http://www.w3.org/1999/xlink}type") == "arc" :
                     if isFootnoteRel:
                         arcs.append(linkChild)
                     elif isDimensionRel: 
@@ -158,21 +162,22 @@ class ModelRelationshipSet:
                 fromLabel = arcElement.get("{http://www.w3.org/1999/xlink}from")
                 toLabel = arcElement.get("{http://www.w3.org/1999/xlink}to")
                 for fromResource in modelLink.labeledResources[fromLabel]:
-                    for toResource in modelLink.labeledResources[toLabel]:
-                        if isinstance(fromResource,(ModelResource,LocPrototype)) and isinstance(toResource,(ModelResource,LocPrototype)):
-                            modelRel = ModelDtsObject.ModelRelationship(modelLink.modelDocument, arcElement, fromResource.dereference(), toResource.dereference())
-                            modelRelEquivalenceHash = modelRel.equivalenceHash
-                            if modelRelEquivalenceHash not in relationships:
-                                relationships[modelRelEquivalenceHash] = modelRel
-                            else: # use equivalenceKey instead of hash
-                                otherRel = relationships[modelRelEquivalenceHash]
-                                if otherRel is not USING_EQUIVALENCE_KEY: # move equivalentRel to use key instead of hasn
-                                    relationships[otherRel.equivalenceKey] = otherRel
-                                    relationships[modelRelEquivalenceHash] = USING_EQUIVALENCE_KEY
-                                modelRelEquivalenceKey = modelRel.equivalenceKey    # this is a complex tuple to compute, get once for below
-                                if modelRelEquivalenceKey not in relationships or \
-                                   modelRel.priorityOver(relationships[modelRelEquivalenceKey]):
-                                    relationships[modelRelEquivalenceKey] = modelRel
+                    if isinstance(fromResource,(ModelResource,LocPrototype)):
+                        for toResource in modelLink.labeledResources[toLabel]:
+                            if isinstance(toResource,(ModelResource,LocPrototype)):
+                                modelRel = ModelDtsObject.ModelRelationship(modelLink.modelDocument, arcElement, fromResource.dereference(), toResource.dereference())
+                                modelRelEquivalenceHash = modelRel.equivalenceHash
+                                if modelRelEquivalenceHash not in relationships:
+                                    relationships[modelRelEquivalenceHash] = modelRel
+                                else: # use equivalenceKey instead of hash
+                                    otherRel = relationships[modelRelEquivalenceHash]
+                                    if otherRel is not USING_EQUIVALENCE_KEY: # move equivalentRel to use key instead of hasn
+                                        relationships[otherRel.equivalenceKey] = otherRel
+                                        relationships[modelRelEquivalenceHash] = USING_EQUIVALENCE_KEY
+                                    modelRelEquivalenceKey = modelRel.equivalenceKey    # this is a complex tuple to compute, get once for below
+                                    if modelRelEquivalenceKey not in relationships or \
+                                       modelRel.priorityOver(relationships[modelRelEquivalenceKey]):
+                                        relationships[modelRelEquivalenceKey] = modelRel
 
         #reduce effective arcs and order relationships...
         self.modelRelationshipsFrom = None

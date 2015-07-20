@@ -65,6 +65,9 @@ class FactPrototype():      # behaves like a fact for dimensional validity testi
     @property
     def viewConcept(self):
         return self
+    
+    def __repr__(self):
+        return "FactPrototype" + self.objectId() + " concept= " + str(self.concept) + " isItem= " + str(self.isItem) + " isNumeric=" + str(self.isNumeric) + " isTuple=" + str(self.isTuple)
 
 class ContextPrototype():  # behaves like a context
     def __init__(self, v, aspectValues):

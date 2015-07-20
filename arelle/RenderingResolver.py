@@ -20,6 +20,7 @@ from arelle.ModelRenderingObject import (ModelEuTable, ModelTable, ModelBreakdow
 from arelle.PrototypeInstanceObject import FactPrototype
 
 RENDER_UNITS_PER_CHAR = 16 # nominal screen units per char for wrapLength computation and adjustment
+TRACE_RESOLVER = False
 
 class ResolutionException(Exception):
     def __init__(self, code, message, **kwargs):
@@ -95,16 +96,25 @@ def resolveTableAxesStructure(view, table, tblAxisRelSet):
     xTopStructuralNode = yTopStructuralNode = zTopStructuralNode = None
     # must be cartesian product of top level relationships
     tblAxisRels = tblAxisRelSet.fromModelObject(table)
-    facts = table.filteredFacts(view.rendrCntx, view.modelXbrl.factsInInstance) # apply table filters
+    facts = view.modelXbrl.factsInInstance
+    if facts:
+        facts = table.filteredFacts(view.rendrCntx, view.modelXbrl.factsInInstance) # apply table filters
     view.breakdownNodes = defaultdict(list) # breakdown nodes
     for tblAxisRel in tblAxisRels:
         definitionNode = tblAxisRel.toModelObject
         addBreakdownNode(view, tblAxisRel.axisDisposition, definitionNode)
-        
+    
+    if TRACE_RESOLVER:
+        for axis in view.breakdownNodes.keys():
+            for node in view.breakdownNodes[axis]:
+                print("breakdown " + str(axis) + " " + str(node))
+                
     # do z's first to set variables needed by x and y axes expressions
     for disposition in ("z", "x", "y"):
         for i, tblAxisRel in enumerate(tblAxisRels):
             definitionNode = tblAxisRel.toModelObject
+            if TRACE_RESOLVER:
+                print("definitionNode " + str(disposition) + " " + str(definitionNode))                
             if (tblAxisRel.axisDisposition == disposition and 
                 isinstance(definitionNode, (ModelEuAxisCoord, ModelBreakdown, ModelDefinitionNode))):
                 if disposition == "x" and xTopStructuralNode is None:
@@ -114,6 +124,8 @@ def resolveTableAxesStructure(view, table, tblAxisRelSet):
                         #addBreakdownNode(view, disposition, definitionNode)
                         view.xAxisChildrenFirst.set(definitionNode.parentChildOrder == "children-first")
                         view.xTopRollup = CHILD_ROLLUP_LAST if definitionNode.parentChildOrder == "children-first" else CHILD_ROLLUP_FIRST
+                    if TRACE_RESOLVER:
+                        view.expandDefinitionLevel = 0
                     expandDefinition(view, xTopStructuralNode, definitionNode, definitionNode, 1, disposition, facts, i, tblAxisRels)
                     view.dataCols = xTopStructuralNode.leafNodeCount
                     break
@@ -124,6 +136,8 @@ def resolveTableAxesStructure(view, table, tblAxisRelSet):
                         #addBreakdownNode(view, disposition, definitionNode)
                         view.yAxisChildrenFirst.set(definitionNode.parentChildOrder == "children-first")
                         view.yTopRollup = CHILD_ROLLUP_LAST if definitionNode.parentChildOrder == "children-first" else CHILD_ROLLUP_FIRST
+                    if TRACE_RESOLVER:
+                        view.expandDefinitionLevel = 0
                     expandDefinition(view, yTopStructuralNode, definitionNode, definitionNode, 1, disposition, facts, i, tblAxisRels)
                     view.dataRows = yTopStructuralNode.leafNodeCount
                     break
@@ -132,6 +146,8 @@ def resolveTableAxesStructure(view, table, tblAxisRelSet):
                     zTopStructuralNode._choiceStructuralNodes = []
                     zTopStructuralNode.hasOpenNode = False
                     #addBreakdownNode(view, disposition, definitionNode)
+                    if TRACE_RESOLVER:
+                        view.expandDefinitionLevel = 0
                     expandDefinition(view, zTopStructuralNode, definitionNode, definitionNode, 1, disposition, facts, i, tblAxisRels)
                     break
     ''' 
@@ -211,6 +227,8 @@ def childContainsOpenNodes(childStructuralNode):
         return False
 
 def expandDefinition(view, structuralNode, breakdownNode, definitionNode, depth, axisDisposition, facts, i=None, tblAxisRels=None, processOpenDefinitionNode=True):
+    if TRACE_RESOLVER:
+        print("expandDefinition start structuralNode= " + str(structuralNode) + " definitionNode=" + str(definitionNode))
     subtreeRelationships = view.axisSubtreeRelSet.fromModelObject(definitionNode)
     
     def checkLabelWidth(structuralNode, checkBoundFact=False):
@@ -236,8 +254,14 @@ def expandDefinition(view, structuralNode, breakdownNode, definitionNode, depth,
         structuralNode.aspects = view.zOrdinateChoices.get(definitionNode, None)
     if structuralNode and isinstance(definitionNode, (ModelBreakdown, ModelEuAxisCoord, ModelDefinitionNode)):
         try:
+            if TRACE_RESOLVER:
+                view.expandDefinitionLevel += 1
+                tracePrefix = str(axisDisposition) + " " * view.expandDefinitionLevel
+            
             #cartesianProductNestedArgs = (view, depth, axisDisposition, facts, tblAxisRels, i)
             ordCardinality, ordDepth = definitionNode.cardinalityAndDepth(structuralNode)
+            if TRACE_RESOLVER:
+                print(tracePrefix + "depth=" + str(depth) + " ordDepth=" + str(ordDepth) + " " + str(definitionNode))
             if (not definitionNode.isAbstract and
                 isinstance(definitionNode, ModelClosedDefinitionNode) and 
                 ordCardinality == 0):
@@ -252,7 +276,10 @@ def expandDefinition(view, structuralNode, breakdownNode, definitionNode, depth,
                     view.zAxisRows += 1 
             elif axisDisposition == "x":
                 if ordDepth:
-                    if nestedDepth - 1 > view.colHdrRows: view.colHdrRows = nestedDepth - 1 
+                    if nestedDepth - 1 > view.colHdrRows:
+                        view.colHdrRows = nestedDepth - 1 
+                        if TRACE_RESOLVER:
+                            print(tracePrefix + "colHdrRows=" + str(view.colHdrRows))
                     '''
                     if not view.colHdrDocRow:
                         if definitionNode.header(role="http://www.xbrl.org/2008/role/documentation",
@@ -509,6 +536,8 @@ def expandDefinition(view, structuralNode, breakdownNode, definitionNode, depth,
                         
                 if not structuralNode.childStructuralNodes: # childless root ordinate, make a child to iterate in producing table
                     subOrdContext = StructuralNode(structuralNode, breakdownNode, definitionNode)
+            if TRACE_RESOLVER:
+                view.expandDefinitionLevel -= 1
         except ResolutionException as ex:
             if sys.version[0] >= '3':
                 #import traceback

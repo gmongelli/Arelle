@@ -416,7 +416,7 @@ class ModelXbrl:
             from arelle import ModelRelationshipSet
         key = (arcrole, linkrole, linkqname, arcqname, includeProhibits)
         if key not in self.relationshipSets:
-            ModelRelationshipSet.create(self, arcrole, linkrole, linkqname, arcqname, includeProhibits)
+            return ModelRelationshipSet.create(self, arcrole, linkrole, linkqname, arcqname, includeProhibits, key=key)            
         return self.relationshipSets[key]
     
     def baseSetModelLink(self, linkElement):

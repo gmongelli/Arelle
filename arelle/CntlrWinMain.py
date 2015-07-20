@@ -972,6 +972,8 @@ class CntlrWinMain (Cntlr.Cntlr):
         modelXbrl = self.getModelXbrl()
         if modelXbrl is None:
             modelXbrl = self.modelManager.modelXbrl
+        if modelXbrl is None:
+            return
             
         filename = modelXbrl.uri
         if self.testMode:
@@ -1480,6 +1482,9 @@ class CntlrWinMain (Cntlr.Cntlr):
                     
     def setTestMode(self, testMode):
         self.testMode = testMode
+    
+    def showMessage(self, message):
+        tkinter.messagebox.showwarning(_("arelle - Error"), message, parent=self.parent)
 
 
 from arelle import DialogFormulaParameters
