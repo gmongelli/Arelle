@@ -764,7 +764,14 @@ class ModelXbrl:
             return self.factIndex.factsByQname(qname, self, defaultValue=defaultValue, cntxtId=cntxtId)
         
         fbqn = defaultdict(set)
-        for f in self.factsInInstance: fbqn[f.qname].add(f)
+        # empty context case intentionally factorized
+        if cntxtId is None:
+            for f in self.factsInInstance: fbqn[f.qname].add(f)
+        else:    
+            strCntxtId = str(cntxtId)
+            for f in self.factsInInstance:
+                if f.contextID == strCntxtId:
+                    fbqn[f.qname].add(f)
         return fbqn.get(qname, defaultValue)
 
     def factsByQnameAll(self):
@@ -949,8 +956,10 @@ class ModelXbrl:
         # update cached sets
         if not newFact.isNil and self._nonNilFactsInInstance:
             self._nonNilFactsInInstance.add(newFact)
+        '''
         if hasattr(self, "_factsByQname"):
             self._factsByQname[newFact.qname].add(newFact)
+        '''
         if newFact.concept is not None:
             if self._factsByDatatype:
                 _factsByDatatype = None # would need to iterate derived type ancestry to populate
