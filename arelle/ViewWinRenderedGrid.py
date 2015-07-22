@@ -135,10 +135,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.factsByDimMemQnameCache.close()
         self.factsByDimMemQnameCache = None
         if True:
-            self.rendrCntx.inputXbrlInstance = None
-            self.rendrCntx.modelXbrl = None
-            self.rendrCntx.inScopeVars = None
-            self.rendrCntx = None
+            self.rendrCntx = None # remove the reference but do not manipulate since it may still be in use and shared
             self.table = None
             self.options = None
             self.tblELR = None
@@ -214,6 +211,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             return
         '''
         startedAt = time.time()
+        self.testMode = self.modelXbrl.modelManager.cntlr.testMode
         self.blockMenuEvents += 1
         if newInstance is not None:
             self.modelXbrl = newInstance # a save operation has created a new instance to use subsequently
@@ -267,8 +265,13 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             self.aspectEntryObjectIdsNode.clear()
             self.aspectEntryObjectIdsCell.clear()
             self.factPrototypeAspectEntryObjectIds.clear()
-            self.table.initHeaderCellValue((self.modelTable.genLabel(lang=self.lang, strip=True) or  # use table label, if any 
-                                            self.roledefinition),
+            headerLabel = (self.modelTable.genLabel(lang=self.lang, strip=True) or  # use table label, if any 
+                                            self.roledefinition)
+            if self.testMode:
+                for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
+                    pluginMethod(headerLabel, 0, 0)
+                    break              
+            self.table.initHeaderCellValue(headerLabel,
                                            0, 0, (self.dataFirstCol - 2),
                                            (self.dataFirstRow - 2),
                                            XbrlTable.TG_TOP_LEFT_JUSTIFIED)
@@ -322,6 +325,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             if TRACE_HEADERS:
                 print(tracePrefix + str(zStructuralNode))
                 print(tracePrefix + str(label), " x=" + str(xValue) + " y=" + str(yValue))
+            if self.testMode:
+                for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
+                    pluginMethod(label, xValue, yValue)
+                    break               
             self.table.initHeaderCellValue(label,
                                            xValue, yValue,
                                            0, 0,
@@ -374,6 +381,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             zAxisTypedDimension = dimConcept
                 if TRACE_HEADERS:
                     print(tracePrefix + "header combo", " x=" + str(self.dataFirstCol) + " y=" + str(row-1))
+                if self.testMode:
+                    for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCombobox"):
+                        pluginMethod(self.dataFirstCol, row-1)      
+                        break          
                 combobox = self.table.initHeaderCombobox(self.dataFirstCol,
                                                          row-1,
                                                          colspan=0,
@@ -508,10 +519,14 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         if label != OPEN_ASPECT_ENTRY_SURROGATE:
                             xValue = leftCol-1
                             yValue = topRow-1
+                            headerLabel = label if label else "         "
                             if TRACE_HEADERS:
                                 print(tracePrefix + str(label) + " x=" + str(xValue) + " y=" + str(yValue))
-                            self.table.initHeaderCellValue(label if label
-                                                           else "         ",
+                            if self.testMode:
+                                for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
+                                    pluginMethod(headerLabel, xValue, yValue)     
+                                    break           
+                            self.table.initHeaderCellValue(headerLabel,
                                                            xValue, yValue,
                                                            columnspan-1,
                                                            ((row - topRow + 1) if leafNode else 1)-1,
@@ -524,6 +539,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             # width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5))
                             if TRACE_HEADERS:
                                 print(tracePrefix + "header combo" + " x=" + str(leftCol-1) + " y=" + str(topRow-1))
+                            if self.testMode:
+                                for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCombobox"):
+                                    pluginMethod(leftCol-1, topRow-1)  
+                                    break              
                             self.aspectEntryObjectIdsCell[xStructuralNode.aspectEntryObjectId] = self.table.initHeaderCombobox(leftCol-1,
                                                                                                                                topRow-1,
                                                                                                                                values=self.aspectEntryValues(xStructuralNode),
@@ -537,6 +556,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 cellValue = xStructuralNode.header(role=role, lang=self.lang)
                                 if TRACE_HEADERS:
                                     print(tracePrefix + "roleNum=" + str(i) + " " + str(cellValue) + " x=" + str(xValue) + " y=" + str(j))
+                                if self.testMode:
+                                    for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
+                                        pluginMethod(cellValue, xValue, j)  
+                                        break              
                                 self.table.initHeaderCellValue(cellValue,
                                                          xValue,
                                                          j,
@@ -594,7 +617,12 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             yValue = row-1
                             if TRACE_HEADERS:
                                 print(tracePrefix + str(label) + " x=" + str(xValue) + " y=" + str(yValue))
-                            self.table.initHeaderCellValue(label if label is not None else "         ",
+                            headerLabel = label if label is not None else "         "
+                            if self.testMode:
+                                for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
+                                    pluginMethod(headerLabel, xValue, yValue)  
+                                    break              
+                            self.table.initHeaderCellValue(headerLabel,
                                                            xValue, yValue,
                                                            columnspan-1,
                                                            (nestRow - row if isAbstract else 1)-1,
@@ -623,6 +651,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 label = yStructuralNode.header(role=role, lang=self.lang)
                                 if TRACE_HEADERS:
                                     print(tracePrefix + str(label) + " x=" + str(docCol) + " y=" + str(yValue))
+                                if self.testMode:
+                                    for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
+                                        pluginMethod(label, docCol, yValue)    
+                                        break            
                                 self.table.initHeaderCellValue(label,
                                                                docCol, yValue,
                                                                0, 0,
@@ -791,6 +823,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     selectedIdx = 0
                                 # TODO: check if this is still used:
                                 # width=ENTRY_WIDTH_IN_CHARS,
+                                if self.testMode:
+                                    for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
+                                        pluginMethod(effectiveValue, enumerationValues, self.dataFirstCol + i-1, row-1) 
+                                        break               
                                 self.table.initCellCombobox(effectiveValue,
                                                             enumerationValues,
                                                             self.dataFirstCol + i-1,
@@ -832,6 +868,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     # TODO: check if the following parameter
                                     # is needed:
                                     # width=ENTRY_WIDTH_IN_CHARS
+                                    if self.testMode:
+                                        for pluginMethod in pluginClassMethods("DevTesting.InitCellValue"):
+                                            pluginMethod(value, self.dataFirstCol + i-1, row-1)     
+                                            break           
                                     self.table.initCellValue(value,
                                                              self.dataFirstCol + i-1,
                                                              row-1,
@@ -849,6 +889,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     # TODO: check if the following parameter
                                     # is needed:
                                     # width=ENTRY_WIDTH_IN_CHARS,
+                                    if self.testMode:
+                                        for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
+                                            pluginMethod(effectiveValue, qNameValues, self.dataFirstCol + i-1, row-1)   
+                                            break             
                                     self.table.initCellCombobox(effectiveValue,
                                                                 qNameValues,
                                                                 self.dataFirstCol + i-1,
@@ -869,6 +913,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 # TODO: check if the following parameter
                                 # is needed:
                                 # width=ENTRY_WIDTH_IN_CHARS,
+                                if self.testMode:
+                                    for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
+                                        pluginMethod(effectiveValue, booleanValues, self.dataFirstCol + i-1, row-1)  
+                                        break              
                                 self.table.initCellCombobox(effectiveValue,
                                                             booleanValues,
                                                             self.dataFirstCol + i-1,
@@ -879,6 +927,10 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 # TODO: check if the following parameter
                                 # is needed:
                                 # width=ENTRY_WIDTH_IN_CHARS
+                                if self.testMode:
+                                    for pluginMethod in pluginClassMethods("DevTesting.InitCellValue"):
+                                        pluginMethod(value, self.dataFirstCol + i-1, row-1)       
+                                        break         
                                 self.table.initCellValue(value,
                                                          self.dataFirstCol + i-1,
                                                          row-1,

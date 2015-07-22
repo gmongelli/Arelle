@@ -730,4 +730,5 @@ class ScrolledTkTableFrame(Frame):
         self.table.selection_clear('all')
         self.table.clearSpans()
         self.table.clearTags()
-        self.update_idletasks()
+        if not self.view.modelXbrl.modelManager.cntlr.testMode:
+            self.update_idletasks()

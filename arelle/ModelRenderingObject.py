@@ -59,6 +59,8 @@ class StructuralNode:
         self.breakdownNode = breakdownNode # CR definition node
         self.tagSelector = definitionNode.tagSelector
         self.isLabeled = True
+        if TRACE_HEADER:
+            print("-> new structural node: " + str(self))
         
     @property
     def modelXbrl(self):
@@ -438,7 +440,13 @@ class StructuralNode:
 
                       
     def __repr__(self):
-        return ("structuralNode[{0}]{1})".format(self.objectId(),self.definitionNode))
+        label = None
+        try:
+            label = self.header(lang="en")                
+        except:
+            pass
+        label = str(label)
+        return ("structuralNode[{0}][label={1}]{2})".format(self.objectId(), label, self.definitionNode))
         
 # Root class for rendering is formula, to allow linked and nested compiled expressions
 def definitionModelLabelsView(mdlObj):

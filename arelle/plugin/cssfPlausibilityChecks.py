@@ -417,7 +417,7 @@ def loadAllCSSFFiles(controller):
     if controller.modelManager is None or controller.modelManager.modelXbrl is None:
         controller.addToLog(_("No DTS loaded."))
         return
-    modelXbrl = controller.modelManager.modelXbrl
+    modelXbrl = controller.getModelXbrl()
     currentAssertionSet = modelXbrl.relationshipSet(assertionSet)
     objectsFrom = currentAssertionSet.fromModelObjects()
     for obj in objectsFrom:
