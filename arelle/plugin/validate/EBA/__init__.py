@@ -333,34 +333,35 @@ def validateFacts(val, factsToCheck):
                         modelObject=(unit, unitHashes[h]), unit1=unit.id, unit2=unitHashes[h].id)
             else:
                 unitHashes[h] = unit
-        for _measures in unit.measures:
-            for _measure in _measures:
-                val.namespacePrefixesUsed[_measure.namespaceURI].add(_measure.prefix)
-                val.prefixesUnused.discard(_measure.prefix)
+            for _measures in unit.measures:
+                for _measure in _measures:
+                    val.namespacePrefixesUsed[_measure.namespaceURI].add(_measure.prefix)
+                    val.prefixesUnused.discard(_measure.prefix)
                 
     del unitHashes
     
     cntxHashes = {}
     for cntx in modelXbrl.contexts.values():
-        h = cntx.contextDimAwareHash
-        if h in cntxHashes and cntx.isEqualTo(cntxHashes[h]):
-            if not getattr(modelXbrl, "isStreamingMode", False):
-                modelXbrl.error("EIOPA.S.2.7.b",
-                    _("Duplicate contexts MUST NOT be reported, contexts %(cntx1)s and %(cntx2)s are equivalent.'"),
-                    modelObject=(cntx, cntxHashes[h]), cntx1=cntx.id, cntx2=cntxHashes[h].id)
-        else:
-            cntxHashes[h] = cntx
-        for _dim in cntx.qnameDims.values():
-            _dimQn = _dim.dimensionQname
-            val.namespacePrefixesUsed[_dimQn.namespaceURI].add(_dimQn.prefix)
-            val.prefixesUnused.discard(_dimQn.prefix)
-            if _dim.isExplicit:
-                _memQn = _dim.memberQname
+        if cntx is not None:
+            h = cntx.contextDimAwareHash
+            if h in cntxHashes and cntx.isEqualTo(cntxHashes[h]):
+                if not getattr(modelXbrl, "isStreamingMode", False):
+                    modelXbrl.error("EIOPA.S.2.7.b",
+                        _("Duplicate contexts MUST NOT be reported, contexts %(cntx1)s and %(cntx2)s are equivalent.'"),
+                        modelObject=(cntx, cntxHashes[h]), cntx1=cntx.id, cntx2=cntxHashes[h].id)
             else:
-                _memQn = _dim.typedMember.qname
-            if _memQn:
-                val.namespacePrefixesUsed[_memQn.namespaceURI].add(_memQn.prefix)
-                val.prefixesUnused.discard(_memQn.prefix)
+                cntxHashes[h] = cntx
+            for _dim in cntx.qnameDims.values():
+                _dimQn = _dim.dimensionQname
+                val.namespacePrefixesUsed[_dimQn.namespaceURI].add(_dimQn.prefix)
+                val.prefixesUnused.discard(_dimQn.prefix)
+                if _dim.isExplicit:
+                    _memQn = _dim.memberQname
+                else:
+                    _memQn = _dim.typedMember.qname
+                if _memQn:
+                    val.namespacePrefixesUsed[_memQn.namespaceURI].add(_memQn.prefix)
+                    val.prefixesUnused.discard(_memQn.prefix)
 
     for elt in modelDocument.xmlRootElement.iter():
         if isinstance(elt, ModelObject): # skip comments and processing instructions

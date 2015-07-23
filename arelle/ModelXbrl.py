@@ -362,8 +362,11 @@ class ModelXbrl:
             #clear additional model objects not already cleared when closing model documents   
             if True:
                 for modelObject in modelObjects:
-                    if  modelObject.__dict__:
-                        modelObject.__dict__.clear()
+                    try:
+                        if  modelObject.__dict__:
+                            modelObject.__dict__.clear()
+                    except:
+                        pass
             
     @property
     def isClosed(self):

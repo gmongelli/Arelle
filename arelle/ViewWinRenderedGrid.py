@@ -293,15 +293,13 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             self.factPrototypes = []
             self.factsByDimMemQnameCache.clear()
             self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, self.zAspectStructuralNodes, self.yAxisChildrenFirst.get())
-            print("bodyCells took " + "{:.2f}".format(time.time() - startedAt) + " " +  os.path.basename(viewTblELR)) #TODO: removethis  
-            self.factsByDimMemQnameCache.printStats()
+            if False:
+                print("bodyCells took " + "{:.2f}".format(time.time() - startedAt) + " " +  os.path.basename(viewTblELR))
+                self.factsByDimMemQnameCache.printStats()
             self.factsByDimMemQnameCache.clear()
  
             self.table.clearModificationStatus()
             self.table.disableUnusedCells()
-                
-            # data cells
-            #print("body cells done")
                 
         self.modelXbrl.profileStat("viewTable_" + os.path.basename(viewTblELR), time.time() - startedAt)
 
