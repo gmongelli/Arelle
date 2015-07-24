@@ -259,28 +259,36 @@ class StructuralNode:
                                                     returnGenLabel=returnGenLabel, returnMsgFormatString=returnMsgFormatString,
                                                     recurseParent=recurseParent, inheritedAspects=inheritedAspects)
         # if aspect is a concept of dimension, return its standard label
+        # -> as of 2015_07_23, we may have several differents aspects covered leading
+        #    to several different concepts, each eventually having a label. all of them
+        #    are now taken instead of randomly (based on py collections implementation) getting one of them  
         concept = None
+        labels = []
         if role is None:
             for aspect in self.aspectsCovered():
                 aspectValue = self.aspectValue(aspect, inherit=inheritedAspects)
                 if isinstance(aspect, QName) or aspect == Aspect.CONCEPT: # dimension or concept
                     if isinstance(aspectValue, QName):
                         concept = self.modelXbrl.qnameConcepts[aspectValue]
-                        break
+                        label = concept.label(lang=lang)
+                        if label:
+                            labels.append(label)
                     elif isinstance(aspectValue, ModelDimensionValue):
                         if aspectValue.isExplicit:
                             concept = aspectValue.member
+                            label = concept.label(lang=lang)
+                            if label:
+                                labels.append(label)
                         elif aspectValue.isTyped:
-                            return XmlUtil.innerTextList(aspectValue.typedMember)
+                            labels.append(XmlUtil.innerTextList(aspectValue.typedMember))
                 elif isinstance(aspectValue, ModelObject):
                     text = XmlUtil.innerTextList(aspectValue)
                     if not text and XmlUtil.hasChild(aspectValue, aspectValue.namespaceURI, "forever"):
                         text = "forever" 
-                    return text
-        if concept is not None:
-            label = concept.label(lang=lang)
-            if label:
-                return label
+                    labels.append(text)
+        if len(labels) > 0:
+            label = " / ".join(sorted(labels))
+            return label
         # if there is a role, check if it's available on a parent node
         if role and recurseParent and self.parentStructuralNode is not None:
             return self.parentStructuralNode.header(role=role, lang=lang, evaluate=evaluate,
