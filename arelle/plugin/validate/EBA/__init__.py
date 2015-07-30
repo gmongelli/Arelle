@@ -224,6 +224,7 @@ def validateFacts(val, factsToCheck):
                         try:
                             xValue = f.xValue
                             dec = int(f.decimals)
+                            # will only work if getattr(f,"xValid", XmlValidate.UNVALIDATED) >= XmlValidate.VALID:
                             if isMonetary:
                                 if dec < -3:
                                     modelXbrl.error(("EBA.2.18","EIOPA.S.2.18.c"),
@@ -260,7 +261,7 @@ def validateFacts(val, factsToCheck):
                                     modelXbrl.warning("EIOPA:factDecimalsWarning",
                                         _("Numeric fact %(fact)s of context %(contextID)s value %(value)s has an imprecise decimals attribute: %(decimals)s, minimum is %(mindec)s"),
                                         modelObject=f, fact=f.qname, contextID=f.contextID, value=xValue, decimals=f.decimals, mindec=dMin)
-                        except (AttributeError, ValueError):
+                        except (AttributeError, ValueError, TypeError):
                             pass # should have been reported as a schema error by loader
                         '''' (not intended by EBA 2.18, paste here is from EFM)
                         if not f.isNil and getattr(f,"xValid", 0) == 4:
