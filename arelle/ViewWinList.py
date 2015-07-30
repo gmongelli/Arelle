@@ -72,7 +72,7 @@ class ViewList():
         self.listBox.selection_set(lineNumber)
 
     def saveToFile(self, filename):
-        with open(filename, "w") as fh:
+        with open(filename, encoding="utf-8", mode="w") as fh:
             fh.writelines([logEntry + '\n' for logEntry in self.listBox.get(0,END)])
             
     def copyToClipboard(self, cntlr=None, *ignore):
