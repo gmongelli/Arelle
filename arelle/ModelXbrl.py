@@ -13,6 +13,7 @@ from arelle.ModelObject import ModelObject, ObjectPropertyViewWrapper
 from arelle.Locale import format_string
 from arelle.PluginManager import pluginClassMethods
 from arelle.PrototypeInstanceObject import FactPrototype, DimValuePrototype
+from arelle.PythonUtil import flattenSequence
 from arelle.UrlUtil import isHttpUrl
 from arelle.ValidateXbrlDimensions import isFactDimensionallyValid
 from arelle.FactIndex import FactIndex
@@ -1081,7 +1082,7 @@ class ModelXbrl:
                         entryUrl = self.fileSource.url
                 refs = []
                 modelObjectArgs = argValue if isinstance(argValue, (tuple,list,set)) else (argValue,)
-                for arg in modelObjectArgs:
+                for arg in flattenSequence(modelObjectArgs):
                     if arg is not None:
                         if isinstance(arg, _STR_BASE):
                             objectUrl = arg
@@ -1182,6 +1183,12 @@ class ModelXbrl:
                 (msg, fmtArgs) if fmtArgs else (msg,), 
                 extras)
 
+    def debug(self, codes, msg, **args):
+        """Same as error(), but as info
+        """
+        """@messageCatalog=[]"""
+        self.log('DEBUG', codes, msg, **args)
+                    
     def info(self, codes, msg, **args):
         """Same as error(), but as info
         """
@@ -1293,7 +1300,10 @@ class ModelXbrl:
             if activityCompleted:
                 timeTaken = time.time() - self._startedProfiledActivity
                 if timeTaken > minTimeToShow:
-                    self.modelManager.addToLog("{0} {1:.2f} secs".format(activityCompleted, timeTaken), messageCode="info:profileActivity")
+                    self.info("info:profileActivity",
+                            _("%(activity)s %(time)s secs\n"),
+                            modelObject=self.modelXbrl.modelDocument, activity=activityCompleted,
+                            time=format_string(self.modelManager.locale, "%.3f", timeTaken, grouping=True))
         except AttributeError:
             pass
         self._startedProfiledActivity = time.time()

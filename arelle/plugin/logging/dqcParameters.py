@@ -8,7 +8,7 @@ from arelle.ModelDtsObject import ModelConcept
 from arelle.ModelInstanceObject import ModelFact
 from arelle.ModelObject import ModelObject
 from arelle.PythonUtil import flattenSequence
-from arelle.XmlUtil import xmlstring
+from arelle.XmlUtil import xmlstring, descendantAttr
 from arelle import XbrlConst, XmlUtil
 import re
 from collections import defaultdict
@@ -41,20 +41,27 @@ def loggingMessageParameters(messageCode, msgIn, modelObjectArgs, fmtArgs):
         factsArray = []
         factsByQname = defaultdict(list)  # list of facts with the qname
         conceptsByQname = {}
+        missingQnamedArguments = set()
+        qnameFirstOrdinalPosition = {}  # for qnamed facts multiply in sequence (to insert on 2nd occurance in ordinal position)
         for arg in flattenSequence(modelObjectArgs):
             # Pargmeter may be a ModelFact, or a name of a concept (such as a dimension)
             if isinstance(arg, ModelFact):
-                if str(arg.qname) in qnamedReferences:
-                    factsByQname[str(arg.qname)].append(arg)
+                _strQName = str(arg.qname)
+                if _strQName in qnamedReferences:
+                    if _strQName not in factsByQname: # if twice in args, let one be an ordinal fact
+                        factsByQname[_strQName].append(arg)
+                        qnameFirstOrdinalPosition[_strQName] = len(factsArray)
+                    elif arg not in factsArray: # if twice in args, insert first occurence in ordinal position
+                        factsArray.insert(qnameFirstOrdinalPosition[_strQName], arg)
                 else:
                     factsArray.append(arg)
-                    cntx = arg.context
-                    if cntx is not None:
-                        for dim in cntx.qnameDims.values():
-                            if str(dim.dimensionQname) in qnamedReferences:
-                                conceptsByQname[str(dim.dimensionQname)] = dim.dimension
-                            elif str(dim.dimensionQname) in qnamedReferences:
-                                conceptsByQname[str(dim.memberQname)] = dim.member
+                cntx = arg.context
+                if cntx is not None:
+                    for dim in cntx.qnameDims.values():
+                        if str(dim.dimensionQname) in qnamedReferences:
+                            conceptsByQname[str(dim.dimensionQname)] = dim.dimension
+                        elif str(dim.dimensionQname) in qnamedReferences:
+                            conceptsByQname[str(dim.memberQname)] = dim.member
  
         def setArgForFactProperty(param, modelFact, propertyNameParts):
             propVal = None
@@ -85,7 +92,7 @@ def loggingMessageParameters(messageCode, msgIn, modelObjectArgs, fmtArgs):
                             elif cntx.isInstantPeriod:
                                 propVal = XmlUtil.dateunionValue(cntx.instantDatetime, subtractOneDay=True)
                             else:
-                                propVal = "{} - {}".format(XmlUtil.dateunionValue(cntx.startDatetime),
+                                propVal = "{} to {}".format(XmlUtil.dateunionValue(cntx.startDatetime),
                                                            XmlUtil.dateunionValue(cntx.endDatetime, subtractOneDay=True))
                         else:
                             dateSelection = propertyNameParts[1]
@@ -119,17 +126,26 @@ def loggingMessageParameters(messageCode, msgIn, modelObjectArgs, fmtArgs):
             if propVal is not None:
                 fmtArgs[param] = propVal
                 
-        def setArgForConceptProperty(param, modelConcept, propertyNameParts):
+        def setArgForConceptProperty(param, modelConceptOrQname, propertyNameParts):
             propVal = None
             property = propertyNameParts[0]
             if property == "label":
-                propVal = modelConcept.label(labelrole,
-                                             lang=lang,
-                                             linkroleHint=XbrlConst.defaultLinkRole)
+                if isinstance(modelConceptOrQname, ModelConcept):
+                    propVal = modelConceptOrQname.label(labelrole,
+                                                        lang=lang,
+                                                        linkroleHint=XbrlConst.defaultLinkRole)
+                elif isinstance(modelConceptOrQname, _STR_BASE):
+                    propVal = modelConceptOrQname
             elif property == "name":
-                propVal = str(modelConcept.qname)
+                if isinstance(modelConceptOrQname, ModelConcept):
+                    propVal = str(modelConceptOrQname.qname)
+                elif isinstance(modelConceptOrQname, _STR_BASE):
+                    propVal = modelConceptOrQname
             elif property == "localName":
-                propVal = modelConcept.qname.localName
+                if isinstance(modelConcept, ModelConcept):
+                    propVal = modelConcept.qname.localName
+                elif isinstance(modelConcept, _STR_BASE):
+                    propVal = modelConcept.rpartition(':')[2]
             if propVal is not None:
                 fmtArgs[param] = propVal
                 
@@ -147,22 +163,24 @@ def loggingMessageParameters(messageCode, msgIn, modelObjectArgs, fmtArgs):
                     if paramParts[0] in factsByQname:
                         modelFact = factsByQname[paramParts[0]][0] # there may be multiple facts of this QName, take first
                         setArgForFactProperty(param, modelFact, paramParts[2:])
-                elif len(paramParts) >= 2 and paramParts[0] in conceptsByQname:
-                    modelConcept = conceptsByQname[paramParts[0]]
+                    else:
+                        missingQnamedArguments.add(paramParts[0])
+                elif len(paramParts) >= 2:
+                    modelConcept = conceptsByQname.get(paramParts[0], paramParts[0]) # if no model concept pass in the qname
                     setArgForConceptProperty(param, modelConcept, paramParts[1:])
             except Exception as _ex:
                 raise # pass
-        if set(paramNames) - _DICT_SET(fmtArgs.keys()):
+        if missingQnamedArguments:
             for arg in modelObjectArgs:
                 # Pargmeter may be a ModelFact, or a name of a concept (such as a dimension)
                 if isinstance(arg, ModelObject):
                     arg.modelXbrl.error("dqcErrorLog:unresolvedParameters",
                                         _("The error message %(messageCode)s has unresolved named parameters: %(unresolvedParameters)s"),
                                         modelObject=modelObjectArgs, messageCode=messageCode,
-                                        unresolvedParameters=', '.join(sorted(set(paramNames) - _DICT_SET(fmtArgs.keys()))))
+                                        unresolvedParameters=', '.join(sorted(missingQnamedArguments)))
                     break
-            for missingParam in set(paramNames) - _DICT_SET(fmtArgs.keys()):
-                fmtArgs[missingParam] = "unavailable"
+            for missingArgument in missingQnamedArguments:
+                fmtArgs[missingArgument] = "unavailable"
         return msg
     return None       
 
@@ -170,6 +188,19 @@ def loggingCommandLineXbrlRun(cntlr, options, modelXbrl):
     global labelrole, lang
     labelrole=options.labelRole
     lang=options.labelLang
+
+def testcaseVariationExpectedSeverity(modelTestcaseVariation):
+    _severity = descendantAttr(modelTestcaseVariation, None, "error", "severity")
+    if _severity is not None:
+        return _severity.upper()
+    return None
+
+def testcaseVariationExpectedCount(modelTestcaseVariation):
+    try:
+        return int(descendantAttr(modelTestcaseVariation, None, "error", "count"))
+    except (ValueError, TypeError):
+        pass
+    return None
                 
 __pluginInfo__ = {
     # Do not use _( ) in pluginInfo itself (it is applied later, after loading
@@ -183,5 +214,7 @@ in message text that can be derived from the arguments.''',
     'copyright': '(c) Copyright 2014 Mark V Systems Limited, All rights reserved.',
     # classes of mount points (required)
     'CntlrCmdLine.Xbrl.Run': loggingCommandLineXbrlRun,
-    'Logging.Message.Parameters': loggingMessageParameters
+    'Logging.Message.Parameters': loggingMessageParameters,
+    'ModelTestcaseVariation.ExpectedSeverity': testcaseVariationExpectedSeverity,
+    'ModelTestcaseVariation.ExpectedCount': testcaseVariationExpectedCount
 }

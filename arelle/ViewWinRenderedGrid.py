@@ -17,7 +17,7 @@ from arelle.ModelInstanceObject import ModelDimensionValue
 from arelle.ModelRenderingObject import (ModelClosedDefinitionNode, ModelEuAxisCoord,
                                          ModelFilterDefinitionNode,
                                          OPEN_ASPECT_ENTRY_SURROGATE)
-from arelle.FormulaEvaluator import aspectMatches
+from arelle.FormulaEvaluator import init as formulaEvaluatorInit, aspectMatches
 from arelle.PluginManager import pluginClassMethods
 from arelle.PrototypeInstanceObject import FactPrototype
 from arelle.UITkTable import XbrlTable
@@ -109,6 +109,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.ignoreDimValidity = BooleanVar(value=self.options.setdefault("ignoreDimValidity",True))
         self.xAxisChildrenFirst = BooleanVar(value=self.options.setdefault("xAxisChildrenFirst",True))
         self.yAxisChildrenFirst = BooleanVar(value=self.options.setdefault("yAxisChildrenFirst",False))
+        formulaEvaluatorInit() # one-time module initialization
         self.factsByDimMemQnameCache = ModelXbrl.FactsByDimMemQnameCache(modelXbrl)
         self.conceptMessageIssued = False
             

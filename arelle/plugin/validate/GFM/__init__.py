@@ -7,35 +7,23 @@ Created on Dec 12, 2013
 import os
 from arelle import ModelDocument, ModelValue, XmlUtil
 from arelle.ModelValue import qname
-try:
-    import regex as re
-except ImportError:
-    import re
-from collections import defaultdict
-from .CustomLoader import checkForBOMs
-from .Document import checkDTSdocument
-from .Filing import validateFiling
-
+from arelle.plugin.validate.EFM.Document import checkDTSdocument
+from arelle.plugin.validate.EFM.Filing import validateFiling
 
 def dislosureSystemTypes(disclosureSystem):
-    # return ((disclosure system type name, variable name), ...)
-    return (("SBR.NL", "SBRNLplugin"),)
+    # return ((disclosure system name, variable name), ...)
+    return (("GFM", "GFMplugin"),)
 
 def disclosureSystemConfigURL(disclosureSystem):
     return os.path.join(os.path.dirname(__file__), "config.xml")
 
 def validateXbrlStart(val, parameters=None):
-    val.validateSBRNLplugin = val.validateDisclosureSystem and getattr(val.disclosureSystem, "SBRNLplugin", False)
-    if not (val.validateSBRNLplugin):
+    val.validateGFMplugin = val.validateDisclosureSystem and getattr(val.disclosureSystem, "GFMplugin", False)
+    if not (val.validateGFMplugin):
         return
 
-    val.prefixNamespace = {}
-    val.namespacePrefix = {}
-    val.idObjects = {}
-
-
 def validateXbrlFinally(val):
-    if not (val.validateSBRNLplugin):
+    if not (val.validateGFMplugin):
         return
 
     modelXbrl = val.modelXbrl
@@ -44,25 +32,23 @@ def validateXbrlFinally(val):
     modelXbrl.profileActivity()
     modelXbrl.modelManager.showStatus(_statusMsg)
     
-    validateFiling(val, modelXbrl)
+    validateFiling(val, modelXbrl, isGFM=True)
 
     modelXbrl.profileActivity(_statusMsg, minTimeToShow=0.0)
     modelXbrl.modelManager.showStatus(None)
-    
-def validateFinally(val):
-    del val.prefixNamespace, val.namespacePrefix, val.idObjects
-    
+
 def validateXbrlDtsDocument(val, modelDocument, isFilingDocument):
-    if not (val.validateSBRNLplugin):
+    if not (val.validateGFMplugin):
         return
 
     checkDTSdocument(val, modelDocument, isFilingDocument)
                 
+                
 __pluginInfo__ = {
     # Do not use _( ) in pluginInfo itself (it is applied later, after loading
-    'name': 'Validate SBR NL',
-    'version': '1.0',
-    'description': '''SBR NL Validation.''',
+    'name': 'Validate GFM',
+    'version': '0.9',
+    'description': '''GFM Validation.''',
     'license': 'Apache-2',
     'author': 'Mark V Systems',
     'copyright': '(c) Copyright 2013-15 Mark V Systems Limited, All rights reserved.',
@@ -72,6 +58,4 @@ __pluginInfo__ = {
     'Validate.XBRL.Start': validateXbrlStart,
     'Validate.XBRL.Finally': validateXbrlFinally,
     'Validate.XBRL.DTS.document': validateXbrlDtsDocument,
-    'Validate.Finally': validateFinally,
-    'ModelDocument.CustomLoader': checkForBOMs
 }

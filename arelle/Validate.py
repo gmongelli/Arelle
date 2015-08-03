@@ -4,7 +4,7 @@ Created on Oct 17, 2010
 @author: Mark V Systems Limited
 (c) Copyright 2010 Mark V Systems Limited, All rights reserved.
 '''
-import os, sys, traceback
+import os, sys, traceback, re
 from collections import defaultdict
 from arelle import (ModelXbrl, ModelVersReport, XbrlConst, 
                ValidateXbrl, ValidateFiling, ValidateHmrc, ValidateVersReport, ValidateFormula,
@@ -101,6 +101,7 @@ class Validate:
     def validateRssFeed(self):
         self.modelXbrl.info("info", "RSS Feed", modelDocument=self.modelXbrl)
         from arelle.FileSource import openFileSource
+        reloadCache = getattr(self.modelXbrl, "reloadCache", False)
         for rssItem in self.modelXbrl.modelDocument.rssItems:
             if getattr(rssItem, "skipRssItem", False):
                 self.modelXbrl.info("info", _("skipping RSS Item %(accessionNumber)s %(formType)s %(companyName)s %(period)s"),
@@ -111,7 +112,7 @@ class Validate:
             modelXbrl = None
             try:
                 modelXbrl = ModelXbrl.load(self.modelXbrl.modelManager, 
-                                           openFileSource(rssItem.zippedUrl, self.modelXbrl.modelManager.cntlr),
+                                           openFileSource(rssItem.zippedUrl, self.modelXbrl.modelManager.cntlr, reloadCache=reloadCache),
                                            _("validating"), rssItem=rssItem)
                 for pluginXbrlMethod in pluginClassMethods("RssItem.Xbrl.Loaded"):  
                     pluginXbrlMethod(modelXbrl, {}, rssItem)      
@@ -337,8 +338,15 @@ class Validate:
         return not any(not isinstance(actual,dict) for actual in modelTestcaseVariation)
                 
     def determineTestStatus(self, modelTestcaseVariation, modelUnderTest):
-        numErrors = len(modelUnderTest.errors)
+        _blockedMessageCodes = modelTestcaseVariation.blockedMessageCodes # restricts codes examined when provided
+        if _blockedMessageCodes:
+            _blockPattern = re.compile(_blockedMessageCodes)
+            _errors = [e for e in modelUnderTest.errors if not _blockPattern.match(e)]
+        else:
+            _errors = modelUnderTest.errors
+        numErrors = len(_errors)
         expected = modelTestcaseVariation.expected
+        expectedCount = modelTestcaseVariation.expectedCount
         if expected == "valid":
             if numErrors == 0:
                 status = "pass"
@@ -353,15 +361,15 @@ class Validate:
             status = "pass"
         elif isinstance(expected,(QName,_STR_BASE,dict)): # string or assertion id counts dict
             status = "fail"
-            for testErr in modelUnderTest.errors:
+            _passCount = 0
+            for testErr in _errors:
                 if isinstance(expected,QName) and isinstance(testErr,_STR_BASE):
                     errPrefix, sep, errLocalName = testErr.partition(":")
                     if ((not sep and errPrefix == expected.localName) or
                         (expected == qname(XbrlConst.errMsgPrefixNS.get(errPrefix), errLocalName)) or
                         # XDT xml schema tests expected results 
                         (expected.namespaceURI == XbrlConst.xdtSchemaErrorNS and errPrefix == "xmlSchema")):
-                        status = "pass"
-                        break
+                        _passCount += 1
                 elif type(testErr) == type(expected):
                     if (testErr == expected or
                         (isinstance(expected, _STR_BASE) and (
@@ -371,16 +379,20 @@ class Validate:
                          (expected == "EFM.6.05.35" and testErr.startswith("utre:")) or
                          (expected.startswith("EFM.") and testErr.startswith(expected)) or
                          (expected == "vere:invalidDTSIdentifier" and testErr.startswith("xbrl"))))):
-                        status = "pass"
-                        break
+                        _passCount += 1
+            if _passCount > 0:
+                if expectedCount is not None and expectedCount != _passCount:
+                    status = "fail (count)"
+                else:
+                    status = "pass"
             if expected == "EFM.6.03.02" or expected == "EFM.6.03.08": # 6.03.02 is not testable
                 status = "pass"
             # check if expected is a whitespace separated list of error tokens
             if status == "fail" and isinstance(expected,_STR_BASE) and ' ' in expected:
-                if all(any(testErr == e for testErr in modelUnderTest.errors)
+                if all(any(testErr == e for testErr in _errors)
                        for e in expected.split()):
                         status = "pass"
-            if not modelUnderTest.errors and status == "fail":
+            if not _errors and status == "fail":
                 if modelTestcaseVariation.assertions:
                     if modelTestcaseVariation.assertions == expected:
                         status = "pass" # passing was previously successful and no further errors
@@ -394,13 +406,13 @@ class Validate:
         modelTestcaseVariation.actual = []
         if numErrors > 0: # either coded errors or assertions (in errors list)
             # put error codes first, sorted, then assertion result (dict's)
-            for error in modelUnderTest.errors:
+            for error in _errors:
                 if isinstance(error,dict):  # asserion results
                     modelTestcaseVariation.assertions = error
                 else:   # error code results
                     modelTestcaseVariation.actual.append(error)
             modelTestcaseVariation.actual.sort(key=lambda d: str(d))
-            for error in modelUnderTest.errors:
+            for error in _errors:
                 if isinstance(error,dict):
                     modelTestcaseVariation.actual.append(error)
                 

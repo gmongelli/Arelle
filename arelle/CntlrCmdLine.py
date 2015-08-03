@@ -548,7 +548,7 @@ class CntlrCmdLine(Cntlr.Cntlr):
                         if moduleInfo:
                             resetPlugins = True
                     if moduleInfo: 
-                        self.addToLog(_("Activation of plug-in {0} successful.").format(moduleInfo.get("name")), 
+                        self.addToLog(_("Activation of plug-in {0} successful, version {1}.").format(moduleInfo.get("name"), moduleInfo.get("version")), 
                                       messageCode="info", file=moduleInfo.get("moduleURL"))
                     else:
                         self.addToLog(_("Unable to load {0} as a plug-in or {0} is not recognized as a command. ").format(cmd), messageCode="info", file=cmd)
@@ -627,6 +627,10 @@ class CntlrCmdLine(Cntlr.Cntlr):
                 if envVar in os.environ:
                     self.addToLog(_("XDG_CONFIG_HOME={0}").format(os.environ[envVar]))
             return True
+        
+        self.modelManager.customTransforms = None # clear out prior custom transforms
+        self.modelManager.loadCustomTransforms()
+        
         # run utility command line options that don't depend on entrypoint Files
         hasUtilityPlugin = False
         for pluginXbrlMethod in pluginClassMethods("CntlrCmdLine.Utility.Run"):
@@ -763,6 +767,8 @@ class CntlrCmdLine(Cntlr.Cntlr):
         if options.formulaRunIDs:
             fo.runIDs = options.formulaRunIDs   
         self.modelManager.formulaOptions = fo
+        
+        
         timeNow = XmlUtil.dateunionValue(datetime.datetime.now())
         firstStartedAt = startedAt = time.time()
         modelDiffReport = None
