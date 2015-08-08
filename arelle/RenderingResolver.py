@@ -218,7 +218,10 @@ def addBreakdownNode(view, disposition, node):
 
 def childContainsOpenNodes(childStructuralNode):
     if isinstance(childStructuralNode.definitionNode, ModelFilterDefinitionNode) \
-       and any([node.isEntryPrototype(default=False) for node in childStructuralNode.childStructuralNodes]):
+       and (childStructuralNode.isLabeled \
+            or any([node.isEntryPrototype(default=False) for node in childStructuralNode.childStructuralNodes])):
+        # either the child structural node has a concrete header or it contains a structure
+        # that has not yet a concrete value
         return True
     else:
         for node in childStructuralNode.childStructuralNodes:
