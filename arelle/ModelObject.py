@@ -302,13 +302,13 @@ class ModelObject(etree.ElementBase):
                         return docModelObject
         return None
 
-    def genLabel(self,role=None,fallbackToQname=False,fallbackToXlinkLabel=False,lang=None,strip=False,linkrole=None):
+    def genLabel(self,role=None,fallbackToQname=False,fallbackToXlinkLabel=False,lang=None,strip=False,linkrole=None, linkroleHint=None):
         from arelle import XbrlConst
         if role is None: role = XbrlConst.genStandardLabel
         if role == XbrlConst.conceptNameLabelRole: return str(self.qname)
         labelsRelationshipSet = self.modelXbrl.relationshipSet(XbrlConst.elementLabel,linkrole)
         if labelsRelationshipSet:
-            label = labelsRelationshipSet.label(self, role, lang)
+            label = labelsRelationshipSet.label(self, linkroleHint or role, lang)
             if label is not None:
                 if strip: return label.strip()
                 return Locale.rtlString(label, lang=lang)

@@ -76,10 +76,27 @@ def renderConcept(isModelTable, concept, conceptText, viewRelationshipSet, model
     filingIndicator = None
     defaultENLanguage = "en"
     filingIndicatorCodeRole = "http://www.eurofiling.info/xbrl/role/filing-indicator-code";
-    filingIndicatorCode = concept.genLabel(role=filingIndicatorCodeRole,
-                                          lang=defaultENLanguage)
+    filingIndicatorCode = concept.genLabel(role=filingIndicatorCodeRole, lang=defaultENLanguage)
+
     if viewRelationshipSet.isEbaTableIndex:
         isModelTable = True
+        '''
+        It is often desirable to see the table code, particularly for development.
+        So, until we add a dedicated option, we always prefix the normal label by the
+        table code.
+        Note: The verbose label could possibly be used since it generally contains
+              the table code as a prefix ("http://www.xbrl.org/2008/role/verboseLabel")
+              However, it is often too verbose to be used in the table index.
+        Note: For some taxonomies (e.g. Corep), the normal label already contains the
+              table code, so avoid dup's      
+        '''    
+        prefix = concept.genLabel(lang=viewRelationshipSet.lang, strip=True, linkroleHint="http://www.eurofiling.info/xbrl/role/rc-code")
+        if prefix:
+            if not(conceptText.startswith(prefix)):
+                conceptText = prefix + " " + conceptText
+                viewRelationshipSet.treeView.item(conceptNode, text=conceptText)          
+        
+        # show filing indicator
         if not filingIndicatorCode in modelXbrl.filingIndicatorByFilingCode:
             filingIndicator = None
             modelXbrl.filingIndicatorByFilingCode[filingIndicatorCode] = filingIndicator
@@ -89,6 +106,7 @@ def renderConcept(isModelTable, concept, conceptText, viewRelationshipSet, model
         viewRelationshipSet.treeView.set(conceptNode, 0, getFilingIndicatorDisplay(filingIndicator))
         modelXbrl.treeRowByTableLabel[conceptText] = conceptNode
         modelXbrl.indexTableTreeView = viewRelationshipSet.treeView
+
 
 def getFilingIndicatorDisplay(filingIndicator):
     if filingIndicator == None:
@@ -111,7 +129,7 @@ def saveNewFileFromGUI(cntlrWinMain):
         
 __pluginInfo__ = {
     'name': 'EBA Rendering extensions',
-    'version': '1.0',
+    'version': '1.1',
     'description': "This plugin contains GUI extensions for EBA and EIOPA (e.g update of filing indicators)",
     'license': 'Apache-2',
     'author': 'Acsone',
