@@ -4,7 +4,7 @@
 
 from arelle import PackageManager
     
-TAXONOMY_NAME = 'EIOPA SolvencyII XBRL Taxonomy 1.7 Draft'
+TAXONOMY_NAME = 'EIOPA Solvency II XBRL Taxonomy 2.0.0'
 
 def customNewFile(cntlr):
     for i, packageInfo in enumerate(sorted(PackageManager.packagesConfig.get("packages", []),
@@ -22,8 +22,8 @@ def fileOpenExtender(cntlr, menu):
     menu.add_command(label=_('New Solvency Report'), underline=0, command=lambda: customNewFile(cntlr) )
 
 __pluginInfo__ = {
-    'name': 'New SolvencyReport 1.7.1',
-    'version': '1.0',
+    'name': 'New SolvencyReport 2.0',
+    'version': '1.1',
     'description': "Open the report selection dialog using the latest SolvencyII taxonomy",
     'license': 'Apache-2',
     'author': 'acsone',
