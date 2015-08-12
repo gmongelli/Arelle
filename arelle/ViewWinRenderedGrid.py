@@ -810,7 +810,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 enumerationSet = ValidateXbrlDimensions.usableEnumerationMembers(myValidationObject, modelConcept)
                                 enumerationDict = dict()
                                 for enumerationItem in enumerationSet:
-                                    enumerationDict[enumerationItem.label()] = enumerationItem.qname
+                                    # we need to specify the concept linkrole to sort out between possibly many different labels
+                                    enumerationDict[enumerationItem.label(linkrole=modelConcept.enumLinkrole)] = enumerationItem.qname
                                 enumerationValues = sorted(list(enumerationDict.keys()))
                                 enumerationQNameStrings = [""]+list(str(enumerationDict[enumerationItem]) for enumerationItem in enumerationValues)
                                 enumerationValues = [""]+enumerationValues
