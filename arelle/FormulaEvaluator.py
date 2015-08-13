@@ -146,7 +146,7 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
         pass     
 
 def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
-     if varIndex == len(varSet.orderedVariableRelationships):
+    if varIndex == len(varSet.orderedVariableRelationships):
         # check if all fact vars are fallen back
         anyFactVar = False; anyBoundFactVar = False
         for vb in xpCtx.varBindings.values():
