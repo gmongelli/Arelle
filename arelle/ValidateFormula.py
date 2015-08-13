@@ -4,6 +4,7 @@ Created on Dec 9, 2010
 @author: Mark V Systems Limited
 (c) Copyright 2010 Mark V Systems Limited, All rights reserved.
 '''
+#import yappi
 import os, sys, time, logging
 from collections import defaultdict
 from threading import Timer
@@ -850,6 +851,9 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         
     val.modelXbrl.modelManager.showStatus(_("running formulae"))
     
+    #yappi.start()
+
+    
     # IDs may be "|" or whitespace separated
     runIDs = (formulaOptions.runIDs or '').replace('|',' ').split()
     if runIDs:
@@ -930,7 +934,10 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
             # close prior instance, usually closed by caller to validate as it may affect UI on different thread
             val.modelXbrl.formulaOutputInstance.close()
         val.modelXbrl.formulaOutputInstance = outputXbrlInstance
-        
+     
+    #yappi.get_func_stats().print_all()  
+    #yappi.stop()
+    
     val.modelXbrl.modelManager.showStatus(_("formulae finished"), 2000)
         
     instanceProducingVariableSets.clear() # dereference

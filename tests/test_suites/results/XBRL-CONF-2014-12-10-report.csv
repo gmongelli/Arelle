@@ -1,0 +1,945 @@
+﻿Index,Testcase,ID,Name,ReadMeFirst,Status,Expected,Actual
+xbrl.xml
+,102-item.xml
+,,V-1,102.01  The periodType attribute is required all item types.,102-01-SpecExample.xml,pass,valid,
+,,V-2,102.02  The periodType attribute is required for both numeric and non-numeric item types.,102-02-MissingPeriodType.xsd,pass,invalid,xbrl.5.1.1.1:itemPeriodType xbrl.5.1.1.1:itemPeriodType
+,,V-3,102.03 The periodTyope attribute is not allowed on tuples.,102-03-NoPeriodTypeTuple.xsd,pass,invalid,xbrl.4.9:tuplePeriodType
+,,V-4,102.04 Valid example for usage of substitutionGroup for item type elements. Added test erratam #021,102-04-substitutionItem.xsd,pass,valid,
+,,V-5,102.05 Valid example for usage of substitutionGroup for item type elements. Added test erratam #021,102-05-substitutionItem.xsd,pass,valid,
+,,V-6,102.06 Valid example for usage of substitutionGroup for item type elements. Added test erratam #021,102-06-substitutionItemValid.xbrl,pass,valid,
+,,V-8,102.08 Valid example for usage of substitutionGroup for tuple type elements. Added test erratam #021,102-08-substitutionTuple.xsd,pass,valid,
+,,V-9,102.09 Valid example for usage of substitutionGroup for tuple type elements. Added test erratam #021,102-09-substitutionTuple.xsd,pass,valid,
+,,V-10,102.10 Valid example for usage of substitutionGroup for tuple type elements. Added test erratam #021,102-10-substitutionTupleValid.xbrl,pass,valid,
+,,V-11,102.11 Valid example for usage of substitutionGroup. The element substituted is declared in an external schema. Note this test case has been submited by Ignacio Hernandez-Ros ignacio@hernandez-ros.com on May 2007,102-11-DerivedElementFromAnElementInAnotherSchema.xsd,pass,valid,
+,103-type.xml
+,,V-1,103.01 An item type in a taxonomy can never have complex content unless it is derived by restriction from fractionItemType.,103-01-ComplexContentCounterExample.xsd,pass,invalid,xbrl.5.1.1.3:itemType
+,104-tuple.xml
+,,V-1,104.01 Tuples are derived from tupleType.,104-01-SpecTupleExample.xml,pass,valid,
+,,V-2,104.02 Tuples are derived from tupleType and subelements all appear as references.,104-02-TupleExampleAnyOrder.xml,pass,valid,
+,,V-3,104.03 Subelements of a tuple may use minOccurs and maxOccurs.,104-03-TupleExampleCardinality.xml,pass,valid,
+,,V-4,104.04 Tuples may be defined as a complex type.,104-04-TupleExampleComplextype.xml,pass,valid,
+,,V-5,104.05 Tuples may be defined as a complex type containing other tuples.,104-05-TupleExampleNestedComplextype.xml,pass,valid,
+,,V-6,"104.06 Anonymous type definitions are fine, per erratum 054.",104-06-TupleCounterExampleNestedComplexType.xsd,pass,valid,
+,,V-7,"104.07 Tuples may be defined using choice, sequence and all elements.",104-07-TupleChoiceExample.xml,pass,valid,
+,,V-8,"104.08 Tuples can use the any element, section 4.9, point 7, erratum 2.8.",104-08-TupleAnyCounterExample.xsd,pass,valid,
+,,V-9,104.09 Tuples can have unqualified local attributes other than id.,104-09-TupleAttributeCounterExample.xml,pass,valid,
+,,V-10,"104.10 Tuples should not have attributes in XBRL spec defined namespaces.  The tuple declaration allows ""anyAttribute"", and the instance takes advantage of this by putting xbrli:periodType on the tuple fact.",104-10-TupleXBRLAttributeCounterExample.xml,pass,invalid,xbrl.4.9:tupleAttribute
+,,V-10b,"104.10b Tuples should not have attributes in XBRL spec defined namespaces.  Like v-10, but without the instance.  Tests whether processors reject ""anyAttribute"" in tuple declarations as illegal at the schema level.",104-10-TupleXBRLAttributeCounterExample.xsd,pass,valid,
+,,V-10c,104.10c Tuples should not have attributes in XBRL spec defined namespaces.  This schema contains a tuple *requires* the use of xbrli:periodType.,104-10c-TupleXBRLAttributeCounterExample.xsd,pass,invalid,xbrl.4.9:tupleAttribute
+,,V-10d1,"104.10d1 Tuples should not have attributes in XBRL spec defined namespaces.  This variation tests the http://www.xbrl.org/2003/instance namespace, by including a tuple that allows the use of xbrli:periodType.",104-10d1-TupleXBRLAttributeCounterExample.xsd,pass,invalid,xbrl.4.9:tupleAttribute
+,,V-10d2,"104.10d2 Tuples should not have attributes in XBRL spec
+    defined namespaces.  This variation tests the http://www.w3.org/1999/xlink
+    namespace, by including a tuple that allows the use of
+    xlink:href.",104-10d2-TupleXBRLAttributeCounterExample.xsd,pass,invalid,xbrl.4.9:tupleAttribute
+,,V-10d3,"104.10d3 Tuples should not have attributes in XBRL spec
+    defined namespaces.  This variation tests the http://www.xbrl.org/2003/linkbase namespace, by including a tuple that allows the use of any attributes from the namespace (there aren't currently any global attributes in this namespace).  Are such wildcards illegal?",104-10d3-TupleXBRLAttributeCounterExample.xsd,pass,valid,
+,,V-10d4,"104.10d4 Tuples should not have attributes in XBRL spec
+    defined namespaces.  This variation tests the http://www.xbrl.org/2003/XLink namespace, by including a tuple that allows the use of any attributes from the namespace (there aren't currently any global attributes in this namespace). Are such wildcards illegal?",104-10d4-TupleXBRLAttributeCounterExample.xsd,pass,valid,
+,,V-11,104.11 Tuples can use the group element.,104-11-TupleGroupCounterExample.xsd,pass,valid,
+,,V-12,104.12 Tuples must not use the mixed attribute.,104-12-TupleMixedCounterExample.xsd,pass,invalid,xbrl.4.9:tupleMixedContent
+,,V-13,104.13 A tuple's content model can be derived by restriction from xsd:anyType.,104-13-TupleRestrictionExample.xml,pass,valid,
+,,V-14,104.14 a tuple's content model may be derived by either restriction or extension from a data type derived by xsd:anyType. This is the case of derivation of restriction.,104-14-TupleNestedRestrictionExample.xml,pass,valid,
+,,V-16,Errata #23 - 104.16 Tuple elements can be declared abstract.,104-16-TupleAbstractCounterExample.xsd,pass,valid,
+,,V-17,"104.17 In the declaration of any tuple in a taxonomy schema,
+    declarations of child elements of that tuple MUST be references to global
+    element declarations that are in a substitution group that has either item
+    or tuple as its head.",104-17-TupleAnonymousCounterExample.xsd,pass,invalid,xbrl.4.9:tupleElementItemOrTuple xbrl.4.9:tupleElementItemOrTuple xbrl.4.9:tupleElementItemOrTuple
+,,V-18,104.18 Redefine element MUST NOT be used. This is bug#30 and erratam #30,104-18-redefine.xsd,pass,invalid,xbrl.5.6.1:Redefine xmlSchema:refNotFound xmlSchema:refNotFound xmlSchema:refNotFound xmlSchema:refNotFound xmlSchema:valueError xmlSchema:valueError xmlSchema:valueError xmlSchema:valueError
+,,V-19,104.19 Abstract tuple definition can be possible. bug# 31.Erratum#28,104-19-abstractTuple.xsd,pass,valid,
+,,V-20,104.20 The XBRL 2.1 specification allows concept definitions in the types defined in the XBRL specification. One of the types defined in the specification is xbrli:contextScenarioType that in turns allows ANY content. Concept definitions using the xbrli:contextScenarioType are valid concept definitions but they must be in the xbrli:item or xbrli:tuple substitution groups. This makes possible to define a totally open fact items as in this example.,104-20-extreme-tuple-content-model.xbrl,pass,valid,
+,105-balance.xml
+,,V-01,105.01 Any element with a balance attibute MUST have a type attribute value of monetaryItemType,105-01-ElementWithBalanceTypeNotMonetary-instance.xml,pass,invalid,xbrl.5.1.1.2:itemBalance xbrl.5.1.1.2:itemBalance
+,,V-02,105.02 Elemements where the substitutionGroup attribute value is tuple MUST NOT have a balance attribute,105-02-TuplesMustHaveNoBalanceAttribute-instance.xml,pass,invalid,xbrl.4.9:tupleBalance xbrl.4.9:tupleBalance
+,,V-03,105.03 An optional balance attribute MAY be added to the definition of an element if its type is monetaryItemType or derived from monetaryItemType.,105-03-ElementWithBalanceTypeMonetary.xml,pass,valid,
+,,V-04,105.04 Derived element of Monetary datatype with Balance defined,105-04-DerivedElementWithBalanceTypeMonetary.xsd,pass,valid,
+,,V-05,105.05 Derived element with string datatype with Balance defined,105-05-DerivedElementWithBalanceTypeString.xsd,pass,invalid,xbrl.5.1.1.2:itemBalance
+,106-targetNamespace.xml
+,,V-1,106.01 Taxonomy schema has non-empty targetNamespace attribute value.,106-01-NonEmptyTargetNamespace.xsd,pass,valid,
+,,V-2,106.02 Taxonomy schema has empty targetNamespace attribute value. Empty targetNamespace attribute is prohibited by Section 5.1.,106-02-EmptyTargetNamespace.xsd,pass,invalid,xbrl.5.1:emptyTargetNamespace
+,,V-3,106.03 Both including and included Taxonomy schemas have identical targetNamespace attribute values. Valid and XBRL specification 5.1 recommended approach.,106-03-ExtTargetNamespace.xsd,pass,valid,
+,,V-4,"106.04 Included taxonomy schema has no targetNamespace attribute but including taxonomy schema has targetNamespace attribute which it is valid. Even though this usage does not recommended by XBRL Specification section 5.1, this is valid.",106-04-ExtTargetNamespace.xsd,pass,valid,
+,107-DTSWithLinkbaseInSchema.xml
+,,V-1,"107.01 DTS descovery begins from a taxonomy schema that contains a linkbase 
+		  reference to a linkbase that that is placed inside the documentation of another 
+		  XML schema. The other XML schema also contains valid XML Schema markup but the 
+		  markup violates the requirements of the XBRL 2.1 specification.  By following the 
+      rules of DTS discovery the linkbase in the second schema should be
+      discovered, and processed *as a taxonomy schema* so the material that
+      violates the XBRL 2.1 specification should trigger a determination that
+      the result is invalid.",107-01-SchemaLinkingToALinkbaseInAnotherSchema.xsd,pass,invalid,xbrl.5.1.1.2:itemBalance
+,114-lax-validation-testcase.xml
+,,V-01,"appinfo has an element for which there is no definition, so it is allowed; element has an attribute with no definition, so it is allowed",114-lax-validation-01.xsd,pass,valid,
+,,V-02,appinfo has an element defined as integer with string contents,114-lax-validation-02.xsd,pass,invalid,xmlSchema:valueError
+,,V-03,element has an attribute defined as integer with string contents,114-lax-validation-03.xsd,pass,invalid,xmlSchema:valueError
+,,V-04,"appinfo has an embedded linkbase without bad stuff, to be sure that the embedded clean linkbase is processed without error (next variation adds a schema error to the linkbase in the appinfo)",114-lax-validation-04.xsd,pass,valid,
+,,V-05,"appinfo has an embedded linkbase with defined valid element in unwanted location in linkbase, to ensure that xml validation is being performed on the embedded linkbase",114-lax-validation-05.xsd,pass,invalid,xbrl.3.5.3.8.1:resourceType xmlSchema:elementUnexpected
+,115-ArcroleAndRoleRefs-testcase.xml
+,,V-01,"115-01.xsd contains two role references to the same URI in different linkbases, VALID.",115-01.xsd,pass,valid,
+,,V-02,"115-02.xsd contains two role references to the same URI in the same linkbase, INVALID.",115-02.xsd,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-03,"115-03.xsd contains two arcrole references to the same URI in different linkbases, VALID.",115-03.xsd,pass,valid,
+,,V-04,"115-04.xsd contains two arcrole references to the same URI in the same linkbase, INVALID.",115-04.xsd,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,155-TypeExtension.xml
+,,V-01,Type Extension - Valid,155-TypeExtension-Valid.xsd,pass,valid,
+,160-UsedOn.xml
+,,V-01,A new roleType definition contains a usedOn element pointing to a valid QName but a standard linkbase uses it in a different element (a label resource)- Invalid,160-01-roleType-standard-linkbase-incorrect-element-Invalid.xsd,pass,invalid,xbrl.5.1.3.4:custRoleUsedOn
+,,V-02,A new roleType definition contains a usedOn element pointing to a valid QName but a standard linkbase uses it in a different element (a labelLink element)- Invalid,160-02-roleType-standard-linkbase-incorrect-element-Invalid.xsd,pass,invalid,xbrl.5.1.3.4:custRoleUsedOn
+,,V-04,A new roleType definition contains a usedOn element pointing to a valid QName; a custom linkbase uses it in a different element but there is no a roleRef pointing to the roleType declaration - Valid,160-04-roleType-non-standard-linkbase-incorrect-element-Valid.xsd,pass,valid,
+,,V-05,This is the same 160-04 test case but the hidden schema imports a new taxonomy in the DTS. That imported schema is not a valid taxonomy and it should be ignored because it is not in the DTS. - valid,160-05-roleType-non-standard-linkbase-incorrect-element-invalid.xsd,pass,valid,
+,,V-06,A role that is only used on elements that cannot accept an xlink:role attribute is nonsensical but valid.,RoleUsedOnArcElement.xsd,pass,valid,
+,,V-07,An arcrole that is only used on elements that cannot accept an xlink:arcrole attribute is nonsensical but valid.,ArcroleUsedOnNonArcElements.xsd,pass,valid,
+,,V-08,"The UsedOn values are not S-Equal even though they have the same namespace prefix and element name, because the namespace prefixes resolve to different namespaces.",UsedOnSEquality-valid.xsd,pass,valid,
+,,V-09,"The UsedOn values are S-Equal even though they have different namespace prefixes, because the namespace prefixes resolve to the same namespace.",UsedOnSEquality-invalid.xsd,pass,invalid,xbrl.5.1.4:arcroleTypes-inequality
+,161-Appinfo.xml
+,,V-01,"A role type declaration with a missing id. Valid, but useless.",161-01-roleType-id-missing-valid.xsd,pass,valid,
+,,V-02,A role type declaration with an id not an ncname. Invalid.,161-02-roleType-id-notncname-invalid.xsd,pass,invalid,xmlSchema:valueError
+,,V-03,A role type declaration with a missing roleURI. Invalid.,161-03-roleType-uri-missing-invalid.xsd,pass,invalid,xbrl.5.1.3:roleURIMissing xmlSchema:attributesRequired
+,,V-04,A role type declaration with an empty roleURI. Invalid.,161-04-roleType-uri-empty-invalid.xsd,pass,invalid,xmlSchema:valueError
+,,V-05,"A role type declaration with roleURI not absolute. Invalid. Section
+			5.1.3 -- This isn't actually invalid according to the 2008-07-02 spec; discussion required",161-05-roleType-uri-notabsolute-invalid.xsd,pass,valid,
+,,V-11,"A arcrole type declaration with a missing id. Valid, but useless.",161-11-arcroleType-id-missing-valid.xsd,pass,valid,
+,,V-12,A arcrole type declaration with an id not an ncname. Invalid.,161-12-arcroleType-id-notncname-invalid.xsd,pass,invalid,xmlSchema:valueError
+,,V-13,A arcrole type declaration with a missing arcroleURI. Invalid.,161-13-arcroleType-uri-missing-invalid.xsd,pass,invalid,xbrl.5.1.4:arcroleURIMissing
+,,V-14,A arcrole type declaration with an empty arcroleURI. Invalid.,161-14-arcroleType-uri-empty-invalid.xsd,pass,invalid,xmlSchema:valueError
+,,V-15,"A arcrole type declaration with arcroleURI not absolute. Invalid. Section
+			5.1.3",161-15-arcroleType-uri-noturi-invalid.xsd,pass,invalid,xbrl.5.1.4:arcroleURIMissing
+,,V-16,"A arcrole type declaration with cyclesAllowed = All Invalid. Section
+			5.1.3",161-16-arcroleType-cyclesAllowedAll-invalid.xsd,pass,invalid,xbrl.5.1.4:arcroleTypeCyclesAllowed
+,201-linkref.xml
+,,V-01,"201.01 The LinkbaseRef elements MUST hold the URI of
+		Linkbases.  In this case the URI's do not resolve to
+		XML documents.",201-01-LinkbaseRefCounterExample.xsd,pass,invalid,IOerror IOerror IOerror IOerror IOerror
+,,V-02,"201.02 The LinkbaseRef elements hold the URI of
+		Linkbases.  In this case the URI's actually resolve to
+		documents that contain the right kinds of XBRL linkbases.",201-02-LinkbaseRef.xsd,pass,valid,
+,,V-03,"201.03 XML Base must be used to process the URI of a
+		LinkbaseRef.  In this case the schema use the xml base
+		attribute to get the linkbase to be picked up from the
+		base directory instead of the current directory.",201-03-LinkbaseRefXMLBase.xsd,pass,valid,
+,,V-04,"201.04 The LinkbaseRef XLink role attribute value must
+		match the linkbase found at its target.  In this case
+		it does not.  The role indicates a label linkbase and
+		the actual linkbase is a reference linkbase.",201-04-LinkbaseRefLabelCounterExample.xsd,pass,invalid,xbrl.4.3.4:linkbaseRefLinks
+,,V-05,"201.05 The LinkbaseRef element role must match the
+		linkbase found at its target.  In this case
+		it does not.  The role indicates a reference linkbase and
+		the actual linkbase is a label linkbase.",201-05-LinkbaseRefReferenceCounterExample.xsd,pass,invalid,xbrl.4.3.4:linkbaseRefLinks
+,,V-06,"201.06 The LinkbaseRef element role must match the
+		linkbase found at its target.  In this case a
+		calculation linkbase is indicated and a definition
+		linkbase is provided.",201-06-LinkbaseRefDefinitionCounterExample.xsd,pass,invalid,xbrl.4.3.4:linkbaseRefLinks
+,,V-07,"201.07 The LinkbaseRef element role must match the
+		linkbase found at its target.  In this case a
+		definition linkbase is indicated and a presentation
+		linkbase is provided.",201-07-LinkbaseRefPresentationCounterExample.xsd,pass,invalid,xbrl.4.3.4:linkbaseRefLinks
+,,V-08,"201.08 The LinkbaseRef element role must match the
+		linkbase found at its target.  In this case a
+		presentation linkbase is indicated and a calculation
+		linkbase is provided.",201-08-LinkbaseRefCalculationCounterExample.xsd,pass,invalid,xbrl.4.3.4:linkbaseRefLinks
+,,V-09,"201.09 There can be any number of LinkbaseRef elements
+		having the same role but the role must always match
+		the target.",201-09-LinkbaseRefMultipleExample.xsd,pass,valid,
+,,V-10,"201.10 The LinkbaseRef element in the second appinfo section holds
+    the URI of a reference linkbase, but uses a role that should only
+    point to label Linkbases.",201-10-InvalidLinbaseRefInSecondAppinfo.xsd,pass,invalid,xbrl.4.3.4:linkbaseRefLinks
+,202-xlinkLocator.xml
+,,V-01,202.01 A URI reference appearing in an href attribute must resolve to an XML Schema element element or an xlink resource-type element,202-01-HrefResolution-label.xml,pass,valid,
+,,V-02,202.02 A URI reference appearing in an href attribute must resolve to an XML Schema element element or an xlink resource-type element,202-02-HrefResolutionCounterExample-label.xml,pass,invalid,xbrl.5.2.2.1:labelLinkLocTarget
+,,V-02a,"202.02a an empty href resolves to a definite resource, which should be subject to source/target validation",202-02a-HrefResolutionCounterExample-label.xml,pass,invalid,xmlSchema:requiredAttribute
+,,V-02b,"202.02b in the absence of source/target constraints, an empty href doesn't pose a problem",202-02b-HrefResolutionCounterExample-custom.xml,pass,valid,
+,,V-03,"202.03 A URI reference appearing in an href attribute must be computed using the method described in XML Base [XMLBase].  Xsd specifies base for linkbase as ""./base/"".",base/202-03-HrefResolutionXMLBase-label.xml,pass,valid,
+,,V-03a,"202.03a
+                  Same as 202.03 (V-03) but instead readMeFirst on linkbase, the readMeFirst is on the xsd.",202-03a-HrefResolutionXMLBase.xsd,pass,valid,
+,,V-03b,"202.03b
+                  Same as 202.03 (V-03) but instead of Xsd base for linkbase as ""./base/"", here base is ""base/"" (without leading ./).",202-03b-HrefResolutionXMLBase.xsd,pass,valid,
+,,V-03c,"202.03c
+                  Same as 202.03 (V-03) but instead of Xsd base for linkbase as ""./base/"", here base is ""./base"" (without trailing /) so base is actually the parent (this directory) where the linkbase isn't.",202-03c-HrefResolutionXMLBase.xsd,pass,invalid,IOerror
+,,V-03d,"202.03d
+                  Same as 202.03 (V-03) but instead enclosing appinfo has base=""base/"" and its enclosing annotation has base=""base/"", so effective base for linkbaseRef is ""base/base/"".  The surrounding directories have the linkbase file but with invalid locs, so it will fail if enclosing element base's aren't processed correctly.",202-03d-HrefResolutionXMLBase.xsd,pass,valid,
+,,V-03e,"202.03e
+                  Same as 202.03d (V-03d), but the linkbaseRef element has base=""./base"", which will result in an effective base=""base/base/base"" which is still base/base/ for relative URI resolution, so the valid linkbase is obtained.",202-03e-HrefResolutionXMLBase.xsd,pass,valid,
+,,V-03f,"202.03f
+                  The linkbase has an xml:base=""base/base/base"" which means the relative URIs resolve to base/base/.  The xsd discovery should find the xsd in the base/base/ directory.",202-03f-HrefResolutionXMLBase-label.xml,pass,valid,
+,,V-05,202.05 element() scheme pointers are legal (Spec 3.5.4),202-05-ElementLocatorExample-label.xml,pass,valid,
+,,V-06,202.06 Locators with different xlink labels pointing to the same taxonomy element.,202-06-DuplicateLocatorExample-label.xml,pass,valid,
+,,V-07,202.07 shorthand pointers are legal (Spec 3.5.4),202-07-ShorthandPointerExample-label.xml,pass,valid,
+,,V-08,202.08 xpointer() Scheme pointers are illegal (Spec 3.5.4),202-08-XPointerLocatorExample-label.xml,pass,invalid,xbrl.3.5.4:hrefIdNotFound xbrl.3.5.4:hrefScheme xbrl.5.2.2.1:labelLinkLocTarget
+,,V-09,202.09 element() Scheme pointers are legal (Spec 3.5.4),202-09-ElementSchemeXPointerLocatorExample-label.xml,pass,valid,
+,,V-10,202.10 A sequence of element() Schemes in an X pointer is legal (Spec 3.5.4).  The first of the element schemes does not resolve but the second does.,202-10-ElementSchemeXPointerLocatorExample-label.xml,pass,valid,
+,,V-11,202.11 An xmlns() scheme in an X pointer is illegal in XBRL 2.1 (Spec 3.5.4) even if resolution of that scheme is not attempted because an early scheme resolves.,202-11-ElementSchemeXPointerLocatorExample-label.xml,pass,invalid,xbrl.3.5.4:hrefScheme
+,,V-12,202.12 An element scheme in an X pointer in a label linkbase locator that does not resolve to a concept is illegal. See 5.2.2.1 in the XBRL 2.1 specification.,202-12-ElementSchemeXPointerLocatorExample-label.xml,pass,invalid,xbrl.5.2.2.1:labelLinkLocTarget
+,,V-13,202.13 An element scheme in an X pointer in a linkbaseRef. See 3.5.1.2 in the XBRL 2.1 specification.,202-13-ElementSchemeXPointerLocatorExample-label.xml,pass,valid,
+,204-arcCycles.xml
+,,V-4,"204.04 parent-child arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a presentation network of parent-child arc roles that contains no cycles.",ArcCyclesPCNC.xml,pass,valid,
+,,V-5,"204.05 parent-child arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		two presentation networks of parent-child arc roles that contains no cycles.  If the networks were
+		interpreted as a single network than a cycle would occur.",ArcCyclesPCNCWR.xml,pass,valid,
+,,V-6,"204.06 parent-child arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a presentation network of parent-child arc roles that contain a directed cycle between
+		conceptB, conceptE and conceptJ.",ArcCyclesPCDC.xml,pass,invalid,xbrl.5.2.4.2
+,,V-7,"204.07  parent-child arcs must not form directed cycles.
+		This schema extends the ArcCyclesPCNC.xsd taxonomy and defines conceptZ.  The linkbase
+		adds conceptZ as a child of conceptG.  It also prohibits the arc between conceptB and conceptD and creates a
+		new arc between conceptA and conceptD.
+		The ArcCyclesPCNCExtension.xsd taxonomy schema imports ArcCyclesPCNC.xsd",ArcCyclesPCNCExtension.xml,pass,valid,
+,,V-8,"204.08 parent-child arcs must not form directed cycles.
+		This schema extends the ArcCyclesPCNC.xsd taxonomy and defines conceptZ.  The linkbase adds conceptZ as a child of conceptG and a child of conceptL.
+		This forms an undirected cycle bewteen conceptA, conceptB, conceptE, conceptI, conceptA, conceptG and conceptC.
+		The ArcCyclesPCWCExtension.xsd taxonomy schema imports ArcCyclesPCNC.xsd",ArcCyclesPCWCExtension.xml,pass,invalid,xbrl.5.2.4.2
+,,V-9,"204.09  summation-item arcs may form any cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a calculation network of summation-item arc roles that contains no cycles.",ArcCyclesSINC.xml,pass,valid,
+,,V-10,"204.10  summation-item arcs may form any cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		two calculation networks of summation-item arc roles that contains no cycles.  If the networks were
+		interpreted as a single network than a cycle would occur.",ArcCyclesSINCWR.xml,pass,valid,
+,,V-11,"204.11 summation-item arcs may form any cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a calculation network of summation-item arc roles that contain an undirected cycle between
+		conceptA, conceptB and conceptD.",ArcCyclesSIUC.xml,pass,valid,
+,,V-12,"204.12  summation-item arcs may form any cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a calculation network of summation-item arc roles that contain a directed cycle between
+		conceptB, conceptE and conceptJ.",ArcCyclesSIDC.xml,pass,valid,
+,,V-13,"204.13  summation-item arcs may form any cycles.
+		This schema extends the ArcCyclesSINC.xsd taxonomy and defines conceptZ.  The linkbase
+		adds conceptZ as a child of conceptG.  It also prohibits the arc between conceptB and conceptD and creates a
+		new arc between conceptA and conceptD.
+		The ArcCyclesSINCExtension.xsd taxonomy schema imports ArcCyclesSINC.xsd",ArcCyclesSINCExtension.xml,pass,valid,
+,,V-14,"204.14 summation-item arcs may form any cycles.
+		This schema extends the ArcCyclesSINC.xsd taxonomy and defines conceptZ.  The linkbase adds conceptZ as a child of conceptG and a child of conceptL.
+		This forms an undirected cycle bewteen conceptA, conceptB, conceptE, conceptI, conceptA, conceptG and conceptC.
+		The ArcCyclesSIWCExtension.xsd taxonomy schema imports ArcCyclesSINC.xsd",ArcCyclesSIWCExtension.xml,pass,valid,
+,,V-15,"204.15 general-special arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a definition network of general-special arc roles that contains no cycles.",ArcCyclesGSNC.xml,pass,valid,
+,,V-16,"204.16  general-special arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		two definition networks of general-special arc roles that contains no cycles.  If the networks were
+		interpreted as a single network than a cycle would occur.",ArcCyclesGSNCWR.xml,pass,valid,
+,,V-17,"204.17 general-special arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a definition network of general-special arc roles that contain an undirected cycle between
+		conceptA, conceptB and conceptD.",ArcCyclesGSUC.xml,pass,valid,
+,,V-18,"204.18 general-special arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a definition network of general-special arc roles that contain a directed cycle between
+		conceptB, conceptE and conceptJ.",ArcCyclesGSDC.xml,pass,invalid,xbrl.5.2.6.2.1
+,,V-19,"204.19 general-special arcs must not form directed cycles.
+		This schema extends the ArcCyclesGSNC.xsd taxonomy and defines conceptZ.  The linkbase
+		adds conceptZ as a child of conceptG.  It also prohibits the arc between conceptB and conceptD and creates a
+		new arc between conceptA and conceptD.
+		The ArcCyclesGSNCExtension.xsd taxonomy schema imports ArcCyclesGSNC.xsd",ArcCyclesGSNCExtension.xml,pass,valid,
+,,V-20,"204.20  general-special arcs must not form directed cycles.
+		This schema extends the ArcCyclesGSNC.xsd taxonomy and defines conceptZ.  The linkbase adds conceptZ as a child of conceptG and a child of conceptL.
+		This forms an undirected cycle bewteen conceptA, conceptB, conceptE, conceptI, conceptA, conceptG and conceptC.
+		The ArcCyclesGSWCExtension.xsd taxonomy schema imports ArcCyclesGSNC.xsd",ArcCyclesGSWUCExtension.xml,pass,valid,
+,,V-21,"204.21 general-special arcs must not form directed cycles.
+		This schema extends the ArcCyclesGSNC.xsd taxonomy and defines conceptZ.  The linkbase adds conceptZ as a child of conceptG
+		and makes conceptC a child of concept A.  This forms a directed cycle bewteen conceptC, conceptG and conceptZ.
+		The ArcCyclesGSWCExtension.xsd taxonomy schema imports ArcCyclesGSNC.xsd",ArcCyclesGSWDCExtension.xml,pass,invalid,xbrl.5.2.6.2.1
+,,V-22,"204.22 parent-child arcs must not form directed cycles.
+				This schema defines concepts conceptA through conceptL.  
+				The presentation linkbase referenced in the linkbaseRef element creates
+		a network of arcs that forms an undirected cycle between concepts A, B and D.",ArcCyclesPCUC.xml,pass,valid,
+,,V-23,"204.23 essence-alias arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a definition network of essence-alias arc roles that contain an undirected cycle between
+		conceptA, conceptB and conceptD.",ArcCyclesEAUC.xml,pass,valid,
+,,V-24,"204.24 essence-alias arcs must not form directed cycles.
+		This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		a definition network of essence-alias arc roles that contain a directed cycle between
+		conceptB, conceptE and conceptJ.",ArcCyclesEADC.xml,pass,invalid,xbrl.5.2.6.2.1
+,,V-29,"Tests that base sets are determined by arc's element name in addition to role
+        and arcrole.  This schema and linkbase creates a set of concepts (named conceptA to conceptL) and creates
+		two networks of custom arcrole1 arcroles that contains no cycles.  One network has arc elements of the
+        presentationArc element, the second network has arc elements of a calculationArc network.  If the base sets
+        processing did not separate arcs into the networks by arc element (or link element), then they would appear to have a cycle.
+        (A more thorough companion series to V-29 and V-30, based on generic arcs, is in generic arc cycles tests, directory 70000, 70018-GenericLink-StaticAnalysis-Arc-Cycles, V-02 to V-04.)",ArcCyclesCustRolesNC.xml,pass,valid,
+,,V-30,"Companion to V-29, but all arc elements have the presentationArc element, in links of element presentationLink, 
+        a direct cycle.  Assures that the detection of cycles is performed for custom arcrole1 role as expected
+        when the network separations of arc element or link element, of V-290, are not used.",ArcCyclesCustRolesDC.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,205-roleDeclared.xml
+,,V-1,205.01 A new role for use on a linkbaseRef is defined in RoleSSchema.xsd.  A new extended link element and arc type element are also defined in this schema.  The RoleS.xsd taxonomy schema uses the new role on the linkbaseRef element pointing to RoleS_linkbase.xml,RoleS.xml,pass,valid,
+,,V-2,205.02 A new role for used on the extended-type presentationLink element is defined in RoleE.xsd.  RoleE_presentation.xml uses the new role.,RoleE.xml,pass,valid,
+,,V-3,205.03 A new role for used on a label resource element is defined in RoleL.xsd.  RoleL_label.xml uses the new role.,RoleL.xml,pass,valid,
+,,V-4,205.04 A new role for used on a reference resource element is defined in RoleR.xsd.  RoleR_reference.xml uses the new role.,RoleR.xml,pass,valid,
+,,V-5,"205.05 A new role for use on a presentationLink elment is defined in RoleSBUSchema.xsd.  A new extended link element and arc type element are also defined in this schema.  The RoleSBU.xsd taxonomy schema uses the new role on the linkbaseRef element pointing to RoleSBU_linkbase.xml.  The role is defined to be used on a presentationLink element, but this does not matter since this is not checked for custom links.",RoleSBU.xml,pass,valid,
+,,V-6,"205.06 A new role for use on a linkbaseRef elment is defined in RoleSBRSchema.xsd.  A new extended link element and arc type element are also defined in this schema.  The RoleSBR.xsd taxonomy schema attempts to use the new role on the linkbaseRef element pointing to RoleSBR_linkbase.xml.  On the linkbaseRef element, the fragment identifier of the role does not match the name defined on the roleType element.  This does not matter because this is not checked for linkbaseRefs.",RoleSBR.xml,pass,valid,
+,,V-7,"205.07 A new role for use on a linkbaseRef elment is defined in RoleSBRSchema.xsd.  The same role is also defined in RoleSDR2Schema.xsd.  RoleSDRschema.xsd imports RoleSDR2Schema.xsd. Since both schemas are part of the DTS (via the import) the role is defined twice,however, this doesn't matter because they are equivalent, and, more importantly, this is not checked for linkbaseRefs anyway.  The RoleSDR.xsd uses the new role on a linkbaseRef pointing to RoleSDR_linkbase.xml.",RoleSDR.xml,pass,valid,
+,,V-8,"205.08 A new role for use on a linkbaseRef elment is defined in RoleSBRISchema.xsd.  The same role is also defined in RoleSDRI2Schema.xsd with a different usedOn list.  RoleSDRIschema.xsd imports RoleSDRI2Schema.xsd. Since both schemas are part of the DTS (via the import) the role is defined twice.  Because role definitions for the same role are defined separately, the DTS is invalid.  The RoleSDRI.xsd uses the new role on a linkbaseRef pointing to RoleSDRI_linkbase.xml.",RoleSDRI.xml,pass,invalid,xbrl.5.1.3:roleTypes-inequality xbrl.5.1.3:roleTypes-inequality
+,,V-9,"205.09 A new role intended for used on the extended-type presentationLink element is defined in RoleE.xsd, however the usedOn attribute indicates the definitionLink.  RoleE_presentation.xml uses the new role.  The element that the role is used on does not match the usedOn attribute on the roleType.",RoleEBR.xml,pass,invalid,xbrl.5.1.3.4:custRoleUsedOn
+,,V-10,"205.10 A role is defined in RoleE2.xsd, once for use on a presentationLink element and once for use on a defintionLink element.  RoleE2.xsd points to RoleE2_presentation.xml (a presentation linkbase) and RoleE2_definition.xml (a definition linkbase) via linkbaseRef elements.  The presentation linkbases uses the role on the presentationLink element.  The definition linkbase uses the role on the definitionLink element.  These uses are valid.",RoleE2.xml,pass,valid,
+,,V-11,205.11 Two roles with the same URI are defined in RoleLDR.xsd with one for use on a label and one for reference resources. The two definitions are not equivalent so this should be an error.,RoleLDR.xml,pass,invalid,xbrl.5.1.3:roleTypeDuplicate xbrl.5.1.3:roleTypes-inequality xbrl.5.1.3:roleTypes-inequality
+,206-arcDeclared.xml
+,,V-1,206.01 ArcRoleG.xsd declares a new arc role called row-cell for use on prsentationArc elements.,ArcRoleG.xml,pass,valid,
+,,V-2,"206.02 ArcRoleBU.xsd declares a new arc role called row-cell for use on prsentationArc elements.  In the ArcRoleBU_calculation.xml linkbase, the new arc role is used on a calculation arc.",ArcRoleBU.xml,pass,invalid,xbrl.5.1.4.5:custArcroleUsedOn
+,,V-3,"206.03 ArcRoleBR.xsd declares a new arc role called row-cell for use on prsentationArc elements.  In the ArcroleBR_presentation.xml linkbase, a presentationArc element uses cell-row as the arc role which is not declared.  The arcroleRef contains the URI for the cell-row arc role with an href pointing to the arcroleType for row-cell.",ArcRoleBR.xml,pass,invalid,xbrl.3.5.2.4.5:arcroleRefNotDefined xbrl.3.5.2.5:missingArcroleRef xbrl.5.1.4.5:custArcroleUsedOn
+,,V-4,"206.04 ArcRoleBR2.xsd declares a new arc role called row-cell for use on prsentationArc elements.  In the ArcroleBR_presentation.xml linkbase, a presentationArc element uses cell-row as the arc role which is not declared.  There is no arcroleRef to resolve the cell-row arc role.",ArcRoleBR2.xml,pass,invalid,xbrl.3.5.2.5:missingArcroleRef xbrl.5.1.4.5:custArcroleUsedOn
+,,V-5,206.05 ArcRoleDR.xsd declares a new arc role twice within the same taxonomy schema document called row-cell for use on prsentationArc elements.,ArcRoleDR.xml,pass,invalid,xbrl.5.1.4:arcroleTypeDuplicate xbrl.5.1.4:arcroleTypes-inequality xbrl.5.1.4:arcroleTypes-inequality
+,,V-6,"206.06 ArcRoleDR2.xsd and ArcRoleDR2a declare a new arc role called row-cell for use on prsentationArc elements.  The ArcRoleDR2_presentation.xml linkbase has locator to both of these schemas.  So that in the DTS, the arc role is declared twice.  Since the declarations are equivalent, the files are valid.",ArcRoleDR2.xml,pass,valid,
+,,V-7,"206.07 ArcRoleDR3.xsd and ArcRoleDR3a declare a new arc role called row-cell for use on prsentationArc elements.  The ArcRoleDR3_presentation.xml linkbase has locator to both of these schemas.  So that in the DTS, the arc role is declared twice.  Since the declarations are not equivalent, the files are not valid.",ArcRoleDR3.xml,pass,invalid,xbrl.5.1.4:arcroleTypes-inequality xbrl.5.1.4:arcroleTypes-inequality
+,,V-8,"A set of custom arc roles are defined to demonstrate allowed end points differing from the usual, per Spec call July 13, 2006 (pursuant to ""Create Conformance Suite entry for summation-item end points?"" http://xbrl.org/scripts/wa.exe?A2=ind0607&L=int-spec&P=4022). Tests (a) that calculation arcs can be used between a string and a numeric end point (here to define a countOf-item relationship), (b) that calculation arcs can be used between an end point inside tuples and a statistic end point at root level (here an averageOf-quantity relationship), and (c) that definition arcs can be used between a tuple end point and an item end point at root level (here an isStatisticOf-tuple relationship). (Submitted by Herm Fischer, UBmatrix, herman.fischer@ubmatrix.com)",ArcRoleCustomEndPoints.xsd,pass,valid,
+,207-arcDeclaredCycles.xml
+,,V-1,207.01 DecArcCyclesNN.xsd declares an arcrole that does not allow any cycles.  It references the DecArcCyclesNN_definition.xml linkbase.,DecArcCyclesNN.xml,pass,valid,
+,,V-2,207.02 DecArcCyclesNU.xsd declares an arcrole that does not allow any cycles.  It references the DecArcCyclesNU_definition.xml linkbase which contains an undirected cycle.,DecArcCyclesNU.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,,V-3,207.03 DecArcCyclesND.xsd declares an arcrole that does not allow any cycles.  It references the DecArcCyclesND_definition.xml linkbase which contains a directed cycle.,DecArcCyclesND.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,,V-4,"207.04 DecArcCyclesNUE.xsd declares an arcrole that does not allow any cycles.  It references the DecArcCyclesNUE_definition.xml linkbase which in itself contains no cycles.  However, via the DTS DecArcCyclesNUE2.xsd and DecArcCyclesNUE2_definition.xml are also discovered.  The combined linkbases form a network containing an undirected cycle.",DecArcCyclesNUE.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,,V-5,"207.05 DecArcCyclesNE.xsd declares an arcrole that does not allow any cycles.  It references the DecArcCyclesNE_definition.xml linkbase which in itself contains an undirected cycle.  However, via the DTS DecArcCyclesNE2.xsd and DecArcCyclesNE2_definition.xml are also discovered.  DecArcCyclesNE2_definition.xml prohibits the arcs that form the undirected cycle.",DecArcCyclesNE.xml,pass,valid,
+,,V-6,207.06 DecArcCyclesUN.xsd declares an arcrole that allows undirected cycles.  It references the DecArcCyclesUN_definition.xml linkbase which contains no cycles.,DecArcCyclesUN.xml,pass,valid,
+,,V-7,207.07 DecArcCyclesUU.xsd declares an arcrole that allows undirected cycles.  It references the DecArcCyclesUU_definition.xml linkbase which contains an undirected cycle.,DecArcCyclesUU.xml,pass,valid,
+,,V-8,207.08 DecArcCyclesUD.xsd declares an arcrole that allows undirected cycles.  It references the DecArcCyclesUD_definition.xml linkbase which contains a directed cycle.,DecArcCyclesUD.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,,V-9,"207.09 DecArcCyclesUUE.xsd declares an arcrole that allows undirected cycles.  It references the DecArcCyclesUUE_definition.xml linkbase which in itself contains no cycles.  However, via the DTS DecArcCyclesUUE2.xsd and DecArcCyclesUUE2_definition.xml are also discovered.  The combined linkbases form a network of arcs that have an undirected cycle.",DecArcCyclesUUE.xml,pass,valid,
+,,V-10,"207.10 DecArcCyclesUDE.xsd declares an arcrole that allows undirected cycles.  It references the DecArcCyclesUDE_definition.xml linkbase which in itself contains no cycles.  However, via the DTS DecArcCyclesUDE2.xsd and DecArcCyclesUDE2_definition.xml are also discovered.  The combined linkbases form a network of arcs that have a directed cycle.",DecArcCyclesUDE.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,,V-11,207.11 DecArcCyclesDN.xsd declares an arcrole that allows any cycles.  It references the DecArcCyclesDN_definition.xml linkbase.,DecArcCyclesDN.xml,pass,valid,
+,,V-12,207.12 DecArcCyclesDU.xsd declares an arcrole that allows any cycles.  It references the DecArcCyclesDU_definition.xml linkbase which contains an undirected cycle.,DecArcCyclesDU.xml,pass,valid,
+,,V-13,207.13 DecArcCyclesDD.xsd declares an arcrole that allows any cycles.  It references the DecArcCyclesDD_definition.xml linkbase which contains a directed cycle.,DecArcCyclesDD.xml,pass,valid,
+,,V-14,"207.14 DecArcCyclesNU2.xsd declares an arcrole that does not allow cycles.  It references the DecArcCyclesNU2_definition.xml linkbase which contains a structure where A and Z are the parents of both B and C but there are no other cycles, directed or undirected.  This forms an undirected cycle.",DecArcCyclesNU2.xml,pass,invalid,xbrl.5.1.4.3:cycles
+,208-balance.xml
+,,V-01,208.01 When the item and summation have no balance attribute they are consistent,208-01-ItemNoneSummationNone-instance.xml,pass,valid,
+,,V-02,"208.02 If an item is a credit, and the item it sums to is a credit, its weight MUST be +1 (greater than 0)",208-02-ItemCreditSumCreditWeight+1-instance.xml,pass,valid,
+,,V-03,"208.03 If an item is a credit and the item it sums to is a credit, its weight MUST NOT be -1 (less than 0)",208-03-ItemCreditSumCreditWeight-1-instance.xml,pass,invalid,xbrl.5.1.1.2:balanceCalcWeightIllegalNegative
+,,V-04,"208.04 If an item is a debit, and the item it sums to is a credit, its weight MUST NOT be +1 (greater than 0)",208-04-ItemDebitSumCreditWeight+1-instance.xml,pass,invalid,xbrl.5.1.1.2:balanceCalcWeightIllegalPositive
+,,V-05,"208.05 If an item is a debit, and the item it sums to is a credit, its weight MUST be -1 (less than 0)",208-05-ItemDebitSumCreditWeight-1-instance.xml,pass,valid,
+,,V-06,"208.06 If an item is a credit, and the item it sums to is a credit, its weight MUST NOT be +1 (greate than 0)",208-06-ItemCreditSumDebitWeight+1-instance.xml,pass,invalid,xbrl.5.1.1.2:balanceCalcWeightIllegalPositive
+,,V-07,"208.07 If an item is a credit, and the item it sums to is a debit, its weight MUST be -1 (less than 0)",208-07-ItemCreditSumDebitWeight-1-instance.xml,pass,valid,
+,,V-08,"208.08 If an item is a debit, and the item it sums to is a debit, its weight MUST be +1 (greater than 0)",208-08-ItemDebitSumDebitWeight+1-instance.xml,pass,valid,
+,,V-09,"208.09 If an item is a debit, and the item it sums to is a debit, its weight MUST NOT be -1 (less than 0)",208-09-ItemDebitSumDebitWeight-1-instance.xml,pass,invalid,xbrl.5.1.1.2:balanceCalcWeightIllegalNegative
+,,V-10,208.10 The value of a weight attribute MUST NOT be 0 (zero),208-10-WeightNotZero-instance.xml,pass,invalid,xbrl.5.2.5.2.1:zeroWeight xbrl.5.2.5.2:calcInconsistency
+,209-Arcs.xml
+,,V-01,"209.01 Checking that trivial undirected cycles (created by a pair of arcs with the same 
+      source and destination) are detected.  As per
+      http://xbrlbugs.decisionsoft.com/show_bug.cgi?id=7 such cycles are no
+      longer illegal.",209-01-DifferentWeights.xsd,pass,valid,
+,,V-02,"209.02 (Spec 2_1 - Section 5-2-4-2-1) Checking that two presentation arcs are NOT identified as being
+equivalent when they are equivalent in all other respects AND their
+preferredLabel attributes are not equal.
+There are two Presentation arcs that have exactly same structure and value except that they have preferred Label 
+attributes different (standard, terse) The presentation arcs are not identical. the test is valid",209-02-DifferentPreferredLabels.xsd,pass,valid,
+,,V-03,"209.03  Verify that arcs in separate extended-links do not violate any XLink constraint 
+		even though their 'from' and 'to' labels identify identical hrefs.   
+		The definitionLink and general-special arc are used in this test because the 
+		general-special arc allows the undirected cycle formed by the pair of arcs in this test.",209-03-SameDefinitionArcs.xsd,pass,valid,
+,,V-04,"209.04  This test is extended from ""209.03"".
+		This arcs are same as 209.03 except arcrole value.
+		This arcs have different arcrole value,then the result of 209-04-Out.xml has two arc elements.",209-04-DifferentArcroles.xsd,pass,valid,
+,210-relationshipEquivalence.xml
+,,V-1,"210.01 A prohibiting arc of a higher priority overrides a relationship, thus removing the calculation relationship.  The instance would be invalid if the relationship had not been prohibited.",210-01-RelationshipEquivalence-instance.xml,pass,valid,
+,,V-2,210.02 A prohibiting arc of a higher priority has a different order to another arc and thus fails to prohibit the said arc.  The instance is thus invalid since it doesn't add up.,210-02-DifferentOrder-instance.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-3,"210.03 A prohibiting arc of a higher priority has no order attribute, and another arc has order one.  The instance is thus valid since the arc is prohibited as the prohibiting arc's order takes the default value.",210-03-MissingOrder-instance.xml,pass,valid,
+,,V-4,"210.04 A prohibiting arc of a higher priority overrides a relationship, thus removing the calculation relationship.  The instance would be invalid if the relationship had not been prohibited. In this variation, linkbase calculation-2 has the ""optional"" arc appear before the ""prohibited"".",210-04-RelationshipEquivalence-instance.xml,pass,valid,
+,,V-5,"210.05 A prohibiting arc of a higher priority overrides a relationship, thus removing the calculation relationship.  The instance would be invalid if the relationship had not been prohibited. In this variation, linkbase calculation-2 has the ""prohibited"" arc appear before the ""optional"".",210-05-RelationshipEquivalence-instance.xml,pass,valid,
+,211-Testcase-sEqualUsedOn.xml
+,,V-00,"A valid roleType.  usedOn elements refer to different elements in the
+      same namespace.",211-00-NonSEqualUsedOn-valid.xsd,pass,valid,
+,,V-01,"Simple invalid roleType.  usedOn elements refer to the same element
+      twice.
+      
+      QName content of the two usedOn elements is lexically identical AND equal
+      in the QName value space (same prefix, same namespace, same local name).",211-01-SEqualUsedOnSamePrefixSameNamespace-invalid.xsd,pass,invalid,xbrl.5.1.3:roleTypes-inequality
+,,V-02,"roleType invalid according to erratum 041.  usedOn elements refer to the
+      same element twice.
+      
+      QName content of the two usedOn elements is lexically different, but
+      equal in the QName value space (prefixes are different, but both prefixes
+      are bound to the same namespace).",211-02-SEqualUsedOnDifferentPrefixesSameNamespace-invalid.xsd,pass,invalid,xbrl.5.1.3:roleTypes-inequality
+,,V-03,"roleType that is valid according to erratum 041.  usedOn elements refer
+      to elements that have the same local name but different namespaces.
+      
+      QName content of the two usedOn elements is lexically identical but
+      distinct in the QName value space (prefixes are the same, but each prefix
+      is bound to a different namespace).",211-03-NonSEqualUsedOnSamePrefixDifferentNamespaces-valid.xsd,pass,valid,
+,212-Testcase-linkbaseDocumentation.xml
+,,V-01,"A valid documentation element as a child of a linkbase element.  There are no
+      attributes on the documentation element.",212-01-schema.xsd,pass,valid,
+,,V-03,"A documentation element as a child of a linkbase element but where the documentation
+      element has a valid xml:lang attribute.",212-03-schema.xsd,pass,valid,
+,,V-04,"A documentation element as a child of a linkbase element but where the documentation
+      element has a valid attribute with an explicitly declared namespace.",212-04-schema.xsd,pass,valid,
+,,V-05,"A documentation element as a child of a linkbase element but where the documentation
+      element has no content.",212-05-schema.xsd,pass,valid,
+,,V-06,"A valid documentation element as a child of an extended link.  There are no
+      attributes on the documentation element.",212-06-schema.xsd,pass,valid,
+,,V-08,"A documentation element as a child of an extended link but where the documentation
+      element has a valid xml:lang attribute.",212-08-schema.xsd,pass,valid,
+,,V-09,"A documentation element as a child of an extended link but where the documentation
+      element has a valid attribute with an explicitly declared namespace.",212-09-schema.xsd,pass,valid,
+,,V-10,"A documentation element as a child of an extended link element but where the documentation
+      element has no content.",212-10-schema.xsd,pass,valid,
+,213-SummationItemArcEndpoints.xml
+,,V-01,213.01 When the Summation and Item are numeric it is consistent.,213-01-SummationNumeric_ItemNumeric.xsd,pass,valid,
+,,V-02,213.02  The,213-02-SummationNonNumeric_ItemNumeric.xsd,pass,invalid,xbrl.5.2.5.2:nonNumericCalc
+,,V-03,213.03,213-03-SummationNumeric_ItemNonNumeric.xsd,pass,invalid,xbrl.5.2.5.2:nonNumericCalc
+,214-lax-validation-testcase.xml
+,,V-01,Label has an attribute which is undefined.  Linkbase schema allows anyAttribute of xml namespace with lax processing.,214-lax-validation-01.xsd,pass,valid,
+,,V-02,same as V-01 but has an invalid value in xml:space attribute (lax),214-lax-validation-02.xsd,pass,invalid,xmlSchema:syntax xmlSchema:valueError
+,,V-03,"same as V-01 but has an valid value in xml:lang attribute (lax).
+                    (note that the original xs:language pattern would have failed this code, but
+                     the errata in http://www.w3.org/2001/05/xmlschema-errata#E2-25 makes this value legal)",214-lax-validation-03.xsd,pass,valid,
+,,V-04,same as V-01 but has an invalid value in xml:lang attribute (lax),214-lax-validation-04.xsd,pass,invalid,xmlSchema:valueError
+,215-ArcroleAndRoleRefs-testcase.xml
+,,V-01,"215-01-calculation.xml contains two role references to the same URI, INVALID",215-01.xsd,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-02,"215-02-definition.xml contains two role references to the same URI, INVALID",215-02.xsd,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-03,"215-03-label.xml contains two role references to the same URI, INVALID",215-03.xsd,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-04,"215-04-presentation.xml contains two role references to the same URI, INVALID",215-04.xsd,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-05,"215-05-reference.xml contains two role references to the same URI, INVALID",215-05.xsd,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-06,"215-06-calculation.xml contains two arcrole references to the same URI, INVALID",215-06.xsd,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,,V-07,"215-07-definition.xml contains two arcrole references to the same URI, INVALID",215-07.xsd,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,,V-08,"215-08-label.xml contains two arcrole references to the same URI, INVALID",215-08.xsd,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,,V-09,"215-09-presentation.xml contains two arcrole references to the same URI, INVALID",215-09.xsd,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,,V-10,"215-10-reference.xml contains two arcrole references to the same URI, INVALID",215-10.xsd,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,220-NonStandardArcsAndTypes.xml
+,,V-01,"A cycle between arcs in a non-core extended link, and non-core arcs.",220-01-NonStandardArcrole.xsd,pass,valid,
+,,V-02,Cycle in custom arc with arcrole URI that isnt defined in an arcroleRef or arcroleType. Cycles should be OK.,220-02-NonStandardArcWithUndefinedArcrole.xsd,pass,valid,
+,,V-03,"ArcroleType and linkbase in same file, linkbase doesnt reference arcroleType which prohibits cycles. We have a cycle.",220-03-CycleInUnreferencedArcrole.xsd,pass,valid,
+,,V-04,"Arcrole defined in same file as linkbase where it is used, but with no arcroleRef. Should require arcroleRef.",220-04-StandardArcWithUnreferencedArcrole.xsd,pass,invalid,xbrl.3.5.2.5:missingArcroleRef
+,,V-05,Custom arcrole type with usedOn of presentationArc. Referenced and used on a non-standard arc. Should get error according to 5.1.4.5.,220-05-UsedOnSignificanceOnCustomArc.xsd,pass,valid,
+,,V-06,"Individually linkbases are valid, but putting them together is undefined. Should we report the cycles?",220-06-Taxonomy.xsd,pass,valid,
+,,V-07,"Test of just linkbase1. It has the cycle, but no arcrole ref.",220-06-Linkbase1.xml,pass,valid,
+,,V-08,"Test of just linkbase1. It has the cycle, but no arcrole ref. Yet we add the arcrole type definition to the DTS.",220-08-Taxonomy.xsd,pass,valid,
+,230-CustomLinkbasesAndLocators.xml
+,,V-01,"230.01 Section 3.5.3.7.2 allows locators to point to an XML document. If a link:loc points to a document, that document MUST be discovered and loaded into the DTS. In this case there is an instance document that contains facts from two taxonomies the first taxonomy is referenced in a schemaRef element. The second taxonomy is discovered through a link:loc in a custom linkbase of the first taxonomy.",230-01-LocatorToADocumentWithoutFragment.xbrl,pass,valid,
+,,V-02,"230.02 only link:loc elements can be used to fire DTS discovery, in this case the custom linkbase contains an element in the link:loc substitution group but the file pointed to by that loc should not be included in the DTS. The file is an invalid taxonomy that will fire an error if included in the DTS.",230-02-ElementInLinkLocSubGroup.xsd,pass,valid,
+,231-SyntacticallyEqualArcsThatAreNotEquivalentArcs.xml
+,,V-01,XBRL 2.1 spec says duplicate arcs are not allowed on extended links. Two syntactically equal arcs in different extended links are not equal. Th test case must raise a calculation mistmatch. If duplicate arcs are found then the 231-02 variation will also raise the same error and this means there is something wrong in the duplicate arc recognition. If a calculation mistmatch is not found then this could be that the processor is ignoring or not resolving appropiately the overwriten relationships.,231-01-ArcsAreNotEqualButTheyLookAsEqual.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-02,XBRL 2.1 spec says duplicate arcs are not allowed on extended links. Two syntactically equal arcs in different extended links are not equal. this is a valid instance document according to the taxonomy with syntactically equal arcs that are not duplicate arcs. The example must not raise duplicate arcs errors and no calculation mistmatch or warnings of this type.,231-02-ArcsAreNotEqualButTheyLookAsEqual.xbrl,pass,valid,
+,291-inferArcOverride.xml
+,,V-1,291.01 The two disjoint label linkbases of a schema together combine into a single PTVL.,ArcOverrideDisjointLinkbases.xsd,pass,valid,
+,,V-2,291.02One label linkbase overrides another label linkbase.,291-02-ArcOverrideLabelLinkbases.xsd,pass,valid,
+,,V-3,291.03 One label linkbase prohibits a link in another linkbase and link again. But use attribute must be prohibited so the second override must not be permitted.,291-03-ArcOverrideLabelLinkbases.xsd,pass,invalid,xbrl.5.2.2.3:labelArcRemoteResource
+,,V-4,291.04 The two disjoint definition linkbases of a schema together combine into a single PTVL.,291-04-ArcOverrideDisjointLinkbases.xsd,pass,valid,
+,,V-5,291.05 One Linkbase prohibits one link in another linkbase.,291-05-ArcOverrideDisjointLinkbases.xsd,pass,valid,
+,,V-6,291.06 One Linkbase prohibits and another Linkbase links againt the link in other linkbase.,291-06-ArcOverrideDisjointLinkbases.xsd,pass,valid,
+,,V-7,"291.07 One label linkbase overrides another label linkbase. But overriding labelArc element's use attribute value is ""optional"". That's why  this must be invalid.",291-07-ArcOverrideLabelLinkbases.xsd,pass,invalid,xbrl.5.2.2.3:labelArcRemoteResource
+,,V-08,291.08 One label linkbase overrides another label linkbase. But overriding labelArc element have from and to attribute which both points to item in a schema.That's why  this must be invalid.,291-08-ArcOverrideLabelLinkbases.xsd,pass,invalid,xbrl.5.2.2.1:labelLinkLocTarget
+,,V-09,"291.09 One label linkbase overrides another label linkbase. But overriding labelLink has different role.
+		There seems to have no special usecase for this. But it is no problem from the Specificaiton point of
+		view.  That's why  this must be valid and ignored or warned.",291-09-ArcOverrideLabelLinkbases.xsd,pass,valid,
+,,V-10,291.10 The two disjoint reference linkbases of a schema together combine into a single PTVL.,291-10-ArcOverrideDisjointLinkbases.xsd,pass,valid,
+,,V-11,291.11 One reference linkbase overrides another reference linkbase.,291-11-ArcOverrideReferenceLinkbases.xsd,pass,valid,
+,,V-12,291.12 One reference linkbase prohibits a link in another linkbase and link again. But use attribute must be prohibited so the second override must not be permitted.,291-12-ArcOverrideReferenceLinkbases.xsd,pass,invalid,xbrl.5.2.2.3:labelArcRemoteResource
+,,V-13,"291.13 One reference linkbase overrides another reference linkbase. But overriding referenceArc element's use attribute value is ""optional"". That's why  this must be invalid.",291-13-ArcOverrideReferenceLinkbases.xsd,pass,invalid,xbrl.5.2.2.3:labelArcRemoteResource
+,,V-14,291.14 One reference linkbase overrides another reference linkbase. But overriding referenceArc element have from and to attribute which both points to item in a schema.That's why  this must be invalid.,291-14-ArcOverrideReferenceLinkbases.xsd,pass,invalid,xbrl.5.2.3.1:referenceLinkLocTarget
+,,V-15,"291.15 One reference linkbase overrides another reference linkbase. But overriding referenceLink has different role.
+		There seems to have no special usecase for this. But it is no problem from the Specificaiton point of
+		view.  That's why  this must be valid and ignored or warned.",291-15-ArcOverrideReferenceLinkbases.xsd,pass,valid,
+,292-Embeddedlinkbaseinthexsd.xml
+,,V-00,Embedded linkbase,292-00-Embeddedlinkbaseinthexsd.xsd,pass,valid,
+,,V-01,Multiple embedded linkbases,292-01-Embeddedlinkbaseinthexsd.xsd,pass,valid,
+,,V-02,"Multiple embedded linkbases, and a linkbaseref",292-02-EmbeddedLinkbaseAndLinkbaseRef.xsd,pass,valid,
+,,V-03,"Multiple embedded linkbases, the second uses invalid arcroles",292-03-EmbeddedLinkbaseSecondInvalid.xsd,pass,invalid,xbrl.5.1.4.5:custArcroleUsedOn
+,293-UsedOn.xml
+,,V-1,293.01 A usedOn element in a roleType element identifies which standard extended link elements and resource elements may use the role type being defined. It is valid.,293-01-RoleTypeUsedOnValid.xsd,pass,valid,
+,,V-2,293.02 A usedOn element in a roleType element identifies which non-standard extended link elements and resource elements may use the role type being defined. It is valid.,293-02-RoleTypeUsedOnValid.xsd,pass,valid,
+,,V-3,"293.03 A usedOn element in a roleType element identifies which standard arc elements may use the role type being defined. It is meaningless, but it is still valid.",293-03-RoleTypeUsedOnValid.xsd,pass,valid,
+,,V-4,"293.04 A usedOn element in a roleType element identifies which standard elements other than link elements may use the role type being defined. It is meaningless, but it is still valid.",293-04-RoleTypeUsedOnValid.xsd,pass,valid,
+,,V-5,293.05 A usedOn element in an arcroleType element identifies which standard arc elements may use the arcrole type being defined. It is valid.,293-05-ArcroleTypeUsedOnValid.xsd,pass,valid,
+,,V-6,293.06 A usedOn element in an arcroleType element identifies which non-standard arc elements may use the arcrole type being defined. It is valid.,293-06-ArcroleTypeUsedOnValid.xsd,pass,valid,
+,,V-7,"293.07 A usedOn element in an arcroleType element identifies which standard extended link elements may use the arcrole type being defined. It is meaningless, but it is still valid.",293-07-ArcroleTypeUsedOnValid.xsd,pass,valid,
+,,V-8,"293.08 A usedOn element in an arcroleType element identifies which standard elements other than link elements may use the arcrole type being defined. It is meaningless, but it is still valid.",293-08-ArcroleTypeUsedOnValid.xsd,pass,valid,
+,preferredLabel.xml
+,,V-1,The presentationArc's 'to' concept has label resource with a role value which is equal to the value of the preferredLabel attribute.,prefLabel-single-language-valid.xsd,pass,valid,
+,,V-2,The presentationArc's 'to' concept does not have label resource with a role value which is equal to the value of the preferredLabel attribute.,prefLabel-single-language-invalid.xsd,pass,invalid,xbrl.5.2.4.2.1:preferredLabelMissing
+,,V-3,The presentationArc's 'from' concept has label resource with a role value which is equal to the value of the preferredLabel attribute. But the presentationArc's 'to' concept does not have label resource with a role value which is equal to the value of the preferredLabel attribute.,prefLabel-single-language-invalid2.xsd,pass,invalid,xbrl.5.2.4.2.1:preferredLabelMissing
+,,V-4,"The presentationArc's 'to' concept does not have 'en' label resource with a role value which is equal to the value of the preferredLabel attribute, but has 'ja' label resource with a role value which is equal to the value of the preferredLabel attribute.",prefLabel-incomplete-multi-languageset.xsd,pass,valid,
+,,V-5,"The presentationArc's 'to' concept does not have label resource with a role value which is equal to the value of the preferredLabel attribute, but the presentationArc's 'from' concept has 'ja' label resource with a role value which is equal to the value of the preferredLabel attribute.",prefLabel-incomplete-multi-languageset-invalid.xsd,pass,invalid,xbrl.5.2.4.2.1:preferredLabelMissing
+,301-idScope.xml
+,,V-1,301.01 Valid example of id attribute.,301-01-IdScopeValid.xml,pass,valid,
+,,V-3,301.03  Mismatch of periodType attribute and referenced context's period type.,301-03-IdScopePeriodDiff.xml,pass,invalid,xbrl.4.7.2:contextPeriodType xbrl.4.7.2:contextPeriodType
+,,V-4,301.04  contextRef has IDREF to unit element.,301-04-IdScopeContextRefToUnit.xml,pass,invalid,xbrl.4.6.1:itemContextRef
+,,V-5,301.05 unitRef has IDREF to context element.,301-05-IdScopeUnitRefToContext.xml,pass,invalid,xbrl.4.6.2:numericUnit
+,,V-6,301.06  Valid example of footnote link href attribute.,301-06-FootnoteScopeValid.xml,pass,valid,
+,,V-8,301.08 href attribute is referencing to context element.,301-08-FootnoteToContext.xml,pass,invalid,xbrl.4.11.1.1:footnoteLinkLocTarget
+,,V-9,301.09 href attribute is referencing to unit element.,301-09-FootnoteToUnit.xml,pass,invalid,xbrl.4.11.1.1:footnoteLinkLocTarget
+,,V-10,301.10 The instance contains two footnote links.  The second one contains an arc with a from value that does not have a corresponding loc in the same extended link.,301-10-FootnoteFromOutOfScope.xml,pass,invalid,xbrl.3.5.3.9.2:arcResource xbrl.4.11.1.3.1:factFootnoteArcFrom
+,,V-11,301.11 The instance contains two footnote links.  The second one contains an arc with a to value that does not have a corresponding footnote resource in the same extended link.,301-11-FootnoteToOutOfScope.xml,pass,invalid,xbrl.3.5.3.9.3:arcResource xbrl.4.11.1.3.1:factFootnoteArcTo
+,,V-12,301.12 The instance contains a footnote link.  In the footnote link there is a loc element that has an href that points to a fact in another instance document.,301-12-FootnoteLocOutOfScope.xml,pass,invalid,xbrl.3.5.3.7.2:instanceLocInDTS xbrl.4.11.1.1:instanceLoc
+,,V-13,301.13 The instance contains a footnote link.  In the footnote link there is a loc element that has an href that points to a fact in the instance document using the instance document file name with a fragment identifier.,301-13-FootnoteLocInScope.xml,pass,valid,
+,,V-14,301.14 The instance contains a footnote link. The arc in the footnote link has a from value that matches a footnote resource. This is not valid for the fact-footnote arc role on the arc. The from must point to a loc which in turns points to a fact in the same instance document.,301-14-FootnoteFromResource.xml,pass,invalid,xbrl.4.11.1.3.1:factFootnoteArcFrom
+,,V-15,301.15 The instance contains a footnote link. The arc in the footnote link has a from value that matches a footnote resource. This is not valid for the fact-footnote arc role on the arc. The from must point to a loc which in turns points to a fact in the same instance document.,301-15-FootnoteToLoc.xml,pass,invalid,xbrl.4.11.1.3.1:factFootnoteArcTo
+,,V-16,301.16 The xml:lang attribute is missing on the footnote resource.,301-16-FootnoteWithoutLang.xml,pass,invalid,xbrl.4.11.1.2.1:footnoteLang
+,,V-17,"301.17 The footnote custom arc role can relate two footnotes to each other instead of just fact to footnote.  (Only the standard footnote arc role is restricted to being from item or tuple locators.) Maybe this might be used to indicate how some footnote is ""footnoting"" another footnote.",301-17-FootnoteCustomArcRole.xml,pass,valid,
+,302-context.xml
+,,V-01,302.01 Valid segment in a context,302-01-SegmentValid.xml,pass,valid,
+,,V-02,302.02 Invalid segment in a context; contains an element defined in xbrli namespace,302-02-SegmentNamespaceInvalid.xml,pass,invalid,xbrl.4.7.3.2:segmentXbrliElement xbrl.4.7.3.2:segmentXbrliElement xbrl.4.7.3.2:segmentXbrliElement xbrl.4.7.3.2:segmentXbrliElement xbrl.4.7.3.2:segmentXbrliElement
+,,V-03,302.03  Valid scenario in a context,302-03-ScenarioValid.xml,pass,valid,
+,,V-04,302.04 Invalid scenario in a context; contains an element defined in xbrli namespace,302-04-ScenarioNamespaceInvalid.xml,pass,invalid,xbrl.4.7.4:scenarioXbrliElement xbrl.4.7.4:scenarioXbrliElement xbrl.4.7.4:scenarioXbrliElement xbrl.4.7.4:scenarioXbrliElement xbrl.4.7.4:scenarioXbrliElement
+,,V-05,302.05 Invalid segment in a context; contains an element in substitution group of xbrli:item,302-05-SegmentSubstitutionInvalid.xml,pass,invalid,xbrl.4.7.3.2:segmentItemOrTuple
+,,V-06,302.06  Invalid scenario in a context; contains an element in substitution group of xbrli:item,302-06-ScenarioSubstitutionInvalid.xml,pass,invalid,xbrl.4.7.4:scenarioItemOrTuple
+,,V-07,302.07 Segment in a context contains an element with empty content,302-07-SegmentEmptyContent.xml,pass,valid,
+,,V-08,302.08 Scenario in a context contains an element with empty content,302-08-ScenarioEmptyContent.xml,pass,valid,
+,,V-09,302.09 Valid duration context with start date earlier than end date,302-09-PeriodDateTimeValid.xml,pass,valid,
+,,V-10,302.10 Invalid duration context with start date later than end date,302-10-PeriodDateTimeInvalid.xml,pass,invalid,xbrl.4.7.2:periodStartBeforeEnd
+,,V-11,"302.11 Two contexts are S-Equal even though a decimal-valued attribute in their segment elements have different lexical representations. The contexts are S-equal, so a calculation inconsistency MUST be signaled.",302-11-DecimalAttributeOnSegmentInconsistent.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-12,"302.12 Two contexts are S-Equal even though a decimal-valued attribute in their scenario elements have different lexical representations. The contexts are S-equal, so a calculation inconsistency MUST be signaled.",302-12-DecimalAttributeOnScenarioInconsistent.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,303-periodType.xml
+,,V-01,"303.01 instant context and item defined with PeriodType=""instant""",303-01-PeriodInstantValid.xml,pass,valid,
+,,V-02,"303.02 duration context and item defined with PeriodType=""duration""",303-02-PeriodDurationValid.xml,pass,valid,
+,,V-03,"303.03 duration context and item defined with PeriodType=""instant""",303-03-PeriodInstantInvalid.xml,pass,invalid,xbrl.4.7.2:contextPeriodType
+,,V-04,"303.04 instant context and item defined with PeriodType=""duration""",303-04-PeriodDurationInvalid.xml,pass,invalid,IOerror xbrl.4.7.2:contextPeriodType
+,,V-05,ForeverConcept with Instant Period Type is not allowed,303-05-ForeverElementewithInstancePeriodTypeReportedasForever.xbrl,pass,invalid,xbrl.4.7.2:contextPeriodType
+,304-unitOfMeasure.xml
+,,V-01,"304.01 An element with a monetary item type has an ISO
+		currency code for its units (using the standard ISO
+		namespace prefix).",304-01-monetaryItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-02,"304.02 An element with a monetary item type has an ISO
+		currency code for its units (using a non-standard ISO
+		namespace prefix).",304-02-monetaryItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-03,"304.03 An element with a type derived by restriction from the
+		monetary item type has an ISO currency code for its units.",304-03-monetaryItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-04,"304.04 An element with a type derived by restriction from
+		monetary item type has an ISO currency code for its 
+		units (using a non-standard ISO namespace prefix).",304-04-monetaryItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-05,"304.05 An element with a non-monetary item type has an ISO
+		currency code for its units (using the standard ISO
+		namespace prefix).",304-05-monetaryItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-06,"304.06 An element with a monetary item type does not have an ISO
+		currency code for its units - the namespace is wrong.",304-06-monetaryItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:monetaryFactUnit-notMonetaryMeasure
+,,V-07,"304.07 An element with a monetaryItemType does not have an
+		ISO currency code for its units - the local name is wrong.",304-07-monetaryItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:monetaryFactUnit-notMonetaryMeasure
+,,V-08,"304.08 An element with a type derived by restriction from
+		monetaryItemType does not have an
+		ISO currency code for its units - the namespace is wrong.",304-08-monetaryItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:monetaryFactUnit-notMonetaryMeasure
+,,V-09,"304.09 An element with a type derived by restriction from
+		monetaryItemType does not have an
+		ISO currency code for its units - the local name is wrong.",304-09-monetaryItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:monetaryFactUnit-notMonetaryMeasure
+,,V-10,"304.10 An item with a pureItemType data type MUST 
+		have  a unit element and the local part of the measure
+		MUST be ""pure"" with a namespace prefix that resolves
+		to a namespace of ""http://www.xbrl.org/2003/instance"".",304-10-pureItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-11,"A measure element with a namespace prefix that resolves to the ""http://www.xbrl.org/2003/instance"" namespace MUST have a local part of either ""pure"" or ""shares"".
+
+    The value 'impure' is not a valid measure in the XBRL instance namespace.",304-11-pureItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:measureElement
+,,V-12,"Unlike for monetaryItemType and sharesItemType, there is no constraint (in
+    4.8.2 or elsewhere) requiring an item with a pureItemType data type to have
+    a particular kind of unit.",304-12-pureItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-12a,"Same as V-12, but the pure measure has no prefix and the default namespace is undefined.",304-12a-pureItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-13,"304.13 For facts that are of the sharesItemType, units MUST have
+		A single measure element. The local part of the
+		measure MUST be ""shares"" and the namespace prefix that
+		MUST resolve to http://www.xbrl.org/2003/instance",304-13-sharesItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-14,"304.14 For facts that are DERIVED BY RESTRICTION from the
+		sharesItemType, units MUST have
+		A single measure element. The local part of the
+		measure MUST be ""shares"" and the namespace prefix that
+		MUST resolve to http://www.xbrl.org/2003/instance",304-14-sharesItemTypeUnitsRestrictions.xml,pass,valid,
+,,V-15,"304.15 For facts that are of shares item type, units MUST have
+		A single measure element. The local part of the
+		measure MUST be ""shares"" and the namespace prefix that
+		MUST resolve to http://www.xbrl.org/2003/instance.  In
+		this case the unit has two measure elements, both
+		of which are pure.",304-15-pureItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:sharesFactUnit-notSharesMeasure
+,,V-15a,"Same as V-15 but in this case the unit has has shares but no prefix and the default
+        namespace is undefined.",304-15a-sharesItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:sharesFactUnit-notSharesMeasure
+,,V-16,304.16 The units must not have numerator and denominator measures that cancel.,304-16-unitsInSimplestForm.xml,pass,invalid,xbrl.4.8.4:measureBothNumDenom
+,,V-17,304.17 The units equality test which two units have same order measures.,304-17-sameOrderMeasuresValid.xml,pass,valid,
+,,V-18,304.18 The units equality test which two units have same order divisions.,304-18-sameOrderDivisionMeasuresValid.xml,pass,valid,
+,,V-19,304.19 The units equality test which two units have different order measures.,304-19-differentOrderMeasuresValid.xml,pass,valid,
+,,V-20,304.20 The units equality test which two units have division elements which their order of child measures are different.,304-20-differentOrderDivisionMeasuresValid.xml,pass,valid,
+,,V-21,304.21 it tries to essence-alias equality of two elements with different units : where one is pure-feet and the second is pure-pounds. so the alias essence check is invalid and it should throw an error in xbrl validation,304-21-measuresInvalid.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,,V-22,"304.22 The test tried to essense-alias equality check of two elements with different units : where one is unit between ""pure-inch / pound-feet"" and other ""pure-feet / pound-inch"". The tests is invalid as it should throw an error during xbrl validation.",304-22-divisionMeasuresInvalid.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,,V-23,Variation of 304-15 where the type of the fact value does not match that of the type of the reported element. Shares type versus Monetary unit,304-23-Calculation-item-does-not-match-unit.xml,pass,invalid,xbrl.4.8.2:sharesFactUnit-notSharesMeasure
+,,V-24,Valid ISO unit of measurement example,304-24-valid-ISO-unit-of-measue.xml,pass,valid,
+,,V-25,Measure reported with prefix undefined is considered XBRL invalid,304-25-measure-reported-with-prefix-undefined-instance.xbrl,pass,invalid,xbrl.4.8.2:measureElement xbrl.4.8.2:monetaryFactUnit-notMonetaryMeasure
+,,V-26,Monetary item reported with unit having a denominator.,304-26-monetaryItemTypeUnitsRestrictions.xml,pass,invalid,xbrl.4.8.2:monetaryFactUnit-notSingleMeasure
+,305-decimalPrecision.xml
+,,V-01,305.01 item has only Decimals specified,305-01-DecimalOnlySpecified.xml,pass,valid,
+,,V-02,305.02 item has only Precision specified,305-02-PrecisionOnlySpecified.xml,pass,valid,
+,,V-03,305.03 item has neither Decimals nor Precision specified,305-03-NoDecimalOrPrecisionSpecified.xml,pass,invalid,xbrl.4.6.3:missingPrecisionDecimals
+,,V-04,305.04 item has both Decimals and Precision specified,305-04-BothDecimalAndPrecisionSpecified.xml,pass,invalid,xbrl.4.6.3:bothPrecisionAndDecimals
+,,V-05,305.05 nil item has Decimals specified,305-05-DecimalSpecifiedOnNilItem.xml,pass,invalid,xbrl.4.6.3:nilPrecisionDecimals
+,,V-06,305.06 nil item has Precision specified,305-06-PrecisionSpecifiedOnNilItem.xml,pass,invalid,xbrl.4.6.3:nilPrecisionDecimals
+,,V-07,305.07 a genuine inconsistency due to roll up of child values,305_07_invalid_instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-08,"305.08 nil items have no decimals or precision, with unitref, but the type specifies fixed values for decimals and precision.",305-08-UnitsSpecifiedOnNilItem.xml,pass,invalid,xbrl.4.6.3:nilPrecisionDecimals xbrl.4.6.3:nilPrecisionDecimals
+,306-required.xml
+,,V-1,"306.01 The instance contains two elements in the same context. 
+		The presence of one element forces the presence of the other.",306-01-RequiredInstanceValid.xml,pass,valid,
+,,V-2,306.02 The instance contains an item and a tuple. The presence of the tuple forces the presence of the item.,306-02-RequiredInstanceTupleValid.xml,pass,valid,
+,,V-3,306.03 The instance contains an item and a tuple. The presence of the tuple forces the presence of the item.,306-03-RequiredInstanceInvalid.xml,pass,invalid,xbrl.5.2.6.2.4:requiresElementInconsistency
+,307-schemaRef.xml
+,,V-1,"307.01 A schemaRef element MUST hold the URI of a
+		schema.  In this case it does.",307-01-SchemaRefExample.xml,pass,valid,
+,,V-2,"307.01 A schemaRef element MUST hold the URI of a
+		schema.  In this case it does not because the second
+		reference to a schema actually points to an XML
+		document that is a label linkbase.",307-02-SchemaRefCounterExample.xml,pass,invalid,IOerror xbrl.3.5.2.4:missingRoleRef xbrl.3.5.2.5:missingArcroleRef xbrl.4.2.2:schemaRefHref xbrl.5.1.3.4:custRoleUsedOn xbrl.5.1.4.5:custArcroleUsedOn
+,,V-3,"307.03 schemaRef elements MUST hold the URI of
+		Schemas.  In this case the requirement is not
+		satisfied because the schema reference has to be
+		resolved using the XML base attribute that ensures the
+		schemaRef URI resolves to the XML document in the base
+		directory.  This document, however, is a label
+		linkbase, not a schema.  If the XML base attribute
+		value is not used then the schema in the same
+		directory as the instance is discovered and no issues
+		are noticed.",307-03-SchemaRefXMLBase.xml,pass,invalid,xbrl.4.2.2:schemaRefHref
+,308-ArcroleAndRoleRefs-testcase.xml
+,,V-01,"Instance contains two role references to the same URI, INVALID",308-01-instance.xml,pass,invalid,xbrl.3.5.2.4.5:roleRefDuplicate
+,,V-02,"Instance contains two arcrole references to the same URI, INVALID",308-02-instance.xml,pass,invalid,xbrl.3.5.2.4.5:arcroleRefDuplicate
+,314-lax-validation-testcase.xml
+,,V-01,"Segment has an element for which there is no definition, so it is allowed; item has an attribute with no definition, so it is allowed.  The definitions are imported to the discovered taxonomy.",314-lax-validation-01.xml,pass,valid,
+,,V-02,"Segment has an element for which there is no definition, so it is allowed; item has an attribute with no definition, so it is allowed.  The definitions are found by schemaLocation from the instance document.",314-lax-validation-02.xml,pass,valid,
+,,V-03,Same as v-01 but segment has an element defined as integer with string contents,314-lax-validation-03.xml,pass,invalid,xmlSchema:valueError
+,,V-04,Same as v-01 but item has an attribute defined as integer with string contents,314-lax-validation-04.xml,pass,invalid,xmlSchema:valueError
+,,V-05,Same as v-02 but segment has an element defined as integer with string contents,314-lax-validation-05.xml,pass,invalid,xmlSchema:valueError
+,,V-06,Same as v-02 but item has an attribute defined as integer with string contents,314-lax-validation-06.xml,pass,invalid,xmlSchema:valueError
+,320-CalculationBinding.xml
+,,V-00,320.00 - Valid,320-00-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-01,320.01 - Valid,320-01-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-02,320.02 - InValid,320-02-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-03,320.03 - Valid,320-03-nestedtupleBindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-04,320.04 - Valid,320-04-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-05,320.05 - Valid,320-05-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-06,320.06 - inValid - inconsistent due to precision 0,320-06-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-07,320.07 - inValid - inconsistent due to precision 0,320-07-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-08,320.08 - inValid - inconsistent due to precision 0,320-08-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-09,320.09 - Valid,320-09-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-10,320.10 - Valid - precision stated as 15,320-10-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-11,320.11 - inValid - inconsistent,320-11-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-12,320.12 - Valid - Consistent - precision attribute stated as 15,320-12-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-13,320.13 - Valid - Consistent,320-13-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-14,320.14 - Valid - Consistent,320-14-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-15,320.15 - Valid - COnsistent - Decimal attribute zero,320-15-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-16,"320.16 - InValid - Inconsistency contributing items 3200, summation value is 3201",320-16-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-17,320.17 - InValid - Inconsistent roll up - weights stated as 1.0,320-17-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-18,320.18 - InValid - 2.04 effective value generates inconsistent roll up - weight is defined as 1.01,320-18-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-19,320.19 - InValid - effective value 1.02 generates inconsistent roll up - weight is defined as 1.01,320-19-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-20,"320.20 - Valid - Consistent
+                                         Weight is applied to the value after the decimal or precision is applied to the lexical value reported in the instance 
+                                         Arc weights are defined with the value 1.01
+                                        Test ensures the sequence that we apply these rules of inferred precision and weight attribute
+                                        
+                                        Summation                                                                       
+                                        ns:A weight:                1.01
+                                        ns:A lexical value:      1.01
+                                        ns:A decimal:             2            
+                        
+                                        Contributing items
+                                        ns:B weight:                1.01                 
+                                        ns:B lexical value:      1
+                                        ns:B decimal:              0
+                        
+                                        Valid Summation:  1.01 = 1.01",320-20-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-21,"320.21 - Duplicate Facts reported and thus calculation will not bind per 5.2.5.2
+                        
+                        A calculation represented by a “summation-item” relationship binds for a summation item S if and only if:
+                        1.      S has at least one contributing item.
+                        2.      S is not a duplicate item (as defined in section 4.10), and
+                        3.      None of the contributing items are duplicates.
+                        4.      S is not nil-valued (i.e. it does not have an xsi:nil attribute with value true).
+                        
+                        Test ensures that we do not bind the calculation due to a duplicated fact and do not infer precision.",320-21-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-22,"320.22 - Duplicate Facts reported and thus calculation will not bind per 5.2.5.2
+                        
+                        A calculation represented by a “summation-item” relationship binds for a summation item S if and only if:
+                        1.      S has at least one contributing item.
+                        2.      S is not a duplicate item (as defined in section 4.10), and
+                        3.      None of the contributing items are duplicates.
+                        4.      S is not nil-valued (i.e. it does not have an xsi:nil attribute with value true).
+                        
+                        Test ensures that we Do NOT bind the calculation and do not infer precision.  If it did bind then there would be an inconsistency.",320-22-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-23,"320-24 - Valid - Consistent
+                        Inferred precision and Weight Attribute test
+                        
+                        Summation                                                                       
+                        ns:A weight:                1.01
+                        ns:A lexical value:      -3.03
+                        ns:A decimal:             4               
+                        
+                        Contributing items
+                        ns:B weight:                1.01                 
+                        ns:B lexical value:      -1.01
+                        ns:B decimal:              4
+                                              
+                        ns:C weight:                 1.01
+                        ns:C lexical value:        1.99
+                        ns:C decimal:               4
+                                                
+                        Effective summation of contributing items:   -3.0300 +  -1.0100 + -1.9900  =-3.0300 
+                        
+                        Valid Summation:  -3.0300 = -3.03",320-23-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-24,"320-24 - Valid - Consistent
+                        Inferred precision and Weight Attribute test in correct sequence
+                        
+                        ns:A weight:                 1.99
+                        ns:A lexical value:       14.99
+                        ns:A decimal:               4
+                        Computed value:        14.9900
+                        
+                        ns:B weight:                 1
+                        ns:B lexical value:       10
+                        ns:B decimal:               4
+                        Computed value:        10.0000
+                        
+                        ns:Parent lexical value:      39.8301
+                        ns:Parent decimal:             4
+                        Computed value:                39.8301
+                        
+                        Effective summation of contributing items:   29.8301 + 10.0000 = 39.8301
+                        
+                        Valid Summation:  39.8301",320-24-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-25,"320-25 - Invalid
+                        Test:   Verifies that IsNill facts do not bind to calculations per 5.2.5.2 
+                        
+                        A calculation represented by a “summation-item” relationship binds for a summation item S if and only if:
+                        
+                        1.      S has at least one contributing item.
+                        2.      S is not a duplicate item (as defined in section 4.10), and
+                        3.      None of the contributing items are duplicates.
+                        4.      S is not nil-valued (i.e. it does not have an xsi:nil attribute with value true).",320-25-BindCalculationInferPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-26,"320-26 - Valid, but contains number likely to sneak in errors in floating point multiplication of the weight 0.45 x A113 (=1010103).  For non-decimal CPU arithmetic rounding may be required on each weight multiplication to avoid floating point weirdnesses.  (this irritation contributed by Herm Fischer)",320-26-BindCalculationInferPrecision-instance.xbrl,pass,valid,
+,,V-30,"Tests that a decimals 0 value 0 is not treated as precision 0 (invalid) but as numeric zero.  In the prior approach where decimals 0 value 0 converted to precision 0 value 0, this would have been invalid.",320-30-BindCalculationInferDecimals-instance.xbrl,fail,valid,xbrl.5.2.5.2:calcInconsistency
+,,V-31,"Edge case tests that decimal rounding with is performed. In decimals representations, summation 0d1 is compared to contributing items 1.234d2 and -1.223d2.  Contributing items round to 1.23 and -1.22, the contributing items rounded sum is .01.  Summation has decimals 1 which is applied to comparing 0 decimals 1 to contributing items rounded sum .01, but in decimals 1, which makes the contributing rounded sum .01 be rounded as .0, which is equal to summation zero decimals 1, in decimals.  If the calculation were performed the old way, treating summation 0d1 as 0p0 this alone would make the calculation roll up be invalid.  But many processors have anyway treated 0d1 as 0p1, in which case such a processor still would be comparing numeric 0 for the summation, to the rounded contributing items sum .01 in some non-zero precision, which would still be invalid.  So the point of this test is to be sure the processor is using the all-decimals calculation roll up.",320-31-BindCalculationInferDecimals-instance.xbrl,fail,valid,xbrl.5.2.5.2:calcInconsistency
+,,V-32,"Checks that .5 rounds half to nearest even
+                             sum: -26.5 rounds to -26 (e.g., | -26.5 + 26 | = .5 <= .5 by sect 4.6.7.2);
+                             addend: -24 nothing to round;
+                             addend: -51 nothing to round.",320-32-BindCalculationInferDecimals-instance.xbrl,fail,invalid,
+,,V-33,"Checks that .5 rounds half to nearest even regardless
+                             sum: -27.5 rounds to -28 by IEEE roundTiesToEven;
+                             addend: -24 nothing to round;
+                             addend: -52 nothing to round.",320-33-BindCalculationInferDecimals-instance.xbrl,pass,valid,
+,,V-34,"Checks that .5 rounds half to nearest even regardless whether a processor uses float
+                             sum: 2.8 decimal 1, nothing to round;
+                             addend: 2.85 decimal 1, if in floating point, floating inprecision makes 2.85 appear slightly 
+                             greater than 2.85 and would round it half up, but if in decimal it will properly round half down;
+                             (e.g., | 2.85 - 2.8 | =.05 <= .05 by sect. 4.6.7.2).
+                             Also would be deliberately invalid if inferringPrecision, instead of decimal,
+                             from the 0-valued fact.",320-34-BindCalculationInferDecimals-instance.xbrl,fail,valid,xbrl.5.2.5.2:calcInconsistency
+,,V-35,"Same as V-34 but sum is 2.9 so if rounding were in float, the floating inprecision
+                             would make the 'bad' rounding look correct, whereas if rounding were in decimal,
+                             it would be invalid.",320-35-BindCalculationInferDecimals-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,321-internationalization.xml
+,,V-00,321-01 the instance document refers to a taxonomy that contains item definitions using Spanish characters. The item definitions are references from the linkbases. The instance should be considered valid but inconsistent according to the relationships in the calculation linkbase,321-01-internationalization-instance-invalid.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-01,321-01 the instance document refers to a taxonomy that contains item definitions using Spanish characters. The item definitions are references from the linkbases. The instance should be considered valid and consistent according to the relationships in the calculation linkbase,321-01-internationalization-instance-valid.xml,pass,valid,
+,322-XmlXbrlInteraction.xml
+,,V-00,322.00 - Valid,322-00-BindCalculationDefaultDecimals-instance.xbrl,pass,valid,
+,,V-01,322.01 - Invalid,322-01-BindCalculationDefaultDecimals-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-02,322.02 - Valid,322-02-BindCalculationDefaultPrecision-instance.xbrl,pass,valid,
+,,V-03,322.03 - Invalid,322-03-BindCalculationDefaultPrecision-instance.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-04,322.04 - Valid,322-04-BindCalculationFixedDecimals-instance.xbrl,pass,valid,
+,,V-05,322.05 - Invalid,322-05-BindCalculationFixedPrecision-instance.xbrl,pass,valid,
+,330-s-equal-testcase.xml
+,,V-01,"t:P1 is a summation of t:P2 and t:P3.  The contributing items have identical contextRef and thus there is no calculation inconsistency.  The context has a scenario contrived to show nesting, attributes, and elements for s-equality testing purposes in subsequent variations.",330-s-equal-instance-01.xml,pass,valid,
+,,V-02,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context is missing the scenario of the summation item and other contributing item, thus causing calculation inconsistency.",330-s-equal-instance-02.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-03,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has a different t:strVal within its context scenario, thus causing calculation inconsistency. (Prior versions of V-03 and following had different nested context element ID attributes and expected them to be ignored, per bug 378, but now deemed significant, so nested IDs have been removed to effectuate the desired testing of this and following variations.)",330-s-equal-instance-03.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-04,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has a ordering of t:strVal and t:decVal within its context scenario, thus causing calculation inconsistency.",330-s-equal-instance-04.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-05,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has a different parenting of t:strVal within its context scenario, thus causing calculation inconsistency.",330-s-equal-instance-05.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-06,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has a different attribute a1 on nested element t:scenarioVal within its context scenario, thus causing calculation inconsistency.",330-s-equal-instance-06.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-07,"t:P1 is a summation of t:P2 and t:P3.  According to the 2006-12-18 spec, t:P2's context would be s-equal to that of t:P1 and t:P3 were it not for the id attributes in the scenario.  Current 2.1 spec treats these IDs as significant, see bug 378.  Thus this test is invalid.",330-s-equal-instance-07.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-08,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but attributes on element dv2-v02 have been re-ordered, but it is still s-equal to the context of t:P1 and t:P3, so the calculation is valid.  (Only the id attribute on the context differs, for the moment, id attributes have been removed from subelements.)",330-s-equal-instance-08.xml,pass,valid,
+,,V-12,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but doubles and booleans test lexical representations by scaling, though values are the same.",330-s-equal-instance-12.xml,pass,valid,
+,,V-13,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but numbers test lexical signing representations, + optional on positive, and +0 equal to -0.",330-s-equal-instance-13.xml,pass,valid,
+,,V-14,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but doubles and test lexical non-number representations, INF.",330-s-equal-instance-14.xml,pass,valid,
+,,V-15,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but doubles and test lexical non-number representations, INF. Attribute a3 differs, to check that + infinity and - infinity are detected as unequal.",330-s-equal-instance-15.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-16,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but attributes a3 in both contexts are NaN which is always unequal to all values including itself.",330-s-equal-instance-16.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-17,"t:P1 is a summation of t:P2 and t:P3.  t:P2's context has the same scenario, but booleans test lexical representations, 0 or 1 for false or true.",330-s-equal-instance-17.xml,pass,valid,
+,331-equivalentRelationships-testcase.xml
+,,V-01,"t:P1 is a summation of t:P2 and t:P3.  The contributing items have a calculation inconsistency.  Following tests will use relationship equivalence to prohibit (or not be successful at prohibiting) P3 so the sum is clean (or inconsistent if unsuccessful at prohibiting), and thus the test case determines if equivalency matches the spec (by prohibition successfulness in subsequent tests).",331-equivalentRelationships-instance-01.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-02,"Same as V-01 but t:P3 calculation arc is with an arc prohibited with nothing tricky, thus avoiding the calculation inconsistency.  The prohibiting arc has the same arcrole, from, to, order, weight, t: attributes and use=prohibited.",331-equivalentRelationships-instance-02.xml,pass,valid,
+,,V-03,Same as V-02 but prohibiting arc has different weight causing nonequivalency and thus the prohibit is ineffective and calculation is inconsistent.,331-equivalentRelationships-instance-03.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-04,"Same as V-02 but prohibiting arc has has an xmlns not on the original arc, which is exempt.  Also the xmlns provides different lexical prefixes for the home-made attributes on the arc.",331-equivalentRelationships-instance-04.xml,pass,valid,
+,,V-05,"Same as V-02 but prohibiting arc has has an xlink:title not on the original arc, which is exempt.",331-equivalentRelationships-instance-05.xml,pass,valid,
+,,V-06,"Same as V-02 but prohibiting arc has has an default attribute matching the default value (the original arc has the default valued attribute missing).  Because the arc allows this attribute with an any wildcard attribute definition, it is not considered an explicit attribute use in the schema declared attributes, and thus it the validator has no way of knowing this default attribute might be put into the PSVI by the validator, and is simply absent on the original arc in the PSVI.  Thus the equivalency test fails here.",331-equivalentRelationships-instance-06.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-07,"Same as V-02 but prohibiting arc has has an defaulted attribute whose value does not match the default value (of the original arc, where the default valued attribute was missing, and per V-06 didn't enter the post-schema-validation infoset of attributes of the original arc).",331-equivalentRelationships-instance-07.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-08,"Same as V-02 but prohibiting arc has an fixed attribute of the correct fixed value (the original arc has the fixed valued attribute missing). Per testing by several vendors, the fixed is determined to behave like default, and thus this attribute is not present on the original arc and causes nonequivalence.",331-equivalentRelationships-instance-08.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-09,Same as V-02 but prohibiting arc has the stringAttr differently valued.,331-equivalentRelationships-instance-09.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-10,Same as V-02 but prohibiting arc has the decimalAttr lexically different but same value.,331-equivalentRelationships-instance-10.xml,pass,valid,
+,,V-11,Same as V-02 but prohibiting arc has the doubleAttr lexically different and scaled differently but same value.,331-equivalentRelationships-instance-11.xml,pass,valid,
+,,V-12,Same as V-02 but prohibiting arc has the doubleAttr lexically different and scaled differently to produce a different value.,331-equivalentRelationships-instance-12.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-13,"Same as V-02 but prohibiting arc has the boolAttr lexically different but same value (e.g., 1 == true, 0 == false).",331-equivalentRelationships-instance-13.xml,pass,valid,
+,391-inferDecimalPrecision.xml
+,,V-01,Test variation 391-01 using a base lexical representation of .0000 for the data value with various exponent parts,391-01-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-02,Test variation 391-02 using a base lexical representation of 0.0000 for the data value with various exponent parts,391-02-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-03,Test variation 391-03 using a base lexical representation of 0. for the data value with various exponent parts,391-03-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-04,Test variation 391-04 using a base lexical representation of 0000. for the data value with various exponent parts,391-04-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-05,Test variation 391-05 using a base lexical representation of 0 for the data value with various exponent parts,391-05-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-06,Test variation 391-06 using a base lexical representation of 0000 for the data value with various exponent parts,391-06-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-07,Test variation 391-07 using a base lexical representation of .001234 for the data value with various exponent parts,391-07-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-08,Test variation 391-08 using a base lexical representation of 0.001234 for the data value with various exponent parts,391-08-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-09,Test variation 391-09 using a base lexical representation of 0000.001234 for the data value with various exponent parts,391-09-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-10,Test variation 391-10 using a base lexical representation of .00123400 for the data value with various exponent parts,391-10-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-11,Test variation 391-11 using a base lexical representation of 0.00123400 for the data value with various exponent parts,391-11-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-12,Test variation 391-12 using a base lexical representation of 0000.00123400 for the data value with various exponent parts,391-12-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-13,Test variation 391-13 using a base lexical representation of .1234 for the data value with various exponent parts,391-13-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-14,Test variation 391-14 using a base lexical representation of 0.1234 for the data value with various exponent parts,391-14-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-15,Test variation 391-15 using a base lexical representation of 0000.1234 for the data value with various exponent parts,391-15-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-16,Test variation 391-16 using a base lexical representation of .123400 for the data value with various exponent parts,391-16-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-17,Test variation 391-17 using a base lexical representation of 0.123400 for the data value with various exponent parts,391-17-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-18,Test variation 391-18 using a base lexical representation of 0000.123400 for the data value with various exponent parts,391-18-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-19,Test variation 391-19 using a base lexical representation of 1234 for the data value with various exponent parts,391-19-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-20,Test variation 391-20 using a base lexical representation of 001234 for the data value with various exponent parts,391-20-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-21,Test variation 391-21 using a base lexical representation of 001234. for the data value with various exponent parts,391-21-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-22,Test variation 391-22 using a base lexical representation of 1234. for the data value with various exponent parts,391-22-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-23,Test variation 391-23 using a base lexical representation of 1234.0000 for the data value with various exponent parts,391-23-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-24,Test variation 391-24 using a base lexical representation of 001234.0000 for the data value with various exponent parts,391-24-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-25,Test variation 391-25 using a base lexical representation of 123400 for the data value with various exponent parts,391-25-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-26,Test variation 391-26 using a base lexical representation of 00123400 for the data value with various exponent parts,391-26-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-27,Test variation 391-27 using a base lexical representation of 123400. for the data value with various exponent parts,391-27-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-28,Test variation 391-28 using a base lexical representation of 00123400. for the data value with various exponent parts,391-28-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-29,Test variation 391-29 using a base lexical representation of 123400.0000 for the data value with various exponent parts,391-29-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-30,Test variation 391-30 using a base lexical representation of 00123400.0000 for the data value with various exponent parts,391-30-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-31,Test variation 391-31 using a base lexical representation of 1234.001234 for the data value with various exponent parts,391-31-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-32,Test variation 391-32 using a base lexical representation of 001234.001234 for the data value with various exponent parts,391-32-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-33,Test variation 391-33 using a base lexical representation of 123400.001234 for the data value with various exponent parts,391-33-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-34,Test variation 391-34 using a base lexical representation of 00123400.001234 for the data value with various exponent parts,391-34-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-35,Test variation 391-35 using a base lexical representation of 1234.00123400 for the data value with various exponent parts,391-35-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-36,Test variation 391-36 using a base lexical representation of 001234.00123400 for the data value with various exponent parts,391-36-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-37,Test variation 391-37 using a base lexical representation of 123400.00123400 for the data value with various exponent parts,391-37-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-38,Test variation 391-38 using a base lexical representation of 00123400.00123400 for the data value with various exponent parts,391-38-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-39,Test variation 391-39 using a base lexical representation of .001204 for the data value with various exponent parts,391-39-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-40,Test variation 391-40 using a base lexical representation of 0.001204 for the data value with various exponent parts,391-40-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-41,Test variation 391-41 using a base lexical representation of 0000.001204 for the data value with various exponent parts,391-41-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-42,Test variation 391-42 using a base lexical representation of .00120400 for the data value with various exponent parts,391-42-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-43,Test variation 391-43 using a base lexical representation of 0.00120400 for the data value with various exponent parts,391-43-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-44,Test variation 391-44 using a base lexical representation of 0000.00120400 for the data value with various exponent parts,391-44-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-45,Test variation 391-45 using a base lexical representation of .1204 for the data value with various exponent parts,391-45-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-46,Test variation 391-46 using a base lexical representation of 0.1204 for the data value with various exponent parts,391-46-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-47,Test variation 391-47 using a base lexical representation of 0000.1204 for the data value with various exponent parts,391-47-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-48,Test variation 391-48 using a base lexical representation of .120400 for the data value with various exponent parts,391-48-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-49,Test variation 391-49 using a base lexical representation of 0.120400 for the data value with various exponent parts,391-49-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-50,Test variation 391-50 using a base lexical representation of 0000.120400 for the data value with various exponent parts,391-50-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-51,Test variation 391-51 using a base lexical representation of 1204 for the data value with various exponent parts,391-51-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-52,Test variation 391-52 using a base lexical representation of 001204 for the data value with various exponent parts,391-52-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-53,Test variation 391-53 using a base lexical representation of 001204. for the data value with various exponent parts,391-53-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-54,Test variation 391-54 using a base lexical representation of 1204. for the data value with various exponent parts,391-54-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-55,Test variation 391-55 using a base lexical representation of 1204.0000 for the data value with various exponent parts,391-55-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-56,Test variation 391-56 using a base lexical representation of 001204.0000 for the data value with various exponent parts,391-56-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-57,Test variation 391-57 using a base lexical representation of 120400 for the data value with various exponent parts,391-57-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-58,Test variation 391-58 using a base lexical representation of 00120400 for the data value with various exponent parts,391-58-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-59,Test variation 391-59 using a base lexical representation of 120400. for the data value with various exponent parts,391-59-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-60,Test variation 391-60 using a base lexical representation of 00120400. for the data value with various exponent parts,391-60-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-61,Test variation 391-61 using a base lexical representation of 120400.0000 for the data value with various exponent parts,391-61-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-62,Test variation 391-62 using a base lexical representation of 00120400.0000 for the data value with various exponent parts,391-62-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-63,Test variation 391-63 using a base lexical representation of 1204.001204 for the data value with various exponent parts,391-63-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-64,Test variation 391-64 using a base lexical representation of 001204.001204 for the data value with various exponent parts,391-64-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-65,Test variation 391-65 using a base lexical representation of 120400.001204 for the data value with various exponent parts,391-65-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-66,Test variation 391-66 using a base lexical representation of 00120400.001204 for the data value with various exponent parts,391-66-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-67,Test variation 391-67 using a base lexical representation of 1204.00120400 for the data value with various exponent parts,391-67-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-68,Test variation 391-68 using a base lexical representation of 001204.00120400 for the data value with various exponent parts,391-68-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-69,Test variation 391-69 using a base lexical representation of 120400.00120400 for the data value with various exponent parts,391-69-InferPrecisionFromDecimals.xml,pass,valid,
+,,V-70,Test variation 391-70 using a base lexical representation of 00120400.00120400 for the data value with various exponent parts,391-70-InferPrecisionFromDecimals.xml,pass,valid,
+,392-inferEssenceAlias.xml
+,,V-1,392.01 Valid example of essence-alias attribute.,392-01-EssenceAliasValid.xml,pass,valid,
+,,V-2,392.02  Valid example of essence-alias attribute using duplicate.,392-02-EssenceAliasDuplicate.xml,pass,valid,
+,,V-3,392.03 Valid example of essence-alias attribute using duplicate. No copy happens.,392-03-EssenceAliasDuplicateNoEssence.xml,pass,valid,
+,,V-4,392.04 Valid example of essence-alias attribute not to apply reverse direction.,392-04-EssenceAliasReverse.xml,pass,valid,
+,,V-5,392.05 Valid example of essence-alias attribute.,392-05-EssenceAliasValidWithValue.xml,pass,valid,
+,,V-6,392.06 Invalid example of essence-alias attribute.,392-06-EssenceAliasInvalid.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,,V-7,"392.07 Valid example of essence-alias attribute. This testset has items set to essence-alias, but Essence item and alias items are located in other tuples, so even if these values are not identical but it  is still valid.",392-07-EssenceAliasDifferentScopeValid.xml,pass,valid,
+,,V-8,"392.08 Invalid example of essence-alias attribute. This testset has items set to essence-alias, but Essence item and alias items in same tuple  are  not identical but other essence item in other tuple is identical. So scoping is wrong, it  is invalid.",392-08-EssenceAliasDifferentScopeInValid.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,,V-9,"392.09 Valid example of essence-alias attribute. This testset has items set to essence-alias, One Essence item in same tuple with alias is identical and other essence items located in other tuples is no identical, By  scoping, it  is valid.",392-09-EssenceAliasDifferentScopeValidWithValue.xml,pass,valid,
+,,V-10,"392.10 Invalid example of essence-alias attribute. This testset has numeric items set to essence-alias, but Essence item and alias item have  different  units. so it is invalid.",392-10-EssenceAliasDifferentUnit.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,,V-11,"392.11 Valid example of essence-alias attribute. This testset has items set to essence-alias, but Essence item and alias item are different values and units. so it is valid.",392-11-EssenceAliasDifferentContext.xml,pass,valid,
+,,V-12,392.12 Invalid example of essence-alias attribute. This testset make an essence-alias relation between two different item type.,392-12-EssenceAliasInvalid.xsd,pass,invalid,xbrl.5.2.6.2.2:essenceAliasTypes
+,,V-13,392.13 Invalid example of essence-alias attribute. This testset make an essence-alias relation between two items which are different period type.,392-13-EssenceAliasDifferentPeriodType.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasTypes
+,,V-14,392.14 Valid example of essence-alias attribute regarding nonNumericContext.,392-14-EssenceAliasNonNumericValid.xml,pass,valid,
+,,V-15,392.15 invalid example of essence-alias attribute regarding nonNumericContext.,392-15-EssenceAliasNonNumericInValid.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,,V-16,392.16 Valid example of essence-alias attribute regarding nonNumericContext.,392-16-EssenceAliasNonNumericTupleValid.xml,pass,valid,
+,,V-17,392.17 invalid example of essence-alias attribute regarding nonNumericContext.,392-17-EssenceAliasNonNumericTupleInValid.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasUnitsInconsistency
+,395-inferNumericConsistency.xml
+,,V-1,395.01 Valid example of summation-item attribute.,395-01-InferCalculatedValueConsistencyValid.xml,pass,valid,
+,,V-2,"395.02 This is a test for detecting inconsistency between value in an Instance and value calculated by
+      calculation link. This is set to invalid but the document validity itself is still valid.",395-02-InferCalculatedValueConsistencyDifferentValue.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-3,"395.03 Valid example of summation-item in which a contributor is given a default value and appears in
+      the instance with an empty value. The example is valid and there are no calculation inconsistencies.",395-03-InferCalculatedValueConsistencyWithDefaultContributorValid.xml,pass,valid,
+,,V-4,"395.04 Invalid example of summation-item in which a contributor is given a default value but does not
+      appear in the instance. The output is flagged as invalid although it is merely inconsistent.",395-04-InferCalculatedValueConsistencyWithDefaultContributorMissingInvalid.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-5,"395.05 Valid example of summation-item in which a scenario element is given a default value so that two
+      otherwise syntactically different contexts are s-equal.",395-05-InferCalculatedValueConsistencyWithDefaultScenarioValid.xml,pass,valid,
+,,V-6,"395.06 Invalid example of summation-item in which a scenario element is given a default value but
+      without the scenario element present it is not enough to make the two contexts s-equal. The output is flagged as
+      invalid although it is merely inconsistent.",395-06-InferCalculatedValueConsistencyWithDefaultScenarioMissingInvalid.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-7,"395.07 Valid example of summation-item in which a scenario element is given a default attribute value so that two
+      otherwise syntactically different contexts are s-equal.",395-07-InferCalculatedValueConsistencyWithScenarioAttributeDefaultValid.xml,pass,valid,
+,,V-8,"395.08 Invalid example of summation-item in which a scenario element has an attribute with a default value but
+      without the scenario attribute present it is not enough to make the two contexts s-equal. The output is flagged as
+      invalid although it is merely inconsistent.",395-08-InferCalculatedValueConsistencyWithScenarioAttributeMissingInvalid.xml,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,397-Testcase-SummationItem.xml
+,,V-00,A simple consistent instance; A = B + C,397-00-ConsistentInstance-valid.xbrl,pass,valid,
+,,V-01,A simple inconsistent instance; A != B + C,397-01-InconsistentInstance-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-02,"A != B + C, but A is in a different context from B and C, so B and C are
+      not contributing items for A.  No checks are performed.  The instance is
+      consistent.",397-02-NonCEqualContributing-valid.xbrl,pass,valid,
+,,V-03,"A != B + C, but A has a different unit from B and C, so B and C are not
+      contributing items for A.  No checks are performed.  The instance is
+      consistent.",397-03-NonUEqualContributing-valid.xbrl,pass,valid,
+,,V-04,"B and C are c-equal and u-equal to A.  B and C are contributing items for
+      A, but A != B + C so the instance is inconsistent.",397-04-SEqualContextsAndUnitsContributing-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-05,"B and C are both nil-valued, so neither contributes to A.  No checks are
+      performed.  The instance is consistent.",397-05-BothNilContributing-valid.xbrl,pass,valid,
+,,V-06,"B is nil-valued but C is not.  A = C, so the instance is consistent.",397-06-OneNilContributing-valid.xbrl,pass,valid,
+,,V-07,"B is nil-valued but C is not.  A != C, so the instance is not consistent.",397-07-OneNilContributing-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-08,A simple consistent instance; A = B; C not present,397-08-OneContributing-valid.xbrl,pass,valid,
+,,V-09,A simple inconsistent instance; A != B; C not present,397-09-OneContributing-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-10,"A (the summation item) is nil, so no checks are performed.",397-10-NilSummationItem-valid.xbrl,pass,valid,
+,,V-11,"Two occurrences of A, the first of which is nil.  The first is ignored.
+      The second would result in an inconsistency were it not for the fact that
+      it is a duplicate of the first (because values are not considered).",397-11-DuplicateSummationItems-valid.xbrl,pass,valid,
+,,V-12,"Things don't add up, but this goes undetected because one of the
+      contributing items is duplicated.",397-12-DuplicateContributingItems-valid.xbrl,pass,valid,
+,,V-13,"All items within one tuple, and things don't add up.",397-13-InconsistentWithinTuple-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-14,"Summation item is in a separate tuple from occurrences of the
+      contributing concepts.  Because of tuple scoping rules, the summation
+      item has no contributing items.  Nothing is checked.  The instance is
+      consistent.",397-14-SeparateTuplesConsistent-valid.xbrl,pass,valid,
+,,V-15,"Contributing items (within tuples) are in-scope for the summation item
+      (at top level).  Inconsistency should be detected.",397-15-ContributingWithinTuples-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-16,"Summation item at top level has sibling contributing items and nephew
+      contributing items.  Inconsistency should be detected.",397-16-MultiLevelBinding-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-17,Binding across many levels (consistent).,397-17-ConsistentCountdown-valid.xbrl,pass,valid,
+,,V-18,Binding across many levels (inconsistent).,397-18-InconsistentCountdown-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-19,"Would be inconsistent, were it not for the duplicate contributing items
+      deep in the hierarchy.",397-19-DuplicateCountdown-valid.xbrl,pass,valid,
+,,V-20,"If you infer a value for 'A', then X is consistent, but since this is not
+      allowed, the instance is inconsistent.",397-20-NoSummationItemInference-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-21,"If you infer a value for 'A', then X is consistent, but since this is not
+      allowed, the instance is inconsistent.",397-21-NoEssenceAliasInference-invalid.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-22,"The 'B' and 'C' children both inside and outside the tuple are, according to the spec, bound in the summation of 'A' at the top level.
+    10 + 20 + 1 + 2 is not equal to 3.",397-22-TopAndTuple-inconsistent.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-23,"The 'B' children both inside and outside the tuple are, according to the spec, bound in the summation of 'A' at the top level.
+    20 + 2 equals 22.",397-23-TopAndTuple-consistent.xbrl,pass,valid,
+,,V-24,Value of A = 0.8 to precision zero is inconsistent.,397-24-PrecisionZeroRoundUp.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-25,Value of A = 0.4 to precision zero is inconsistent.,397-25-PrecisionZeroRoundDown.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-26,"Valid with decimals summation because 0.5 (precision=INF) + -0.5 (precision=INF) = 0.08 (decimals=0).  Valid, since 0.08 to 0 decimal places becomes 0, which agrees with the calculated total. 
+    (In prior approach based on inferred precision, if stated decimals is less than the actual precision, you get precision 0 which is inconsistent.)",397-26-DecimalsTrailingDigits.xbrl,pass,valid,
+,,V-27,"Invalid with decimals summation because 0.5 (precision=INF) + -0.5 (precision=INF) != 0.8 (decimals=0).  It's invalid because the total gets rounded up to 1 which disagrees with the calculated total of 0.
+    (In prior approach based on inferred precision, if stated decimals is less than the actual precision, you should get precision zero which is inconsistent.)",397-27-DecimalsTrailingDigits.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-28,"In the current inferring decimals approach, the summation item reported as 100.00 precision 5, is deemed 100.00 decimals 2,
+    and compared to a sum of contributing items 99.996, with 99.996 rounded according to the precision of the summation item, which
+    is deemed decimals 2, so then the sum of contributing items after such rounding is 100.00, exactly matching the summation item, and
+    this case is valid.
+    (In the prior approach with inferred precision, this was invalid because
+    the summation item is 100.00 precision 5 and the calculated total of contributing items is 99.996, which when rounded to precision 5, remains
+    99.996.
+    This is within the implied error bounds so you might reasonably expect the calculation to be consistent.
+    The prior spec which required inferring precision, however, says to round using the precision of the total so you actually end up checking 100 against 99.996 so that the calculation fails.)",397-28-PrecisionDifferentScales.xbrl,fail,valid,xbrl.5.2.5.2:calcInconsistency
+,,V-29,The contribution items have stated precision 0.,397-29-StatedPrecisionZeroContributions.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,,V-30,"Invalid with decimals approach because 0.5 (decimals=0) + 0.5 (decimals=0) != 1 (precision=INF).  It's still invalid because each 0.5 gets rounded up to 1, giving a calculated total of 2. 
+    (In prior approach based on inferring precision, invalid because the contribution items have inferred precision 0.)",397-30-InferredPrecisionZeroContributions.xbrl,pass,invalid,xbrl.5.2.5.2:calcInconsistency
+,398-Testcase-Nillable.xml
+,,V-01,"It is legal for the tuple to be empty with xsi:nil='true', even though its type requires a child element, because the tuple definition has nillable='true'.",398-NilTuple.xbrl,pass,valid,
+,400-nestedElements.xml
+,,v01,Single instance nested in an XML container.,400-01-singleNestedInstance.xml,pass,invalid,xbrl.4:xbrlRootElement
+,,v02,Multiple instances nested in an XML container.,400-02-multipleNestedInstances.xml,pass,invalid,xbrl.4:xbrlRootElement xbrl.4:xbrlRootElement
+,,v03,Single schema nested in an XML container.,400-03-singleNestedSchema.xsd,pass,invalid,xbrl.5.1:schemaRootElement
+,,v04,Multiple schemas nested in an XML container.,400-04-multipleNestedSchemas.xsd,pass,invalid,xbrl.5.1:schemaRootElement
+,,v05,Single schema nested in an XML container.,400-05-singleNestedLinkbase.xsd,pass,invalid,xbrl.5.2:linkbaseRootElement
+,,v06,Multiple schemas nested in an XML container.,400-06-multipleNestedLinkbases.xsd,pass,invalid,xbrl.5.2:linkbaseRootElement xbrl.5.2:linkbaseRootElement
+,401-datatypes.xml
+,,v401-01,"401-01 instance with valid QNamed, non existent element within fact value, element existence is not checked http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#QName",401-01-instance_invalidQNamedElementwithinFactValue_withSchemaRef.xbrl,pass,valid,
+,,v401-03,401-03 valid instance QNamed fact value - with namespace and schemaref,401-03-instance_QnameFactValue_withSchemaRef.xbrl,pass,valid,
+,arc-duplication-testcase.xml
+,,V-04,"202.04  Arc-type elements connecting the same ""from"" and ""to"" labels MUST appear in different extended-type link elements even if the arcrole attributes are equal.  This is an XLink constraint.",202-04-XLinkLabelCounterExample-definition.xml,pass,invalid,xbrl.5.2.6.2.2:essenceAliasTypes xlink:dupArcs
+,,V-04a,"202.04a.  Similar to 202.04 above, but presentation linkbase uses same arcRole on both arcs and each has the usual XBRL order, use, and priority, to appear like a proper ordinary arc override.",202-04a-XLinkLabelCounterExample-presentation.xml,pass,invalid,xlink:dupArcs
+,,V-04b,"202.04b.  Similar to 202.04 above, but label linkbase uses same arcRole on both arcs and each has the usual XBRL order, use, and priority, to appear like a proper ordinary arc override.",202-04b-XLinkLabelCounterExample-label.xml,pass,invalid,xlink:dupArcs
+,,V-04c,"202.04c.  Similar to 202.04 above, but custom arc uses same arcRole on both arcs and each has the usual XBRL order, use, and priority, to appear like a proper ordinary arc override.  Also, like 220 series tests, the linkbase is in the xsd to be sure that appinfo-contained linkbases are XLink validated.",202-04c-XLinkLabelCounterExample.xsd,pass,invalid,xlink:dupArcs
+,uniqueParticleAttribution-testcase.xml
+,,V-01,"Beginning balance optional, changes required, ending balance optional.",uniqueParticleAttribution-01.xsd,pass,valid,
+,,V-02,"Beginning balance required, changes optional, ending balance optional.",uniqueParticleAttribution-02.xsd,pass,valid,
+,,V-03,"Beginning balance optional, changes optional, ending balance required.",uniqueParticleAttribution-03.xsd,pass,invalid,xmlSchema:uniqueParticleAttribution
+,,V-04,"Beginning balance required, changes required, ending balance optional.",uniqueParticleAttribution-04.xsd,pass,valid,
+,,V-05,"Beginning balance required, changes required, ending balance required.",uniqueParticleAttribution-05.xsd,pass,valid,
+,,V-06,"Beginning balance optional, changes optional, ending balance optional.",uniqueParticleAttribution-06.xsd,pass,invalid,xmlSchema:uniqueParticleAttribution

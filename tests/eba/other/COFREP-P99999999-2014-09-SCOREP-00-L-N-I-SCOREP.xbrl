@@ -1,0 +1,2422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xbrl
+  xmlns="http://www.xbrl.org/2003/instance"
+  xmlns:eba_AP="http://www.eba.europa.eu/xbrl/crr/dict/dom/AP"
+  xmlns:eba_BA="http://www.eba.europa.eu/xbrl/crr/dict/dom/BA"
+  xmlns:eba_BT="http://www.eba.europa.eu/xbrl/crr/dict/dom/BT"
+  xmlns:eba_CP="http://www.eba.europa.eu/xbrl/crr/dict/dom/CP"
+  xmlns:eba_CT="http://www.eba.europa.eu/xbrl/crr/dict/dom/CT"
+  xmlns:eba_CU="http://www.eba.europa.eu/xbrl/crr/dict/dom/CU"
+  xmlns:eba_EC="http://www.eba.europa.eu/xbrl/crr/dict/dom/EC"
+  xmlns:eba_ER="http://www.eba.europa.eu/xbrl/crr/dict/dom/ER"
+  xmlns:eba_GA="http://www.eba.europa.eu/xbrl/crr/dict/dom/GA"
+  xmlns:eba_MC="http://www.eba.europa.eu/xbrl/crr/dict/dom/MC"
+  xmlns:eba_OF="http://www.eba.europa.eu/xbrl/crr/dict/dom/OF"
+  xmlns:eba_PC="http://www.eba.europa.eu/xbrl/crr/dict/dom/PC"
+  xmlns:eba_PI="http://www.eba.europa.eu/xbrl/crr/dict/dom/PI"
+  xmlns:eba_PL="http://www.eba.europa.eu/xbrl/crr/dict/dom/PL"
+  xmlns:eba_TR="http://www.eba.europa.eu/xbrl/crr/dict/dom/TR"
+  xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim"
+  xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
+  xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
+  xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+  xmlns:link="http://www.xbrl.org/2003/linkbase"
+  xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <link:schemaRef
+      xlink:href="http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_ind.xsd"
+      xlink:type="simple"/>
+    <context id="c-01">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x275</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x10</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-02">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x275</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x8</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-03">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x275</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-04">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CNO">eba_BT:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x133</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-05">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CNO">eba_BT:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x134</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-06">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CNO">eba_BT:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x363</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-07">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CNO">eba_BT:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x301</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-08">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CNO">eba_BT:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x269</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-09">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CNO">eba_BT:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x179</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-10">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x211</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-11">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x210</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-12">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x192</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-13">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x45</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x193</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x5</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-14">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x193</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-15">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x11</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-16">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x252</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-17">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-18">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x252</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-19">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x129</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-20">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x25</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-21">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x5</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-22">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x67</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x5</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-23">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x66</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x5</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-24">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x29</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-25">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x56</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x433</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x51</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-26">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x48</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x433</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x51</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-27">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-28">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x54</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x238</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x24</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-29">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x12</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x238</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x24</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-30">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x110</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x7</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-31">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-32">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x3</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x2</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-33">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x8</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-34">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x3</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x8</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-35">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x10</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-36">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x3</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:OFS">eba_OF:x10</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-37">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-38">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CRM">eba_CP:x6</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-39">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-40">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CRM">eba_CP:x6</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-41">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x246</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-42">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x311</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x1</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-43">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x100</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x1</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-44">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x310</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x1</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-45">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-46">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x3</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-47">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x70</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-48">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x6</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-49">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x8</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-50">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-51">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-52">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x12</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-53">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-54">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-55">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x20</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-56">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x24</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-57">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x30</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-58">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x55</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-59">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-60">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CRM">eba_CP:x6</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-61">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-62">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-63">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-64">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXT">eba_ER:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-65">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-66">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-67">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-68">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-69">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x8</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-70">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-71">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-72">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-73">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-74">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-75">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-76">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-77">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-78">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-79">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-80">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x25</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x254</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x3</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-81">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x25</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:RWS">eba_PC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-82">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-83">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x12</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-84">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x24</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-85">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-86">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-87">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-88">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-89">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:FR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x25</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-90">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:LU</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-91">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:LU</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-92">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:LU</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-93">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:LU</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x14</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-94">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:LU</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-95">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:LU</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x25</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-96">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:CH</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-97">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:NL</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-98">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:NL</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-99">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:NL</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-100">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:BE</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x18</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-101">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:BE</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-102">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:GB</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-103">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:DE</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-104">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:KY</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x1</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-105">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:DK</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x13</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-106">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CEG">eba_GA:NO</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CPS">eba_CT:x2</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:EXC">eba_EC:x16</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x195</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-107">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-108">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:x8</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-109">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:x42</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-110">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:x8</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-111">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x172</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-112">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:EUR</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-113">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:AUD</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-114">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:CAD</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-115">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:CZK</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-116">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:DKK</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-117">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:GBP</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-118">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:HUF</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-119">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:JPY</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-120">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:MXN</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-121">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:PLN</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-122">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:RUB</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-123">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:SEK</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-124">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:CHF</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-125">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:TRY</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-126">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:USD</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-127">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:ISK</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c-128">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x44</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:CUE">eba_CU:NOK</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x156</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PIN">eba_PI:x4</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:PRP">eba_PL:x10</xbrldi:explicitMember>
+            <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x16</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <context id="c">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+    </context>
+    <unit id="u-01">
+        <measure>iso4217:EUR</measure>
+    </unit>
+    <unit id="u-02">
+        <measure>pure</measure>
+    </unit>
+    <eba_met:mi81 contextRef="c-01" decimals="2" unitRef="u-01">33516367.76</eba_met:mi81>
+    <eba_met:mi81 contextRef="c-02" decimals="2" unitRef="u-01">33516367.76</eba_met:mi81>
+    <eba_met:mi81 contextRef="c-03" decimals="2" unitRef="u-01">33516367.76</eba_met:mi81>
+    <eba_met:mi76 contextRef="c-04" decimals="2" unitRef="u-01">15515280.01</eba_met:mi76>
+    <eba_met:mi53 contextRef="c-05" decimals="2" unitRef="u-01">15515280.01</eba_met:mi53>
+    <eba_met:mi76 contextRef="c-06" decimals="2" unitRef="u-01">14547728.92</eba_met:mi76>
+    <eba_met:mi53 contextRef="c-07" decimals="2" unitRef="u-01">14547728.92</eba_met:mi53>
+    <eba_met:mi53 contextRef="c-08" decimals="2" unitRef="u-01">4937731.74</eba_met:mi53>
+    <eba_met:mi53 contextRef="c-09" decimals="2" unitRef="u-01">1248155.17</eba_met:mi53>
+    <eba_met:mi76 contextRef="c-10" decimals="2" unitRef="u-01">-2732528.08</eba_met:mi76>
+    <eba_met:mi53 contextRef="c-11" decimals="2" unitRef="u-01">-2732528.08</eba_met:mi53>
+    <eba_met:mi237 contextRef="c-12" decimals="2" unitRef="u-01">69807274.98</eba_met:mi237>
+    <eba_met:mi310 contextRef="c-13" decimals="2" unitRef="u-01">26490280.86</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-14" decimals="2" unitRef="u-01">26490280.86</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-15" decimals="2" unitRef="u-01">26490280.86</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-16" decimals="2" unitRef="u-01">2063032.66</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-17" decimals="2" unitRef="u-01">3738795.20</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-18" decimals="2" unitRef="u-01">7287362.19</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-19" decimals="2" unitRef="u-01">13392709.94</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-20" decimals="2" unitRef="u-01">8380.87</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-21" decimals="2" unitRef="u-01">0.00</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-22" decimals="2" unitRef="u-01">0.00</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-23" decimals="2" unitRef="u-01">0.00</eba_met:mi310>
+    <eba_met:mi235 contextRef="c-24" decimals="2" unitRef="u-01">0.00</eba_met:mi235>
+    <eba_met:mi235 contextRef="c-25" decimals="2" unitRef="u-01">1397996.00</eba_met:mi235>
+    <eba_met:mi235 contextRef="c-26" decimals="2" unitRef="u-01">1397996.00</eba_met:mi235>
+    <eba_met:mi235 contextRef="c-27" decimals="2" unitRef="u-01">1397996.00</eba_met:mi235>
+    <eba_met:mi235 contextRef="c-28" decimals="2" unitRef="u-01">41918998.13</eba_met:mi235>
+    <eba_met:mi235 contextRef="c-29" decimals="2" unitRef="u-01">41918998.13</eba_met:mi235>
+    <eba_met:mi235 contextRef="c-30" decimals="2" unitRef="u-01">0.00</eba_met:mi235>
+    <eba_met:pi317 contextRef="c-31" decimals="0" unitRef="u-02">48.01</eba_met:pi317>
+    <eba_met:mi76 contextRef="c-32" decimals="2" unitRef="u-01">30375040.39</eba_met:mi76>
+    <eba_met:pi317 contextRef="c-33" decimals="0" unitRef="u-02">48.00</eba_met:pi317>
+    <eba_met:mi76 contextRef="c-34" decimals="2" unitRef="u-01">29327931.26</eba_met:mi76>
+    <eba_met:pi317 contextRef="c-35" decimals="0" unitRef="u-02">48.00</eba_met:pi317>
+    <eba_met:mi76 contextRef="c-36" decimals="2" unitRef="u-01">27931785.76</eba_met:mi76>
+    <eba_met:mi180 contextRef="c-37" decimals="2" unitRef="u-01">41737545</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-37" decimals="2" unitRef="u-01">41737545</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-37" decimals="2" unitRef="u-01">41737545</eba_met:mi117>
+    <eba_met:mi90 contextRef="c-38" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-37" decimals="2" unitRef="u-01">41737545</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-37" decimals="2" unitRef="u-01">26490281.41</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-39" decimals="2" unitRef="u-01">41737545</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-39" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi118 contextRef="c-39" decimals="2" unitRef="u-01">41737545</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-39" decimals="2" unitRef="u-01">41737545</eba_met:mi117>
+    <eba_met:mi90 contextRef="c-40" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-39" decimals="2" unitRef="u-01">41737545</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-39" decimals="2" unitRef="u-01">26490281.41</eba_met:mi310>
+    <eba_met:mi118 contextRef="c-41" decimals="2" unitRef="u-01">0</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-42" decimals="2" unitRef="u-01">0</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-43" decimals="2" unitRef="u-01">0</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-44" decimals="2" unitRef="u-01">0</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-41" decimals="2" unitRef="u-01">0</eba_met:mi117>
+    <eba_met:mi117 contextRef="c-42" decimals="2" unitRef="u-01">0</eba_met:mi117>
+    <eba_met:mi117 contextRef="c-43" decimals="2" unitRef="u-01">0</eba_met:mi117>
+    <eba_met:mi117 contextRef="c-44" decimals="2" unitRef="u-01">0</eba_met:mi117>
+    <eba_met:mi180 contextRef="c-45" decimals="2" unitRef="u-01">2485876</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-45" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-46" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-46" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-47" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-47" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-48" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-48" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-49" decimals="2" unitRef="u-01">7462876</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-49" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-50" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-50" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-51" decimals="2" unitRef="u-01">13596356</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-51" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-52" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-52" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-53" decimals="2" unitRef="u-01">18178257</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-53" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-54" decimals="2" unitRef="u-01">14181</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-54" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-55" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-55" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-56" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-56" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-57" decimals="2" unitRef="u-01">0</eba_met:mi180>
+    <eba_met:mi253 contextRef="c-57" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi253 contextRef="c-58" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi132 contextRef="c-45" decimals="2" unitRef="u-01">2485876</eba_met:mi132>
+    <eba_met:mi132 contextRef="c-49" decimals="2" unitRef="u-01">7462876</eba_met:mi132>
+    <eba_met:mi132 contextRef="c-51" decimals="2" unitRef="u-01">13596356</eba_met:mi132>
+    <eba_met:mi132 contextRef="c-53" decimals="2" unitRef="u-01">18178257</eba_met:mi132>
+    <eba_met:mi132 contextRef="c-54" decimals="2" unitRef="u-01">14181</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-45" decimals="2" unitRef="u-01">2485876</eba_met:mi125>
+    <eba_met:mi125 contextRef="c-49" decimals="2" unitRef="u-01">7462876</eba_met:mi125>
+    <eba_met:mi125 contextRef="c-51" decimals="2" unitRef="u-01">13596356</eba_met:mi125>
+    <eba_met:mi125 contextRef="c-53" decimals="2" unitRef="u-01">18178257</eba_met:mi125>
+    <eba_met:mi125 contextRef="c-54" decimals="2" unitRef="u-01">14181</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-45" decimals="2" unitRef="u-01">0</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-49" decimals="2" unitRef="u-01">1492575.20</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-51" decimals="2" unitRef="u-01">6798178.09</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-53" decimals="2" unitRef="u-01">18178256.62</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-54" decimals="2" unitRef="u-01">21271.50</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-59" decimals="2" unitRef="u-01">2485876</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-59" decimals="2" unitRef="u-01">2485876</eba_met:mi118>
+    <eba_met:mi90 contextRef="c-60" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-59" decimals="2" unitRef="u-01">2485876</eba_met:mi125>
+    <eba_met:mi180 contextRef="c-61" decimals="2" unitRef="u-01">2485876</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-61" decimals="2" unitRef="u-01">2485876</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-59" decimals="2" unitRef="u-01">2485876</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-59" decimals="2" unitRef="u-01">2485876</eba_met:mi132>
+    <eba_met:mi117 contextRef="c-61" decimals="2" unitRef="u-01">2485876</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-61" decimals="2" unitRef="u-01">2485876</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-61" decimals="2" unitRef="u-01">2485876</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-59" decimals="2" unitRef="u-01">0</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-61" decimals="2" unitRef="u-01">0</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-62" decimals="2" unitRef="u-01">2485876</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-62" decimals="2" unitRef="u-01">2485876</eba_met:mi118>
+    <eba_met:mi132 contextRef="c-62" decimals="2" unitRef="u-01">2485876</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-62" decimals="2" unitRef="u-01">2485876</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-62" decimals="2" unitRef="u-01">0</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-63" decimals="2" unitRef="u-01">2783674</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-63" decimals="2" unitRef="u-01">2783674</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-63" decimals="2" unitRef="u-01">2783674</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-63" decimals="2" unitRef="u-01">2783674</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-63" decimals="2" unitRef="u-01">2783674</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-63" decimals="2" unitRef="u-01">2063032.66</eba_met:mi310>
+    <eba_met:mi310 contextRef="c-64" decimals="2" unitRef="u-01">0</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-65" decimals="2" unitRef="u-01">2783674</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-65" decimals="2" unitRef="u-01">2783674</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-65" decimals="2" unitRef="u-01">2783674</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-65" decimals="2" unitRef="u-01">2783674</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-65" decimals="2" unitRef="u-01">2783674</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-65" decimals="2" unitRef="u-01">2063033</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-66" decimals="2" unitRef="u-01">1441282</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-66" decimals="2" unitRef="u-01">1441282</eba_met:mi118>
+    <eba_met:mi132 contextRef="c-66" decimals="2" unitRef="u-01">1441282</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-66" decimals="2" unitRef="u-01">1441282</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-66" decimals="2" unitRef="u-01">720641</eba_met:mi310>
+    <eba_met:mi132 contextRef="c-67" decimals="2" unitRef="u-01">1342392</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-67" decimals="2" unitRef="u-01">1342392</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-67" decimals="2" unitRef="u-01">1342392</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-17" decimals="2" unitRef="u-01">9861468</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-17" decimals="2" unitRef="u-01">9861468</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-17" decimals="2" unitRef="u-01">9861468</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-17" decimals="2" unitRef="u-01">9861468</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-17" decimals="2" unitRef="u-01">9861468</eba_met:mi125>
+    <eba_met:mi117 contextRef="c-68" decimals="2" unitRef="u-01">9861468</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-68" decimals="2" unitRef="u-01">9861468</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-68" decimals="2" unitRef="u-01">9861468</eba_met:mi125>
+    <eba_met:mi180 contextRef="c-68" decimals="2" unitRef="u-01">9861468</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-68" decimals="2" unitRef="u-01">9861468</eba_met:mi118>
+    <eba_met:mi180 contextRef="c-69" decimals="2" unitRef="u-01">7462876</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-69" decimals="2" unitRef="u-01">7462876</eba_met:mi118>
+    <eba_met:mi132 contextRef="c-69" decimals="2" unitRef="u-01">7462876</eba_met:mi132>
+    <eba_met:mi310 contextRef="c-69" decimals="2" unitRef="u-01">1492575</eba_met:mi310>
+    <eba_met:mi132 contextRef="c-70" decimals="2" unitRef="u-01">304744</eba_met:mi132>
+    <eba_met:mi310 contextRef="c-70" decimals="2" unitRef="u-01">152372</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-70" decimals="2" unitRef="u-01">304744</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-70" decimals="2" unitRef="u-01">304744</eba_met:mi118>
+    <eba_met:mi180 contextRef="c-71" decimals="2" unitRef="u-01">2093848</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-71" decimals="2" unitRef="u-01">2093848</eba_met:mi118>
+    <eba_met:mi132 contextRef="c-71" decimals="2" unitRef="u-01">2093848</eba_met:mi132>
+    <eba_met:mi310 contextRef="c-71" decimals="2" unitRef="u-01">2093848</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-72" decimals="2" unitRef="u-01">13212527</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-72" decimals="2" unitRef="u-01">13212527</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-72" decimals="2" unitRef="u-01">13212527</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-72" decimals="2" unitRef="u-01">13212527</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-72" decimals="2" unitRef="u-01">13212527</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-72" decimals="2" unitRef="u-01">7287362.19</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-73" decimals="2" unitRef="u-01">13212527</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-73" decimals="2" unitRef="u-01">13212527</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-73" decimals="2" unitRef="u-01">13212527</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-73" decimals="2" unitRef="u-01">13212527</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-73" decimals="2" unitRef="u-01">13212527</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-73" decimals="2" unitRef="u-01">7287362</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-74" decimals="2" unitRef="u-01">11850330</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-74" decimals="2" unitRef="u-01">11850330</eba_met:mi118>
+    <eba_met:mi132 contextRef="c-74" decimals="2" unitRef="u-01">11850330</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-74" decimals="2" unitRef="u-01">11850330</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-74" decimals="2" unitRef="u-01">5925165</eba_met:mi310>
+    <eba_met:mi132 contextRef="c-75" decimals="2" unitRef="u-01">1362197</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-75" decimals="2" unitRef="u-01">1362197</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-75" decimals="2" unitRef="u-01">1362197</eba_met:mi310>
+    <eba_met:mi118 contextRef="c-75" decimals="2" unitRef="u-01">1362197</eba_met:mi118>
+    <eba_met:mi180 contextRef="c-75" decimals="2" unitRef="u-01">1362197</eba_met:mi180>
+    <eba_met:mi180 contextRef="c-76" decimals="2" unitRef="u-01">13385620</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-76" decimals="2" unitRef="u-01">13385620</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-76" decimals="2" unitRef="u-01">13385620</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-76" decimals="2" unitRef="u-01">13385620</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-76" decimals="2" unitRef="u-01">13385620</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-76" decimals="2" unitRef="u-01">13392709.94</eba_met:mi310>
+    <eba_met:mi132 contextRef="c-77" decimals="2" unitRef="u-01">13385620</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-77" decimals="2" unitRef="u-01">13385620</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-77" decimals="2" unitRef="u-01">13392710</eba_met:mi310>
+    <eba_met:mi118 contextRef="c-77" decimals="2" unitRef="u-01">13385620</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-77" decimals="2" unitRef="u-01">13385620</eba_met:mi117>
+    <eba_met:mi180 contextRef="c-77" decimals="2" unitRef="u-01">13385620</eba_met:mi180>
+    <eba_met:mi180 contextRef="c-78" decimals="2" unitRef="u-01">13371439</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-78" decimals="2" unitRef="u-01">13371439</eba_met:mi118>
+    <eba_met:mi125 contextRef="c-78" decimals="2" unitRef="u-01">13371439</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-78" decimals="2" unitRef="u-01">13371439</eba_met:mi310>
+    <eba_met:mi125 contextRef="c-79" decimals="2" unitRef="u-01">14181</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-79" decimals="2" unitRef="u-01">21271</eba_met:mi310>
+    <eba_met:mi118 contextRef="c-79" decimals="2" unitRef="u-01">14181</eba_met:mi118>
+    <eba_met:mi180 contextRef="c-79" decimals="2" unitRef="u-01">14181</eba_met:mi180>
+    <eba_met:mi180 contextRef="c-20" decimals="2" unitRef="u-01">8381</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-20" decimals="2" unitRef="u-01">8381</eba_met:mi118>
+    <eba_met:mi117 contextRef="c-20" decimals="2" unitRef="u-01">8381</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-20" decimals="2" unitRef="u-01">8381</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-20" decimals="2" unitRef="u-01">8381</eba_met:mi125>
+    <eba_met:mi117 contextRef="c-80" decimals="2" unitRef="u-01">8381</eba_met:mi117>
+    <eba_met:mi132 contextRef="c-80" decimals="2" unitRef="u-01">8381</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-80" decimals="2" unitRef="u-01">8381</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-80" decimals="2" unitRef="u-01">8381</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-80" decimals="2" unitRef="u-01">8381</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-80" decimals="2" unitRef="u-01">8381</eba_met:mi118>
+    <eba_met:mi180 contextRef="c-81" decimals="2" unitRef="u-01">8381</eba_met:mi180>
+    <eba_met:mi118 contextRef="c-81" decimals="2" unitRef="u-01">8381</eba_met:mi118>
+    <eba_met:mi132 contextRef="c-81" decimals="2" unitRef="u-01">8381</eba_met:mi132>
+    <eba_met:mi125 contextRef="c-81" decimals="2" unitRef="u-01">8381</eba_met:mi125>
+    <eba_met:mi310 contextRef="c-81" decimals="2" unitRef="u-01">8381</eba_met:mi310>
+    <eba_met:mi180 contextRef="c-82" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-82" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-83" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-84" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-85" decimals="2" unitRef="u-01">719061</eba_met:mi180>
+    <eba_met:mi180 contextRef="c-86" decimals="2" unitRef="u-01">3550828.26</eba_met:mi180>
+    <eba_met:mi180 contextRef="c-87" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-88" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-89" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-85" decimals="2" unitRef="u-01">719061</eba_met:mi125>
+    <eba_met:mi125 contextRef="c-86" decimals="2" unitRef="u-01">3550828.26</eba_met:mi125>
+    <eba_met:mi125 contextRef="c-87" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-88" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi125 contextRef="c-89" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi309 contextRef="c-85" decimals="2" unitRef="u-01">569386.5</eba_met:mi309>
+    <eba_met:mi309 contextRef="c-86" decimals="2" unitRef="u-01">710165.652</eba_met:mi309>
+    <eba_met:mi309 contextRef="c-87" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi309 contextRef="c-88" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi309 contextRef="c-89" unitRef="u-01" xsi:nil="true"/>
+    <eba_met:mi180 contextRef="c-90" decimals="2" unitRef="u-01">2300007.82</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-90" decimals="2" unitRef="u-01">2300007.82</eba_met:mi125>
+    <eba_met:mi180 contextRef="c-91" decimals="2" unitRef="u-01">350600.5</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-91" decimals="2" unitRef="u-01">350600.5</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-91" decimals="2" unitRef="u-01">350600.5</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-92" decimals="2" unitRef="u-01">6282237.66</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-92" decimals="2" unitRef="u-01">6282237.66</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-92" decimals="2" unitRef="u-01">3009707.743</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-93" decimals="2" unitRef="u-01">13212527.27</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-93" decimals="2" unitRef="u-01">13212527.27</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-93" decimals="2" unitRef="u-01">8129396.47</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-94" decimals="2" unitRef="u-01">910000</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-94" decimals="2" unitRef="u-01">910000</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-94" decimals="2" unitRef="u-01">910000</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-95" decimals="2" unitRef="u-01">8380.87</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-95" decimals="2" unitRef="u-01">8380.87</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-95" decimals="2" unitRef="u-01">8380.87</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-96" decimals="2" unitRef="u-01">14664.19</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-96" decimals="2" unitRef="u-01">14664.19</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-96" decimals="2" unitRef="u-01">12052.838</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-97" decimals="2" unitRef="u-01">843925.5</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-97" decimals="2" unitRef="u-01">843925.5</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-97" decimals="2" unitRef="u-01">421962.75</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-98" decimals="2" unitRef="u-01">12934.3</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-98" decimals="2" unitRef="u-01">12934.3</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-98" decimals="2" unitRef="u-01">6467.15</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-99" decimals="2" unitRef="u-01">4735.31</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-99" decimals="2" unitRef="u-01">4735.31</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-99" decimals="2" unitRef="u-01">7102.965</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-100" decimals="2" unitRef="u-01">803.63</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-100" decimals="2" unitRef="u-01">803.63</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-100" decimals="2" unitRef="u-01">401.815</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-101" decimals="2" unitRef="u-01">12461439</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-101" decimals="2" unitRef="u-01">12461439</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-101" decimals="2" unitRef="u-01">12461439</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-102" decimals="2" unitRef="u-01">298007.5</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-102" decimals="2" unitRef="u-01">298007.5</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-102" decimals="2" unitRef="u-01">149003.75</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-103" decimals="2" unitRef="u-01">315419.16</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-103" decimals="2" unitRef="u-01">315419.16</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-103" decimals="2" unitRef="u-01">315419.16</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-104" decimals="2" unitRef="u-01">9445.315614</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-104" decimals="2" unitRef="u-01">9445.315614</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-104" decimals="2" unitRef="u-01">14167.97342</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-105" decimals="2" unitRef="u-01">256660</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-105" decimals="2" unitRef="u-01">256660</eba_met:mi125>
+    <eba_met:mi309 contextRef="c-105" decimals="2" unitRef="u-01">256660</eba_met:mi309>
+    <eba_met:mi180 contextRef="c-106" decimals="2" unitRef="u-01">219199.3427</eba_met:mi180>
+    <eba_met:mi125 contextRef="c-106" decimals="2" unitRef="u-01">219199.3427</eba_met:mi125>
+    <eba_met:mi255 contextRef="c-107" decimals="2" unitRef="u-01">1399860.72</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-108" decimals="2" unitRef="u-01">1399860.72</eba_met:mi255>
+    <eba_met:mi259 contextRef="c-108" decimals="2" unitRef="u-01">1399860.72</eba_met:mi259>
+    <eba_met:mi235 contextRef="c-109" decimals="2" unitRef="u-01">1399860.72</eba_met:mi235>
+    <eba_met:mi184 contextRef="c-109" decimals="2" unitRef="u-01">111988.86</eba_met:mi184>
+    <eba_met:mi184 contextRef="c-110" decimals="2" unitRef="u-01">111988.86</eba_met:mi184>
+    <eba_met:mi255 contextRef="c-111" decimals="2" unitRef="u-01">2576943.44</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-112" decimals="2" unitRef="u-01">1177082.72</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-113" decimals="2" unitRef="u-01">25247.10</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-114" decimals="2" unitRef="u-01">15870.50</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-115" decimals="2" unitRef="u-01">57.38</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-116" decimals="2" unitRef="u-01">17747.22</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-117" decimals="2" unitRef="u-01">8505.49</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-118" decimals="2" unitRef="u-01">8109.83</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-119" decimals="2" unitRef="u-01">2722.70</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-120" decimals="2" unitRef="u-01">9263.44</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-121" decimals="2" unitRef="u-01">6917.33</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-122" decimals="2" unitRef="u-01">2732.66</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-123" decimals="2" unitRef="u-01">50043.63</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-124" decimals="2" unitRef="u-01">266249.66</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-125" decimals="2" unitRef="u-01">5134.44</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-126" decimals="2" unitRef="u-01">659220.42</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-127" decimals="2" unitRef="u-01">8872.95</eba_met:mi255>
+    <eba_met:mi255 contextRef="c-128" decimals="2" unitRef="u-01">292059.34</eba_met:mi255>
+    <eba_met:mi118 contextRef="c-45" decimals="2" unitRef="u-01">2485876.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-46" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-47" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-48" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-49" decimals="2" unitRef="u-01">7462876.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-50" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-51" decimals="2" unitRef="u-01">13596356.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-52" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-53" decimals="2" unitRef="u-01">18178257.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-54" decimals="2" unitRef="u-01">14181.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-55" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-56" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-57" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <eba_met:mi118 contextRef="c-58" decimals="2" unitRef="u-01">0.00</eba_met:mi118>
+    <find:fIndicators>
+        <find:filingIndicator contextRef="c">C_22.00</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_08.01</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_03.00</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_09.01</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_16.00</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_07.00</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_02.00</find:filingIndicator>
+        <find:filingIndicator contextRef="c">C_01.00</find:filingIndicator>
+    </find:fIndicators>
+    <eba_met:mi132 contextRef="c-37" decimals="2" unitRef="u-01">41737545.00</eba_met:mi132>
+    <eba_met:mi132 contextRef="c-39" decimals="2" unitRef="u-01">41737545.00</eba_met:mi132>
+</xbrl>

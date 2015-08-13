@@ -1,0 +1,978 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--(C) EBA-->
+<xbrli:xbrl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators" xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim" xmlns:eba_BA="http://www.eba.europa.eu/xbrl/crr/dict/dom/BA" xmlns:eba_AS="http://www.eba.europa.eu/xbrl/crr/dict/dom/AS" xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met" xmlns:eba_SC="http://www.eba.europa.eu/xbrl/crr/dict/dom/SC" xmlns:eba_TR="http://www.eba.europa.eu/xbrl/crr/dict/dom/TR" xmlns:eba_IM="http://www.eba.europa.eu/xbrl/crr/dict/dom/IM" xmlns:eba_AP="http://www.eba.europa.eu/xbrl/crr/dict/dom/AP" xmlns:eba_typ="http://www.eba.europa.eu/xbrl/crr/dict/typ" xmlns:eba_EC="http://www.eba.europa.eu/xbrl/crr/dict/dom/EC" xmlns:eba_CG="http://www.eba.europa.eu/xbrl/crr/dict/dom/CG" xmlns:eba_MC="http://www.eba.europa.eu/xbrl/crr/dict/dom/MC" xmlns:eba_BT="http://www.eba.europa.eu/xbrl/crr/dict/dom/BT" xmlns:eba_RF="http://www.eba.europa.eu/xbrl/crr/dict/dom/RF" xmlns:eba_CS="http://www.eba.europa.eu/xbrl/crr/dict/dom/CS" xmlns:eba_PU="http://www.eba.europa.eu/xbrl/crr/dict/dom/PU" xmlns:eba_GA="http://www.eba.europa.eu/xbrl/crr/dict/dom/GA" xmlns:eba_TI="http://www.eba.europa.eu/xbrl/crr/dict/dom/TI" xmlns:eba_CA="http://www.eba.europa.eu/xbrl/crr/dict/dom/CA" xmlns:eba_ZZ="http://www.eba.europa.eu/xbrl/crr/dict/dom/ZZ" xsi:schemaLocation="http://www.eurofiling.info/xbrl/ext/filing-indicators http://www.eurofiling.info/eu/fr/xbrl/ext/filing-indicators.xsd http://www.eba.europa.eu/xbrl/crr/dict/met http://www.eba.europa.eu/eu/fr/xbrl/crr/dict/met/met.xsd">
+  <link:schemaRef xlink:type="simple" xlink:href="http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_ind.xsd" />
+  <xbrli:unit id="uEUR">
+    <xbrli:measure>iso4217:EUR</xbrli:measure>
+  </xbrli:unit>
+  <xbrli:unit id="uPURE">
+    <xbrli:measure>xbrli:pure</xbrli:measure>
+  </xbrli:unit>
+  <xbrli:context id="c1">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+  </xbrli:context>
+  <find:fIndicators>
+    <find:filingIndicator contextRef="c1">C_101.00</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_102.00</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_103.00</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_104.00</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_105.01</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_105.02</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_105.03</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_107.01</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_107.02</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_108.00</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_109.01</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_109.02</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_109.03</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_110.01</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_110.02</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">C_110.03</find:filingIndicator>
+    <find:filingIndicator contextRef="c1">S_00.01</find:filingIndicator>
+  </find:fIndicators>
+  <xbrli:context id="c2">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei4 contextRef="c2">eba_AS:x1</eba_met:ei4>
+  <eba_met:ei207 contextRef="c2">eba_SC:x6</eba_met:ei207>
+  <xbrli:context id="c3">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:INC">
+        <eba_typ:CC>33</eba_typ:CC>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei366 contextRef="c3">eba_EC:x16</eba_met:ei366>
+  <eba_met:ei367 contextRef="c3">eba_AP:x27</eba_met:ei367>
+  <eba_met:ii368 unitRef="uPURE" decimals="0" contextRef="c3">7145000</eba_met:ii368>
+  <eba_met:di369 contextRef="c3">3130-01-01</eba_met:di369>
+  <eba_met:pi187 unitRef="uPURE" decimals="4" contextRef="c3">30.42</eba_met:pi187>
+  <eba_met:ei408 contextRef="c3">eba_IM:x3</eba_met:ei408>
+  <eba_met:pi128 unitRef="uPURE" decimals="4" contextRef="c3">21.47</eba_met:pi128>
+  <eba_met:ii163 unitRef="uPURE" decimals="0" contextRef="c3">7574000</eba_met:ii163>
+  <xbrli:context id="c4">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:INC">
+        <eba_typ:CC>33</eba_typ:CC>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi180 unitRef="uEUR" decimals="-3" contextRef="c4">1328000</eba_met:mi180>
+  <eba_met:mi116 unitRef="uEUR" decimals="-3" contextRef="c4">5550000</eba_met:mi116>
+  <eba_met:pi370 unitRef="uPURE" decimals="4" contextRef="c4">52.8</eba_met:pi370>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c4">8516000</eba_met:mi119>
+  <eba_met:mi42 unitRef="uEUR" decimals="-3" contextRef="c4">3903000</eba_met:mi42>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c4">701000</eba_met:mi310>
+  <xbrli:context id="c5">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CLS">eba_CG:x18</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:SCC">eba_MC:x609</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:SUB">eba_MC:x611</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:INC">
+        <eba_typ:CC>33</eba_typ:CC>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pi158 unitRef="uPURE" decimals="4" contextRef="c5">64.19</eba_met:pi158>
+  <xbrli:context id="c6">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CLS">eba_CG:x18</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:SCC">eba_MC:x610</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:SUB">eba_MC:x611</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:INC">
+        <eba_typ:CC>33</eba_typ:CC>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pi158 unitRef="uPURE" decimals="4" contextRef="c6">36.36</eba_met:pi158>
+  <xbrli:context id="c7">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei366 contextRef="c7">eba_EC:x49</eba_met:ei366>
+  <eba_met:ei367 contextRef="c7">eba_AP:x67</eba_met:ei367>
+  <eba_met:ii177 unitRef="uPURE" decimals="0" contextRef="c7">296000</eba_met:ii177>
+  <eba_met:ii368 unitRef="uPURE" decimals="0" contextRef="c7">3290000</eba_met:ii368>
+  <eba_met:pi187 unitRef="uPURE" decimals="4" contextRef="c7">42.96</eba_met:pi187>
+  <eba_met:ei408 contextRef="c7">eba_IM:x31</eba_met:ei408>
+  <eba_met:pi128 unitRef="uPURE" decimals="4" contextRef="c7">69.8</eba_met:pi128>
+  <eba_met:ii163 unitRef="uPURE" decimals="0" contextRef="c7">7073000</eba_met:ii163>
+  <eba_met:mi115 unitRef="uEUR" decimals="-3" contextRef="c7">1381000</eba_met:mi115>
+  <xbrli:context id="c8">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi180 unitRef="uEUR" decimals="-3" contextRef="c8">5450000</eba_met:mi180>
+  <eba_met:mi116 unitRef="uEUR" decimals="-3" contextRef="c8">8885000</eba_met:mi116>
+  <eba_met:pi370 unitRef="uPURE" decimals="4" contextRef="c8">30.84</eba_met:pi370>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c8">3300000</eba_met:mi119>
+  <eba_met:mi42 unitRef="uEUR" decimals="-3" contextRef="c8">7730000</eba_met:mi42>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c8">3924000</eba_met:mi310>
+  <xbrli:context id="c9">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x401</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi76 unitRef="uEUR" decimals="-3" contextRef="c9">6129000</eba_met:mi76>
+  <xbrli:context id="c10">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c10">8047000</eba_met:mi310>
+  <xbrli:context id="c11">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei366 contextRef="c11">eba_EC:x41</eba_met:ei366>
+  <eba_met:ei367 contextRef="c11">eba_AP:x27</eba_met:ei367>
+  <eba_met:ii177 unitRef="uPURE" decimals="0" contextRef="c11">4850000</eba_met:ii177>
+  <eba_met:ii368 unitRef="uPURE" decimals="0" contextRef="c11">3630000</eba_met:ii368>
+  <eba_met:pi187 unitRef="uPURE" decimals="4" contextRef="c11">1.45</eba_met:pi187>
+  <eba_met:ei408 contextRef="c11">eba_IM:x3</eba_met:ei408>
+  <eba_met:pi128 unitRef="uPURE" decimals="4" contextRef="c11">16.13</eba_met:pi128>
+  <eba_met:ii163 unitRef="uPURE" decimals="0" contextRef="c11">2371000</eba_met:ii163>
+  <eba_met:mi115 unitRef="uEUR" decimals="-3" contextRef="c11">8745000</eba_met:mi115>
+  <xbrli:context id="c12">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi180 unitRef="uEUR" decimals="-3" contextRef="c12">9576000</eba_met:mi180>
+  <eba_met:mi116 unitRef="uEUR" decimals="-3" contextRef="c12">6283000</eba_met:mi116>
+  <eba_met:pi370 unitRef="uPURE" decimals="4" contextRef="c12">40.47</eba_met:pi370>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c12">3440000</eba_met:mi119>
+  <eba_met:mi42 unitRef="uEUR" decimals="-3" contextRef="c12">4689000</eba_met:mi42>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c12">1846000</eba_met:mi310>
+  <xbrli:context id="c13">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x401</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi76 unitRef="uEUR" decimals="-3" contextRef="c13">1650000</eba_met:mi76>
+  <xbrli:context id="c14">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x42</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c14">56000</eba_met:mi310>
+  <xbrli:context id="c15">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x48</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pd371 unitRef="uPURE" decimals="4" contextRef="c15">56.42</eba_met:pd371>
+  <eba_met:pd372 unitRef="uPURE" decimals="4" contextRef="c15">98</eba_met:pd372>
+  <xbrli:context id="c16">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x49</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pd371 unitRef="uPURE" decimals="4" contextRef="c16">1.47</eba_met:pd371>
+  <eba_met:pd372 unitRef="uPURE" decimals="4" contextRef="c16">61.89</eba_met:pd372>
+  <xbrli:context id="c17">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x48</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CSC">eba_CS:x7</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c17">4086000</eba_met:mi310>
+  <xbrli:context id="c18">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x30</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x49</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CSC">eba_CS:x7</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c18">5985000</eba_met:mi310>
+  <xbrli:context id="c19">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ii368 unitRef="uPURE" decimals="0" contextRef="c19">6677000</eba_met:ii368>
+  <eba_met:pi187 unitRef="uPURE" decimals="4" contextRef="c19">0.72</eba_met:pi187>
+  <eba_met:pi128 unitRef="uPURE" decimals="4" contextRef="c19">17.5</eba_met:pi128>
+  <eba_met:ii163 unitRef="uPURE" decimals="0" contextRef="c19">7590000</eba_met:ii163>
+  <xbrli:context id="c20">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi180 unitRef="uEUR" decimals="-3" contextRef="c20">3733000</eba_met:mi180>
+  <eba_met:pi370 unitRef="uPURE" decimals="4" contextRef="c20">90.61</eba_met:pi370>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c20">4274000</eba_met:mi119>
+  <eba_met:mi310 unitRef="uEUR" decimals="-3" contextRef="c20">3597000</eba_met:mi310>
+  <xbrli:context id="c21">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x409</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi129 unitRef="uEUR" decimals="-3" contextRef="c21">1626000</eba_met:mi129>
+  <eba_met:pi373 unitRef="uPURE" decimals="4" contextRef="c21">91.5</eba_met:pi373>
+  <eba_met:mi323 unitRef="uEUR" decimals="-3" contextRef="c21">470000</eba_met:mi323>
+  <xbrli:context id="c22">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CLS">eba_CG:x9</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c22">359000</eba_met:mi119>
+  <xbrli:context id="c23">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CLS">eba_CG:x21</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c23">8833000</eba_met:mi119>
+  <xbrli:context id="c24">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CLS">eba_CG:x9</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pi128 unitRef="uPURE" decimals="4" contextRef="c24">15.7</eba_met:pi128>
+  <xbrli:context id="c25">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:IMS">eba_IM:x29</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CLS">eba_CG:x21</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:TBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pi128 unitRef="uPURE" decimals="4" contextRef="c25">0.06</eba_met:pi128>
+  <xbrli:context id="c26">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:si374 contextRef="c26">5024</eba_met:si374>
+  <eba_met:si375 contextRef="c26">2134</eba_met:si375>
+  <eba_met:bi376 contextRef="c26">true</eba_met:bi376>
+  <xbrli:context id="c27">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:mi119 unitRef="uEUR" decimals="-3" contextRef="c27">920000</eba_met:mi119>
+  <xbrli:context id="c28">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:PUR">eba_PU:x31</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x50</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pd410 unitRef="uPURE" decimals="4" contextRef="c28">55.5</eba_met:pd410>
+  <eba_met:pd411 unitRef="uPURE" decimals="4" contextRef="c28">94.96</eba_met:pd411>
+  <eba_met:pd378 unitRef="uPURE" decimals="4" contextRef="c28">6.98</eba_met:pd378>
+  <xbrli:context id="c29">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x48</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pd379 unitRef="uPURE" decimals="4" contextRef="c29">30.27</eba_met:pd379>
+  <xbrli:context id="c30">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:PUR">eba_PU:x32</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:pd380 unitRef="uPURE" decimals="4" contextRef="c30">79.39</eba_met:pd380>
+  <xbrli:context id="c31">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:PUR">eba_PU:x32</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x51</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri381 unitRef="uPURE" decimals="4" contextRef="c31">762000</eba_met:ri381>
+  <xbrli:context id="c32">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:REF">eba_RF:x50</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x613</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IMI">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei152 contextRef="c32">eba_GA:HT</eba_met:ei152>
+  <xbrli:context id="c33">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:RNI">
+        <eba_typ:ID>33</eba_typ:ID>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:si412 contextRef="c33">1435</eba_met:si412>
+  <eba_met:si409 contextRef="c33">3244</eba_met:si409>
+  <xbrli:context id="c34">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x614</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x27</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x4</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:IRN">
+        <eba_typ:ID>33</eba_typ:ID>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:si409 contextRef="c34">2088</eba_met:si409>
+  <eba_met:ei152 contextRef="c34">eba_GA:_5V</eba_met:ei152>
+  <xbrli:context id="c35">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x81</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei386 contextRef="c35">eba_AP:x85</eba_met:ei386>
+  <eba_met:ei388 contextRef="c35">eba_TI:x101</eba_met:ei388>
+  <eba_met:ei389 contextRef="c35">eba_TI:x27</eba_met:ei389>
+  <eba_met:ei390 contextRef="c35">eba_AP:x89</eba_met:ei390>
+  <eba_met:si397 contextRef="c35">8171</eba_met:si397>
+  <eba_met:si396 contextRef="c35">3559</eba_met:si396>
+  <eba_met:si395 contextRef="c35">8394</eba_met:si395>
+  <eba_met:si394 contextRef="c35">1186</eba_met:si394>
+  <xbrli:context id="c36">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x81</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri391 unitRef="uPURE" decimals="4" contextRef="c36">7878000</eba_met:ri391>
+  <eba_met:ri392 unitRef="uPURE" decimals="4" contextRef="c36">3308000</eba_met:ri392>
+  <eba_met:si399 contextRef="c36">4471</eba_met:si399>
+  <eba_met:si400 contextRef="c36">5980</eba_met:si400>
+  <xbrli:context id="c37">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x82</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei386 contextRef="c37">eba_AP:x84</eba_met:ei386>
+  <eba_met:ei388 contextRef="c37">eba_TI:x99</eba_met:ei388>
+  <eba_met:si397 contextRef="c37">2971</eba_met:si397>
+  <eba_met:si396 contextRef="c37">4330</eba_met:si396>
+  <eba_met:si398 contextRef="c37">3011</eba_met:si398>
+  <xbrli:context id="c38">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x82</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri393 unitRef="uPURE" decimals="4" contextRef="c38">81000</eba_met:ri393>
+  <xbrli:context id="c39">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x81</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CCA">eba_CA:x1</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:NED">
+        <eba_typ:DT>2015-06-30</eba_typ:DT>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri417 unitRef="uPURE" decimals="4" contextRef="c39">51000</eba_met:ri417>
+  <xbrli:context id="c40">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x82</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CCA">eba_CA:x1</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:NED">
+        <eba_typ:DT>2015-06-30</eba_typ:DT>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri416 unitRef="uPURE" decimals="4" contextRef="c40">619000</eba_met:ri416>
+  <xbrli:context id="c41">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x81</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x83</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CCA">eba_CA:x1</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:NED">
+        <eba_typ:DT>2015-06-30</eba_typ:DT>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:rd401 unitRef="uPURE" decimals="4" contextRef="c41">7666000</eba_met:rd401>
+  <xbrli:context id="c42">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x612</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x26</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x93</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei402 contextRef="c42">eba_ZZ:x36</eba_met:ei402>
+  <eba_met:ei403 contextRef="c42">eba_AP:x91</eba_met:ei403>
+  <eba_met:si404 contextRef="c42">8534</eba_met:si404>
+  <eba_met:si405 contextRef="c42">6488</eba_met:si405>
+  <xbrli:context id="c43">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x612</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x26</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x93</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei387 contextRef="c43">eba_TI:x104</eba_met:ei387>
+  <eba_met:ei406 contextRef="c43">eba_ZZ:x39</eba_met:ei406>
+  <eba_met:ei407 contextRef="c43">eba_ZZ:x40</eba_met:ei407>
+  <xbrli:context id="c44">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x612</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x26</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x93</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CCA">eba_CA:x1</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:NED">
+        <eba_typ:DT>2015-06-30</eba_typ:DT>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri415 unitRef="uPURE" decimals="4" contextRef="c44">6828000</eba_met:ri415>
+  <xbrli:context id="c45">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x189</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x26</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x80</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei402 contextRef="c45">eba_ZZ:x38</eba_met:ei402>
+  <eba_met:ei403 contextRef="c45">eba_AP:x91</eba_met:ei403>
+  <eba_met:si404 contextRef="c45">1031</eba_met:si404>
+  <eba_met:si405 contextRef="c45">1509</eba_met:si405>
+  <xbrli:context id="c46">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x189</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x26</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x80</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ei387 contextRef="c46">eba_TI:x18</eba_met:ei387>
+  <eba_met:ei406 contextRef="c46">eba_ZZ:x39</eba_met:ei406>
+  <eba_met:ei407 contextRef="c46">eba_ZZ:x40</eba_met:ei407>
+  <xbrli:context id="c47">
+    <xbrli:entity>
+      <xbrli:identifier scheme="http://standards.iso.org/iso/17442">213800HIEOF954KNG142</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2015-07-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x9</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x189</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:APR">eba_AP:x26</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:TRI">eba_TR:x11</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MRW">eba_AP:x80</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:CCA">eba_CA:x1</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:HYV">eba_BT:x10</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:NED">
+        <eba_typ:DT>2015-06-30</eba_typ:DT>
+      </xbrldi:typedMember>
+      <xbrldi:typedMember dimension="eba_dim:PBE">
+        <eba_typ:IS>33</eba_typ:IS>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+  <eba_met:ri414 unitRef="uPURE" decimals="4" contextRef="c47">901000</eba_met:ri414>
+</xbrli:xbrl>

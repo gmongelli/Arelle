@@ -1,0 +1,3173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xbrli:xbrl
+	xmlns:s2c_AO="http://eiopa.europa.eu/xbrl/s2c/dict/dom/AO"
+	xmlns:s2c_AP="http://eiopa.europa.eu/xbrl/s2c/dict/dom/AP"
+	xmlns:s2c_CN="http://eiopa.europa.eu/xbrl/s2c/dict/dom/CN"
+	xmlns:s2c_CS="http://eiopa.europa.eu/xbrl/s2c/dict/dom/CS"
+	xmlns:s2c_CU="http://eiopa.europa.eu/xbrl/s2c/dict/dom/CU"
+	xmlns:s2c_LA="http://eiopa.europa.eu/xbrl/s2c/dict/dom/LA"
+	xmlns:s2c_PU="http://eiopa.europa.eu/xbrl/s2c/dict/dom/PU"
+	xmlns:s2c_SE="http://eiopa.europa.eu/xbrl/s2c/dict/dom/SE"
+	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
+	xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+	xmlns:link="http://www.xbrl.org/2003/linkbase"
+	xmlns:s2c_AM="http://eiopa.europa.eu/xbrl/s2c/dict/dom/AM"
+	xmlns:s2c_DI="http://eiopa.europa.eu/xbrl/s2c/dict/dom/DI"
+	xmlns:s2c_EL="http://eiopa.europa.eu/xbrl/s2c/dict/dom/EL"
+	xmlns:s2c_GA="http://eiopa.europa.eu/xbrl/s2c/dict/dom/GA"
+	xmlns:s2c_LB="http://eiopa.europa.eu/xbrl/s2c/dict/dom/LB"
+	xmlns:s2c_RT="http://eiopa.europa.eu/xbrl/s2c/dict/dom/RT"
+	xmlns:s2c_TB="http://eiopa.europa.eu/xbrl/s2c/dict/dom/TB"
+	xmlns:s2c_VM="http://eiopa.europa.eu/xbrl/s2c/dict/dom/VM"
+	xmlns:s2c_dim="http://eiopa.europa.eu/xbrl/s2c/dict/dim"
+	xmlns:s2c_typ="http://eiopa.europa.eu/xbrl/s2c/dict/typ"
+	xmlns:s2md_met="http://eiopa.europa.eu/xbrl/s2md/dict/met"
+	xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+	xmlns:xbrli="http://www.xbrl.org/2003/instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	>
+<link:schemaRef xlink:href="http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/mod/d1b.xsd" xlink:type="simple"/>
+<xbrli:unit id="u">
+    <xbrli:measure>iso4217:EUR</xbrli:measure>
+</xbrli:unit>
+<xbrli:unit id="p">
+    <xbrli:measure>xbrli:pure</xbrli:measure>
+</xbrli:unit>
+<xbrli:context id="c">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+</xbrli:context>
+<find:fIndicators>
+	<find:filingIndicator contextRef="c">S.01.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.01.02</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.01.03</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.02.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.23.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.25.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.25.02</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.25.03</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.28.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.28.02</find:filingIndicator>
+</find:fIndicators>
+<s2md_met:di1043 contextRef="c">2003-02-17</s2md_met:di1043>
+<s2md_met:di1044 contextRef="c">2006-11-28</s2md_met:di1044>
+<s2md_met:ei1633 contextRef="c">s2c_CN:x1</s2md_met:ei1633>
+<s2md_met:ei1642 contextRef="c">s2c_CN:x11</s2md_met:ei1642>
+<s2md_met:ei1643 contextRef="c">s2c_CN:x12</s2md_met:ei1643>
+<s2md_met:ei1668 contextRef="c">s2c_CN:x15</s2md_met:ei1668>
+<s2md_met:ei1669 contextRef="c">s2c_CN:x1</s2md_met:ei1669>
+<s2md_met:ei1676 contextRef="c">s2c_AP:x3</s2md_met:ei1676>
+<s2md_met:ei1677 contextRef="c">s2c_CS:x35</s2md_met:ei1677>
+<s2md_met:ei1678 contextRef="c">s2c_AP:x6</s2md_met:ei1678>
+<s2md_met:ei1679 contextRef="c">s2c_PU:x52</s2md_met:ei1679>
+<s2md_met:ei1680 contextRef="c">s2c_AP:x8</s2md_met:ei1680>
+<s2md_met:ei1681 contextRef="c">s2c_AP:x10</s2md_met:ei1681>
+<s2md_met:ei1682 contextRef="c">s2c_AP:x11</s2md_met:ei1682>
+<s2md_met:ei1683 contextRef="c">s2c_LA:tw</s2md_met:ei1683>
+<s2md_met:ei1684 contextRef="c">s2c_CS:x37</s2md_met:ei1684>
+<s2md_met:ei1686 contextRef="c">s2c_AM:x109</s2md_met:ei1686>
+<s2md_met:ei1740 contextRef="c">s2c_CN:x2</s2md_met:ei1740>
+<s2md_met:ei1896 contextRef="c">s2c_CN:x54</s2md_met:ei1896>
+<s2md_met:ei1930 contextRef="c">s2c_CU:PGK</s2md_met:ei1930>
+<s2md_met:ei1931 contextRef="c">s2c_PU:x4</s2md_met:ei1931>
+<s2md_met:ei2135 contextRef="c">s2c_GA:SK</s2md_met:ei2135>
+<s2md_met:ei2136 contextRef="c">s2c_GA:SA</s2md_met:ei2136>
+<s2md_met:ei2137 contextRef="c">s2c_SE:x96</s2md_met:ei2137>
+<s2md_met:ei2138 contextRef="c">s2c_AO:x0</s2md_met:ei2138>
+<s2md_met:ei2290 contextRef="c">s2c_CN:x1</s2md_met:ei2290>
+<s2md_met:ei2291 contextRef="c">s2c_CN:x61</s2md_met:ei2291>
+<s2md_met:ei2292 contextRef="c">s2c_CN:x1</s2md_met:ei2292>
+<s2md_met:si1376 contextRef="c" xml:lang="en">tajors ns poyk br</s2md_met:si1376>
+<s2md_met:si2131 contextRef="c" xml:lang="en">xbgt pouu qbnb abagva</s2md_met:si2131>
+<s2md_met:si2132 contextRef="c" xml:lang="en">ie idluce fxdkcb</s2md_met:si2132>
+<xbrli:context id="BLx100_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x100</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx100_LEx62_VGx80_VLx9" decimals="2" unitRef="u">853048.35</s2md_met:mi366>
+<xbrli:context id="BLx100_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x100</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx100_LEx63_VGx80_VLx9" decimals="2" unitRef="u">135964.71</s2md_met:mi366>
+<xbrli:context id="BLx100_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x100</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx100_VGx80_VLx9" decimals="2" unitRef="u">44951.51</s2md_met:mi366>
+<xbrli:context id="BLx101_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x101</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx101_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">211647.10</s2md_met:mi505>
+<xbrli:context id="BLx101_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x101</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx101_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">622369.60</s2md_met:mi505>
+<xbrli:context id="BLx101_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x101</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx101_DIx6_IZx1_VGx80" decimals="2" unitRef="u">165436.05</s2md_met:mi505>
+<xbrli:context id="BLx101_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x101</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx101_LEx62_VGx80_VLx9" decimals="2" unitRef="u">410260.55</s2md_met:mi364>
+<xbrli:context id="BLx101_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x101</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx101_LEx63_VGx80_VLx9" decimals="2" unitRef="u">557153.89</s2md_met:mi364>
+<xbrli:context id="BLx101_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x101</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx101_VGx80_VLx9" decimals="2" unitRef="u">186315.52</s2md_met:mi366>
+<xbrli:context id="BLx106_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x106</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx106_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">19234.11</s2md_met:mi505>
+<xbrli:context id="BLx106_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x106</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx106_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">272851.70</s2md_met:mi505>
+<xbrli:context id="BLx106_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x106</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx106_DIx6_IZx1_VGx80" decimals="2" unitRef="u">233300.53</s2md_met:mi505>
+<xbrli:context id="BLx106_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x106</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx106_LEx62_VGx80_VLx9" decimals="2" unitRef="u">827229.90</s2md_met:mi364>
+<xbrli:context id="BLx106_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x106</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx106_LEx63_VGx80_VLx9" decimals="2" unitRef="u">105540.88</s2md_met:mi364>
+<xbrli:context id="BLx106_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x106</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx106_VGx80_VLx9" decimals="2" unitRef="u">870105.38</s2md_met:mi366>
+<xbrli:context id="BLx119_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx119_LEx62_VGx80_VLx9" decimals="2" unitRef="u">233573.37</s2md_met:mi366>
+<xbrli:context id="BLx119_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx119_LEx63_VGx80_VLx9" decimals="2" unitRef="u">149417.18</s2md_met:mi366>
+<xbrli:context id="BLx119_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi263 contextRef="BLx119_VGx80" decimals="2" unitRef="u">593633.35</s2md_met:mi263>
+<s2md_met:mi276 contextRef="BLx119_VGx80" decimals="2" unitRef="u">256788.31</s2md_met:mi276>
+<s2md_met:mi363 contextRef="BLx119_VGx80" decimals="2" unitRef="u">913422.56</s2md_met:mi363>
+<xbrli:context id="BLx119_VGx80_VLx47">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x47</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx119_VGx80_VLx47" decimals="2" unitRef="u">174536.56</s2md_met:mi363>
+<xbrli:context id="BLx119_VGx80_VLx5">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x5</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx119_VGx80_VLx5" decimals="2" unitRef="u">60476.52</s2md_met:mi363>
+<xbrli:context id="BLx119_VGx80_VLx8">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x8</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx119_VGx80_VLx8" decimals="2" unitRef="u">474363.31</s2md_met:mi363>
+<xbrli:context id="BLx119_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x119</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx119_VGx80_VLx9" decimals="2" unitRef="u">312816.63</s2md_met:mi366>
+<xbrli:context id="BLx12_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x12</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx12_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">787783.85</s2md_met:mi505>
+<xbrli:context id="BLx12_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x12</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx12_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">578145.39</s2md_met:mi505>
+<xbrli:context id="BLx12_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x12</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx12_DIx6_IZx1_VGx80" decimals="2" unitRef="u">400123.35</s2md_met:mi505>
+<xbrli:context id="BLx12_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x12</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx12_LEx62_VGx80_VLx9" decimals="2" unitRef="u">708607.16</s2md_met:mi364>
+<xbrli:context id="BLx12_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x12</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx12_LEx63_VGx80_VLx9" decimals="2" unitRef="u">511386.06</s2md_met:mi364>
+<xbrli:context id="BLx12_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x12</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx12_VGx80_VLx9" decimals="2" unitRef="u">536098.09</s2md_met:mi366>
+<xbrli:context id="BLx132_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x132</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx132_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">972829.23</s2md_met:mi505>
+<xbrli:context id="BLx132_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x132</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx132_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">216307.19</s2md_met:mi505>
+<xbrli:context id="BLx132_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x132</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx132_DIx6_IZx1_VGx80" decimals="2" unitRef="u">1557.26</s2md_met:mi505>
+<xbrli:context id="BLx132_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x132</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx132_LEx62_VGx80_VLx9" decimals="2" unitRef="u">668224.72</s2md_met:mi364>
+<xbrli:context id="BLx132_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x132</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx132_LEx63_VGx80_VLx9" decimals="2" unitRef="u">135395.02</s2md_met:mi364>
+<xbrli:context id="BLx132_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x132</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx132_VGx80_VLx9" decimals="2" unitRef="u">650120.02</s2md_met:mi366>
+<xbrli:context id="BLx14_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx14_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">657486.85</s2md_met:mi505>
+<xbrli:context id="BLx14_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx14_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">2470.33</s2md_met:mi505>
+<xbrli:context id="BLx14_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx14_DIx6_IZx1_VGx80" decimals="2" unitRef="u">262066.68</s2md_met:mi505>
+<xbrli:context id="BLx14_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx14_LEx62_VGx80_VLx9" decimals="2" unitRef="u">431161.76</s2md_met:mi364>
+<xbrli:context id="BLx14_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx14_LEx63_VGx80_VLx9" decimals="2" unitRef="u">573113.04</s2md_met:mi364>
+<xbrli:context id="BLx14_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx14_VGx80_VLx9" decimals="2" unitRef="u">516140.72</s2md_met:mi366>
+<xbrli:context id="BLx173_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x173</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx173_VGx80" decimals="2" unitRef="u">312007.66</s2md_met:mi363>
+<xbrli:context id="BLx173_VGx80_VLx47">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x173</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x47</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx173_VGx80_VLx47" decimals="2" unitRef="u">430456.94</s2md_met:mi363>
+<xbrli:context id="BLx173_VGx80_VLx5">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x173</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x5</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx173_VGx80_VLx5" decimals="2" unitRef="u">134029.58</s2md_met:mi363>
+<xbrli:context id="BLx173_VGx80_VLx8">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x173</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x8</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx173_VGx80_VLx8" decimals="2" unitRef="u">291868.05</s2md_met:mi363>
+<xbrli:context id="BLx176_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x176</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx176_VGx80" decimals="2" unitRef="u">983550.83</s2md_met:mi363>
+<xbrli:context id="BLx27_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x27</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx27_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">920165.48</s2md_met:mi505>
+<xbrli:context id="BLx27_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x27</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx27_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">86433.74</s2md_met:mi505>
+<xbrli:context id="BLx27_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x27</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx27_DIx6_IZx1_VGx80" decimals="2" unitRef="u">612332.65</s2md_met:mi505>
+<xbrli:context id="BLx27_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x27</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx27_LEx62_VGx80_VLx9" decimals="2" unitRef="u">851361.07</s2md_met:mi364>
+<xbrli:context id="BLx27_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x27</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx27_LEx63_VGx80_VLx9" decimals="2" unitRef="u">449390.85</s2md_met:mi364>
+<xbrli:context id="BLx27_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x27</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx27_VGx80_VLx9" decimals="2" unitRef="u">919701.55</s2md_met:mi366>
+<xbrli:context id="BLx31_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x31</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx31_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">804372.29</s2md_met:mi505>
+<xbrli:context id="BLx31_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x31</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx31_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">292543.72</s2md_met:mi505>
+<xbrli:context id="BLx31_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x31</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx31_DIx6_IZx1_VGx80" decimals="2" unitRef="u">487851.02</s2md_met:mi505>
+<xbrli:context id="BLx31_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x31</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx31_LEx62_VGx80_VLx9" decimals="2" unitRef="u">455599.30</s2md_met:mi364>
+<xbrli:context id="BLx31_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x31</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx31_LEx63_VGx80_VLx9" decimals="2" unitRef="u">111976.77</s2md_met:mi364>
+<xbrli:context id="BLx31_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x31</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx31_VGx80_VLx9" decimals="2" unitRef="u">674390.60</s2md_met:mi366>
+<xbrli:context id="BLx34_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x34</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx34_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">953709.97</s2md_met:mi505>
+<xbrli:context id="BLx34_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x34</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx34_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">161570.38</s2md_met:mi505>
+<xbrli:context id="BLx34_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x34</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx34_DIx6_IZx1_VGx80" decimals="2" unitRef="u">959671.83</s2md_met:mi505>
+<xbrli:context id="BLx34_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x34</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx34_LEx62_VGx80_VLx9" decimals="2" unitRef="u">828616.29</s2md_met:mi364>
+<xbrli:context id="BLx34_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x34</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx34_LEx63_VGx80_VLx9" decimals="2" unitRef="u">798629.01</s2md_met:mi364>
+<xbrli:context id="BLx34_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x34</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx34_VGx80_VLx9" decimals="2" unitRef="u">290162.51</s2md_met:mi366>
+<xbrli:context id="BLx42_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x42</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx42_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">595765.85</s2md_met:mi505>
+<xbrli:context id="BLx42_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x42</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx42_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">437065.28</s2md_met:mi505>
+<xbrli:context id="BLx42_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x42</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx42_DIx6_IZx1_VGx80" decimals="2" unitRef="u">926638.53</s2md_met:mi505>
+<xbrli:context id="BLx42_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x42</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx42_LEx62_VGx80_VLx9" decimals="2" unitRef="u">829866.04</s2md_met:mi364>
+<xbrli:context id="BLx42_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x42</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx42_LEx63_VGx80_VLx9" decimals="2" unitRef="u">854637.00</s2md_met:mi364>
+<xbrli:context id="BLx42_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x42</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx42_VGx80_VLx9" decimals="2" unitRef="u">642212.95</s2md_met:mi366>
+<xbrli:context id="BLx43_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x43</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi276 contextRef="BLx43_VGx80" decimals="2" unitRef="u">320402.80</s2md_met:mi276>
+<s2md_met:mi363 contextRef="BLx43_VGx80" decimals="2" unitRef="u">999359.85</s2md_met:mi363>
+<xbrli:context id="BLx43_VGx80_VLx47">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x43</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x47</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx43_VGx80_VLx47" decimals="2" unitRef="u">891836.18</s2md_met:mi363>
+<xbrli:context id="BLx43_VGx80_VLx5">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x43</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x5</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx43_VGx80_VLx5" decimals="2" unitRef="u">675477.85</s2md_met:mi363>
+<xbrli:context id="BLx43_VGx80_VLx8">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x43</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x8</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx43_VGx80_VLx8" decimals="2" unitRef="u">790749.91</s2md_met:mi363>
+<xbrli:context id="BLx45_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x45</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi276 contextRef="BLx45_VGx80" decimals="2" unitRef="u">756808.77</s2md_met:mi276>
+<xbrli:context id="BLx46_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x46</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx46_VGx80" decimals="2" unitRef="u">205168.42</s2md_met:mi363>
+<xbrli:context id="BLx46_VGx80_VLx47">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x46</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x47</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx46_VGx80_VLx47" decimals="2" unitRef="u">200962.43</s2md_met:mi363>
+<xbrli:context id="BLx46_VGx80_VLx5">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x46</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x5</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx46_VGx80_VLx5" decimals="2" unitRef="u">277006.47</s2md_met:mi363>
+<xbrli:context id="BLx46_VGx80_VLx8">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x46</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x8</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx46_VGx80_VLx8" decimals="2" unitRef="u">209738.97</s2md_met:mi363>
+<xbrli:context id="BLx52_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x52</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx52_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">712081.25</s2md_met:mi505>
+<xbrli:context id="BLx52_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x52</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx52_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">504997.34</s2md_met:mi505>
+<xbrli:context id="BLx52_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x52</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx52_DIx6_IZx1_VGx80" decimals="2" unitRef="u">537654.74</s2md_met:mi505>
+<xbrli:context id="BLx52_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x52</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx52_LEx62_VGx80_VLx9" decimals="2" unitRef="u">679641.91</s2md_met:mi364>
+<xbrli:context id="BLx52_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x52</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx52_LEx63_VGx80_VLx9" decimals="2" unitRef="u">572338.62</s2md_met:mi364>
+<xbrli:context id="BLx52_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x52</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx52_VGx80_VLx9" decimals="2" unitRef="u">244528.58</s2md_met:mi366>
+<xbrli:context id="BLx54_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x54</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx54_LEx62_VGx80_VLx9" decimals="2" unitRef="u">22391.04</s2md_met:mi366>
+<xbrli:context id="BLx54_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x54</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx54_LEx63_VGx80_VLx9" decimals="2" unitRef="u">405481.12</s2md_met:mi366>
+<xbrli:context id="BLx54_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x54</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx54_VGx80_VLx9" decimals="2" unitRef="u">282843.10</s2md_met:mi366>
+<xbrli:context id="BLx55_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x55</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx55_LEx62_VGx80_VLx9" decimals="2" unitRef="u">301841.29</s2md_met:mi366>
+<xbrli:context id="BLx55_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x55</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx55_LEx63_VGx80_VLx9" decimals="2" unitRef="u">883111.25</s2md_met:mi366>
+<xbrli:context id="BLx55_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x55</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx55_VGx80_VLx9" decimals="2" unitRef="u">950551.49</s2md_met:mi366>
+<xbrli:context id="BLx59_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x59</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx59_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">866771.95</s2md_met:mi505>
+<xbrli:context id="BLx59_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x59</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx59_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">808150.93</s2md_met:mi505>
+<xbrli:context id="BLx59_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x59</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx59_DIx6_IZx1_VGx80" decimals="2" unitRef="u">217410.72</s2md_met:mi505>
+<xbrli:context id="BLx59_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x59</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx59_LEx62_VGx80_VLx9" decimals="2" unitRef="u">318569.36</s2md_met:mi364>
+<xbrli:context id="BLx59_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x59</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx59_LEx63_VGx80_VLx9" decimals="2" unitRef="u">719740.99</s2md_met:mi364>
+<xbrli:context id="BLx59_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x59</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx59_VGx80_VLx9" decimals="2" unitRef="u">661858.87</s2md_met:mi366>
+<xbrli:context id="BLx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi276 contextRef="BLx63_VGx80" decimals="2" unitRef="u">174599.73</s2md_met:mi276>
+<xbrli:context id="BLx64_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x64</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi276 contextRef="BLx64_VGx80" decimals="2" unitRef="u">12707.02</s2md_met:mi276>
+<xbrli:context id="BLx65_LEx62_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi379 contextRef="BLx65_LEx62_TAx49_VGx80" decimals="2" unitRef="u">422165.52</s2md_met:mi379>
+<xbrli:context id="BLx65_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi339 contextRef="BLx65_LEx62_VGx80" decimals="2" unitRef="u">695566.61</s2md_met:mi339>
+<xbrli:context id="BLx65_LEx63_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi379 contextRef="BLx65_LEx63_TAx49_VGx80" decimals="2" unitRef="u">874309.29</s2md_met:mi379>
+<xbrli:context id="BLx65_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi339 contextRef="BLx65_LEx63_VGx80" decimals="2" unitRef="u">740280.72</s2md_met:mi339>
+<xbrli:context id="BLx65_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi379 contextRef="BLx65_TAx49_VGx80" decimals="2" unitRef="u">450078.84</s2md_met:mi379>
+<xbrli:context id="BLx65_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi308 contextRef="BLx65_VGx80" decimals="2" unitRef="u">48406.40</s2md_met:mi308>
+<xbrli:context id="BLx66_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x66</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx66_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">203319.66</s2md_met:mi505>
+<xbrli:context id="BLx66_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x66</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx66_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">50373.63</s2md_met:mi505>
+<xbrli:context id="BLx66_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x66</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx66_DIx6_IZx1_VGx80" decimals="2" unitRef="u">864325.59</s2md_met:mi505>
+<xbrli:context id="BLx66_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x66</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx66_LEx62_VGx80_VLx9" decimals="2" unitRef="u">704315.51</s2md_met:mi364>
+<xbrli:context id="BLx66_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x66</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx66_LEx63_VGx80_VLx9" decimals="2" unitRef="u">248446.97</s2md_met:mi364>
+<xbrli:context id="BLx66_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x66</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx66_VGx80_VLx9" decimals="2" unitRef="u">658620.11</s2md_met:mi366>
+<xbrli:context id="BLx67_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x67</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx67_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">600960.03</s2md_met:mi505>
+<xbrli:context id="BLx67_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x67</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx67_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">843793.92</s2md_met:mi505>
+<xbrli:context id="BLx67_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x67</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx67_DIx6_IZx1_VGx80" decimals="2" unitRef="u">341144.05</s2md_met:mi505>
+<xbrli:context id="BLx67_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x67</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx67_LEx62_VGx80_VLx9" decimals="2" unitRef="u">868517.18</s2md_met:mi364>
+<xbrli:context id="BLx67_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x67</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx67_LEx63_VGx80_VLx9" decimals="2" unitRef="u">122280.69</s2md_met:mi364>
+<xbrli:context id="BLx67_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x67</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx67_VGx80_VLx9" decimals="2" unitRef="u">640884.93</s2md_met:mi366>
+<xbrli:context id="BLx69_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x69</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx69_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">429621.11</s2md_met:mi505>
+<xbrli:context id="BLx69_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x69</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx69_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">404027.76</s2md_met:mi505>
+<xbrli:context id="BLx69_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x69</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx69_DIx6_IZx1_VGx80" decimals="2" unitRef="u">571003.28</s2md_met:mi505>
+<xbrli:context id="BLx69_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x69</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx69_LEx62_VGx80_VLx9" decimals="2" unitRef="u">978275.46</s2md_met:mi364>
+<xbrli:context id="BLx69_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x69</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx69_LEx63_VGx80_VLx9" decimals="2" unitRef="u">204494.80</s2md_met:mi364>
+<xbrli:context id="BLx69_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x69</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx69_VGx80_VLx9" decimals="2" unitRef="u">854449.39</s2md_met:mi366>
+<xbrli:context id="BLx70_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x70</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx70_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">637359.30</s2md_met:mi505>
+<xbrli:context id="BLx70_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x70</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx70_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">225107.34</s2md_met:mi505>
+<xbrli:context id="BLx70_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x70</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx70_DIx6_IZx1_VGx80" decimals="2" unitRef="u">829530.78</s2md_met:mi505>
+<xbrli:context id="BLx70_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x70</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx70_LEx62_VGx80_VLx9" decimals="2" unitRef="u">944942.71</s2md_met:mi364>
+<xbrli:context id="BLx70_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x70</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx70_LEx63_VGx80_VLx9" decimals="2" unitRef="u">956363.68</s2md_met:mi364>
+<xbrli:context id="BLx70_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x70</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx70_VGx80_VLx9" decimals="2" unitRef="u">304095.37</s2md_met:mi366>
+<xbrli:context id="BLx73_DIx6_IZx1_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x73</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx73_DIx6_IZx1_LEx62_VGx80" decimals="2" unitRef="u">49056.10</s2md_met:mi505>
+<xbrli:context id="BLx73_DIx6_IZx1_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x73</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx73_DIx6_IZx1_LEx63_VGx80" decimals="2" unitRef="u">756573.91</s2md_met:mi505>
+<xbrli:context id="BLx73_DIx6_IZx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x73</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:DI">s2c_DI:x6</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:IZ">s2c_RT:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi505 contextRef="BLx73_DIx6_IZx1_VGx80" decimals="2" unitRef="u">557128.58</s2md_met:mi505>
+<xbrli:context id="BLx73_LEx62_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x73</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx73_LEx62_VGx80_VLx9" decimals="2" unitRef="u">739423.75</s2md_met:mi364>
+<xbrli:context id="BLx73_LEx63_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x73</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi364 contextRef="BLx73_LEx63_VGx80_VLx9" decimals="2" unitRef="u">480381.07</s2md_met:mi364>
+<xbrli:context id="BLx73_VGx80_VLx9">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x73</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x9</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi366 contextRef="BLx73_VGx80_VLx9" decimals="2" unitRef="u">294147.77</s2md_met:mi366>
+<xbrli:context id="BLx75_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x75</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi276 contextRef="BLx75_VGx80" decimals="2" unitRef="u">924884.26</s2md_met:mi276>
+<s2md_met:mi363 contextRef="BLx75_VGx80" decimals="2" unitRef="u">212732.06</s2md_met:mi363>
+<xbrli:context id="BLx75_VGx80_VLx47">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x75</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x47</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx75_VGx80_VLx47" decimals="2" unitRef="u">721864.24</s2md_met:mi363>
+<xbrli:context id="BLx75_VGx80_VLx5">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x75</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x5</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx75_VGx80_VLx5" decimals="2" unitRef="u">790771.11</s2md_met:mi363>
+<xbrli:context id="BLx75_VGx80_VLx8">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x75</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x8</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi363 contextRef="BLx75_VGx80_VLx8" decimals="2" unitRef="u">758157.06</s2md_met:mi363>
+<xbrli:context id="BLx79_LEx62_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x79</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi379 contextRef="BLx79_LEx62_TAx49_VGx80" decimals="2" unitRef="u">104077.87</s2md_met:mi379>
+<xbrli:context id="BLx79_LEx63_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x79</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi379 contextRef="BLx79_LEx63_TAx49_VGx80" decimals="2" unitRef="u">990438.71</s2md_met:mi379>
+<xbrli:context id="BLx79_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x79</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi379 contextRef="BLx79_TAx49_VGx80" decimals="2" unitRef="u">326956.13</s2md_met:mi379>
+<xbrli:context id="BLx79_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x79</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi276 contextRef="BLx79_VGx80" decimals="2" unitRef="u">16115.48</s2md_met:mi276>
+<s2md_met:mi308 contextRef="BLx79_VGx80" decimals="2" unitRef="u">830457.12</s2md_met:mi308>
+<s2md_met:mi363 contextRef="BLx79_VGx80" decimals="2" unitRef="u">212893.42</s2md_met:mi363>
+<xbrli:context id="BLx91_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x91</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1964 contextRef="BLx91_VGx80" decimals="2" unitRef="u">713294.15</s2md_met:mi1964>
+<s2md_met:mi1965 contextRef="BLx91_VGx80" decimals="2" unitRef="u">247478.86</s2md_met:mi1965>
+<s2md_met:mi202 contextRef="BLx91_VGx80" decimals="2" unitRef="u">115230.58</s2md_met:mi202>
+<s2md_met:mi203 contextRef="BLx91_VGx80" decimals="2" unitRef="u">290849.79</s2md_met:mi203>
+<s2md_met:mi204 contextRef="BLx91_VGx80" decimals="2" unitRef="u">752841.90</s2md_met:mi204>
+<s2md_met:mi211 contextRef="BLx91_VGx80" decimals="2" unitRef="u">315727.78</s2md_met:mi211>
+<s2md_met:mi212 contextRef="BLx91_VGx80" decimals="2" unitRef="u">220368.12</s2md_met:mi212>
+<s2md_met:mi213 contextRef="BLx91_VGx80" decimals="2" unitRef="u">852150.59</s2md_met:mi213>
+<s2md_met:mi220 contextRef="BLx91_VGx80" decimals="2" unitRef="u">518441.90</s2md_met:mi220>
+<s2md_met:mi223 contextRef="BLx91_VGx80" decimals="2" unitRef="u">683806.42</s2md_met:mi223>
+<s2md_met:mi224 contextRef="BLx91_VGx80" decimals="2" unitRef="u">568505.94</s2md_met:mi224>
+<s2md_met:mi226 contextRef="BLx91_VGx80" decimals="2" unitRef="u">50507.66</s2md_met:mi226>
+<s2md_met:mi227 contextRef="BLx91_VGx80" decimals="2" unitRef="u">463102.10</s2md_met:mi227>
+<s2md_met:mi238 contextRef="BLx91_VGx80" decimals="2" unitRef="u">865623.20</s2md_met:mi238>
+<s2md_met:mi243 contextRef="BLx91_VGx80" decimals="2" unitRef="u">134507.24</s2md_met:mi243>
+<s2md_met:mi252 contextRef="BLx91_VGx80" decimals="2" unitRef="u">197376.58</s2md_met:mi252>
+<s2md_met:mi263 contextRef="BLx91_VGx80" decimals="2" unitRef="u">790105.20</s2md_met:mi263>
+<s2md_met:mi265 contextRef="BLx91_VGx80" decimals="2" unitRef="u">463593.06</s2md_met:mi265>
+<s2md_met:mi280 contextRef="BLx91_VGx80" decimals="2" unitRef="u">331660.92</s2md_met:mi280>
+<xbrli:context id="DVx11_EAx20_RTx151_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:DV">s2c_RT:x11</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x151</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="DVx11_EAx20_RTx151_VGx80" decimals="2" unitRef="u">388724.27</s2md_met:mi686>
+<xbrli:context id="DVx11_EAx23_RTx151_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:DV">s2c_RT:x11</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x151</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="DVx11_EAx23_RTx151_VGx80" decimals="2" unitRef="u">427793.95</s2md_met:mi686>
+<xbrli:context id="DVx11_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:DV">s2c_RT:x11</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi107 contextRef="DVx11_VGx80" decimals="2" unitRef="u">547379.81</s2md_met:mi107>
+<s2md_met:mi2060 contextRef="DVx11_VGx80" decimals="2" unitRef="u">953569.53</s2md_met:mi2060>
+<xbrli:context id="DVx29_EAx20_RTx152_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:DV">s2c_RT:x29</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x152</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="DVx29_EAx20_RTx152_VGx80" decimals="2" unitRef="u">685514.77</s2md_met:mi686>
+<xbrli:context id="DVx29_EAx23_RTx152_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:DV">s2c_RT:x29</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x152</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="DVx29_EAx23_RTx152_VGx80" decimals="2" unitRef="u">786755.93</s2md_met:mi686>
+<xbrli:context id="DVx29_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:DV">s2c_RT:x29</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi107 contextRef="DVx29_VGx80" decimals="2" unitRef="u">103900.59</s2md_met:mi107>
+<s2md_met:mi2060 contextRef="DVx29_VGx80" decimals="2" unitRef="u">644712.09</s2md_met:mi2060>
+<xbrli:context id="EAx13_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x13</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1502 contextRef="EAx13_VGx80" decimals="2" unitRef="u">174506.24</s2md_met:mi1502>
+<s2md_met:mi712 contextRef="EAx13_VGx80" decimals="2" unitRef="u">956139.80</s2md_met:mi712>
+<s2md_met:mi728 contextRef="EAx13_VGx80" decimals="2" unitRef="u">330059.46</s2md_met:mi728>
+<xbrli:context id="EAx14_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1502 contextRef="EAx14_VGx80" decimals="2" unitRef="u">625562.05</s2md_met:mi1502>
+<s2md_met:mi712 contextRef="EAx14_VGx80" decimals="2" unitRef="u">343082.02</s2md_met:mi712>
+<s2md_met:mi728 contextRef="EAx14_VGx80" decimals="2" unitRef="u">592725.35</s2md_met:mi728>
+<xbrli:context id="EAx20_RTx109_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x109</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx20_RTx109_VGx80" decimals="2" unitRef="u">781705.99</s2md_met:mi686>
+<xbrli:context id="EAx20_RTx14_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx20_RTx14_VGx80" decimals="2" unitRef="u">280378.63</s2md_met:mi686>
+<xbrli:context id="EAx20_RTx65_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx20_RTx65_VGx80" decimals="2" unitRef="u">117445.23</s2md_met:mi686>
+<xbrli:context id="EAx20_RTx68_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x68</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx20_RTx68_VGx80" decimals="2" unitRef="u">62884.36</s2md_met:mi686>
+<xbrli:context id="EAx20_RTx84_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x84</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx20_RTx84_VGx80" decimals="2" unitRef="u">234683.91</s2md_met:mi686>
+<xbrli:context id="EAx20_RTx97_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x20</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x97</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx20_RTx97_VGx80" decimals="2" unitRef="u">784061.17</s2md_met:mi686>
+<xbrli:context id="EAx23_RTx109_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x109</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx23_RTx109_VGx80" decimals="2" unitRef="u">855975.28</s2md_met:mi686>
+<xbrli:context id="EAx23_RTx121_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x121</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi728 contextRef="EAx23_RTx121_VGx80" decimals="2" unitRef="u">742260.65</s2md_met:mi728>
+<xbrli:context id="EAx23_RTx14_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx23_RTx14_VGx80" decimals="2" unitRef="u">468087.49</s2md_met:mi686>
+<xbrli:context id="EAx23_RTx65_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx23_RTx65_VGx80" decimals="2" unitRef="u">179677.31</s2md_met:mi686>
+<xbrli:context id="EAx23_RTx68_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x68</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx23_RTx68_VGx80" decimals="2" unitRef="u">252913.02</s2md_met:mi686>
+<xbrli:context id="EAx23_RTx84_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x84</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx23_RTx84_VGx80" decimals="2" unitRef="u">830538.18</s2md_met:mi686>
+<xbrli:context id="EAx23_RTx97_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x23</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x97</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi686 contextRef="EAx23_RTx97_VGx80" decimals="2" unitRef="u">508006.18</s2md_met:mi686>
+<xbrli:context id="EAx24_RTx33_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x24</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x33</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2338 contextRef="EAx24_RTx33_VGx80" decimals="2" unitRef="u">371663.74</s2md_met:mi2338>
+<s2md_met:mi2348 contextRef="EAx24_RTx33_VGx80" decimals="2" unitRef="u">46705.95</s2md_met:mi2348>
+<s2md_met:mi2349 contextRef="EAx24_RTx33_VGx80" decimals="2" unitRef="u">895200.37</s2md_met:mi2349>
+<xbrli:context id="EAx24_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x24</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1942 contextRef="EAx24_VGx80" decimals="2" unitRef="u">191615.21</s2md_met:mi1942>
+<s2md_met:mi1943 contextRef="EAx24_VGx80" decimals="2" unitRef="u">102408.44</s2md_met:mi1943>
+<s2md_met:mi1944 contextRef="EAx24_VGx80" decimals="2" unitRef="u">205446.96</s2md_met:mi1944>
+<s2md_met:mi1945 contextRef="EAx24_VGx80" decimals="2" unitRef="u">358258.77</s2md_met:mi1945>
+<s2md_met:mi1950 contextRef="EAx24_VGx80" decimals="2" unitRef="u">916979.40</s2md_met:mi1950>
+<s2md_met:mi1951 contextRef="EAx24_VGx80" decimals="2" unitRef="u">857480.10</s2md_met:mi1951>
+<s2md_met:mi1952 contextRef="EAx24_VGx80" decimals="2" unitRef="u">879178.99</s2md_met:mi1952>
+<s2md_met:mi2052 contextRef="EAx24_VGx80" decimals="2" unitRef="u">711827.95</s2md_met:mi2052>
+<s2md_met:mi2053 contextRef="EAx24_VGx80" decimals="2" unitRef="u">711796.95</s2md_met:mi2053>
+<s2md_met:mi2054 contextRef="EAx24_VGx80" decimals="2" unitRef="u">215406.39</s2md_met:mi2054>
+<s2md_met:mi2055 contextRef="EAx24_VGx80" decimals="2" unitRef="u">82131.21</s2md_met:mi2055>
+<xbrli:context id="EAx28_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x28</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1502 contextRef="EAx28_VGx80" decimals="2" unitRef="u">942699.62</s2md_met:mi1502>
+<s2md_met:mi712 contextRef="EAx28_VGx80" decimals="2" unitRef="u">485466.42</s2md_met:mi712>
+<s2md_met:mi728 contextRef="EAx28_VGx80" decimals="2" unitRef="u">296014.11</s2md_met:mi728>
+<xbrli:context id="EAx32_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x32</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1502 contextRef="EAx32_VGx80" decimals="2" unitRef="u">415554.96</s2md_met:mi1502>
+<s2md_met:mi712 contextRef="EAx32_VGx80" decimals="2" unitRef="u">876459.42</s2md_met:mi712>
+<s2md_met:mi728 contextRef="EAx32_VGx80" decimals="2" unitRef="u">691567.07</s2md_met:mi728>
+<xbrli:context id="EAx48_LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x48</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1958 contextRef="EAx48_LEx62_VGx80" decimals="2" unitRef="u">915872.05</s2md_met:mi1958>
+<xbrli:context id="EAx48_LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x48</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1958 contextRef="EAx48_LEx63_VGx80" decimals="2" unitRef="u">737930.96</s2md_met:mi1958>
+<xbrli:context id="EAx48_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:EA">s2c_VM:x48</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1502 contextRef="EAx48_VGx80" decimals="2" unitRef="u">443621.83</s2md_met:mi1502>
+<s2md_met:mi712 contextRef="EAx48_VGx80" decimals="2" unitRef="u">860719.66</s2md_met:mi712>
+<s2md_met:mi728 contextRef="EAx48_VGx80" decimals="2" unitRef="u">391537.00</s2md_met:mi728>
+<xbrli:context id="FNID">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:typedMember dimension="s2c_dim:FN"><s2c_typ:ID>1</s2c_typ:ID></xbrldi:typedMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ei1690 contextRef="FNID">s2c_PU:x53</s2md_met:ei1690>
+<s2md_met:ei1691 contextRef="FNID">s2c_PU:x55</s2md_met:ei1691>
+<s2md_met:ei1692 contextRef="FNID">s2c_AP:x22</s2md_met:ei1692>
+<s2md_met:ei1693 contextRef="FNID">s2c_AP:x15</s2md_met:ei1693>
+<s2md_met:si1963 contextRef="FNID" xml:lang="en">ns rhlssn zy</s2md_met:si1963>
+<xbrli:context id="FNID_SNID">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:typedMember dimension="s2c_dim:FN"><s2c_typ:ID>1</s2c_typ:ID></xbrldi:typedMember>
+		<xbrldi:typedMember dimension="s2c_dim:SN"><s2c_typ:ID>1</s2c_typ:ID></xbrldi:typedMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ei1823 contextRef="FNID_SNID">s2c_PU:x40</s2md_met:ei1823>
+<xbrli:context id="LEx62_TAx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx62_TAx1_VGx80" decimals="2" unitRef="u">514029.01</s2md_met:mi1959>
+<xbrli:context id="LEx62_TAx16_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x16</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx62_TAx16_VGx80" decimals="2" unitRef="u">375848.55</s2md_met:mi1959>
+<xbrli:context id="LEx62_TAx21_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x21</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx62_TAx21_VGx80" decimals="2" unitRef="u">988283.57</s2md_met:mi1959>
+<xbrli:context id="LEx62_TAx35_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x35</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx62_TAx35_VGx80" decimals="2" unitRef="u">607997.11</s2md_met:mi1959>
+<xbrli:context id="LEx62_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx62_TAx49_VGx80" decimals="2" unitRef="u">37372.84</s2md_met:mi1959>
+<xbrli:context id="LEx62_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x62</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx62_VGx80" decimals="2" unitRef="u">356018.21</s2md_met:mi1959>
+<xbrli:context id="LEx63_TAx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx63_TAx1_VGx80" decimals="2" unitRef="u">154386.78</s2md_met:mi1959>
+<xbrli:context id="LEx63_TAx16_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x16</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx63_TAx16_VGx80" decimals="2" unitRef="u">763285.53</s2md_met:mi1959>
+<xbrli:context id="LEx63_TAx21_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x21</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx63_TAx21_VGx80" decimals="2" unitRef="u">945605.97</s2md_met:mi1959>
+<xbrli:context id="LEx63_TAx35_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x35</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx63_TAx35_VGx80" decimals="2" unitRef="u">208018.18</s2md_met:mi1959>
+<xbrli:context id="LEx63_TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx63_TAx49_VGx80" decimals="2" unitRef="u">477363.37</s2md_met:mi1959>
+<xbrli:context id="LEx63_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LE">s2c_TB:x63</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="LEx63_VGx80" decimals="2" unitRef="u">699582.09</s2md_met:mi1959>
+<xbrli:context id="LGZW">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LG">s2c_GA:ZW</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ei2225 contextRef="LGZW">s2c_GA:GG</s2md_met:ei2225>
+<s2md_met:si2131 contextRef="LGZW" xml:lang="en">brwrtp dcffhk zvpt</s2md_met:si2131>
+<xbrli:context id="NXID">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:typedMember dimension="s2c_dim:NX"><s2c_typ:ID>1</s2c_typ:ID></xbrldi:typedMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ei1902 contextRef="NXID">s2c_AP:x27</s2md_met:ei1902>
+<s2md_met:mi2373 contextRef="NXID" decimals="2" unitRef="u">39803.51</s2md_met:mi2373>
+<s2md_met:mi2374 contextRef="NXID" decimals="2" unitRef="u">883167.67</s2md_met:mi2374>
+<s2md_met:mi2375 contextRef="NXID" decimals="2" unitRef="u">614261.22</s2md_met:mi2375>
+<s2md_met:mi2379 contextRef="NXID" decimals="2" unitRef="u">141327.15</s2md_met:mi2379>
+<s2md_met:si2058 contextRef="NXID" xml:lang="en">vykndn sj</s2md_met:si2058>
+<s2md_met:si2063 contextRef="NXID" xml:lang="en">bw mk eo</s2md_met:si2063>
+<xbrli:context id="RTx109_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x109</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2051 contextRef="RTx109_VGx80" decimals="2" unitRef="u">502425.58</s2md_met:mi2051>
+<xbrli:context id="RTx14_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x14</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2051 contextRef="RTx14_VGx80" decimals="2" unitRef="u">440454.64</s2md_met:mi2051>
+<xbrli:context id="RTx151_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x151</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2051 contextRef="RTx151_VGx80" decimals="2" unitRef="u">628846.07</s2md_met:mi2051>
+<xbrli:context id="RTx65_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x65</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2051 contextRef="RTx65_VGx80" decimals="2" unitRef="u">935281.34</s2md_met:mi2051>
+<xbrli:context id="RTx84_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x84</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2051 contextRef="RTx84_VGx80" decimals="2" unitRef="u">573039.57</s2md_met:mi2051>
+<xbrli:context id="RTx97_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:RT">s2c_RT:x97</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi2051 contextRef="RTx97_VGx80" decimals="2" unitRef="u">67778.79</s2md_met:mi2051>
+<xbrli:context id="TAx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="TAx1_VGx80" decimals="2" unitRef="u">832231.71</s2md_met:mi1959>
+<xbrli:context id="TAx16_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x16</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="TAx16_VGx80" decimals="2" unitRef="u">861729.41</s2md_met:mi1959>
+<xbrli:context id="TAx21_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x21</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="TAx21_VGx80" decimals="2" unitRef="u">697002.24</s2md_met:mi1959>
+<xbrli:context id="TAx35_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x35</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="TAx35_VGx80" decimals="2" unitRef="u">470958.58</s2md_met:mi1959>
+<xbrli:context id="TAx49_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TA">s2c_AM:x49</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1959 contextRef="TAx49_VGx80" decimals="2" unitRef="u">488517.86</s2md_met:mi1959>
+<xbrli:context id="TBx109_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TB">s2c_LB:x109</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi278 contextRef="TBx109_VGx80" decimals="2" unitRef="u">344963.25</s2md_met:mi278>
+<xbrli:context id="TXx1_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TX">s2c_EL:x1</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1254 contextRef="TXx1_VGx80" decimals="2" unitRef="u">547284.96</s2md_met:mi1254>
+<s2md_met:mi2004 contextRef="TXx1_VGx80" decimals="2" unitRef="u">740160.39</s2md_met:mi2004>
+<s2md_met:mi423 contextRef="TXx1_VGx80" decimals="2" unitRef="u">195632.37</s2md_met:mi423>
+<s2md_met:mi424 contextRef="TXx1_VGx80" decimals="2" unitRef="u">832025.22</s2md_met:mi424>
+<s2md_met:mi428 contextRef="TXx1_VGx80" decimals="2" unitRef="u">512258.76</s2md_met:mi428>
+<s2md_met:mi490 contextRef="TXx1_VGx80" decimals="2" unitRef="u">679956.15</s2md_met:mi490>
+<xbrli:context id="TXx28_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TX">s2c_EL:x28</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1254 contextRef="TXx28_VGx80" decimals="2" unitRef="u">612946.66</s2md_met:mi1254>
+<s2md_met:mi2004 contextRef="TXx28_VGx80" decimals="2" unitRef="u">347073.75</s2md_met:mi2004>
+<s2md_met:mi407 contextRef="TXx28_VGx80" decimals="2" unitRef="u">935040.64</s2md_met:mi407>
+<s2md_met:mi408 contextRef="TXx28_VGx80" decimals="2" unitRef="u">543001.12</s2md_met:mi408>
+<s2md_met:mi410 contextRef="TXx28_VGx80" decimals="2" unitRef="u">729726.41</s2md_met:mi410>
+<s2md_met:mi414 contextRef="TXx28_VGx80" decimals="2" unitRef="u">158864.36</s2md_met:mi414>
+<s2md_met:mi423 contextRef="TXx28_VGx80" decimals="2" unitRef="u">57092.50</s2md_met:mi423>
+<s2md_met:mi424 contextRef="TXx28_VGx80" decimals="2" unitRef="u">916589.64</s2md_met:mi424>
+<s2md_met:mi428 contextRef="TXx28_VGx80" decimals="2" unitRef="u">646841.02</s2md_met:mi428>
+<s2md_met:mi490 contextRef="TXx28_VGx80" decimals="2" unitRef="u">301757.65</s2md_met:mi490>
+<xbrli:context id="TXx30_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TX">s2c_EL:x30</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1254 contextRef="TXx30_VGx80" decimals="2" unitRef="u">612023.84</s2md_met:mi1254>
+<s2md_met:mi2004 contextRef="TXx30_VGx80" decimals="2" unitRef="u">111452.86</s2md_met:mi2004>
+<s2md_met:mi407 contextRef="TXx30_VGx80" decimals="2" unitRef="u">982835.10</s2md_met:mi407>
+<s2md_met:mi410 contextRef="TXx30_VGx80" decimals="2" unitRef="u">240567.72</s2md_met:mi410>
+<s2md_met:mi414 contextRef="TXx30_VGx80" decimals="2" unitRef="u">576308.67</s2md_met:mi414>
+<s2md_met:mi478 contextRef="TXx30_VGx80" decimals="2" unitRef="u">257861.57</s2md_met:mi478>
+<s2md_met:mi490 contextRef="TXx30_VGx80" decimals="2" unitRef="u">378660.86</s2md_met:mi490>
+<xbrli:context id="TXx8_VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:TX">s2c_EL:x8</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1254 contextRef="TXx8_VGx80" decimals="2" unitRef="u">691516.87</s2md_met:mi1254>
+<s2md_met:mi2004 contextRef="TXx8_VGx80" decimals="2" unitRef="u">60751.39</s2md_met:mi2004>
+<s2md_met:mi423 contextRef="TXx8_VGx80" decimals="2" unitRef="u">198340.16</s2md_met:mi423>
+<s2md_met:mi424 contextRef="TXx8_VGx80" decimals="2" unitRef="u">164819.58</s2md_met:mi424>
+<s2md_met:mi428 contextRef="TXx8_VGx80" decimals="2" unitRef="u">953999.20</s2md_met:mi428>
+<s2md_met:mi482 contextRef="TXx8_VGx80" decimals="2" unitRef="u">547504.97</s2md_met:mi482>
+<s2md_met:mi490 contextRef="TXx8_VGx80" decimals="2" unitRef="u">359422.92</s2md_met:mi490>
+<xbrli:context id="VGx80">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ei1896 contextRef="VGx80">s2c_CN:x54</s2md_met:ei1896>
+<s2md_met:mi1254 contextRef="VGx80" decimals="2" unitRef="u">857872.77</s2md_met:mi1254>
+<s2md_met:mi1502 contextRef="VGx80" decimals="2" unitRef="u">300825.67</s2md_met:mi1502>
+<s2md_met:mi1940 contextRef="VGx80" decimals="2" unitRef="u">251931.29</s2md_met:mi1940>
+<s2md_met:mi1958 contextRef="VGx80" decimals="2" unitRef="u">330639.00</s2md_met:mi1958>
+<s2md_met:mi1959 contextRef="VGx80" decimals="2" unitRef="u">393134.06</s2md_met:mi1959>
+<s2md_met:mi2004 contextRef="VGx80" decimals="2" unitRef="u">35883.37</s2md_met:mi2004>
+<s2md_met:mi201 contextRef="VGx80" decimals="2" unitRef="u">525187.00</s2md_met:mi201>
+<s2md_met:mi2216 contextRef="VGx80" decimals="2" unitRef="u">786237.92</s2md_met:mi2216>
+<s2md_met:mi222 contextRef="VGx80" decimals="2" unitRef="u">739328.16</s2md_met:mi222>
+<s2md_met:mi2301 contextRef="VGx80" decimals="2" unitRef="u">768805.29</s2md_met:mi2301>
+<s2md_met:mi239 contextRef="VGx80" decimals="2" unitRef="u">482034.93</s2md_met:mi239>
+<s2md_met:mi251 contextRef="VGx80" decimals="2" unitRef="u">394948.37</s2md_met:mi251>
+<s2md_met:mi256 contextRef="VGx80" decimals="2" unitRef="u">489985.04</s2md_met:mi256>
+<s2md_met:mi266 contextRef="VGx80" decimals="2" unitRef="u">248686.54</s2md_met:mi266>
+<s2md_met:mi267 contextRef="VGx80" decimals="2" unitRef="u">177385.56</s2md_met:mi267>
+<s2md_met:mi268 contextRef="VGx80" decimals="2" unitRef="u">626663.51</s2md_met:mi268>
+<s2md_met:mi269 contextRef="VGx80" decimals="2" unitRef="u">629426.39</s2md_met:mi269>
+<s2md_met:mi276 contextRef="VGx80" decimals="2" unitRef="u">578531.18</s2md_met:mi276>
+<s2md_met:mi294 contextRef="VGx80" decimals="2" unitRef="u">857689.54</s2md_met:mi294>
+<s2md_met:mi308 contextRef="VGx80" decimals="2" unitRef="u">888118.76</s2md_met:mi308>
+<s2md_met:mi339 contextRef="VGx80" decimals="2" unitRef="u">241617.65</s2md_met:mi339>
+<s2md_met:mi346 contextRef="VGx80" decimals="2" unitRef="u">903765.75</s2md_met:mi346>
+<s2md_met:mi355 contextRef="VGx80" decimals="2" unitRef="u">168121.88</s2md_met:mi355>
+<s2md_met:mi357 contextRef="VGx80" decimals="2" unitRef="u">756535.55</s2md_met:mi357>
+<s2md_met:mi358 contextRef="VGx80" decimals="2" unitRef="u">254438.00</s2md_met:mi358>
+<s2md_met:mi359 contextRef="VGx80" decimals="2" unitRef="u">251950.78</s2md_met:mi359>
+<s2md_met:mi360 contextRef="VGx80" decimals="2" unitRef="u">695483.86</s2md_met:mi360>
+<s2md_met:mi367 contextRef="VGx80" decimals="2" unitRef="u">840145.43</s2md_met:mi367>
+<s2md_met:mi369 contextRef="VGx80" decimals="2" unitRef="u">775829.57</s2md_met:mi369>
+<s2md_met:mi372 contextRef="VGx80" decimals="2" unitRef="u">734884.68</s2md_met:mi372>
+<s2md_met:mi373 contextRef="VGx80" decimals="2" unitRef="u">35063.01</s2md_met:mi373>
+<s2md_met:mi374 contextRef="VGx80" decimals="2" unitRef="u">413529.74</s2md_met:mi374>
+<s2md_met:mi375 contextRef="VGx80" decimals="2" unitRef="u">474308.66</s2md_met:mi375>
+<s2md_met:mi377 contextRef="VGx80" decimals="2" unitRef="u">510251.48</s2md_met:mi377>
+<s2md_met:mi407 contextRef="VGx80" decimals="2" unitRef="u">14570.24</s2md_met:mi407>
+<s2md_met:mi408 contextRef="VGx80" decimals="2" unitRef="u">758134.91</s2md_met:mi408>
+<s2md_met:mi410 contextRef="VGx80" decimals="2" unitRef="u">798713.30</s2md_met:mi410>
+<s2md_met:mi414 contextRef="VGx80" decimals="2" unitRef="u">792084.73</s2md_met:mi414>
+<s2md_met:mi423 contextRef="VGx80" decimals="2" unitRef="u">966018.61</s2md_met:mi423>
+<s2md_met:mi424 contextRef="VGx80" decimals="2" unitRef="u">371478.80</s2md_met:mi424>
+<s2md_met:mi428 contextRef="VGx80" decimals="2" unitRef="u">570373.34</s2md_met:mi428>
+<s2md_met:mi458 contextRef="VGx80" decimals="2" unitRef="u">859559.75</s2md_met:mi458>
+<s2md_met:mi478 contextRef="VGx80" decimals="2" unitRef="u">986387.24</s2md_met:mi478>
+<s2md_met:mi482 contextRef="VGx80" decimals="2" unitRef="u">52853.42</s2md_met:mi482>
+<s2md_met:mi490 contextRef="VGx80" decimals="2" unitRef="u">813350.82</s2md_met:mi490>
+<s2md_met:mi712 contextRef="VGx80" decimals="2" unitRef="u">982557.37</s2md_met:mi712>
+<s2md_met:mi728 contextRef="VGx80" decimals="2" unitRef="u">531966.11</s2md_met:mi728>
+<s2md_met:pi546 contextRef="VGx80" decimals="4" unitRef="p">0.2933</s2md_met:pi546>
+<s2md_met:pi548 contextRef="VGx80" decimals="4" unitRef="p">0.3804</s2md_met:pi548>
+<xbrli:context id="VGx80_VLx5">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:VG">s2c_AM:x80</xbrldi:explicitMember>
+		<xbrldi:explicitMember dimension="s2c_dim:VL">s2c_VM:x5</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1497 contextRef="VGx80_VLx5" decimals="2" unitRef="u">886443.55</s2md_met:mi1497>
+<s2md_met:mi1501 contextRef="VGx80_VLx5" decimals="2" unitRef="u">461287.59</s2md_met:mi1501>
+<s2md_met:mi2056 contextRef="VGx80_VLx5" decimals="2" unitRef="u">27746.54</s2md_met:mi2056>
+</xbrli:xbrl>

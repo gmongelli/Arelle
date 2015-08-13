@@ -1,0 +1,268 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:s="http://xbrl.org/specification/2007" xmlns:diff="http://xbrl.org/specification/2007/diff"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Table Linkbase Conformance Suite 1.0</title><link rel="stylesheet" type="text/css" href="styles.css"><script language="JavaScript">
+      // feel free to do something more elaborate with this.
+      // w is a global for the 'pop up' window.
+      var w = null;
+      function openit(name) {
+        if (!w) w = window.open("", "w", "width=100,height=20,scrollbars=no,titlebar=no");
+        w.blur();
+        w.moveTo(window.screenLeft+event.clientX,window.screenTop+event.clientY);
+        w.document.open();
+        w.document.write('<tt>'+name+'</tt>');
+        w.focus()
+}
+
+function hideit() {  
+  w.document.close();
+  w.blur()
+}
+        </script></head><body>
+  <div class="head">
+<h1><a name="title" id="title"></a>Table Linkbase Conformance Suite 1.0</h1>
+<h2>Public Working Draft 19 October 2011</h2><p>Copyright ©2011 XBRL International Inc., All Rights Reserved.</p><dl><dt>This version:</dt><dd><a href="http://www.xbrl.org/WGN/table-linkbase-conformance/PWD-2011-10-19/table-linkbase-conformance-WGN-PWD-2011-10-19.html">&lt;http://www.xbrl.org/WGN/table-linkbase-conformance/PWD-2011-10-19/table-linkbase-conformance-WGN-PWD-2011-10-19.html&gt;</a></dd><dt>Editors:</dt><dd><a name="p-hw" id="p-hw"></a>
+            Hugh Wallis, 
+             Standard Dimensions
+             <a href="mailto:hugh@standarddimensions.com">&lt;hugh@standarddimensions.com&gt;</a>
+         </dd><dd><a name="p-hf" id="p-hf"></a>
+				        Herm Fischer, 
+				         Mark V Systems
+				         <a href="mailto:fischer@markv.com">&lt;fischer@markv.com&gt;</a>
+			      </dd><dt>Contributor:</dt><dd><a name="p-rh" id="p-rh"></a>
+				        Roland Hommes, 
+				         RHOCON
+				         <a href="mailto:roland@rhocon.nl">&lt;roland@rhocon.nl&gt;</a>
+			      </dd></dl><hr><div><h2><a name="status" id="status"></a>Status</h2><p>Circulation of this  Public Working Draft is unrestricted. 
+            Other documents may supersede this document. 
+          
+          Recipients are invited to submit comments to
+        <a href="mailto:rendering-feedback@xbrl.org">rendering-feedback@xbrl.org</a>,
+        
+          and to submit notification of any relevant patent rights 
+          of which they are aware and provide supporting 
+          documentation.
+        </p></div><div>
+<h2><a name="abstract" id="abstract"></a>Abstract</h2>
+         <p>
+
+      This document is a Working Group Note, describing the Table Linkbase Conformance
+      Suite. 
+      
+      It provides important information to enable users to understand the file structure and 
+      contents of the Conformance Suite and their usage.
+      
+      It is an early draft as the conformance suite is still only in its infancy.
+
+      </p>
+      </div></div>
+
+  <div class="toc">
+<h2><a name="contents" id="contents"></a>Table of Contents</h2><p class="toc">1 <a href="#sec-intro">Introduction</a><br>
+2 <a href="#sec-structure">Structure</a><br>
+3 <a href="#sec-processing">Processing</a><br>
+4 <a href="#sec-schema">Normative schemas</a><br>
+   4.1 <a href="#sec-schema-index">Testcases Index File</a><br>
+   4.2 <a href="#sec-schema-variations">Testcase Variations File</a><br>
+5 <a href="#sec-ip-status">Intellectual property status (non-normative)</a><br>
+6 <a href="#sec-acknowledgements">Acknowledgements (non-normative)</a><br>
+</p>
+<h3><a name="appendices" id="appendices"></a>Appendices</h3><p class="toc">A <a href="#sec-history">Document history (non-normative)</a><br>
+B <a href="#sec-corrections">Errata corrections in this document</a><br>
+</p></div><hr><div class="body">
+      <div class="div1"><a name="sec-intro" id="sec-intro"></a>
+         <h1>1 Introduction</h1>
+
+         <p>
+      This document is a Working Group Note, describing the Table Linkbase Conformance
+      Suite. 
+      
+      It provides important information to enable users to understand the file structure and 
+      contents of the Conformance Suite and their usage.
+      
+      It is an early draft as the conformance suite is still only in its infancy.
+      </p>
+      </div>
+
+      <div class="div1"><a name="sec-structure" id="sec-structure"></a>
+         <h1>2 Structure</h1>
+         <p>
+      The structure of the conformance suite is similar to that of other conformance suites, with each set of tests residing in a folder beneath the <code>tests-report</code> folder.
+      Each of these sub-folders has a name of the form <code>NNNN-module</code> where <code>NNNN</code> is a four digit number identifying the set of tests and <code>module</code>
+      identifies the module of the table linkbase specification that the tests pertain to.
+      </p>
+         <p>
+      In the subfolder <code>table</code> for each of these sets of tests there are files containing the expected result of each of the tests.  The expected result is a minimal html file with an html table(s) structure and contents that would reflect the view produced by the table linkbase.  If the table linkbase has multiple z-axis choices, then multiple tables are sequentially in the table file, in the document order of the z-axis choices.  Each expected result table has sufficient html style information so that it can be minimally rendered by a browser to demonstrate headers expected, header row/column merging/spanning expected, and cell contents.  
+          <ul>
+              <li>
+              The use of html in the expected results subfolder is not meant to imply that a tool being tested must produce html, or that a tool providing html in addition to other viewing and rendering is only tested in html output. 
+              </li>
+              <li>
+              Html, as the form of expected result, was only chosen because of its ubiquity; the tool under test compares its produced view, form, or semantics for rendering (or even internal data structures), to the structure and semantics gleaned from the expected result. 
+              </li>
+            </ul></p>
+         <p>
+      There is a top level index file, <code>testcases-index.xml</code> in the <code>conf</code> folder.  This file identifies the testcase files that contain test variations.
+      </p>
+         <p>
+      The tests themselves and their descriptions, along with needed files such as schemas etc. are listed in each testcase file. Each test is called a variation, and specifies <code class="element"> &lt;data&gt; </code> inputs and the expected <code class="element"> &lt;result&gt; </code>.  The result may include errors and table(s) produced.  An <code class="element"> &lt;error&gt; </code> is provided for each error (by its designated QName), and a single <code class="element"> &lt;table&gt; </code> results file is provided with a prototype of all of the tables that would result.  (A table specification with multiple z-axes may produce multiple table results, but they are prototyped in a single table expected-output file.
+      </p>
+         <p>
+      The only tests currently available are those in the <code>1000-aspect-rules-axis</code> folder. 
+      As the specifications advance in their development, additional tests will be provided and this document updated to newer versions.
+      </p>
+      </div>
+      
+      <div class="div1"><a name="sec-processing" id="sec-processing"></a>
+         <h1>3 Processing</h1>
+         <p>
+      The index file is used to drive the test tool to load each available testcase variation file.
+      </p>
+         <p>
+      Each testcase variation file has individual test variations that specify, in the <code class="element"> &lt;data&gt; </code> section the inputs to the
+      test.  The <code class="element"> &lt;data&gt; </code> child element with <code class="attribute"> @readMeFirst</code> = <code>true</code> is the entry point for instance or
+      DTS loading.  A test may either load a DTS entry (schema or linkbase) if it is to produce a table structure with no sample
+      data contents of cells, and does not need contextual information provided by an intext, or may load an XBRL instance as its 
+      entry point if it requires contextual information and/or fact items.
+      </p>
+         <p>
+      Errors in processing that are expected to be detected with the variation inputs must be matched to the <code class="element"> &lt;error&gt; </code> 
+      elements in the <code class="element"> &lt;result&gt; </code> for the variation.
+      </p>
+         <p>
+      If the <code class="element"> &lt;result&gt; </code> of the variation provides a <code class="element"> &lt;table&gt; </code> then the test suite is expected to examine the view 
+      produced by the tool under test and compare it to the structure and contents of the expected result.  
+      A tool comparing its produced view to the expected result will be able to compare structural information (column and row headers, 
+      column and row headers that are merged/spanned, and grid cell content assignment) from a structural semantics point of view and 
+      should not consider those html table features as representing style and rendering. The style and rendering are minimally provided in the test suite 
+      so that the expected result table can be viewed in a ordinary browser.   
+      </p>
+      </div>
+ 
+      <div class="div1"><a name="sec-schema" id="sec-schema"></a>
+         <h1>4 Normative schemas</h1>
+        <div class="div2"><a name="sec-schema-index" id="sec-schema-index"></a>
+            <h2>4.1 Testcases Index File</h2>
+            <div class="xml-normative"><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">schema</span> <span class="verbatim"><span class="verbatim-namespace-name"><br> xmlns:xs</span>="<span class="verbatim-namespace-uri">http://www.w3.org/2001/XMLSchema</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">elementFormDefault</span>="<span class="verbatim-attribute-content">qualified</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">testcase</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">uri</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">required</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:anyURI</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">testcases</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">testcase</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">maxOccurs</span>="<span class="verbatim-attribute-content">unbounded</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">name</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">required</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">date</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">required</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:date</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">schema</span>&gt;</span></div></div>
+        </div>
+        <div class="div2"><a name="sec-schema-variations" id="sec-schema-variations"></a>
+            <h2>4.2 Testcase Variations File</h2>
+            <div class="xml-normative"><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">schema</span> <span class="verbatim"><span class="verbatim-namespace-name"><br> xmlns:xs</span>="<span class="verbatim-namespace-uri">http://www.w3.org/2001/XMLSchema</span>"</span> <span class="verbatim"><span class="verbatim-namespace-name"><br> xmlns:conf</span>="<span class="verbatim-namespace-uri">http://xbrl.org/2008/conformance</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">targetNamespace</span>="<span class="verbatim-attribute-content">http://xbrl.org/2008/conformance</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">elementFormDefault</span>="<span class="verbatim-attribute-content">qualified</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">attributeFormDefault</span>="<span class="verbatim-attribute-content">unqualified</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">testcase</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:creator</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">number</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">name</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:description</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:reference</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">minOccurs</span>="<span class="verbatim-attribute-content">0</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">maxOccurs</span>="<span class="verbatim-attribute-content">unbounded</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:variation</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">maxOccurs</span>="<span class="verbatim-attribute-content">unbounded</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">creator</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">name</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">email</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">description</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">reference</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">specification</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">id</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">variation</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:creator</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">minOccurs</span>="<span class="verbatim-attribute-content">0</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">number</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">minOccurs</span>="<span class="verbatim-attribute-content">0</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">name</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">minOccurs</span>="<span class="verbatim-attribute-content">0</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:description</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:reference</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">minOccurs</span>="<span class="verbatim-attribute-content">0</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">maxOccurs</span>="<span class="verbatim-attribute-content">unbounded</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:data</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:result</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">sequence</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">id</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:ID</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">optional</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">data</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">choice</span> <span class="verbatim"><span class="verbatim-attribute-name">maxOccurs</span>="<span class="verbatim-attribute-content">unbounded</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:schema</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:linkbase</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:instance</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:parameter</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">ref</span>="<span class="verbatim-attribute-content">conf:filter</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">choice</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">schema</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">conf:inputFileType</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">linkbase</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">conf:inputFileType</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">instance</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">conf:inputFileType</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">inputFileType</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">simpleContent</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">extension</span> <span class="verbatim"><span class="verbatim-attribute-name">base</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">id</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:ID</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">optional</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">readMeFirst</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:boolean</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">optional</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">default</span>="<span class="verbatim-attribute-content">false</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">extension</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">simpleContent</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">parameter</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">name</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:QName</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">datatype</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:QName</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">value</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">filter</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">file</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:IDREF</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">id</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:IDREF</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">result</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">choice</span> <span class="verbatim"><span class="verbatim-attribute-name">maxOccurs</span>="<span class="verbatim-attribute-content">unbounded</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">assertionTests</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">assertionID</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">countSatisfied</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:integer</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">countNotSatisfied</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:integer</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">filterTest</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:string</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">instance</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:anyURI</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">table</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:anyURI</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">error</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">type</span>="<span class="verbatim-attribute-content">xs:QName</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">choice</span>&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span> <span class="verbatim"><span class="verbatim-attribute-name">name</span>="<span class="verbatim-attribute-content">expected</span>"</span> <span class="verbatim"><span class="verbatim-attribute-name">use</span>="<span class="verbatim-attribute-content">optional</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">simpleType</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">restriction</span> <span class="verbatim"><span class="verbatim-attribute-name">base</span>="<span class="verbatim-attribute-content">xs:token</span>"</span><span class="verbatim">&gt;</span><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">enumeration</span> <span class="verbatim"><span class="verbatim-attribute-name">value</span>="<span class="verbatim-attribute-content">valid</span>"</span><span class="verbatim">/&gt;</span></div><div class="verbatim">&lt;<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">enumeration</span> <span class="verbatim"><span class="verbatim-attribute-name">value</span>="<span class="verbatim-attribute-content">invalid</span>"</span><span class="verbatim">/&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">restriction</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">simpleType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">attribute</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">complexType</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">element</span>&gt;</span></div><span class="verbatim">&lt;/<span class="verbatim-element-nsprefix">xs</span>:<span class="verbatim-element-name">schema</span>&gt;</span></div></div>
+        </div>
+      </div>
+
+    
+      
+
+        
+        
+        
+
+      
+
+    <div class="div1"><a name="sec-ip-status" id="sec-ip-status"></a>
+         <h1>5 Intellectual property status (non-normative)</h1>
+  
+         <p>
+    This document and translations of it may be copied and
+    furnished to others, and derivative works that comment on or
+    otherwise explain it or assist in its implementation may be
+    prepared, copied, published and distributed, in whole or in
+    part, without restriction of any kind, provided that the above
+    copyright notice and this paragraph are included on all such
+    copies and derivative works. However, this document itself may
+    not be modified in any way, such as by removing the copyright
+    notice or references to XBRL International or XBRL
+    organizations, except as required to translate it into
+    languages other than English. Members of XBRL International
+    agree to grant certain licenses under the XBRL International
+    Intellectual Property Policy 
+    (<a href="http://www.xbrl.org/legal">www.xbrl.org/legal</a>).
+  </p>
+
+
+         <p>
+    This document and the information contained herein is provided
+    on an "AS IS" basis and XBRL INTERNATIONAL DISCLAIMS ALL
+    WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+    ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT
+    INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+    MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+  </p>
+
+         <p>
+    The attention of users of this document is directed to the
+    possibility that compliance with or adoption of XBRL
+    International specifications may require use of an invention
+    covered by patent rights. XBRL International shall not be
+    responsible for identifying patents for which a license may be
+    required by any XBRL International specification, or for
+    conducting legal inquiries into the legal validity or scope of
+    those patents that are brought to its attention. XBRL
+    International specifications are prospective and advisory
+    only. Prospective users are responsible for protecting
+    themselves against liability for infringement of patents. XBRL
+    International takes no position regarding the validity or
+    scope of any intellectual property or other rights that might
+    be claimed to pertain to the implementation or use of the
+    technology described in this document or the extent to which
+    any license under such rights might or might not be available;
+    neither does it represent that it has made any effort to
+    identify any such rights. Members of XBRL International agree
+    to grant certain licenses under the XBRL International
+    Intellectual Property Policy 
+    (<a href="http://www.xbrl.org/legal">www.xbrl.org/legal</a>).
+  </p>
+      </div>
+      <div class="div1"><a name="sec-acknowledgements" id="sec-acknowledgements"></a>
+         <h1>6 Acknowledgements (non-normative)</h1>
+         <p>
+    This document could not have been written without the
+    contributions of many people.
+  </p>
+
+      </div>
+
+    </div>
+    <div class="back">
+      <div class="div1"><a name="sec-history" id="sec-history"></a>
+         <h1>Appendix A Document history (non-normative)</h1>
+
+         <table class="revisions"><tr><th>Date</th><th>Author</th><th>Details</th></tr>
+
+            <tr><td>14 October 2011</td><td>Hugh Wallis</td><td>
+               <p class="revision">
+            Initial version.
+          </p>
+            </td></tr>
+        
+            <tr><td>14 October 2011</td><td>Herm Fischer</td><td>
+               <p class="revision">
+            Clarified use of expected results that are in html tables.  Added processing section.
+          </p>
+            </td></tr>
+        
+         </table>
+
+      </div>
+
+      <div class="div1"><a name="sec-corrections" id="sec-corrections"></a>
+         <h1>Appendix B Errata corrections in this document</h1>
+  
+         <p>
+    This appendix contains a list of the errata that have been
+    incorporated into this document. This represents all those
+    errata corrections that have been approved by the XBRL
+    International Rendering Working Group up to and
+    including 19 October 2011. 
+    Hyperlinks to relevant e-mail threads may
+    only be followed by those who have access to the relevant
+    mailing lists. Access to internal XBRL mailing lists is
+    restricted to members of XBRL International Inc.
+  </p>
+  
+         <p>No errata have been incorporated into this document.</p>
+  
+      </div>
+
+  </div>
+</body></html>

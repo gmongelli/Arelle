@@ -1,0 +1,2215 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>XBRL Dimensions 1.0 Conformance Suite</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:Batang;
+	panose-1:2 3 6 0 0 1 1 1 1 1;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"\@Batang";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+h1
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:21.6pt;
+	text-indent:-21.6pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:28.8pt;
+	text-indent:-28.8pt;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+h3
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:63.0pt;
+	text-indent:-36.0pt;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+h4
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:79.2pt;
+	text-indent:-43.2pt;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:normal;}
+h5
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:50.4pt;
+	text-indent:-50.4pt;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:Arial;
+	font-weight:normal;}
+h6
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:57.6pt;
+	text-indent:-57.6pt;
+	font-size:11.0pt;
+	font-family:Verdana;
+	font-weight:normal;
+	font-style:italic;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:64.8pt;
+	text-indent:-64.8pt;
+	font-size:10.0pt;
+	font-family:Arial;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:72.0pt;
+	text-indent:-72.0pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	font-style:italic;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:79.2pt;
+	text-indent:-79.2pt;
+	font-size:9.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoIndex1, li.MsoIndex1, div.MsoIndex1
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:10.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex2, li.MsoIndex2, div.MsoIndex2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:20.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex3, li.MsoIndex3, div.MsoIndex3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:30.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex4, li.MsoIndex4, div.MsoIndex4
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:40.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex5, li.MsoIndex5, div.MsoIndex5
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:50.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex6, li.MsoIndex6, div.MsoIndex6
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex7, li.MsoIndex7, div.MsoIndex7
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:70.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex8, li.MsoIndex8, div.MsoIndex8
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:80.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoIndex9, li.MsoIndex9, div.MsoIndex9
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:90.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:10.1pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-style:italic;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:20.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:30.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:40.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:50.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:70.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:80.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoNormalIndent, li.MsoNormalIndent, div.MsoNormalIndent
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Verdana;
+	text-transform:uppercase;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Verdana;}
+p.MsoIndexHeading, li.MsoIndexHeading, div.MsoIndexHeading
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:0pt;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold;}
+p.MsoTof, li.MsoTof, div.MsoTof
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:20.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-20.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoEnvelopeAddress, li.MsoEnvelopeAddress, div.MsoEnvelopeAddress
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:144.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;}
+p.MsoEnvelopeReturn, li.MsoEnvelopeReturn, div.MsoEnvelopeReturn
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Arial;}
+span.MsoFootnoteReference
+	{vertical-align:super;}
+p.MsoEndnoteText, li.MsoEndnoteText, div.MsoEndnoteText
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoToa, li.MsoToa, div.MsoToa
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:10.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-10.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoMacroText, li.MsoMacroText, div.MsoMacroText
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoToaHeading, li.MsoToaHeading, div.MsoToaHeading
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.MsoList, li.MsoList, div.MsoList
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListBullet, li.MsoListBullet, div.MsoListBullet
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListNumber, li.MsoListNumber, div.MsoListNumber
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoList2, li.MsoList2, div.MsoList2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoList3, li.MsoList3, div.MsoList3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:54.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoList4, li.MsoList4, div.MsoList4
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:72.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoList5, li.MsoList5, div.MsoList5
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:90.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListBullet2, li.MsoListBullet2, div.MsoListBullet2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListBullet3, li.MsoListBullet3, div.MsoListBullet3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:54.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListBullet4, li.MsoListBullet4, div.MsoListBullet4
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:72.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListBullet5, li.MsoListBullet5, div.MsoListBullet5
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:90.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListNumber2, li.MsoListNumber2, div.MsoListNumber2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListNumber3, li.MsoListNumber3, div.MsoListNumber3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:54.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListNumber4, li.MsoListNumber4, div.MsoListNumber4
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:72.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListNumber5, li.MsoListNumber5, div.MsoListNumber5
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:90.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-18.0pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:0pt;
+	text-align:center;
+	font-size:16.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.MsoClosing, li.MsoClosing, div.MsoClosing
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:216.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoSignature, li.MsoSignature, div.MsoSignature
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:216.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:18.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListContinue, li.MsoListContinue, div.MsoListContinue
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListContinue2, li.MsoListContinue2, div.MsoListContinue2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListContinue3, li.MsoListContinue3, div.MsoListContinue3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:54.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListContinue4, li.MsoListContinue4, div.MsoListContinue4
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:72.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoListContinue5, li.MsoListContinue5, div.MsoListContinue5
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:90.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoMessageHeader, li.MsoMessageHeader, div.MsoMessageHeader
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:54.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-54.0pt;
+	background:#CCCCCC;
+	border:none;
+	padding:0pt;
+	font-size:12.0pt;
+	font-family:Arial;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:0pt;
+	text-align:center;
+	font-size:12.0pt;
+	font-family:Arial;}
+p.MsoSalutation, li.MsoSalutation, div.MsoSalutation
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoDate, li.MsoDate, div.MsoDate
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyTextFirstIndent, li.MsoBodyTextFirstIndent, div.MsoBodyTextFirstIndent
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:10.5pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyTextFirstIndent2, li.MsoBodyTextFirstIndent2, div.MsoBodyTextFirstIndent2
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:18.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:10.5pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoNoteHeading, li.MsoNoteHeading, div.MsoNoteHeading
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	line-height:200%;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Verdana;}
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	line-height:200%;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.MsoBodyTextIndent3, li.MsoBodyTextIndent3, div.MsoBodyTextIndent3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Verdana;}
+p.MsoBlockText, li.MsoBlockText, div.MsoBlockText
+	{margin-top:6.0pt;
+	margin-right:36.0pt;
+	margin-bottom:6.0pt;
+	margin-left:36.0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	background:#FFFF99;
+	font-size:10.0pt;
+	font-family:Verdana;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	background:navy;
+	font-size:10.0pt;
+	font-family:Tahoma;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoAutoSig, li.MsoAutoSig, div.MsoAutoSig
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Verdana;}
+address
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-style:italic;}
+code
+	{font-family:"Arial Unicode MS";}
+pre
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:Tahoma;}
+p.H2, li.H2, div.H2
+	{margin-top:5.0pt;
+	margin-right:0pt;
+	margin-bottom:5.0pt;
+	margin-left:0pt;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:Verdana;
+	font-weight:bold;}
+p.DefinitionTerm, li.DefinitionTerm, div.DefinitionTerm
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Verdana;}
+p.DefinitionList, li.DefinitionList, div.DefinitionList
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Verdana;}
+p.Blockquote, li.Blockquote, div.Blockquote
+	{margin-top:5.0pt;
+	margin-right:18.0pt;
+	margin-bottom:5.0pt;
+	margin-left:18.0pt;
+	font-size:12.0pt;
+	font-family:Verdana;}
+span.CODE
+	{font-family:"Courier New";
+	letter-spacing:-.5pt;}
+p.Preformatted, li.Preformatted, div.Preformatted
+	{margin:0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+span.Sample
+	{font-family:"Courier New";}
+span.t1
+	{color:windowtext;}
+span.m1
+	{color:blue;}
+span.BodyTextChar
+	{font-family:"MS Mincho";}
+span.BlockTextChar
+	{font-family:"MS Mincho";}
+span.BodyTextChar1
+	{font-family:"MS Mincho";}
+span.BlockTextChar1
+	{font-family:"MS Mincho";}
+span.termdef
+	{color:windowtext;}
+p.Clearformatting, li.Clearformatting, div.Clearformatting
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.0pt;
+	font-family:Verdana;}
+span.ClearformattingChar
+	{font-family:"MS Mincho";}
+span.BodyTextChar2
+	{font-family:"MS Mincho";}
+span.ClearformattingChar1
+	{font-family:"MS Mincho";}
+span.BodyTextChar1Char
+	{font-family:"MS Mincho";}
+span.BodyTextChar4
+	{font-family:"MS Mincho";}
+span.ClearformattingChar2
+	{font-family:"MS Mincho";}
+span.BodyTextChar2Char
+	{font-family:"MS Mincho";}
+span.MODAL
+	{text-transform:uppercase;}
+p.Norml, li.Norml, div.Norml
+	{margin-top:6.0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.0pt;
+	font-family:Verdana;}
+p.Level1Text, li.Level1Text, div.Level1Text
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:6.0pt;
+	margin-left:0pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-autospace:none;
+	font-size:9.0pt;
+	font-family:Verdana;}
+p.Heading21, li.Heading21, div.Heading21
+	{margin-top:12.0pt;
+	margin-right:0pt;
+	margin-bottom:3.0pt;
+	margin-left:21.6pt;
+	text-indent:-21.6pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+ /* Page Definitions */
+ @page Section1
+	{size:595.45pt 841.7pt;
+	margin:70.85pt 72.0pt 85.7pt 72.0pt;}
+div.Section1
+	{page:Section1;}
+@page Section2
+	{size:595.45pt 841.7pt;
+	margin:70.85pt 72.0pt 85.7pt 72.0pt;}
+div.Section2
+	{page:Section2;}
+@page Section3
+	{size:595.45pt 841.7pt;
+	margin:70.85pt 72.0pt 85.7pt 72.0pt;}
+div.Section3
+	{page:Section3;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0pt;}
+ul
+	{margin-bottom:0pt;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoTitle><a name="_Toc478125711"></a><a name="_Ref40515085"></a><span lang=FR><a name="_Toc244658215">XBRL Dimensions 1.0 Conformance Suite</a></span></p>
+
+<p class=MsoSubtitle><a name="_Toc244658216"><span lang=FR>Candidate Recommendation
+of </span></a><a name=IssueDate><span lang=FR>2009-10-06</span></a></p>
+
+<p class=MsoSubtitle><a name="_Toc244658217"><span lang=EN-GB>Corresponding to Dimensions
+1.0 Recommendation dated 2006-09-18 with errata corrections to 2009-09-07</span></a></p>
+
+<p class=MsoBodyText><span lang=EN-GB>This document:</span></p>
+
+<p class=MsoBodyText style='text-indent:36.0pt'><span lang=EN-GB
+style='color:blue'>XDT-CONF-CR4-2009-10-06.htm</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>is the NON-NORMATIVE version of this
+document. The NORMATIVE version is in the document XDT-CONF-CR4-2009-10-06.rtf</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>Source files:</span></p>
+
+<p class=MsoBodyText style='text-indent:36.0pt'><span lang=EN-GB
+style='color:blue'>XDT-CONF-CR4-2009-10-06.zip</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>Unzip the latter into a </span><span
+lang=EN-GB style='color:blue'>{</span><span lang=EN-GB style='color:blue'>ROOT}</span><span
+lang=EN-GB> directory to create a directory hierarchy.  Open the file </span><span
+lang=EN-GB style='color:blue'>{</span><span lang=EN-GB style='color:blue'>ROOT}/xdt.xml</span><span
+lang=EN-GB> in a browser.  This yields a hypertext navigable tree view of test
+set lists, and a test list in each set of tests.</span></p>
+
+<p class=Heading21><a name="_Toc36708706"></a><a name="_Toc36269153"></a><a
+name="_Toc244658218"></a><a name="_Toc36708703"></a><a name="_Toc36269150"><span
+lang=EN-GB>A<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Editor</span></a></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=177 valign=top style='width:133.0pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Name</span></b></p>
+  </td>
+  <td width=217 valign=top style='width:163.0pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Contact</span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.4pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Affiliation</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=177 valign=top style='width:133.0pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>Hugh Wallis</span></p>
+  </td>
+  <td width=217 valign=top style='width:163.0pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><a href="mailto:hughwallis@xbrl.org"><span lang=EN-GB>hughwallis@xbrl.org</span></a></p>
+  </td>
+  <td width=213 valign=top style='width:159.4pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>XBRL International Inc.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=Heading21><a name="_Toc244658219"><span lang=EN-GB>B<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Contributors</span></a></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=140 valign=top style='width:104.65pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Name</span></b></p>
+  </td>
+  <td width=255 valign=top style='width:191.35pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Contact</span></b></p>
+  </td>
+  <td width=213 valign=top style='width:159.4pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Affiliation</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=140 valign=top style='width:104.65pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>Herm Fischer</span></p>
+  </td>
+  <td width=255 valign=top style='width:191.35pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><a href="mailto:herman.fischer@ubmatrix.com"><span
+  lang=EN-GB>herman.fischer@ubmatrix.com</span></a></p>
+  </td>
+  <td width=213 valign=top style='width:159.4pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>UBmatrix</span></p>
+  </td>
+ </tr>
+</table>
+
+<h1 style='margin-left:0pt;text-indent:0pt'><a name="_Toc244658220"><span
+lang=EN-GB>Abstract</span></a></h1>
+
+<p class=MsoBodyText><span lang=EN-GB>XBRL<i> </i>is the specification for the
+eXtensible Business Reporting Language. XBRL allows software vendors,
+programmers, intermediaries in the preparation and distribution process and end
+users who adopt it as a specification to enhance the creation, exchange, and
+comparison of business reporting information. The XBRL Dimensions 1.0 specification
+document describes the elements and data structures that can be constructed
+using XBRL Taxonomies to standardize the content of the </span><span
+class=CODE><span lang=EN-GB>segment</span></span><span lang=EN-GB> and </span><span
+class=CODE><span lang=EN-GB>scenario</span></span><span lang=EN-GB> containers within
+the context of facts that exist in XBRL instance documents.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>This document describes a set of
+conformance tests for dimensional processors that check conformance of XBRL
+instance documents and taxonomies against the XBRL Dimensions specification 1.0.
+Unless indicated otherwise, references to ‘XBRL’ and ‘the specification’ in
+this document mean ‘XBRL 2.1’ and ‘the XBRL 2.1 specification recommendation’,
+respectively.  Unless indicated otherwise, references to ‘XDT’ in this document
+mean ‘XBRL Dimensions 1.0’.</span></p>
+
+<h1 style='margin-left:0pt;text-indent:0pt'><a name="_Toc36708707"></a><a
+name="_Toc36269154"></a><a name="_Toc244658221"></a><a name="_Toc36708705"></a><a
+name="_Toc36269152"><span lang=EN-GB>Status of this document</span></a></h1>
+
+<p class=MsoBodyText><span lang=EN-GB>This is a Candidate Recommendation whose circulation
+is unrestricted. Recipients of this document are invited to submit comments to
+the editor and authors, and to submit notification of any relevant patent
+rights of which they are aware and to provide supporting documentation.</span></p>
+
+<b><span lang=EN-GB style='font-size:14.0pt;font-family:Arial'><br clear=all
+style='page-break-before:always'>
+</span></b>
+
+<h1 style='margin-left:0pt;text-indent:0pt'><a name="_Toc244658222"><span
+lang=ES>Table of contents</span></a></h1>
+
+<p class=MsoToc1><span lang=EN-GB><span class=MsoHyperlink><a
+href="#_Toc244658215"><span lang=FR>XBRL Dimensions 1.0 Conformance Suite</span><span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658216"><span lang=FR>Candidate Recommendation of 2009-10-06</span><span
+style='color:windowtext;display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658217">Corresponding to Dimensions 1.0 Recommendation dated
+2006-09-18 with errata corrections to 2009-09-07<span style='color:windowtext;
+display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658218">A<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>    </span>Editor<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658219">B<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>    </span>Contributors<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658220">Abstract<span style='color:windowtext;display:none;
+text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658221">Status of this document<span style='color:windowtext;
+display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>i</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658222"><span lang=ES>Table of contents</span><span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>ii</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658223">List of Figures<span style='color:windowtext;display:
+none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>ii</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658224">Introduction<span style='color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658225">1.1<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Purpose<span
+style='color:windowtext;display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658226">1.2<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Scope<span
+style='color:windowtext;display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658227">1.3<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Terminology<span
+style='color:windowtext;display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658228">1.4<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Documentation
+conventions<span style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658229">2<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>     </span>Changes
+from the previous recommendation<span style='color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658230">3<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>     </span>Overview
+of the tests<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658231">4<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>     </span>Technical
+details<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658232">4.1<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Directory
+Structure<span style='color:windowtext;display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658233">4.2<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Structure
+of Testcase summary files<span style='color:windowtext;display:none;text-decoration:
+none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658234">4.3<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>Contents
+of a variation<span style='color:windowtext;display:none;text-decoration:none'>  </span><span
+style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></span></p>
+
+<p class=MsoToc2><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658235">4.4<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-style:normal;text-decoration:none'>     </span>How
+to submit tests<span style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658236">C<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>    </span>References
+(non-normative)<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658237">D<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>        </span>Intellectual
+property status (non&#8209;normative)<span style='color:windowtext;display:
+none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></span></p>
+
+<p class=MsoToc1><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc244658238">E<span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman";color:windowtext;font-weight:normal;text-decoration:none'>     </span>Document
+history and acknowledgments (non-normative)<span style='color:windowtext;
+display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></span></p>
+
+<p class=MsoNormal><span lang=ES>&nbsp;</span></p>
+
+<h1 style='margin-left:0pt;text-indent:0pt'><a name="_Toc244658223"><span
+lang=EN-GB>List of Figures</span></a></h1>
+
+<p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+
+<p class=MsoTof><span lang=EN-GB><span class=MsoHyperlink><a
+href="#_Toc137717889">Figure 1.  Fragment of the root file xdt.xml<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></span></p>
+
+<p class=MsoTof><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc137717890">Figure 2.  A testcase consists of one or more variations<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></span></p>
+
+<p class=MsoTof><span class=MsoHyperlink><span lang=EN-GB><a
+href="#_Toc137717891">Figure 3.  The file 202-00-ProperID-valid.xsd<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></span></p>
+
+<h1 style='margin-left:0pt;text-indent:0pt'><a name="_Ref36209242"></a></h1>
+
+</div>
+
+<b><span lang=EN-GB style='font-size:14.0pt;font-family:Arial'><br clear=all
+style='page-break-before:always'>
+</span></b>
+
+<div class=Section2>
+
+<h1 style='margin-left:0pt;text-indent:0pt'><a name="_Toc244658224"><span
+lang=EN-GB>Introduction</span></a></h1>
+
+<p class=MsoBodyText><a name="_Toc36708709"></a><a name="_Toc36269157"><span
+lang=EN-GB>XBRL<i> </i>is the specification for the eXtensible Business
+Reporting Language. XBRL allows software vendors, programmers and end users to
+enhance the creation, exchange, and comparison of business reporting
+information.  Business reporting includes, but is not limited to, financial
+statements, financial information, non-financial information and regulatory
+filings such as annual and quarterly financial statements. The XBRL Dimensions 1.0
+specification documents the architecture and syntax of elements that provide
+multiple dimensions to facts that exist in instance documents using the </span></a><span
+class=CODE><span lang=EN-GB>segment</span></span><span lang=EN-GB> and </span><span
+class=CODE><span lang=EN-GB>scenario</span></span><span lang=EN-GB> container
+in the </span><span class=CODE><span lang=EN-GB>context</span></span><span
+lang=EN-GB> of such facts. The XBRL Dimensions 1.0 specification also defines
+validation rules that can be used to define and check the expected dimensions
+for each fact and dimension value combinations that are valid or invalid.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>This document describes the conformance
+suite for processors that claim to check taxonomies for compliance with [XDT]. 
+Such processors are <i>XDT Compliance Processors.</i></span></p>
+
+<h2><a name="_Toc244658225"><span lang=EN-GB>1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Purpose</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>The purpose of the conformance suite is
+to facilitate consistency among XDT Compliance Processors.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The conformance suite is normative in the
+same sense that the specification [XBRL] is normative and [XDT] is normative. An
+application is a XDT Compliance Processor if and only if it passes all of the
+conformance suite tests. In this case, the processor is declared as <b>XDT
+Conformant</b>.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>This conformance suite does not mark each
+test to indicate whether it is necessary for minimal or full Conformance. All
+test cases are considered minimal.</span></p>
+
+<h2><a name="_Toc36708711"></a><a name="_Toc36269159"></a><a name="_Ref36209247"></a><a
+name="_Ref36209228"></a><a name="_Toc244658226"><span lang=EN-GB>1.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Scope</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>Testing of applications that consume XBRL
+instances and the taxonomies used by those instances is included in the scope
+of this conformance suite.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>Testing of applications that produce XBRL
+taxonomies is not within the scope of this conformance suite.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>Testing of APIs that produce XBRL
+instance documents is not within the scope of this conformance suite.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>[XBRL] is in scope and [XDT] is in scope.
+Other work products of XBRL International, whether public or internal, are not
+in scope.  [XBRL] is based on XML Schema [SCHEMA-0] [SCHEMA-1] [SCHEMA-2]. </span></p>
+
+<h2><a name="_Toc244658227"><span lang=EN-GB>1.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Terminology</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>The terminology used in XBRL frequently
+overlaps with terminology from other fields, and the following list is provided
+to reduce the possibility of ambiguity and confusion.  For definitions of the
+following terms see the XBRL 2.1 Specification [XBRL].</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>abstract element, alias concept, alias item, c&#8209;equal,
+child, parent, sibling, grandparent, uncle, ancestor, concept, concrete
+element, CWA, duplicate items, duplicate tuples, element, entity, error,
+essence concept, essence item, fatal error, instance namespace, item, least
+common ancestor, linkbase namespace, <span style='text-transform:uppercase'>must,
+must not, required, shall, shall not, should, should not, may, optionaL, </span>non-numeric
+item, numeric item, period, p&#8209;equal, s&#8209;equal, taxonomy, tuple,
+u-equal, v&#8209;equal, XBRL instance, x&#8209;equal.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>For definitions of the following terms
+see [XDT]</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Dimension, Domain, Effective Domain, Domain
+Member / Valid Member, Explicit Dimension, Typed Dimension, Empty Dimension,
+Primary Item, Primary Item Declaration, Primary Item Descendant, Primary
+Taxonomy, Dimensional Taxonomy, Template Taxonomy, Hypercube, Empty Hypercube, Hypercube
+Declaration, Dimension Declaration, Typed Dimension Element, Dimensional
+relationship set, Base Set, Dimensional Processor, Raise an error.</span></p>
+
+<h2><a name="_Toc36708712"></a><a name="_Toc36269160"></a><a
+name="_Toc244658228"></a><a name="_Toc36708708"></a><a name="_Toc36269156"><span
+lang=EN-GB>1.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Documentation conventions</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>The following highlighting is used to
+present literal code fragments: </span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:3.75pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=606 style='width:454.5pt;border:double windowtext 1.5pt;background:
+  white;padding:0pt 3.75pt 0pt 3.75pt'>
+  <p class=Preformatted><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText><span lang=EN-GB>The following highlighting is used for
+non-normative examples:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.15pt;border-collapse:collapse;border:none'>
+ <tr style='height:12.55pt'>
+  <td width=605 style='width:453.6pt;border:solid windowtext 1.0pt;background:
+  aqua;padding:0pt 0pt 0pt 0pt;height:12.55pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText><span lang=EN-GB>Non-normative editorial comments are
+denoted as follows, and will be removed from the final recommendation:</span></p>
+
+<p class=MsoBlockText><span lang=EN-GB>IHR:<b> </b>This highlighting is used to
+indicate editorial comments about the current document, prefixed by the
+editor’s initials.</span></p>
+
+<p class=MsoBodyText><i><span lang=EN-GB>Italics</span></i><span lang=EN-GB>
+are used for rhetorical emphasis only and do not convey any special normative
+meaning.</span></p>
+
+<h1><a name="_Toc244658229"><span lang=EN-GB>2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Changes from the previous </span></a><span
+lang=EN-GB>recommendation</span></h1>
+
+<p class=MsoBodyText><span lang=EN-GB>There has been no previous
+recommendation, hence no changes.</span></p>
+
+<h1><a name="_Toc244658230"><span lang=EN-GB>3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Overview of the tests</span></a></h1>
+
+<p class=MsoBodyText><span lang=EN-GB>The structure of the test suite is based
+on the OASIS XSL Conformance Suite and the XBRL 2.1 conformance suite.  In the
+case of XSL the structure of each individual test is simple:</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>An input .xml file;</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>An .xsl style sheet;</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>An expected output .txt file and its location.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>In the OASIS suite, sets of files are
+then organised into individual “variants” in a list comprising a “test case”
+and then the test cases are organised into a list.  XML files are used to
+represent the individual tests and relationships among the files. Implementers
+develop their own test harness, which uses these XML files to successively
+apply each </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>.xsl</span></span><span
+lang=EN-GB> file to each </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>.xml</span></span><span lang=EN-GB> file and compare
+the result to the output</span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'> .txt</span></span><span lang=EN-GB> file (after
+running both through </span><span class=CODE><span lang=EN-GB style='font-size:
+9.0pt'>infoset.xsl</span></span><span lang=EN-GB> in order to remove irrelevant
+output differences).  In each case the input may either be valid or invalid,
+and the test harness produces a report showing the pass/fail status of the
+implementation on each test.  In general, a test harness does not stop at the
+first failure but attempts to perform all of the tests.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The three main sets of tests for XDT conformance
+are:</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Schema Invalid test cases, </span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Dimensional taxonomy errors tests and</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Instance document error tests. </span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The objectives of each are described at a
+high level in this document.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>To see the tests themselves, unzip the
+package and visit the </span><span lang=EN-GB>{</span><span lang=EN-GB>ROOT}/xdt.xml
+file.  In general each test may have zero or more of these different types of
+file:</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Instance: CamelCase style file name, suffix </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>.xbrl;</span></span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Schema: CamelCase style file name, suffix </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>.xsd;</span></span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Linkbase: CamelCase style file name, suffix </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>.xml;</span></span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>A numbering scheme organises the test
+sets and variations as detailed below in section 4.2, “Structure of Testcase
+summary files”.</span></p>
+
+<h1><a name="_Toc244658231"><span lang=EN-GB>4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Technical details</span></a></h1>
+
+<h2><a name="_Toc244658232"><span lang=EN-GB>4.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Directory Structure</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>The conformance suite has a hierarchical
+tree structure.  The structure segregates tests into sections for usability and
+provides an individual subdirectory for each section. Inside the sections there
+are additional subdirectories, one per expected error message. Each
+subdirectory contains the test case summary file and all files for all
+variations of each test case:</span></p>
+
+<p class=MsoBodyText><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>{ROOT}</span></span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>000-Schema-invalid</span></span><span
+lang=EN-GB> – tests that should raise schema validation errors.</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>100-xbrldte</span></span><span
+lang=EN-GB> – tests relating to taxonomy errors.</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>200-xbrldie</span></span><span
+lang=EN-GB> – tests relating to instance document errors.</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>lib</span></span><span
+lang=EN-GB> – the directory where common schemas reside. There is only one
+common schema in that folder that is the test.xsd schema.</span></p>
+
+<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>lib/base</span></span><span
+lang=EN-GB> – the directory where common taxonomies used in multiple test cases
+reside. The taxonomies found in this folder are valid XBRL 2.1 taxonomies and
+schemas.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>Test cases themselves have their own files
+and are located within their parent subdirectories viz. </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>203-PrimaryItemDimensionallyInvalidError</span></span><span
+lang=EN-GB>, </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>105-HasHypercubeTargetError</span></span><span
+lang=EN-GB>, </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>etc</span></span><span
+lang=EN-GB>.  each one of the folders contains a test cases file.</span></p>
+
+<h2><a name="_Ref38032233"></a><a name="_Toc36709015"></a><a name="_Toc36269463"></a><a
+name="_Toc244658233"></a><a name="_Ref60497880"></a><a name="_Ref60497877"></a><a
+name="_Ref60497873"><span lang=EN-GB>4.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Structure of Testcase summary files</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>The naming scheme of the test case
+summary files is in the form “</span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>TTT&#8209;TestCase-ErrorName.extension</span></span><span
+lang=EN-GB>.”  Where:</span></p>
+
+<p class=MsoBodyText style='margin-left:72.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>TTT</span></span><span
+lang=EN-GB> is the numeric portion of the test case ID per the test case file. 
+For example the test case “T-204” has the code “</span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>204</span></span><span lang=EN-GB>”.</span></p>
+
+<p class=MsoBodyText style='margin-left:72.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>TextCase</span></span><span
+lang=EN-GB> is the fixed string “</span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>TextCase</span></span><span lang=EN-GB>”.</span></p>
+
+<p class=MsoBodyText style='margin-left:72.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>ErrorName</span></span><span
+lang=EN-GB> is the error condition that some of the test cases must raise.</span></p>
+
+<p class=MsoBodyText style='margin-left:72.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>extension</span></span><span
+lang=EN-GB> is “</span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>.xml</span></span><span
+lang=EN-GB>”.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>So, putting this all together, an example
+test case included in the “</span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>200-xbrldie</span></span><span lang=EN-GB>” directory,
+with the subdirectory “</span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>204-RepeatedDimensionInInstanceError</span></span><span
+lang=EN-GB>”, has one file “</span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>204-TestCase-RepeatedDimensionInInstanceError.xml</span></span><span
+lang=EN-GB>” that describes the different variations.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The root file of the test suites is </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>xdt.xml</span></span><span
+lang=EN-GB>.  This lists all the sets of tests in the suite. A portion of it is
+shown in the figure below.</span></p>
+
+<p class=MsoCaption><a name="_Toc137717889"><span lang=EN-GB>Figure </span></a><span lang=EN-GB>1</span><span lang=EN-GB>.  Fragment of the root file xdt.xml</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.15pt;border-collapse:collapse;border:none'>
+ <tr style='page-break-inside:avoid;height:12.55pt'>
+  <td width=605 style='width:453.6pt;border:solid windowtext 1.0pt;background:
+  aqua;padding:0pt 0pt 0pt 0pt;height:12.55pt'>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>&lt;testcases
+  name=&quot;XBRL Dimensional Taxonomies 1.0 Tests&quot;
+  date=&quot;2005-12-10&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:noNamespaceSchemaLocation=&quot;xdt.xsd&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>        &lt;testcase
+  uri=&quot;000-Schema-invalid/001-Taxonomy/001-TestCase-Taxonomy.xml&quot;/&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>        &lt;testcase
+  uri=&quot;100-xbrldte/101-HypercubeElementIsNotAbstractError/101-TestCase-HypercubeElementIsNotAbstractError.xml&quot;/&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>        &lt;testcase
+  uri=&quot;100-xbrldte/102-HypercubeDimensionSourceError/102-TestCase-HypercubeDimensionSourceError.xml&quot;/&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>        &lt;testcase
+  uri=&quot;100-xbrldte/103-HypercubeDimensionTargetError/103-TestCase-HypercubeDimensionTargetError.xml&quot;/&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>        &lt;testcase
+  uri=&quot;100-xbrldte/104-HasHypercubeSourceError/104-TestCase-HasHypercubeSourceError.xml&quot;/&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>        &lt;testcase
+  uri=&quot;100-xbrldte/105-HasHypercubeTargetError/105-TestCase-HasHypercubeTargetError.xml&quot;/&gt;.</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>.</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>.</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>.</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>&lt;/testcases&gt;</span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText><span lang=EN-GB>The </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>testcases</span></span><span lang=EN-GB>
+element has the following attributes:</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>name</span></span><span
+lang=EN-GB> - a brief name for the complete test suite</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>date</span></span><span
+lang=EN-GB> - date the test suite was published.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>testcases</span></span><span lang=EN-GB>
+element may contain any number of </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>testcase</span></span><span lang=EN-GB> elements.  Each
+of these has only one attribute:</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>uri</span></span><span
+lang=EN-GB> - the <i>relative</i> URI where the </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>testcase</span></span><span lang=EN-GB> file
+itself is to be found.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The schema </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>xdt.xsd</span></span><span lang=EN-GB>
+defines the structure of the file </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>xdt.xml</span></span><span lang=EN-GB>.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The structure of a </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>testcase</span></span><span
+lang=EN-GB> file is described by the schema </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>{ROOT}/lib/test.xsd</span></span><span
+lang=EN-GB>.  The figure below shows one </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>testcase</span></span><span lang=EN-GB> and
+its first two variations.  The </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>testcase</span></span><span lang=EN-GB> is <i>not</i>
+meant to be directly executed; it is meant only as a declarative representation
+that organise the information in a way that programs (specifically, a test
+harness) can use.</span></p>
+
+<p class=MsoCaption><a name="_Toc137717890"><span lang=EN-GB>Figure </span></a><span lang=EN-GB>2</span><span lang=EN-GB>.  A testcase consists of one or more
+variations</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.15pt;border-collapse:collapse;border:none'>
+ <tr style='page-break-inside:avoid;height:12.55pt'>
+  <td width=605 style='width:453.6pt;border:solid windowtext 1.0pt;background:
+  aqua;padding:0pt 0pt 0pt 0pt;height:12.55pt'>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>&lt;testcase
+  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xmlns:xbrldie=&quot;http://xbrl.org/2005/xdi/errors&quot;
+  xmlns=&quot;http://xbrl.org/2005/conformance&quot;
+  name=&quot;204-TestCase-RepeatedDimensionInInstanceError&quot;
+  description=&quot;Rules 2.4.2.1, 2.8.3.1 and section 2.9.&quot;
+  outpath=&quot;out&quot; owner=&quot;ihr@xbrl.org&quot;
+  minimal=&quot;true&quot;
+  xsi:schemaLocation=&quot;http://xbrl.org/2005/conformance
+  ../../lib/test.xsd&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;!-- Dimensional syntax rules pertaining to instances and not covered by
+  XML Schema and XBRL validation. --&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;!-- As of the 2005-12-10 internal working draft (by HF).  --&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;!-- 3.1.3.2  1. A context MUST NOT contain more than one dimension value
+  for every dimension. A validator MUST signal [Ins Err, 7]
+  xbrldie:RepeatedDimensionInInstance when this rule is violated --&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;variation id=&quot;V-01&quot; name=&quot;contextContainsTypedDimensionValid&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;description
+  reference=&quot;XDT-IWD-2005-12-10.doc#3.1.3.2&quot;&gt;1.      A context
+  MUST NOT contain more than one dimension value for every dimension. A
+  validator MUST signal [Ins Err, 7] xbrldie:RepeatedDimensionInInstance when
+  this rule is violated.  In this valid variation only one dimension value is
+  provided.&lt;/description&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;data&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;xsd
+  readMeFirst=&quot;false&quot;&gt;contextContainsRepeatedDimension.xsd&lt;/xsd&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;linkbase readMeFirst=&quot;false&quot;&gt;contextContainsRepeatedDimension-definition.xml&lt;/linkbase&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;linkbase
+  readMeFirst=&quot;false&quot;&gt;contextContainsRepeatedDimension-label.xml&lt;/linkbase&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;instance readMeFirst=&quot;true&quot;&gt;contextContainsTypedDimensionValid.xbrl&lt;/instance&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;/data&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;result&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;/result&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;/variation&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;variation id=&quot;V-02&quot;
+  name=&quot;contextContainsRepeatedDimension&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;description reference=&quot;XDT-IWD-2005-12-10.doc#3.1.3.2&quot;&gt;1.     
+  A context MUST NOT contain more than one dimension value for every dimension.
+  A validator MUST signal [Ins Err, 7] xbrldie:RepeatedDimensionInInstance when
+  this rule is violated.  In this case two customer names are provided for the
+  same context segment.&lt;/description&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;data&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;xsd
+  readMeFirst=&quot;false&quot;&gt;contextContainsRepeatedDimension.xsd&lt;/xsd&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;linkbase
+  readMeFirst=&quot;false&quot;&gt;contextContainsRepeatedDimension-definition.xml&lt;/linkbase&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;linkbase
+  readMeFirst=&quot;false&quot;&gt;contextContainsRepeatedDimension-label.xml&lt;/linkbase&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>                       
+  &lt;instance
+  readMeFirst=&quot;true&quot;&gt;contextContainsRepeatedDimension.xbrl&lt;/instance&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  &lt;/data&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>               
+  </span></span><span class=CODE><span lang=ES style='font-size:9.0pt'>&lt;result&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=ES style='font-size:9.0pt'>                       
+  &lt;error&gt;xbrldie:RepeatedDimensionInInstanceError&lt;/error&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=ES style='font-size:9.0pt'>               
+  </span></span><span class=CODE><span lang=FR style='font-size:9.0pt'>&lt;/result&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>       
+  &lt;/variation&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>&lt;/testcase&gt;</span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText><span lang=EN-GB>The </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>testcase</span></span><span lang=EN-GB>
+element has the following attributes</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>name</span></span><span
+lang=EN-GB>: a brief name for test cases. </span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>description</span></span><span
+lang=EN-GB>: usually a reference to the portion of the [XDT] text itself that
+supports the need for the test.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>owner</span></span><span
+lang=EN-GB>: the e-mail address of the main contact for this testcase.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>minimal</span></span><span
+lang=EN-GB>: (optional, default value </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>true</span></span><span lang=EN-GB>) indicates whether
+the testcase is part of the minimal conformance suite.  If false, it means the
+testcase is only part of the full conformance suite.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>outpath</span></span><span
+lang=EN-GB>: (unused) normally set to the string &quot;</span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>out</span></span><span lang=EN-GB>&quot;</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>testcase</span></span><span lang=EN-GB> may
+contain any number of <i>variations.</i>  Each variation has the following
+parts:</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>id</span></span><span
+lang=EN-GB> (attribute): an identifier used to ensure uniqueness within the variation.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>name</span></span><span
+lang=EN-GB> (attribute): a brief name for the variation.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>description</span></span><span
+lang=EN-GB> (element): a text explanation of what syntactic constraint or other
+feature is meant to be tested by this variation.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>reference</span></span><span
+lang=EN-GB> (attribute to the description element): a text string of the form
+filename#a.b.c.d where filename is the XDT file name and section is the dot
+separated section number.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>data</span></span><span
+lang=EN-GB> (element): an element to encapsulate the files that are part of the
+variation.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>xsd</span></span><span
+lang=EN-GB>, </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>linkbase
+</span></span><span lang=EN-GB>and </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>instance</span></span><span lang=EN-GB> elements:  
+these elements give the relative pathname of the input files to the XBRL dimensional
+processor for this specific variation.  </span></p>
+
+<p class=MsoBodyText style='margin-left:72.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:"Courier New"'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>The </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>readMeFirst</span></span><span lang=EN-GB> attribute is
+a Boolean that signals which of the several input files is actually the one
+that the XBRL Processor should read in order to begin processing.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>result </span></span><span
+lang=EN-GB>element:   this element declare the expected result of the variation.
+If the content of the result element is the empty sequence the result is valid.</span></p>
+
+<p class=MsoBodyText style='margin-left:36.0pt;text-indent:-18.0pt'><span
+lang=EN-GB style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Possible error elements are: </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>error</span></span><span
+lang=EN-GB>, </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>warning</span></span><span
+lang=EN-GB> and </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>inconsistency</span></span><span
+lang=EN-GB>. The content of those elements is always one of the QNames defined
+in the XDT specification.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>There are XSL stylesheets </span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>testcase.xsl</span></span><span
+lang=EN-GB> and </span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>testcases.xsl</span></span><span
+lang=EN-GB> in the directory CONF that allow browsers to view the contents of
+testcase files in tabular form. </span></p>
+
+<h2><a name="_Toc244658234"><span lang=EN-GB>4.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Contents of a variation</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>An example of a </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>variation</span></span><span lang=EN-GB> is
+the “</span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>204-RepeatedDimensionInInstanceError</span></span><span
+lang=EN-GB>” variation in the testcase </span><span class=CODE><span
+lang=EN-GB style='font-size:9.0pt'>200&#8209;xbrldi</span></span><span
+lang=EN-GB>.  The goal of this specific variation is to ensure that there is no
+more then one value reported for a dimension. </span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The figures below show the instance
+document that is invalid. There is another variation of the same test case that
+is valid.  The content of the </span><span class=CODE><span lang=EN-GB
+style='font-size:9.0pt'>result</span></span><span lang=EN-GB> element is “</span><span
+class=CODE><span lang=EN-GB style='font-size:9.0pt'>&lt;error&gt;xbrldie:RepeatedDimensionInInstanceError&lt;/error&gt;</span></span><span
+lang=EN-GB>” in the invalid test case and nothing in the valid test case.</span></p>
+
+<p class=MsoCaption><a name="_Toc137717891"><span lang=EN-GB>Figure </span></a><span lang=EN-GB>3</span><span lang=EN-GB>.  The file </span><span lang=EN-GB>contextContainsRepeatedDimension.xbrl</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:.25pt;border-collapse:collapse;border:none'>
+ <tr style='page-break-inside:avoid;height:12.55pt'>
+  <td width=605 style='width:453.6pt;border:solid windowtext 1.0pt;background:
+  aqua;padding:0pt 0pt 0pt 0pt;height:12.55pt'>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>&lt;xbrl
+  </span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns=&quot;http://www.xbrl.org/2003/instance&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:link=&quot;http://www.xbrl.org/2003/linkbase&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
+  </span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:pr=&quot;http://www.xbrl.org/dim/conf/primary&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:xhtml=&quot;http://www.w3.org/1999/xhtml&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:iso4217=&quot;http://www.xbrl.org/2003/iso4217&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:tx=&quot;http://www.xbrl.org/dim/conf/389/contextContainsRepeatedDimension&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:cc=&quot;http://www.example.com/customer-code&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xmlns:xbrldi=&quot;http://xbrl.org/2006/xbrldi&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>xsi:schemaLocation=&quot;http://www.xbrl.org/dim/conf/389/contextContainsRepeatedDimension
+  contextContainsRepeatedDimension.xsd http://xbrl.org/2006/xbrldi
+  http://www.xbrl.org/2006/xbrldi-2006.xsd http://www.xbrl.org/2003/instance
+  http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd
+  http://www.xbrl.org/dim/conf/primary ../../lib/base/primary.xsd
+  http://www.example.com/customer-code ../../lib/base/cust-code.xsd&quot;&gt;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>&nbsp;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>&lt;link:schemaRef </span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>  xlink:type=&quot;simple&quot; </span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>  xlink:arcrole=&quot;http://www.w3.org/1999/xlink/properties/linkbase&quot;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>  xlink:href=&quot;contextContainsRepeatedDimension.xsd&quot;/&gt;</span></span></p>
+  <p class=MsoNormal style='text-indent:9.75pt'><span class=CODE><span
+  lang=EN-GB style='font-size:9.0pt'>&nbsp;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'> 
+  &lt;context id=&quot;ctx1&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>   
+  </span></span><span class=CODE><span lang=FR style='font-size:9.0pt'>&lt;entity&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>     
+  &lt;identifier scheme=&quot;http://www.example-dims.com&quot;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'>        
+  </span></span><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>&gt;Example
+  Dimensional Company&lt;/identifier&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>     
+  &lt;segment&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;xbrldi:typedMember dimension=&quot;tx:hc_CustCodeDim&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>         
+  &lt;cc:customer&gt;a123&lt;/cc:customer&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;/xbrldi:typedMember&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;xbrldi:typedMember dimension=&quot;tx:hc_CustCodeDim&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+    &lt;cc:customer&gt;b123&lt;/cc:customer&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>       
+  &lt;/xbrldi:typedMember&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>      
+  &lt;/segment&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>   
+  &lt;/entity&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>   
+  &lt;period&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>     
+  &lt;startDate&gt;2005-01-01&lt;/startDate&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>     
+  &lt;endDate&gt;2005-12-31&lt;/endDate&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>   
+  &lt;/period&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'> 
+  &lt;/context&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'> 
+  &lt;unit id=&quot;Euros&quot;&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'>   
+  &lt;measure&gt;iso4217:EUR&lt;/measure&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=EN-GB style='font-size:9.0pt'> 
+  </span></span><span class=CODE><span lang=FR style='font-size:9.0pt'>&lt;/unit&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'> 
+  &lt;pr:Sales decimals=&quot;2&quot; contextRef=&quot;ctx1&quot;
+  unitRef=&quot;Euros&quot;&gt;1000000.00&lt;/pr:Sales&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'> 
+  &lt;pr:CostOfSales decimals=&quot;3&quot; contextRef=&quot;ctx1&quot;
+  unitRef=&quot;Euros&quot;&gt;750000&lt;/pr:CostOfSales&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'> 
+  &lt;pr:GrossProfit decimals=&quot;0&quot; contextRef=&quot;ctx1&quot;
+  unitRef=&quot;Euros&quot;&gt;250000&lt;/pr:GrossProfit&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=FR style='font-size:9.0pt'> 
+  &lt;pr:RevenueTotal decimals=&quot;0&quot; contextRef=&quot;ctx1&quot;
+  unitRef=&quot;Euros&quot;&gt;1000000&lt;/pr:RevenueTotal&gt;</span></span></p>
+  <p class=MsoNormal><span class=CODE><span lang=DE style='font-size:9.0pt'>&lt;/xbrl&gt;</span></span></p>
+  </td>
+ </tr>
+</table>
+
+<h2><a name="_Toc244658235"><span lang=EN-GB>4.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>How to submit tests</span></a></h2>
+
+<p class=MsoBodyText><span lang=EN-GB>If you are going to submit new or updated
+test cases or variations, you must have access to the CVS repository where the
+Conformance suite is stored. If you wish to submit tests please contact the
+editor or one of the authors of this document.</span></p>
+
+</div>
+
+<b><span lang=EN-GB style='font-size:14.0pt;font-family:Arial'><br clear=all
+style='page-break-before:always'>
+</span></b>
+
+<div class=Section3>
+
+<h1><a name="_Toc244658236"><span lang=EN-GB>C<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>References (non-normative)</span></a></h1>
+
+<p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><a name=FRTA><span
+  lang=EN-GB>[XDT]</span></a></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=ES>Ignacio
+  Hernández-Ros, Hugh Wallis</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=ES>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>XBRL
+  Dimensions 1.0 CR3.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB><a
+  href="http://www.xbrl.org/Specification/XDT-CR3-2006-04-26.rtf">http://www.xbrl.org/Specification/XDT-CR3-2006-04-26.rtf</a></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><a name=Schema0><span
+  lang=EN-GB>[SCHEMA-0]</span></a></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>World Wide
+  Web Consortium.  </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>XML Schema
+  Part 0: Primer.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB><a
+  href="http://www.w3.org/TR/xmlschema-0/">http://www.w3.org/TR/xmlschema-0/</a></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><a name=Schema1><span
+  lang=EN-GB>[SCHEMA-1]</span></a></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>World Wide
+  Web Consortium.  </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>XML Schema
+  Part 1: Structures.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB><a
+  href="http://www.w3.org/TR/xmlschema-1/">http://www.w3.org/TR/xmlschema-1/</a></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><a name=Schema2><span
+  lang=EN-GB>[SCHEMA-2]</span></a></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>World Wide
+  Web Consortium.  </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>XML Schema
+  Part 2: Datatypes</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB><a
+  href="http://www.w3.org/TR/xmlschema-2/">http://www.w3.org/TR/xmlschema-2/</a></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><a name=XBRL><span
+  lang=EN-GB>[XBRL]</span></a></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>Philip
+  Engel, Walter Hamscher, Geoff Shuetrim, David vun Kannon and Hugh Wallis</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal style='page-break-after:avoid'><span lang=EN-GB>Extensible
+  Business Reporting Language (XBRL) 2.1 Specification, with corrected errata
+  dated 2004-04-29</span></p>
+  </td>
+ </tr>
+ <tr style='height:25.2pt'>
+  <td width=102 valign=top style='width:76.8pt;padding:0pt 5.4pt 0pt 5.4pt;
+  height:25.2pt'>
+  <p class=MsoNormal><span lang=EN-GB>&nbsp;</span></p>
+  </td>
+  <td width=511 valign=top style='width:383.1pt;padding:0pt 5.4pt 0pt 5.4pt;
+  height:25.2pt'>
+  <p class=MsoNormal><span lang=EN-GB><a
+  href="http://www.xbrl.org/Specification/XBRL-RECOMMENDATION-2003-12-31+Corrected-Errata-2005-04-25.rtf">http://www.xbrl.org/Specification/XBRL-RECOMMENDATION-2003-12-31+Corrected-Errata-2005-04-25.rtf</a></span></p>
+  </td>
+ </tr>
+</table>
+
+<h1><a name="_Toc36709016"></a><a name="_Toc36269464"></a><a
+name="_Toc244658237"></a><a name="_Toc31404175"></a><a name="_Toc33328652"></a><a
+name="_Toc33328780"></a><a name="_Toc34537501"></a><span lang=EN-GB>D<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Intellectual property status (non&#8209;normative)</span></h1>
+
+<p class=MsoBodyText><span lang=EN-GB>Copyright © 2006, XBRL International
+Inc., All Rights Reserved</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>This document and translations of it may
+be copied and furnished to others, and derivative works that comment on or
+otherwise explain it or assist in its implementation may be prepared, copied,
+published and distributed, in whole or in part, without restriction of any
+kind, provided that the above copyright notice and this paragraph are included
+on all such copies and derivative works.  However, this document itself may not
+be modified in any way, such as by removing the copyright notice or references
+to XBRL International or XBRL organizations, except as required to translate it
+into languages other than English.  Members of XBRL International agree to
+grant certain licenses under the XBRL International Intellectual Property
+Policy (</span><a href="http://www.xbrl.org/legal"><span lang=EN-GB>www.xbrl.org/legal</span></a><span
+lang=EN-GB>).</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>This document and the information
+contained herein is provided on an &quot;AS IS&quot; basis and XBRL
+INTERNATIONAL DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT
+INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
+A PARTICULAR PURPOSE.</span></p>
+
+<p class=MsoBodyText><span lang=EN-GB>The attention of users of this document
+is directed to the possibility that compliance with or adoption of XBRL
+International specifications may require use of an invention covered by patent
+rights. XBRL International shall not be responsible for identifying patents for
+which a license may be required by any XBRL International specification, or for
+conducting legal inquiries into the legal validity or scope of those patents
+that are brought to its attention. XBRL International specifications are
+prospective and advisory only. Prospective users are responsible for protecting
+themselves against liability for infringement of patents.  XBRL International
+takes no position regarding the validity or scope of any intellectual property
+or other rights that might be claimed to pertain to the implementation or use
+of the technology described in this document or the extent to which any license
+under such rights might or might not be available; neither does it represent
+that it has made any effort to identify any such rights.  Members of XBRL
+International agree to grant certain licenses under the XBRL International
+Intellectual Property Policy (</span><a href="www.xbrl.org/legal"><span
+lang=EN-GB style='font-size:9.0pt'>www.xbrl.org/legal</span></a><span
+lang=EN-GB>).</span></p>
+
+<h1><a name="_Toc244658238"><span lang=EN-GB>E<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-GB>Document history and acknowledgments
+(non-normative)</span></a></h1>
+
+<p class=MsoBodyText><span lang=EN-GB>This conformance suite was written with
+the contribution of many people, particularly the participants of the XBRL Specification
+and Domain Working Groups. </span></p>
+
+<table class=MsoTableProfessional border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=99 valign=top style='width:73.9pt;border:solid black 1.0pt;
+  background:black;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-GB>Date</span></b></p>
+  </td>
+  <td width=81 valign=top style='width:61.05pt;border:solid black 1.0pt;
+  border-left:none;background:black;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>Editor</span></p>
+  </td>
+  <td width=427 valign=top style='width:320.45pt;border:solid black 1.0pt;
+  border-left:none;background:black;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>Remarks</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=99 valign=top style='width:73.9pt;border:solid black 1.0pt;
+  border-top:none;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><a name="_Toc36709017"></a><a name="_Toc36269465"></a><a
+  name="_Toc36707860"><span lang=EN-GB>2006-06-10</span></a></p>
+  </td>
+  <td width=81 valign=top style='width:61.05pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>IHR</span></p>
+  </td>
+  <td width=427 valign=top style='width:320.45pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>First draft of document prepared and
+  distributed according to XDT Dimensions CR3.</span><span lang=EN-GB>                                                       </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=99 valign=top style='width:73.9pt;border:solid black 1.0pt;
+  border-top:none;padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>2009-10-06</span></p>
+  </td>
+  <td width=81 valign=top style='width:61.05pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>HW</span></p>
+  </td>
+  <td width=427 valign=top style='width:320.45pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:0pt 5.4pt 0pt 5.4pt'>
+  <p class=MsoNormal><span lang=EN-GB>Updated to reflect Dimensions 1.0 Recommendation
+  dated 2006-09-18 with errata corrections to 2009-09-07</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText><span lang=EN-GB>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

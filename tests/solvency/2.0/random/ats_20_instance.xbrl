@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xbrli:xbrl
+	xmlns:s2c_AM="http://eiopa.europa.eu/xbrl/s2c/dict/dom/AM"
+	xmlns:s2c_AO="http://eiopa.europa.eu/xbrl/s2c/dict/dom/AO"
+	xmlns:s2c_AP="http://eiopa.europa.eu/xbrl/s2c/dict/dom/AP"
+	xmlns:s2c_CN="http://eiopa.europa.eu/xbrl/s2c/dict/dom/CN"
+	xmlns:s2c_CS="http://eiopa.europa.eu/xbrl/s2c/dict/dom/CS"
+	xmlns:s2c_CU="http://eiopa.europa.eu/xbrl/s2c/dict/dom/CU"
+	xmlns:s2c_LA="http://eiopa.europa.eu/xbrl/s2c/dict/dom/LA"
+	xmlns:s2c_PU="http://eiopa.europa.eu/xbrl/s2c/dict/dom/PU"
+	xmlns:s2c_SE="http://eiopa.europa.eu/xbrl/s2c/dict/dom/SE"
+	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
+	xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+	xmlns:link="http://www.xbrl.org/2003/linkbase"
+	xmlns:s2c_GA="http://eiopa.europa.eu/xbrl/s2c/dict/dom/GA"
+	xmlns:s2c_LB="http://eiopa.europa.eu/xbrl/s2c/dict/dom/LB"
+	xmlns:s2c_dim="http://eiopa.europa.eu/xbrl/s2c/dict/dim"
+	xmlns:s2c_typ="http://eiopa.europa.eu/xbrl/s2c/dict/typ"
+	xmlns:s2md_met="http://eiopa.europa.eu/xbrl/s2md/dict/met"
+	xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+	xmlns:xbrli="http://www.xbrl.org/2003/instance"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	>
+<link:schemaRef xlink:href="http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/mod/ats.xsd" xlink:type="simple"/>
+<xbrli:unit id="u">
+    <xbrli:measure>iso4217:EUR</xbrli:measure>
+</xbrli:unit>
+<xbrli:unit id="p">
+    <xbrli:measure>xbrli:pure</xbrli:measure>
+</xbrli:unit>
+<xbrli:context id="c">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+</xbrli:context>
+<find:fIndicators>
+	<find:filingIndicator contextRef="c">S.01.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.01.02</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.14.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.38.01</find:filingIndicator>
+	<find:filingIndicator contextRef="c">S.40.01</find:filingIndicator>
+</find:fIndicators>
+<s2md_met:di1043 contextRef="c">1999-01-17</s2md_met:di1043>
+<s2md_met:di1044 contextRef="c">2011-05-16</s2md_met:di1044>
+<s2md_met:ei1633 contextRef="c">s2c_CN:x1</s2md_met:ei1633>
+<s2md_met:ei1676 contextRef="c">s2c_AP:x2</s2md_met:ei1676>
+<s2md_met:ei1677 contextRef="c">s2c_CS:x36</s2md_met:ei1677>
+<s2md_met:ei1678 contextRef="c">s2c_AP:x6</s2md_met:ei1678>
+<s2md_met:ei1679 contextRef="c">s2c_PU:x52</s2md_met:ei1679>
+<s2md_met:ei1680 contextRef="c">s2c_AP:x7</s2md_met:ei1680>
+<s2md_met:ei1681 contextRef="c">s2c_AP:x9</s2md_met:ei1681>
+<s2md_met:ei1682 contextRef="c">s2c_AP:x12</s2md_met:ei1682>
+<s2md_met:ei1683 contextRef="c">s2c_LA:ky</s2md_met:ei1683>
+<s2md_met:ei1684 contextRef="c">s2c_CS:x37</s2md_met:ei1684>
+<s2md_met:ei1686 contextRef="c">s2c_AM:x109</s2md_met:ei1686>
+<s2md_met:ei1720 contextRef="c">s2c_CN:x2</s2md_met:ei1720>
+<s2md_met:ei1930 contextRef="c">s2c_CU:USD</s2md_met:ei1930>
+<s2md_met:ei1931 contextRef="c">s2c_PU:x17</s2md_met:ei1931>
+<s2md_met:ei2135 contextRef="c">s2c_GA:DO</s2md_met:ei2135>
+<s2md_met:ei2136 contextRef="c">s2c_GA:SR</s2md_met:ei2136>
+<s2md_met:ei2137 contextRef="c">s2c_SE:x10</s2md_met:ei2137>
+<s2md_met:ei2138 contextRef="c">s2c_AO:x0</s2md_met:ei2138>
+<s2md_met:ei2172 contextRef="c">s2c_CN:x2</s2md_met:ei2172>
+<s2md_met:ei2173 contextRef="c">s2c_CN:x1</s2md_met:ei2173>
+<s2md_met:pi2176 contextRef="c" decimals="4" unitRef="p">0.2198</s2md_met:pi2176>
+<s2md_met:si1376 contextRef="c" xml:lang="en">yq txdc gnbx</s2md_met:si1376>
+<s2md_met:si2131 contextRef="c" xml:lang="en">ix brta bxjf nx</s2md_met:si2131>
+<s2md_met:si2132 contextRef="c" xml:lang="en">iozr pe ub coxkhq</s2md_met:si2132>
+<xbrli:context id="BLx65">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x65</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ri2266 contextRef="BLx65" decimals="0" unitRef="p">787868</s2md_met:ri2266>
+<xbrli:context id="BLx79">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:BL">s2c_LB:x79</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ri2266 contextRef="BLx79" decimals="0" unitRef="p">298903</s2md_met:ri2266>
+<xbrli:context id="HXID">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:typedMember dimension="s2c_dim:HX"><s2c_typ:ID>1</s2c_typ:ID></xbrldi:typedMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:mi1147 contextRef="HXID" decimals="2" unitRef="u">817608.12</s2md_met:mi1147>
+<s2md_met:si1346 contextRef="HXID" xml:lang="en">ns xuayna</s2md_met:si1346>
+<xbrli:context id="LGZW">
+    <xbrli:entity>
+        <xbrli:identifier scheme="http://standard.iso.org/iso/17442">549300DTUYXVMJXZNY75</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+        <xbrli:instant>2015-12-31</xbrli:instant>
+    </xbrli:period>
+	<xbrli:scenario>
+		<xbrldi:explicitMember dimension="s2c_dim:LG">s2c_GA:ZW</xbrldi:explicitMember>
+	</xbrli:scenario>
+</xbrli:context>
+<s2md_met:ei2225 contextRef="LGZW">s2c_GA:AT</s2md_met:ei2225>
+<s2md_met:si2131 contextRef="LGZW" xml:lang="en">qzepms ad</s2md_met:si2131>
+</xbrli:xbrl>
