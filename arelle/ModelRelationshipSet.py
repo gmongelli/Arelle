@@ -339,14 +339,17 @@ class ModelRelationshipSet:
                             labelsOtherLinks.append(modelLabelRel)
                 labels = (labelsHintedLink or labelsDefaultLink or labelsOtherLinks)
         if len(labels) > 1: # order by priority (ignoring equivalence of relationships)
-            labels.sort(key=lambda rel: rel.priority, reverse=True)
+            #labels.sort(key=lambda rel: rel.priority, reverse=True)
+            # make things deterministic from run to run
+            labels.sort(key=lambda rel: "%04d" % rel.priority + str(rel.equivalenceKey), reverse=True)
         for modelLabelRel in labels:
             label = modelLabelRel.toModelObject
             if wildRole or role == label.role:
                 labelLang = label.xmlLang
                 text = label.textValue if returnText else label
                 if lang is None or len(lang) == 0 or lang == labelLang:
-                    langLabels.append(text)
+                    if text not in langLabels:
+                        langLabels.append(text)
                     if not returnMultiple:
                         break
                 elif labelLang.startswith(lang):
@@ -354,13 +357,15 @@ class ModelRelationshipSet:
                         longerLangInLabel = labelLang
                         longerLangLabels = [text,]
                     else:
-                        longerLangLabels.append(text)
+                        if text not in longerLangLabels:
+                            longerLangLabels.append(text)
                 elif lang.startswith(labelLang):
                     if not shorterLangInLabel or len(shorterLangInLabel) < len(labelLang):
                         shorterLangInLabel = labelLang
                         shorterLangLabels = [text,]
                     else:
-                        shorterLangLabels.append(text)
+                        if text not in shorterLangLabels:
+                            shorterLangLabels.append(text)
         if langLabels:
             if returnMultiple: return langLabels
             else: return langLabels[0]
