@@ -21,7 +21,6 @@ from arelle.Locale import format_string
 from collections import defaultdict
 ModelDimensionValue = None
 ModelFact = None
-evaluateVarNum_1 = 0
 
 expressionVariablesPattern = re.compile(r"([^$]*)([$]\w[\w:.-]*)([^$]*)")
 EMPTYSET = set()
@@ -147,8 +146,7 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
         pass     
 
 def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
-    global evaluateVarNum_1
-    if varIndex == len(varSet.orderedVariableRelationships):
+     if varIndex == len(varSet.orderedVariableRelationships):
         # check if all fact vars are fallen back
         anyFactVar = False; anyBoundFactVar = False
         for vb in xpCtx.varBindings.values():
@@ -406,7 +404,6 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
         overriddenVarBinding = xpCtx.varBindings.get(varQname)            
         xpCtx.varBindings[varQname] = vb
         for evaluationResult in vb.evaluationResults:
-            evaluateVarNum_1 += 1
             overriddenInScopeVar = xpCtx.inScopeVars.get(varQname)
             xpCtx.inScopeVars[varQname] = evaluationResult
             evaluationContributedUncoveredAspects = {}
@@ -434,7 +431,6 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
         vb.close() # dereference
         if overriddenVarBinding is not None:
             xpCtx.varBindings[varQname] = overriddenVarBinding
-        print("variable: " + str(varQname) + " " + str(evaluateVarNum_1))
         
 def filterFacts(xpCtx, vb, facts, filterRelationships, filterType):
     typeLbl = filterType + " " if filterType else ""
