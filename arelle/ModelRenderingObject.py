@@ -286,8 +286,14 @@ class StructuralNode:
                     if not text and XmlUtil.hasChild(aspectValue, aspectValue.namespaceURI, "forever"):
                         text = "forever" 
                     labels.append(text)
-        if len(labels) > 0:
-            label = " / ".join(sorted(labels))
+        numLabels = len(labels)
+        if numLabels == 1:
+            return labels[0]
+        if numLabels > 1:
+            if False:
+                return labels[0]
+            else:
+                label = "" #TODO: check if it really always is the first y axis header cell (that does not appear in annotated templates)
             return label
         # if there is a role, check if it's available on a parent node
         if role and recurseParent and self.parentStructuralNode is not None:
