@@ -6,3 +6,4 @@ buildRenameX64.bat
 buildRenameX86.bat
 arelle/Version.py
 /pcz
+/tests/tmp/*.xbrl
