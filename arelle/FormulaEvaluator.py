@@ -251,8 +251,8 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                     xpCtx.modelXbrl.log(
                         "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                         "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
-                        _("%(label)s%(factVarBindings)s"),
-                        modelObject=_modelObjects, label=varSet.expression,
+                        _("%(expression)s %(label)s %(factVarBindings)s"),
+                        modelObject=_modelObjects, expression=varSet.expression, label=varSet.logLabel(),
                         factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
                         messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
                     del _modelObjects[:]
