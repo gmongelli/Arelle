@@ -19,7 +19,7 @@ def customNewFile(cntlr):
     cntlr.modelManager.showStatus("Solvency Taxonomy package not found: " + TAXONOMY_NAME, 5000)
 
 def fileOpenExtender(cntlr, menu):
-    menu.add_command(label=_('New Solvency Report'), underline=0, command=lambda: customNewFile(cntlr) )
+    menu.add_command(label=_('New Solvency Report...'), underline=0, command=lambda: customNewFile(cntlr) )
 
 __pluginInfo__ = {
     'name': 'New SolvencyReport 2.0',
