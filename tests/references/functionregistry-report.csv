@@ -1,0 +1,817 @@
+﻿Index,Testcase,ID,Name,ReadMeFirst,Status,Expected,Actual
+functionregistry.xml
+,80101 xfi.context testcase.xml
+,,V-01,Tests that element returned is context for specified item.,hello-worlds-instance.xml,pass,,
+,,V-02,Tests that element returned is context for specified item.,hello-worlds-instance.xml,pass,,
+,,V-03,Tests that element returned is context for specified item.,hello-worlds-instance.xml,pass,,
+,,V-04,Tests that no context (empty sequence) is returned for a specified tuple.,tuple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-07,XPath-defined error for node type incorrect number of arguments.,hello-worlds-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80102 xfi.unit testcase.xml
+,,V-01,Tests that element returned is unit for specified item.,unit-test-instance.xml,pass,,
+,,V-02,Tests that element returned is unit for specified item.,unit-test-instance.xml,pass,,
+,,V-03,Returns no unit for string valued fact concept,unit-test-instance.xml,pass,,
+,,V-04,Tests that no unit (empty sequence) is returned for a specified tuple.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,XPath-defined error for node type incorrect.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80103 xfi.unit-numerator testcase.xml
+,,V-01,Tests that element returned is unit for specified item.,unit-test-instance.xml,pass,,
+,,V-02,Tests that elements returned are measures for specified item.,unit-test-instance.xml,pass,,
+,,V-03,Returns measure for divide based unit,unit-test-instance.xml,pass,,
+,,V-04,Returns measure for inverse unit (1/secs),unit-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-07,XPath-defined error for incorret number of arguments.,unit-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80104 xfi.unit-denominator testcase.xml
+,,V-01,Tests that element returned is unit for specified item.,unit-test-instance.xml,pass,,
+,,V-02,Tests that elements returned are measures for specified item.,unit-test-instance.xml,pass,,
+,,V-03,Returns measure for divide based unit,unit-test-instance.xml,pass,,
+,,V-04,Returns measure for inverse unit (1/secs),unit-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-07,XPath-defined error for node type incorrect number of arguments.,unit-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80105 xfi.measure-name testcase.xml
+,,V-01,Tests that element returned is unit for specified item.,unit-test-instance.xml,pass,,
+,,V-02,Tests that elements returned are measures for specified item.,unit-test-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of arguments.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,XPath-defined error for node type incorrect number of arguments.,unit-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80120 xfi.period testcase.xml
+,,V-01,Returns correct element for concept whose context is instant,hello-worlds-instance.xml,pass,,
+,,V-02,Period for concept with a start-end duration context,hello-worlds-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80121 xfi.context-period testcase.xml
+,,V-01,Returns correct element for an instant context,hello-worlds-instance.xml,pass,,
+,,V-02,Period for start-end duration context,hello-worlds-instance.xml,pass,,
+,,V-04,Period for a forever period context,hello-worlds-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80122 xfi.is-start-end-period testcase.xml
+,,V-01,Returns correct for an instant period,hello-worlds-instance.xml,pass,,
+,,V-02,Period for start-end duration context,hello-worlds-instance.xml,pass,,
+,,V-04,Period for a forever period context,hello-worlds-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80123 xfi.is-forever-period testcase.xml
+,,V-01,xfi:is-forever-period returns false for an instant context,hello-worlds-instance.xml,pass,,
+,,V-02,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime.",hello-worlds-instance.xml,pass,,
+,,V-03,Returns false for start-end duration context,hello-worlds-instance.xml,pass,,
+,,V-04,Returns true for forever context,hello-worlds-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80124 xfi.is-duration-period testcase.xml
+,,V-01,Returns correct for an instant period,hello-worlds-instance.xml,pass,,
+,,V-02,Period for start-end duration context,hello-worlds-instance.xml,pass,,
+,,V-04,Period for a forever period context,hello-worlds-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80125 xfi.is-instant-period testcase.xml
+,,V-01,Returns correct for an instant period,hello-worlds-instance.xml,pass,,
+,,V-02,Period for start-end duration context,hello-worlds-instance.xml,pass,,
+,,V-04,Period for a forever period context,hello-worlds-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80126 xfi.period-start testcase.xml
+,,V-01,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime",hello-worlds-instance.xml,pass,,
+,,V-02,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime.",hello-worlds-instance.xml,pass,,
+,,V-03,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime.",hello-worlds-instance.xml,pass,,
+,,V-04,Tests that indicated error is raised for inapplicable context.,hello-worlds-instance.xml,pass,xfie:PeriodIsForever,xfie:PeriodIsForever
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80127 xfi.period-end testcase.xml
+,,V-01,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime (note that date-only is incremented by one day to represent last instant in date, but date-time does not have its day incremented, per v-04 test below).",hello-worlds-instance.xml,pass,,
+,,V-02,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime.",hello-worlds-instance.xml,pass,,
+,,V-03,Tests that end instant is properly returned for leap year.,hello-worlds-instance.xml,pass,,
+,,V-04,"Tests that end instant is properly returned for date with time, and not advanced to next day.",hello-worlds-instance.xml,pass,,
+,,V-04a,"Tests that end instant is properly returned for date with time, and not advanced to next day.",hello-worlds-instance.xml,pass,,
+,,V-04b,Tests that end instant is properly returned for date with time.,hello-worlds-instance.xml,pass,,
+,,V-05,Tests that indicated error is raised for inapplicable context.,hello-worlds-instance.xml,pass,xfie:PeriodIsForever,xfie:PeriodIsForever
+,,V-06,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-07,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80129 xfi.period-instant testcase.xml
+,,V-01,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime",hello-worlds-instance.xml,pass,,
+,,V-02,"Tests that either a the instant dateTime element is provided, or an equivalent atomic value of expected dateTime.",hello-worlds-instance.xml,pass,,
+,,V-03,Tests that indicated error is raised for inapplicable context.,hello-worlds-instance.xml,pass,xfie:PeriodIsNotInstant,xfie:PeriodIsNotInstant
+,,V-04,Tests that indicated error is raised for inapplicable context.,hello-worlds-instance.xml,pass,xfie:PeriodIsNotInstant,xfie:PeriodIsNotInstant
+,,V-05,XPath-defined error for node type incorrect.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of argument.,hello-worlds-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80130 xfi.entity testcase.xml
+,,V-01,Returns correct entity element for item,entity-instance.xml,pass,,
+,,V-02,Entity for concept 2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80131 xfi.context-entity testcase.xml
+,,V-01,Returns correct entity element for context,entity-instance.xml,pass,,
+,,V-02,Entity for context 2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80132 xfi.identifier testcase.xml
+,,V-01,Returns correct element for concept,entity-instance.xml,pass,,
+,,V-02,Period for concept 2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80133 xfi.context-identifier testcase.xml
+,,V-01,Returns correct identifier for context,entity-instance.xml,pass,,
+,,V-02,Identifier for context 2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80134 xfi.entity-identifier testcase.xml
+,,V-01,Returns correct identifier for entity,entity-instance.xml,pass,,
+,,V-02,Identifier for entity 2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80135 xfi.identifier-value testcase.xml
+,,V-01,Returns correct token for concept,entity-instance.xml,pass,,
+,,V-02,Entity identifier value for context-2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80136 xfi.identifier-scheme testcase.xml
+,,V-01,Returns correct token for concept,entity-instance.xml,pass,,
+,,V-02,Entity identifier value for context-2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80137 xfi.segment testcase.xml
+,,V-01,Returns correct element for concept,segment-instance.xml,pass,,
+,,V-02,Period for concept with no segment,segment-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,segment-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,segment-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Checks element typing, data typing, and atomization.",segment-instance.xml,pass,,
+,80138 xfi.entity-segment testcase.xml
+,,V-01,Returns correct element for entity,segment-instance.xml,pass,,
+,,V-02,Segment for concept with no segment,segment-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,segment-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,segment-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Checks element typing, data typing, and atomization.",segment-instance.xml,pass,,
+,80139 xfi.context-segment testcase.xml
+,,V-01,Returns correct element for context,segment-instance.xml,pass,,
+,,V-02,Segment for context with no segment,segment-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,segment-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,segment-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Checks element typing, data typing, and atomization.",segment-instance.xml,pass,,
+,80140 xfi.scenario testcase.xml
+,,V-01,Returns correct element for concept,fact-scenario-remainder-instance1.xml,pass,,
+,,V-02,Period for concept with no scenario,fact-scenario-remainder-instance1.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,fact-scenario-remainder-instance1.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,fact-scenario-remainder-instance1.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Checks element typing, data typing, and atomization.",fact-scenario-remainder-instance1.xml,pass,,
+,80141 xfi.context-scenario testcase.xml
+,,V-01,Returns correct element for context,fact-scenario-remainder-instance1.xml,pass,,
+,,V-02,Period for context with no scenario,fact-scenario-remainder-instance1.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,fact-scenario-remainder-instance1.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,fact-scenario-remainder-instance1.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Checks element typing, data typing, and atomization.",fact-scenario-remainder-instance1.xml,pass,,
+,80142 xfi.fact-identifier-value testcase.xml
+,,V-01,Returns correct token for fact item,entity-instance.xml,pass,,
+,,V-02,Entity identifier value for context-2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80143 xfi.fact-identifier-scheme testcase.xml
+,,V-01,Returns correct token for fact item,entity-instance.xml,pass,,
+,,V-02,Entity identifier value for context-2,entity-instance.xml,pass,,
+,,V-03,XPath-defined error for node type incorrect.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,XPath-defined error for node type incorrect arity of argument.,entity-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80150 xfi.is-non-numeric testcase.xml
+,,V-01,The concept has an xbrli:stringItemType data type.,types-instance.xml,pass,,
+,,V-02,The concept has an xbrli:monetaryItemType data type.,types-instance.xml,pass,,
+,,V-03,The concept has an xs:fractionItemType data type.,types-instance.xml,pass,,
+,,V-04,The concept is a tuple.,types-instance.xml,pass,,
+,80151 xfi.is-numeric testcase.xml
+,,V-01,The concept has an xbrli:stringItemType data type.,types-instance.xml,pass,,
+,,V-02,The concept has an xbrli:monetaryItemType data type.,types-instance.xml,pass,,
+,,V-03,The concept has an xs:fractionItemType data type.,types-instance.xml,pass,,
+,,V-04,The concept is a tuple.,types-instance.xml,pass,,
+,80152 xfi.is-fraction testcase.xml
+,,V-01,The concept has an xbrli:stringItemType data type.,types-instance.xml,pass,,
+,,V-02,The concept has an xbrli:monetaryItemType data type.,types-instance.xml,pass,,
+,,V-03,The concept has an xs:fractionItemType data type.,types-instance.xml,pass,,
+,,V-04,The concept is a tuple.,types-instance.xml,pass,,
+,80153 xfi.precision testcase.xml
+,,V-01,The concept has an xbrli:stringItemType data type.,precision-instance.xml,pass,xfie:ItemIsNotNumeric,xfie:ItemIsNotNumeric
+,,V-02,"Precision is 3 for 400, reported as decimals 0",precision-instance.xml,pass,,
+,,V-03,"Precision is INF for 400, reported as decimals INF",precision-instance.xml,pass,,
+,,V-04,"Precision is 0 for 400, reported at precision 0",precision-instance.xml,pass,,
+,,V-05,"Precision is 4 for 400, reported at precision 4",precision-instance.xml,pass,,
+,,V-06,The concept has an xs:fractionItemType data type.,precision-instance.xml,pass,,
+,,V-07,The concept is a tuple.,precision-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-11,Xbrl spec 2.1 example 13 line 1,precision-instance.xml,pass,,
+,,V-12,Xbrl spec 2.1 example 13 line 2,precision-instance.xml,pass,,
+,,V-13,Xbrl spec 2.1 example 13 line 3,precision-instance.xml,pass,,
+,,V-14,Xbrl spec 2.1 example 13 line 4,precision-instance.xml,pass,,
+,,V-15,Xbrl spec 2.1 example 13 line 5,precision-instance.xml,pass,,
+,,V-16,Xbrl spec 2.1 example 13 line 6,precision-instance.xml,pass,,
+,,V-17,Xbrl spec 2.1 example 13 line 7,precision-instance.xml,pass,,
+,80154 xfi.decimals testcase.xml
+,,V-01,The concept has an xbrli:stringItemType data type.,decimals-instance.xml,pass,xfie:ItemIsNotNumeric,xfie:ItemIsNotNumeric
+,,V-02,"Decimals is 0 for 400, reported as decimals 0",decimals-instance.xml,pass,,
+,,V-03,"Decimals is INF for 400, reported as decimals INF",decimals-instance.xml,pass,,
+,,V-04,"Decimals is -2 for 4e2, reported as decimals -2",decimals-instance.xml,pass,,
+,,V-05,Formula is decimals = (precision - (floor(log10(value)) + 1)) = (4 - (floor(2.6)+1)) = (4 - 3) = 1.,decimals-instance.xml,pass,,
+,,V-06,The concept has an xs:fractionItemType data type.,decimals-instance.xml,pass,,
+,,V-07,The concept is a tuple.,decimals-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80155 xff.uncovered-aspect function testcase.xml
+,,V-01,Function raises an exception when not used in a consistency/value assertion or formula result or aspect rule expression.,invalid-use-instance.xml,pass,xffe:invalidFunctionUse,xffe:invalidFunctionUse xffe:invalidFunctionUse
+,,V-02,XPath-defined error for type of argument.,invalid-use-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004 xffe:invalidFunctionUse
+,80156 xff.has-fallback-value function testcase.xml
+,,V-01,"Function raises an exception when not used in a precondition, message, consistency/value assertion or formula result or aspect rule expression.",nihil.xml,pass,xffe:invalidFunctionUse,xffe:invalidFunctionUse
+,,V-02,XPath-defined error for type of argument.,nihil.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80157 xff.uncovered-non-dimensional-aspects function testcase.xml
+,,V-01,Function raises an exception when not used in a consistency/value assertion or formula result or aspect rule expression.,uncovered-test-instance.xml,pass,xffe:invalidFunctionUse,xffe:invalidFunctionUse
+,80158 xff.uncovered-dimensional-aspects function testcase.xml
+,,V-01,Function raises an exception when not used in a consistency/value assertion or formula result or aspect rule expression.,all-dim-uncovered-instance.xml,pass,xffe:invalidFunctionUse,"xffe:invalidFunctionUse xmlSchema:elementUnexpected {'assertion': (1, 0)}"
+,80200 xfi.identical-nodes testcase.xml
+,,V-01,Returns identical-nodes of nodes which are s-equal but not identical,identical-nodes-instance.xml,pass,,
+,,V-02,Same as V-01 but same sequence of nodes,identical-nodes-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are different sequences,identical-nodes-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,identical-nodes-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,identical-nodes-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect number of arguments.,identical-nodes-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80201 xfi.s-equal testcase.xml
+,,V-01,Returns s-equality of nodes equal and in order,s-equal2-instance.xml,pass,,
+,,V-02,Same as V-01 but typed dimension elements in different order,s-equal2-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,s-equal2-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,s-equal2-instance.xml,pass,,
+,,V-05,Example 25 contexts equal because entity and period are s-equal,example25-instance.xml,pass,,
+,,V-06,Example 25 f name and g name have different context ids np3 and Xnnp3X which are nevertheless s-equal,example25-instance.xml,pass,,
+,,V-07,Example 25 b name and c name have different context ids np3 and Xnnp3X which are nevertheless s-equal,example25-instance.xml,pass,,
+,,V-08,Example 25 b gross and c gross not s-equal,example25-instance.xml,pass,,
+,,V-09,Example 25 b customer and c customer have different context ids np3 and Xnnp3X,example25-instance.xml,pass,,
+,,V-10,Example 25 b returns and d returns have different values,example25-instance.xml,pass,,
+,,V-11,Example 25 b customer and d customer have different values of returns and net,example25-instance.xml,pass,,
+,,V-12,XPath-defined error for node type incorrect.,s-equal2-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-13,XPath-defined error for node type incorrect number of arguments.,s-equal2-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-14,"S-equality comparison of dateUnion with xs:date eq xs:dateTime will be performed using Base Spec 2.1 x-equality checking,
+        which is done by comparing strings.  In this case the date of 2007-02-28 and dateTime of 2007-03-01T00:00:00 will be
+        compared lexically (as strings, not as typed XPath 2 objects), so the result is false.
+      
+      
+See Example 0004 (restatement date) for specific user-level XPath 2 coding to handle a typed dimension with a dateUnion known to report an instant date.
+        XPath-defined error for type mismatch detection.",s-equal2-dateUnion-instance.xml,pass,,
+,,V-15,"Same as V-01 but nested IDs differ, to be sure this is detected as s-inequality (bug 378)",s-equal2-instance.xml,pass,,
+,80202 xfi.u-equal testcase.xml
+,,V-01,Returns u-equality of numeric items equal,unit-test-instance.xml,pass,,
+,,V-02,Same as V-01 but numeric items not u-equal,unit-test-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,unit-test-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,unit-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,unit-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-07,Functions spec error for non-item node type.,unit-test-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-08,Returns u-equality of non-numeric items,unit-test-instance.xml,pass,,
+,,V-09,Returns u-equality of equal text numeric and non-numeric items,unit-test-instance.xml,pass,,
+,80203 xfi.v-equal testcase.xml
+,,V-01,Returns v-equality of numeric items equal within precision and units,value-test-instance.xml,pass,,
+,,V-01a,"Tests that either left or right operand can be the ""less precise"" side.",value-test-instance.xml,pass,,
+,,V-02,Same as V-01 but numeric items not v-equal,value-test-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,value-test-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,value-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,value-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,value-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-07,Functions spec error for non-item node type.,value-test-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-08,"Returns v-equality of non-numeric items, unequal trim whitespace",value-test-instance.xml,pass,,
+,,V-10,"Bugzilla entry 325 relates to this.
+        New-age DOMs (post-xdt) are not required to store string representations of object values, so a float may be converted to string in unrounded form, as shown here.",value-test-instance.xml,pass,,
+,,V-11,Returns v-equality of numerically equal but lexically different numeric and string items.  String is locale-formatted here.  Highlights a v-equality ambiguity.,value-test-instance.xml,pass,,
+,,V-12,"Bugzilla entry 325 relates to this.
+        New-age DOMs (post-xdt) are not required to store string representations of object values, so a float may be converted to string in unrounded form, as shown here.",value-test-instance.xml,pass,,
+,,V-20,Bugzilla entry 325 relates to this.,value-test-instance.xml,pass,,
+,,V-21,Bugzilla entry 325 relates to this.,value-test-instance.xml,pass,,
+,,V-22,Bugzilla entry 325 relates to this.,value-test-instance.xml,pass,,
+,80204 xfi.c-equal testcase.xml
+,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-02,Same as V-01 but typed dimension elements in different order,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XBRL-defined error for node type incorrect.,c-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-07,XPath-defined error for node type incorrect number of arguments.,c-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80205 xfi.identical-node-set testcase.xml
+,,V-01,Tests that the function returns true for identical sets in order,tuple-instance.xml,pass,,
+,,V-02,Tests that the function returns true for identical sets not in order,tuple-instance.xml,pass,,
+,,V-03,Tests that the function returns true by de-duplicating the second sequence into a set.,tuple-instance.xml,pass,,
+,,V-04,Tests that the function returns false if the second set doesn't include entry present in first set,tuple-instance.xml,pass,,
+,,V-05,Tests that the function returns true for empty set,empty-instance.xml,pass,,
+,,V-06,XBRL-defined error for node type incorrect.,tuple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80206 xfi.s-equal-set testcase.xml
+,,V-01,"Returns s-equality of nodes equal and in order, argument as a set left and right in same order",s-equal2-instance.xml,pass,,
+,,V-01a,"Returns s-equality of nodes equal and in order, sets in different order",s-equal2-instance.xml,pass,,
+,,V-02,Same as V-01 but typed dimension elements and set elements in different order,s-equal2-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,s-equal2-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,s-equal2-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,s-equal2-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect number of arguments.,s-equal2-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-07,"Works for sequences containing duplicate entries, which are equal when compared as sets",s-equal2-instance.xml,pass,,
+,80207 xfi.v-equal-set testcase.xml
+,,V-01,Returns v-equality of numeric items equal within precision and units,value-test-instance.xml,pass,,
+,,V-02,Same as V-01 but numeric items not v-equal-set,value-test-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,value-test-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,value-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,value-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,value-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-07,Functions spec error for non-item node type.,value-test-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-08,"Works for sequences containing duplicate entries, which are equal when compared as sets",value-test-instance.xml,pass,,
+,80208 xfi.c-equal-set testcase.xml
+,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-02,Same as V-01 but typed dimension elements in different order,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XBRL-defined error for node type incorrect.,c-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-07,XPath-defined error for node type incorrect number of arguments.,c-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-08,"Works for sequences containing duplicate entries, which are equal when compared as sets",c-equal-instance.xml,pass,,
+,80209 xfi.u-equal-set testcase.xml
+,,V-01,Returns u-equality of numeric items equal,unit-test-instance.xml,pass,,
+,,V-02,Same as V-01 but numeric items not u-equal,unit-test-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,unit-test-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,unit-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,unit-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect number of arguments.,unit-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-07,Functions spec error for non-item node type.,unit-test-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-08,Returns u-equality of non-numeric items,unit-test-instance.xml,pass,,
+,,V-09,Returns u-equality of equal text numeric and non-numeric items,unit-test-instance.xml,pass,,
+,,V-10,"Works for sequences containing duplicate entries, which are equal when compared as sets",unit-test-instance.xml,pass,,
+,80210 xfi.x-equal testcase.xml
+,,V-01,Returns x-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-02,Inequal values,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect number of arguments.,c-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80211 xfi.duplicate-item testcase.xml
+,,V-01,Duplicates p-equal and c-equal,example25-instance.xml,pass,,
+,,V-02,"Not duplicates not p-equal, so v-equal doesn't matter",example25-instance.xml,pass,,
+,,V-03,"Not duplicates because not p-equal, so v-equal doesn't matter",example25-instance.xml,pass,,
+,,V-04,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Not duplicates because not p-equal, so v-equal doesn't matter",example25-instance.xml,pass,,
+,,V-06,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-07,"Duplicates because p-equal, u-equal, and v-equal",example25-instance.xml,pass,,
+,80212 xfi.duplicate-tuple testcase.xml
+,,V-01,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-02,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-03,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-04,"Duplicates because p-equal, and child items name, gross, returns and net are all v-equal",example25-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,"Not duplicates because p-equal, and child items b name and b gross are v-equal to d name and d gross, and child items b returns and b net are not v-equal to b returns and b net",example25-instance.xml,pass,,
+,,V-07,XPath-defined error for node type incorrect.,example25-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,80213 xfi.p-equal testcase.xml
+,,V-01,Returns p-equality of items equal,value-test-instance.xml,pass,,
+,,V-02,Same as V-01 but items not p-equal,value-test-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,value-test-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,value-test-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,value-test-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XPath-defined error for node type incorrect arity of arguments.,value-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,,V-07,Function-defined error for argument type incorrect.,value-test-instance.xml,pass,xfie:ElementIsNotXbrlConcept,xfie:ElementIsNotXbrlConcept
+,80214 xfi.cu-equal testcase.xml
+,,V-01,Returns c-equality of nodes equal and in order,cu-equal-instance.xml,pass,,
+,,V-02a,Same as V-01 but in different context,cu-equal-instance.xml,pass,,
+,,V-02b,Same as V-01 but different unit,cu-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,cu-equal-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,cu-equal-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,cu-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XBRL-defined error for node type incorrect.,cu-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-07,XPath-defined error for node type incorrect arity of arguments.,cu-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80215 xfi.pc-equal testcase.xml
+,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-02,Same as V-01 but in different parent,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XBRL-defined error for node type incorrect.,c-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-07,XPath-defined error for node type incorrect arity of arguments.,c-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80216 xfi.pcu-equal testcase.xml
+,,V-01,Returns c-equality of nodes equal and in order,pcu-equal-instance.xml,pass,,
+,,V-02a,Same as V-01 but in different parent,pcu-equal-instance.xml,pass,,
+,,V-02b,Same as V-01 but in different context,pcu-equal-instance.xml,pass,,
+,,V-02c,Same as V-01 but different unit,pcu-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,pcu-equal-instance.xml,pass,,
+,,V-04,Same as V-01 but arguments are sequences not same length,pcu-equal-instance.xml,pass,,
+,,V-05,XPath-defined error for node type incorrect.,pcu-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,XBRL-defined error for node type incorrect.,pcu-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
+,,V-07,XPath-defined error for node type incorrect arity of arguments.,pcu-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
+,80217 xfi.start-equal testcase.xml
+,,V-01,Returns start-equality of dates that are equal,value-test-instance.xml,pass,,
+,,V-02,Returns start-inequality of dates that are not equal,value-test-instance.xml,pass,,
+,,V-03,Returns start-equality of date and constant that are equal,value-test-instance.xml,pass,,
+,,V-04,Returns start-equality of date and dateTime that are equal,value-test-instance.xml,pass,,
+,,V-05,"Returns start-equality of date and dateTime that are equal, reversed arguments",value-test-instance.xml,pass,,
+,,V-06,Returns start-equality of date and dateTime constant that are equal,value-test-instance.xml,pass,,
+,,V-07,Returns start-equality of date and dateTime that are not equal,value-test-instance.xml,pass,,
+,,V-08,Returns start-equality of dateTimes that are not equal,value-test-instance.xml,pass,,
+,,V-09,Returns start-equality of date and context dateTimes that are equal,value-test-instance.xml,pass,,
+,80218 xfi.end-equal testcase.xml
+,,V-01,Returns end-equality of dates that are equal,value-test-instance.xml,pass,,
+,,V-02,Returns end-inequality of dates that are not equal,value-test-instance.xml,pass,,
+,,V-03,Returns end-equality of date and constant that are equal,value-test-instance.xml,pass,,
+,,V-04,Returns end-equality of date and dateTime that are equal,value-test-instance.xml,pass,,
+,,V-05,"Returns end-equality of date and dateTime that are equal, reversed arguments",value-test-instance.xml,pass,,
+,,V-06,Returns end-equality of date and dateTime constant that are equal,value-test-instance.xml,pass,,
+,,V-07,Returns end-equality of date and dateTime that are not equal,value-test-instance.xml,pass,,
+,,V-08,Returns end-equality of dateTimes that are not equal,value-test-instance.xml,pass,,
+,,V-09,Returns end-equality of date and context dateTimes that are equal,value-test-instance.xml,pass,,
+,80219 xfi.nodes-correspond testcase.xml
+,,V-01,"Nodes correspond, they have equal but lexically different numeric attributes and elements",nodes-correspond-instance1.xml,pass,,
+,,V-02,"Nodes don't correspond, due to element nodes reordering in right argument",nodes-correspond-instance1.xml,pass,,
+,,V-03,"Nodes correspond, they have equal but lexically different QName elements",nodes-correspond-instance1.xml,pass,,
+,,V-04,"Nodes don't correspond, due to different qname values",nodes-correspond-instance1.xml,pass,,
+,,V-05,"Nodes correspond, they have date union elements that correspond in xs type for the same element positions",nodes-correspond-instance1.xml,pass,,
+,,V-06,"Nodes don't correspond, due to different dateunion atomic values, but element xs types do correspond in same element positions",nodes-correspond-instance1.xml,pass,,
+,,V-07,"Nodes correspond, each node is an nmtokens attribute with same sequence of tokens",nodes-correspond-instance1.xml,pass,,
+,,V-08,"Nodes don't correspond, each is an nmtokens attribute but the sequence entires order differs",nodes-correspond-instance1.xml,pass,,
+,,V-09,"Nodes correspond, text nodes with comments",nodes-correspond-instance1.xml,pass,,
+,,V-10,"Nodes don't correspond, elements with mixed content have different child elements",nodes-correspond-instance1.xml,pass,,
+,,V-11,"Nodes don't correspond, elements with mixed content atomize to different values",nodes-correspond-instance1.xml,pass,,
+,,V-12,"Nodes correspond, atomize to same values and child elements correspond",nodes-correspond-instance1.xml,pass,,
+,,V-13,"Nodes don't correspond, elements with differing non-id attributes that don't correspond",nodes-correspond-instance1.xml,pass,,
+,90101 xfi.facts-in-instance testcase.xml
+,,V-01,Tests that the function returns the correct facts for an instance with one fact.,one-fact-instance.xml,pass,,
+,,V-02,Tests that the function returns the correct facts for an instance with no facts.,empty-instance.xml,pass,,
+,,V-03,Tests that the function returns the correct facts for an instance with one fact.,three-fact-instance.xml,pass,,
+,,V-04,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-05,"Tests that the function returns the correct facts for an instance 
+        and that each has proper type and PSVI atomicity type for typed operations.",multiple-types-instance.xml,pass,,
+,90102 xfi.items-in-instance testcase.xml
+,,V-01,Tests that the function returns the correct facts for an instance with one fact.,one-fact-instance.xml,pass,,
+,,V-02,Tests that the function returns the correct facts for an instance with no facts.,empty-instance.xml,pass,,
+,,V-03,Tests that the function returns the correct facts for an instance with one fact.,three-fact-instance.xml,pass,,
+,,V-04,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-05,XBRL-defined error for node type incorrect.,one-fact-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-06,"Tests that the function returns the correct facts for an instance 
+        and that each has proper type and PSVI atomicity type for typed operations.",multiple-types-instance.xml,pass,,
+,90103 xfi.tuples-in-instance testcase.xml
+,,V-01,Tests that the function returns the correct facts for an instance with one fact.,one-fact-instance.xml,pass,,
+,,V-02,Tests that the function returns the correct facts for an instance with no facts.,empty-instance.xml,pass,,
+,,V-03,Tests that the function returns the correct facts for an instance with one fact.,three-fact-instance.xml,pass,,
+,,V-04,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-05,XBRL-defined error for node type incorrect.,one-fact-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,90104 xfi.items-in-tuple testcase.xml
+,,V-01,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-02,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-03,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-04,XBRL-defined error for node type incorrect.,tuple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-05,"Tests that the function returns the correct facts for an instance 
+        and that each has proper type and PSVI atomicity type for typed operations.",multiple-types-in-tuple-instance.xml,pass,,
+,90105 xfi.tuples-in-tuple testcase.xml
+,,V-01,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-02,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-03,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-04,XBRL-defined error for node type incorrect.,tuple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,90106 xfi.non-nil-facts-in-instance testcase.xml
+,,V-01,Tests that the function returns the correct facts for an instance with one fact.,one-fact-instance.xml,pass,,
+,,V-02,Tests that the function returns the correct facts for an instance with no facts.,empty-instance.xml,pass,,
+,,V-03,Tests that the function returns the correct facts for an instance with one fact.,three-fact-instance.xml,pass,,
+,,V-04,"Tests that the function returns the correct facts for an instance with tuples.  This instance includes
+        nil tuples and tuples within tuples and items within tuples.",tuple-instance.xml,pass,,
+,,V-05,"Tests that the function returns the correct facts for an instance with one fact, including the nil fact.",three-and-nil-fact-instance.xml,pass,,
+,,V-06,"Tests that the function returns the correct facts for an instance with one fact, including the nil fact,
+        and that each has proper type and PSVI atomicity type for typed operations.",multiple-types-instance.xml,pass,,
+,90201 xfi.concept-balance testcase.xml
+,,V-01,Tests that the function works for a credit concept.,instance.xml,pass,,
+,,V-02,Tests that the function works for a debit concept.,instance.xml,pass,,
+,,V-03,Tests that the function works for an unclassified concept.,instance.xml,pass,,
+,,V-04,Function-specified error for non-concept QName.,instance.xml,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,,V-05,XPath-defined error for node type incorrect.,instance.xml,fail,xqt-err:XPTY0004,err:FOTY0012
+,,V-06,XPath-defined error for node type incorrect (token).,instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-07,XPath-defined error for node type incorrect (monetary).,instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,90202 xfi.concept-period-type testcase.xml
+,,V-01,Tests that the function works for an instant concept.,instance.xml,pass,,
+,,V-02,Tests that the function works for an duration concept.,instance.xml,pass,,
+,90203 xfi.concept-custom-attribute testcase.xml
+,,V-01,Tests that element returned is attribute of specified concept.,concept-custom-attribute.xsd,pass,,
+,,V-02,Tests that element returned is attribute of specified concept.,concept-custom-attribute.xsd,pass,,
+,,V-03,Tests that element returned is attribute of specified concept.,concept-custom-attribute.xsd,pass,,
+,,V-04,Tests that element returned is attribute of specified concept.,concept-custom-attribute.xsd,pass,,
+,,V-05,Tests that empty sequence is  returned when attribute is absent.,concept-custom-attribute.xsd,pass,,
+,,V-06,Tests that element returned is attribute of specified concept.,concept-custom-attribute.xsd,pass,,
+,90204 xfi.concept-data-type testcase.xml
+,,V-01,Tests that c1 concept returns a data type of xbrli:stringItemType.,concept-data-type.xsd,pass,,
+,,V-02,Tests that c2 concept returns a data type of xbrli:monetaryItemType.,concept-data-type.xsd,pass,,
+,,V-03,"This tuple has an anonymous type, which according to function description returns an empty sequence.
+        (In prior version of test case, this test assumed that
+        tuple concept data type is xs:anyType because tuples
+        are complexContent which have xs:anyType as their restriction base.)",concept-data-type.xsd,pass,,
+,,V-03a,"Tuple t2 has a complex type which is not anonymous, type QName is returned.",concept-data-type.xsd,pass,,
+,,V-04,"Tests that error is detected when the element is not an XBRL
+        concept.",concept-data-type.xsd,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,,V-05,Tests that error is detected when the argument declares an attribute.,concept-data-type.xsd,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,,V-06,Tests that error is detected when the argument is xbrli:item,concept-data-type.xsd,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,90205 xfi.concept-data-type-derived-from testcase.xml
+,,V-01,Return true for xbrli:stringItemType and xs:string data types,concept-data-type.xsd,pass,,
+,,V-02,Return true for xbrli:stringItemType and xbrli:stringItemType data types,concept-data-type.xsd,pass,,
+,,V-03,Return false for xbrli:stringItemType and xs:decimal data types,concept-data-type.xsd,pass,,
+,,V-04,Return false for xbrli:stringItemType and xbrli:monetaryItemType data types,concept-data-type.xsd,pass,,
+,,V-05,Return false for xbrli:floatItemType and xbrli:decimalItemType data types,concept-data-type.xsd,pass,,
+,90206 xfi.concept-substitutions testcase.xml
+,,V-01,Tests that c1 concept returns a substitutions of (xbrli:item).,concept-substitutions.xsd,pass,,
+,,V-02,"Tests that c2 concept returns substitutions of (eg:c1, xbrli:item).",concept-substitutions.xsd,pass,,
+,,V-03,"Tests that tuple t3 concept has substitutions (t2,t1,xbrli:tuple)",concept-substitutions.xsd,pass,,
+,,V-04,"Tests that error is detected when the element is not an XBRL
+        concept.",concept-substitutions.xsd,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,,V-05,Tests that error is detected when the argument declares an attribute.,concept-substitutions.xsd,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,,V-06,Tests that error is detected when the argument is xbrli:item,concept-substitutions.xsd,pass,xfie:invalidConceptQName,xfie:invalidConceptQName
+,90213 xfi.filter-member-network-selection testcase.xml
+,,V-01,"Peak(primaryItems)->SummitHypercube(hypercubes)->Location->Regions(regions)->America(americas)->NorthAmerica->(UnitedStates,Mexico,Canada). 
+        The test is organized to be insensitive to the order of returned
+        member items, though the XPath 2 sequence operators mostly assure
+        that it be in document order.",filter-member-dimension-values.xsd,pass,,
+,,V-02,A list of members of Oceania (2 levels of descendants),filter-member-dimension-values.xsd,pass,,
+,,V-03,A list of Oceania itself and just child subregions,filter-member-dimension-values.xsd,pass,,
+,,V-04,A list of Asia itself and subregions with highest peaks,filter-member-dimension-values.xsd,pass,,
+,,V-04a,A empty list of children of child-less member,filter-member-dimension-values.xsd,pass,,
+,,V-05,Error of non-member concept argument as dimension member argument,filter-member-dimension-values.xsd,pass,,
+,,V-06,Error of non-XBRL element argument as dimension member argument,filter-member-dimension-values.xsd,pass,,
+,,V-07,"Tests that error is detected when the concept qname is an element, not an XBRL
+        concept.",filter-member-dimension-values.xsd,pass,xfie:invalidDimensionQName,xfie:invalidDimensionQName
+,,V-08,Tests that error is detected when the dimension name argument declares an attribute.,filter-member-dimension-values.xsd,pass,xfie:invalidDimensionQName,xfie:invalidDimensionQName
+,,V-09,Tests that error is detected when the dimension qname is xbrli:item,filter-member-dimension-values.xsd,pass,xfie:invalidDimensionQName,xfie:invalidDimensionQName
+,,V-10,Filter-member network has an ambiguity but function call is not referencing link role containing ambiguity in this variation.,ambiguity-test-concepts.xsd,pass,,
+,,V-11,"Filter-member network has an ambiguity which is referenced by the linkrole and arcrole of the function call.  The ambiguity is introduced because there are two different extended links (of role test-role, one presentationLink, the other definitionLink) that each define the same arcs (of arcrole test-arcrole).  Each link has MemA->MemB->MemC.  This ambiguity is no longer an error.  Thus there are two relationships each to memB and to memC, which is the same situation as when a 'normal' network has a domain member appearing as multiple leaf nodes in the same hierarchy.  Because the result is a set, which by definition has only distinct members, the result has only one each of memB and memC reported.",ambiguity-test-concepts.xsd,pass,,
+,,V-12,"Filter-member network ambiguity arcs are prohibited by an extension linkbase, to verify that ambiguous arcs prohibition works in the formula processor.",ambiguity-test-prohibiting-arcs-definition.xml,pass,,
+,,V-13,"A filter-member network in presentation linkbase, link test-role1, custom arcrole test-arcrole, has hierarchy dim, memA, memB, memC, but in definition linkbase, link test-role2, has hierarchy dim, memC, memB, memA.  This test should retrieve the hierarchy of memB and below (child-or-self), from the presentation linkbase, e.g., getting memB and memC.",non-dim-hierarchy-concepts.xsd,pass,,
+,,V-14,"Same as V-13 but this test should retrieve the hierarchy of children below memB (child), from the definition linkbase, e.g., getting only memA.",non-dim-hierarchy-concepts.xsd,pass,,
+,90214 xfi.filter-member-DRS-selection testcase.xml
+,,V-01,"Peak(primaryItems)->SummitHypercube(hypercubes)->Location->Regions(regions)->America(americas)->NorthAmerica->(UnitedStates,Mexico,Canada). 
+        The test is organized to be insensitive to the order of returned
+        member items, though the XPath 2 sequence operators mostly assure
+        that it be in document order.",filter-member-dimension-values.xsd,pass,,
+,,V-02,Linkrole is omitted by being an empty string,filter-member-dimension-values.xsd,pass,,
+,,V-03,Linkrole is omitted by being an empty sequence,filter-member-dimension-values.xsd,pass,,
+,,V-04,A list of members of Oceania (2 levels of descendants),filter-member-dimension-values.xsd,pass,,
+,,V-05,A list of Oceania child subregions,filter-member-dimension-values.xsd,pass,,
+,,V-06,A list of Asia subregions with highest peaks,filter-member-dimension-values.xsd,pass,,
+,,V-07,A empty list of children of child-less member,filter-member-dimension-values.xsd,pass,,
+,,V-08,Nothing found if non-member concept as the member argument,filter-member-dimension-values.xsd,pass,,
+,,V-09,Nothing found if non-dimension concept as the dimension argument,filter-member-dimension-values.xsd,pass,,
+,,V-10,Nothing found if concept without any has-hypercube relationships is used as the primary item argument,filter-member-dimension-values.xsd,pass,,
+,,V-11,Error of non-XBRL element as any of the arguments,filter-member-dimension-values.xsd,pass,,
+,,V-12,Tests that error is detected when the dimension name argument declares an attribute.,filter-member-dimension-values.xsd,pass,xfie:invalidDimensionQName,xfie:invalidDimensionQName
+,,V-13,Tests that error is detected when the primary item name argument declares an attribute.,filter-member-dimension-values.xsd,pass,xfie:invalidPrimaryItemConceptQName,xfie:invalidPrimaryItemConceptQName
+,,V-14,Tests that error is detected when the dimension qname is xbrli:item,filter-member-dimension-values.xsd,pass,xfie:invalidDimensionQName,xfie:invalidDimensionQName
+,90304 xfi.fact-segment-remainder testcase.xml
+,,V-01,Segment remainder for everest which has two elements mixed with dimensions,fact-segment-remainder-instance1.xml,pass,,
+,,V-02,Segment remainder for vinson which has complex type structures intermixed with dimensions,fact-segment-remainder-instance1.xml,pass,,
+,,V-03,Segment remainder for kilimanjaro is empty,fact-segment-remainder-instance1.xml,pass,,
+,,V-04,Segment remainder for segment-less quark is empty,fact-segment-remainder-instance1.xml,pass,,
+,,V-05,"Checks element typing, data typing, and atomization.",fact-segment-remainder-instance1.xml,pass,,
+,90305 xfi.fact-scenario-remainder testcase.xml
+,,V-01,Scenario remainder for everest which has two elements mixed with dimensions,fact-scenario-remainder-instance1.xml,pass,,
+,,V-02,Scenario remainder for vinson which has complex type structures intermixed with dimensions,fact-scenario-remainder-instance1.xml,pass,,
+,,V-03,Scenario remainder for kilimanjaro is empty,fact-scenario-remainder-instance1.xml,pass,,
+,,V-04,Scenario remainder for scenario-less quark is empty,fact-scenario-remainder-instance1.xml,pass,,
+,,V-05,"Checks element typing, data typing, and atomization.",fact-scenario-remainder-instance1.xml,pass,,
+,90306 xfi.fact-has-explicit-dimension testcase.xml
+,,V-01,Test correct location dimension for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,"Mt Vinson uses the Antarctica default dimension, so although it is not physically reported in the context, it is virtually reported due to the default for the dimension.",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,"Location dimension for AtmosphericPhenomenon concept Aurora Borealis (whose hypercube lacks the location dimension).
+         In a previous version this was false, but given that the dimension default applies globally even when not
+         in the hypercube, the default dimension is returned anyway, so result here is now true.",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-04,Error of concept argument which is not a dimension,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-04a,Error of non-XBRL element argument as dimension argument,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-05,"Dimension can be located in either segment or scenario, for this variation appears in the segment, to test that function is looking in only desired location for value.",bi-locational-seg-explicit-instance.xml,pass,,
+,,V-06,"Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment, to test that function is looking in only both locations for value.",bi-locational-scen-explicit-instance.xml,pass,,
+,90307 xfi.fact-has-typed-dimension testcase.xml
+,,V-01,Test height dimension for Mount Kilimanjaro for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,"Height dimension for pre-eruption volcano (whose hypercube lacks the location dimension because the volcano is not erupted yet, but it has alternate link roles allowing height to be added later after erupting)",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,Height dimension for SpacePhenomenon concept Wormhole (whose hypercube for space warping can never have the height dimension),fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-04,Error of concept argument which is not a dimension,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-04a,Error of non-XBRL element argument as dimension argument,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-05,Error of non-XBRL element argument as dimension argument,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-06,Tests that error is detected when the concept name argument declares an attribute.,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-07,Tests that error is detected when the concept qname is xbrli:item,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-08,"Dimension can be located in either segment or scenario, for this variation appears in the segment, to test that function is looking in either location for value.",bi-locational-seg-typed-instance.xml,pass,,
+,,V-09,"Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment, to test that function is looking in either location for value.",bi-locational-scen-typed-instance.xml,pass,,
+,90308 xfi.fact-has-explicit-dimension-value testcase.xml
+,,V-01,Test correct location dimension for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,Test wrong location dimension for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,"Mt Vinson uses the Antarctica default dimension, so although it is not physically reported in the context, it is virtually reported due to the default for the dimension.",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-04,Test location dimension for Peak concept Aurora Borealis (whose context lacks the location dimension),fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-05,Location dimension for AtmosphericPhenomenon concept Aurora Borealis (whose hypercube lacks the location dimension),fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-06,Error of concept argument which is not a dimension,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-07,Error of non-XBRL element argument as dimension argument,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-08,"Dimension can be located in either segment or scenario, for this variation appears in the segment, to test that function is looking in only desired location for value.",bi-locational-seg-explicit-instance.xml,pass,,
+,,V-09,"Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment, to test that function is looking in only both locations for value.",bi-locational-scen-explicit-instance.xml,pass,,
+,90309 xfi.fact-explicit-dimension-value testcase.xml
+,,V-01,Location dimension for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-01a,"Mt Vinson uses the Antarctica default dimension, so although it is not physically reported in the context, it is virtually reported due to the default for the dimension.",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,Location dimension for Peak concept Aurora Borealis (whose context lacks the location dimension),fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,"Location dimension for AtmosphericPhenomenon concept Aurora Borealis (whose hypercube lacks the location dimension): 
+        The AtmosphereicPhenomenon primary item has an open hypercube.  (It isn't supposed to have a location dimension, but
+        as this variation was originally written, because the hypercube is open, and the location dimension-default is global, that
+        causes the location dimension to be valid and the default value applies to facts of this primary item despite it being 'unwanted'.  
+        That is 'fixed' in variation V-03a.)",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03a,"Demonstrates that the default value is reported even when it is not dimensionally valid for the primary item.
+        Same as V-03 but regardless that the Atmospheric Phenomenon primary item now has a closed hypercube (by a higher priority arc which
+        overrides with closed=true) so that the location dimension is not dimensionally valid or expected, despite being a
+        global default.  However this test case assures that the unwanted default dimension value is reported for facts of this primary item.",closed-atmosphere-instance1.xml,pass,,
+,,V-04,Error of concept argument which is not a dimension,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-05,Error of non-XBRL element argument as dimension argument,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-06,Tests that error is detected when the concept name argument declares an attribute.,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-07,Tests that error is detected when the concept qname is xbrli:item,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidExplicitDimensionQName,xfie:invalidExplicitDimensionQName
+,,V-08,"Dimension can be located in either segment or scenario, for this variation appears in the segment, to test that function is looking in only desired location for value.",bi-locational-seg-explicit-instance.xml,pass,,
+,,V-09,"Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment, to test that function is looking in only desired location for value.",bi-locational-scen-explicit-instance.xml,pass,,
+,90310 xfi.fact-typed-dimension-value testcase.xml
+,,V-01,Height dimension for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,"Height dimension for pre-eruption volcano (whose hypercube lacks the location dimension because the volcano is not erupted yet, but it has alternate link roles allowing height to be added later after erupting)",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,Height dimension for SpacePhenomenon concept Wormhole (whose hypercube for space warping can never have the height dimension),fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-04,Error of concept argument which is not a dimension,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-05,Error of non-XBRL element argument as dimension argument,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-06,Tests that error is detected when the concept name argument declares an attribute.,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-07,Tests that error is detected when the concept qname is xbrli:item,fact-explicit-dimension-value-instance1.xml,pass,xfie:invalidTypedDimensionQName,xfie:invalidTypedDimensionQName
+,,V-08,"Dimension can be located in either segment or scenario, for this variation appears in the segment, to test that function is looking in either location for value.",bi-locational-seg-typed-instance.xml,pass,,
+,,V-09,"Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment, to test that function is looking in either location for value.",bi-locational-scen-typed-instance.xml,pass,,
+,90311 xfi.fact-explicit-dimensions testcase.xml
+,,V-01,Test correct location dimension for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,"Mt Vinson uses the Antarctica default dimension, so although it is not physically reported in the context, it is virtually reported due to the default for the dimension.",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,"Dimension can be located in either segment or scenario, for this variation appears in the segment.",bi-locational-seg-explicit-instance.xml,pass,,
+,,V-04,Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment.,bi-locational-scen-explicit-instance.xml,pass,,
+,,V-05,Test multiple dimensions for fact.,multipleDims-instance.xml,pass,,
+,,V-06,Test multiple dimensions for fact with default dimension.,multipleDims-instance.xml,pass,,
+,,V-07,Test no dimensions for fact.,simple-instance.xml,pass,,
+,,V-08,XPath-defined error for node type incorrect.,simple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-09,XPath-defined error for node type incorrect arity of arguments.,simple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,90312 xfi.fact-typed-dimensions testcase.xml
+,,V-01,Test height dimension for Mount Kilimanjaro for Mount Kilimanjaro,fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-02,"Height dimension for pre-eruption volcano (whose hypercube lacks the location dimension because the volcano is not erupted yet, but it has alternate link roles allowing height to be added later after erupting)",fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-03,Height dimension for SpacePhenomenon concept Wormhole (whose hypercube for space warping can never have the height dimension),fact-explicit-dimension-value-instance1.xml,pass,,
+,,V-04,"Dimension can be located in either segment or scenario, for this variation appears in the segment.",bi-locational-seg-typed-instance.xml,pass,,
+,,V-05,"Dimension can be located in either segment or scenario but for this variation appears in the scenario instead of segment, to test that function is looking in either location for value.",bi-locational-scen-typed-instance.xml,pass,,
+,,V-06,Test no dimensions for fact.,simple-instance.xml,pass,,
+,,V-07,XPath-defined error for node type incorrect.,simple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-08,XPath-defined error for node type incorrect arity of arguments.,simple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
+,90403 xfi.fact-dimension-s-equal2 testcase.xml
+,,V-01,"Explicit dimensions are equal, they have same member",fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-01a,Same as V-01 but scenario,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-01b,Same as V-01 but one segment and one scenario dimension,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-02,"Note that id attributes differ between left and right arguments, and other attributes are in different sequences.  Decimal and double attributes and text values must be compared using respective typed comparison operators.",fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-02a,Same as V-02 but scenario,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-02b,Same as V-02 but one each segment and scenario of same dimension.,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-03,"Reuse of variation V-02, but right has typed sub-elements in different order, so result is false.",fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-04,Explicit dimension of V-01 right is different from that of left,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-04a,Same as V-04 but scenario,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-04b,Same of V-04 but one each segment and scenario dimension,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-05,Explicit dimension of V-01 right is missing from that of left,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-06,Typed dimension of V-01 right is missing from that of left,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-07,"Explicit dimension of V-05 left also missing, since both missing, result is true",fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-08,Typed dimension of V-06 is missing from both left and right so result is true,fact-dimension-s-equal2-instance1.xml,pass,,
+,,V-09,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:string type.
+        The string content of the dimension values do not include any
+        white space.",simpleTextValue-instance-01.xml,pass,,
+,,V-10,"The two dimension values are NOT d-equal. The content model for
+        the dimension is an element with simple content with xs:string
+        type. The string content of the dimension values includes
+        different internal white space but no leading or trailing white
+        space.",simpleTextValue-instance-02.xml,pass,,
+,,V-11,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:string type.
+        The string content of the dimension values includes identical
+        leading white space.",simpleTextValue-instance-03.xml,pass,,
+,,V-12,"The two dimension values are NOT d-equal. The content model for
+        the dimension is an element with simple content with xs:string
+        type. The string content of the dimension values includes
+        different leading white space.",simpleTextValue-instance-04.xml,pass,,
+,,V-13,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:decimal
+        type. The lexical representation of the dimension values is
+        identical.",simpleDecimalValue-instance-05.xml,pass,,
+,,V-14,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:decimal
+        type. The lexical representation of one dimension value has
+        extra trailing zeros.",simpleDecimalValue-instance-06.xml,pass,,
+,,V-15,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:boolean
+        type. The lexical representation of the dimension values is
+        identical.",simpleBooleanValue-instance-07.xml,pass,,
+,,V-16,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:boolean
+        type. The lexical representation of one dimension value is
+        'true' and the other is '1'.",simpleBooleanValue-instance-08.xml,pass,,
+,,V-17,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:QName type.
+        The lexical representation of the two QName values is identical.",simpleQnameValue-instance-09.xml,pass,,
+,,V-18,"The two dimension values are NOT d-equal. The content model for
+        the dimension is an element with simple content with xs:QName
+        type. The lexical representation of the two QName values differs
+        with one using the default namespace prefix and the other using
+        'my' as the namespace prefix. The two dimension values are not
+        d-equal because the XBRL 2.1 specification definition of
+        x-equality for two XML objects requires objects with the
+        xs:QName data type to be treated as strings.",simpleQnameValue-instance-10.xml,pass,,
+,,V-19,"The two dimension values are d-equal. The content model for the
+        dimension is an element with simple content with xs:QName type.
+        The lexical representation of the two QName values is the same
+        but the 'my' namespace prefix is mapped to different namespaces
+        for each of the two contexts. The two dimension values are still
+        d-equal because the XBRL 2.1 specification definition of
+        x-equality for two XML objects requires objects with the
+        xs:QName data type to be treated as strings.",simpleQnameValue-instance-11.xml,pass,,
+,,V-20,"The two dimension values are d-equal because they are to be
+        treated as numbers. The test is complicated by the referencing
+        of the relevant data type from within the typed dimension type
+        declaration.",complexFloatValue-instance-12.xml,pass,,
+,,V-21,"The two dimension values are NOT d-equal because a NaN does not
+        equal a NaN. The test is complicated by the referencing of the
+        relevant data type from within the typed dimension type
+        declaration.",complexFloatValue-instance-13.xml,pass,,
+,,V-22,"The two dimension values are NOT d-equal because they are to be treated as text and
+        are not lexically identical.  The test case is complicated because the information about
+        the data type to use for the equality test is tucked away in a separate schema that
+        is imported by the schema defining the data type of the typed dimension.",complexTextValue-instance-14.xml,pass,,
+,,V-23,"The two dimension values are s-equal because they are NOT to be treated as text and
+        the lexical differences do not constitute a semantic difference.",simpleIntegerValue-instance-15.xml,pass,,
+,,V-24,"The two dimension values are s-equal because they are NOT to be treated as text and
+        the lexical differences do not imply semantic differences.",simpleIntegerValue-instance-16.xml,pass,,
+,,V-25,"The two dimension values are NOT s-equal because they are to be treated as text and
+        are not lexically identical because of time zone differences.",simpleTimeValue-instance-17.xml,pass,,
+,90501 xfi.linkbase-link-roles testcase.xml
+,,V-01,Linkbase link roles used by presentation arcs,link-roles-instance.xml,pass,,
+,,V-02,Footnote link roles used by footnote arcs,footnote-roles-instance.xml,pass,,
+,,V-03,Non-existent arcrole parameter returns empty sequence,footnote-roles-instance.xml,pass,,
+,90503 xfi.concept-label function testcase.xml
+,,V-01,Standard label,concept-label-test1.xsd,pass,,
+,,V-02,Terse label,concept-label-test1.xsd,pass,,
+,,V-03,No label,concept-label-test1.xsd,pass,,
+,90504 xfi.arcrole-definition testcase.xml
+,,V-01,Definition of arcrole1,definition-test1.xsd,pass,,
+,,V-02,Definition of arcrole2,definition-test1.xsd,pass,,
+,,V-03,Definition absent from arcrole3,definition-test1.xsd,pass,,
+,,V-04,Definition of non-existent arcrole4,definition-test1.xsd,pass,,
+,90505 xfi.role-definition testcase.xml
+,,V-01,Definition of role link1,definition-test1.xsd,pass,,
+,,V-02,Definition of role link2,definition-test1.xsd,pass,,
+,,V-03,Definition absent from role link3,definition-test1.xsd,pass,,
+,,V-04,Definition of non-existent role link4,definition-test1.xsd,pass,,
+,90506 xfi.fact-footnotes testcase.xml
+,,V-01,"Fact 1, link role default, arcrole default, footnoterole default",footnotes-instance.xml,pass,,
+,,V-01a,Same as V-01 but empty sequence used to infer default roles,footnotes-instance.xml,pass,,
+,,V-02,"Fact 2, link role default, arcrole default, footnoterole default",footnotes-instance.xml,pass,,
+,,V-03,"Fact 1, link role custom, arcrole default, footnoterole default",footnotes-instance.xml,pass,,
+,,V-04,"Fact 2, link role custom, arcrole default, footnoterole default",footnotes-instance.xml,pass,,
+,,V-05,"Fact 1, link role custom, arcrole custom, footnoterole default",footnotes-instance.xml,pass,,
+,,V-06,"Fact 2, link role custom, arcrole custom, footnoterole default",footnotes-instance.xml,pass,,
+,,V-07,"Fact 1, link role custom, arcrole custom, footnoterole custom",footnotes-instance.xml,pass,,
+,,V-08,"Fact 2, link role custom, arcrole custom, footnoterole custom",footnotes-instance.xml,pass,,
+,90507 xfi.concept-relationships testcase.xml
+,,V-01,"Presentation descendants, link1, top level, 1 generation",nav-rel-test1.xsd,pass,,
+,,V-02,"Presentation descendants, concept not in network",nav-rel-test1.xsd,pass,,
+,,V-03,"Presentation descendants, concept a leaf node",nav-rel-test1.xsd,pass,,
+,,V-04,"Presentation ancestors, 3 generations",nav-rel-test1.xsd,pass,,
+,,V-05,"Presentation ancestors, 4 generations",nav-rel-test1.xsd,pass,,
+,,V-06,This case has the siblings of non-root concepts (mid-tree).,nav-rel-test1.xsd,pass,,
+,,V-06a,"This case requests the siblings of a root concept, but root concept has no parent relationships and thus
+        siblings is always an empty sequence (see the function's description of sibling axis).",nav-rel-test1.xsd,pass,,
+,,V-06b,"Same as V-06a but for link2.  Concept B in link2 has a ""companion"" root element C, but C
+        is not a sibling because B and C don't share a parent, so the list of siblings is empty.",nav-rel-test1.xsd,pass,,
+,,V-06c,Same as V-06a but for a leaf node (tree-bottom).,nav-rel-test1.xsd,pass,,
+,,V-07,Presentation siblings,nav-rel-test1.xsd,pass,,
+,,V-07a,Same as V-06a but for siblings at root.  As no parent relationships exist there cannot be any sibling result.,nav-rel-test1.xsd,pass,,
+,,V-08,"Presentation full treewalk from root, all generations",nav-rel-test1.xsd,pass,,
+,,V-09,"Demonstrates that when a descendant (or ancestor) concept repeats in the path from the source, it is not navigated further for unlimited generations navigation (generations=0).  Here navigation starts at A1, for descendants for unlimited generations.  In this case A1 is not included first in the output but A1 is a descendant of A13 (A1->A13->A1) so the A1 occurence under A13 is included in the output, but no further navigation from the repeat (directed cycle) beneath A1 is navigated.  (For debugging see V-09a to V-09d.)",nav-rel-test1.xsd,pass,,
+,,V-09a,"Based on V-09 but using link2 (which has no A11 or A12 subtrees, for easier tracing and debugging).
+      
+      
+        Here for unlimited generations.  Should result in A1->A13->A1, but only provide A13 and A1 in output sequence.",nav-rel-test1.xsd,pass,,
+,,V-09b,"Here for unlimited generations, with '-or-self'.  Should result in A1->A13->A1, and include A1, A13 and A1 in output sequence (representing order of tree walking including self, the first A1).",nav-rel-test1.xsd,pass,,
+,,V-09c,"Specified depth of tree walk generations, including recursion.
+        Demonstrates that when a descendant (or ancestor) concept repeats in the path from the source, for a specified generation count the directed cycle continues to be navigated.  Here navigation starts at A1, for descendants (not self) for 7 generations.  In this case A1 is not included first in the output but A1 is a descendant of A13 (A1->A13->A1), so the actual result shows A13->A1->A13->A1->A13->A1->A13.",nav-rel-test1.xsd,pass,,
+,,V-09d,"Specified depth of tree walk generations, including recursion.",nav-rel-test1.xsd,pass,,
+,,V-10,"Calculation relations with weights, default link",nav-rel-test1-detached-calculation.xml,pass,,
+,,V-10a,Based on V-10 but default link is specified using an empty sequence instead of an empty string.,nav-rel-test1-detached-calculation.xml,pass,,
+,90508 xfi.relationship-from-concept testcase.xml
+,,V-01,Presentation relationship arc's from-concept,nav-rel-test1.xsd,pass,,
+,90509 xfi.relationship-to-concept testcase.xml
+,,V-01,Presentation relationship arc's to-concept,nav-rel-test1.xsd,pass,,
+,90510 xfi.distinct-nonAbstract-parent-concepts testcase.xml
+,,V-01,"Non-abstract parents, link1",nav-rel-test-with-abstract.xsd,pass,,
+,,V-02,"Non-abstract parents, standard link",nav-rel-test-with-abstract2.xsd,pass,,
+,,V-02a,Variation of V-02 but uses an empty sequence as the linkrole argument.,nav-rel-test-with-abstract2.xsd,pass,,
+,90511 xfi.relationship-attribute testcase.xml
+,,V-01,Generic relationship arc A->B attribute,test.xsd,pass,,
+,,V-02,Generic relationship arc B->C attribute,test.xsd,pass,,
+,,V-03,Generic relationship arc A->B nonexisting attribute,test.xsd,pass,,
+,90512 xfi.relationship-link-attribute testcase.xml
+,,V-01,Generic relationship arc A->B link attribute,test.xsd,pass,,
+,,V-02,Generic relationship arc B->C link's role attribute,test.xsd,pass,,
+,,V-03,Generic relationship arc A->B nonexisting link attribute,test.xsd,pass,,
+,90513 xfi.relationship-name testcase.xml
+,,V-01,Generic relationship arc A->B name,test.xsd,pass,,
+,90514 xfi.relationship-link-name testcase.xml
+,,V-01,Generic relationship arc A->B link name,test.xsd,pass,,
+,90701 xfi.format-number testcase.xml
+,,V-01,"Zero-absent integer case, nonzero",default.xsd,pass,,
+,,V-02,"Zero-absent integer case, zero",default.xsd,pass,,
+,,V-03,Zero-present integer case,default.xsd,pass,,
+,,V-04,Decimals case,default.xsd,pass,,
+,,V-05,Thousands separator case,default.xsd,pass,,
+,,V-06,Percent case,default.xsd,pass,,
+,,V-07,Empty sequence input case,default.xsd,pass,,
+,,V-08,Non-numeric input case,default.xsd,pass,xqt-err:XPTY0004,err:XPTY0004
+,,V-09,Picture syntax error case,default.xsd,pass,xfie:invalidPictureSyntax,xfie:invalidPictureSyntax

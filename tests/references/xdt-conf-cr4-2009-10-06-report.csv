@@ -1,0 +1,905 @@
+﻿Index,Testcase,ID,Name,ReadMeFirst,Status,Expected,Actual
+xdt.xml
+,001-TestCase-Taxonomy.xml
+,,V-03,The value of the xbrldt:targetRole attribute is valid,hypercubeDimensionTargetRoleInvalidURI.xsd,pass,sche:XmlSchemaError,xbrldte:TargetRoleNotResolvedError xmlSchema:valueError
+,,V-04,"The hasHypercube relationship has an invalid contextElement value.  This should also be detected by XML schema tests, and may appear (after loading) as invalid if retained for end-user editing in some tools.",hasHypercubeContextElementInvalid.xsd,pass,sche:XmlSchemaError,xbrldte:HasHypercubeMissingContextElementAttributeError xmlSchema:valueError
+,,V-05,The hasHypercube relationship has an invalid non-boolean closed attribute value.  This may also be detected by XML schema tests.,hasHypercubeClosedInvalid.xsd,pass,sche:XmlSchemaError,xmlSchema:valueError
+,,V-08,An all hypercube has an msdos path in the targetRole attribute to locate the domain - dimension arc network.,hasHypercubeTargetRoleInvalidURI.xsd,pass,sche:XmlSchemaError,xbrldte:TargetRoleNotResolvedError xmlSchema:valueError
+,,V-09,A dimension-domain relationship has an msdos path in the targetRole attribute to locate the domain - member arc network.,dimensionDomainTargetRoleInvalidURI.xsd,pass,sche:XmlSchemaError,xbrldte:TargetRoleNotResolvedError xmlSchema:valueError
+,,V-10,A domain-member relationship has an msdos path in the targetRole attribute to locate the domain - member arc network.,domainMemberTargetRoleInvalidURI.xsd,pass,sche:XmlSchemaError,xbrldte:TargetRoleNotResolvedError xmlSchema:valueError
+,,V-11,A domain-member relationship has a valid non-default usable attribute.,domainMemberUsableValid.xsd,pass,,
+,,V-12,A domain-member relationship has a bogus non-boolean usable attribute.,domainMemberUsableInvalid.xsd,pass,sche:XmlSchemaError,xmlSchema:valueError
+,101-TestCase-HypercubeElementIsNotAbstractError.xml
+,,V-01,The hypercube declaration is abstract.,hypercubeValid.xsd,pass,,
+,,V-02,Signal xbrldte:HypercubeElementIsNotAbstract  because hypercube declaration is not abstract.,hypercubeNotAbstract.xsd,pass,xbrldte:HypercubeElementIsNotAbstractError,xbrldte:HypercubeElementIsNotAbstractError
+,,V-03,"Signal xbrldte:HypercubeElementIsNotAbstract because hypercube declaration is not abstract.  The 
+                  error might not be signalled by faulty software if it does not correctly identify the hypercube declaration because of the increased complexity of the
+                  substitution group structure.",hypercubeNotAbstractWithSGComplexities.xsd,pass,xbrldte:HypercubeElementIsNotAbstractError,xbrldte:HypercubeElementIsNotAbstractError
+,102-TestCase-HypercubeDimensionSourceError.xml
+,,V-01,A valid a hypercube-dimension arc,hypercubeDimensionValid.xsd,pass,,
+,,V-02,The source of a has-dimension arc MUST be hypercube declaration element.  In this case the element is not directly in substitutionGroup of xbrli:hypercubeItem but its parent element is.,hypercubeDimensionSubValid.xsd,pass,,
+,,V-03,The source of a has-dimension arc MUST be hypercube declaration element but is an item,sourceHypercubeDimensionIsItemInvalid.xsd,pass,xbrldte:HypercubeDimensionSourceError,xbrldte:HypercubeDimensionSourceError
+,,V-04,The source of a has-dimension arc MUST be hypercube declaration element but is a tuple,sourceHypercubeDimensionIsTupleInvalid.xsd,pass,xbrldte:HypercubeDimensionSourceError,xbrldte:HypercubeDimensionSourceError
+,,V-05,The source of a has-dimension arc MUST be hypercube declaration element but is a dimension,sourceHypercubeDimensionIsDimensionInvalid.xsd,pass,xbrldte:HypercubeDimensionSourceError,xbrldte:HypercubeDimensionSourceError
+,,V-06,The source of a has-dimension arc MUST be hypercube declaration element but substitutes for a dimension,sourceHypercubeDimensionIsDimensionSubInvalid.xsd,pass,xbrldte:HypercubeDimensionSourceError,xbrldte:HypercubeDimensionSourceError
+,103-TestCase-HypercubeDimensionTargetError.xml
+,,V-01,The target of a hypercube-dimension arc MUST be a dimension declaration but is an item,targetHypercubeDimensionIsItemInvalid.xsd,pass,xbrldte:HypercubeDimensionTargetError,xbrldte:HypercubeDimensionTargetError
+,,V-02,The target of a hypercube-dimension arc MUST be a dimension declaration but is a tuple,targetHypercubeDimensionIsTupleInvalid.xsd,pass,xbrldte:HypercubeDimensionTargetError,xbrldte:HypercubeDimensionTargetError
+,,V-03,The target of a hypercube-dimension arc MUST be a dimension declaration but is a hypercube,targetHypercubeDimensionIsHypercubeInvalid.xsd,pass,xbrldte:HypercubeDimensionTargetError,xbrldte:HypercubeDimensionTargetError
+,104-TestCase-HasHypercubeSourceError.xml
+,,V-01,A valid all has-hypercube arc for segment,hasHypercubeAllValid.xsd,pass,,
+,,V-02,A valid notAll has-hypercube arc for segment,hasHypercubeNotAllValid.xsd,pass,,
+,,V-03,A valid all has-hypercube arc for segment has abstract primary item source,hasHypercubeAllAbsPriItemValid.xsd,pass,,
+,,V-04,"Two primary items, parent with one hasHypercube child with another to different hypercube, both segment.",hasHypercubeAllTwoCubesValid.xsd,pass,,
+,,V-05,A primary items substituting for an xbrli:item has an all hypercube arc to an element substituting for a xbrldt:hypercubeItem.,hasHypercubeAllSubsValid.xsd,pass,,
+,,V-06,"The source of a hasHypercube relationship is not a primary item declaration, in this case it is a dimension item.",sourceHasHypercubeIsDimensionInvalid.xsd,pass,xbrldte:HasHypercubeSourceError,xbrldte:HasHypercubeSourceError
+,,V-07,"The source of a hasHypercube relationship is not a primary item declaration, in this case it substitutes for a dimension item.",sourceHasHypercubeIsDimensionSubInvalid.xsd,pass,xbrldte:HasHypercubeSourceError,xbrldte:HasHypercubeSourceError
+,105-TestCase-HasHypercubeTargetError.xml
+,,V-01,"The target of a hasHypercube relationship is not a hypercube item declaration, in this case it is an Xbrl item.",targetHasHypercubeIsItemInvalid.xsd,pass,xbrldte:HasHypercubeTargetError,xbrldte:HasHypercubeTargetError
+,,V-02,"The target of a hasHypercube relationship is not a hypercube item declaration, in this case it is a dimension item.",targetHasHypercubeIsDimensionInvalid.xsd,pass,xbrldte:HasHypercubeTargetError,xbrldte:HasHypercubeTargetError
+,106-TestCase-HasHypercubeMissingContextElementAttributeError.xml
+,,V-01,"A hasHypercube relationship must have a contextElement attribute, which is herein missing.",hasHypercubeNoContextElementInvalid-definition.xml,pass,xbrldte:HasHypercubeMissingContextElementAttributeError,xbrldte:HasHypercubeMissingContextElementAttributeError
+,,V-02,"A hasHypercube relationship must have a contextElement attribute, which is herein missing.",notAllHasHypercubeNoContextElementInvalid-definition.xml,pass,xbrldte:HasHypercubeMissingContextElementAttributeError,xbrldte:HasHypercubeMissingContextElementAttributeError
+,107-TestCase-TargetRoleNotResolvedError.xml
+,,V-01,The value of the xbrldt:targetRole attribute is valid,hypercubeDimensionTargetRoleValid.xsd,pass,,
+,,V-02,The value of the xbrldt:targetRole attribute is valid. The test case is invalid because it contains a targetrole attribute whose value is http://www.xbrl.org/dim/conf/role/foobar but there is no a roleRef declaration,hypercubeDimensionTargetRoleNotResolved.xsd,pass,xbrldte:TargetRoleNotResolvedError,xbrldte:TargetRoleNotResolvedError
+,,V-03,An all hypercube has a targetRole attribute to locate the domain - dimension arc network.,hasHypercubeTargetRoleValid.xsd,pass,,
+,,V-04,An all hypercube has a well-formed but bogus targetRole attribute to locate the domain - dimension arc network.,hasHypercubeTargetRoleNotResolved.xsd,pass,xbrldte:TargetRoleNotResolvedError,xbrldte:TargetRoleNotResolvedError
+,,V-05,A dimension-domain relationship has a targetRole attribute to locate the domain member arc network.,dimensionDomainTargetRoleValid.xsd,pass,,
+,,V-06,A dimension-domain relationship has a well-formed but bogus targetRole attribute to locate the domain - member arc network.,dimensionDomainTargetRoleNotResolved.xsd,pass,xbrldte:TargetRoleNotResolvedError,xbrldte:TargetRoleNotResolvedError
+,,V-07,A domain-member relationship has a targetRole attribute to locate the domain member arc network.,domainMemberTargetRoleValid.xsd,pass,,
+,,V-08,A domain-member relationship has a well-formed but bogus targetRole attribute to locate the domain - member arc network.,domainMemberTargetRoleNotResolved.xsd,pass,xbrldte:TargetRoleNotResolvedError,xbrldte:TargetRoleNotResolvedError
+,,V-09,A notAll hypercube has a targetRole attribute to locate the domain - dimension arc network.,notAllHasHypercubeTargetRoleValid.xsd,pass,,
+,,V-10,A notAll hypercube has a well-formed but bogus targetRole attribute to locate the domain - dimension arc network.,notAllHasHypercubeTargetRoleNotResolved.xsd,pass,xbrldte:TargetRoleNotResolvedError,xbrldte:TargetRoleNotResolvedError
+,,V-11,"A domain-member has a targetRole attribute to locate the domain - member arc network, but the roleRef for the targetRole is commented out in the linkbase containing the targetRole, to force the error message.",domainMemberTargetRoleMissingRoleRef.xsd,pass,xbrldte:TargetRoleNotResolvedError,xbrldte:TargetRoleNotResolvedError
+,,V-12,"Two arcs that represent a consecutive relationship [Def, 2] that exist in different extended-type link elements MUST be connected together using the xbrldt:targetRole attribute. Not doing so causes the construction to be unconnected and results in, for example, empty hypercubes, dimensions and domains. Some tools may raise a warning.",unconnectedDRS.xsd,pass,,
+,108-TestCase-DimensionElementIsNotAbstractError.xml
+,,V-01,The dimension declaration is abstract.,dimensionValid.xsd,pass,,
+,,V-02,Signal xbrldte:DimensionElementIsNotAbstract  because dimension declaration is not abstract.,dimensionNotAbstract.xsd,pass,xbrldte:DimensionElementIsNotAbstractError,xbrldte:DimensionElementIsNotAbstractError
+,109-TestCase-TypedDomainRefError.xml
+,,V-01,The typedDomainRef attribute correctly appears on a dimension declaration element pointing to a non-abstract item declaration.,typedDomainRefvalid.xsd,pass,,
+,,V-02,Signal xbrldte:TypedDomainRefError because typedDomainRef attribute appears on an XML Schema element definition that is not a dimensional declaration.,typedDomainRefonNonItemDeclaration.xsd,pass,xbrldte:TypedDomainRefError,xbrldte:TypedDomainRefError
+,,V-03,Currently allows two dimension declarations which have typedDomainRef attributes whose contents are identical.,TwotypedDomainRefattributesContainSameRef.xsd,pass,,
+,,V-04,"Currently allows two dimension declarations which have typedDomainRef attributes that differ  (e.g., one uses ""foo.xsd#bar"" and the other ""../schema/foo.xsd#bar"") but locate the same element declaration.",TwotypedDomainRefattributesContainRefsLocatingSameElement.xsd,pass,,
+,110-TestCase-TypedDimensionError.xml
+,,V-01,The typedDomainRef attribute correctly locates the declaration of a non-abstract element in the same file.,typedDomainReflocatesDeclarationInSameFile.xsd,pass,,
+,,V-03,Signal xbrldte:TypedDimensionError because typedDomainRef attribute points to an XML Schema element definition that is abstract.,typedDomainReftoAbstractItemDeclaration.xsd,pass,xbrldte:TypedDimensionError,xbrldte:TypedDimensionError
+,,V-04,Signal xbrldte:TypedDimensionError because the typedDomainRef attribute locates a ComplexType declaration.,typedDomainReflocatesTypeDeclaration.xsd,pass,xbrldte:TypedDimensionError,xbrldte:TypedDimensionError
+,,V-05,something that is not a global XML Schema element declaration,typedDomainRefLocatesNonGlobalElementDeclaration.xsd,pass,xbrldte:TypedDimensionError,xbrldte:TypedDimensionError
+,,V-06,The typedDomainRef attribute correctly locates the declaration of a non-abstract element in a different file that is in the DTS.,typedDomainReflocatesDeclarationInDifferentFileWithImport.xsd,pass,,
+,111-TestCase-TypedDimensionURIError.xml
+,,V-01,"Signal xbrldte:TypedDimensionURIError because the typedDomainRef attribute content, though schema valid in terms of URI format, does not contain a valid fragment identifier.",typedDomainRefHasNoFragment.xsd,pass,xbrldte:TypedDimensionURIError,xbrldte:TypedDimensionURIError
+,112-TestCase-DimensionDomainSourceError.xml
+,,V-01,A valid dimension-domain arc,dimensionDomainValid.xsd,pass,,
+,,V-02,"A valid dimension-domain arc, primary items substitute for xbrl item",dimensionDomainSubsValid.xsd,pass,,
+,,V-03,"The source of a dimension-domain relationship is a primary item declaration, not a dimension item.",sourceDimensionDomainIsItemInvalid.xsd,pass,xbrldte:DimensionDomainSourceError,xbrldte:DimensionDomainSourceError
+,,V-04,"The source of a dimension-domain relationship is a hypercube item declaration, not a dimension item.",sourceDimensionDomainIsHypercubeInvalid.xsd,pass,xbrldte:DimensionDomainSourceError,xbrldte:DimensionDomainSourceError
+,,V-05,The source of a dimension-domain relationship is a typed dimension.,sourceExplicitDimensionIsTypedDomainInvalid.xsd,pass,xbrldte:DimensionDomainSourceError,xbrldte:DimensionDomainSourceError
+,113-TestCase-DimensionDomainTargetError.xml
+,,V-01,"The target of a dimension-domain relationship is a dimension item declaration, not a domain member.",targetDimensionDomainIsDimensionInvalid.xsd,pass,xbrldte:DimensionDomainTargetError,xbrldte:DimensionDomainTargetError
+,,V-02,"The target of a dimension-domain relationship is a hypercube item declaration, not a domain member item.",targetDimensionDomainIsHypercubeInvalid.xsd,pass,xbrldte:DimensionDomainTargetError,xbrldte:DimensionDomainTargetError
+,115-TestCase-PrimaryItemPolymorphismError.xml
+,,V-01,A primary item source of a hypercube is also a member of an explicit dimension's domain,polymorphismDirectError-definition.xml,pass,xbrldte:PrimaryItemPolymorphismError,xbrldte:PrimaryItemPolymorphismError
+,,V-02,A primary item source of a hypercube is also a member of an explicit dimension's domain,polymorphismIndirectError-definition.xml,pass,xbrldte:PrimaryItemPolymorphismError,xbrldte:PrimaryItemPolymorphismError
+,,V-03,"A primary item source of a hypercube is also a member of an explicit dimension's domain, but one of the arcs has usable=false.  This doesn't make any difference.",polymorphismDirectUnusableError-definition.xml,pass,,
+,,V-04,"A primary item source of a hypercube is also a member of an explicit dimension's domain, but one of the arcs has usable=false.  This doesn't make any difference.",polymorphismIndirectUnusableError-definition.xml,pass,,
+,,V-05,"'BiologicalAssets' appears as both a primary item and a domain member, however it is not a domain member in the context of itself, but of a different primary item",polymorphismErrorDifferentSubgraph.xsd,pass,,
+,,V-06,Check for polymorphism including inherited hypercubes.,polymorphismErrorInherited-definition.xml,pass,xbrldte:PrimaryItemPolymorphismError,xbrldte:PrimaryItemPolymorphismError
+,,V-07,"For bugzilla #350.  Per e-mail from Maciej on 5 Mar 2009 and bugzilla discussion.  MP writes:  (1) Defaults are global and they do not need consecutive relationships (all, hypercube-dimension) to be applicable to all primary items it a taxonomy (it is my understanding of option 1). (2) Taxonomy has with one item (item, string, non-abstract) and one dimensionItem in the schema. It is linked to the dimension via dimension-default in definition linkbase.  Bugzilla discussion is that this does not create polymorphism for the item that is also the default, because the error only occurs ""if there is a cycle in which the primary item source of the hypercube is also a member of the domain of valid members [Def, 12]"".",polymorphismDefaultTest1.xsd,pass,,
+,116-TestCase-DomainMemberSourceError.xml
+,,V-01,"The source of a domain-member relationship is a dimension item declaration, not a primary item.",sourceDomainMemberIsDimensionInvalid.xsd,pass,xbrldte:DomainMemberSourceError,xbrldte:DomainMemberSourceError
+,,V-02,"The source of a domain-member relationship is a hypercube item declaration, not a primary item.",sourceDomainMemberIsHypercubeInvalid.xsd,pass,xbrldte:DomainMemberSourceError,xbrldte:DomainMemberSourceError
+,117-TestCase-DomainMemberTargetError.xml
+,,V-01,"The target of a domain-member relationship is a dimension item declaration, not a primary item.",targetDomainMemberIsDimensionInvalid.xsd,pass,xbrldte:DomainMemberTargetError,xbrldte:DomainMemberTargetError
+,,V-02,"The target of a domain-member relationship is a hypercube item declaration, not a primary item.",targetDomainMemberIsHypercubeInvalid.xsd,pass,xbrldte:DomainMemberTargetError,xbrldte:DomainMemberTargetError
+,122-TestCase-DimensionDefaultSourceError.xml
+,,V-01,The dimension-default arc role identifies in its source a dimension element and in its target the member who plays the role of the default member.,dimensionDefaultValid.xsd,pass,,
+,,V-02,"The source of a dimension-default arc is not a dimension, in this case it is a hypercube.",sourceDimensionDefaultNotDimensionInvalid.xsd,pass,xbrldte:DimensionDefaultSourceError,xbrldte:DimensionDefaultSourceError
+,123-TestCase-DimensionDefaultTargetError.xml
+,,V-01,"The target of a dimension-default arc is not a member item, in this case it is a dimension item.",targetDimensionDefaultIsDimensionInvalid.xsd,pass,xbrldte:DimensionDefaultTargetError,xbrldte:DimensionDefaultTargetError
+,,V-02,"The target of a dimension-default arc is not a member item, in this case it is a dimension item.",targetDimensionDefaultNotMemberInvalid.xsd,pass,,
+,124-TestCase-TooManyDefaultMembersError.xml
+,,V-01,Two dimension-default relationships in same role but from different dimensions.,dimensionDefaultSameRoleValid.xsd,pass,,
+,,V-02,Two dimension-default relationships in same role.,dimensionDefaultSameRoleInvalid.xsd,pass,xbrldte:TooManyDefaultMembersError,xbrldte:TooManyDefaultMembersError
+,,V-03,"Two dimension-default relationships in different roles.  dimension-default relationships are not scoped, so this is still an error.",dimensionDefaultDifferentRolesInvalid.xsd,pass,xbrldte:TooManyDefaultMembersError,xbrldte:TooManyDefaultMembersError
+,,V-04,There are two dimension-default relationships represented with one arc and two locators sharing the same value in the xlink:label attribute. The two dimension members belongs to the dimension domain so there is an error.,dimensionDefaultOneArcWithTwoLocators.xsd,pass,xbrldte:TooManyDefaultMembersError,xbrldte:TooManyDefaultMembersError
+,,V-05,There are two dimension-default arcs in different extended links pointing to the same default member this represents just one relationship. This is not an error.,multipleArcsResolveToSameDefault.xsd,pass,,
+,,V-07,"Two dimension-default relationships with targets in distinct domains.  The spec is currently unclear on whether this is valid http://bugzilla.xbrl.org/show_bug.cgi?id=342, but it should probably be an error.",dimensionDefaultDifferentDomainsInvalid.xsd,pass,xbrldte:TooManyDefaultMembersError,xbrldte:TooManyDefaultMembersError
+,125-TestCase-DRSUndirectedCycleError.xml
+,,V-01,Not a cycle as only the targetRole should be followed (when present) to build the DRS.,hypercubeDimensionUndirected-definition.xml,pass,,
+,,V-02,Not a cycle as only the targetRole should be followed (when present) to build the DRS.,dimensionDomainUndirected-definition.xml,pass,,
+,,V-03,domain-member allows undirected cycles.,domainMemberUndirected-definition.xml,pass,,
+,126-TestCase-DRSDirectedCycleError.xml
+,,V-01,cycle between 'domain' and 'domainMember',domainMemberDirected-definition.xml,pass,xbrldte:DRSDirectedCycleError,xbrldte:DRSDirectedCycleError
+,,V-02,Like variation 01 but this time there's no doubt its a cycle since it terminates in the same base set as it starts in.,domainMemberDirected2-definition.xml,pass,xbrldte:DRSDirectedCycleError,xbrldte:DRSDirectedCycleError
+,,V-03,Like variation 01 but without the hypercube.,domainMemberDirectedWithoutHypercube-definition.xml,pass,,
+,,V-04,cycle between 'domain' and 'domainMember',domainMemberParallel-definition.xml,pass,xbrldte:DRSDirectedCycleError,xbrldte:DRSDirectedCycleError
+,,V-05,Like example 04 but with a hypercube.,domainMemberParallelWithoutHypercube-definition.xml,pass,,
+,,V-06,Similar to example 01 except to find the 'cycle' you have to start from the domain member rather than the domain.,domainMemberDirectedReverse-definition.xml,pass,,
+,,V-07,"No Hypercube, so no cycles",domainMemberDirected2WithoutHypercube-definition.xml,pass,,
+,127-TestCase-OutOfDTSSchemaError.xml
+,,V-01,Signal xbrldte:OutOfDTSSchemaError because typedDomainRef attribute incorrectly locates the declaration of a non-abstract element in a different file that is not part of the taxonomy DTS.,typedDomainRefdoesnotlocateDeclarationInDifferentFile.xsd,pass,xbrldte:OutOfDTSSchemaError,xbrldte:OutOfDTSSchemaError
+,,V-02,typedDomainRef attribute correctly locates the declaration of a non-abstract element in a different file that is part of the taxonomy DTS.,typedDomainReflocatesDeclarationInDifferentFile.xsd,pass,,
+,,V-03,The instance document instance-A.xbrl refers to the Taxonomy XBRLTaxonomyA.xsd. That taxonomy do not include the schema xNL_Bridge_XBRL.xsd in the DTS so xbrldte:OutOfDTSSchemaError must be raised.,XBRLTaxonomyA.xsd,pass,xbrldte:OutOfDTSSchemaError,xbrldte:OutOfDTSSchemaError xmlSchema:elementUnexpected
+,,V-04,The schema that defines the typed dimension element contains a xs:redefine element. The taxonomy do not contains the redefine-schema.xsd in the DTS. The xbrldt:typedDomainRef points to a new element definition which is valid.,typed-dimension-schema-uses-redefine-no-dts-2.xsd,pass,xbrldte:OutOfDTSSchemaError,xbrldte:OutOfDTSSchemaError
+,202-TestCase-DefaultValueUsedInInstanceError.xml
+,,V-17,"Default values are present
+                        in the instance context, to raise
+                        xbrldie:DefaultValueUsedInInstanceError.",defaultValueInInstance.xbrl,pass,xbrldie:DefaultValueUsedInInstanceError,xbrldie:DefaultValueUsedInInstanceError
+,,V-18,"Default values aren't
+                        present in the instance context.",defaultValueInInstanceOK.xbrl,pass,,
+,203-TestCase-PrimaryItemDimensionallyInvalidError.xml
+,,V-01,"Fig. 3 (line 1) One cube,
+                        all-valid: result-true.",combinationOfCubesCase1Segment.xbrl,pass,,
+,,V-02,"Fig. 3 (line 4) One cube,
+                        all-invalid: result-false.",combinationOfCubesCase6Segment.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-03,"Fig. 3 (line 5) One cube,
+                        notAll-valid: result-false.",combinationOfCubesCase2Segment.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-04,"Fig. 3 (line 3) Two cubes,
+                        all-valid, notAll-invalid: result-true.",combinationOfCubesCase3Segment.xbrl,pass,,
+,,V-05,"Fig. 3 (line 2) One cube,
+                        notAll-invalid: result-true.",combinationOfCubesCase4Segment.xbrl,pass,,
+,,V-06,"Fig. 3 (line 6) Two cubes,
+                        all-valid, notAll-valid: result-false: cubes are equivalent so are both
+                        satisfied.",combinationOfCubesCase5Segment.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-07,"Fig. 3 (6) Two cubes,
+                        all-valid, notAll-valid: result-false: Two fact values have separate
+                        contexts with segment dimensions, one (merlot/Japan) meets all hypercube and
+                        fails notAll and thus is ok, the second (sedan/UnitedKingdom) meets the
+                        condition of the notAll hypercube and thus is a forbidden
+                        dimension.",contextForbiddenExplicitDimInSegment.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-08,"Fig. 3 (6) Two cubes,
+                        all-valid, notAll-valid: result-false: Two fact values have separate
+                        contexts with scenario dimensions, one (merlot/Japan) meets all hypercube
+                        and fails notAll and thus is ok, the second (sedan/UnitedKingdom) meets the
+                        condition of the notAll hypercube and thus is a forbidden
+                        dimension.",contextForbiddenExplicitDimInScenario.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-09,"A typed dimension which should
+                        be in the segment is instead in the scenario, and the hypercube is not
+                        closed, by 3.1.3.1 #2 making the hypercube invalid, thus raising
+                        error.",contextImplicitDimNotInSegment.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-10,"A typed dimension which should
+                        be in the scenario is instead in the segment, and the hypercube is not
+                        closed.",contextImplicitDimNotInScenario.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-11,"An explicit dimension which
+                        should be in the segment is instead in the scenario, and the hypercube is
+                        not closed.",contextExplicitDimNotInSegment.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-12,"An explicit dimension which
+                        should be in the scenario is instead in the segment, and the hypercube is
+                        not closed.",contextExplicitDimNotInScenario.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-13,"Two dimensions, one member
+                        (Merlot)'s dimension-domain was prohibited and replaced with an unusable
+                        dimension-domain.",combinationOfCubesUnusableMemberInvalid.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-14,"Two dimensions, products
+                        domain is unusable.",combinationOfCubesUnusableDomainInvalid.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-15,"Point 3.1.3 Fig 4 row
+                        1",closedEmptyHypercubeIsValid.xbrl,pass,,
+,,V-16,"Point 3.1.3 Fig 4 row
+                        2",openEmptyHypercubeIsValid.xbrl,pass,,
+,,V-17,"Point 3.1.3 Fig 4 row 3. It is
+                        invalid because the hypercube is closed and contains non expected
+                        information",closedEmptyHypercubeIsInvalid.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-18,"Point 3.1.3 Fig 4 row 4. No extra
+                        information is found",closedNotEmptyHypercubeIsValid.xbrl,pass,,
+,,V-19,"Point 3.1.3 Fig 4 row 5. It is
+                        invalid because the hypercube is closed and contains non expected
+                        information",closedNotEmptyHypercubeIsInvalid.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-20,"Point 3.1.3 Fig 4 row 6. It is
+                        valid because the hypercube is open",openNotEmptyHypercubeIsValid.xbrl,pass,,
+,,V-21,"The instance is valid because
+                        hypercubes are open",InstanceValidAccordingToTwoDimensionalTaxonomies.xbrl,pass,,
+,,V-22,"The instance is invalid because
+                        hypercubes are closed",InstanceInvalidAccordingToTwoDimensionalTaxonomies.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-23,"The paragraph above Figure 2 in the
+                        XDT spec excludes the member element that has been used in the
+                        instance",InstanceInvalidTheValueIsNotADomainMember.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-24,"The paragraph above Figure 2 in the
+                        XDT spec excludes the member element that has been used in the
+                        instance",InstanceInvalidTheValueIsNotADomainMemberCase2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-25,"Example 11 of the spec shows how
+                        inheritance should work. The instance is valid according to hypercubes in
+                        link1 (Default link)",complexHypercubeInheritance_ValidLink1.xbrl,pass,,
+,,V-26,"Example 11 of the spec shows how
+                        inheritance should work, The instance is valid according to hypercubes in
+                        link2 extended link role",complexHypercubeInheritance_ValidLink2.xbrl,pass,,
+,,V-27,"Example 11 of the spec shows how
+                        inheritance should work. The validation log should be something like this:
+                        PrimaryParent: under the extended link http://www.xbrl.org/2003/role/link
+                        contains one hypercube with one dimension. That hypercube is invalid. under
+                        the extended link
+                        http://www.xbrl.org/dim/conf/203/ComplexHypercubeInheritance/role/link2 it
+                        contains no hypercubes so no dimensional validation should be performed. The
+                        PrimaryParent element is dimensionally invalid. FirstChild (incorrectly
+                        called FirstChildren) under the extended link
+                        http://www.xbrl.org/2003/role/link contains two hypercubes: Cube1 contains
+                        just one dimension DimensionOne and Cube2 contains just one dimension
+                        DimensionTwo. Both hypercubes are invalid so. The element is dimensionally
+                        invalid. under the extended link
+                        http://www.xbrl.org/dim/conf/203/ComplexHypercubeInheritance/role/link2 it
+                        contains no hypercubes so no dimensional validation should be performed. The
+                        FirstChild element is dimensionally invalid. SecondChild (incorrectly called
+                        SecondChildren) under the extended link http://www.xbrl.org/2003/role/link
+                        contains two hypercubes: Cube1 contains just one dimension DimensionOne and
+                        Cube2 contains just one dimension DimensionTwo. Both hypercubes are invalid
+                        so. The element is dimensionally invalid. The SecondChild element is
+                        dimensionally invalid. ThirdChild (incorrectly called ThirdChildren) under
+                        the extended link http://www.xbrl.org/2003/role/link contains two
+                        hypercubes: Cube1 contains just one dimension DimensionOne and Cube2
+                        contains just one dimension DimensionTwo. Both hypercubes are invalid so.
+                        The element is dimensionally invalid. under the extended link
+                        http://www.xbrl.org/dim/conf/203/ComplexHypercubeInheritance/role/link2 it
+                        contains just one hypercube Cube3 with one dimension DimensionThree. The
+                        cube is dimensionally invalid. The ThirdChild element is dimensionally
+                        invalid. There are 4 errors represented because none of the primary items to
+                        validate are dimensionally valid. IMHO you are considering the elements
+                        ""PrimaryParent"" and ""FirstChild"" dimensionally valid because they contain no
+                        hypercubes in the extended link
+                        http://www.xbrl.org/dim/conf/203/ComplexHypercubeInheritance/role/link2 and
+                        according to the spec a primary item with no hypercubes is dimensionally
+                        valid. The issue here is whether or not ""PrimaryParent"" and ""FirstChild""
+                        contains hypercubes in the extended link
+                        http://www.xbrl.org/dim/conf/203/ComplexHypercubeInheritance/role/link2. I'm
+                        considering that those two elements do not contain hypercubes in the second
+                        extended link because the hypercube inheritance goes from top to bottom
+                        only. Therefore, ThirdChild do inherit the hypercubes from PrimaryParent
+                        because PrimaryParent is the head of the hierarchy.",complexHypercubeInheritance_Invalid3.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError xbrldie:PrimaryItemDimensionallyInvalidError xbrldie:PrimaryItemDimensionallyInvalidError xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-28,"The effective domain contains
+                        the same element twice. That element must be excluded from the domain
+                        because it has xbrldt:usable=false in one of the domains.",memberExcludedFromValidDomain1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-29,"The effective domain contains
+                        the same element twice. That element must be excluded from the domain
+                        because it has xbrldt:usable=false in one of the domains.",memberExcludedFromValidDomain2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-30,"As per section 3.1 paragraph 4, the
+                        primary items in this example are not the source of any dimensional
+                        relationship set so they are dimensionally valid",primaryItemValidContainsNoHypercubes.xbrl,pass,,
+,,V-31,"The primary item contains two
+                        hypercubes, both have closed=false. The instance document uses the one
+                        dimension value element from the 'notAll' hypercube and an additional one to
+                        satisfy the 'all' hypercube. Since the 'notAll' hypercube is open it is thus
+                        considered hypercube valid, which means that the negated result (as this is
+                        a 'notAll' hypercube) is invalid.",combinationOfCubesCase7BothOpen.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-32,"The primary item contains two
+                        hypercubes, the 'all' cube with closed=false, the 'notAll' with closed=true.
+                        The 'all' hypercube is correctly satisfied. The instance document uses the
+                        dimension value element prohibited by the 'notAll' hypercube but this
+                        hypercube does not include one of the dimensions declared in the 'all'
+                        hypercube; because it is considered closed=true the 'notAll' hypercube is
+                        thus considered hypercube invalid, which means that the negated result (as
+                        this is a 'notAll' hypercube) is valid.",combinationOfCubesCase8NotAllClosed.xbrl,pass,,
+,,V-33,"The taxonomy has a primary item A
+                        with one closed empty hypercube. There is also a primary item B with a
+                        different hypercube with one dimension that has a default member. The item A
+                        appears in the instance with nothing in its context. The default member
+                        should not be considered when checking that item A satisfies the closedness
+                        of its hypercube.",closedHypercubeAndDefaultMembers.xbrl,pass,,
+,,V-34,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 scenario is
+                        invalid because closed hypercube has extra dimension dim1-elt1 and because
+                        it is missing dim2.",inheritanceEdgeUseCase-p1-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-35,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 scenario is
+                        valid because closed hypercube has dimension dim2-elt1.",inheritanceEdgeUseCase-p1-c2.xbrl,pass,,
+,,V-36,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 scenario is
+                        invalid, p2 inherits hc2 from parent p1, and has hc1 as direct relationship,
+                        thus having two hypercubes: hc1 is valid for dim1-elt, hc2 fails due to
+                        missing dim2 and extra dimension dim1 in closed hypercube.",inheritanceEdgeUseCase-p2-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-37,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 scenario is
+                        invalid, having two hypercubes: hc2 is valid for dim2-elt, hc1 fails due to
+                        missing dim1 and extra dimension dim2 in closed hypercube.",inheritanceEdgeUseCase-p2-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-38,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 is inherited
+                        from P2 in link1, via targetRole on P2 to default link, wherein there are no
+                        hypercubes, thus P3 is invalid for link1 base set, having just one scenario
+                        hypercube, hc2, which fails due to missing dim2. Note that link1's hc1 can't
+                        be seen under p2 due to the targetRole to Default link.",inheritanceEdgeUseCase-p3-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-39,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 is inherited
+                        from P2 in link1, via targetRole on P2 to default link, wherein there are no
+                        hypercubes, thus P3 is valid for link1 base set, having just one scenario
+                        hypercube, hc2 which is valid for dim2-elt. Note that link1's hc1 can't be
+                        seen under p2 due to the targetRole to Default link.",inheritanceEdgeUseCase-p3-c2.xbrl,pass,,
+,,V-40,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 scenario is
+                        valid because p5 inherits hc1 with dimension dim1-elt1 from its immediate
+                        parent p2, but when looking further up the ancestors, hc2 isn't seen because
+                        p2 has a targetRole that blocks off p1 (with its hc2) from passing
+                        inheritance through p2 to p3 in link 1.",inheritanceEdgeUseCase-p5-c1.xbrl,pass,,
+,,V-41,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link1 scenario is
+                        invalid because p5 inherits hc1, whose dim1 is missing, from its immediate
+                        parent p2, but when looking further up the ancestors, hc2 (whose dim2 is
+                        present) isn't seen because p2 has a targetRole that blocks off p1 (with its
+                        hc2) from passing inheritance through p2 to p3 in link 1. Thus dim2 is also
+                        an extra dimension to the closed hc1. Hc1 has two errors here, missing dim1
+                        and extra dim2.",inheritanceEdgeUseCase-p5-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-42,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link4 scenario is
+                        invalid because closed hypercube has extra dimension dim1-elt1 and because
+                        it is missing dim2.",inheritanceEdgeUseCase-p9-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-43,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link4 scenario is
+                        valid because closed hypercube has dimension dim2-elt1.",inheritanceEdgeUseCase-p9-c2.xbrl,pass,,
+,,V-44,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link4 scenario is
+                        invalid because p10 inherits from p9, closed hypercube hc2, which has extra
+                        dimension dim1-elt1 and because it is missing dim2.",inheritanceEdgeUseCase-p10-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-45,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link4 scenario is
+                        valid because p10 inherits hc2 from p9, a closed hypercube which has
+                        dimension dim2-elt1.",inheritanceEdgeUseCase-p10-c2.xbrl,pass,,
+,,V-46,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. p11 has no hypercubes, it
+                        doesn't inherit from p10 because p10's inheritance (hc2) is passed off by
+                        targetRole to link5. Thus p11 doesn't care about the dimension in c1 because
+                        there is no closed hypercube to complain about it, and is dimensionally
+                        valid.",inheritanceEdgeUseCase-p11-c1.xbrl,pass,,
+,,V-47,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. p11 has no hypercubes, it
+                        doesn't inherit from p10 because p10's inheritance (hc2) is passed off by
+                        targetRole to link5. Thus p11 doesn't care about the dimension in c2 because
+                        there is no closed hypercube to complain about it, and is dimensionally
+                        valid.",inheritanceEdgeUseCase-p11-c2.xbrl,pass,,
+,,V-48,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link4 scenario is
+                        invalid because p13 inherits via targetRole from p10, from p9, closed
+                        hypercube hc2, which has extra dimension dim1-elt1 and because it is missing
+                        dim2.",inheritanceEdgeUseCase-p13-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-49,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link4 scenario is
+                        valid because p13 inherits hc2 via targetRole from p10, which inherits from
+                        p9, a closed hypercube which has dimension dim2-elt1.",inheritanceEdgeUseCase-p13-c2.xbrl,pass,,
+,,V-50,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. p15 has no hypercubes, it
+                        doesn't care about the dimension in c1 because there is no closed hypercube
+                        to complain about it, and is dimensionally valid.",inheritanceEdgeUseCase-p15-c1.xbrl,pass,,
+,,V-51,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. p15 has no hypercubes, it
+                        doesn't care about the dimension in c2 because there is no closed hypercube
+                        to complain about it, and is dimensionally valid.",inheritanceEdgeUseCase-p15-c2.xbrl,pass,,
+,,V-52,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link6 hc1 dim1 is
+                        valid as a direct descendant of p16.",inheritanceEdgeUseCase-p16-c1.xbrl,pass,,
+,,V-53,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link6 hc1 dim1 is
+                        invalid as a direct descendant of p16 because dim1 is missing and dim2-elt1
+                        is an extra dimension to a closed hypercube.",inheritanceEdgeUseCase-p16-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-54,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link6 hc1 dim1 is
+                        valid as a direct descendant of p17's immediate parent, p16. Note that p16
+                        couldn't inherit from p15 but there is no hypercube on p15 to worry
+                        about.",inheritanceEdgeUseCase-p17-c1.xbrl,pass,,
+,,V-55,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link6 hc1 dim1 is
+                        invalid as a direct descendant of of p17's immediate parent, p16 because
+                        dim1 is missing and dim2-elt1 is an extra dimension to a closed hypercube.
+                        Note that p16 couldn't inherit from p15 but there is no hypercube on p15 to
+                        worry about.",inheritanceEdgeUseCase-p17-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-56,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link6 contributes
+                        no hypercubes to inheritance for p19, because the hc1 under p16 is blocked
+                        by a targetRole to link7. Also there is no hypercube on p15 to worry about.
+                        Context c_other is chosen so that regardless of hypercube inheritance cause
+                        for thinking it might use hc1, if so then the dimensionless context will
+                        fail this test.",inheritanceEdgeUseCase-p19-cOther.xbrl,pass,,
+,,V-57,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        valid because p21 has closed hypercube which has dimension
+                        dim1-elt1.",inheritanceEdgeUseCase-p21-c1.xbrl,pass,,
+,,V-58,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        invalid, p21 has hc1 which fails due to missing dim1 and extra dimension
+                        dim2 in closed hypercube.",inheritanceEdgeUseCase-p21-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-59,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        invalid because p22 inherits from both p21 and p23, hc1 from p21 and hc2
+                        from p23: hc1 is valid for dim1-elt, hc2 fails due to missing dim2 and extra
+                        dimension dim1 in closed hypercube.",inheritanceEdgeUseCase-p22-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-60,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        invalid because p22 inherits from both p21 and p23, hc1 from p21 and hc2
+                        from p23: hc2 is valid for dim2-elt, hc1 fails due to missing dim1 and extra
+                        dimension dim2 in closed hypercube.",inheritanceEdgeUseCase-p22-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-61,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        invalid, p23 has hc2 which fails due to missing dim2 and extra dimension
+                        dim1 in closed hypercube.",inheritanceEdgeUseCase-p23-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-62,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        valid because p23 has closed hypercube hc2 which has dimension
+                        dim2-elt1.",inheritanceEdgeUseCase-p23-c2.xbrl,pass,,
+,,V-63,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        valid because p24 inherits by p22 targetRole from p21, which has hc1, which
+                        is valid for dim1-elt1. Note that although p22 appears twice in link8, where
+                        a descendant of p23 (with hc2), that is not seen as the p22 targetRole arc
+                        that gives inheritance to p24 is parented by p21.",inheritanceEdgeUseCase-p24-c1.xbrl,pass,,
+,,V-64,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        invalid because p24 inherits by p22 targetRole from p21, which has hc1,
+                        which is closed and invalid for dim2-elt1. Note that although p22 appears
+                        twice in link8, where a descendant of p23 (with hc2), that is not seen as
+                        the p22 targetRole arc that gives inheritance to p24 is parented by p21
+                        (thus the dim2-elt1 has no way of being valid here).",inheritanceEdgeUseCase-p24-c2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-65,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        invalid because p24 inherits by p22 targetRole from p23, which has hc2,
+                        which is closed and invalid for dim1-elt1. Note that although p22 appears
+                        twice in link8, where a descendant of p21 (with hc1), that is not seen as
+                        the p22 targetRole arc that gives inheritance to p26 is parented by p23
+                        (thus the dim1-elt1 has no way of being valid here).",inheritanceEdgeUseCase-p26-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-66,"Bank of Italy contributed
+                        inheritance edge use case, tests primary item inheritance and target role
+                        navigability in presence of extended link relationships of same nodes as
+                        target roles. Contributed by Michele Romanelli. Base set link8 scenario is
+                        valid because p24 inherits by p22 targetRole from p23, which has hc2, which
+                        is valid for dim2-elt1. Note that although p22 appears twice in link8, where
+                        a descendant of p21 (with hc1), that is not seen as the p22 targetRole arc
+                        that gives inheritance to p23 is parented by p23.",inheritanceEdgeUseCase-p26-c2.xbrl,pass,,
+,,V-67,"Test of Spec Example 11, to
+                        determine whether hypercubes are being ""shared"" across
+                        base set networks. Valid in Example 11 strict sense because p3 inherits from
+                        both base sets link1 and link2, and here in base set link1 there a single
+                        hybercube hc1 with dim1_elt1 its only member, which matches context c1. If
+                        dimensional processor were to ""share"" the hypercubes
+                        across all, then hc2 might be processed when inheriting from
+                        link1.",inheritanceSharedCube-p3-c1.xbrl,pass,,
+,,V-68,"Test of Spec Example 11, to
+                        determine whether hypercubes are being ""shared"" across
+                        base set networks. Valid in Example 11 strict sense because base set link2
+                        has a two hybercubes hc1 with dim1_elt2 its only member and hc2 with
+                        dim2_elt1, that matches context c1. In a sharing situation a processor may
+                        attempt to assure that link1's hc1 entry were valid here too, and fail this
+                        case.",inheritanceSharedCube-p3-c2.xbrl,pass,,
+,,V-72,"Test that closed attribute is
+                        inherited by primary item inheritance of hypercubes (not explicity in XDT
+                        yet). A processor inheriting hc1 & hc2 in link2closed, and flipping
+                        the closed attribute, thinking it open, would not complain that two mutually
+                        exclusive hypercubes are invalid here, each with other's dim being
+                        extraneous.",inheritanceOfClosedAttr-p3-c2closed.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-73,"Test that closed attribute is
+                        inherited by primary item inheritance of hypercubes (not explicity in XDT
+                        yet). A processor inheriting hc1 & hc2 in link2open, and flipping
+                        the closed attribute, thinking it closed, would complain that each cube then
+                        being mutually exclusive, has invalid extra content here.",inheritanceOfClosedAttr-p3-c2open.xbrl,pass,,
+,,V-74,"Test that usable=false attribute
+                        is not processed when determining primary item inheritance. This attribute
+                        is specified for purposes of exclusion of members from effective domains,
+                        and although it may appear on a domain-member arc which somehow gets into a
+                        primary item inheritance DRS, such as by targetRole sharing in different
+                        base set from where it may participate in specifying hypercube domain
+                        members, it isn't to be processed when traversed for purposes of primary
+                        item inheritance. In this case the hypercube hc1 would be unseen if some
+                        processor utilized the usable=false on primary item inheritance, when
+                        evaluating the primary item ancestors in base set for p3 in link1, in which
+                        case p1-c1 would be valid, but if hc1 is seen as it should be in the link1
+                        base set, dim1_elt1 is unusable and should generate the error.",inheritanceUsableAttr-p1-c1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-100,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I21 for a
+                        complete description",multiRoleInheritenceTest1Instance1.xbrl,pass,,
+,,V-101,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I22 for a
+                        complete description",multiRoleInheritenceTest1Instance2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-102,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I23 for a
+                        complete description",multiRoleInheritenceTest1Instance3.xbrl,pass,,
+,,V-103,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I24 for a
+                        complete description",multiRoleInheritenceTest1Instance4.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-104,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I25 for a
+                        complete description",multiRoleInheritenceTest1Instance5.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-105,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I26 for a
+                        complete description",multiRoleInheritenceTest1Instance6.xbrl,pass,,
+,,V-106,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I27 for a
+                        complete description",multiRoleInheritenceTest1Instance7.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-107,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I28 for a
+                        complete description",multiRoleInheritenceTest1Instance8.xbrl,pass,,
+,,V-108,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I29 for a
+                        complete description",multiRoleInheritenceTest1Instance9.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-109,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I30 for a
+                        complete description",multiRoleInheritenceTest1Instance10.xbrl,pass,,
+,,V-110,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I31 for a
+                        complete description",multiRoleInheritenceTest1Instance11.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-111,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I32 for a
+                        complete description",multiRoleInheritenceTest1Instance12.xbrl,pass,,
+,,V-112,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I33 for a
+                        complete description",multiRoleInheritenceTest1Instance13.xbrl,pass,,
+,,V-113,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I34 for a
+                        complete description",multiRoleInheritenceTest1Instance14.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-114,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I35 for a
+                        complete description",multiRoleInheritenceTest1Instance15.xbrl,pass,,
+,,V-115,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I36 for a
+                        complete description",multiRoleInheritenceTest1Instance16.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-116,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I37 for a
+                        complete description",multiRoleInheritenceTest1Instance17.xbrl,pass,,
+,,V-117,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I38 for a
+                        complete description",multiRoleInheritenceTest1Instance18.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-118,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I39 for a
+                        complete description",multiRoleInheritenceTest1Instance19.xbrl,pass,,
+,,V-119,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I40 for a
+                        complete description",multiRoleInheritenceTest1Instance20.xbrl,pass,,
+,,V-120,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I41 for a
+                        complete description",multiRoleInheritenceTest1Instance21.xbrl,pass,,
+,,V-121,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I42 for a
+                        complete description",multiRoleInheritenceTest1Instance22.xbrl,pass,,
+,,V-122,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I43 for a
+                        complete description",multiRoleInheritenceTest1Instance23.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-123,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I44 for a
+                        complete description",multiRoleInheritenceTest1Instance24.xbrl,pass,,
+,,V-124,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I45 for a
+                        complete description",multiRoleInheritenceTest1Instance25.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-125,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I46 for a
+                        complete description",multiRoleInheritenceTest1Instance26.xbrl,pass,,
+,,V-126,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I47 for a
+                        complete description",multiRoleInheritenceTest1Instance27.xbrl,pass,,
+,,V-127,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I48 for a
+                        complete description",multiRoleInheritenceTest1Instance28.xbrl,pass,,
+,,V-128,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I49 for a
+                        complete description",multiRoleInheritenceTest1Instance29.xbrl,pass,,
+,,V-129,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I50 for a
+                        complete description",multiRoleInheritenceTest1Instance30.xbrl,pass,,
+,,V-130,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I51 for a
+                        complete description",multiRoleInheritenceTest1Instance31.xbrl,pass,,
+,,V-131,"See XDT Inheritance (Test 1 - Variations V100 to V131).xls#Hoja1!I52 for a
+                        complete description",multiRoleInheritenceTest1Instance32.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-132,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I21 for a
+                        complete description",multiRoleInheritenceTest2Instance1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-133,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I22 for a
+                        complete description",multiRoleInheritenceTest2Instance2.xbrl,pass,,
+,,V-134,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I23 for a
+                        complete description",multiRoleInheritenceTest2Instance3.xbrl,pass,,
+,,V-135,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I24 for a
+                        complete description",multiRoleInheritenceTest2Instance4.xbrl,pass,,
+,,V-136,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I25 for a
+                        complete description",multiRoleInheritenceTest2Instance5.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-137,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I26 for a
+                        complete description",multiRoleInheritenceTest2Instance6.xbrl,pass,,
+,,V-138,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I27 for a
+                        complete description",multiRoleInheritenceTest2Instance7.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-139,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I28 for a
+                        complete description",multiRoleInheritenceTest2Instance8.xbrl,pass,,
+,,V-140,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I29 for a
+                        complete description",multiRoleInheritenceTest2Instance9.xbrl,pass,,
+,,V-141,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I30 for a
+                        complete description",multiRoleInheritenceTest2Instance10.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-142,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I31 for a
+                        complete description",multiRoleInheritenceTest2Instance11.xbrl,pass,,
+,,V-143,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I32 for a
+                        complete description",multiRoleInheritenceTest2Instance12.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-144,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I33 for a
+                        complete description",multiRoleInheritenceTest2Instance13.xbrl,pass,,
+,,V-145,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I34 for a
+                        complete description",multiRoleInheritenceTest2Instance14.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-146,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I35 for a
+                        complete description",multiRoleInheritenceTest2Instance15.xbrl,pass,,
+,,V-147,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I36 for a
+                        complete description",multiRoleInheritenceTest2Instance16.xbrl,pass,,
+,,V-148,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I37 for a
+                        complete description",multiRoleInheritenceTest2Instance17.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-149,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I38 for a
+                        complete description",multiRoleInheritenceTest2Instance18.xbrl,pass,,
+,,V-150,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I39 for a
+                        complete description",multiRoleInheritenceTest2Instance19.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-151,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I40 for a
+                        complete description",multiRoleInheritenceTest2Instance20.xbrl,pass,,
+,,V-152,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I41 for a
+                        complete description",multiRoleInheritenceTest2Instance21.xbrl,pass,,
+,,V-153,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I42 for a
+                        complete description",multiRoleInheritenceTest2Instance22.xbrl,pass,,
+,,V-154,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I43 for a
+                        complete description",multiRoleInheritenceTest2Instance23.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-155,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I44 for a
+                        complete description",multiRoleInheritenceTest2Instance24.xbrl,pass,,
+,,V-156,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I45 for a
+                        complete description",multiRoleInheritenceTest2Instance25.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-157,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I46 for a
+                        complete description",multiRoleInheritenceTest2Instance26.xbrl,pass,,
+,,V-158,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I47 for a
+                        complete description",multiRoleInheritenceTest2Instance27.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-159,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I48 for a
+                        complete description",multiRoleInheritenceTest2Instance28.xbrl,pass,,
+,,V-160,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I49 for a
+                        complete description",multiRoleInheritenceTest2Instance29.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-161,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I50 for a
+                        complete description",multiRoleInheritenceTest2Instance30.xbrl,pass,,
+,,V-162,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I51 for a
+                        complete description",multiRoleInheritenceTest2Instance31.xbrl,pass,,
+,,V-163,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I52 for a
+                        complete description",multiRoleInheritenceTest2Instance32.xbrl,pass,,
+,,V-164,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I53 for a
+                        complete description",multiRoleInheritenceTest2Instance33.xbrl,pass,,
+,,V-165,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I54 for a
+                        complete description",multiRoleInheritenceTest2Instance34.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-166,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I55 for a
+                        complete description",multiRoleInheritenceTest2Instance35.xbrl,pass,,
+,,V-167,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I56 for a
+                        complete description",multiRoleInheritenceTest2Instance36.xbrl,pass,,
+,,V-168,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I57 for a
+                        complete description",multiRoleInheritenceTest2Instance37.xbrl,pass,,
+,,V-169,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I58 for a
+                        complete description",multiRoleInheritenceTest2Instance38.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-170,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I59 for a
+                        complete description",multiRoleInheritenceTest2Instance39.xbrl,pass,,
+,,V-171,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I60 for a
+                        complete description",multiRoleInheritenceTest2Instance40.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-172,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I61 for a
+                        complete description",multiRoleInheritenceTest2Instance41.xbrl,pass,,
+,,V-173,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I62 for a
+                        complete description",multiRoleInheritenceTest2Instance42.xbrl,pass,,
+,,V-174,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I63 for a
+                        complete description",multiRoleInheritenceTest2Instance43.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-175,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I64 for a
+                        complete description",multiRoleInheritenceTest2Instance44.xbrl,pass,,
+,,V-176,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I65 for a
+                        complete description",multiRoleInheritenceTest2Instance45.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-177,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I66 for a
+                        complete description",multiRoleInheritenceTest2Instance46.xbrl,pass,,
+,,V-178,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I67 for a
+                        complete description",multiRoleInheritenceTest2Instance47.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-179,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I68 for a
+                        complete description",multiRoleInheritenceTest2Instance48.xbrl,pass,,
+,,V-180,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I69 for a
+                        complete description",multiRoleInheritenceTest2Instance49.xbrl,pass,,
+,,V-181,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I70 for a
+                        complete description",multiRoleInheritenceTest2Instance50.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-182,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I71 for a
+                        complete description",multiRoleInheritenceTest2Instance51.xbrl,pass,,
+,,V-183,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I72 for a
+                        complete description",multiRoleInheritenceTest2Instance52.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-184,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I73 for a
+                        complete description",multiRoleInheritenceTest2Instance53.xbrl,pass,,
+,,V-185,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I74 for a
+                        complete description",multiRoleInheritenceTest2Instance54.xbrl,pass,,
+,,V-186,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I75 for a
+                        complete description",multiRoleInheritenceTest2Instance55.xbrl,pass,,
+,,V-187,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I76 for a
+                        complete description",multiRoleInheritenceTest2Instance56.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-188,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I77 for a
+                        complete description",multiRoleInheritenceTest2Instance57.xbrl,pass,,
+,,V-189,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I78 for a
+                        complete description",multiRoleInheritenceTest2Instance58.xbrl,pass,,
+,,V-190,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I79 for a
+                        complete description",multiRoleInheritenceTest2Instance59.xbrl,pass,,
+,,V-191,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I80 for a
+                        complete description",multiRoleInheritenceTest2Instance60.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-192,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I81 for a
+                        complete description",multiRoleInheritenceTest2Instance61.xbrl,pass,,
+,,V-193,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I82 for a
+                        complete description",multiRoleInheritenceTest2Instance62.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-194,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I83 for a
+                        complete description",multiRoleInheritenceTest2Instance63.xbrl,pass,,
+,,V-195,"See XDT Inheritance (Test 2 - Variations V133 to V195).xls#Hoja1!I84 for a
+                        complete description",multiRoleInheritenceTest2Instance64.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-196,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I17 for a
+                        complete description",multiRoleInheritenceTest3Instance1.xbrl,pass,,
+,,V-197,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I18 for a
+                        complete description",multiRoleInheritenceTest3Instance2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-198,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I19 for a
+                        complete description",multiRoleInheritenceTest3Instance3.xbrl,pass,,
+,,V-199,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I20 for a
+                        complete description",multiRoleInheritenceTest3Instance4.xbrl,pass,,
+,,V-200,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I21 for a
+                        complete description",multiRoleInheritenceTest3Instance5.xbrl,pass,,
+,,V-201,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I22 for a
+                        complete description",multiRoleInheritenceTest3Instance6.xbrl,pass,,
+,,V-202,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I23 for a
+                        complete description",multiRoleInheritenceTest3Instance7.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-203,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I24 for a
+                        complete description",multiRoleInheritenceTest3Instance8.xbrl,pass,,
+,,V-204,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I25 for a
+                        complete description",multiRoleInheritenceTest3Instance9.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-205,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I26 for a
+                        complete description",multiRoleInheritenceTest3Instance10.xbrl,pass,,
+,,V-206,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I27 for a
+                        complete description",multiRoleInheritenceTest3Instance11.xbrl,pass,,
+,,V-207,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I28 for a
+                        complete description",multiRoleInheritenceTest3Instance12.xbrl,pass,,
+,,V-208,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I29 for a
+                        complete description",multiRoleInheritenceTest3Instance13.xbrl,pass,,
+,,V-209,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I30 for a
+                        complete description",multiRoleInheritenceTest3Instance14.xbrl,pass,,
+,,V-210,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I31 for a
+                        complete description",multiRoleInheritenceTest3Instance15.xbrl,pass,,
+,,V-211,"See XDT Inheritance (Test 3 - Variations V197 to V211).xls#Hoja1!I32 for a
+                        complete description",multiRoleInheritenceTest3Instance16.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-212,"See XDT Inheritance (Test 4 - Variations V212 to V216).xls#Hoja1!I17 for a
+                        complete description",multiRoleInheritenceTest4Instance1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-213,"See XDT Inheritance (Test 4 - Variations V212 to V216).xls#Hoja1!I18 for a
+                        complete description",multiRoleInheritenceTest4Instance2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-214,"See XDT Inheritance (Test 4 - Variations V212 to V216).xls#Hoja1!I19 for a
+                        complete description",multiRoleInheritenceTest4Instance3.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-215,"See XDT Inheritance (Test 4 - Variations V212 to V216).xls#Hoja1!I20 for a
+                        complete description",multiRoleInheritenceTest4Instance4.xbrl,pass,,
+,,V-216,"See XDT Inheritance (Test 4 - Variations V212 to V216).xls#Hoja1!I21 for a
+                        complete description",multiRoleInheritenceTest4Instance5.xbrl,pass,,
+,,V-217,"See XDT Inheritance (Test 5 - Variations V217 to V221).xls#Hoja1!I17 for a
+                        complete description",multiRoleInheritenceTest5Instance1.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-218,"See XDT Inheritance (Test 5 - Variations V217 to V221).xls#Hoja1!I18 for a
+                        complete description",multiRoleInheritenceTest5Instance2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-219,"See XDT Inheritance (Test 5 - Variations V217 to V221).xls#Hoja1!I19 for a
+                        complete description",multiRoleInheritenceTest5Instance3.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-220,"See XDT Inheritance (Test 5 - Variations V217 to V224).xls#Hoja1!I20 for a
+                        complete description",multiRoleInheritenceTest5Instance4.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-221,"See XDT Inheritance (Test 5 - Variations V217 to V224).xls#Hoja1!I21 for a
+                        complete description",multiRoleInheritenceTest5Instance5.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-222,"See XDT Inheritance (Test 5 - Variations V217 to V224).xls#Hoja1!I22 for a
+                        complete description",multiRoleInheritenceTest5Instance6.xbrl,pass,,
+,,V-223,"See XDT Inheritance (Test 5 - Variations V217 to V224).xls#Hoja1!I23 for a
+                        complete description",multiRoleInheritenceTest5Instance7.xbrl,pass,,
+,,V-224,"See XDT Inheritance (Test 5 - Variations V217 to V224).xls#Hoja1!I24 for a
+                        complete description",multiRoleInheritenceTest5Instance8.xbrl,pass,,
+,,V-225,"Test the content of an empty dimension. The instance is valid because
+                        the hypercube is invalid and linked with a notAll relationship to the
+                        primary item. The dimension content is a QName corresponding to a global
+                        element defined in a schema. The schema is in the DTS. The QName is the
+                        hypercube definition.",EmptyDimensionAndNotAllHypercube-2.xbrl,pass,,
+,,V-226,"Test the content of an empty dimension. The instance is valid because
+                        the hypercube is invalid and linked with a notAll relationship to the
+                        primary item. The dimension content is a QName corresponding to a global
+                        element defined in a schema. The schema is in the DTS. The QName is the
+                        primary item definition.",EmptyDimensionAndNotAllHypercube-3.xbrl,pass,,
+,,V-227,"Point 3.1.3 Fig 4 row 5. It is
+                        invalid because the hypercube is closed and contains non expected
+                        information",closedNotEmptyHypercubeIsInvalid2.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-228,"Point 3.1.3 Fig 4 row 6. It is
+                        valid because the hypercube is open",openNotEmptyHypercubeIsValid2.xbrl,pass,,
+,,V-301,"From discussion betw. Bernard, Herm and Michele at CEBS Madrid 2009-04.
+                   Two dimensions, each with default total member, and child member, in closed hypercube.
+                   First dimension also an open notAll hypercube to exclude first dimensions child member.
+                   This test case has both dimensions defaulted, dim1 does not match the notAll cube member, 
+                   dim2 slips through the notAll's openness, so it is valid.",closedAllOpenNotAllWithDefaults-instance1.xbrl,pass,,
+,,V-302,"Same as V-301 but this test case has only dim1 default, dim2 child, the notAll cube
+                   doesn't match dim1 and dim2 slips through the notAll's openness, so it is valid.",closedAllOpenNotAllWithDefaults-instance2.xbrl,pass,,
+,,V-303,"Same as V-301 but this test case has no default, dim1 child excluded, invalid.",closedAllOpenNotAllWithDefaults-instance3.xbrl,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,204-TestCase-RepeatedDimensionInInstanceError.xml
+,,V-01,"1. A context MUST NOT
+                        contain more than one dimension value for every dimension. A validator MUST
+                        signal [Ins Err, 7] xbrldie:RepeatedDimensionInInstance when this rule is
+                        violated. In this valid variation only one dimension value is
+                        provided.",contextContainsTypedDimensionValid.xbrl,pass,,
+,,V-02,"1. A context MUST NOT
+                        contain more than one dimension value for every dimension. A validator MUST
+                        signal [Ins Err, 7] xbrldie:RepeatedDimensionInInstance when this rule is
+                        violated. In this case two customer names are provided for the same context
+                        segment.",contextContainsRepeatedDimension.xbrl,pass,xbrldie:RepeatedDimensionInInstanceError,xbrldie:RepeatedDimensionInInstanceError
+,,V-03,"1. A context MUST NOT
+                        contain more than one dimension value [Def, 15] for each dimension. A
+                        validator MUST signal [Ins Err, 3] xbrldie:RepeatedDimensionInInstanceError
+                        when this rule is violated. In this case an explicit dimension, defined to
+                        be locatable in both segment and scenario, appears in only segment, so it is
+                        valid.",bi-locational-seg-explicit-instance.xml,pass,,
+,,V-04,"1. A context MUST NOT
+                        contain more than one dimension value [Def, 15] for each dimension. A
+                        validator MUST signal [Ins Err, 3] xbrldie:RepeatedDimensionInInstanceError
+                        when this rule is violated. In this case an explicit dimension, defined to
+                        be locatable in both segment and scenario, appears twice, once each in both
+                        segment and scenario, so by working group voted decision, it is
+                        invalid.",bi-locational-dual-explicit-instance.xml,pass,xbrldie:RepeatedDimensionInInstanceError,xbrldie:RepeatedDimensionInInstanceError
+,,V-04b,"1. A context MUST NOT
+                        contain more than one dimension value [Def, 15] for each dimension. A
+                        validator MUST signal [Ins Err, 3] xbrldie:RepeatedDimensionInInstanceError
+                        when this rule is violated. In this case a typed dimension, defined to be
+                        locatable in both segment and scenario, appears in only segment, so it is
+                        valid.",bi-locational-seg-typed-instance.xml,pass,,
+,,V-05,"1. 1. A context MUST NOT
+                        contain more than one dimension value [Def, 15] for each dimension. A
+                        validator MUST signal [Ins Err, 3] xbrldie:RepeatedDimensionInInstanceError
+                        when this rule is violated. In this case an explicit dimension, defined to
+                        be locatable in both segment and scenario, appears twice, once each in both
+                        segment and scenario, so by working group voted decision, it is
+                        invalid.",bi-locational-dual-typed-instance.xml,pass,xbrldie:RepeatedDimensionInInstanceError,xbrldie:RepeatedDimensionInInstanceError
+,,V-07,"This is the same test case
+                        as V-04 but the instance contains no facts to validate. is this valid or
+                        invalid?",bi-locational-dual-explicit-instance2.xml,pass,xbrldie:RepeatedDimensionInInstanceError,xbrldie:RepeatedDimensionInInstanceError
+,,V-08,Repeated dimension in scenario,repeatedDimensionInScenario.xbrl,pass,xbrldie:RepeatedDimensionInInstanceError,xbrldie:RepeatedDimensionInInstanceError
+,205-TestCase-TypedMemberNotTypedDimensionError.xml
+,,V-01,"The content of the xlink:href attribute of a xbrldi:typedMember element MUST resolve to an typed dimension within the DTS of the instance document. A dimensional processor MUST raise an error [Ins Err, 8] xbrldie:TypedMemberNotTypedDimension if the content of the xlink:href attribute of xbrldi:explicitMember resolves (with xml:base) to anything other than a typed dimension declaration.  In this case it resolves to an explicit dimension.",typedMemberIsExplicitInvalid.xbrl,pass,xbrldie:TypedMemberNotTypedDimensionError,xbrldie:TypedMemberNotTypedDimensionError
+,206-TestCase-ExplicitMemberNotExplicitDimensionError.xml
+,,V-01,"The content of the xlink:href attribute of an xbrldi:explicitMember element MUST resolve to an explicit dimension within the DTS of the instance document.  In this case it resolves to a hypercube element instead.  The usual hypercube arc from primary item is not present in this test, to prevent missing dimension errors from also being detected.",contextMemberNotExplicitDimension.xbrl,pass,xbrldie:ExplicitMemberNotExplicitDimensionError,xbrldie:ExplicitMemberNotExplicitDimensionError
+,207-TestCase-ExplicitMemberUndefinedQNameError.xml
+,,V-01,"The explicit dimension has a qName
+			which doesn't correspond to an element declaration in the DTS of the
+			instance.",contextExplicitDimDomainMemberNotFound.xbrl,pass,xbrldie:ExplicitMemberUndefinedQNameError,xbrldie:ExplicitMemberUndefinedQNameError
+,,V-02,"Test the content of an empty dimension. The dimension content is a QName. There
+			is no schema defining a global element with the corresponding QName. The QName is
+			iso4217:EUR.",EmptyDimensionAndNotAllHypercube-1.xbrl,pass,xbrldie:ExplicitMemberUndefinedQNameError,xbrldie:ExplicitMemberUndefinedQNameError
+,,V-03,"Test the content of an empty dimension. The dimension content is a QName. There
+			is no schema defining a global element with the corresponding QName. The QName is
+			foo:foo.",EmptyDimensionAndNotAllHypercube-4.xbrl,pass,xbrldie:ExplicitMemberUndefinedQNameError,xbrldie:ExplicitMemberUndefinedQNameError
+,,V-04,"Test the content of an empty dimension. The dimension content is a QName. There
+			*is* a schema defining a global element with the corresponding QName, but the QName is
+			not a domain member anywhere.",EmptyDimensionAndNotAllHypercube-5.xbrl,pass,,
+,208-TestCase-IllegalTypedDimensionContentError.xml
+,,V-01,"The typed dimension content [Def, 15] must be
+                        an instantiation of the element pointed to by the xbrldt:typedDomainRef of the typed dimension
+                        indicated in the dimension attribute of the xbrldi:typedMember element. A dimensional processor
+                        MUST raise an error [Ins Err, 7] xbrldie:IllegalTypedDimensionContentError if this rule is
+                        violated. In this case the segment contains valid typed dimension content.",typedDimSegValid-instance.xml,pass,,
+,,V-02,"Same as above but in this case the scenario
+                        contains valid typed dimension content.",typedDimScenValid-instance.xml,pass,,
+,,V-03,"Same as above but in this case the segment
+                        contains bogus typed dimension content.",typedDimSegInvalid-instance.xml,pass,xbrldie:IllegalTypedDimensionContentError,xbrldie:IllegalTypedDimensionContentError
+,,V-04,"Same as above but in this case the scenario
+                        contains bogus typed dimension content.",typedDimScenInvalid-instance.xml,pass,xbrldie:IllegalTypedDimensionContentError,xbrldie:IllegalTypedDimensionContentError
+,,V-05,"Same as above but in this case the segment
+                        contains bogus typed dimension content. No primary item refers to the segment.",typedDimSegUnused-instance.xml,pass,xbrldie:IllegalTypedDimensionContentError,xbrldie:IllegalTypedDimensionContentError
+,,V-06,"Same as above but in this case the scenario
+                        contains bogus typed dimension content. No primary item refers to the segment.",typedDimScenUnused-instance.xml,pass,xbrldie:IllegalTypedDimensionContentError,xbrldie:IllegalTypedDimensionContentError
+,270-DefaultValueExamples.xml
+,,V-01,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1; this is the complete example 1 of the wiki page, all items in one instance with all hypercubes and all dimensions",example01-instance01-all.xml,pass,,
+,,V-01-a,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, primary item a, all hypercubes and dimensions",example01-instance01-a.xml,pass,,
+,,V-01-b,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, primary item b, all hypercubes and dimensions",example01-instance01-b.xml,pass,,
+,,V-01-c,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, primary item c, all hypercubes and dimensions",example01-instance01-c.xml,pass,,
+,,V-01-d,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, primary item d, all hypercubes and dimensions",example01-instance01-d.xml,pass,,
+,,V-01-e,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, primary item e, all hypercubes and dimensions",example01-instance01-e.xml,pass,,
+,,V-01-hc1-d1,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, all primary items, hypercube 1 and dimension 1",example01-instance01-hc1-d1.xml,pass,,
+,,V-01-hc2-d2,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, all primary items, hypercube 2 and dimension 2",example01-instance01-hc2-d2.xml,pass,,
+,,V-01-hc3-d3,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, all primary items, hypercube 3 and dimension 3",example01-instance01-hc3-d3.xml,pass,,
+,,V-01-d4,"See wiki page issue: http://wiki.xbrl.org/wiki/Dimensions:Feedback_On_The_Dimensions_Specification_1.0#Example_1, all primary items, no hypercube and dimension 4 (which does have a default)",example01-instance01-d4.xml,pass,,
+,,V-02,"Bugzilla 343, e-mail references discussion of default that is illegal, here because for primary item d, closed hypercube 1 does not include the illegal member.  Adapted from V-01-hc1-d1 by adding an illegal default member and only using primary item d.  (Editorial note by Herm: although this situation should be illegal, careful reading of the spec convinces me it is clearly legal in the taxonomy and very fuzzy and multiply-interpretable for the instance, so I did not indicate that any error should be raised.  Whether error or not, the point of the dimensional infoset experience by the item in the processor is the objective.)",illegal-default-instance01.xml,pass,xbrldie:PrimaryItemDimensionallyInvalidError,xbrldie:PrimaryItemDimensionallyInvalidError
+,,V-03,"Bugzilla 343, dimension default member is not abstract and is used as a fact item, there are no hypercubes.  Base spec meeeting of 2009-06-24 discussed that this is not currently an error (but maybe should have been).  Philosophically it is a kind of primary item to default member polymorphism issue.  However today this variation is valid.",default-is-fact-item-instance.xml,pass,,
+,301-factlist-testcase.xml
+,,V-01,Dump four facts on two axes where there are defaults for both.,together.xml,pass,,
+,,V-02,Dump four facts on two axes where there are defaults for both.,apart.xml,pass,,
+,,V-06,XBRL 2.1-valid Tuple with contexts having a the segment and scenario.,302-04-SegmentScenarioTupleValid.xml,pass,,
