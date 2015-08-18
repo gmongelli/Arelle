@@ -4,16 +4,11 @@ create a new instance (in a tmp directory), display each table and compare
 the cells with reference data and then close the report instance.
 A flag can be manually set to create references.
 '''
-import os, sys
+import os
 import unittest
-import psutil
-from tkinter import (Tk)
-from arelle.CntlrWinMain import CntlrWinMain
 from arelle.plugin import DevTesting
-from arelle import (XbrlConst)
-from arelle.PluginManager import pluginClassMethods
-import json
 from arelle.plugin.EbaCompliance import (EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE, EBA_TAXONOMY_VERSION_2_3_1)
+from tests.ViewHelper import ViewHelper, initUI
 
 '''
 Information about a report entry point
@@ -75,33 +70,13 @@ def getSolvencyEntryPoints():
      
 class ThisTest:
     def __init__(self):
-        self.saveReferences = False # <- set this to create new references
-        self.referencesDir = None
-        self.cntlrWinMain = None
-        self.process = psutil.Process(os.getpid())
-        self.entryPointInfos = None
-        self.maxSize = 0
-        self.prevMemConsumed = 0
-        self.testContext = None
+        pass
     
     '''
     Run empty table layout comparison. Either on a specific report or a predefined seres of known reports
     '''
     def runTest(self, entryPointInfo=None):
-        application = Tk()
-        self.cntlrWinMain = CntlrWinMain(application)
-        application.protocol("WM_DELETE_WINDOW", self.cntlrWinMain.quit)
-        
-        testDir = os.path.dirname(os.path.abspath(sys.modules[__name__].__file__))
-        self.referencesDir = testDir + "/references/"        
-        
-        self.cntlrWinMain.setTestMode(True)
-        # make sure we use a plugin loaded by the plugin manager!!
-        for pluginMethod in pluginClassMethods("DevTesting.GetTestContext"):
-            self.testContext = pluginMethod()
-            break
-        self.testContext.recordTableLayout = True
-        self.testContext.saveFilePath = testDir + "/tmp/a1.xbrl"
+        initUI(self)
 
         numFailures = 0
         if entryPointInfo is None:
@@ -128,12 +103,11 @@ class ThisTest:
     returns True if result is OK
     '''
     def processOneEntryPoint(self, entryPointInfo):
-        result = True
-        testDataFilename = self.referencesDir + entryPointInfo.uniqueName + ".json"
-        
         self.cntlrWinMain.fileOpenFile(entryPointInfo.entryPoint)
+
+        self.viewHelper = ViewHelper(self.cntlrWinMain.getModelXbrl(), self.testContext)
         
-        testData = self.viewTables()
+        testData = self.viewHelper.viewTables()
         
         memSize = self.process.memory_info()[0]
         if memSize > self.maxSize:
@@ -148,62 +122,9 @@ class ThisTest:
         print("Memory consumed: " + DevTesting.humanizeSize(memSize) + " diff=" + DevTesting.humanizeSize(diffMem) + " max= " + DevTesting.humanizeSize(self.maxSize))
         assert memSize < 2000000000, "Check memory leaks regression: should never use 2Gb after instance close"
         
-        if self.saveReferences:
-            with open(testDataFilename, 'w') as outfile:
-                json.dump(testData, outfile)
-        else:
-            with open(testDataFilename, 'r') as inputfile:
-                refData = json.load(inputfile)
-            # compare
-            assert len(refData) == len(testData), "Not same number of tables " + entryPointInfo.uniqueName
-            
-            for tableEntry in sorted(refData.items()):
-                tableName, refTableInfo = tableEntry
-                testTableInfo = testData[tableName]
-                assert len(testTableInfo) == len(refTableInfo), "Not same number of cells for table " + tableName + " " + entryPointInfo.uniqueName
-                for idx in range(len(testTableInfo)):
-                    ref = refTableInfo[idx]
-                    tst = testTableInfo[idx]
-                    msg = "Not same cell idx=" + str(idx) + " for table " + tableName + " " + entryPointInfo.uniqueName + " ref=" + ref + " tst=" + tst
-                    if tst != ref:
-                        print(msg)
-                        result = False
-                    #assert tst == ref, msg
+        result = self.viewHelper.compareTables(self.saveReferences, self.referencesDir, entryPointInfo.uniqueName, testData)
         return result
 
-    '''
-    Up to now, we just capture partial cell creation information such
-    as coordinates and header
-    '''
-    def viewTables(self):
-        modelXbrl = self.cntlrWinMain.getModelXbrl()
-        tableView = modelXbrl.guiViews.tableView
-        tblRelSet = modelXbrl.relationshipSet("Table-rendering")
-        tablesByName = {}
-        for tblLinkroleUri in tblRelSet.linkRoleUris:
-            for tableAxisArcrole in (XbrlConst.euTableAxis, XbrlConst.tableBreakdown, XbrlConst.tableBreakdownMMDD, XbrlConst.tableBreakdown201305, XbrlConst.tableBreakdown201301, XbrlConst.tableAxis2011):
-                tblAxisRelSet = modelXbrl.relationshipSet(tableAxisArcrole, tblLinkroleUri)
-                if tblAxisRelSet and len(tblAxisRelSet.modelRelationships) > 0:
-                    # table name
-                    modelRoleTypes = modelXbrl.roleTypes.get(tblLinkroleUri)
-                    if modelRoleTypes is not None and len(modelRoleTypes) > 0:
-                        roledefinition = modelRoleTypes[0].definition
-                        if roledefinition is None or roledefinition == "":
-                            roledefinition = os.path.basename(tblLinkroleUri)       
-                        for table in tblAxisRelSet.rootConcepts:
-                            tablesByName[roledefinition] = (tblLinkroleUri, table)
-                            break
-        testData = {} # table layout info by table name
-        for tableEntry in sorted(tablesByName.items()):
-            tableName, tpl = tableEntry
-            tblLinkroleUri, table = tpl
-            print(tableName)
-            
-            self.testContext.tableLayout.tableInfo = []
-            tableView.view(viewTblELR=tblLinkroleUri)
-            testData[tableName] = self.testContext.tableLayout.tableInfo
-        return testData    
-    
 class TestNewSaveViewClose(unittest.TestCase):
     def test(self):
         test = ThisTest()    

@@ -7,3 +7,6 @@ buildRenameX86.bat
 arelle/Version.py
 /pcz
 /tests/tmp/*.xbrl
+/tests/tmp/*.csv
+/tests/tmp/*.log
+/tests/tmp/*log.txt

@@ -50,6 +50,13 @@ integerItemTypes = {"integerItemType", "nonPositiveIntegerItemType", "negativeIn
                     "longItemType", "intItemType", "shortItemType", "byteItemType",
                     "nonNegativeIntegerItemType", "unsignedLongItemType", "unsignedIntItemType",
                     "unsignedShortItemType", "unsignedByteItemType", "positiveIntegerItemType"}
+TABLE_AXIS_ROLES = (XbrlConst.euTableAxis, XbrlConst.tableBreakdown, XbrlConst.tableBreakdownMMDD, XbrlConst.tableBreakdown201305, XbrlConst.tableBreakdown201301, XbrlConst.tableAxis2011)
+
+'''
+Returns a tuple with all known table axis roles
+'''
+def getTableAxisArcroles():
+    return TABLE_AXIS_ROLES
 
 def viewRenderedGrid(modelXbrl, tabWin, lang=None):
     modelXbrl.modelManager.showStatus(_("viewing rendering"))
@@ -147,7 +154,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         tblRelSet = self.modelXbrl.relationshipSet("Table-rendering")
         self.tablesToELR = {}
         for tblLinkroleUri in tblRelSet.linkRoleUris:
-            for tableAxisArcrole in (XbrlConst.euTableAxis, XbrlConst.tableBreakdown, XbrlConst.tableBreakdownMMDD, XbrlConst.tableBreakdown201305, XbrlConst.tableBreakdown201301, XbrlConst.tableAxis2011):
+            for tableAxisArcrole in getTableAxisArcroles():
                 tblAxisRelSet = self.modelXbrl.relationshipSet(tableAxisArcrole, tblLinkroleUri)
                 if tblAxisRelSet and len(tblAxisRelSet.modelRelationships) > 0:
                     # table name

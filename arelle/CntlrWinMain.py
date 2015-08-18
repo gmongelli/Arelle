@@ -255,6 +255,7 @@ class CntlrWinMain (Cntlr.Cntlr):
                 #(Combobox(toolbar, textvariable=self.findVar, values=self.findValues,
                 #          ), self.logClear, _("Find options"), _("Select of find options")),
                 ):
+            tbControl = None
             if command is None:
                 tbControl = Separator(toolbar, orient=VERTICAL)
                 tbControl.grid(row=0, column=menubarColumn, padx=6)
@@ -270,10 +271,11 @@ class CntlrWinMain (Cntlr.Cntlr):
                     tbControl.grid(row=0, column=menubarColumn)
                 except TclError as err:
                     print(err)
-            if isinstance(toolTip,StringVar):
-                ToolTip(tbControl, textvariable=toolTip, wraplength=240)
-            else:
-                ToolTip(tbControl, text=toolTip)
+            if tbControl is not None:
+                if isinstance(toolTip,StringVar):
+                    ToolTip(tbControl, textvariable=toolTip, wraplength=240)
+                else:
+                    ToolTip(tbControl, text=toolTip)
             menubarColumn += 1
         for toolbarExtender in pluginClassMethods("CntlrWinMain.Toolbar"):
             toolbarExtender(self, toolbar)
