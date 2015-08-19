@@ -1031,13 +1031,13 @@ http://e6090500/role/Rockn declared but not used, GOOD.",e60905002gd-20091231.xm
 ,,_000gd,"Fact and members have en-US standard labels, GOOD.",e61001000gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01
 ,,_001gd,"Unused custom element has no en-US standard label, GOOD.",e61001001gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01
 ,,_002ng,"Custom element used in fact has no en-US standard label, NOGOOD.",e61001002ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01
-,,_003ng,"Custom element used as member has no en-US standard label, NOGOOD.",e61001003ng-20081231.xml,fail,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01
+,,_003ng,"Custom element used as member has no en-US standard label, NOGOOD.",e61001003ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01
 ,,_004ng,"custom element used in fact has an English non-standard label, NOGOOD.",e61001004ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01
 ,,_012ng,"INVEST element used in fact has no en-US standard label, NOGOOD.",e61001012ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01
-,,_013ng,"INVEST element used as member has no en-US standard label, NOGOOD.",e61001013ng-20081231.xml,fail,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01
+,,_013ng,"INVEST element used as member has no en-US standard label, NOGOOD.",e61001013ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01
 ,,_014ng,"INVEST element used in fact has an English non-standard label, NOGOOD.",e61001014ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01
 ,,_015ng,"INVEST element used in fact has standard label lang ""en"", NOGOOD.",e61001015ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01 EFM.6.10.03
-,,_016ng,"INVEST element used as member in fact has standard label lang ""en"", NOGOOD.",e61001016ng-20081231.xml,fail,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01
+,,_016ng,"INVEST element used as member in fact has standard label lang ""en"", NOGOOD.",e61001016ng-20081231.xml,pass,EFM.6.10.01,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01 EFM.6.10.03
 ,,_017gd,"Fact and members have en-US standard labels in a LabelLink with a Pointless but Legal role, GOOD.",e61001017gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01
 ,610-02-element-used-one-label-per-role-testcase.xml
 ,,_000gd,"fact and member used have various labels in en-US and fr, GOOD.",e61002000gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01
@@ -1049,10 +1049,10 @@ http://e6090500/role/Rockn declared but not used, GOOD.",e60905002gd-20091231.xm
 ,610-03-foreign-label-requires-english-testcase.xml
 ,,_000gd,"fact and member used have fr and translated en-US, GOOD.",e61003000gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01
 ,,_001gd,"unused element has only fr, GOOD.",e61003001gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01
-,,_002ng,"member used has en-US but fr only for a non-standard label, NOGOOD.",e61003002ng-20081231.xml,fail,EFM.6.10.03,EFM.5.02.01.01 EFM.5.02.01.01
+,,_002ng,"member used has en-US but fr only for a non-standard label, NOGOOD.",e61003002ng-20081231.xml,pass,EFM.6.10.03,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.03
 ,,_003ng,"element used has en-US but fr only for a non-standard label, NOGOOD.",e61003003ng-20081231.xml,pass,EFM.6.10.03,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.03
 ,,_004ng,"element used has only en for a standard label, NOGOOD.",e61003004ng-20081231.xml,pass,EFM.6.10.03,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01 EFM.6.10.03
-,,_005ng,"member used has only en for a standard label, NOGOOD.",e61003005ng-20081231.xml,fail,EFM.6.10.03,EFM.5.02.01.01 EFM.5.02.01.01
+,,_005ng,"member used has only en for a standard label, NOGOOD.",e61003005ng-20081231.xml,pass,EFM.6.10.03,EFM.5.02.01.01 EFM.5.02.01.01 EFM.6.10.01 EFM.6.10.03
 ,610-04-distinct-standard-labels-testcase.xml
 ,,_000gd,"Three elements with identical labels in different roles, GOOD. This is also an illustration, with the presentation
 linkbase, of why it is never necessary to have elements with the same standard label.",e61004000gd-20081231.xml,fail,,EFM.5.02.01.01 EFM.5.02.01.01

@@ -317,8 +317,8 @@ There is a circular dependency among parameter p1, p2, and p3.",paramCyclicDepen
 ,,V-02,Tests that duplicate general variable names in a variable set generate an error.,21251-duplicateGeneralVariableNameInSet-instance.xml,pass,xbrlve:duplicateVariableNames,xbrlfe:nonexistentSourceVariable xbrlve:duplicateVariableNames
 ,,V-03,Tests that duplicate parameter names in a variable set generate an error.,21251-duplicateParameterNameInSet-instance.xml,pass,xbrlve:duplicateVariableNames,xbrlve:duplicateVariableNames
 ,,V-04,Tests that a variable with the same name as global parameter doesn't generate an error.,21251-VariableNameIsSameAsGlobalParameter-instance.xml,pass,"{'assertion': (1, 0)}","{'assertion': (1, 0)}"
-,,V-05,Tests that a local parameter with the same name as global parameter doesn't generate an error.,21251-ParameterNameIsSameAsGlobalParameter-instance.xml,pass,"{'assertion': (1, 0), 'assertion2': (1, 0)}","{'assertion': (1, 0), 'assertion2': (1, 0)}"
-,,V-06,Tests that the same variable name used in two different variable sets doesn't generate an error.,21251-SameVariableNamesInSeperateSets-instance.xml,pass,"{'assertion': (1, 0), 'assertion2': (1, 0)}","{'assertion': (1, 0), 'assertion2': (1, 0)}"
+,,V-05,Tests that a local parameter with the same name as global parameter doesn't generate an error.,21251-ParameterNameIsSameAsGlobalParameter-instance.xml,pass,"{'assertion2': (1, 0), 'assertion': (1, 0)}","{'assertion2': (1, 0), 'assertion': (1, 0)}"
+,,V-06,Tests that the same variable name used in two different variable sets doesn't generate an error.,21251-SameVariableNamesInSeperateSets-instance.xml,pass,"{'assertion2': (1, 0), 'assertion': (1, 0)}","{'assertion2': (1, 0), 'assertion': (1, 0)}"
 ,21261 VariableFilter Relationship.xml
 ,,V-01,"These are unique to formula linkbase, there is no general mechanism to test these is in place.  In this test the arc is reversed, so it is ignored.  There is no defined error, so the formula will work as if the arc was not there.  This results in an instance value which would not complete evaluation if the arc was honored.",21261-variableFilterRelationship-instance.xml,pass,,
 ,21271 VariableSetFilter Relationship.xml
@@ -597,13 +597,13 @@ Aspects for output are taken from n2, on assumption that formula:uncovered, whic
 ,,V-42,"In this variation, fv1 falls back, gv2 anyway produces name of fv3 concept, fv3 is present and binds, assertion fires and is true.",22180-fv-gv-fv-instance2.xml,pass,"{'assertion': (1, 0)}","{'assertion': (1, 0)}"
 ,,V-43,"In this variation, fv1 falls back, gv2 anyway produces name of fv3 concept, fv3 is missing there should be no evaluation because all facts falling back.  If processor incorrectly allows evaluation because the general variable can bind, then there would be an assertion not satisfied.",22180-fv-gv-fv-instance3.xml,pass,"{'assertion': (0, 0)}","{'assertion': (0, 0)}"
 ,,V-51,"Primary items share dimensions, but one is from a different linkrole, tests that fallback values don't leak between link roles (even when sharing hypercubes of different dimensionality).  Also an accountant would not want unreported dimensions to be assumed by phantom new fallback values.
-(Patterned after the formula for finacial liabilities associated with transferred financial assets, total carrying amount, original assets, available for sale, in one linkrole, equal to the sum of same named items with additional dimensions of equity instruments, debt instruments, and loans and advances.)",finrep/22180-finrepFallback-test1-instance1.xml,pass,"{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}","{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}"
-,,V-52,"Same as V-51, but one of the 2-dim primary items is absent.",finrep/22180-finrepFallback-test1-instance2.xml,pass,"{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}","{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}"
-,,V-53,"Same as V-51, but the 1-dim primary item is absent.",finrep/22180-finrepFallback-test1-instance3.xml,pass,"{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}","{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}"
-,,V-54,"Same as V-53, but the first dimension common to all contexts is the default dimension which does not match any filter.  All variables might fall back but should not produce an evaluation.",finrep/22180-finrepFallback-test1-instance4.xml,pass,"{'value-assertion': (0, 0), 'existence-assertion': (0, 1)}","{'value-assertion': (0, 0), 'existence-assertion': (0, 1)}"
-,,V-55,"Same as V-51 but first dimension takes the default member value.  This could exist in the real world if one captured for total portfolio (vs. available for sale) finacial liabilities associated with transferred financial assets, total carrying amount, original assets.",finrep/22180-finrepFallback-test2-instance1.xml,pass,"{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}","{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}"
-,,V-56,"Same as V-52, but with a default dimension.",finrep/22180-finrepFallback-test2-instance2.xml,pass,"{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}","{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}"
-,,V-57,"Same as V-53, but with a default dimension",finrep/22180-finrepFallback-test2-instance3.xml,pass,"{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}","{'value-assertion': (1, 0), 'existence-assertion': (1, 0)}"
+(Patterned after the formula for finacial liabilities associated with transferred financial assets, total carrying amount, original assets, available for sale, in one linkrole, equal to the sum of same named items with additional dimensions of equity instruments, debt instruments, and loans and advances.)",finrep/22180-finrepFallback-test1-instance1.xml,pass,"{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}","{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}"
+,,V-52,"Same as V-51, but one of the 2-dim primary items is absent.",finrep/22180-finrepFallback-test1-instance2.xml,pass,"{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}","{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}"
+,,V-53,"Same as V-51, but the 1-dim primary item is absent.",finrep/22180-finrepFallback-test1-instance3.xml,pass,"{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}","{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}"
+,,V-54,"Same as V-53, but the first dimension common to all contexts is the default dimension which does not match any filter.  All variables might fall back but should not produce an evaluation.",finrep/22180-finrepFallback-test1-instance4.xml,pass,"{'existence-assertion': (0, 1), 'value-assertion': (0, 0)}","{'existence-assertion': (0, 1), 'value-assertion': (0, 0)}"
+,,V-55,"Same as V-51 but first dimension takes the default member value.  This could exist in the real world if one captured for total portfolio (vs. available for sale) finacial liabilities associated with transferred financial assets, total carrying amount, original assets.",finrep/22180-finrepFallback-test2-instance1.xml,pass,"{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}","{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}"
+,,V-56,"Same as V-52, but with a default dimension.",finrep/22180-finrepFallback-test2-instance2.xml,pass,"{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}","{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}"
+,,V-57,"Same as V-53, but with a default dimension",finrep/22180-finrepFallback-test2-instance3.xml,pass,"{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}","{'existence-assertion': (1, 0), 'value-assertion': (1, 0)}"
 ,23020 AspectTests TypedDimension.xml
 ,,V-01,Typed dimension has elements that match with default aspect tests,23020-defaultTest-elts-01-instance.xml,pass,"{'assertion': (1, 0)}","{'assertion': (1, 0)}"
 ,,V-02,"Typed dimension has elements that match with default aspect tests, two matches",23020-defaultTest-elts-02-instance.xml,pass,"{'assertion': (2, 0)}","{'assertion': (2, 0)}"
@@ -734,7 +734,7 @@ Aspects for output are taken from n2, on assumption that formula:uncovered, whic
 ,,V-14,"Same as prior but only evaluates assertion when there are items that are duplicates without regard to values (same concept, unit, context, dimension, etc).  Set so that assertion failures record only if duplicate.  Assertion does not fire (due to precondition) when item is not a duplicate.",33210-seq-dupTest-4-instance.xml,pass,"{'dupCheck': (0, 6)}","{'dupCheck': (0, 6)}"
 ,,V-15,"Same as prior but evaluates assertion for all sequences, thus recording successes as those without duplicates, and failures as those with duplicates.  Precondition moved to assertion test.",33210-seq-dupTest-5-instance.xml,pass,"{'dupCheck': (2, 6)}","{'dupCheck': (2, 6)}"
 ,34110 Multi Assertion Processing.xml
-,,V-01,"Similar to Finrep testing, formula a = b + c checked for consistency, all variables must exist and be non-nil, so same fact variables and arcs are shared.  Existency assertion and formula have same label to effect arc sharing.",34110-a-eq-bcd-instance.xml,pass,"{'existence_assertion': (1, 0), 'consistency_assertion': (1, 0)}",
+,,V-01,"Similar to Finrep testing, formula a = b + c checked for consistency, all variables must exist and be non-nil, so same fact variables and arcs are shared.  Existency assertion and formula have same label to effect arc sharing.",34110-a-eq-bcd-instance.xml,pass,"{'consistency_assertion': (1, 0), 'existence_assertion': (1, 0)}",
 ,,V-02,"Similar to Finrep testing, formula abs(a - b - c -d) < tolerance radius checked for consistency, allows fallbacks and be non-nil, so same fact variables and arcs are shared.  Existence assertion and formula have same label to effect arc sharing.  (Similar to V-01, but since a may also fall back, as well as b, or c, can't be done as a consistency expression because formula would not fire if a falls back.)",34110-abcd-1-instance.xml,pass,"{'value_assertion': (1, 0), 'existence_assertion': (1, 0)}","{'value_assertion': (1, 0), 'existence_assertion': (1, 0)}"
 ,,V-03,"Same as V-02, $a missing.",34110-abcd-2-instance.xml,pass,"{'value_assertion': (1, 0), 'existence_assertion': (1, 0)}","{'value_assertion': (1, 0), 'existence_assertion': (1, 0)}"
 ,,V-04,"Same as V-02, but values don't add up.",34110-abcd-3-instance.xml,pass,"{'value_assertion': (0, 1), 'existence_assertion': (1, 0)}","{'value_assertion': (0, 1), 'existence_assertion': (1, 0)}"
@@ -760,8 +760,8 @@ Aspects for output are taken from n2, on assumption that formula:uncovered, whic
 ,,V-02,"The concept name must be either ""eg:a"" or ""eg:b"".",42210-conceptNameFilter-two-qnames-instance.xml,pass,,
 ,,V-03,"The concept name must be the same as the concept name of the node accessed by the XPath variable reference ""$v:v0"".",42210-conceptNameFilter-varref-qname-instance.xml,pass,,
 ,42220 ConceptFilter Processing ConceptPeriodType.xml
-,,V-01,The fact must be reported with an instant period.,42220-conceptPeriodTypeFilter-instant-period-instance.xml,fail,,formula:resultFactCounts
-,,V-02,The fact must be reported with a duration period.,42220-conceptPeriodTypeFilter-duration-period-instance.xml,fail,,formula:resultFactCounts
+,,V-01,The fact must be reported with an instant period.,42220-conceptPeriodTypeFilter-instant-period-instance.xml,pass,,
+,,V-02,The fact must be reported with a duration period.,42220-conceptPeriodTypeFilter-duration-period-instance.xml,pass,,
 ,42230 ConceptFilter Processing ConceptBalance.xml
 ,,V-01,The fact's concept must be classified as a credit balance concept.,42230-conceptBalanceFilter-credit-balance-instance.xml,pass,,
 ,,V-02,The fact's concept must be classified as a debit balance concept.,42230-conceptBalanceFilter-debit-balance-instance.xml,pass,,
@@ -865,15 +865,15 @@ Note:  type safe coding is NOT used in general filter thus causing the error irr
 ,46210 NonDimensional ImplicitFilter Processing.xml
 ,,V-01,"Match source is the first c:f of instance document, only concept
        aspect is uncovered, 3rd fact var must seek uncovered concept of
-       first fact variable.",46210-conceptUncovered-instance.xml,fail,,formula:resultFactCounts
+       first fact variable.",46210-conceptUncovered-instance.xml,pass,,
 ,,V-02,"Match source is the c:z of instance document, only tuple
        aspect is uncovered, 3rd fact var must seek uncovered tuple aspect of
-       first (c:z) fact variable.",46210-tupleUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46210-tupleUncovered-instance.xml,pass,,
 ,,V-02a,"This represents a prior attempt to bind fv3 to c:f (6001) as well as c:t, which was re-authored
        as V-02b below.  However the concept period filter as originally authored would find a mismatch
        of period type for the tuple, because the tuple does have a concept aspect, and thus the period
        filter is attempted.  The period attribute does not match the test as described in the concept
-       filtering spec, so the tuple is omitted from the sequence, and same result as v-02.",46210-tupleUncovered-instance2.xml,fail,,formula:resultFactCounts
+       filtering spec, so the tuple is omitted from the sequence, and same result as v-02.",46210-tupleUncovered-instance2.xml,pass,,
 ,,V-02b,"Corrected to note that the tuple, c:t, cannot bind to fv3 because the fake-period filter will reject
        any facts not having the period aspect.  (See comments in instance document too.)
        As V-02b was originally authored, it erroneously assumed the
@@ -886,52 +886,52 @@ Note:  type safe coding is NOT used in general filter thus causing the error irr
        does not have a typed value (tuples can't have a typed value).",46210-tupleUncovered-instance3.xml,pass,,
 ,,V-03,"Match source is the c:z of instance document, only entity
        aspect is uncovered, 3rd fact var must seek uncovered entity of
-       first (c:z) fact variable.",46210-entityUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46210-entityUncovered-instance.xml,pass,,
 ,,V-04,"Match source is the c:z of instance document, only period
        aspect is uncovered, 3rd fact var must seek uncovered period of
-       first (c:z) fact variable.",46210-periodUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46210-periodUncovered-instance.xml,pass,,
 ,,V-05,"Match source is the c:z of instance document, only segment
        aspect is uncovered, 3rd fact var must seek uncovered segment of
-       first (c:z) fact variable.",46210-segmentUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46210-segmentUncovered-instance.xml,pass,,
 ,,V-06,"Match source is the c:z of instance document, only scenario
        aspect is uncovered, 3rd fact var must seek uncovered scenario of
-       first (c:z) fact variable.",46210-scenarioUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46210-scenarioUncovered-instance.xml,pass,,
 ,,V-07,"Match source is the c:z of instance document, only unit
        aspect is uncovered, 3rd fact var must seek uncovered unit of
-       first (c:z) fact variable.",46210-unitUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46210-unitUncovered-instance.xml,pass,,
 ,,V-08,"Match source is the c:f of instance document, only concept
        aspect is uncovered, 3rd fact var must seek uncovered concept of
        first (c:f) fact variable (as in V-01).  Here the 3rd fact variable has a unit
        aspect with a covered complemented filter, which in earlier spec
-       drafts did not cover, but now is to be covering.",46210-unitCovered-complement-instance.xml,fail,,formula:resultFactCounts
+       drafts did not cover, but now is to be covering.",46210-unitCovered-complement-instance.xml,pass,,
 ,46220 Dimensional ImplicitFilter Processing.xml
 ,,V-01,"Match source is the first c:f of instance document, only concept
        aspect is uncovered, 3rd fact var must seek uncovered concept of
-       first fact variable.",46220-conceptUncovered-instance.xml,fail,,formula:resultFactCounts
+       first fact variable.",46220-conceptUncovered-instance.xml,pass,,
 ,,V-02,"Match source is the c:z of instance document, only tuple
        aspect is uncovered, 3rd fact var must seek uncovered tuple aspect of
-       first (c:z) fact variable.",46220-tupleUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-tupleUncovered-instance.xml,pass,,
 ,,V-03,"Match source is the c:z of instance document, only entity
        aspect is uncovered, 3rd fact var must seek uncovered entity of
-       first (c:z) fact variable.",46220-entityUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-entityUncovered-instance.xml,pass,,
 ,,V-04,"Match source is the c:z of instance document, only period
        aspect is uncovered, 3rd fact var must seek uncovered period of
-       first (c:z) fact variable.",46220-periodUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-periodUncovered-instance.xml,pass,,
 ,,V-05,"Match source is the c:z of instance document, only segment
        aspect is uncovered, 3rd fact var must seek uncovered segment of
-       first (c:z) fact variable.",46220-nonXDTsegmentUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-nonXDTsegmentUncovered-instance.xml,pass,,
 ,,V-06,"Match source is the c:z of instance document, only scenario
        aspect is uncovered, 3rd fact var must seek uncovered scenario of
-       first (c:z) fact variable.",46220-nonXDTscenarioUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-nonXDTscenarioUncovered-instance.xml,pass,,
 ,,V-07,"Match source is the c:z of instance document, only segment
        aspect is uncovered, 3rd fact var must seek uncovered segment of
-       first (c:z) fact variable.",46220-segmentExplDim1Uncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-segmentExplDim1Uncovered-instance.xml,pass,,
 ,,V-08,"Match source is the c:z of instance document, only scenario
        aspect is uncovered, 3rd fact var must seek uncovered scenario of
-       first (c:z) fact variable.",46220-scenarioTypedDim1Uncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-scenarioTypedDim1Uncovered-instance.xml,pass,,
 ,,V-09,"Match source is the c:z of instance document, only unit
        aspect is uncovered, 3rd fact var must seek uncovered unit of
-       first (c:z) fact variable.",46220-unitUncovered-instance.xml,fail,,formula:resultFactCounts
+       first (c:z) fact variable.",46220-unitUncovered-instance.xml,pass,,
 ,,V-10,"(See 31430 test case for further explanation.)
       The example shows aggregation over the product dimension by
       use of the product dimension members tree, and over region
@@ -1112,8 +1112,8 @@ At interest compounded annually:
 P = A/(1 + r)**n  This requires the power function from V-04.",present-value-instance1.xml,pass,,
 ,,V-06,Usage pattern of simple local XPath-defined function.,trim-instance1.xml,pass,,
 ,,V-07,Usage pattern of simple local XPath-defined function.,isNumeric-instance1.xml,pass,,
-,,V-08,Usage pattern of simple local XPath-defined function.  Compute the sum of the values of the facts in an input sequence checking that all facts are aspect-matched except for a specified explicit dimension and checking that there is exactly one fact in the sequence for each domain member of the explicit dimension with a specified relationship from the explicit dimension domain member with the specified QName. Throws an exception if the explicit dimension does not have the specified domain member. Make sure that the implementation does not throw exceptions if the data types of any of the input facts are numeric but not xs:decimal.,sum-instance1.xml,fail,,formula:resultFactCounts
-,,V-09,See V-08,sum-instance2.xml,fail,eg:aspect-issues,
+,,V-08,Usage pattern of simple local XPath-defined function.  Compute the sum of the values of the facts in an input sequence checking that all facts are aspect-matched except for a specified explicit dimension and checking that there is exactly one fact in the sequence for each domain member of the explicit dimension with a specified relationship from the explicit dimension domain member with the specified QName. Throws an exception if the explicit dimension does not have the specified domain member. Make sure that the implementation does not throw exceptions if the data types of any of the input facts are numeric but not xs:decimal.,sum-instance1.xml,pass,,
+,,V-09,See V-08,sum-instance2.xml,pass,eg:aspect-issues,aspect-issues
 ,,V-10,"See V-08.
 The variable values in each step are as follows:
 
@@ -1126,8 +1126,8 @@ The variable values in each step are as follows:
   $missingDimensionMembers       ""missing member: test:memC3""
   $unexpectedDimensionMembers    ""unexpected member: test:memWild""
   $duplicatedReportedMembers     empty
-  $aspect-issues                 (""missing member: test:memC3"", ""unexpected member: test:memWild"")",sum-instance3.xml,fail,eg:aspect-issues,
-,,V-11,See V-08,sum-instance4.xml,fail,eg:aspect-issues,
+  $aspect-issues                 (""missing member: test:memC3"", ""unexpected member: test:memWild"")",sum-instance3.xml,pass,eg:aspect-issues,aspect-issues
+,,V-11,See V-08,sum-instance4.xml,pass,eg:aspect-issues,aspect-issues
 ,,V-12,"Usage pattern of function with indirect recursion.  
       Function argument type is xs:integer (not schema-element(xbrli:item)).
     fa(int n): if (n gt 0) then 2 * fb(n-1) else 1.
