@@ -308,6 +308,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
  
             self.table.clearModificationStatus()
             self.table.disableUnusedCells()
+            self.table.resizeTableCells()
                 
         self.modelXbrl.profileStat("viewTable_" + os.path.basename(viewTblELR), time.time() - startedAt)
 
@@ -535,7 +536,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                             self.table.initHeaderCellValue(headerLabel,
                                                            xValue, yValue,
                                                            columnspan-1,
-                                                           ((row - topRow + 1) if leafNode else 1)-1,
+                                                           ((row - topRow) if leafNode else 0),
                                                            XbrlTable.TG_CENTERED,
                                                            objectId=xStructuralNode.objectId(),
                                                            isRollUp=columnspan>1 and isNonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
