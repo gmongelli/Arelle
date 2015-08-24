@@ -4,7 +4,7 @@ create a new instance (in a tmp directory), display each table and compare
 the cells with reference data and then close the report instance.
 A flag can be manually set to create references.
 '''
-import os
+import os, time
 import unittest
 from arelle.plugin import DevTesting
 from arelle.plugin.EbaCompliance import (EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE, EBA_TAXONOMY_VERSION_2_3_1)
@@ -76,7 +76,7 @@ class ThisTest:
     Run empty table layout comparison. Either on a specific report or a predefined seres of known reports
     '''
     def runTest(self, entryPointInfo=None):
-        initUI(self)
+        startedAt = time.time()
 
         numFailures = 0
         if entryPointInfo is None:
@@ -96,6 +96,7 @@ class ThisTest:
         # No need to explicitly quit and consume events
         #self.cntlrWinMain.quit()
         #application.mainloop()
+        print("newSaveViewClose took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 1494s")
         assert numFailures == 0, "Number of failing entry points: " + str(numFailures)    
     
     '''
@@ -127,8 +128,9 @@ class ThisTest:
 
 class TestNewSaveViewClose(unittest.TestCase):
     def test(self):
-        test = ThisTest()    
-        test.saveReferences = False # <- set this to create new references
+        test = ThisTest()
+        initUI(test)  
+        test.saveReferences = True # <- set this to create new references
         
         if False:
             test.runTest(smallEntryPoint) # only this small one

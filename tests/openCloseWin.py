@@ -38,7 +38,7 @@ class TestOpenCloseWin(unittest.TestCase):
             
             tr.print_diff()  
             if idx > 1:
-                assert testContext.diffNumObjects < 3000, "Check for new objects leak"  
+                assert testContext.diffNumObjects < 8000, "Check for new objects leak"  
         
         #cntlrWinMain.quit()
         #application.mainloop()            

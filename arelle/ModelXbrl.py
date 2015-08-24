@@ -260,6 +260,7 @@ class ModelXbrl:
         self.init(errorCaptureLevel=errorCaptureLevel)
         
     def init(self, keepViews=False, errorCaptureLevel=None):
+        self.formulaMatchesCache = None # used when evaluating consistency assertions (see ValidateFormula)
         self.uuid = uuid.uuid1().urn
         self.namespaceDocs = defaultdict(list)
         self.urlDocs = {}
@@ -838,7 +839,24 @@ class ModelXbrl:
         except KeyError:
             return set()  # no facts for this period type
         
-
+    def hasFactsForExplicitDimQname(self, dimQname):
+        ''' Returns True if there are facts with the specified dimension
+            (similar code as factsByDimMemQname but does not collect anything
+            and returns as soon as something found)
+            This can be used to fasten some filtering/searches and avoid e.g.
+            looping on a series of member Qnames when none could be found.
+            The caller is responsible for effectively pass an explicit dimension...
+        '''
+        if self.useFactIndex:
+            return len(self.factIndex.factsByDimMemQname(dimQname, self, None) > 0)
+        
+        for fact in self.factsInInstance: 
+            if fact.isItem:
+                dimValue = fact.context.dimValue(dimQname)
+                if dimValue is not None:
+                    return True
+        return False
+        
     def factsByDimMemQname(self, dimQname, memQname=None): # indexed by fact (concept) qname
         """Facts in the instance indexed by their Dimension  and Member QName, cached
         
