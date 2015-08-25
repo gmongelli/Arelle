@@ -2,7 +2,7 @@
 For each sample COREP report instance, the test will
 load the report, display each table and then close the report instance.
 '''
-import os
+import os, time
 import unittest
 from os import listdir
 from os.path import isfile, join
@@ -11,8 +11,9 @@ from tests.ViewHelper import ViewHelper, initUI, getTestDir
 class CorepSampleTest(unittest.TestCase):
          
     def test(self):
+        startedAt = time.time()
         initUI(self)
-        self.saveReferences = True # <- set this to create new references
+        self.saveReferences = False # <- set this to create new references
         
         idx = 1
         numFailures = 0
@@ -24,6 +25,7 @@ class CorepSampleTest(unittest.TestCase):
                 numFailures += 1
             idx += 1
             
+        print("CorepSampleTest took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 448s)")
         assert numFailures == 0, "Number of failing instances: " + str(numFailures)    
         
     def processOneFile(self, filepath):

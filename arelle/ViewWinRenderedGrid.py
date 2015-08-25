@@ -43,6 +43,7 @@ PADDING = 20 # screen units of padding between entry cells
 TRACE_HEADERS = False
 TRACE_FACT_PROTOS = False
 TRACE_Z_CONCEPT_ASPECT = False
+TRACE_Z_CHOICES = False
 
 qnPercentItemType = qname("{http://www.xbrl.org/dtr/type/numeric}num:percentItemType")
 qnPureItemType = qname("{http://www.xbrl.org/2003/instance}xbrli:pureItemType")
@@ -219,6 +220,8 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             return
         '''
         startedAt = time.time()
+        self.factsByDimMemQnameCache.clear()
+        
         self.testMode = self.modelXbrl.modelManager.cntlr.testMode
         self.blockMenuEvents += 1
         if newInstance is not None:
@@ -299,11 +302,11 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if fp is not None:
                     fp.clear()
             self.factPrototypes = []
-            self.factsByDimMemQnameCache.clear()
             self.bodyCells(self.dataFirstRow, yTopStructuralNode, xStructuralNodes, self.zAspectStructuralNodes, self.yAxisChildrenFirst.get())
             if False:
                 print("bodyCells took " + "{:.2f}".format(time.time() - startedAt) + " " +  os.path.basename(viewTblELR))
                 self.factsByDimMemQnameCache.printStats()
+                
             self.factsByDimMemQnameCache.clear()
  
             self.table.clearModificationStatus()
@@ -346,15 +349,27 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 valueHeaders = [''.ljust(zChoiceStructuralNode.indent * 4) + # indent if nested choices 
                                 (zChoiceStructuralNode.header(lang=self.lang, inheritedAspects=False) or '')
                                 for zChoiceStructuralNode in zStructuralNode.choiceStructuralNodes]
+                if TRACE_Z_CHOICES:
+                    print("headers: " + str(valueHeaders))
                 zAxisIsOpenExplicitDimension = False
                 zAxisTypedDimension = None
                 i = zStructuralNode.choiceNodeIndex # for aspect entry, use header selected
+                
+                zStructuralNodeSelectionIndex = None
+                memberSelectionIndex = None
+                if i == 0:
+                    # No previous selection: try to determine the first Z selection for which facts do exist
+                    zStructuralNodeSelectionIndex, memberSelectionIndex = self.getFirstZChoiceWithFacts(zStructuralNode)
+                    if zStructuralNodeSelectionIndex is not None:
+                        i = zStructuralNodeSelectionIndex
+                        zStructuralNode.choiceNodeIndex = zStructuralNodeSelectionIndex
+                
                 comboBoxValue = None if i >= 0 else zStructuralNode.aspects.get('aspectValueLabel')
                 chosenStructuralNode = zStructuralNode.choiceStructuralNodes[i]    
                 aspect = None
                 for aspect in chosenStructuralNode.aspectsCovered():
                     if aspect != Aspect.DIMENSIONS:
-                        break
+                        break                
                 # for open filter nodes of explicit dimension allow selection of all values
                 zAxisAspectEntryMode = False
                 if isinstance(chosenStructuralNode.definitionNode, ModelFilterDefinitionNode):
@@ -391,13 +406,18 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 if self.testMode:
                     for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCombobox"):
                         pluginMethod(self.dataFirstCol, row-1)      
-                        break          
+                        break
+                comboSelectIndex = zStructuralNode.choiceNodeIndex if i >= 0 else None
+                if zStructuralNodeSelectionIndex is not None:
+                    comboSelectIndex = zStructuralNodeSelectionIndex
+                if memberSelectionIndex is not None:
+                    comboSelectIndex =  memberSelectionIndex + 1 # add one for the first empty entry
                 combobox = self.table.initHeaderCombobox(self.dataFirstCol,
                                                          row-1,
                                                          colspan=0,
                                                          values=valueHeaders,
                                                          value=comboBoxValue,
-                                                         selectindex=zStructuralNode.choiceNodeIndex if i >= 0 else None,
+                                                         selectindex=comboSelectIndex,
                                                          comboboxselected=self.onZComboBoxSelected)
                 combobox.zStructuralNode = zStructuralNode
                 combobox.zAxisIsOpenExplicitDimension = zAxisIsOpenExplicitDimension
@@ -408,6 +428,18 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 combobox.objectId = zStructuralNode.objectId()
                 # add aspect for chosen node
                 self.setZStructuralNodeAspects(chosenStructuralNode)
+                if memberSelectionIndex is not None:
+                    # Even if in this case things get correctly displayed, we still need
+                    # to set some stuff so that proper filtering happens when filling
+                    # body cells (aspects attribute of structural node).
+                    # Code similar to things done in onZComboBoxSelected
+                    #TODO: reorganize onZComboBoxSelected to factorize things except event and viex
+                    structuralNode = combobox.zStructuralNode
+                    if combobox.zAxisAspectEntryMode:
+                        aspectValue = structuralNode.aspectEntryHeaderValues.get(combobox.get())
+                        if aspectValue is not None:
+                            self.zOrdinateChoices[structuralNode.definitionNode] = \
+                                structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 'aspectValueLabel': combobox.get()}
             else:
                 #process aspect on this node before child nodes in case it is overridden
                 self.setZStructuralNodeAspects(zStructuralNode)
@@ -416,6 +448,171 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 self.zAxis(row + 1, zStructuralNode, clearZchoices)
             if TRACE_HEADERS:
                 self.headerLevel -= 1
+    
+    def getFirstZChoiceWithFacts(self, zStructuralNode):
+        zStructuralNodeSelectionIndex = None
+        memberSelectionIndex = None
+        # try to determine the first Z selection for which facts do exist
+        choiceIndex = 0
+        for zSNode in zStructuralNode.choiceStructuralNodes:
+            aspect = None
+            for aspect in zSNode.aspectsCovered():
+                if aspect != Aspect.DIMENSIONS:
+                    break 
+            if aspect is not None:                        
+                if isinstance(aspect, QName):
+                    if TRACE_Z_CHOICES:
+                        label = str(zSNode.header(lang="en"))
+                        print("1-examining aspect choiceIndex=" + str(choiceIndex)  + " " + str(aspect), " label=" + label)
+                    if isinstance(zSNode.definitionNode, ModelFilterDefinitionNode):
+                        dimConcept = self.modelXbrl.qnameConcepts[aspect]
+                        if dimConcept.isExplicitDimension:
+                            aspectValue = zSNode.aspectValue(aspect, inherit=True)
+                            if isinstance(aspectValue, ModelDimensionValue):
+                                if aspectValue.isExplicit:
+                                    concept = aspectValue.member
+                                    facts = self.factsByDimMemQnameCache.factsByDimMemQname(aspect, concept.qname)
+                                    if len(facts) > 0:
+                                        zStructuralNodeSelectionIndex = choiceIndex
+                                        if TRACE_Z_CHOICES:
+                                            print("->selected " + str(label) + " #facts= " + str(len(facts)))
+                                        break
+                    if hasattr(zSNode.definitionNode, 'aspectValues'):
+                        try:
+                            if TRACE_Z_CHOICES:
+                                print(str(zSNode.definitionNode.aspectValues) + "value=" + str(zSNode.aspectValue(aspect)))
+                            facts = self.factsByDimMemQnameCache.factsByDimMemQname(aspect, zSNode.aspectValue(aspect))
+                            if len(facts) > 0:
+                                zStructuralNodeSelectionIndex = choiceIndex
+                                if TRACE_Z_CHOICES:
+                                    print("->selected with #facts= " + str(len(facts)))
+                                break
+                        except:
+                            pass
+            choiceIndex += 1
+        # similar loop with lower priority conditions    
+        choiceIndex = 0
+        if zStructuralNodeSelectionIndex is None:
+            for zSNode in zStructuralNode.choiceStructuralNodes:
+                aspect = None
+                for aspect in zSNode.aspectsCovered():
+                    if aspect != Aspect.DIMENSIONS:
+                        break 
+                if aspect is not None:                        
+                    if isinstance(aspect, QName):
+                        if TRACE_Z_CHOICES:
+                            label = str(zSNode.header(lang="en"))
+                            print("2-examining aspect choiceIndex=" + str(choiceIndex)  + " " + str(aspect), " label=" + label)
+                        if isinstance(zSNode.definitionNode, ModelFilterDefinitionNode):
+                            dimConcept = self.modelXbrl.qnameConcepts[aspect]
+                            if dimConcept.isExplicitDimension:
+                                aspectValue = zSNode.aspectValue(aspect, inherit=True)
+                                if isinstance(aspectValue, ModelDimensionValue):
+                                    pass
+                                else:
+                                    if TRACE_Z_CHOICES:
+                                        print(self.explicitDimensionFilterMembers(zStructuralNode, zSNode))
+                                    valuesDict = self.getQnameValues(aspect, zSNode)
+                                    sorteddKeys = sorted(valuesDict)
+                                    if self.modelXbrl.hasFactsForExplicitDimQname(aspect):
+                                        if TRACE_Z_CHOICES:
+                                            print("Found facts with this aspect; values are" + str(valuesDict))                                    
+                                        memberIdx = 0
+                                        # this may cost a lot e.g. for things like the list of 250+ countries
+                                        for key in sorteddKeys:
+                                            qname = valuesDict[key]
+                                            facts = self.factsByDimMemQnameCache.factsByDimMemQname(aspect, qname)
+                                            if len(facts) > 0:
+                                                zStructuralNodeSelectionIndex = choiceIndex
+                                                # should also return the proper selected member for the combo...
+                                                if TRACE_Z_CHOICES:
+                                                    print("->selected with #facts= " + str(len(facts)) + " memberSelectionIndex= " + str(memberSelectionIndex))
+                                                memberSelectionIndex = memberIdx
+                                                break
+                                            memberIdx += 1                                    
+                                        if TRACE_Z_CHOICES:
+                                            print("member loops " + str(memberIdx))
+                                    else:
+                                        # use the first member
+                                        testedKey = "LUXEMBOURG"
+                                        try:
+                                            memberSelectionIndex = sorteddKeys.index(testedKey)
+                                        except:
+                                            pass
+                                        if memberSelectionIndex is None:
+                                            testedKey = "EUR"
+                                            try:
+                                                memberSelectionIndex = sorteddKeys.index(testedKey)
+                                            except:
+                                                pass
+                                        if memberSelectionIndex is None:
+                                            memberSelectionIndex = 0
+                                        if TRACE_Z_CHOICES:
+                                            print("No fact can be found with this aspect. Will use memeber index= " + str(memberSelectionIndex)) 
+                            elif dimConcept.isTypedDimension:
+                                label = str(zSNode.header(lang="en"))
+                                if label != "None":
+                                    #TODO: check existence of facts instead of picking first entry with existing label
+                                    zStructuralNodeSelectionIndex = choiceIndex
+                                    break
+                            if zStructuralNodeSelectionIndex is not None:
+                                break
+                choiceIndex += 1
+        return (zStructuralNodeSelectionIndex, memberSelectionIndex)
+    
+    def getQnameValues(self, aspect, structuralNodeWithFilter):
+        #TODO: avoid this copy of explicitDimensionFilterMembers code
+        valueHeaders = set()
+        headerValues = {}
+        # check for dimension filter(s)
+        dimFilterRels = structuralNodeWithFilter.definitionNode.filterRelationships
+        if dimFilterRels:
+            for rel in dimFilterRels:
+                dimFilter = rel.toModelObject
+                if dimFilter is not None:
+                    for memberModel in dimFilter.memberProgs:
+                            memQname = memberModel.qname
+                            memConcept = self.modelXbrl.qnameConcepts.get(memQname)
+                            if memConcept is not None and (not memberModel.axis or memberModel.axis.endswith('-self')):
+                                header = memConcept.label(lang=self.lang)
+                                valueHeaders.add(header)
+                                if rel.isUsable:
+                                    headerValues[header] = memQname
+                                else:
+                                    headerValues[header] = memConcept
+                            if memberModel.axis and memberModel.linkrole and memberModel.arcrole:
+                                # merge of pull request 42 acsone:TABLE_Z_AXIS_DESCENDANT_OR_SELF
+                                if memberModel.axis.endswith('-or-self'):
+                                    searchAxis = memberModel.axis[:len(memberModel.axis)-len('-or-self')]
+                                else:
+                                    searchAxis = memberModel.axis
+                                relationships = concept_relationships(self.rendrCntx, 
+                                                     None, 
+                                                     (memQname,
+                                                      memberModel.linkrole,
+                                                      memberModel.arcrole,
+                                                      searchAxis),
+                                                     False) # return flat list
+                                for rel in relationships:
+                                    if rel.isUsable:
+                                        header = rel.toModelObject.label(lang=self.lang)
+                                        valueHeaders.add(header)
+                                        headerValues[header] = rel.toModelObject.qname
+        if not valueHeaders:
+            relationships = concept_relationships(self.rendrCntx, 
+                                 None, 
+                                 (aspect,
+                                  "XBRL-all-linkroles", # linkrole,
+                                  "XBRL-dimensions",
+                                  'descendant'),
+                                 False) # return flat list
+            for rel in relationships:
+                if (rel.arcrole in (XbrlConst.dimensionDomain, XbrlConst.domainMember)
+                    and rel.isUsable):
+                    header = rel.toModelObject.label(lang=self.lang)
+                    valueHeaders.add(header)
+                    headerValues[header] = rel.toModelObject.qname
+        return headerValues
                     
     def setZStructuralNodeAspects(self, zStructuralNode, add=True):
         if TRACE_Z_CONCEPT_ASPECT:
@@ -444,7 +641,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         if combobox.zAxisAspectEntryMode:
             aspectValue = structuralNode.aspectEntryHeaderValues.get(combobox.get())
             if aspectValue is not None:
-                self.zOrdinateChoices[combobox.zStructuralNode.definitionNode] = \
+                self.zOrdinateChoices[structuralNode.definitionNode] = \
                     structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 'aspectValueLabel': combobox.get()}
                 self.view() # redraw grid
         elif combobox.zAxisIsOpenExplicitDimension and combobox.get() == "(all members)":
@@ -465,7 +662,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                 aspectValue = FunctionXfi.create_element(self.rendrCntx, 
                                                          None, 
                                                          (combobox.zAxisTypedDimension.typedDomainElement.qname, (), result))
-                self.zOrdinateChoices[combobox.zStructuralNode.definitionNode] = \
+                self.zOrdinateChoices[structuralNode.definitionNode] = \
                     structuralNode.aspects = {combobox.zAxisAspect: aspectValue, 
                                               Aspect.DIMENSIONS: {combobox.zAxisTypedDimension.qname},
                                               'aspectValueLabel': result}
@@ -480,7 +677,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
             # remove prior combo choice aspect
             self.setZStructuralNodeAspects(structuralNode.choiceStructuralNodes[structuralNode.choiceNodeIndex], add=False)
             i = combobox.valueIndex
-            self.zOrdinateChoices[combobox.zStructuralNode.definitionNode] =  structuralNode.choiceNodeIndex = i
+            self.zOrdinateChoices[structuralNode.definitionNode] =  structuralNode.choiceNodeIndex = i
             # set current combo choice aspect
             self.setZStructuralNodeAspects(structuralNode.choiceStructuralNodes[i])
             self.view() # redraw grid

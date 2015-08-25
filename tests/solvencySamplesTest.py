@@ -2,7 +2,7 @@
 For each sample Solvency II report instance (random populated instances), the test will
 load the report, display each table and then close the report instance.
 '''
-import os, sys
+import os, sys, time
 import unittest
 from os import listdir
 from os.path import isfile, join
@@ -11,6 +11,7 @@ from tests.ViewHelper import ViewHelper, initUI, getTestDir
 class SolvencySampleTest(unittest.TestCase):         
          
     def test(self):
+        startedAt = time.time()
         initUI(self)
         self.saveReferences = False # <- set this to create new references
         
@@ -23,7 +24,7 @@ class SolvencySampleTest(unittest.TestCase):
             if not(ok):
                 numFailures += 1
             idx += 1
-            
+        print("SolvencySampleTest took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 4610s")
         assert numFailures == 0, "Number of failing instances: " + str(numFailures)    
         
     def processOneFile(self, filepath):
