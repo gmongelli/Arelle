@@ -278,9 +278,9 @@ See Example 0004 (restatement date) for specific user-level XPath 2 coding to ha
 ,,V-21,Bugzilla entry 325 relates to this.,value-test-instance.xml,pass,,
 ,,V-22,Bugzilla entry 325 relates to this.,value-test-instance.xml,pass,,
 ,80204 xfi.c-equal testcase.xml
-,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,fail,,cfcn:testFail
 ,,V-02,Same as V-01 but typed dimension elements in different order,c-equal-instance.xml,pass,,
-,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,fail,,cfcn:testFail
 ,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
 ,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
 ,,V-06,XBRL-defined error for node type incorrect.,c-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
@@ -293,8 +293,8 @@ See Example 0004 (restatement date) for specific user-level XPath 2 coding to ha
 ,,V-05,Tests that the function returns true for empty set,empty-instance.xml,pass,,
 ,,V-06,XBRL-defined error for node type incorrect.,tuple-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
 ,80206 xfi.s-equal-set testcase.xml
-,,V-01,"Returns s-equality of nodes equal and in order, argument as a set left and right in same order",s-equal2-instance.xml,pass,,
-,,V-01a,"Returns s-equality of nodes equal and in order, sets in different order",s-equal2-instance.xml,pass,,
+,,V-01,"Returns s-equality of nodes equal and in order, argument as a set left and right in same order",s-equal2-instance.xml,fail,,cfcn:testFail
+,,V-01a,"Returns s-equality of nodes equal and in order, sets in different order",s-equal2-instance.xml,fail,,cfcn:testFail
 ,,V-02,Same as V-01 but typed dimension elements and set elements in different order,s-equal2-instance.xml,pass,,
 ,,V-03,Same as V-01 but arguments are sequences,s-equal2-instance.xml,pass,,
 ,,V-04,Same as V-01 but arguments are sequences not same length,s-equal2-instance.xml,pass,,
@@ -311,9 +311,9 @@ See Example 0004 (restatement date) for specific user-level XPath 2 coding to ha
 ,,V-07,Functions spec error for non-item node type.,value-test-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
 ,,V-08,"Works for sequences containing duplicate entries, which are equal when compared as sets",value-test-instance.xml,pass,,
 ,80208 xfi.c-equal-set testcase.xml
-,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,fail,,cfcn:testFail
 ,,V-02,Same as V-01 but typed dimension elements in different order,c-equal-instance.xml,pass,,
-,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,fail,,cfcn:testFail
 ,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
 ,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
 ,,V-06,XBRL-defined error for node type incorrect.,c-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
@@ -362,28 +362,28 @@ See Example 0004 (restatement date) for specific user-level XPath 2 coding to ha
 ,,V-06,XPath-defined error for node type incorrect arity of arguments.,value-test-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
 ,,V-07,Function-defined error for argument type incorrect.,value-test-instance.xml,pass,xfie:ElementIsNotXbrlConcept,xfie:ElementIsNotXbrlConcept
 ,80214 xfi.cu-equal testcase.xml
-,,V-01,Returns c-equality of nodes equal and in order,cu-equal-instance.xml,pass,,
+,,V-01,Returns c-equality of nodes equal and in order,cu-equal-instance.xml,fail,,cfcn:testFail
 ,,V-02a,Same as V-01 but in different context,cu-equal-instance.xml,pass,,
 ,,V-02b,Same as V-01 but different unit,cu-equal-instance.xml,pass,,
-,,V-03,Same as V-01 but arguments are sequences,cu-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,cu-equal-instance.xml,fail,,cfcn:testFail
 ,,V-04,Same as V-01 but arguments are sequences not same length,cu-equal-instance.xml,pass,,
 ,,V-05,XPath-defined error for node type incorrect.,cu-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
 ,,V-06,XBRL-defined error for node type incorrect.,cu-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
 ,,V-07,XPath-defined error for node type incorrect arity of arguments.,cu-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
 ,80215 xfi.pc-equal testcase.xml
-,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,pass,,
+,,V-01,Returns c-equality of nodes equal and in order,c-equal-instance.xml,fail,,cfcn:testFail
 ,,V-02,Same as V-01 but in different parent,c-equal-instance.xml,pass,,
-,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,c-equal-instance.xml,fail,,cfcn:testFail
 ,,V-04,Same as V-01 but arguments are sequences not same length,c-equal-instance.xml,pass,,
 ,,V-05,XPath-defined error for node type incorrect.,c-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
 ,,V-06,XBRL-defined error for node type incorrect.,c-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem
 ,,V-07,XPath-defined error for node type incorrect arity of arguments.,c-equal-instance.xml,pass,xqt-err:XPST0017,err:XPST0017
 ,80216 xfi.pcu-equal testcase.xml
-,,V-01,Returns c-equality of nodes equal and in order,pcu-equal-instance.xml,pass,,
+,,V-01,Returns c-equality of nodes equal and in order,pcu-equal-instance.xml,fail,,cfcn:testFail
 ,,V-02a,Same as V-01 but in different parent,pcu-equal-instance.xml,pass,,
 ,,V-02b,Same as V-01 but in different context,pcu-equal-instance.xml,pass,,
 ,,V-02c,Same as V-01 but different unit,pcu-equal-instance.xml,pass,,
-,,V-03,Same as V-01 but arguments are sequences,pcu-equal-instance.xml,pass,,
+,,V-03,Same as V-01 but arguments are sequences,pcu-equal-instance.xml,fail,,cfcn:testFail
 ,,V-04,Same as V-01 but arguments are sequences not same length,pcu-equal-instance.xml,pass,,
 ,,V-05,XPath-defined error for node type incorrect.,pcu-equal-instance.xml,pass,xqt-err:XPTY0004,err:XPTY0004
 ,,V-06,XBRL-defined error for node type incorrect.,pcu-equal-instance.xml,pass,xfie:NodeIsNotXbrlItem,xfie:NodeIsNotXbrlItem

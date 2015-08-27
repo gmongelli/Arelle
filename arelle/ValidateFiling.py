@@ -1927,7 +1927,7 @@ class ValidateFiling(ValidateXbrl.ValidateXbrl):
             modelXbrl.error(("EFM.6.10.01", "GFM.1.05.01"),
                 _("Concept used in facts %(concept)s is missing an %(lang)s standard label."),
                 # concept must be the first referenced modelObject
-                modelObject=[concept] + list(modelXbrl.factsByQname(concept.qname)), concept=concept.qname, 
+                modelObject=[concept] + list(modelXbrl.factsByQname(concept.qname, set())), concept=concept.qname, 
                 lang=disclosureSystem.defaultLanguage)
             
         #6 10.3 default lang label for every role

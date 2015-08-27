@@ -25,6 +25,14 @@ ModelFact = None
 expressionVariablesPattern = re.compile(r"([^$]*)([$]\w[\w:.-]*)([^$]*)")
 EMPTYSET = set()
 
+def varsetExpressionString(varSet):
+    result = ""
+    try:
+        result = str(varSet.viewExpression)
+    except:
+        pass
+    return result  
+    
 def init():
     global ModelDimensionValue, ModelFact # initialize objects that would cause recursive import
     if ModelDimensionValue is None:
@@ -71,8 +79,8 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                 xpCtx.modelXbrl.log(
                     "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                     "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
-                    _("%(label)s"),
-                    modelObject=varSet, label=varSet.logLabel(),
+                    _("%(expression)s  %(label)s"),
+                    modelObject=varSet, expression=varsetExpressionString(varSet), label=varSet.logLabel(),
                     messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 xpCtx.modelXbrl.info("formula:trace",
@@ -102,14 +110,11 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                             factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
                                                                                         vb.yieldedFact.qname,
                                                                                         vb.yieldedFactContext.id))
-                varSetExpr = varSet.expression
-                if varSetExpr is None:
-                    varSetExpr = str(varSet)
                 xpCtx.modelXbrl.log(
                     "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                     "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
-                    _("%(label)s%(factVarBindings)s"),
-                    modelObject=_modelObjects, label=varSetExpr,
+                    _("%(expression)s %(label)s %(factVarBindings)s"),
+                    modelObject=_modelObjects, expression=varsetExpressionString(varSet), label=varSet.logLabel(),
                     factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
                     messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
                 del _modelObjects[:]
@@ -152,12 +157,14 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
         for vb in xpCtx.varBindings.values():
             if vb.isFactVar:
                 anyFactVar = True
-                if not vb.isFallback: anyBoundFactVar = True 
+                if not vb.isFallback:
+                    anyBoundFactVar = True
+                    break # enough to say not skipped
         if xpCtx.varBindings and anyFactVar and not anyBoundFactVar:
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 xpCtx.modelXbrl.info("formula:trace",
-                     _("Variable set %(xlinkLabel)s skipped evaluation, all fact variables have fallen back"),
-                     modelObject=varSet, xlinkLabel=varSet.xlinkLabel)
+                     _("Variable set %(xlinkLabel)s skipped evaluation, all fact variables have fallen back %(expression)s %(label)s"),
+                     modelObject=varSet, xlinkLabel=varSet.xlinkLabel, expression=varsetExpressionString(varSet), label=varSet.logLabel())
             return
         # record completed evaluation, for fallback blocking purposes
         fbVars = set(vb.qname for vb in xpCtx.varBindings.values() if vb.isFallback)
@@ -167,8 +174,8 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
         if evaluationIsUnnecessary(thisEvaluation, xpCtx.evaluationHashDicts, xpCtx.evaluations):
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 xpCtx.modelXbrl.info("formula:trace",
-                    _("Variable set %(xlinkLabel)s skipped non-different or fallback evaluation, duplicates another evaluation"),
-                     modelObject=varSet, xlinkLabel=varSet.xlinkLabel)
+                    _("Variable set %(xlinkLabel)s skipped non-different or fallback evaluation, duplicates another evaluation %(expression)s %(label)s"),
+                     modelObject=varSet, xlinkLabel=varSet.xlinkLabel, expression=varsetExpressionString(varSet), label=varSet.logLabel())
             varSet.evaluationNumber += 1
             if xpCtx.formulaOptions.timeVariableSetEvaluation:
                 now = time.time()
@@ -252,22 +259,28 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                         "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
                         "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
                         _("%(expression)s %(label)s %(factVarBindings)s"),
-                        modelObject=_modelObjects, expression=varSet.expression, label=varSet.logLabel(),
+                        modelObject=_modelObjects, expression=varsetExpressionString(varSet), label=varSet.logLabel(),
                         factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
                         messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
                     del _modelObjects[:]
                 traceOf = "Value Assertion"
+            if True:
+                expression = varSet.expression
+                evaluatedExpression = ''.join(xpCtx.traceEffectiveVariableValue(varSet,expr)
+                                                 for grp in expressionVariablesPattern.findall(expression)
+                                                 for expr in grp)
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 label = varSet.logLabel()
                 expression = varSet.expression
+                evaluatedExpression = ''.join(xpCtx.traceEffectiveVariableValue(varSet,expr)
+                                                 for grp in expressionVariablesPattern.findall(expression)
+                                                 for expr in grp)
                 xpCtx.modelXbrl.info("formula:trace",
                      _("%(variableSetType)s %(xlinkLabel)s{0} \nExpression: %(expression)s \nEvaluated: %(evaluatedExpression)s \nResult: %(result)s")
                      .format(" \n%(label)s" if label else ""),
                      modelObject=varSet, variableSetType=traceOf, xlinkLabel=varSet.xlinkLabel, 
                      label=label, result=result, expression=expression,
-                     evaluatedExpression=''.join(xpCtx.traceEffectiveVariableValue(varSet,expr)
-                                                 for grp in expressionVariablesPattern.findall(expression)
-                                                 for expr in grp))
+                     evaluatedExpression=evaluatedExpression)
             if isinstance(varSet, ModelFormula) and varSet.outputInstanceQname in xpCtx.inScopeVars:
                 newFact = produceOutputFact(xpCtx, varSet, result)
             else:
@@ -403,6 +416,23 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
         # recurse partitions, preserve overlaid var bindings and inScopeVars
         overriddenVarBinding = xpCtx.varBindings.get(varQname)            
         xpCtx.varBindings[varQname] = vb
+        
+        if hasattr(varSet, 'testProg') and vb.isFactVar and not(vb.isBindAsSequence and vb.facts) and len(vb.facts) > 1:
+            if len(vb.facts) > 1 and varSet.testProg and len(varSet.testProg) == 2 and "a" == str(varQname):
+                prog = varSet.testProg
+                if "ModelValueAssertion" in str(prog[0]):
+                    from arelle.XPathParser import OperationDef
+                    if isinstance(prog[1], OperationDef):
+                        op = prog[1]
+                        if "iaf:numeric-equal($a, iaf:sum(" in str(op.sourceStr) and str(op.name) == "iaf:numeric-equal":
+                            msgFacts = ""
+                            for f in vb.facts:
+                                try:
+                                    msgFacts += str(f.effectiveValue) + " "
+                                except:
+                                    pass
+                            print("Too many results (" + str(len(vb.facts)) + ") for verifying a sum (incomplete filter specification?) " + msgFacts)
+                            
         for evaluationResult in vb.evaluationResults:
             overriddenInScopeVar = xpCtx.inScopeVars.get(varQname)
             xpCtx.inScopeVars[varQname] = evaluationResult
@@ -443,10 +473,13 @@ def filterFacts(xpCtx, vb, facts, filterRelationships, filterType):
         if isinstance(_filter,ModelFilter):  # relationship not constrained to real filters
             result = _filter.filter(xpCtx, vb, facts, varFilterRel.isComplemented)
             if xpCtx.formulaOptions.traceVariableFilterWinnowing:
+                allFacts = ""
+                for fact in facts:
+                    allFacts += str(fact)                    
                 xpCtx.modelXbrl.info("formula:trace",
-                    _("Fact Variable %(variable)s %(filterType)s %(filter)s filter %(xlinkLabel)s passes %(factCount)s facts"), 
+                    _("Fact Variable %(variable)s %(filterType)s %(filter)s filter %(xlinkLabel)s passes %(factCount)s facts %(allFacts)s"), 
                     modelObject=vb.var, variable=vb.qname,
-                    filterType=typeLbl, filter=_filter.localName, xlinkLabel=_filter.xlinkLabel, factCount=len(result)),
+                    filterType=typeLbl, filter=_filter.localName, xlinkLabel=_filter.xlinkLabel, factCount=len(result), allFacts=allFacts),
             if orFilter: 
                 factSet |= result
             else: 
@@ -473,11 +506,14 @@ def implicitFilter(xpCtx, vb, facts, aspects, uncoveredAspectFacts):
             if uncoveredAspectFacts.get(aspect, "none") is not None:
                 facts = [fact 
                          for fact in facts 
-                         if aspectMatches(xpCtx, uncoveredAspectFacts.get(aspect), fact, aspect)]
+                         if aspectMatches_2(xpCtx, uncoveredAspectFacts.get(aspect), fact, aspect)]
                 a = str(aspect) if isinstance(aspect,QName) else Aspect.label[aspect]
+                allFacts = ""
+                for fact in facts:
+                    allFacts += str(fact)                    
                 xpCtx.modelXbrl.info("formula:trace",
-                    _("Fact Variable %(variable)s implicit filter %(aspect)s passes %(factCount)s facts"), 
-                    modelObject=vb.var, variable=vb.qname, aspect=a, factCount=len(facts))
+                    _("Fact Variable %(variable)s implicit filter %(aspect)s passes %(factCount)s facts %(allFacts)s"), 
+                    modelObject=vb.var, variable=vb.qname, aspect=a, factCount=len(facts), allFacts=allFacts)
                 if len(facts) == 0: break
     else: 
         testableAspectFacts = [(aspect, uncoveredAspectFacts.get(aspect)) 
@@ -490,13 +526,28 @@ def implicitFilter(xpCtx, vb, facts, aspects, uncoveredAspectFacts):
             # not tracing, do bulk aspect filtering
             facts = [fact
                      for fact in facts
-                     if all(aspectMatches(xpCtx, uncoveredAspectFact, fact, aspect)
+                     if all(aspectMatches_2(xpCtx, uncoveredAspectFact, fact, aspect)
                             for (aspect, uncoveredAspectFact) in testableAspectFacts)]
     return facts
     
 def aspectsMatch(xpCtx, fact1, fact2, aspects):
-    return all(aspectMatches(xpCtx, fact1, fact2, aspect) for aspect in aspects)
+    return all(aspectMatches_2(xpCtx, fact1, fact2, aspect) for aspect in aspects)
 
+def aspectMatches_2(xpCtx, fact1, fact2, aspect):
+    if xpCtx.modelXbrl.formulaMatchesCache is not None:
+        xpCtx.modelXbrl.numCalls += 1
+    useCache = False # True is TRIAL SETTING !! still some probls with GUI
+    if not useCache or not(isinstance(aspect, QName)):
+        return aspectMatches(xpCtx, fact1, fact2, aspect)
+    key = str(aspect.localName) + fact1.objectId() + "_" + fact2.objectId()
+    matchesCache = xpCtx.modelXbrl.formulaMatchesCache    
+    try:
+        result = matchesCache[key]
+    except KeyError:
+        result = aspectMatches(xpCtx, fact1, fact2, aspect)
+        matchesCache[key] = result
+    return result
+    
 def aspectMatches(xpCtx, fact1, fact2, aspect):
     if fact1 is None:  # fallback (atomic) never matches any aspect
         return False

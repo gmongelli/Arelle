@@ -283,8 +283,8 @@ class ModelXbrl:
         self.factsInInstance = set()
         self.undefinedFacts = [] # elements presumed to be facts but not defined
         self._nonNilFactsInInstance = None
-        self._factsByDatatype = {}
-        self._factsByPeriodType = {}
+        self._factsByDatatype = None
+        self._factsByPeriodType = None
         self.contexts = {}
         self.units = {}
         self.modelObjects = []
@@ -760,7 +760,7 @@ class ModelXbrl:
             self._nonNilFactsInInstance = set(f for f in self.factsInInstance if not f.isNil)
             return self._nonNilFactsInInstance
         
-    def factsByQname(self, qname, defaultValue=None, cntxtId=None): # indexed by fact (concept) qname
+    def factsByQname(self, qname, defaultValue=set(), cntxtId=None): # indexed by fact (concept) qname
         """Facts in the instance indexed by their QName, cached
         
         :returns: dict -- indexes are QNames, values are ModelFacts
@@ -807,15 +807,19 @@ class ModelXbrl:
             else:
                 return self.factIndex.factsByDatatype(typeQname, self)
 
-        try:
-            return self._factsByDatatype[notStrict, typeQname]
-        except KeyError:
-            self._factsByDatatype[notStrict, typeQname] = fbdt = set()
-            for f in self.factsInInstance:
-                c = f.concept
-                if c.typeQname == typeQname or (notStrict and c.type.isDerivedFrom(typeQname)):
-                    fbdt.add(f)
-            return fbdt
+        if self._factsByDatatype is not None:
+            try:
+                return self._factsByDatatype[notStrict, typeQname]
+            except KeyError:
+                self._factsByDatatype[notStrict, typeQname] = fbdt = set()
+                for f in self.factsInInstance:
+                    c = f.concept
+                    if c.typeQname == typeQname or (notStrict and c.type.isDerivedFrom(typeQname)):
+                        fbdt.add(f)
+                return fbdt
+        else:
+            self._factsByDatatype = {}
+            return self.factsByDatatype(notStrict, typeQname)
         
     def factsByPeriodType(self, periodType): # indexed by fact (concept) qname
         """Facts in the instance indexed by periodType, cached
@@ -827,17 +831,18 @@ class ModelXbrl:
         if self.useFactIndex:
             return self.factIndex.factsByPeriodType(periodType,self)
         
-        try:
-            return self._factsByPeriodType[periodType]
-        except AttributeError:
+        if self._factsByPeriodType is not None:
+            try:
+                return self._factsByPeriodType[periodType]
+            except KeyError:
+                return set()  # no facts for this period type
+        else:
             self._factsByPeriodType = fbpt = defaultdict(set)
             for f in self.factsInInstance:
                 p = f.concept.periodType
                 if p:
                     fbpt[p].add(f)
             return self._factsByPeriodType[periodType]
-        except KeyError:
-            return set()  # no facts for this period type
         
     def hasFactsForExplicitDimQname(self, dimQname):
         ''' Returns True if there are facts with the specified dimension
@@ -983,9 +988,9 @@ class ModelXbrl:
             self._factsByQname[newFact.qname].add(newFact)
         '''
         if newFact.concept is not None:
-            if self._factsByDatatype:
+            if self._factsByDatatype is not None:
                 _factsByDatatype = None # would need to iterate derived type ancestry to populate
-            if self._factsByPeriodType:
+            if self._factsByPeriodType is not None:
                 self._factsByPeriodType[newFact.concept.periodType].add(newFact)
         self.setIsModified()
         return newFact    
@@ -1025,6 +1030,8 @@ class ModelXbrl:
         :param objectId: string which includes _ordinalNumber, produced by ModelObject.objectId(), or integer object index
         :type objectId: str or int
         """
+        if len(self.views) == 0:
+            return # nothing to do
         modelObject = ""
         try:
             if isinstance(objectId, (ModelObject,FactPrototype)):
@@ -1361,8 +1368,8 @@ class ModelXbrl:
             self.factIndex.insertFact(fact, self.modelXbrl)
         # yes,  this is rather crude
         self._nonNilFactsInInstance = None
-        self._factsByDatatype = {}
-        self._factsByPeriodType = {}
+        self._factsByDatatype = None
+        self._factsByPeriodType = None
         
     def removeFact(self, fact):
         self.factsInInstance.discard(fact)
@@ -1370,8 +1377,8 @@ class ModelXbrl:
             self.factIndex.deleteFact(fact)
         # yes, again
         self._nonNilFactsInInstance = None
-        self._factsByDatatype = {}
-        self._factsByPeriodType = {}
+        self._factsByDatatype = None
+        self._factsByPeriodType = None
 
     def closeFactIndex(self):
         if self.useFactIndex:

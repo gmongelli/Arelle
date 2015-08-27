@@ -311,7 +311,9 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
  
             self.table.clearModificationStatus()
             self.table.disableUnusedCells()
-            self.table.resizeTableCells()
+            from arelle.UITkTable import USE_resizeTableCells
+            if USE_resizeTableCells:
+                self.table.resizeTableCells()
                 
         self.modelXbrl.profileStat("viewTable_" + os.path.basename(viewTblELR), time.time() - startedAt)
 
@@ -1162,10 +1164,12 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.modelXbrl.modelManager.cntlr.currentView = self
             
     def cellEnter(self, *args):
+        # triggered on grid frame enter (not cell enter)
         self.blockSelectEvent = 0
         self.modelXbrl.modelManager.cntlr.currentView = self
 
     def cellLeave(self, *args):
+        # triggered on grid frame leave (not cell leave)
         self.blockSelectEvent = 1
 
     # this method is not currently used
@@ -1250,7 +1254,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         else:
                             return
                         modelXbrl.guiViews.propertiesView.viewModelObject(viewableObject)
-                
 
     def updateInstanceFromFactPrototypes(self):
         # Only update the model if it already exists

@@ -53,11 +53,6 @@ def load(modelXbrl, uri, base=None, referringElement=None, isEntry=False, isDisc
         return None
     if referringElement is None: # used for error messages
         referringElement = modelXbrl
-    modelDocument = modelXbrl.urlDocs.get(normalizedUri)
-    if modelDocument:
-        return modelDocument
-    elif modelXbrl.urlUnloadableDocs.get(normalizedUri):  # only return None if in this list and marked True (really not loadable)
-        return None
 
     if isEntry:
         modelXbrl.entryLoadingUrl = normalizedUri   # for error loggiong during loading

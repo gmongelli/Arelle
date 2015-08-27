@@ -130,7 +130,7 @@ class TestNewSaveViewClose(unittest.TestCase):
     def test(self):
         test = ThisTest()
         initUI(test)  
-        test.saveReferences = True # <- set this to create new references
+        test.saveReferences = False # <- set this to create new references
         
         if False:
             test.runTest(smallEntryPoint) # only this small one

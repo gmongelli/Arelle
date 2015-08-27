@@ -42,15 +42,12 @@ baseXbrliTypes = {
       }
 
 class ValidateXbrl:
-    def __init__(self, testModelXbrl):
-        self.modelXbrl = testModelXbrl
+    def __init__(self, modelXbrl):
+        self.modelXbrl = modelXbrl
         
     def close(self, reusable=True):
-        if reusable:
-            testModelXbrl = self.modelXbrl
+        # never reuse for now
         self.__dict__.clear()   # dereference everything
-        if reusable:
-            self.modelXbrl = testModelXbrl
         
     def validate(self, modelXbrl, parameters=None):
         self.parameters = parameters

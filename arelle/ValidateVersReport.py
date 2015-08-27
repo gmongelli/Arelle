@@ -28,8 +28,8 @@ schemaAttributeEventAttributes = {
         }
 
 class ValidateVersReport():
-    def __init__(self, testModelXbrl):
-        self.modelXbrl = testModelXbrl  # testcase or controlling validation object
+    def __init__(self, modelXbrl):
+        self.modelXbrl = modelXbrl  # testcase or controlling validation object
 
     def close(self):
         self.__dict__.clear()   # dereference everything
