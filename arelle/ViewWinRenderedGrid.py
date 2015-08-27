@@ -741,8 +741,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                            isRollUp=columnspan>1 and isNonAbstract and len(xStructuralNode.childStructuralNodes)<columnspan)
                         else:
                             self.aspectEntryObjectIdsNode[xStructuralNode.aspectEntryObjectId] = xStructuralNode
-                            # TODO: is the following still needed?
-                            # width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5))
                             if TRACE_HEADERS:
                                 print(tracePrefix + "header combo" + " x=" + str(leftCol-1) + " y=" + str(topRow-1))
                             if self.testMode:
@@ -815,10 +813,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                        returnGenLabel=isinstance(yStructuralNode.definitionNode, (ModelClosedDefinitionNode, ModelEuAxisCoord)),
                                                        recurseParent=not isinstance(yStructuralNode.definitionNode, ModelFilterDefinitionNode))
                         if label != OPEN_ASPECT_ENTRY_SURROGATE:
-                            # TODO: check if the following parameters have to
-                            # be used:
-                            # - wraplength=wraplength
-                            # - minwidth=(RENDER_UNITS_PER_CHAR if isNonAbstract and nextRow > topRow else None)
                             xValue = leftCol-1
                             yValue = row-1
                             if TRACE_HEADERS:
@@ -839,8 +833,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                            isRollUp=columnspan>1 and isNonAbstract and (len(yStructuralNode.childStructuralNodes)>1 or (len(yStructuralNode.childStructuralNodes)==1 and not(yStructuralNode.childStructuralNodes[0].isAbstract))))
                         else:
                             self.aspectEntryObjectIdsNode[yStructuralNode.aspectEntryObjectId] = yStructuralNode
-                            # TODO: is the following still needed?
-                            # width=int(max(wraplength/RENDER_UNITS_PER_CHAR, 5))
                             if TRACE_HEADERS:
                                 print(tracePrefix + "header combo" + " x=" + str(leftCol-1) + " y=" + str(row-1))
                             self.aspectEntryObjectIdsCell[yStructuralNode.aspectEntryObjectId] = self.table.initHeaderCombobox(leftCol-1,
@@ -853,7 +845,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 isCode = "code" in role
                                 docCol = self.dataFirstCol - len(self.rowHdrNonStdRoles) + i-1
                                 yValue = row-1
-                                # TODO: wraplength=40 if isCode else ENTRY_WIDTH_SCREEN_UNITS
                                 label = yStructuralNode.header(role=role, lang=self.lang)
                                 if TRACE_HEADERS:
                                     print(tracePrefix + str(label) + " x=" + str(docCol) + " y=" + str(yValue))
@@ -1028,8 +1019,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 except ValueError:
                                     effectiveValue = enumerationValues[0]
                                     selectedIdx = 0
-                                # TODO: check if this is still used:
-                                # width=ENTRY_WIDTH_IN_CHARS,
                                 if self.testMode:
                                     for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
                                         pluginMethod(effectiveValue, enumerationValues, self.dataFirstCol + i-1, row-1) 
@@ -1072,9 +1061,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 else:
                                     newAspectValues = None
                                 if newAspectValues is None:
-                                    # TODO: check if the following parameter
-                                    # is needed:
-                                    # width=ENTRY_WIDTH_IN_CHARS
                                     if self.testMode:
                                         for pluginMethod in pluginClassMethods("DevTesting.InitCellValue"):
                                             pluginMethod(value, self.dataFirstCol + i-1, row-1)     
@@ -1093,9 +1079,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     except ValueError:
                                         effectiveValue = qNameValues[0]
                                         selectedIdx = 0
-                                    # TODO: check if the following parameter
-                                    # is needed:
-                                    # width=ENTRY_WIDTH_IN_CHARS,
                                     if self.testMode:
                                         for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
                                             pluginMethod(effectiveValue, qNameValues, self.dataFirstCol + i-1, row-1)   
@@ -1117,9 +1100,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 except ValueError:
                                     effectiveValue = booleanValues[0]
                                     selectedIdx = 0
-                                # TODO: check if the following parameter
-                                # is needed:
-                                # width=ENTRY_WIDTH_IN_CHARS,
                                 if self.testMode:
                                     for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
                                         pluginMethod(effectiveValue, booleanValues, self.dataFirstCol + i-1, row-1)  
@@ -1131,9 +1111,6 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                                             objectId=objectId,
                                                             selectindex=selectedIdx)
                             else:
-                                # TODO: check if the following parameter
-                                # is needed:
-                                # width=ENTRY_WIDTH_IN_CHARS
                                 if self.testMode:
                                     for pluginMethod in pluginClassMethods("DevTesting.InitCellValue"):
                                         pluginMethod(value, self.dataFirstCol + i-1, row-1)       
