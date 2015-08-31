@@ -717,7 +717,7 @@ class XbrlTable(TkTableWrapper.Table):
                               hasBottomBorder=not isRollUp)
         if isRollUp:
             # In this case, we can afford a reduced column width since the label can span over the other rolled up columns
-            self.tk.call(self._w, 'width', x, 3)
+            self.tk.call(self._w, 'width', x, 8)
 
 
     def initCellSpan(self, x, y, colspan, rowspan):
