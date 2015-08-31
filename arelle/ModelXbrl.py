@@ -998,14 +998,14 @@ class ModelXbrl:
     def setIsModified(self):
         """Records that the underlying document has been modified.
         """
-        self.modelDocument.isModified = True
+        self.modelDocument.setIsModified()
 
     def isModified(self):
         """Check if the underlying document has been modified.
         """
         md = self.modelDocument
         if md is not None:
-            return md.isModified
+            return md.isModified()
         else:
             return False
 

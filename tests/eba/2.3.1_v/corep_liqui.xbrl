@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xbrl
+  xmlns="http://www.xbrl.org/2003/instance"
+  xmlns:eba_AS="http://www.eba.europa.eu/xbrl/crr/dict/dom/AS"
+  xmlns:eba_BA="http://www.eba.europa.eu/xbrl/crr/dict/dom/BA"
+  xmlns:eba_SC="http://www.eba.europa.eu/xbrl/crr/dict/dom/SC"
+  xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim"
+  xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
+  xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
+  xmlns:link="http://www.xbrl.org/2003/linkbase"
+  xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+    <link:schemaRef
+      xlink:href="http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2014-05/2015-02-16/mod/corep_lcr_ind.xsd"
+      xlink:type="simple"/>
+    <find:fIndicators>
+        <find:filingIndicator contextRef="c" find:filed="true">C_51.00</find:filingIndicator>
+        <find:filingIndicator contextRef="c" find:filed="true">C_00.01</find:filingIndicator>
+    </find:fIndicators>
+    <context id="c">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-29</instant>
+        </period>
+    </context>
+    <context id="c-02">
+        <entity>
+            <identifier scheme="http://www.acsone.eu">acsone@work</identifier>
+        </entity>
+        <period>
+            <instant>2014-09-30</instant>
+        </period>
+        <scenario>
+            <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+        </scenario>
+    </context>
+    <eba_met:ei4 contextRef="c-02">eba_AS:x1</eba_met:ei4>
+    <eba_met:ei207 contextRef="c-02">eba_SC:x6</eba_met:ei207>
+</xbrl>

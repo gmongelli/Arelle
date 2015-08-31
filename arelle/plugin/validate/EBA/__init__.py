@@ -304,9 +304,11 @@ def validateFacts(val, factsToCheck):
                     modelObject=f, fact=f.qname, contextID=f.contextID)
                 
     if nilFacts:
+        nilFactNames = [str(f.qname) for f in nilFacts]
+        nilFactNames = sorted(nilFactNames)
         modelXbrl.error(("EBA.2.19", "EIOPA.S.2.19"),
                 _('Nil facts MUST NOT be present in the instance: %(nilFacts)s.'),
-                modelObject=nilFacts, nilFacts=", ".join(str(f.qname) for f in nilFacts))
+                modelObject=nilFacts, nilFacts=", ".join(fname for fname in nilFactNames))
     ''' removed in current draft
     if stringFactsWithoutXmlLang:
         modelXbrl.error("EBA.2.20",

@@ -461,14 +461,14 @@ def createFilingIndicatorsElement(dts, newFactItemOptions):
                                            validate=False)
     return filingIndicatorsTuple
 
-def updateFactItemOptions(dts, newFactItemOptions, contlr):
+def updateFactItemOptions(modelXbrl, newFactItemOptions, contlr):
     ''':type dts: ModelXbrl
        :type newFactItemOptions: NewFactItemOptions
     '''
     
     contlr.addToLog(_("Update of fact options started."))
     changedContexts = 0
-    for fact in dts.facts:
+    for fact in modelXbrl.facts:
         context = fact.context
         if context is not None:
             context.updateEntityIdentifierElement(newFactItemOptions.entityIdentScheme,
@@ -476,8 +476,16 @@ def updateFactItemOptions(dts, newFactItemOptions, contlr):
             context.updatePeriod(newFactItemOptions.startDate,
                                  newFactItemOptions.endDate)
             changedContexts += 1
-    if changedContexts>0:
-        dts.setIsModified()
+    try:
+        filingIndicatorsContext = modelXbrl.contexts["c"]
+        filingIndicatorsContext.updateEntityIdentifierElement(newFactItemOptions.entityIdentScheme,
+                                              newFactItemOptions.entityIdentValue)
+        filingIndicatorsContext.updatePeriod(newFactItemOptions.startDate,
+                             newFactItemOptions.endDate)
+    except:
+        pass
+    if changedContexts > 0:
+        modelXbrl.setIsModified()
     contlr.addToLog(_("Update of fact options finished successfully. %s facts updated." % changedContexts))
 
 def improveEbaComplianceMenuExtender(cntlr, menu):

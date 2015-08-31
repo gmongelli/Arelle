@@ -72,8 +72,16 @@ class ViewList():
         self.listBox.selection_set(lineNumber)
 
     def saveToFile(self, filename):
+        if hasattr(self, "testMode"):
+            entrySep = "\n-----_____-----\n"
+        else:
+            entrySep = "\n"
         with open(filename, encoding="utf-8", mode="w") as fh:
-            fh.writelines([logEntry + '\n' for logEntry in self.listBox.get(0,END)])
+            fh.writelines([logEntry + entrySep for logEntry in self.listBox.get(0,END)])
+    
+    def getEntries(self):
+        # returns a list with all log entries
+        return [logEntry for logEntry in self.listBox.get(0,END)]
             
     def copyToClipboard(self, cntlr=None, *ignore):
         if cntlr is None: cntlr = self.modelXbrl.modelManager.cntlr

@@ -1006,9 +1006,12 @@ class CntlrWinMain (Cntlr.Cntlr):
                 if modelXbrl.modelDocument.type in ModelDocument.Type.TESTCASETYPES:
                     for pluginXbrlMethod in pluginClassMethods("Testcases.Start"):
                         pluginXbrlMethod(self, None, modelXbrl)
-                thread = threading.Thread(target=lambda: self.backgroundValidate())
-                thread.daemon = True
-                thread.start()
+                if self.testMode:
+                    self.backgroundValidate()
+                else:
+                    thread = threading.Thread(target=lambda: self.backgroundValidate())
+                    thread.daemon = True
+                    thread.start()
             
     def backgroundValidate(self):
         startedAt = time.time()
@@ -1020,9 +1023,15 @@ class CntlrWinMain (Cntlr.Cntlr):
                                     _("validated in %.2f secs"), 
                                     time.time() - startedAt), file=modelXbrl.modelDocument.filepath)
         if not modelXbrl.isClosed and (priorOutputInstance or modelXbrl.formulaOutputInstance):
-            self.uiThreadQueue.put((self.showFormulaOutputInstance, [priorOutputInstance, modelXbrl.formulaOutputInstance]))
+            if self.testMode:
+                self.showFormulaOutputInstance(priorOutputInstance, modelXbrl.formulaOutputInstance)
+            else:
+                self.uiThreadQueue.put((self.showFormulaOutputInstance, [priorOutputInstance, modelXbrl.formulaOutputInstance]))
             
-        self.uiThreadQueue.put((self.logSelect, []))
+        if self.testMode:
+            self.logSelect()
+        else:
+            self.uiThreadQueue.put((self.logSelect, []))
 
     def compareDTSes(self):
         countLoadedDTSes = len(self.modelManager.loadedModelXbrls)

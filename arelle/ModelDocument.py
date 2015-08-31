@@ -592,7 +592,7 @@ class ModelDocument:
         self.referencedNamespaces = set()
         self.inDTS = False
         self.definesUTR = False
-        self.isModified = False
+        self.modificationsCount = 0
 
 
     def objectId(self,refId=""):
@@ -676,7 +676,16 @@ class ModelDocument:
                 self.filepath = overrideFilepath
                 self.setTitleInBackground()
             self.updateFileHistoryIfNeeded()
-            self.isModified = False
+            self.setNotModified()
+    
+    def setIsModified(self):
+        self.modificationsCount += 1
+
+    def isModified(self):
+        return self.modificationsCount > 0
+    
+    def setNotModified(self):
+        self.modificationsCount = 0
     
     def close(self, visited=None, urlDocs=None):
         try:
