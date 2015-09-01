@@ -904,7 +904,7 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                             
                             if testing:
                                 diffTime = time.time() - startedAt
-                                print("end " + varSetId + " {:.2f}\n".format(diffTime)  + " entries:" + str(len(val.modelXbrl.formulaMatchesCache)) + " numCalls= " + str(val.modelXbrl.numCalls))
+                                print("end " + varSetId + " {:.2f}".format(diffTime)  + " entries:" + str(len(val.modelXbrl.formulaMatchesCache)) + " numCalls= " + str(val.modelXbrl.numCalls))
                             
                         except XPathContext.XPathException as err:
                             val.modelXbrl.error(err.code,

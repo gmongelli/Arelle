@@ -2,6 +2,7 @@
 import os, sys
 import json
 import psutil
+import re
 from tkinter import (Tk)
 from arelle.CntlrWinMain import CntlrWinMain
 from arelle.PluginManager import pluginClassMethods
@@ -42,6 +43,38 @@ def isSameFileContent(resultFilePath, referenceFilePath):
             return True
     return False  
             
+def isEquivalentLogFile(resultFilePath, normalizedResultFilepath, referenceFilePath):
+    resultString = normalizeLogFile(resultFilePath)
+    # write normalized result
+    with open(normalizedResultFilepath, "w") as fout:
+        fout.write(resultString)    
+    try:
+        referenceString = normalizeLogFile(referenceFilePath)
+    except:
+        return False
+    if resultString == referenceString:
+        return True
+    return False
+
+def normalizeLogFile(filepath):
+    fileContent = open(filepath, 'r').read()
+    # remove timings
+    pattern = "\ [0-9][0-9]*\.[0-9][0-9]*\ secs"
+    fileContent = re.sub(pattern, "", fileContent)
+    fileContent = re.sub("\[modelFact\[[0-9][0-9]*,", "[modelFact[", fileContent)
+    fileContent = re.sub(" context c[0-9][0-9]", "", fileContent)    
+    # join lines
+    fileContent = re.sub("\n", "<br/>", fileContent)
+    
+    # split file contents on log entry separator
+    logEntries = fileContent.split("<br/>-----_____-----<br/>")
+    # sort entries
+    logEntries = sorted(logEntries)
+    # join back
+    fileContent = "\n\n".join(re.sub("<br/>", "\n", entry) for entry in logEntries)
+    return fileContent
+    
+    
     
 class ViewHelper:
     def __init__(self, modelXbrl, testContext):

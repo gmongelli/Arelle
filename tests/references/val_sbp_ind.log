@@ -1,0 +1,10 @@
+loaded in 3.74 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\sbp_ind.xbrl
+-----_____-----
+views 0.69 secs
+-----_____-----
+[EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS, eba_EC, eba_GA, eba_SC, eba_TI, eba_ZZ.' - sbp_ind.xbrl 
+-----_____-----
+[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - sbp_ind.xbrl 
+-----_____-----
+validated in 4.46 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\sbp_ind.xbrl
+-----_____-----

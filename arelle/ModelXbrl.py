@@ -1320,6 +1320,8 @@ class ModelXbrl:
         :param minTimeToShow: Seconds of elapsed time for activity, if longer then the profile message appears in the log.
         :type minTimeToShow: seconds
         """
+        if self.modelManager.cntlr.testMode:
+            return
         import time
         try:
             if activityCompleted:

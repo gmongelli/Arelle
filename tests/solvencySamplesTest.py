@@ -2,11 +2,10 @@
 For each sample Solvency II report instance (random populated instances), the test will
 load the report, display each table and then close the report instance.
 '''
-import os, sys, time
+import os, time
 import unittest
-from os import listdir
-from os.path import isfile, join
-from tests.ViewHelper import ViewHelper, initUI, getTestDir
+from tests.ViewHelper import ViewHelper, initUI
+from tests.SolvencySampleFiles import getSolvencyFiles
 
 class SolvencySampleTest(unittest.TestCase):         
          
@@ -17,8 +16,9 @@ class SolvencySampleTest(unittest.TestCase):
         
         idx = 1
         numFailures = 0
-        numEntries = len(self.getSolvencyFiles())
-        for filepath in self.getSolvencyFiles():
+        solvencyFiles = getSolvencyFiles()
+        numEntries = len(solvencyFiles)
+        for filepath in solvencyFiles:
             print(str(idx) + "/" + str(numEntries) + " " + os.path.basename(filepath))
             ok = self.processOneFile(filepath)
             if not(ok):
@@ -38,15 +38,6 @@ class SolvencySampleTest(unittest.TestCase):
         result = self.viewHelper.compareTables(self.saveReferences, self.referencesDir, os.path.basename(filepath), testData)
         return result        
 
-    def getSolvencyFiles(self):
-        testDir = getTestDir()
-        svcDir = testDir + "/solvency/2.0/random"
-        files = [ f for f in listdir(svcDir) if isfile(join(svcDir, f)) ]
-        result = []
-        for f in sorted(files):
-            result.append(join(svcDir, f))
-        return result
-    
 if __name__ == '__main__':
     unittest.main()
 

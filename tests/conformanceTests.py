@@ -43,7 +43,7 @@ class ConformanceTests(unittest.TestCase):
         parseAndRun(arelleRunArgs)
         
         # Here we compare the whole report to a reference
-        # (at least we should have the same statuses (pass,fail,valied...)
+        # (at least we should have the same statuses (pass,fail,valid...)
         assert isSameFileContent(csvReport, testDir + "/references/" + reportFilename)        
     
     def testXbrl21(self):

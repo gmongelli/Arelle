@@ -645,10 +645,11 @@ def initializeParser(modelManager):
         modelManager.showStatus(_("initializing formula xpath2 grammar"))
         startedAt = time.time()
         xpathExpr.parseString( "0", parseAll=True )
-        modelManager.addToLog(format_string(modelManager.locale, 
-                                    _("Formula xpath2 grammar initialized in %.2f secs"), 
-                                    time.time() - startedAt))
-        modelManager.showStatus(None)
+        if not(modelManager.cntlr.testMode):
+            modelManager.addToLog(format_string(modelManager.locale, 
+                                        _("Formula xpath2 grammar initialized in %.2f secs"), 
+                                        time.time() - startedAt))
+            modelManager.showStatus(None)
         isInitialized = True
         return True # was initialized on this call
     return False # had already been initialized

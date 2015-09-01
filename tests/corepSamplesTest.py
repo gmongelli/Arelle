@@ -4,9 +4,8 @@ load the report, display each table and then close the report instance.
 '''
 import os, time
 import unittest
-from os import listdir
-from os.path import isfile, join
-from tests.ViewHelper import ViewHelper, initUI, getTestDir
+from tests.ViewHelper import ViewHelper, initUI
+from tests.CorepSampleFiles import getCorepFiles
 
 class CorepSampleTest(unittest.TestCase):
          
@@ -17,8 +16,9 @@ class CorepSampleTest(unittest.TestCase):
         
         idx = 1
         numFailures = 0
-        numEntries = len(self.getCorepFiles())
-        for filepath in self.getCorepFiles():
+        corepFiles = getCorepFiles()
+        numEntries = len(corepFiles)
+        for filepath in corepFiles:
             print(str(idx) + "/" + str(numEntries) + " " + os.path.basename(filepath))
             ok = self.processOneFile(filepath)
             if not(ok):
@@ -37,22 +37,8 @@ class CorepSampleTest(unittest.TestCase):
         self.cntlrWinMain.fileClose()
 
         result = self.viewHelper.compareTables(self.saveReferences, self.referencesDir, os.path.basename(filepath), testData)
-        return result
-        
+        return result        
 
-    def getCorepFiles(self):
-        testDir = getTestDir()
-        svcDir = testDir + "/eba/2.3.1"
-        files = [ f for f in listdir(svcDir) if isfile(join(svcDir, f)) ]
-        result = []
-        for f in sorted(files):
-            result.append(join(svcDir, f))
-        svcDir = testDir + "/eba/other"
-        files = [ f for f in listdir(svcDir) if isfile(join(svcDir, f)) ]
-        for f in sorted(files):
-            result.append(join(svcDir, f))
-        return result
-    
 if __name__ == '__main__':
     unittest.main()
 

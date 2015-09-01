@@ -708,7 +708,10 @@ class XPathContext:
                 if isinstance(varValue, ModelFact):
                     return varValue.effectiveValue
                 else:
-                    return str(varValue)
+                    if isinstance(varValue, list) and self.modelXbrl.modelManager.cntlr.testMode:
+                        return("#values: " + str(len(varValue)))
+                    else:
+                        return str(varValue)
             else:
                 return varname
         else: # not a variable name

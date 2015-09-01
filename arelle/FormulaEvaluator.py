@@ -94,30 +94,7 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
                     modelObject=varSet,
                     messageCodes=("message:{variableSetID|xlinkLabel}",))
                 xpCtx.inScopeVars.pop(XbrlConst.qnEaTestExpression)
-            if ((xpCtx.formulaOptions.traceSatisfiedAssertions and result) or
-                ((xpCtx.formulaOptions.traceUnsatisfiedAssertions or
-                  xpCtx.formulaOptions.errorUnsatisfiedAssertions ) and not result)):
-                _modelObjects = [varSet]
-                factVarBindings = []
-                for vb in sorted(xpCtx.varBindings.values(), key=lambda _vb: _vb.qname):
-                    if vb.isFallback:
-                        factVarBindings.append(", \n${}: fallback {}".format(vb.qname, xpCtx.flattenSequence(vb.values)))
-                    else:
-                        if vb.isBindAsSequence:
-                            _modelObjects.extend(vb.yieldedEvaluation)
-                        else:
-                            _modelObjects.append(vb.yieldedFact)
-                            factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
-                                                                                        vb.yieldedFact.qname,
-                                                                                        vb.yieldedFactContext.id))
-                xpCtx.modelXbrl.log(
-                    "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
-                    "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
-                    _("%(expression)s %(label)s %(factVarBindings)s"),
-                    modelObject=_modelObjects, expression=varsetExpressionString(varSet), label=varSet.logLabel(),
-                    factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
-                    messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
-                del _modelObjects[:]
+            processAssertionResult(xpCtx, result, varSet)
         if xpCtx.formulaOptions.traceVariableSetExpressionResult and initialTraceCount == xpCtx.modelXbrl.logCount.get(logging._checkLevel('INFO'), 0):
             xpCtx.modelXbrl.info("formula:trace",
                  _("Variable set %(xlinkLabel)s had no xpCtx.evaluations"),
@@ -150,6 +127,43 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
         uncoveredAspectFacts.clear()    # dereference
         pass     
 
+def processAssertionResult(xpCtx, result, varSet):
+    if ((xpCtx.formulaOptions.traceSatisfiedAssertions and result) or
+        ((xpCtx.formulaOptions.traceUnsatisfiedAssertions or
+          xpCtx.formulaOptions.errorUnsatisfiedAssertions ) and not result)):
+        _modelObjects = [varSet]
+        factVarBindings = []
+        for vb in sorted(xpCtx.varBindings.values(), key=lambda _vb: _vb.qname):
+            #TODO: acsone limit the sometimes huge fact bindings info (flattenSequence(vb.values / traceEffectiveVariableValue)
+            if vb.isFallback:
+                factVarBindings.append(", \n${}: fallback {}".format(vb.qname, xpCtx.flattenSequence(vb.values)))
+            else:
+                if vb.isBindAsSequence:
+                    _modelObjects.extend(vb.yieldedEvaluation)
+                else:
+                    _modelObjects.append(vb.yieldedFact)                                
+                if vb.yieldedFact.isItem:
+                    #factVarBindings.append(", \n${}: {} context {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFactContext.id))
+                    factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
+                                                                                vb.yieldedFact.qname,
+                                                                                vb.yieldedFactContext.id))
+                elif vb.yieldedFact.isTuple and isinstance(vb.yieldedFact.parentElement, ModelFact):
+                    factVarBindings.append(", \n${}: {} tuple {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFact.parentElement.qname))
+        factBindingsInfo ="".join(factVarBindings) + ("\n" if factVarBindings else "")
+        #TODO: acsone temporarily get rid of the sometomes huge fact bindings for test comparison purposes
+        # (such as "$b: 5,213,000 (eba_met:mi53 context c19)\n - fp_ind.xbrl 361, 13181, 13199, 13217, 13235...")
+        if xpCtx.modelXbrl.modelManager.cntlr.testMode:
+            factBindingsInfo = " "
+        xpCtx.modelXbrl.log(
+            "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
+            "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
+            _("%(expression)s %(label)s %(factVarBindings)s"),
+            modelObject=_modelObjects, expression=varsetExpressionString(varSet), label=varSet.logLabel(),
+            factVarBindings=factBindingsInfo,
+            messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
+        del _modelObjects[:]
+    
+    
 def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
     if varIndex == len(varSet.orderedVariableRelationships):
         # check if all fact vars are fallen back
@@ -235,40 +249,8 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                         label=varSet.logLabel(),
                         messageCodes=("message:{variableSetID|xlinkLabel}",))
                     xpCtx.inScopeVars.pop(XbrlConst.qnVaTestExpression)
-                if ((xpCtx.formulaOptions.traceSatisfiedAssertions and result) or
-                    ((xpCtx.formulaOptions.traceUnsatisfiedAssertions or
-                      xpCtx.formulaOptions.errorUnsatisfiedAssertions ) and not result)):
-                    _modelObjects = [varSet]
-                    factVarBindings = []
-                    for vb in sorted(xpCtx.varBindings.values(), key=lambda _vb: _vb.qname):
-                        if vb.isFallback:
-                            factVarBindings.append(", \n${}: fallback {}".format(vb.qname, xpCtx.flattenSequence(vb.values)))
-                        else:
-                            if vb.isBindAsSequence:
-                                _modelObjects.extend(vb.yieldedEvaluation)
-                            else:
-                                _modelObjects.append(vb.yieldedFact)                                
-                            if vb.yieldedFact.isItem:
-                                #factVarBindings.append(", \n${}: {} context {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFactContext.id))
-                                factVarBindings.append(", \n${}: {} ({} context {})".format(vb.qname, xpCtx.traceEffectiveVariableValue(varSet,'$'+str(vb.qname)),
-                                                                                            vb.yieldedFact.qname,
-                                                                                            vb.yieldedFactContext.id))
-                            elif vb.yieldedFact.isTuple and isinstance(vb.yieldedFact.parentElement, ModelFact):
-                                factVarBindings.append(", \n${}: {} tuple {}".format(vb.qname, vb.yieldedFact.qname, vb.yieldedFact.parentElement.qname))
-                    xpCtx.modelXbrl.log(
-                        "ERROR" if (xpCtx.formulaOptions.errorUnsatisfiedAssertions and not result) else "INFO",
-                        "formula:assertionSatisfied" if result else "formula:assertionUnsatisfied",
-                        _("%(expression)s %(label)s %(factVarBindings)s"),
-                        modelObject=_modelObjects, expression=varsetExpressionString(varSet), label=varSet.logLabel(),
-                        factVarBindings="".join(factVarBindings) + ("\n" if factVarBindings else ""),
-                        messageCodes=("formula:assertionSatisfied", "formula:assertionUnsatisfied"))
-                    del _modelObjects[:]
+                processAssertionResult(xpCtx, result, varSet)
                 traceOf = "Value Assertion"
-            if True:
-                expression = varSet.expression
-                evaluatedExpression = ''.join(xpCtx.traceEffectiveVariableValue(varSet,expr)
-                                                 for grp in expressionVariablesPattern.findall(expression)
-                                                 for expr in grp)
             if xpCtx.formulaOptions.traceVariableSetExpressionResult:
                 label = varSet.logLabel()
                 expression = varSet.expression
@@ -417,8 +399,9 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
         overriddenVarBinding = xpCtx.varBindings.get(varQname)            
         xpCtx.varBindings[varQname] = vb
         
+        onlyOneResult = False
         if hasattr(varSet, 'testProg') and vb.isFactVar and not(vb.isBindAsSequence and vb.facts) and len(vb.facts) > 1:
-            if len(vb.facts) > 1 and varSet.testProg and len(varSet.testProg) == 2 and "a" == str(varQname):
+            if len(vb.facts) > 1 and varSet.testProg and len(varSet.testProg) == 2 and "a" == str(varQname): #TODO: acsone extend this to other patterns than 'a' variable
                 prog = varSet.testProg
                 if "ModelValueAssertion" in str(prog[0]):
                     from arelle.XPathParser import OperationDef
@@ -426,13 +409,30 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                         op = prog[1]
                         if "iaf:numeric-equal($a, iaf:sum(" in str(op.sourceStr) and str(op.name) == "iaf:numeric-equal":
                             msgFacts = ""
+                            maxEffectiveValue = None
+                            maxFact = None
                             for f in vb.facts:
                                 try:
                                     msgFacts += str(f.effectiveValue) + " "
                                 except:
                                     pass
-                            print("Too many results (" + str(len(vb.facts)) + ") for verifying a sum (incomplete filter specification?) " + msgFacts)
-                            
+                                try:
+                                    effectiveValue = f.effectiveValue.replace(",", "")
+                                    curV = float(effectiveValue)
+                                    if maxEffectiveValue is None or curV > maxEffectiveValue:
+                                        maxEffectiveValue = curV
+                                        maxFact = f
+                                except:
+                                    pass
+                            varSetId = (varSet.id or varSet.xlinkLabel)
+                            print("Too many results (" + str(len(vb.facts)) + ") for verifying a sum (incomplete filter specification?) " + str(varSetId) + " "+ msgFacts)
+                            # discard all other facts than the one with the max effective value
+                            if False: #TODO: acsone
+                                vb.facts.clear()
+                                vb.facts.add(maxFact)
+                            if False:
+                                onlyOneResult = True
+
         for evaluationResult in vb.evaluationResults:
             overriddenInScopeVar = xpCtx.inScopeVars.get(varQname)
             xpCtx.inScopeVars[varQname] = evaluationResult
@@ -457,6 +457,8 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
                     del uncoveredAspectFacts[aspect]
                 else:
                     uncoveredAspectFacts[aspect] = priorFact
+            if onlyOneResult:
+                break #TODO: acsone      
         xpCtx.varBindings.pop(varQname)
         vb.close() # dereference
         if overriddenVarBinding is not None:
@@ -536,7 +538,9 @@ def aspectsMatch(xpCtx, fact1, fact2, aspects):
 def aspectMatches_2(xpCtx, fact1, fact2, aspect):
     if xpCtx.modelXbrl.formulaMatchesCache is not None:
         xpCtx.modelXbrl.numCalls += 1
-    useCache = False # True is TRIAL SETTING !! still some probls with GUI
+    else:
+        return aspectMatches(xpCtx, fact1, fact2, aspect)
+    useCache = False # True is TRIAL SETTING
     if not useCache or not(isinstance(aspect, QName)):
         return aspectMatches(xpCtx, fact1, fact2, aspect)
     key = str(aspect.localName) + fact1.objectId() + "_" + fact2.objectId()

@@ -1,0 +1,11 @@
+
+
+[EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS.' - fp_con.xbrl 
+
+[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - fp_con.xbrl 
+
+loaded in C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\fp_con.xbrl
+
+validated in - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\fp_con.xbrl
+
+views
