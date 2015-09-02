@@ -528,30 +528,13 @@ def implicitFilter(xpCtx, vb, facts, aspects, uncoveredAspectFacts):
             # not tracing, do bulk aspect filtering
             facts = [fact
                      for fact in facts
-                     if all(aspectMatches_2(xpCtx, uncoveredAspectFact, fact, aspect)
+                     if all(aspectMatches(xpCtx, uncoveredAspectFact, fact, aspect)
                             for (aspect, uncoveredAspectFact) in testableAspectFacts)]
     return facts
     
 def aspectsMatch(xpCtx, fact1, fact2, aspects):
-    return all(aspectMatches_2(xpCtx, fact1, fact2, aspect) for aspect in aspects)
+    return all(aspectMatches(xpCtx, fact1, fact2, aspect) for aspect in aspects)
 
-def aspectMatches_2(xpCtx, fact1, fact2, aspect):
-    if xpCtx.modelXbrl.formulaMatchesCache is not None:
-        xpCtx.modelXbrl.numCalls += 1
-    else:
-        return aspectMatches(xpCtx, fact1, fact2, aspect)
-    useCache = False # True is TRIAL SETTING
-    if not useCache or not(isinstance(aspect, QName)):
-        return aspectMatches(xpCtx, fact1, fact2, aspect)
-    key = str(aspect.localName) + fact1.objectId() + "_" + fact2.objectId()
-    matchesCache = xpCtx.modelXbrl.formulaMatchesCache    
-    try:
-        result = matchesCache[key]
-    except KeyError:
-        result = aspectMatches(xpCtx, fact1, fact2, aspect)
-        matchesCache[key] = result
-    return result
-    
 def aspectMatches(xpCtx, fact1, fact2, aspect):
     if fact1 is None:  # fallback (atomic) never matches any aspect
         return False
@@ -611,9 +594,6 @@ def aspectMatches(xpCtx, fact1, fact2, aspect):
                         break
             '''
         elif isinstance(aspect, QName):
-            global ModelDimensionValue
-            if ModelDimensionValue is None:
-                from arelle.ModelInstanceObject import ModelDimensionValue
             dimValue1 = c1.dimValue(aspect)
             if c2 is None:
                 if dimValue1 is None: # neither fact nor matching facts have this dimension aspect

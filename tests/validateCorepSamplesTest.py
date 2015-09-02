@@ -54,16 +54,21 @@ class CorepSampleTest(unittest.TestCase):
         numFailures = 0
         corepFiles = getCorepFiles()
         numEntries = len(corepFiles)
+        failedInstances = []
         for filepath in corepFiles:
             print(str(idx) + "/" + str(numEntries) + " " + os.path.basename(filepath))
             startedAt2 = time.time()
             ok = self.validateFile(filepath)
             print(str(idx) + "/" + str(numEntries) + " Ok=" + str(ok) + " {:.2f}s ".format(time.time() - startedAt2) + os.path.basename(filepath))
             if not(ok):
+                failedInstances.append(os.path.basename(filepath))
                 numFailures += 1
             idx += 1
             
-        print("validateCorepSamplesTest took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 4252s/4789s/5249s/5438s)")
+        print("validateCorepSamplesTest took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: from 1643sec to 9584sec)")
+        #TODO: execution time variation to be explained !!
+        if numFailures > 0:
+            print("Failed instances " + str(failedInstances))
         assert numFailures == 0, "Number of failing instances: " + str(numFailures)    
         
 if __name__ == '__main__':

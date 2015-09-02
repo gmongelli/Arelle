@@ -862,7 +862,6 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                            modelXbrl=val.modelXbrl, ids=', '.join(runIDs))
         
     # evaluate consistency assertions
-    val.modelXbrl.formulaMatchesCache = {}
     try:
         if hasattr(val, "maxFormulaRunTime") and val.maxFormulaRunTime > 0:
             maxFormulaRunTimeTimer = Timer(val.maxFormulaRunTime * 60.0, xpathContext.runTimeExceededCallback)
@@ -885,17 +884,9 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                              if isinstance(modelRel.fromModelObject, ModelConsistencyAssertion)))):
                         try:
                             testing = False
-                            if val.modelXbrl.formulaMatchesCache is not None or testing:
-                                val.modelXbrl.numCalls = 0
+                            varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
                             if testing:
                                 startedAt = time.time()
-                            varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
-                            if False:
-                                if "s2md_BV204_2" == str(varSetId):
-                                    continue
-                                if "s2md_BV322_1_2" != str(varSetId):
-                                    continue
-                            
                             val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=10.0)
                             val.modelXbrl.modelManager.showStatus(_("evaluating {0}").format(varSetId))
                             val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=1.0)
@@ -904,7 +895,7 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                             
                             if testing:
                                 diffTime = time.time() - startedAt
-                                print("end " + varSetId + " {:.2f}".format(diffTime)  + " entries:" + str(len(val.modelXbrl.formulaMatchesCache)) + " numCalls= " + str(val.modelXbrl.numCalls))
+                                print("end " + varSetId + " {:.2f}".format(diffTime) )
                             
                         except XPathContext.XPathException as err:
                             val.modelXbrl.error(err.code,
@@ -954,7 +945,6 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
      
     #yappi.get_func_stats().print_all()  
     #yappi.stop()
-    val.modelXbrl.formulaMatchesCache = None
     
     val.modelXbrl.modelManager.showStatus(_("formulae finished"), 2000)
         

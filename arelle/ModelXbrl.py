@@ -260,7 +260,6 @@ class ModelXbrl:
         self.init(errorCaptureLevel=errorCaptureLevel)
         
     def init(self, keepViews=False, errorCaptureLevel=None):
-        self.formulaMatchesCache = None # used when evaluating consistency assertions (see ValidateFormula)
         self.uuid = uuid.uuid1().urn
         self.namespaceDocs = defaultdict(list)
         self.urlDocs = {}
