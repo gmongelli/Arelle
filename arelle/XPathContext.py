@@ -92,6 +92,7 @@ SEQUENCE_TYPES = (tuple,list,set)
 
 class XPathContext:
     def __init__(self, modelXbrl, inputXbrlInstance, sourceElement, inScopeVars=None):
+        #self.numMatchCalls = 0
         self.modelXbrl = modelXbrl
         self.isRunTimeExceeded = False
         self.inputXbrlInstance = inputXbrlInstance

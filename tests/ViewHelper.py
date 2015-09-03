@@ -23,8 +23,8 @@ def initUI(testObject):
     testObject.cntlrWinMain = CntlrWinMain(testObject.application)
     testObject.application.protocol("WM_DELETE_WINDOW", testObject.cntlrWinMain.quit)
     
-    testDir = os.path.dirname(os.path.abspath(sys.modules[__name__].__file__))
-    testObject.referencesDir = testDir + "/references/"        
+    testObject.testDir = getTestDir()
+    testObject.referencesDir = testObject.testDir + "/references/"        
     
     testObject.cntlrWinMain.setTestMode(True)
     # make sure we use a plugin loaded by the plugin manager!!
@@ -32,7 +32,7 @@ def initUI(testObject):
         testObject.testContext = pluginMethod()
         break
     testObject.testContext.recordTableLayout = True
-    testObject.testContext.saveFilePath = testDir + "/tmp/a1.xbrl"        
+    testObject.testContext.saveFilePath = testObject.testDir + "/tmp/a1.xbrl"        
 
 def getTestDir():
     return os.path.dirname(os.path.abspath(sys.modules[__name__].__file__))
@@ -118,25 +118,39 @@ class ViewHelper:
         result = True
         if saveReferences:
             with open(testDataFilename, 'w') as outfile:
-                json.dump(testData, outfile)
+                json.dump(testData, outfile, indent=1)
         else:
             with open(testDataFilename, 'r') as inputfile:
                 refData = json.load(inputfile)
             # compare
-            assert len(refData) == len(testData), "Not same number of tables " + filename
-            
-            for tableEntry in sorted(refData.items()):
-                tableName, refTableInfo = tableEntry
-                testTableInfo = testData[tableName]
-                assert len(testTableInfo) == len(refTableInfo), "Not same number of cells for table " + tableName + " " + filename
-                for idx in range(len(testTableInfo)):
-                    ref = refTableInfo[idx]
-                    tst = testTableInfo[idx]
-                    msg = "Not same cell idx=" + str(idx) + " for table " + tableName + " " + filename + " ref=" + ref + " tst=" + tst
-                    if tst != ref:
-                        print(msg)
+            if len(refData) != len(testData):
+                print("Not same number of tables " + filename)
+                result = False
+            else:            
+                for tableEntry in refData.items():
+                    tableName, refTableInfo = tableEntry
+                    testTableInfo = testData[tableName]
+                    if len(testTableInfo) != len(refTableInfo):
+                        print("Not same number of cells for table " + tableName + " " + filename)
                         result = False
-                    #assert tst == ref, msg
+                    else:
+                        for idx in range(len(testTableInfo)):
+                            ref = refTableInfo[idx]
+                            tst = testTableInfo[idx]
+                            msg = "Not same cell idx=" + str(idx) + " for table " + tableName + " " + filename + " ref=" + ref + " tst=" + tst
+                            if tst != ref:
+                                print(msg)
+                                result = False
+            resultFilePath = getTestDir() + "/tmp/"  + filename + ".json"
+            if not(result):
+                print("Creating a result file")
+                with open(resultFilePath, 'w') as outfile:
+                    json.dump(testData, outfile, indent=1)
+            else:
+                try:
+                    os.remove(resultFilePath)
+                except:
+                    pass
         return result
     
         

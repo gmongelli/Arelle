@@ -18,35 +18,41 @@ class CorepSampleTest(unittest.TestCase):
             pass
             #return True
         
-        logFilepath = testDir + "/tmp/val_" + stem + ".log"
-        try:
-            os.remove(logFilepath)
-        except:
-            pass
         referenceFilepath = testDir + "/references/val_" + stem + ".log"
+        logFilepath = testDir + "/tmp/val_" + stem + ".log"
         normalizedResultFilepath = testDir + "/tmp/norm_" + stem + ".log"
-        try:
-            os.remove(normalizedResultFilepath)
-        except:
-            pass
+        if self.saveLogAndCompare:
+            try:
+                os.remove(logFilepath)
+            except:
+                pass
+            try:
+                os.remove(normalizedResultFilepath)
+            except:
+                pass
         
         self.cntlrWinMain.logView.testMode = True
-        self.cntlrWinMain.fileOpenFile(testFilepath)               
+        self.cntlrWinMain.fileOpenFile(testFilepath)
         self.viewHelper = ViewHelper(self.cntlrWinMain.getModelXbrl(), self.testContext)
         
         print(" validate")
         self.cntlrWinMain.validate()
-        self.cntlrWinMain.logView.saveToFile(logFilepath)
-        
+        if self.saveLogAndCompare:
+            self.cntlrWinMain.logView.saveToFile(logFilepath)
+            
         self.cntlrWinMain.fileClose()
         
         self.cntlrWinMain.logView.clear() # clear existing log
        
-        print(" compare")
-        result = isEquivalentLogFile(logFilepath, normalizedResultFilepath, referenceFilepath)
+        if self.saveLogAndCompare:
+            print(" compare")
+            result = isEquivalentLogFile(logFilepath, normalizedResultFilepath, referenceFilepath)
+        else:
+            result = True
         return result        
          
     def test(self):
+        self.saveLogAndCompare = True # False to run multiple concurrent tests (log contention)
         startedAt = time.time()
         initUI(self)
         
@@ -64,9 +70,8 @@ class CorepSampleTest(unittest.TestCase):
                 failedInstances.append(os.path.basename(filepath))
                 numFailures += 1
             idx += 1
-            
-        print("validateCorepSamplesTest took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: from 1643sec to 9584sec)")
-        #TODO: execution time variation to be explained !!
+        # Originally varying from 1650 to 9580    
+        print("validateCorepSamplesTest took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 2100 sec)")
         if numFailures > 0:
             print("Failed instances " + str(failedInstances))
         assert numFailures == 0, "Number of failing instances: " + str(numFailures)    

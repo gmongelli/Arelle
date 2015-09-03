@@ -542,12 +542,16 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                     # check for covering aspect not in variable set aspect model
                     checkFilterAspectModel(val, modelVariableSet, variable.filterRelationships, xpathContext)
 
+        # order variables dependencies by variable Qname in order to get things deterministic from one run to another
+        orderedVarQnames = sorted(variableDependencies.keys())        
         orderedNameSet = set()
         orderedNameList = []
         orderedAVariable = True
         while (orderedAVariable):
             orderedAVariable = False
-            for varqname, depVars in variableDependencies.items():
+            #for varqname, depVars in variableDependencies.items():
+            for varqname in orderedVarQnames:
+                depVars = variableDependencies[varqname]                
                 if varqname not in orderedNameSet and len(depVars - parameterQnames - orderedNameSet) == 0:
                     orderedNameList.append(varqname)
                     orderedNameSet.add(varqname)
@@ -851,17 +855,78 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         
     val.modelXbrl.modelManager.showStatus(_("running formulae"))
     
-    #yappi.start()
-
-    
     # IDs may be "|" or whitespace separated
     runIDs = (formulaOptions.runIDs or '').replace('|',' ').split()
     if runIDs:
         val.modelXbrl.info("formula:trace",
                            _("Formua/assertion IDs restriction: %(ids)s"), 
                            modelXbrl=val.modelXbrl, ids=', '.join(runIDs))
-        
+
+    # prepare an ordered list of variable sets to be evaluated (this helps for
+    # test logs comparison but also for deterministic debugging/tracing from run to run)
+    modelVariableSetsToEvaludate = {}
+    from arelle.FormulaEvaluator import init as formulaEvaluatorInit, evaluate
+    formulaEvaluatorInit() # one-time module initialization
+    for instanceQname in orderedInstancesList:
+        for modelVariableSet in instanceProducingVariableSets[instanceQname]:
+            # produce variable evaluations if no dependent variables-scope relationships
+            if not val.modelXbrl.relationshipSet(XbrlConst.variablesScope).toModelObject(modelVariableSet):
+                if (not runIDs or 
+                    modelVariableSet.id in runIDs or
+                    (modelVariableSet.hasConsistencyAssertion and 
+                     any(modelRel.fromModelObject.id in runIDs
+                         for modelRel in val.modelXbrl.relationshipSet(XbrlConst.consistencyAssertionFormula).toModelObject(modelVariableSet)
+                         if isinstance(modelRel.fromModelObject, ModelConsistencyAssertion)))):
+                    varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
+                    modelVariableSetsToEvaludate[varSetId] = modelVariableSet
+    sortedVarSetIds = sorted(modelVariableSetsToEvaludate.keys())                             
+    
     # evaluate consistency assertions
+    try:
+        if hasattr(val, "maxFormulaRunTime") and val.maxFormulaRunTime > 0:
+            maxFormulaRunTimeTimer = Timer(val.maxFormulaRunTime * 60.0, xpathContext.runTimeExceededCallback)
+            maxFormulaRunTimeTimer.start()
+        else:
+            maxFormulaRunTimeTimer = None
+        val.modelXbrl.profileActivity("... evaluations", minTimeToShow=1.0)
+        for varSetId in sortedVarSetIds:
+            modelVariableSet = modelVariableSetsToEvaludate[varSetId]
+            try:
+                testing = False
+                varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
+                if testing:
+                    startedAt = time.time()
+                    if False and "eba_v4141_m" != varSetId: # tracing a specific formula
+                        continue
+                val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=10.0)
+                val.modelXbrl.modelManager.showStatus(_("evaluating {0}").format(varSetId))
+                val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=1.0)
+                
+                # use this for a specific single formula
+                #yappi.start()
+                #xpathContext.numMatchCalls = 0
+                
+                evaluate(xpathContext, modelVariableSet)
+                
+                #yappi.get_func_stats().print_all(out=sys.stdout, columns= {0:("name", 50), 1:("ncall", 12), 2:("tsub", 10), 3: ("ttot", 10), 4:("tavg", 10)})
+                #yappi.stop()    
+                
+                val.modelXbrl.profileStat(modelVariableSet.localName + "_" + varSetId)                
+                if testing:
+                    diffTime = time.time() - startedAt
+                    print("end " + varSetId + " {:.2f}".format(diffTime) )                
+            except XPathContext.XPathException as err:
+                val.modelXbrl.error(err.code,
+                    _("Variable set \n%(variableSet)s \nException: \n%(error)s"), 
+                    modelObject=modelVariableSet, variableSet=str(modelVariableSet), error=err.message)             
+        if maxFormulaRunTimeTimer:
+            maxFormulaRunTimeTimer.cancel()
+    except XPathContext.RunTimeExceededException:
+        val.modelXbrl.info("formula:maxRunTime",
+            _("Formula execution ended after %(mins)s minutes"), 
+            modelObject=val.modelXbrl, mins=val.maxFormulaRunTime)
+        
+    '''
     try:
         if hasattr(val, "maxFormulaRunTime") and val.maxFormulaRunTime > 0:
             maxFormulaRunTimeTimer = Timer(val.maxFormulaRunTime * 60.0, xpathContext.runTimeExceededCallback)
@@ -883,7 +948,7 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                              for modelRel in val.modelXbrl.relationshipSet(XbrlConst.consistencyAssertionFormula).toModelObject(modelVariableSet)
                              if isinstance(modelRel.fromModelObject, ModelConsistencyAssertion)))):
                         try:
-                            testing = False
+                            testing = True
                             varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
                             if testing:
                                 startedAt = time.time()
@@ -907,7 +972,8 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         val.modelXbrl.info("formula:maxRunTime",
             _("Formula execution ended after %(mins)s minutes"), 
             modelObject=val.modelXbrl, mins=val.maxFormulaRunTime)
-        
+    '''
+ 
     # log assertion result counts
     asserTests = {}
     for exisValAsser in val.modelXbrl.modelVariableSets:
@@ -943,9 +1009,6 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
             val.modelXbrl.formulaOutputInstance.close()
         val.modelXbrl.formulaOutputInstance = outputXbrlInstance
      
-    #yappi.get_func_stats().print_all()  
-    #yappi.stop()
-    
     val.modelXbrl.modelManager.showStatus(_("formulae finished"), 2000)
         
     instanceProducingVariableSets.clear() # dereference

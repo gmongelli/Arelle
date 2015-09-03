@@ -75,19 +75,19 @@ def getFilePath(cntlrWinMain, modelXbrl):
 
 def initCellValue(value, x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("initCellValue: " + str(value) + " " + str(x) + " " + str(y))
+        __testContext.tableLayout.add("v: " + str(value) + " " + str(x) + " " + str(y))
 
 def initCellCombobox(value, values, x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("initCellCombobox: " + str(value) + " "+ str(values) + " " + str(x) + " " + str(y))
+        __testContext.tableLayout.add("cb: " + str(value) + " "+ str(values) + " " + str(x) + " " + str(y))
 
 def initHeaderCellValue(headerLabel, x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("initHeaderCellValue: " + str(headerLabel) + " " + str(x) + " " + str(y))
+        __testContext.tableLayout.add("h: " + str(headerLabel) + " " + str(x) + " " + str(y))
 
 def initHeaderCombobox(x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("initHeaderCombobox: " + str(x) + " " + str(y))
+        __testContext.tableLayout.add("hcb: " + str(x) + " " + str(y))
     
 def humanizeSize(size):
     size = abs(size)
