@@ -12,7 +12,7 @@ class SolvencySampleTest(unittest.TestCase):
     def test(self):
         startedAt = time.time()
         initUI(self)
-        self.saveReferences = False # <- set this to create new references
+        self.saveReferences = False  # <- set this to create new references
         
         idx = 1
         numFailures = 0

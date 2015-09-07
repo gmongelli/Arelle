@@ -217,3 +217,49 @@ class ModelManager:
             for pluginMethod in pluginClassMethods("ModelManager.LoadCustomTransforms"):
                 pluginMethod(self.customTransforms)
     
+    def getActiveFormulaForModel(self, modelXbrl):
+        reportFormulaSettings = None
+        schemaRef = modelXbrl.getSingleSchemaRef()
+        if schemaRef is not None:
+            activeFormula = None
+            try:
+                activeFormula = self.activeFormula
+            except:
+                # not existing or not yet loaded
+                try:
+                    self.activeFormula = activeFormula = self.cntlr.config["activeFormula"]
+                except:
+                    pass
+            if activeFormula is not None:
+                try:
+                    reportFormulaSettings = activeFormula[schemaRef]
+                except KeyError:
+                    pass
+        return reportFormulaSettings
+    
+    def setActiveFormulaForModel(self, modelXbrl, reportFormulaSettings):
+        schemaRef = modelXbrl.getSingleSchemaRef()
+        if schemaRef is not None:
+            activeFormula = None
+            try:
+                activeFormula = self.activeFormula
+            except:
+                # not existing or not yet loaded
+                try:
+                    self.activeFormula = activeFormula = self.cntlr.config["activeFormula"]
+                except:
+                    pass
+            if activeFormula is None:
+                if reportFormulaSettings is None:
+                    return # nothing existed and nothing new                
+                activeFormula = {}
+                self.activeFormula = activeFormula
+            activeFormula[schemaRef] = reportFormulaSettings
+            # remove entry if none value to be stored (e.g. all selected)
+            if reportFormulaSettings is None:
+                del activeFormula[schemaRef]
+            self.cntlr.config["activeFormula"] = activeFormula
+            self.cntlr.saveConfig()
+                
+        
+        

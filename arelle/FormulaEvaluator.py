@@ -26,6 +26,7 @@ expressionVariablesPattern = re.compile(r"([^$]*)([$]\w[\w:.-]*)([^$]*)")
 EMPTYSET = set()
 
 TRACE_BINDING = False
+TRACE_PARTITIONS = False
 
 def varsetExpressionString(varSet):
     result = ""
@@ -193,6 +194,8 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
             xpCtx.modelXbrl.info("formula:trace",
                  _("Variable set %(xlinkLabel)s skipped evaluation, all fact variables have fallen back %(expression)s %(label)s"),
                  modelObject=varSet, xlinkLabel=varSet.xlinkLabel, expression=varsetExpressionString(varSet), label=varSet.logLabel())
+        if TRACE_BINDING:
+            print("skip")
         return
     # record completed evaluation, for fallback blocking purposes
     fbVars = set(vb.qname for vb in xpCtx.varBindings.values() if vb.isFallback)
@@ -214,6 +217,8 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
             varSet.timeEvaluationStarted = now
         if xpCtx.isRunTimeExceeded: raise XPathContext.RunTimeExceededException()
         xpCtx.modelXbrl.profileActivity("...   evaluation {0} (skipped)".format(varSet.evaluationNumber), minTimeToShow=10.0)
+        if TRACE_BINDING:
+            print("unnecessary")
         return
     xpCtx.modelXbrl.profileActivity("...   evaluation {0}".format(varSet.evaluationNumber), minTimeToShow=10.0)
     for vQn, vBoundFact in thisEvaluation.items(): # varQn, fact or tuple of facts bound to var
@@ -221,6 +226,8 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
         if vQn not in xpCtx.evaluationHashDicts: xpCtx.evaluationHashDicts[vQn] = defaultdict(set)
         xpCtx.evaluationHashDicts[vQn][hash(vBoundFact)].add(len(xpCtx.evaluations))  # hash and eval index        
     xpCtx.evaluations.append(thisEvaluation)  # complete evaluations tuple
+    if TRACE_BINDING:
+        print("evaluate preconditions" + " {:.2f}".format(time.time() - xpCtx.startedAt))
     # evaluate preconditions
     for precondition in varSet.preconditions:
         result = precondition.evalTest(xpCtx)
@@ -240,6 +247,8 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
             if xpCtx.isRunTimeExceeded: raise XPathContext.RunTimeExceededException()
             return
         
+    if TRACE_BINDING:
+        print("evaluate variable set")
     # evaluate variable set
     if isinstance(varSet, ModelExistenceAssertion):
         varSet.evaluationsCount += 1
@@ -320,6 +329,8 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
                 xpCtx.modelXbrl.error(err.code,
                     _("Variable set chained in scope of variable set %(variableset)s \nException: \n%(error)s"), 
                     modelObject=(varSet, varScopeRel.toModelObject), variableSet=varSet.logLabel(), error=err.message)
+    if TRACE_BINDING:
+        print("end evaluate variable set" + " {:.2f}".format(time.time() - xpCtx.startedAt))
             
 
 def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
@@ -435,7 +446,6 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
     overriddenVarBinding = xpCtx.varBindings.get(varQname)            
     xpCtx.varBindings[varQname] = vb
     
-    onlyOneResult = False
     if hasattr(varSet, 'testProg') and vb.isFactVar and not(vb.isBindAsSequence and vb.facts) and len(vb.facts) > 1:
         if len(vb.facts) > 1 and varSet.testProg and len(varSet.testProg) == 2 and "a" == str(varQname): #TODO: acsone extend this to other patterns than 'a' variable
             prog = varSet.testProg
@@ -445,36 +455,29 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                     op = prog[1]
                     if "iaf:numeric-equal($a, iaf:sum(" in str(op.sourceStr) and str(op.name) == "iaf:numeric-equal":
                         msgFacts = ""
-                        maxEffectiveValue = None
-                        maxFact = None
                         for f in vb.facts:
                             try:
                                 msgFacts += str(f.effectiveValue) + " "
                             except:
                                 pass
-                            try:
-                                effectiveValue = f.effectiveValue.replace(",", "")
-                                curV = float(effectiveValue)
-                                if maxEffectiveValue is None or curV > maxEffectiveValue:
-                                    maxEffectiveValue = curV
-                                    maxFact = f
-                            except:
-                                pass
                         varSetId = (varSet.id or varSet.xlinkLabel)
                         print("Too many results (" + str(len(vb.facts)) + ") for verifying a sum (incomplete filter specification?) " + str(varSetId) + " "+ msgFacts)
-                        # discard all other facts than the one with the max effective value
-                        if False: #TODO: acsone
+                        if True:
+                            fs = {}
+                            for f in vb.facts:
+                                fs[f.objectId()] = f
+                            sortedIds = sorted(fs.keys())                            
                             vb.facts.clear()
-                            vb.facts.add(maxFact)
-                        if False:
-                            onlyOneResult = True
-    idx = 1
+                            # two to make sure at least one gives an error                       
+                            vb.facts.add(fs[sortedIds[0]])
+                            vb.facts.add(fs[sortedIds[1]])
     if TRACE_BINDING:
+        idx = 1
         print("evaluationResults varIndex=" + str(varIndex) + " {:.2f}".format(time.time() - xpCtx.startedAt))
     for evaluationResult in vb.evaluationResults(xpCtx):
         if TRACE_BINDING:
             print("evaluationResult varIndex=" + str(varIndex) + " idx=" + str(idx) + " {:.2f}".format(time.time() - xpCtx.startedAt))
-        idx += 1
+            idx += 1
         overriddenInScopeVar = xpCtx.inScopeVars.get(varQname)
         xpCtx.inScopeVars[varQname] = evaluationResult
         evaluationContributedUncoveredAspects = {}
@@ -498,8 +501,6 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                 del uncoveredAspectFacts[aspect]
             else:
                 uncoveredAspectFacts[aspect] = priorFact
-        if onlyOneResult:
-            break #TODO: acsone      
     xpCtx.varBindings.pop(varQname)
     vb.close() # dereference
     if overriddenVarBinding is not None:
@@ -517,9 +518,11 @@ def filterFacts(xpCtx, vb, facts, filterRelationships, filterType):
     for varFilterRel in filterRelationships:
         _filter = varFilterRel.toModelObject
         if isinstance(_filter,ModelFilter):  # relationship not constrained to real filters
+            #startedAt2 = time.time()
             result = _filter.filter(xpCtx, vb, facts, varFilterRel.isComplemented)
             if TRACE_BINDING:
                 print("_filter " + " {:.2f}".format(time.time() - xpCtx.startedAt) + " " + str(_filter) )
+            #xpCtx.modelXbrl.filterTime += time.time() - startedAt2
                        
             if xpCtx.formulaOptions.traceVariableFilterWinnowing:
                 allFacts = ""
@@ -555,7 +558,7 @@ def implicitFilter(xpCtx, vb, facts, aspects, uncoveredAspectFacts):
             if uncoveredAspectFacts.get(aspect, "none") is not None:
                 facts = [fact 
                          for fact in facts 
-                         if aspectMatches_2(xpCtx, uncoveredAspectFacts.get(aspect), fact, aspect)]
+                         if aspectMatches(xpCtx, uncoveredAspectFacts.get(aspect), fact, aspect)]
                 a = str(aspect) if isinstance(aspect,QName) else Aspect.label[aspect]
                 allFacts = ""
                 for fact in facts:
@@ -711,6 +714,26 @@ def factsPartitions(xpCtx, facts, aspects):
                 break
         if not matched:
             factsPartitions.append([fact,])
+    if TRACE_PARTITIONS:
+        if xpCtx.modelXbrl.factsPartitionInfo is not None:
+            fids = [f.objectId() for f in facts]
+            fids = sorted(fids)
+            sortedAspects = []
+            for aspect in aspects:
+                if isinstance(aspect, QName):
+                    sortedAspects.append(aspect.localName)
+                else:
+                    sortedAspects.append(str(aspect))
+            sortedAspects = sorted(sortedAspects)
+            factsPartitionInfo = xpCtx.modelXbrl.factsPartitionInfo
+            key = str(sortedAspects) + str(fids)
+            try:
+                num = factsPartitionInfo[key]
+                num += 1
+                factsPartitionInfo[key] = num
+            except:
+                factsPartitionInfo[key] = 1
+        
     #if TRACE_BINDING:
     #    print("numMatchCalls= " + str(xpCtx.numMatchCalls - curCalls)  + " partitions=" + str(len(factsPartitions)))
     return factsPartitions
@@ -1112,6 +1135,20 @@ class VariableBindingError:
     def __repr__(self):
         return self.err
     
+def orderAspects(aspects):
+    # this order should respect the "likelyhood of short circuiting aspect match tests" (see ModelFormulaObject.aspectModels["dimensional"] )
+    # a list is returned from an input set
+    d = {}
+    for aspect in aspects:
+        if isinstance(aspect, QName):
+            d[aspect.localName] = aspect
+        else:
+            d[str(aspect)] = aspect
+    result = []
+    for key in sorted(d.keys()):
+        result.append(d[key])
+    return result
+    
 xbrlfe_undefinedSAV = VariableBindingError("xbrlfe:undefinedSAV")
          
 class VariableBinding:
@@ -1158,6 +1195,8 @@ class VariableBinding:
                 print("matchesSubPartitions nothing")
             return [partition]
         #curCalls = xpCtx.numMatchCalls
+        if TRACE_BINDING:
+            print("matchesSubPartitions start= ")
         subPartitions = []
         for fact in partition:
             foundSubPartition = False
@@ -1175,22 +1214,31 @@ class VariableBinding:
                 subPartitions.append([fact,])
         #if TRACE_BINDING:
         #    print("matchesSubPartitions numMatchCalls= " + str(xpCtx.numMatchCalls - curCalls)  + " " + str(len(subPartitions)))
+        
+        if TRACE_PARTITIONS:
+            if xpCtx.modelXbrl.factsSubPartitionInfo is not None:
+                fids = [f.objectId() for f in partition]
+                fids = sorted(fids)
+                sortedAspects = []
+                for aspect in aspects:
+                    if isinstance(aspect, QName):
+                        sortedAspects.append(aspect.localName)
+                    else:
+                        sortedAspects.append(str(aspect))
+                sortedAspects = sorted(sortedAspects)
+                factsSubPartitionInfo = xpCtx.modelXbrl.factsSubPartitionInfo
+                key = str(sortedAspects) + str(fids)
+                try:
+                    num = factsSubPartitionInfo[key]
+                    num += 1
+                    factsSubPartitionInfo[key] = num
+                except:
+                    factsSubPartitionInfo[key] = 1
+            
+        if TRACE_BINDING:
+            print("matchesSubPartitions end= ")
         return subPartitions
  
-    def orderAspects(self, aspects):
-        # this order should respect the "likelyhood of short circuiting aspect match tests" (see ModelFormulaObject.aspectModels["dimensional"] )
-        # a list is returned from an input set
-        d = {}
-        for aspect in aspects:
-            if isinstance(aspect, QName):
-                d[aspect.localName] = aspect
-            else:
-                d[str(aspect)] = aspect
-        result = []
-        for key in sorted(d.keys()):
-            result.append(d[key])
-        return result
-    
     #removed @property
     def evaluationResults(self, xpCtx):
         if self.isFactVar:
@@ -1201,8 +1249,8 @@ class VariableBinding:
                     print(str(len(self.aspectsDefined)) + " aspectsDefined " + str(self.aspectsDefined))
                     print(str(len(self.aspectsCovered)) + " aspectsCovered " + str(self.aspectsCovered))
                 # change: order aspects to get deterministic handling - and most importantly performance - from run to run
-                for factsPartition in factsPartitions(self.xpCtx, self.facts, self.orderAspects(self.aspectsDefined - self.aspectsCovered)):
-                    for matchesSubPartition in self.matchesSubPartitions(factsPartition, self.orderAspects(self.aspectsDefined), self.xpCtx):
+                for factsPartition in factsPartitions(self.xpCtx, self.facts, orderAspects(self.aspectsDefined - self.aspectsCovered)):
+                    for matchesSubPartition in self.matchesSubPartitions(factsPartition, orderAspects(self.aspectsDefined), self.xpCtx):
                         self.yieldedFact = matchesSubPartition[0]
                         self.yieldedFactContext = self.yieldedFact.context
                         self.yieldedEvaluation = matchesSubPartition

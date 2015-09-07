@@ -825,9 +825,7 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
     # formula output instances    
     if instanceQnames:      
         val.modelXbrl.modelManager.showStatus(_("initializing formula output instances"))
-        schemaRefs = [val.modelXbrl.modelDocument.relativeUri(referencedDoc.uri)
-                        for referencedDoc in val.modelXbrl.modelDocument.referencesDocument.keys()
-                            if referencedDoc.type == ModelDocument.Type.SCHEMA]
+        schemaRefs = val.modelXbrl.getSchemaRefs()
         
     outputXbrlInstance = None
     for instanceQname in instanceQnames:
@@ -855,8 +853,7 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         
     val.modelXbrl.modelManager.showStatus(_("running formulae"))
     
-    # IDs may be "|" or whitespace separated
-    runIDs = (formulaOptions.runIDs or '').replace('|',' ').split()
+    runIDs = getActiveFormulaIds(val.modelXbrl, formulaOptions)
     if runIDs:
         val.modelXbrl.info("formula:trace",
                            _("Formua/assertion IDs restriction: %(ids)s"), 
@@ -879,8 +876,13 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                          if isinstance(modelRel.fromModelObject, ModelConsistencyAssertion)))):
                     varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
                     modelVariableSetsToEvaludate[varSetId] = modelVariableSet
-    sortedVarSetIds = sorted(modelVariableSetsToEvaludate.keys())                             
+    sortedVarSetIds = sorted(modelVariableSetsToEvaludate.keys())
     
+    xpathContext.modelXbrl.factsPartitionInfo = {}
+    xpathContext.modelXbrl.factsSubPartitionInfo = {}
+    xpathContext.modelXbrl.factsByDimMemQnameCache = ModelXbrl.FactsByDimMemQnameCache(xpathContext.modelXbrl)
+
+    val.modelXbrl.lastEvaluationTimesByModelVariableSetId = {}
     # evaluate consistency assertions
     try:
         if hasattr(val, "maxFormulaRunTime") and val.maxFormulaRunTime > 0:
@@ -892,10 +894,11 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         for varSetId in sortedVarSetIds:
             modelVariableSet = modelVariableSetsToEvaludate[varSetId]
             try:
+                startedAt = time.time()
+                
                 testing = False
                 varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
                 if testing:
-                    startedAt = time.time()
                     if False and "eba_v4141_m" != varSetId: # tracing a specific formula
                         continue
                 val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=10.0)
@@ -911,10 +914,12 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                 #yappi.get_func_stats().print_all(out=sys.stdout, columns= {0:("name", 50), 1:("ncall", 12), 2:("tsub", 10), 3: ("ttot", 10), 4:("tavg", 10)})
                 #yappi.stop()    
                 
-                val.modelXbrl.profileStat(modelVariableSet.localName + "_" + varSetId)                
+                val.modelXbrl.profileStat(modelVariableSet.localName + "_" + varSetId)              
+                diffTime = time.time() - startedAt
+                formattedTime = "{:.2f}s".format(diffTime)
+                val.modelXbrl.lastEvaluationTimesByModelVariableSetId[modelVariableSet.id] = formattedTime
                 if testing:
-                    diffTime = time.time() - startedAt
-                    print("end " + varSetId + " {:.2f}".format(diffTime) )                
+                    print("end " + varSetId + " " + formattedTime)                
             except XPathContext.XPathException as err:
                 val.modelXbrl.error(err.code,
                     _("Variable set \n%(variableSet)s \nException: \n%(error)s"), 
@@ -925,54 +930,26 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         val.modelXbrl.info("formula:maxRunTime",
             _("Formula execution ended after %(mins)s minutes"), 
             modelObject=val.modelXbrl, mins=val.maxFormulaRunTime)
+    if False:    
+        factsPartitionInfo = xpathContext.modelXbrl.factsPartitionInfo
+        print("Num partitions= " + str(len(factsPartitionInfo)))
+        manyOcc = list(factsPartitionInfo.values())
+        manyOcc = sorted(manyOcc)
+        print("Occurrences: " + str(manyOcc))
         
-    '''
-    try:
-        if hasattr(val, "maxFormulaRunTime") and val.maxFormulaRunTime > 0:
-            maxFormulaRunTimeTimer = Timer(val.maxFormulaRunTime * 60.0, xpathContext.runTimeExceededCallback)
-            maxFormulaRunTimeTimer.start()
-        else:
-            maxFormulaRunTimeTimer = None
-        # evaluate variable sets not in consistency assertions
-        from arelle.FormulaEvaluator import init as formulaEvaluatorInit, evaluate
-        formulaEvaluatorInit() # one-time module initialization
-        val.modelXbrl.profileActivity("... evaluations", minTimeToShow=1.0)
-        for instanceQname in orderedInstancesList:
-            for modelVariableSet in instanceProducingVariableSets[instanceQname]:
-                # produce variable evaluations if no dependent variables-scope relationships
-                if not val.modelXbrl.relationshipSet(XbrlConst.variablesScope).toModelObject(modelVariableSet):
-                    if (not runIDs or 
-                        modelVariableSet.id in runIDs or
-                        (modelVariableSet.hasConsistencyAssertion and 
-                         any(modelRel.fromModelObject.id in runIDs
-                             for modelRel in val.modelXbrl.relationshipSet(XbrlConst.consistencyAssertionFormula).toModelObject(modelVariableSet)
-                             if isinstance(modelRel.fromModelObject, ModelConsistencyAssertion)))):
-                        try:
-                            testing = True
-                            varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
-                            if testing:
-                                startedAt = time.time()
-                            val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=10.0)
-                            val.modelXbrl.modelManager.showStatus(_("evaluating {0}").format(varSetId))
-                            val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=1.0)
-                            evaluate(xpathContext, modelVariableSet)
-                            val.modelXbrl.profileStat(modelVariableSet.localName + "_" + varSetId)
-                            
-                            if testing:
-                                diffTime = time.time() - startedAt
-                                print("end " + varSetId + " {:.2f}".format(diffTime) )
-                            
-                        except XPathContext.XPathException as err:
-                            val.modelXbrl.error(err.code,
-                                _("Variable set \n%(variableSet)s \nException: \n%(error)s"), 
-                                modelObject=modelVariableSet, variableSet=str(modelVariableSet), error=err.message)
-        if maxFormulaRunTimeTimer:
-            maxFormulaRunTimeTimer.cancel()
-    except XPathContext.RunTimeExceededException:
-        val.modelXbrl.info("formula:maxRunTime",
-            _("Formula execution ended after %(mins)s minutes"), 
-            modelObject=val.modelXbrl, mins=val.maxFormulaRunTime)
-    '''
+        factsSubPartitionInfo = xpathContext.modelXbrl.factsSubPartitionInfo
+        print("Num Subpartitions= " + str(len(factsSubPartitionInfo)))
+        manyOcc = list(factsSubPartitionInfo.values())
+        manyOcc = sorted(manyOcc)
+        print("Sub Occurrences: " + str(manyOcc))
+        
+        print("Filter time=" + str(val.modelXbrl.filterTime))
+        
+        xpathContext.modelXbrl.factsByDimMemQnameCache.printStats()
+        
+    xpathContext.modelXbrl.factsPartitionInfo = None    
+    xpathContext.modelXbrl.factsSubPartitionInfo = None
+    xpathContext.modelXbrl.factsByDimMemQnameCache = None    
  
     # log assertion result counts
     asserTests = {}
@@ -1356,3 +1333,19 @@ def checkValidationMessageVariables(val, modelVariableSet, varNames, paramNames)
                     val.modelXbrl.error("err:XPST0008",
                         _("Existence Assertion depends on evaluation variable in message %(xlinkLabel)s, %(name)s"),
                         modelObject=message, xlinkLabel=message.xlinkLabel, name=msgVarQname)
+
+def getActiveFormulaIds(modelXbrl, formulaOptions):
+    # return a set of all IDs of all active formula
+    
+    # first, IDs as in the global formula options
+    # IDs may be "|" or whitespace separated
+    if formulaOptions.runIDs:
+        runIDs =  set(formulaOptions.runIDs.replace('|',' ').split())
+    else:
+        runIDs = set()
+    # augment with ones active for the current schema if any
+    reportFormulaSettings = modelXbrl.modelManager.getActiveFormulaForModel(modelXbrl)
+    if reportFormulaSettings is not None:
+        runIDs.update([itemId for itemId, sel in reportFormulaSettings.items() if sel])
+    return runIDs
+        

@@ -2,6 +2,94 @@
 
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS, eba_SC, xsi.' - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 
 
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 743, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 748, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 753, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 758, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 761, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 737, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 738, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 739, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 740, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 741, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 742, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 782, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 788, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 745, 750, 755, 760, 763, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 746, 751, 756, 764, 766, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 747, 752, 757, 765, 767, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 768, 769, 770, 771, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 789, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 750, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 755, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 760, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 763, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+
+[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+
 [xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl 
 
 loaded in C:\Projects\xbrl\areba\Arelle\tests/eba/other\COFREP-P99999999-2014-12-SCOREP-00-L-N-I-SCOREP.xbrl

@@ -155,6 +155,7 @@ class CntlrWinMain (Cntlr.Cntlr):
 
         formulaMenu = Menu(self.menubar, tearoff=0)
         formulaMenu.add_command(label=_("Parameters..."), underline=0, command=self.formulaParametersDialog)
+        formulaMenu.add_command(label=_("Active formula..."), underline=0, command=self.activeFormulaDialog)       
 
         toolsMenu.add_cascade(label=_("Formula"), menu=formulaMenu, underline=0)
         self.modelManager.formulaOptions = FormulaOptions(self.config.get("formulaParameters"))
@@ -1171,6 +1172,10 @@ class CntlrWinMain (Cntlr.Cntlr):
         DialogFormulaParameters.getParameters(self)
         self.setValidateTooltipText()
         
+    def activeFormulaDialog(self, *args):
+        DialogActiveFormula.getActiveFormula(self)
+        self.setValidateTooltipText()
+        
     def rssWatchOptionsDialog(self, *args):
         from arelle import DialogRssWatch
         DialogRssWatch.getOptions(self)
@@ -1499,7 +1504,7 @@ class CntlrWinMain (Cntlr.Cntlr):
         tkinter.messagebox.showwarning(_("arelle - Error"), message, parent=self.parent)
 
 
-from arelle import DialogFormulaParameters
+from arelle import (DialogFormulaParameters, DialogActiveFormula)
 
 class WinMainLogHandler(logging.Handler):
     def __init__(self, cntlr):

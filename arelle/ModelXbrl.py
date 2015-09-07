@@ -260,6 +260,11 @@ class ModelXbrl:
         self.init(errorCaptureLevel=errorCaptureLevel)
         
     def init(self, keepViews=False, errorCaptureLevel=None):
+        self.lastEvaluationTimesByModelVariableSetId = None
+        self.filterTime = 0
+        self.factsPartitionInfo = None
+        self.factsSubPartitionInfo = None
+        self.factsByDimMemQnameCache = None
         self.uuid = uuid.uuid1().urn
         self.namespaceDocs = defaultdict(list)
         self.urlDocs = {}
@@ -861,7 +866,7 @@ class ModelXbrl:
                     return True
         return False
         
-    def factsByDimMemQname(self, dimQname, memQname=None): # indexed by fact (concept) qname
+    def factsByDimMemQname(self, dimQname, memQname=None, fromCache=False): # indexed by fact (concept) qname
         """Facts in the instance indexed by their Dimension  and Member QName, cached
         
         :returns: dict -- indexes are (Dimension, Member) and (Dimension) QNames, values are ModelFacts
@@ -869,6 +874,9 @@ class ModelXbrl:
         If Member is NONDEFAULT, returns facts that have the dimension (explicit non-default or typed)
         If Member is DEFAULT, returns facts that have the dimension (explicit non-default or typed) defaulted
         """
+        if not(fromCache) and self.factsByDimMemQnameCache is not None:
+            return self.factsByDimMemQnameCache.factsByDimMemQname(dimQname, memQname)
+        
         if self.useFactIndex:
             return self.factIndex.factsByDimMemQname(dimQname, self, memQname)
         
@@ -1406,6 +1414,22 @@ class ModelXbrl:
                 pass
         return nilFacts
     
+    def getSchemaRefs(self):
+        from arelle import ModelDocument
+        return [self.modelDocument.relativeUri(referencedDoc.uri)
+                for referencedDoc in self.modelDocument.referencesDocument.keys() if referencedDoc.type == ModelDocument.Type.SCHEMA]
+    
+    def getSingleSchemaRef(self):
+        schemaRef = None
+        schemaRefs = self.getSchemaRefs()
+        if len(schemaRefs) > 0:
+            if len(schemaRefs) > 1:
+                # sort them and just take first one
+                schemaRef = sorted(schemaRefs)[0]
+            else:
+                schemaRef = schemaRefs[0]
+        return schemaRef
+    
 class FactsByDimMemQnameCache:
     def __init__(self, modelXbrl):
         self.modelXbrl = modelXbrl
@@ -1429,7 +1453,7 @@ class FactsByDimMemQnameCache:
             value = self.factsByDimMemQnameDict[key]
             self.numHits += 1
         except KeyError:
-            value = self.modelXbrl.factsByDimMemQname(aspect, dimMemQname)
+            value = self.modelXbrl.factsByDimMemQname(aspect, dimMemQname, fromCache=True)
             self.factsByDimMemQnameDict[key] = value
         return value
     

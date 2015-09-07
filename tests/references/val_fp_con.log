@@ -1,10 +1,10 @@
-loaded in 18.00 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\fp_con.xbrl
+loaded in 17.66 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\fp_con.xbrl
 -----_____-----
-views 1.12 secs
+views 1.06 secs
 -----_____-----
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS.' - fp_con.xbrl 
 -----_____-----
 [xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - fp_con.xbrl 
 -----_____-----
-validated in 340.21 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\fp_con.xbrl
+validated in 273.97 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\fp_con.xbrl
 -----_____-----

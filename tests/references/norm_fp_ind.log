@@ -2,11 +2,11 @@
 
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS.' - fp_ind.xbrl 
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 1251, 1270, 1288, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 1270, 1288, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 1697, 1715, 1733, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 1715, 1733, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 2142, 2160, 2178, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 2160, 2178, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4232_h: [P 01.01 (All columns)] {r170} = +{r180} + {r190}   - fp_ind.xbrl 361, 379, 396, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4232_h.xml 10
 
@@ -16,51 +16,51 @@
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 3233, 3252, 3270, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 3975, 3993, 4011, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 3993, 4011, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 4714, 4732, 4750, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 4732, 4750, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 5447, 5465, 5482, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4233_h: [P 01.02 (All columns)] {r120} = +{r130} + {r140}   - fp_ind.xbrl 5465, 5482, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4233_h.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 133097, 133115, 133133, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 133425, 133443, 133461, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 133753, 133771, 133789, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 133771, 133789, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 134081, 134099, 134117, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 134099, 134117, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 134409, 134427, 134445, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4234_h: [P 02.07 (All columns)] {r150} = +{r160} + {r170}   - fp_ind.xbrl 134427, 134445, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4234_h.xml 9
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 134655, 134673, 134691, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 134901, 134919, 134937, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 135147, 135165, 135183, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 135165, 135183, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 135393, 135411, 135429, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 135411, 135429, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 135639, 135657, 135675, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v4235_h: [P 02.08 (All columns)] {r110} = +{r120} + {r130}   - fp_ind.xbrl 135657, 135675, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4235_h.xml 9
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 1388, 1405, 1423, 1560, 1697, 1750, 1766, 1782, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 1388, 1405, 1423, 1560, 1697, 1750, 1766, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 1833, 1850, 1868, 2005, 2142, 2195, 2211, 2227, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 1833, 1850, 1868, 2005, 2142, 2195, 2211, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 491, 508, 526, 663, 800, 853, 869, 885, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 62, 78, 95, 228, 361, 412, 427, 442, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 936, 953, 971, 1111, 1251, 1305, 1321, 1337, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h))) v4105_m: [P 01.01 (c010-050)] {r220} = {r010} + {r020} + {r030} + {r100} + {r170} + {r200} + {r210}   - fp_ind.xbrl 936, 953, 971, 1111, 1251, 1305, 1321, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4105_m.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 2278, 2296, 2372, 2488, 2900, 2935, 2951, 2967, 2983, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 3017, 3035, 3114, 3233, 3648, 3683, 3699, 3715, 3731, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 3765, 3783, 3859, 3975, 4387, 4422, 4438, 4454, 4470, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 3765, 3783, 3859, 3975, 4387, 4422, 4438, 4454, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 4504, 4522, 4598, 4714, 5126, 5161, 5177, 5193, 5209, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 4504, 4522, 4598, 4714, 5126, 5161, 5177, 5193, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
 
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 5242, 5259, 5334, 5447, 5660, 5693, 5708, 5723, 5738, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) v4112_m: [P 01.02 (c010-050)] {r390} = {r010} + {r020} + {r060} + {r120} + {r340} + {r360} + {r370} + {r380}   - fp_ind.xbrl 5242, 5259, 5334, 5447, 5660, 5693, 5708, 5723, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4112_m.xml 10
 
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), $d))) v4113_m: [P 01.02] {r190,c020} = {r190,c010} - {r200,c020} + {r210,c020}   - fp_ind.xbrl 2617, 2636, 2655, 5572, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4113_m.xml 9
 

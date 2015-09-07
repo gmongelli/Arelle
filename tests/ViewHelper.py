@@ -113,6 +113,15 @@ class ViewHelper:
             testData[tableName] = self.testContext.tableLayout.tableInfo
         return testData    
 
+    def dumpDiffTables(self, filename, tableName, testTableInfo, refTableInfo):
+        filePath = getTestDir() + "/tmp/"  + filename + "_" + tableName + "_ref.json"
+        with open(filePath, 'w') as outfile:
+            json.dump(refTableInfo, outfile, indent=1)
+        filePath = getTestDir() + "/tmp/"  + filename + "_" + tableName + "_res.json"
+        with open(filePath, 'w') as outfile:
+            json.dump(testTableInfo, outfile, indent=1)
+        
+        
     def compareTables(self, saveReferences, referencesDir, filename, testData):
         testDataFilename = referencesDir + filename + ".json"
         result = True
@@ -132,6 +141,7 @@ class ViewHelper:
                     testTableInfo = testData[tableName]
                     if len(testTableInfo) != len(refTableInfo):
                         print("Not same number of cells for table " + tableName + " " + filename)
+                        self.dumpDiffTables(filename, tableName, testTableInfo, refTableInfo)
                         result = False
                     else:
                         for idx in range(len(testTableInfo)):
@@ -140,7 +150,9 @@ class ViewHelper:
                             msg = "Not same cell idx=" + str(idx) + " for table " + tableName + " " + filename + " ref=" + ref + " tst=" + tst
                             if tst != ref:
                                 print(msg)
+                                self.dumpDiffTables(filename, tableName, testTableInfo, refTableInfo)
                                 result = False
+                                break
             resultFilePath = getTestDir() + "/tmp/"  + filename + ".json"
             if not(result):
                 print("Creating a result file")

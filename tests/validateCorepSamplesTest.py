@@ -35,6 +35,9 @@ class CorepSampleTest(unittest.TestCase):
         self.cntlrWinMain.fileOpenFile(testFilepath)
         self.viewHelper = ViewHelper(self.cntlrWinMain.getModelXbrl(), self.testContext)
         
+        # make sure we use the proper disclosure system for validation
+        self.cntlrWinMain.config["disclosureSystem"] = "EBA Filing Rules"
+        
         print(" validate")
         self.cntlrWinMain.validate()
         if self.saveLogAndCompare:
