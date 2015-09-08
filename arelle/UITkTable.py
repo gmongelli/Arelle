@@ -65,8 +65,13 @@ class MyToolTip(ToolTip):
         if self.master.mouseMotion(event):
             super(MyToolTip, self).motion(event)
         
-
 class TableCombobox(_Combobox):
+    def __init__(self, master=None, **kw):
+        super(TableCombobox, self).__init__(master, **kw)
+        self.toolTipShown = False
+        self.toolTipText = StringVar()
+        self.toolTip = MyToolTip(self, textvariable=self.toolTipText, wraplength=480, follow_mouse=True, state="disabled")
+        
     @property
     def valueIndex(self):
         value = self.get()
@@ -75,6 +80,23 @@ class TableCombobox(_Combobox):
             return values.index(value)
         return -1
 
+    def mouseMotion(self, event):
+        if self.toolTipShown:
+            return
+        value = self.get()
+        values = self["values"]
+        tooltipText = value
+        idx = 0
+        for v in values:
+            tooltipText += " \n" + v
+            idx += 1
+            if idx == 20:
+                tooltipText += "\n..."
+                break
+        self.toolTipText.set(tooltipText)
+        self.toolTip.configure(state="normal")
+        self.toolTip._show()
+        self.toolTipShown = True
 
 class XbrlTable(TkTableWrapper.Table):
     '''
@@ -200,7 +222,7 @@ class XbrlTable(TkTableWrapper.Table):
                         self.headerToolTip.configure(state="normal")
                         self.headerToolTip._show()
                         hideToolTip = False
-                        self.toolTipShown = True                     
+                        self.toolTipShown = True
             else:
                 hideToolTip = False
                 
@@ -465,8 +487,6 @@ class XbrlTable(TkTableWrapper.Table):
         # Return (and Enter): go down
         self.bind("<Tab>", func=self.cellRight)
         self.bind("<Return>", func=self.cellDown)
-        if False:
-            self.bind("<Motion>", func=self.mouseMotion)
 
         # Configure the graphical appearance of the cells by using tags
         self.tag_configure('sel', background = '#b00e00e60',
@@ -551,6 +571,9 @@ class XbrlTable(TkTableWrapper.Table):
         return (coordinate.y < self.titleRows 
                 or coordinate.x < self.titleColumns)
 
+    def isComboCell(self, coordinate):
+        return (coordinate.y < self.titleRows 
+                or coordinate.x < self.titleColumns)
 
     def getCoordinatesOfModifiedCells(self):
         return self.modifiedCells.keys()
