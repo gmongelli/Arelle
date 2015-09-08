@@ -8,13 +8,13 @@ try:
     import regex as re
 except ImportError:
     import re
-from arelle.UiUtil import (gridHdr)
 
 def getActiveFormula(mainWin):
     selectionList = []
     modelManager =  mainWin.modelManager
     modelXbrl = modelManager.cntlr.getModelXbrl()
-    schemaRef = None
+    schemaRef = "None"
+    maxSingleFormulaRunTime = 0
     
     if modelXbrl is None:
         # for testing purposes
@@ -22,6 +22,7 @@ def getActiveFormula(mainWin):
             label = "checBox #%s" % i
             selectionList.append(SelectionItem(label, label, True))
     else:
+        schemaRef = modelXbrl.getSingleSchemaRef()
         # we use the schema as an identifier for a report of a taxonomy version...
         #TODO: should express this as a report name in a taxonomy version but things are not easily accessed for now
         # get previous settings for this schema if any
@@ -40,23 +41,29 @@ def getActiveFormula(mainWin):
                 except KeyError:
                     pass
             selectionList.append(SelectionItem(vs.id, getVsLabel(vs, modelXbrl), selection))
+            
+        maxSingleFormulaRunTime = modelManager.formulaOptions.maxSingleFormulaRunTime
 
     dialogTitle = _("Active formula selection")
     
-    dialogInfo = (schemaRef if schemaRef is not None else "")
-    dialogInfo = dialogInfo.replace("http://", "")
-    dialog = DialogSelectionList(mainWin, dialogTitle, dialogInfo, selectionList)
+    dialogInfo = schemaRef.replace("http://", "")
+    dialog = DialogSelectionList(mainWin, dialogTitle, dialogInfo, selectionList, maxSingleFormulaRunTime)
     if dialog.accepted:
-        allSelected = True
-        for vs in selectionList:
-            if not(vs.sel):
-                allSelected = False
-                break
-        if allSelected:
-            modelManager.setActiveFormulaForModel(modelXbrl, None)
-        else:
-            newSettings = {vs.itemId: vs.sel for vs in selectionList}
-            modelManager.setActiveFormulaForModel(modelXbrl, newSettings)
+        if schemaRef != "None":
+            allSelected = True
+            for vs in selectionList:
+                if not(vs.sel):
+                    allSelected = False
+                    break
+            if allSelected:
+                # clear useless entries from config
+                modelManager.setActiveFormulaForModel(modelXbrl, None)
+            else:
+                newSettings = {vs.itemId: vs.sel for vs in selectionList}
+                modelManager.setActiveFormulaForModel(modelXbrl, newSettings)
+            modelManager.formulaOptions.maxSingleFormulaRunTime = dialog.getMaxRuntime()
+            mainWin.config["formulaParameters"] = modelManager.formulaOptions.__dict__.copy()
+            mainWin.saveConfig()
 
 def getVsLabel(modelVariableSet, modelXbrl):
     itemId = modelVariableSet.id
@@ -74,6 +81,8 @@ def getVsLabel(modelVariableSet, modelXbrl):
     if modelXbrl.lastEvaluationTimesByModelVariableSetId is not None:
         try:
             lastTime = modelXbrl.lastEvaluationTimesByModelVariableSetId[itemId]
+            if lastTime.startswith("-"):
+                lastTime = ">" + lastTime[1:] + "<"
         except:
             pass
     result = " ".join([label, lastTime, classname, aspectModel, implicitFiltering, test])
@@ -89,13 +98,12 @@ class SelectionItem:
     
 class DialogSelectionList(Toplevel):
     
-    def __init__(self, mainWin, dialogTitle, dialogInfo, selectionList):
-        #TODO: fix checkbox filling when we resize the window
-
+    def __init__(self, mainWin, dialogTitle, dialogInfo, selectionList, maxSingleFormulaRunTime):
         self.parent = mainWin.parent
         self.modelManager = mainWin.modelManager
         super(DialogSelectionList, self).__init__(self.parent)
         self.selectionList = selectionList
+        self.maxSingleFormulaRunTime = maxSingleFormulaRunTime
         
         parentGeometry = re.match("(\d+)x(\d+)[+]?([-]?\d+)[+]?([-]?\d+)", self.parent.geometry())
         dialogX = int(parentGeometry.group(3))
@@ -105,44 +113,61 @@ class DialogSelectionList(Toplevel):
         self.title(dialogTitle)
         
         # first frame with 2 rows and 3 columns
-        # row 0 spans the 3 columns and contains the bodyFrame
-        # row 1 contains buttons in col 1 and 2
-        # all stretch for row 0 col 0
+        # row 0 spans 3 cols and contains entry point
+        # row 1 is used to enter the max runtime for a rule
+        # row 2 spans the 3 columns and contains the bodyFrame
+        # row 3 contains buttons in col 1 and 2
+        # all stretch for row 1 col 0
         self.frame = Frame(self)
-        lbl = Label(self.frame, text=dialogInfo)
-        lbl.grid(row=0, column=0, sticky=(N, E, W), padx=2, pady=2)
         
         self.frame.rowconfigure(0, weight=0)
-        self.frame.rowconfigure(1, weight=3)
-        self.frame.rowconfigure(2, weight=0)
+        self.frame.rowconfigure(1, weight=0)
+        self.frame.rowconfigure(2, weight=3)
+        self.frame.rowconfigure(3, weight=0)
         self.frame.columnconfigure(0, weight=3)
         self.frame.columnconfigure(1, weight=0)
         self.frame.columnconfigure(2, weight=0)
         self.frame.columnconfigure(3, weight=0)
+        self.frame.columnconfigure(4, weight=0)
         self.frame.grid(row=0, column=0, sticky=(N, S, E, W), padx=3, pady=3)
+        
+        y = 0
+        lbl = Label(self.frame, text=dialogInfo)
+        lbl.grid(row=y, column=0, sticky=(N, E, W), padx=2, pady=2)
+        y += 1
+
+        lbl = Label(self.frame, text="Max. formula runtime (sec):")
+        lbl.grid(row=y, column=0, sticky=(N, E), padx=2, pady=2)
+        content = StringVar()
+        content.set(self.maxSingleFormulaRunTime)
+        self.maxFormulaRunTimeEntry = Entry(self.frame, width=10, textvariable=content)
+        self.maxFormulaRunTimeEntry.grid(row=y, column=1, sticky=(N, W), padx=2, pady=2)
+        y += 1
         
         # bodyFrame has 2 rows and 2 cols
         # row 0 col 0 form Text, row 0 col 1 for vscroll
         # row 1 spans the two cols for vscroll
-        bodyFrame = Frame(self.frame, width=500)
+        bodyFrame = Frame(self.frame)
         bodyFrame.columnconfigure(0, weight=3)
         bodyFrame.columnconfigure(1, weight=0)
         bodyFrame.rowconfigure(0, weight=3)
         bodyFrame.rowconfigure(1, weight=0)
-        bodyFrame.grid(row=1, column=0, columnspan=4, sticky=(N, S, E, W), padx=3, pady=3)
+        bodyFrame.grid(row=y, column=0, columnspan=5, sticky=(N, S, E, W), padx=3, pady=3)
+        y += 1
 
         verticalScrollbar = Scrollbar(bodyFrame, orient=VERTICAL)
         horizontalScrollbar = Scrollbar(bodyFrame, orient=HORIZONTAL)
         
+        yy = 0
         self.text = Text(bodyFrame, xscrollcommand=horizontalScrollbar.set, yscrollcommand=verticalScrollbar.set)
-        self.text.grid(row=0, column=0, sticky=(N, S, E, W))
+        self.text.grid(row=yy, column=0, sticky=(N, S, E, W))
+        verticalScrollbar["command"] = self.text.yview
+        verticalScrollbar.grid(row=yy, column=1, sticky=(N, S))   
+        yy += 1
         
         horizontalScrollbar["command"] = self.text.xview
-        horizontalScrollbar.grid(row=1, column=0, sticky=(W, E))
-        verticalScrollbar["command"] = self.text.yview
-        verticalScrollbar.grid(row=0, column=1, sticky=(N, S))        
+        horizontalScrollbar.grid(row=yy, column=0, sticky=(W, E))
         
-        y = 1
         for selectionItem in selectionList:
             label = selectionItem.label.ljust(500)
 
@@ -152,17 +177,16 @@ class DialogSelectionList(Toplevel):
             self.text.window_create("end", window=cb)
             self.text.insert("end", "\n") # force one checkbox per line
 
-            y += 1
             selectionItem.cb = cb
         
         selectAllButton = Button(self.frame, text=_("All"), command=self.selectAll)
-        selectAllButton.grid(row=2, column=0, sticky=(S,E), pady=3)
+        selectAllButton.grid(row=y, column=1, sticky=(S,E), pady=2, padx=2)
         selectNoneButton = Button(self.frame, text=_("None"), command=self.selectNone)
-        selectNoneButton.grid(row=2, column=1, sticky=(S,E), pady=3)
+        selectNoneButton.grid(row=y, column=2, sticky=(S,E), pady=2, padx=2)
         okButton = Button(self.frame, text=_("OK"), command=self.ok)
-        okButton.grid(row=2, column=2, sticky=(S,E,W), pady=3)
+        okButton.grid(row=y, column=3, sticky=(S,E), pady=2, padx=2)
         cancelButton = Button(self.frame, text=_("Cancel"), command=self.close)
-        cancelButton.grid(row=2, column=3, sticky=(S,E,W), pady=3, padx=3)
+        cancelButton.grid(row=y, column=4, sticky=(S,E), pady=2, padx=2)
         
         window = self.winfo_toplevel()
         window.columnconfigure(0, weight=1)
@@ -175,6 +199,15 @@ class DialogSelectionList(Toplevel):
     def setOptions(self):
         for selectionItem in self.selectionList:
             selectionItem.sel = selectionItem.valueVar.get() == "1"
+        try:
+            mx = self.maxFormulaRunTimeEntry.get()
+            maxFormulaRunTimeInt = int(mx)
+            self.maxSingleFormulaRunTime = mx
+        except:
+            pass
+    
+    def getMaxRuntime(self):
+        return self.maxSingleFormulaRunTime        
             
     def ok(self, event=None):
         self.setOptions()

@@ -149,6 +149,7 @@ class FormulaOptions():
         self.traceVariableExpressionCode = False
         self.traceVariableExpressionEvaluation = False
         self.traceVariableExpressionResult = False
+        self.maxSingleFormulaRunTime = 0 # max runtime in secs for a single formula (0 = infinite)
         if isinstance(savedValues, dict):
             self.__dict__.update(savedValues)
             

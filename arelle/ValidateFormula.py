@@ -858,6 +858,13 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         val.modelXbrl.info("formula:trace",
                            _("Formua/assertion IDs restriction: %(ids)s"), 
                            modelXbrl=val.modelXbrl, ids=', '.join(runIDs))
+    maxSingleFormulaRunTime = 0
+    try:
+        mxr = int(formulaOptions.maxSingleFormulaRunTime)
+        if mxr > 0:
+            maxSingleFormulaRunTime = mxr
+    except:
+        pass
 
     # prepare an ordered list of variable sets to be evaluated (this helps for
     # test logs comparison but also for deterministic debugging/tracing from run to run)
@@ -894,6 +901,11 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
         for varSetId in sortedVarSetIds:
             modelVariableSet = modelVariableSetsToEvaludate[varSetId]
             try:
+                if maxSingleFormulaRunTime > 0:
+                    maxSingleFormulaRunTimeTimer = Timer(maxSingleFormulaRunTime, xpathContext.singleFormulaRunTimeExceededCallback)
+                    maxSingleFormulaRunTimeTimer.start()
+                else:
+                    maxSingleFormulaRunTimeTimer = None
                 startedAt = time.time()
                 
                 testing = False
@@ -908,8 +920,16 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                 # use this for a specific single formula
                 #yappi.start()
                 #xpathContext.numMatchCalls = 0
-                
                 evaluate(xpathContext, modelVariableSet)
+                if maxSingleFormulaRunTimeTimer:
+                    maxSingleFormulaRunTimeTimer.cancel()
+                timeExceeded = False
+                if xpathContext.isSingleFormulaRunTimeExceeded: 
+                    xpathContext.isSingleFormulaRunTimeExceeded = False                   
+                    val.modelXbrl.info("formula:maxRunTime",
+                        _("single Formula execution ended after %(mins)s seconds %(varSetId)s"), 
+                        modelObject=val.modelXbrl, mins=maxSingleFormulaRunTime, varSetId=varSetId)
+                    timeExceeded = True
                 
                 #yappi.get_func_stats().print_all(out=sys.stdout, columns= {0:("name", 50), 1:("ncall", 12), 2:("tsub", 10), 3: ("ttot", 10), 4:("tavg", 10)})
                 #yappi.stop()    
@@ -917,6 +937,8 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                 val.modelXbrl.profileStat(modelVariableSet.localName + "_" + varSetId)              
                 diffTime = time.time() - startedAt
                 formattedTime = "{:.2f}s".format(diffTime)
+                if timeExceeded:
+                    formattedTime = "-" + formattedTime # use a negative number to indicate stopped due to runtime exceeded
                 val.modelXbrl.lastEvaluationTimesByModelVariableSetId[modelVariableSet.id] = formattedTime
                 if testing:
                     print("end " + varSetId + " " + formattedTime)                

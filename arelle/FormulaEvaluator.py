@@ -63,6 +63,8 @@ def evaluate(xpCtx, varSet, variablesInScope=False, uncoveredAspectFacts=None):
         initialTraceCount = xpCtx.modelXbrl.logCount.get(logging.getLevelName('INFO'), 0)
         
         evaluateVar(xpCtx, varSet, 0, {}, uncoveredAspectFacts)
+        if xpCtx.isSingleFormulaRunTimeExceeded:
+            return
         
         if isinstance(varSet, ModelExistenceAssertion):
             prog = varSet.testProg
@@ -173,6 +175,8 @@ def processAssertionResult(xpCtx, result, varSet):
     
     
 def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
+    if xpCtx.isSingleFormulaRunTimeExceeded:
+        return
     if varIndex == len(varSet.orderedVariableRelationships):
         evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts)            
     else:
@@ -493,6 +497,8 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                  modelObject=var, variableType=vb.resourceElementName, variable=varQname, result=str(evaluationResult))
         if xpCtx.isRunTimeExceeded: raise XPathContext.RunTimeExceededException()
         evaluateVar(xpCtx, varSet, varIndex + 1, cachedFilteredFacts, uncoveredAspectFacts)
+        if xpCtx.isSingleFormulaRunTimeExceeded:
+            return
         xpCtx.inScopeVars.pop(varQname)
         if overriddenInScopeVar is not None:  # restore overridden value if there was one
             xpCtx.inScopeVars[varQname] = overriddenInScopeVar

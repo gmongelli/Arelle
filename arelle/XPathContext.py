@@ -73,7 +73,6 @@ class RunTimeExceededException(Exception):
     def __repr__(self):
         return _("Formula run time exceeded")
 
-   
 def create(modelXbrl, inputXbrlInstance=None, sourceElement=None):
     return XPathContext(modelXbrl, 
                         inputXbrlInstance if inputXbrlInstance else modelXbrl.modelDocument,
@@ -95,6 +94,7 @@ class XPathContext:
         #self.numMatchCalls = 0
         self.modelXbrl = modelXbrl
         self.isRunTimeExceeded = False
+        self.isSingleFormulaRunTimeExceeded = False
         self.inputXbrlInstance = inputXbrlInstance
         self.outputLastContext = {}   # last context element output per output instance
         self.outputLastUnit = {}
@@ -130,6 +130,9 @@ class XPathContext:
         
     def runTimeExceededCallback(self):
         self.isRunTimeExceeded = True
+        
+    def singleFormulaRunTimeExceededCallback(self):
+        self.isSingleFormulaRunTimeExceeded = True
         
     @property
     def formulaOptions(self):
