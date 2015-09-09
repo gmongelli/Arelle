@@ -10,6 +10,11 @@ from arelle.plugin import DevTesting
 from arelle.plugin.EbaCompliance import (EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE, EBA_TAXONOMY_VERSION_2_3_1)
 from tests.ViewHelper import ViewHelper, initUI
 
+#TODO: CAUTION: this test should be adapted to setup proper config parameters...
+#      (I lost a couple of hours figuring out why disabled cells were no more shown as
+#       such after some modifs and the loss of my original config.
+#       e.g. Ignore dimensional validity should not be checked 
+
 '''
 Information about a report entry point
 '''
@@ -128,6 +133,7 @@ class ThisTest:
 
 class TestNewSaveViewClose(unittest.TestCase):
     def test(self):
+        print("newSaveViewClose")
         test = ThisTest()
         initUI(test)  
         test.saveReferences = False # <- set this to create new references

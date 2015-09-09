@@ -55,6 +55,7 @@ class CorepSampleTest(unittest.TestCase):
         return result        
          
     def test(self):
+        print("validateCorepSamplesTest")
         self.saveLogAndCompare = True # False to run multiple concurrent tests (log contention)
         startedAt = time.time()
         initUI(self)

@@ -4,8 +4,6 @@
 
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS, eba_SC, eba_ZZ.' - sbpimv_ind.xbrl 
 
-[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - sbpimv_ind.xbrl 
-
 loaded in C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\sbpimv_ind.xbrl
 
 validated in - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\sbpimv_ind.xbrl

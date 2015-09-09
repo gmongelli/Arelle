@@ -10,6 +10,7 @@ from tests.CorepSampleFiles import getCorepFiles
 class CorepSampleTest(unittest.TestCase):
          
     def test(self):
+        print("CorepSampleTest")
         startedAt = time.time()
         initUI(self)
         self.saveReferences = False # <- set this to create new references

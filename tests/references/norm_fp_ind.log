@@ -718,8 +718,6 @@
 
 [message:eba_v4421_s] v4421_s: [P 01.02 (r200;230;260;290;320, c020;030;040;050)] {P 01.02} <= 0 - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/val/vr-v4421_s.xml 9
 
-[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - fp_ind.xbrl 
-
 loaded in C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\fp_ind.xbrl
 
 validated in - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\fp_ind.xbrl

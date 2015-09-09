@@ -1,18 +1,8 @@
-loaded in 35.54 secs C:\Projects\xbrl\areba\Arelle\tests/eba/other\COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl
+loaded in 35.09 secs C:\Projects\xbrl\areba\Arelle\tests/eba/other\COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl
 -----_____-----
-views 0.99 secs
+views 0.95 secs
 -----_____-----
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS, eba_SC, xsi.' - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 
------_____-----
-[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 
------_____-----
-[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1291, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1216, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -20,7 +10,19 @@ views 0.99 secs
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1145, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1137, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1268, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1194, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -32,11 +34,11 @@ views 0.99 secs
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1194, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1220, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1220, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1141, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -44,15 +46,11 @@ views 0.99 secs
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1145, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1272, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1222, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1272, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -61,10 +59,6 @@ views 0.99 secs
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1198, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1139, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -92,15 +86,15 @@ views 0.99 secs
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1143, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
-[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
------_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1307, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1283, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1143, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -112,11 +106,11 @@ views 0.99 secs
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1137, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1139, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1141, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1314, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
@@ -124,7 +118,11 @@ views 0.99 secs
 -----_____-----
 [message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1314, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1216, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[message:eba_v0010_h] v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) v0010_h: [C 07.00.a (r010;020;030;040;050;060;070;080;090;110;130;140;150;160;170;180;190;200;220;230;240;250;260;270;280, All sheets)] {c040} = +{c010} + {c030}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1291, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0010_h.xml 10
 -----_____-----
 [message:eba_v0172_m] v0172_m: [C 01.00 (c010)] {r020} = {r030} + {r130} + {r180} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r300} + {r340} + {r370} + {r380} + {r390} + {r430} + {r440} + {r450} + {r460} + {r470} + {r471} + {r472} + {r480} + {r490} + {r500} + {r510} + {r520} + {r524} + {r529} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0172_m.xml 9
 -----_____-----
@@ -175,14 +173,6 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1178, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
------_____-----
-[message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1304, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
------_____-----
-[message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
------_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1217, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
 [message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
@@ -207,11 +197,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1245, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1195, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
 [message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1195, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1245, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
 [message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
@@ -229,17 +219,13 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1284, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
+[message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1285, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1178, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
+[message:eba_v0306_m] v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1266, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
------_____-----
-[message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1335, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0306_m: [C 07.00.a (r010-090;110;130, All sheets)] {c110} = {c040} + {c090} + {c100}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1304, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0306_m.xml 10
 -----_____-----
 [message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
@@ -285,97 +271,17 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1334, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+[message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1316, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1266, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+[message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1267, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1285, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
+[message:eba_v0307_m] v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1197, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1299, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1274, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1250, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1225, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1152, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1153, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1228, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1254, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1154, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1204, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1229, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1155, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1256, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1306, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1183, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1185, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1286, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1336, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0308_m] v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180}) - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c), iaf:numeric-unary-minus((iaf:numeric-multiply(0.8, $d))), iaf:numeric-unary-minus((iaf:numeric-multiply(0.5, $e)))))) v0308_m: [C 07.00.a (r010-060;080;140-280, All sheets)] {c200} = {c150} - {c160} - (0.8 * {c170}) - (0.5 * {c180})   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1313, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0308_m.xml 10
------_____-----
-[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1218, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) v0307_m: [C 07.00.a (r010-090;110;130, All sheets)] {c150} = {c110} + {c120} + {c130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1335, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0307_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -383,11 +289,15 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1244, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1218, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1219, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1136, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1244, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -395,11 +305,15 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1245, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1219, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1319, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1245, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -435,19 +349,19 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1149, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1199, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1150, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1149, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1200, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1150, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -463,15 +377,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1227, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1277, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1253, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -479,7 +385,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1278, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1227, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1253, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -487,11 +397,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1135, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1136, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1278, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -523,7 +429,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1260, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1210, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -539,11 +445,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1210, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1260, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1261, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1211, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -551,7 +457,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1211, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1261, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -563,7 +469,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1237, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1135, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -571,7 +477,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1288, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1237, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -579,7 +485,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1289, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1288, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
@@ -587,15 +493,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
 -----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1289, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
+[message:eba_v0310_m] v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
+-----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f))) v0310_m: [C 07.00.a (c010;030-150;200-220, All sheets)] {r010} = {r070} + {r080} + {r090} + {r110} + {r130}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1290, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0310_m.xml 10
------_____-----
-[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1254, 1256, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
------_____-----
-[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1322, 1323, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
@@ -615,7 +517,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1228, 1229, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1254, 1256, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+-----_____-----
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1322, 1323, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
@@ -623,11 +529,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1232, 1233, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1164, 1167, 1170, 1173, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1164, 1167, 1170, 1173, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1232, 1233, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
@@ -639,7 +545,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1204, 1336, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1228, 1229, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
@@ -655,15 +561,15 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1204, 1336, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+-----_____-----
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+-----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1262, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1263, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
------_____-----
-[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1191, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
 [message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
@@ -709,6 +615,10 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1185, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
 -----_____-----
+[message:eba_v0312_m] v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p))) v0312_m: [C 07.00.a (c150-240, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r210} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1191, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0312_m.xml 10
+-----_____-----
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1133, 1137, 1139, 1141, 1143, 1145, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
@@ -735,15 +645,11 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1220, 1222, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
------_____-----
-[message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
------_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1221, 1223, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1202, 1205, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1220, 1222, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
@@ -751,11 +657,7 @@ Message log error: unsupported format character ')' (0x29) at index 91
 -----_____-----
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1291, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
------_____-----
-[message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
------_____-----
-[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1272, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1202, 1205, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
@@ -772,6 +674,14 @@ Message log error: unsupported format character ')' (0x29) at index 91
 [message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1180, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
+-----_____-----
+[message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1291, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
+-----_____-----
+[message:eba_v0313_m] v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280} - http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o))) v0313_m: [C 07.00.a (c010;030;040, All sheets)] {r010} = {r140} + {r150} + {r160} + {r170} + {r180} + {r190} + {r200} + {r220} + {r230} + {r240} + {r250} + {r260} + {r270} + {r280}   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1272, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v0313_m.xml 10
 -----_____-----
 Message: [message:eba_v0320_m] v0320_m: [C 07.00.a (All sheets)] {r180,c215} = {r180,c200} * 20%  
 Message log error: incomplete format
@@ -811,5 +721,5 @@ Message log error: incomplete format
 -----_____-----
 [formula:assertionUnsatisfied] iaf:numeric-less-equal-than($a, 0) v3685_s: [C 01.00 (r070;080;090;091;092;170;260;290;300;310;320;340;350;370;380;390;400;430;440;450;460;470;471;472;480;490;500;510;524;580;590;620;621;622;690;700;710;720;744;800;810;840;841;842;930;940;950;974, c010)] {C 01.00} <= 0   - COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl 1357, http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2014-07-31/val/vr-v3685_s.xml 9
 -----_____-----
-validated in 55.95 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\other\COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl
+validated in 54.25 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\other\COFREP-P00000078-2014-12-SCOREP-00-L-N-S-SCOREP.xbrl
 -----_____-----

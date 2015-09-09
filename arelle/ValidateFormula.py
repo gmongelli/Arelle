@@ -20,7 +20,7 @@ from arelle.ModelRenderingObject import (ModelRuleDefinitionNode, ModelRelations
 from arelle.ModelObject import (ModelObject)
 from arelle.ModelValue import (qname,QName)
 from arelle import (XbrlConst, XmlUtil, ModelXbrl, ModelDocument, XPathParser, XPathContext, FunctionXs,
-                    ValidateXbrlDimensions) 
+                    ValidateXbrlDimensions)
 
 arcroleChecks = {
     XbrlConst.equalityDefinition:   (None, 
@@ -912,6 +912,8 @@ def validate(val, xpathContext=None, parametersOnly=False, statusMsg='', compile
                 varSetId = (modelVariableSet.id or modelVariableSet.xlinkLabel)
                 if testing:
                     if False and "eba_v4141_m" != varSetId: # tracing a specific formula
+                        continue
+                    if False and "s2md_BV204_2" != varSetId: # tracing a specific formula
                         continue
                 val.modelXbrl.profileActivity("... evaluating " + varSetId, minTimeToShow=10.0)
                 val.modelXbrl.modelManager.showStatus(_("evaluating {0}").format(varSetId))

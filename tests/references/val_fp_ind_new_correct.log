@@ -1,10 +1,8 @@
-loaded in 18.80 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\fp_ind_new_correct.xbrl
+loaded in 17.61 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\fp_ind_new_correct.xbrl
 -----_____-----
-views 1.03 secs
+views 0.98 secs
 -----_____-----
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS.' - fp_ind_new_correct.xbrl 
 -----_____-----
-[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - fp_ind_new_correct.xbrl 
------_____-----
-validated in 325.85 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\fp_ind_new_correct.xbrl
+validated in 279.01 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\fp_ind_new_correct.xbrl
 -----_____-----

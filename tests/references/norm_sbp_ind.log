@@ -2,8 +2,6 @@
 
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS, eba_EC, eba_GA, eba_SC, eba_TI, eba_ZZ.' - sbp_ind.xbrl 
 
-[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - sbp_ind.xbrl 
-
 loaded in C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\sbp_ind.xbrl
 
 validated in - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\sbp_ind.xbrl

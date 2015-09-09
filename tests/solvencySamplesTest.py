@@ -10,6 +10,7 @@ from tests.SolvencySampleFiles import getSolvencyFiles
 class SolvencySampleTest(unittest.TestCase):         
          
     def test(self):
+        print("SolvencySampleTest")
         startedAt = time.time()
         initUI(self)
         self.saveReferences = False  # <- set this to create new references

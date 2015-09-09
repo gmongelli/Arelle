@@ -184,7 +184,8 @@ def evaluateVar(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFac
 
 def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
     if TRACE_BINDING:
-        print("evaluateVarBis " + str(varIndex) + " {:.2f}".format(time.time() - xpCtx.startedAt))
+        vName = str(varSet.orderedVariableRelationships[varIndex-1].variableQname)
+        print("evaluateVarBis " + str(varIndex) + " " + vName + " {:.2f}".format(time.time() - xpCtx.startedAt))
     # check if all fact vars are fallen back
     anyFactVar = False; anyBoundFactVar = False
     for vb in xpCtx.varBindings.values():
@@ -199,7 +200,7 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
                  _("Variable set %(xlinkLabel)s skipped evaluation, all fact variables have fallen back %(expression)s %(label)s"),
                  modelObject=varSet, xlinkLabel=varSet.xlinkLabel, expression=varsetExpressionString(varSet), label=varSet.logLabel())
         if TRACE_BINDING:
-            print("skip")
+            print("  skip")
         return
     # record completed evaluation, for fallback blocking purposes
     fbVars = set(vb.qname for vb in xpCtx.varBindings.values() if vb.isFallback)
@@ -222,7 +223,7 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
         if xpCtx.isRunTimeExceeded: raise XPathContext.RunTimeExceededException()
         xpCtx.modelXbrl.profileActivity("...   evaluation {0} (skipped)".format(varSet.evaluationNumber), minTimeToShow=10.0)
         if TRACE_BINDING:
-            print("unnecessary")
+            print("  unnecessary")
         return
     xpCtx.modelXbrl.profileActivity("...   evaluation {0}".format(varSet.evaluationNumber), minTimeToShow=10.0)
     for vQn, vBoundFact in thisEvaluation.items(): # varQn, fact or tuple of facts bound to var
@@ -231,7 +232,7 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
         xpCtx.evaluationHashDicts[vQn][hash(vBoundFact)].add(len(xpCtx.evaluations))  # hash and eval index        
     xpCtx.evaluations.append(thisEvaluation)  # complete evaluations tuple
     if TRACE_BINDING:
-        print("evaluate preconditions" + " {:.2f}".format(time.time() - xpCtx.startedAt))
+        print("  evaluate preconditions" + " {:.2f}".format(time.time() - xpCtx.startedAt))
     # evaluate preconditions
     for precondition in varSet.preconditions:
         result = precondition.evalTest(xpCtx)
@@ -252,7 +253,7 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
             return
         
     if TRACE_BINDING:
-        print("evaluate variable set")
+        print("  evaluate variable set")
     # evaluate variable set
     if isinstance(varSet, ModelExistenceAssertion):
         varSet.evaluationsCount += 1
@@ -334,7 +335,7 @@ def evaluateVarBis(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspect
                     _("Variable set chained in scope of variable set %(variableset)s \nException: \n%(error)s"), 
                     modelObject=(varSet, varScopeRel.toModelObject), variableSet=varSet.logLabel(), error=err.message)
     if TRACE_BINDING:
-        print("end evaluate variable set" + " {:.2f}".format(time.time() - xpCtx.startedAt))
+        print("end evaluate variable set" + " {:.2f}".format(time.time() - xpCtx.startedAt)+ " " + vName)
             
 
 def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncoveredAspectFacts):
@@ -342,7 +343,7 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
     varRel = varSet.orderedVariableRelationships[varIndex]
     varQname = varRel.variableQname
     if TRACE_BINDING:
-        print("produceVariableBindings " + str(varIndex) + " {:.2f}".format(time.time() - xpCtx.startedAt) + " " + str(varQname))
+        print("start produceVariableBindings " + str(varIndex) + " " + str(varQname) + " {:.2f}".format(time.time() - xpCtx.startedAt))
     vb = VariableBinding(xpCtx, varRel)
     var = vb.var
     if vb.isFactVar:
@@ -352,7 +353,7 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
         varHasNilFacts = var.nils == "true"
         if varHasNoVariableDependencies and varQname in cachedFilteredFacts:
             if TRACE_BINDING:
-                print("produceVariableBindings cached facts")
+                print("  produceVariableBindings cached facts")
             facts, vb.aspectsDefined, vb.aspectsCovered = cachedFilteredFacts[varQname]
             if xpCtx.formulaOptions.traceVariableFilterWinnowing:
                 xpCtx.modelXbrl.info("formula:trace",
@@ -368,7 +369,7 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
             if groupFilteredFactsKey in cachedFilteredFacts:
                 facts = cachedFilteredFacts[groupFilteredFactsKey]
                 if TRACE_BINDING:
-                    print("produceVariableBindings cached groupFilteredFacts")
+                    print("  produceVariableBindings cached groupFilteredFacts")
                 if xpCtx.formulaOptions.traceVariableFilterWinnowing:
                     xpCtx.modelXbrl.info("formula:trace",
                          _("Fact Variable %(variable)s: start with %(factCount)s facts previously cached before variable filters"), 
@@ -377,7 +378,7 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                 facts = set.union(*[(inst.factsInInstance if varHasNilFacts else inst.nonNilFactsInInstance)
                                     for inst in vb.instances])
                 if TRACE_BINDING:
-                    print("produceVariableBindings cached facts varHasNilFacts=" + str(varHasNilFacts) + " numfacts= " + str(len(facts)))
+                    print("  produceVariableBindings cached facts varHasNilFacts=" + str(varHasNilFacts) + " numfacts= " + str(len(facts)))
                 if xpCtx.formulaOptions.traceVariableFilterWinnowing:
                     xpCtx.modelXbrl.info("formula:trace",
                          _("Fact Variable %(variable)s filtering: start with %(factCount)s facts"), 
@@ -385,16 +386,16 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                     
                 facts = filterFacts(xpCtx, vb, facts, varSet.groupFilterRelationships, "group")
                 if TRACE_BINDING:
-                    print("filterFacts1" + " {:.2f}".format(time.time() - xpCtx.startedAt) + " numfacts= " + str(len(facts)))
+                    print("  filterFacts1" + " {:.2f}".format(time.time() - xpCtx.startedAt) + " numfacts= " + str(len(facts)))
                 
                 vb.aspectsCovered.clear()  # group boolean sub-filters may have covered aspects
                 cachedFilteredFacts[groupFilteredFactsKey] = facts
             
             if TRACE_BINDING:
-                print("filterFacts2 start" + " {:.2f}".format(time.time() - xpCtx.startedAt))
+                print("  filterFacts2 start" + " {:.2f}".format(time.time() - xpCtx.startedAt))
             facts = filterFacts(xpCtx, vb, facts, var.filterRelationships, None) # also finds covered aspects (except aspect cover filter dims, not known until after this complete pass)
             if TRACE_BINDING:
-                print("filterFacts2 end" + " {:.2f}".format(time.time() - xpCtx.startedAt) + " numfacts= " + str(len(facts)))
+                print("  filterFacts2 end" + " {:.2f}".format(time.time() - xpCtx.startedAt) + " numfacts= " + str(len(facts)))
             # adding dim aspects must be done after explicit filterin
             for fact in facts:
                 if fact.isItem and fact.context is not None:
@@ -409,15 +410,22 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                 # uncovered aspects of the prior variable bindings may include aspects not in current variable binding
                 uncoveredAspects = (vb.aspectsDefined | _DICT_SET(uncoveredAspectFacts.keys())) - vb.aspectsCovered - {Aspect.DIMENSIONS}
                 if TRACE_BINDING:
-                    print("implicitFilter start" + " {:.2f}".format(time.time() - xpCtx.startedAt))
+                    print("  implicitFilter start" + " {:.2f}".format(time.time() - xpCtx.startedAt))
                 facts = implicitFilter(xpCtx, vb, facts, uncoveredAspects, uncoveredAspectFacts)
                 if TRACE_BINDING:
-                    print("implicitFilter end" + " {:.2f}".format(time.time() - xpCtx.startedAt))
+                    print("  implicitFilter end" + " {:.2f}".format(time.time() - xpCtx.startedAt))
                 if (considerFallback and varHasNoVariableDependencies and 
                     factCount and
-                    factCount - len(facts) == 0 and
+                    
+                    #TODO: check next condition why would we need to considere fallback if filter gives results and we have binding values?
+                    len(facts) > 0 and
+                    #factCount - len(facts) == 0 and
+                    
+                    
                     len(xpCtx.varBindings) > 1 and
                     all((len(_vb.aspectsDefined) == len(vb.aspectsDefined) for _vb in xpCtx.varBindings.values()))):
+                    if TRACE_BINDING:
+                        print("  considerFallback set to false")
                     considerFallback = False
         vb.facts = facts
         if xpCtx.formulaOptions.traceVariableFiltersResult:
@@ -440,6 +448,8 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
         else:
             contextItem = xpCtx.modelXbrl.modelDocument.xmlRootElement  # default is standard input instance
         vb.values = xpCtx.flattenSequence( xpCtx.evaluate(var.selectProg, contextItem=contextItem) )
+        if TRACE_BINDING:
+            print("  vb.isGeneralVar values=" + str(vb.values))
         if xpCtx.formulaOptions.traceVariableExpressionResult:
             xpCtx.modelXbrl.info("formula:trace",
                  _("General Variable %(variable)s: select result %(result)s"),
@@ -457,7 +467,7 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
                 from arelle.XPathParser import OperationDef
                 if isinstance(prog[1], OperationDef):
                     op = prog[1]
-                    if "iaf:numeric-equal($a, iaf:sum(" in str(op.sourceStr) and str(op.name) == "iaf:numeric-equal":
+                    if re.match("iaf:numeric-equal\(\$[a-z], iaf:sum\(\((\$[a-z],? ?)(\$[a-z],? ?)*\)\)\)", op.sourceStr) is not None:
                         msgFacts = ""
                         for f in vb.facts:
                             try:
@@ -480,7 +490,7 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
         print("evaluationResults varIndex=" + str(varIndex) + " {:.2f}".format(time.time() - xpCtx.startedAt))
     for evaluationResult in vb.evaluationResults(xpCtx):
         if TRACE_BINDING:
-            print("evaluationResult varIndex=" + str(varIndex) + " idx=" + str(idx) + " {:.2f}".format(time.time() - xpCtx.startedAt))
+            print("evaluationResult varIndex=" + str(varIndex) + " " + str(varQname) + " idx=" + str(idx) + " {:.2f}".format(time.time() - xpCtx.startedAt) + str(evaluationResult))
             idx += 1
         overriddenInScopeVar = xpCtx.inScopeVars.get(varQname)
         xpCtx.inScopeVars[varQname] = evaluationResult
@@ -511,6 +521,8 @@ def produceVariableBindings(xpCtx, varSet, varIndex, cachedFilteredFacts, uncove
     vb.close() # dereference
     if overriddenVarBinding is not None:
         xpCtx.varBindings[varQname] = overriddenVarBinding
+    if TRACE_BINDING:
+        print("end produceVariableBindings " + str(varIndex) + " " + str(varQname) + " {:.2f}".format(time.time() - xpCtx.startedAt))
     
     
 def filterFacts(xpCtx, vb, facts, filterRelationships, filterType):
@@ -520,7 +532,7 @@ def filterFacts(xpCtx, vb, facts, filterRelationships, filterType):
     if orFilter: 
         factSet = set()
     if TRACE_BINDING:
-        print("filterFacts start filterType= " +  str(filterType) )           
+        print("   filterFacts start filterType= " +  str(filterType) )           
     for varFilterRel in filterRelationships:
         _filter = varFilterRel.toModelObject
         if isinstance(_filter,ModelFilter):  # relationship not constrained to real filters
@@ -1241,7 +1253,7 @@ class VariableBinding:
                 except:
                     factsSubPartitionInfo[key] = 1
             
-        if TRACE_BINDING:
+        if TRACE_PARTITIONS:
             print("matchesSubPartitions end= ")
         return subPartitions
  
@@ -1250,10 +1262,10 @@ class VariableBinding:
         if self.isFactVar:
             if self.isBindAsSequence and self.facts:
                 if TRACE_BINDING:                
-                    print("factsPartitions" + " {:.2f}".format(time.time() - xpCtx.startedAt))
-                    print(str(len(self.facts)) + " facts")
-                    print(str(len(self.aspectsDefined)) + " aspectsDefined " + str(self.aspectsDefined))
-                    print(str(len(self.aspectsCovered)) + " aspectsCovered " + str(self.aspectsCovered))
+                    print("   evaluationResults factsPartitions" + " {:.2f}".format(time.time() - xpCtx.startedAt))
+                    print("   evaluationResults " + str(len(self.facts)) + " facts")
+                    print("   evaluationResults " + str(len(self.aspectsDefined)) + " aspectsDefined " + str(self.aspectsDefined))
+                    print("   evaluationResults " + str(len(self.aspectsCovered)) + " aspectsCovered " + str(self.aspectsCovered))
                 # change: order aspects to get deterministic handling - and most importantly performance - from run to run
                 for factsPartition in factsPartitions(self.xpCtx, self.facts, orderAspects(self.aspectsDefined - self.aspectsCovered)):
                     for matchesSubPartition in self.matchesSubPartitions(factsPartition, orderAspects(self.aspectsDefined), self.xpCtx):
@@ -1262,7 +1274,7 @@ class VariableBinding:
                         self.yieldedEvaluation = matchesSubPartition
                         self.isFallback = False
                         if TRACE_BINDING:
-                            print("yield" + " {:.2f} ".format(time.time() - xpCtx.startedAt) )
+                            print("   yield" + " {:.2f} ".format(time.time() - xpCtx.startedAt) )
                         yield matchesSubPartition
             else:
                 for fact in self.facts:
@@ -1272,12 +1284,16 @@ class VariableBinding:
                     self.isFallback = False
                     yield fact
             if self.values:
+                if TRACE_BINDING:                
+                    print("  evaluationResults fallback" )
                 self.yieldedFact = None
                 self.yieldedFactContext = None
                 self.yieldedEvaluation = "fallback"
                 self.isFallback = True
                 yield self.values
         elif self.isGeneralVar:
+            if TRACE_BINDING:                
+                print("  evaluationResults isGeneralVar" )
             self.yieldedFact = None
             self.yieldedFactContext = None
             self.isFallback = False
@@ -1290,6 +1306,8 @@ class VariableBinding:
                     self.yieldedEvaluation = value
                     yield value
         elif self.isParameter:
+            if TRACE_BINDING:                
+                print("  evaluationResults isParameter" )
             self.yieldedFact = None
             self.yieldedEvaluation = None
             self.isFallback = False

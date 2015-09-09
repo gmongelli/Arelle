@@ -1,12 +1,10 @@
-loaded in 3.05 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\sbpimv_ind.xbrl
+loaded in 3.32 secs C:\Projects\xbrl\areba\Arelle\tests/eba/2.3.1\sbpimv_ind.xbrl
 -----_____-----
-views 0.53 secs
+views 0.56 secs
 -----_____-----
 [EBA.2.22] Unused xbrli:unit nodes SHOULD NOT be present in the instance: uEUR. - sbpimv_ind.xbrl 5
 -----_____-----
 [EBA.3.4] There SHOULD be no unused prefixes but these were declared: eba_AS, eba_SC, eba_ZZ.' - sbpimv_ind.xbrl 
 -----_____-----
-[xbrl.5.2.5.2:inferringPrecision] Validating calculations inferring precision. - sbpimv_ind.xbrl 
------_____-----
-validated in 0.93 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\sbpimv_ind.xbrl
+validated in 0.96 secs - C:\Projects\xbrl\areba\Arelle\tests\eba\2.3.1\sbpimv_ind.xbrl
 -----_____-----
