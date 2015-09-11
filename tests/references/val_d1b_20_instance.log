@@ -1,0 +1,178 @@
+loaded in 8.70 secs C:\Projects\xbrl\areba\Arelle\tests/solvency/2.0/random\d1b_20_instance.xbrl
+-----_____-----
+views 0.58 secs
+-----_____-----
+[message:s2md_BV134_1] BV134_1 : {S.25.01.01.02,r0200,c0100}={S.25.01.01.01,r0100,c0040}+{S.25.01.01.02,r0120,c0100}+{S.25.01.01.02,r0130,c0100}+{S.25.01.01.02,r0140,c0100}+{S.25.01.01.02,r0150,c0100}+{S.25.01.01.02,r0160,c0100} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv134_1.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g))) "The item ""Solvency Capital Requirement excluding capital add-on"" is different from the sum of ""Gross Basic Solvency Capital Requirement"", ""Adjustment due to RFF/MAP nSCR aggregation"", ""Operational risk"", ""Loss-absorbing capacity of technical provisions"", ""Loss-absorbing capacity of deferred taxes"" and ""Capital requirement for business operated in accordance with Art. 4 of Directive 2003/41/EC"""   - d1b_20_instance.xbrl 2239, 2342, 2454, 2578, 2593, 2636, 2901, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv134_1.xml 11
+-----_____-----
+[message:s2md_BV136_1] BV136_1 : {S.25.01.01.02,r0220}={S.25.01.01.02,r0200}+{S.25.01.01.02,r0210} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv136_1.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Solvency Capital Requirement"" is different from the sum of ""Solvency Capital Requirement excluding capital add-on"" and ""Capital add-ons already set"""   - d1b_20_instance.xbrl 2327, 2636, 3155, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv136_1.xml 11
+-----_____-----
+[message:s2md_BV254_1_1] BV254_1_1 : {S.25.01.01.01,r0100}=sum({S.25.01.01.01,(r0010-0070)}) - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv254_1_1.xml 12
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum($b)) "The item ""Basic solvency capital requirement"" is different from the sum of the item above. Please note that it shall include diversification effects. "   - d1b_20_instance.xbrl 2254, 2298, 2440, 2468, 2482, 2496, 2510, 2524, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv254_1_1.xml 12
+-----_____-----
+[message:s2md_BV254_1_1] BV254_1_1 : {S.25.01.01.01,r0100}=sum({S.25.01.01.01,(r0010-0070)}) - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv254_1_1.xml 12
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum($b)) "The item ""Basic solvency capital requirement"" is different from the sum of the item above. Please note that it shall include diversification effects. "   - d1b_20_instance.xbrl 2239, 2283, 2356, 2370, 2384, 2398, 2412, 2426, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv254_1_1.xml 12
+-----_____-----
+[message:s2md_BV255_1_1] BV255_1_1 : {S.25.01.01.01,c0040}={S.25.01.01.01,c0030} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv255_1_1.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, $b) "The item ""Net solvency capital requirement"" for ""Intangible asset risk"" is different from the one reported in ""Gross solvency capital requirement"". Future discretionary benefits do not affect intangible asset risk."   - d1b_20_instance.xbrl 2398, 2496, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv255_1_1.xml 11
+-----_____-----
+[message:s2md_BV313_1_4] BV313_1_4 : {S.02.01.08.01,r0230}={S.02.01.08.01,r0240}+{S.02.01.08.01,r0250}+{S.02.01.08.01,r0260} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv313_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Loans and mortgages"" is different from the sum of ""Loans on policies""  ""Loans and mortgages to individuals"" and ""Other loans and mortgages"""   - d1b_20_instance.xbrl 2208, 2209, 2210, 2221, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv313_1_4.xml 11
+-----_____-----
+[message:s2md_BV314_1_4] BV314_1_4 : {S.02.01.08.01,r0270}={S.02.01.08.01,r0280}+{S.02.01.08.01,r0310}+{S.02.01.08.01,r0340} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv314_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Reinsurance recoverables from:"" is different from the sum of ""Reinsurance recoverables from Non-life and health similar to non-life"", ""Reinsurance recoverables from: Life and health similar to life, excluding health and index-linked and unit-linked"" and ""Reinsurance recoverables from: Life index-linked and unit-linked"""   - d1b_20_instance.xbrl 356, 1131, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv314_1_4.xml 11
+-----_____-----
+[message:s2md_BV315_1_4] BV315_1_4 : {S.02.01.08.01,r0280}={S.02.01.08.01,r0290}+{S.02.01.08.01,r0300} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv315_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Reinsurance recoverables from Non-life and health similar to non-life"" is different from the sum of ""Reinsurance recoverables from: Non-life excluding health"" and ""Reinsurance recoverables from: Health similar to non-life"""   - d1b_20_instance.xbrl 1131, 2091, 2191, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv315_1_4.xml 11
+-----_____-----
+[message:s2md_BV316_1_4] BV316_1_4 : {S.02.01.08.01,r0310}={S.02.01.08.01,r0320}+{S.02.01.08.01,r0330} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv316_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Reinsurance recoverables from Life and health similar to life, excluding health and index-linked and unit-linked"" is different from the sum of ""Reinsurance recoverables from: Health similar to life"" and ""Reinsurance recoverables from: Life excluding health and index-linked and ""unit-linked"""   - d1b_20_instance.xbrl 1187, 1525, 1538, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv316_1_4.xml 11
+-----_____-----
+[message:s2md_BV317_1_4] BV317_1_4 : {S.02.01.08.01,r0070}={S.02.01.08.01,r0080}+{S.02.01.08.01,r0090}+{S.02.01.08.01,r0100}+{S.02.01.08.01,r0130}+{S.02.01.08.01,r0180}+{S.02.01.08.01,r0190}+{S.02.01.08.01,r0200}+{S.02.01.08.01,r0210} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv317_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e, $f, $g, $h, $i))) "The item ""Investments (other than assets held for index-linked and unit-linked contracts)"" is different from the sum of ""Property (other than for own use)"", ""Holdings in related undertakings, including participations"", ""Equities"", ""Bonds"", ""Collective Investments Undertakings"", ""Derivatives"", ""Deposits other than cash equivalents"", and ""Other investments"""   - d1b_20_instance.xbrl 2206, 2207, 2213, 2215, 2216, 2219, 2220, 2222, 2223, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv317_1_4.xml 11
+-----_____-----
+[message:s2md_BV318_1_4] BV318_1_4 : {S.02.01.08.01,r0100}={S.02.01.08.01,r0110}+{S.02.01.08.01,r0120} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv318_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Equities"" is different from the sum of ""Equities - listed"" and ""Equities - unlisted"""   - d1b_20_instance.xbrl 2217, 2218, 2219, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv318_1_4.xml 11
+-----_____-----
+[message:s2md_BV319_1_4] BV319_1_4 : {S.02.01.08.01,r0130}={S.02.01.08.01,r0140}+{S.02.01.08.01,r0150}+{S.02.01.08.01,r0160}+{S.02.01.08.01,r0170} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv319_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d, $e))) "The item ""Bonds"" is different from the sum of ""Government Bonds"", ""Corporate Bonds"", ""Structured notes"" and ""Collateralised securities"""   - d1b_20_instance.xbrl 2211, 2212, 2213, 2214, 2224, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv319_1_4.xml 11
+-----_____-----
+[message:s2md_BV321_1_4] BV321_1_4 : {S.02.01.08.01,r0510}={S.02.01.08.01,r0520}+{S.02.01.08.01,r0560} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Technical provisions � non-life"" is different from the sum of ""Technical provisions � non-life (excluding health)"" and ""Technical provisions - health (similar to non-life)"""   - d1b_20_instance.xbrl 1132, 2092, 2193, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[message:s2md_BV321_1_4] BV321_1_4 : {S.02.01.08.01,r0510}={S.02.01.08.01,r0520}+{S.02.01.08.01,r0560} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Technical provisions � non-life"" is different from the sum of ""Technical provisions � non-life (excluding health)"" and ""Technical provisions - health (similar to non-life)"""   - d1b_20_instance.xbrl 1146, 2106, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[message:s2md_BV321_1_4] BV321_1_4 : {S.02.01.08.01,r0510}={S.02.01.08.01,r0520}+{S.02.01.08.01,r0560} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Technical provisions � non-life"" is different from the sum of ""Technical provisions � non-life (excluding health)"" and ""Technical provisions - health (similar to non-life)"""   - d1b_20_instance.xbrl 1160, 2120, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[message:s2md_BV321_1_4] BV321_1_4 : {S.02.01.08.01,r0510}={S.02.01.08.01,r0520}+{S.02.01.08.01,r0560} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Technical provisions � non-life"" is different from the sum of ""Technical provisions � non-life (excluding health)"" and ""Technical provisions - health (similar to non-life)"""   - d1b_20_instance.xbrl 1174, 2134, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv321_1_4.xml 11
+-----_____-----
+[message:s2md_BV322_1_4] BV322_1_4 : {S.02.01.08.01,r0520}={S.02.01.08.01,r0530}+{S.02.01.08.01,r0540}+{S.02.01.08.01,r0550} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv322_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Technical provisions � non-life (excluding health)"" is different from the sum of ""Technical provisions calculated as a whole"", ""Best Estimate"" and ""Risk margin"" for Technical provisions � non-life (excluding health)"   - d1b_20_instance.xbrl 2092, 2106, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv322_1_4.xml 11
+-----_____-----
+[message:s2md_BV323_1_4] BV323_1_4 : {S.02.01.08.01,r0560}={S.02.01.08.01,r0570}+{S.02.01.08.01,r0580}+{S.02.01.08.01,r0590} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv323_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Technical provisions � health (similar to non-life)"" is different from the sum of ""Technical provisions calculated as a whole"", ""Best Estimate"" and ""Risk margin"" for Technical provisions � health (similar to non-life)"   - d1b_20_instance.xbrl 1132, 1146, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv323_1_4.xml 11
+-----_____-----
+[message:s2md_BV324_1_4] BV324_1_4 : {S.02.01.08.01,r0600}={S.02.01.08.01,r0610}+{S.02.01.08.01,r0650} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item Technical provisions - life (excluding index-linked and unit-linked)"" is different from the sum of ""Technical provisions - health (similar to life)"" and ""Technical provisions � life (excluding health and index-linked and unit-linked)"""   - d1b_20_instance.xbrl 699, 754, 1200, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[message:s2md_BV324_1_4] BV324_1_4 : {S.02.01.08.01,r0600}={S.02.01.08.01,r0610}+{S.02.01.08.01,r0650} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item Technical provisions - life (excluding index-linked and unit-linked)"" is different from the sum of ""Technical provisions - health (similar to life)"" and ""Technical provisions � life (excluding health and index-linked and unit-linked)"""   - d1b_20_instance.xbrl 713, 1214, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[message:s2md_BV324_1_4] BV324_1_4 : {S.02.01.08.01,r0600}={S.02.01.08.01,r0610}+{S.02.01.08.01,r0650} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item Technical provisions - life (excluding index-linked and unit-linked)"" is different from the sum of ""Technical provisions - health (similar to life)"" and ""Technical provisions � life (excluding health and index-linked and unit-linked)"""   - d1b_20_instance.xbrl 727, 1228, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[message:s2md_BV324_1_4] BV324_1_4 : {S.02.01.08.01,r0600}={S.02.01.08.01,r0610}+{S.02.01.08.01,r0650} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item Technical provisions - life (excluding index-linked and unit-linked)"" is different from the sum of ""Technical provisions - health (similar to life)"" and ""Technical provisions � life (excluding health and index-linked and unit-linked)"""   - d1b_20_instance.xbrl 741, 1242, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv324_1_4.xml 11
+-----_____-----
+[message:s2md_BV325_1_4] BV325_1_4 : {S.02.01.08.01,r0610}={S.02.01.08.01,r0620}+{S.02.01.08.01,r0630}+{S.02.01.08.01,r0640} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv325_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Technical provisions - health (similar to life)"" is different from the sum of ""Technical provisions calculated as a whole"", ""Best Estimate"" and ""Risk margin"" for Technical provisions - health (similar to life)"   - d1b_20_instance.xbrl 1200, 1214, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv325_1_4.xml 11
+-----_____-----
+[message:s2md_BV326_1_4] BV326_1_4 : {S.02.01.08.01,r0650}={S.02.01.08.01,r0660}+{S.02.01.08.01,r0670}+{S.02.01.08.01,r0680} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv326_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Technical provisions � life (excluding health and index-linked and unit-linked)"" is different from the sum of ""Technical provisions calculated as a whole"", ""Best Estimate"" and ""Risk margin"" for Technical provisions � life (excluding health and index-linked and unit-linked)"   - d1b_20_instance.xbrl 699, 713, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv326_1_4.xml 11
+-----_____-----
+[message:s2md_BV327_1_4] BV327_1_4 : {S.02.01.08.01,r0690}={S.02.01.08.01,r0700}+{S.02.01.08.01,r0710}+{S.02.01.08.01,r0720} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv327_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c, $d))) "The item ""Technical provisions � index-linked and unit-linked"" is different from the sum of ""Technical provisions calculated as a whole"", ""Best Estimate"" and ""Risk margin"" for Technical provisions � index-linked and unit-linked"   - d1b_20_instance.xbrl 357, 371, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv327_1_4.xml 11
+-----_____-----
+[message:s2md_BV330_1_4] BV330_1_4 : {S.02.01.08.01,r1000}={S.02.01.08.01,r0500}-{S.02.01.08.01,r0900} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv330_1_4.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, iaf:numeric-unary-minus($c)))) "The item ""Excess of assets over liabilities"" is different from the ""Total assets"" minus ""Total liabilities"""   - d1b_20_instance.xbrl 3115, 3127, 3130, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv330_1_4.xml 11
+-----_____-----
+[message:s2md_BV73_2] BV73_2 : {S.23.01.07.01,r0500}={S.23.01.07.01,r0290} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv73_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, $b) "The item ""Available and eligible own funds/Total available own funds to meet the SCR"" is different from the ""Total basic own funds after deductions"""   - d1b_20_instance.xbrl 3031, 3036, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv73_2.xml 11
+-----_____-----
+[message:s2md_BV73_2] BV73_2 : {S.23.01.07.01,r0500}={S.23.01.07.01,r0290} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv73_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, $b) "The item ""Available and eligible own funds/Total available own funds to meet the SCR"" is different from the ""Total basic own funds after deductions"""   - d1b_20_instance.xbrl 3090, 3096, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv73_2.xml 11
+-----_____-----
+[message:s2md_BV74_3] BV74_3 : {S.23.01.07.01,c0010}={S.23.01.07.01,c0050} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv74_3.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, $b) "The item ""Total"" value of the ""Basic own funds/An amount equal to the value of net deferred tax assets"" reported in the template S.23.01 - Own funds is different from the same item for ""Tier 3"""   - d1b_20_instance.xbrl 3076, 3151, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv74_3.xml 11
+-----_____-----
+[message:s2md_BV85_2] BV85_2 : {S.23.01.07.01,r0500}={S.23.01.07.01,r0290}+{S.23.01.07.01,r0400} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv85_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Available and eligible own funds/Total available own funds to meet SCR"" is different from the sum of ""Total basic own funds after deductions"" and ""Total ancillary own funds"""   - d1b_20_instance.xbrl 3071, 3075, 3077, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv85_2.xml 11
+-----_____-----
+[message:s2md_BV85_2] BV85_2 : {S.23.01.07.01,r0500}={S.23.01.07.01,r0290}+{S.23.01.07.01,r0400} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv85_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Available and eligible own funds/Total available own funds to meet SCR"" is different from the sum of ""Total basic own funds after deductions"" and ""Total ancillary own funds"""   - d1b_20_instance.xbrl 3049, 3054, 3058, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv85_2.xml 11
+-----_____-----
+[message:s2md_BV85_2] BV85_2 : {S.23.01.07.01,r0500}={S.23.01.07.01,r0290}+{S.23.01.07.01,r0400} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv85_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:sum(($b, $c))) "The item ""Available and eligible own funds/Total available own funds to meet SCR"" is different from the sum of ""Total basic own funds after deductions"" and ""Total ancillary own funds"""   - d1b_20_instance.xbrl 3146, 3153, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv85_2.xml 11
+-----_____-----
+[message:s2md_BV86_2] BV86_2 : {S.23.01.07.01,r0550}={S.23.01.07.01,r0540} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv86_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, $b) "The item ""Available and eligible own funds/Total eligible own funds to meet the MCR"" is different from the item ""Available and eligible own funds/Total eligible own funds to meet the SCR""."   - d1b_20_instance.xbrl 3032, 3034, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv86_2.xml 11
+-----_____-----
+[message:s2md_BV86_2] BV86_2 : {S.23.01.07.01,r0550}={S.23.01.07.01,r0540} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv86_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, $b) "The item ""Available and eligible own funds/Total eligible own funds to meet the MCR"" is different from the item ""Available and eligible own funds/Total eligible own funds to meet the SCR""."   - d1b_20_instance.xbrl 3091, 3093, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv86_2.xml 11
+-----_____-----
+[message:s2md_BV87_2] BV87_2 : {S.23.01.07.01,r0540}={S.23.01.07.01,r0620}*{S.23.01.07.01,r0580} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to SCR"" is different from the ratio between the ""Total eligible own funds to meet the SCR"" and the ""SCR"""   - d1b_20_instance.xbrl 3091, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[message:s2md_BV87_2] BV87_2 : {S.23.01.07.01,r0540}={S.23.01.07.01,r0620}*{S.23.01.07.01,r0580} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to SCR"" is different from the ratio between the ""Total eligible own funds to meet the SCR"" and the ""SCR"""   - d1b_20_instance.xbrl 3050, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[message:s2md_BV87_2] BV87_2 : {S.23.01.07.01,r0540}={S.23.01.07.01,r0620}*{S.23.01.07.01,r0580} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to SCR"" is different from the ratio between the ""Total eligible own funds to meet the SCR"" and the ""SCR"""   - d1b_20_instance.xbrl 3112, 3114, 3157, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[message:s2md_BV87_2] BV87_2 : {S.23.01.07.01,r0540}={S.23.01.07.01,r0620}*{S.23.01.07.01,r0580} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to SCR"" is different from the ratio between the ""Total eligible own funds to meet the SCR"" and the ""SCR"""   - d1b_20_instance.xbrl 3032, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[message:s2md_BV87_2] BV87_2 : {S.23.01.07.01,r0540}={S.23.01.07.01,r0620}*{S.23.01.07.01,r0580} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to SCR"" is different from the ratio between the ""Total eligible own funds to meet the SCR"" and the ""SCR"""   - d1b_20_instance.xbrl 3072, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv87_2.xml 11
+-----_____-----
+[message:s2md_BV88_2] BV88_2 : {S.23.01.07.01,r0550}={S.23.01.07.01,r0640}*{S.23.01.07.01,r0600} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to MCR"" is different from the ratio between the ""Total eligible own funds to meet the MCR"" and the ""MCR"""   - d1b_20_instance.xbrl 3034, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[message:s2md_BV88_2] BV88_2 : {S.23.01.07.01,r0550}={S.23.01.07.01,r0640}*{S.23.01.07.01,r0600} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to MCR"" is different from the ratio between the ""Total eligible own funds to meet the MCR"" and the ""MCR"""   - d1b_20_instance.xbrl 3093, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[message:s2md_BV88_2] BV88_2 : {S.23.01.07.01,r0550}={S.23.01.07.01,r0640}*{S.23.01.07.01,r0600} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to MCR"" is different from the ratio between the ""Total eligible own funds to meet the MCR"" and the ""MCR"""   - d1b_20_instance.xbrl 3056, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[message:s2md_BV88_2] BV88_2 : {S.23.01.07.01,r0550}={S.23.01.07.01,r0640}*{S.23.01.07.01,r0600} - http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+[formula:assertionUnsatisfied] iaf:numeric-equal($a, iaf:numeric-multiply($b, $c)) "The ""Total"" value of the item ""Ratio of eligible own funds to MCR"" is different from the ratio between the ""Total eligible own funds to meet the MCR"" and the ""MCR"""   - d1b_20_instance.xbrl 3113, 3148, 3156, http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2015-07-31/val/vr-bv88_2.xml 11
+-----_____-----
+validated in 8.24 secs - C:\Projects\xbrl\areba\Arelle\tests\solvency\2.0\random\d1b_20_instance.xbrl
+-----_____-----
