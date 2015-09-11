@@ -4,7 +4,7 @@ Created on Oct 3, 2010
 @author: Mark V Systems Limited
 (c) Copyright 2010 Mark V Systems Limited, All rights reserved.
 '''
-import gc, sys, traceback, logging
+import gc, sys, traceback, logging, os
 from arelle import ModelXbrl, Validate, DisclosureSystem
 from arelle.PluginManager import pluginClassMethods
 
@@ -261,5 +261,30 @@ class ModelManager:
             self.cntlr.config["activeFormula"] = activeFormula
             self.cntlr.saveConfig()
                 
-        
+    def getReportNameFromSchemaRef(self, entryPoint):
+        # walk the taxonomies enabled in order to find a report name for the
+        # specified schema reference (entry point)
+        from arelle.FileSource import openFileSource
+        from arelle.PackageManager import parsePackage, packagesConfig
+        for i, packageInfo in enumerate(sorted(packagesConfig.get("packages", []),
+                                               key=lambda packageInfo: packageInfo.get("name")),
+                                        start=1):
+            name = packageInfo.get("name", "package{}".format(i))
+            #self.cntlr.showStatus(_("Looking in  {0} ").format(name), 1000)
+            URL = packageInfo.get("URL")
+            if name and URL and packageInfo.get("status") == "enabled":
+                filesource = openFileSource(URL, cntlr=self.cntlr) 
+                filenames = filesource.dir
+                if filenames is not None:   # an IO or other error can return None
+                    metadataFiles = filesource.taxonomyPackageMetadataFiles
+                    metadataFile = metadataFiles[0]
+                    metadata = filesource.url + os.sep + metadataFile
+                    taxonomyPackage = parsePackage(self.cntlr, filesource, metadata,
+                                                        os.sep.join(os.path.split(metadata)[:-1]) + os.sep)
+                    nameToUrls = taxonomyPackage["nameToUrls"]
+                    for reportName, reportInfo in nameToUrls.items():
+                        if reportInfo[1] == entryPoint:
+                            return reportName
+        return None
+            
         

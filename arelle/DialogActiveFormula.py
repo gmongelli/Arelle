@@ -15,14 +15,17 @@ def getActiveFormula(mainWin):
     modelXbrl = modelManager.cntlr.getModelXbrl()
     schemaRef = "None"
     maxSingleFormulaRunTime = 0
+    reportName = "No instance loaded"
     
     if modelXbrl is None:
-        # for testing purposes
-        for i in range(25):
-            label = "checBox #%s" % i
-            selectionList.append(SelectionItem(label, label, True))
+        if False:
+            # for testing purposes
+            for i in range(25):
+                label = "checBox #%s" % i
+                selectionList.append(SelectionItem(label, label, True))
     else:
         schemaRef = modelXbrl.getSingleSchemaRef()
+        reportName = modelXbrl.getReportName()
         # we use the schema as an identifier for a report of a taxonomy version...
         #TODO: should express this as a report name in a taxonomy version but things are not easily accessed for now
         # get previous settings for this schema if any
@@ -47,9 +50,11 @@ def getActiveFormula(mainWin):
     dialogTitle = _("Active formula selection")
     
     dialogInfo = schemaRef.replace("http://", "")
+    if reportName is not None:
+        dialogInfo = reportName + "\n" + dialogInfo
     dialog = DialogSelectionList(mainWin, dialogTitle, dialogInfo, selectionList, maxSingleFormulaRunTime)
     if dialog.accepted:
-        if schemaRef != "None":
+        if modelXbrl is not None:
             allSelected = True
             for vs in selectionList:
                 if not(vs.sel):
@@ -119,6 +124,7 @@ class DialogSelectionList(Toplevel):
         # row 3 contains buttons in col 1 and 2
         # all stretch for row 1 col 0
         self.frame = Frame(self)
+        self.frame.focus_set()
         
         self.frame.rowconfigure(0, weight=0)
         self.frame.rowconfigure(1, weight=0)

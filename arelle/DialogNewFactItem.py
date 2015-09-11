@@ -74,6 +74,7 @@ class DialogNewFactItemOptions(Toplevel):
         self.title(_("New Fact Item Options"))
         
         frame = Frame(self)
+        frame.focus_set()
 
         label(frame, 1, 1, "Entity scheme:")
         self.cellEntityIdentScheme = gridCell(frame, 2, 1, getattr(options,"entityIdentScheme",""), width=50)

@@ -61,6 +61,7 @@ class DialogRssWatch(Toplevel):
         self.title(_("RSS Feed Processing Control"))
         
         frame = Frame(self)
+        frame.focus_set()
 
         # checkbox entries
         row = 1 # row number (to allow future plugins

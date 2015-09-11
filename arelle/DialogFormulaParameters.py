@@ -42,6 +42,7 @@ class DialogFormulaParameters(Toplevel):
         self.title(_("Formula Parameters and Trace Options"))
         
         frame = Frame(self)
+        frame.focus_set()
 
         '''
         dialogFrame = Frame(frame, width=500)

@@ -1424,6 +1424,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         self.modelXbrl.guiViews.tableView.refreshTitle()
         cntlr.addToLog(_("{0} saved").format(newFilename if newFilename is not None else instance.modelDocument.filepath))
         cntlr.showStatus(_("Saved {0}").format(instance.modelDocument.basename), clearAfter=3000)
+        cntlr.triggerShowTitle(self.modelXbrl, os.path.basename(newFilename))
         if onSaved is not None:
             if self.modelXbrl.modelManager.cntlr.testMode:
                 onSaved()

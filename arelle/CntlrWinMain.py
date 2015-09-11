@@ -393,12 +393,26 @@ class CntlrWinMain (Cntlr.Cntlr):
         self.useFactIndex = not self.useFactIndex
     
     def showTitle(self, modelXbrl=None, filename=None):
+        reportName = None
         if filename is None:
             if modelXbrl is None:
                 filename = "Unnamed"
             else:
-                filename = os.path.basename(modelXbrl.modelDocument.uri)            
-        self.parent.title(_("arelle - {0}").format(filename))    
+                filename = os.path.basename(modelXbrl.modelDocument.uri)
+        else:
+            if modelXbrl is not None and modelXbrl.reportName is not None:
+                reportName = modelXbrl.reportName
+        if reportName is None:
+            self.parent.title(_("arelle - {0}").format(filename))
+        else:
+            self.parent.title(_("arelle - {0} - {1}").format(filename, reportName))   
+             
+    # worker threads to show title            
+    def triggerShowTitle(self, modelXbrl=None, filename=None):
+        if self.testMode:
+            self.showTitle(modelXbrl, filename)
+        else:
+            self.uiThreadQueue.put((self.showTitle, [modelXbrl, filename]))
 
     def onTabChanged(self, event, *args):
         try:
@@ -704,13 +718,14 @@ class CntlrWinMain (Cntlr.Cntlr):
         self.loadFileMenuHistory()
         self.saveConfig()
         
-    def fileOpenFile(self, filename, importToDTS=False, selectTopView=False):
+    def fileOpenFile(self, filename, importToDTS=False, selectTopView=False, reportName=None):
         if filename:
             filesource = None
             # check for archive files
             filesource = openFileSource(filename, self,
                                         checkIfXmlIsEis=self.modelManager.disclosureSystem and
                                         self.modelManager.disclosureSystem.EFM)
+            filesource.reportName = reportName
             if filesource.isArchive and not filesource.selection: # or filesource.isRss:
                 from arelle import DialogOpenArchive
                 filename = DialogOpenArchive.askArchiveFile(self, filesource)
@@ -784,6 +799,7 @@ class CntlrWinMain (Cntlr.Cntlr):
             self.showStatus(_("Loading terminated, unrecoverable error"), 20000)
             return
         if modelXbrl and modelXbrl.modelDocument:
+            modelXbrl.reportName = filesource.reportName
             statTime = time.time() - startedAt
             modelXbrl.profileStat(profileStat, statTime)
             self.addToLog(format_string(self.modelManager.locale, 

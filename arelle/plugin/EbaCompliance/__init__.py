@@ -162,6 +162,7 @@ class DialogNewFileOptions(Toplevel):
         self.title(_("New EBA File"))
         
         frame = Frame(self)
+        frame.focus_set()
         
         label(frame, 1, 1, _("Taxonomy version:"))
         self.cellTaxonomyVersion = gridCombobox(frame, 2, 1, getattr(options,"ebaTaxonomyVersion", ""),
@@ -270,6 +271,10 @@ class DialogNewFileOptions(Toplevel):
         options = self.options
         urlsByEntryPoint = EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE.get(self.ebaReportingType).get(self.ebaTaxonomyVersion)
         return urlsByEntryPoint[options.ebaEntryPointKey]
+    
+    @property
+    def reportName(self):
+        return self.options.ebaEntryPointKey
 
 def improveEbaCompliance(modelXbrl, cntlr, lang="en"):
     ':type modelXbrl: ModelXbrl'
@@ -512,14 +517,15 @@ def customNewFile(cntlr):
     dialog = DialogNewFileOptions(cntlr.parent)
     if dialog.accepted:
         newUrl = dialog.newUrl
-        cntlr.fileOpenFile(newUrl)
+        reportName = dialog.reportName
+        cntlr.fileOpenFile(newUrl, reportName=reportName)
 
 def fileOpenExtender(cntlr, menu):
     menu.add_command(label=_('New EBA File...'), underline=0, command=lambda: customNewFile(cntlr) )
 
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.7',
+    'version': '1.8',
     'description': "This module extends the File menu and regenerates EBA filing indicators if needed and removes unused contexts and units.",
     'license': 'Apache-2',
     'author': 'Gregorio Mongelli (Acsone S. A.)',

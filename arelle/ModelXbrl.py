@@ -260,6 +260,8 @@ class ModelXbrl:
         self.init(errorCaptureLevel=errorCaptureLevel)
         
     def init(self, keepViews=False, errorCaptureLevel=None):
+        self.entryPoint = None
+        self.reportName = None
         self.lastEvaluationTimesByModelVariableSetId = None
         self.filterTime = 0
         self.factsPartitionInfo = None
@@ -1420,6 +1422,8 @@ class ModelXbrl:
                 for referencedDoc in self.modelDocument.referencesDocument.keys() if referencedDoc.type == ModelDocument.Type.SCHEMA]
     
     def getSingleSchemaRef(self):
+        if self.entryPoint is not None:
+            return self.entryPoint
         schemaRef = None
         schemaRefs = self.getSchemaRefs()
         if len(schemaRefs) > 0:
@@ -1428,7 +1432,14 @@ class ModelXbrl:
                 schemaRef = sorted(schemaRefs)[0]
             else:
                 schemaRef = schemaRefs[0]
+        self.entryPoint = schemaRef
         return schemaRef
+
+    def getReportName(self):
+        if self.reportName is not None:
+            return self.reportName
+        self.reportName = self.modelManager.getReportNameFromSchemaRef(self.getSingleSchemaRef())
+        return self.reportName
     
 class FactsByDimMemQnameCache:
     def __init__(self, modelXbrl):
