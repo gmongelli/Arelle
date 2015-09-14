@@ -5,7 +5,7 @@ load the report, display each table and then close the report instance.
 import os, time
 import unittest
 from tests.ViewHelper import ViewHelper, initUI
-from tests.SolvencySampleFiles import getSolvencyFiles
+from tests.SolvencyHelper import getSolvencyFiles
 
 class SolvencySampleTest(unittest.TestCase):         
          

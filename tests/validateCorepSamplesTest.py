@@ -2,7 +2,7 @@
 import os, time
 import unittest
 from tests.ViewHelper import ViewHelper, initUI, isEquivalentLogFile, getTestDir
-from tests.CorepSampleFiles import getCorepFiles
+from tests.CorepHelper import getCorepFiles, setCorepGuiEnvironment
 
 class CorepSampleTest(unittest.TestCase):
 
@@ -32,11 +32,11 @@ class CorepSampleTest(unittest.TestCase):
                 pass
         
         self.cntlrWinMain.logView.testMode = True
+        setCorepGuiEnvironment(self.cntlrWinMain)
+        
         self.cntlrWinMain.fileOpenFile(testFilepath)
         self.viewHelper = ViewHelper(self.cntlrWinMain.getModelXbrl(), self.testContext)
         
-        # make sure we use the proper disclosure system for validation
-        self.cntlrWinMain.config["disclosureSystem"] = "EBA Filing Rules"
         
         print(" validate")
         self.cntlrWinMain.validate()

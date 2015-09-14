@@ -9,7 +9,7 @@ For the time being, there are only three improvements that are implemented:
 Moreover, a new File > New EBA File... menu entry is provided to ease the creation of the
 latest EBA instances.
 
-(c) Copyright 2014, 2015 Acsone S. A., All rights reserved.
+(c) Copyright 2014, 2015 Acsone S.A., All rights reserved.
 '''
 
 from arelle import ModelDocument, XmlValidate, ModelXbrl, XbrlConst
@@ -40,8 +40,9 @@ EBA_TAXONOMY_VERSION_2_0 = '2.0'
 EBA_TAXONOMY_VERSION_2_1 = '2.1'
 EBA_TAXONOMY_VERSION_2_2 = '2.2'
 EBA_TAXONOMY_VERSION_2_3_1 = '2.3.1'
-EBA_TAXONOMY_DEFAULT_VERSION = EBA_TAXONOMY_VERSION_2_3_1
-EBA_TAXONOMY_VERSIONS_VALUES = (EBA_TAXONOMY_VERSION_2_3_1, EBA_TAXONOMY_VERSION_2_2, EBA_TAXONOMY_VERSION_2_1, EBA_TAXONOMY_VERSION_2_0) 
+EBA_TAXONOMY_VERSION_2_4 = '2.4'
+EBA_TAXONOMY_DEFAULT_VERSION = EBA_TAXONOMY_VERSION_2_4
+EBA_TAXONOMY_VERSIONS_VALUES = (EBA_TAXONOMY_VERSION_2_4, EBA_TAXONOMY_VERSION_2_3_1, EBA_TAXONOMY_VERSION_2_2, EBA_TAXONOMY_VERSION_2_1, EBA_TAXONOMY_VERSION_2_0) 
 EBA_REPORTING_INDIVIDUAL = 'Individual'
 EBA_REPORTING_CONSOLIDATED = 'Consolidated'
 EBA_REPORTING_TYPES_VALUES = (EBA_REPORTING_INDIVIDUAL, EBA_REPORTING_CONSOLIDATED)
@@ -76,11 +77,27 @@ EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1 = {
      'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_ind.xsd',
      'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbpimv_ind.xsd'
       }
+EBA_ENTRY_POINTS_INDIVIDUAL_2_4 = {
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_ind.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_lcr_ind.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_le_ind.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_nsfr_ind.xsd',
+     'Additional Liquidity Monitoring - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_alm_ind.xsd',
+     
+     'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/mod/fp_ind.xsd', #same as 2.3.1
+     
+     'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-08-31/mod/sbp_ind.xsd',
+     'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-08-31/mod/sbpimv_ind.xsd',     
+     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02-ind/2015-08-31/mod/finrep_ind_gaap.xsd',
+     'Financial Reporting, IFRS<' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02-ind/2015-08-31/mod/finrep_ind_ifrs.xsd'
+     
+      }
 EBA_ENTRY_POINTS_INDIVIDUAL_BY_VERSION = {
      EBA_TAXONOMY_VERSION_2_0: EBA_ENTRY_POINTS_INDIVIDUAL_2_0,
      EBA_TAXONOMY_VERSION_2_1: EBA_ENTRY_POINTS_INDIVIDUAL_2_1,
      EBA_TAXONOMY_VERSION_2_2: EBA_ENTRY_POINTS_INDIVIDUAL_2_2,
-     EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1
+     EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1,
+     EBA_TAXONOMY_VERSION_2_4 : EBA_ENTRY_POINTS_INDIVIDUAL_2_4
      }
 EBA_ENTRY_POINTS_CONSOLIDATED_2_0 = {
      'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2013-02/2013-12-01/mod/corep_con.xsd',
@@ -121,16 +138,38 @@ EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1 = {
      'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbp_con.xsd',
      'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-05-29/mod/sbpimv_con.xsd'
      }
+EBA_ENTRY_POINTS_CONSOLIDATED_2_4 = {
+     'Common Reporting - Own Funds and Leverage' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_con.xsd',
+     'Liquidity Coverage - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_lcr_con.xsd',
+     'Large Exposures - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_le_con.xsd',
+     'Stable Funding - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_nsfr_con.xsd',
+     'Additional Liquidity Monitoring - COREP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/corep/its-2015-04/2015-08-31/mod/corep_alm_con.xsd',
+     
+     'Funding Plans' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/fp/gl-2014-04/2015-05-29/mod/fp_con.xsd',  #same as 2.3.1
+     
+     'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-08-31/mod/sbp_con.xsd',
+     'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-08-31/mod/sbpimv_con.xsd',     
+     'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02/2015-08-31/mod/finrep_con_gaap.xsd',
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02/2015-08-31/mod/finrep_con_ifrs.xsd'
+     
+     }
 EBA_ENTRY_POINTS_CONSOLIDATED_BY_VERSION = {
      EBA_TAXONOMY_VERSION_2_0: EBA_ENTRY_POINTS_CONSOLIDATED_2_0,
      EBA_TAXONOMY_VERSION_2_1: EBA_ENTRY_POINTS_CONSOLIDATED_2_1,
      EBA_TAXONOMY_VERSION_2_2: EBA_ENTRY_POINTS_CONSOLIDATED_2_2,
-     EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1
+     EBA_TAXONOMY_VERSION_2_3_1: EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1,
+     EBA_TAXONOMY_VERSION_2_4: EBA_ENTRY_POINTS_CONSOLIDATED_2_4
      }
 EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE = {
      EBA_REPORTING_INDIVIDUAL: EBA_ENTRY_POINTS_INDIVIDUAL_BY_VERSION,
      EBA_REPORTING_CONSOLIDATED: EBA_ENTRY_POINTS_CONSOLIDATED_BY_VERSION
      }
+ALL_EBA_ENTRY_POINTS = [EBA_ENTRY_POINTS_INDIVIDUAL_2_4, EBA_ENTRY_POINTS_CONSOLIDATED_2_4,
+                        EBA_ENTRY_POINTS_INDIVIDUAL_2_3_1, EBA_ENTRY_POINTS_CONSOLIDATED_2_3_1,
+                        EBA_ENTRY_POINTS_INDIVIDUAL_2_2, EBA_ENTRY_POINTS_CONSOLIDATED_2_2,
+                        EBA_ENTRY_POINTS_INDIVIDUAL_2_1, EBA_ENTRY_POINTS_CONSOLIDATED_2_1,
+                        EBA_ENTRY_POINTS_INDIVIDUAL_2_0, EBA_ENTRY_POINTS_CONSOLIDATED_2_0
+                        ]
 
 class EbaNewFileOptions(object):
     def __init__(self, ebaTaxonomyVersion, ebaReportingType, ebaEntryPointKey):
@@ -520,17 +559,25 @@ def customNewFile(cntlr):
         reportName = dialog.reportName
         cntlr.fileOpenFile(newUrl, reportName=reportName)
 
+def getReportNameFromEntryPoint(cntlr, entryPoint):
+    for reportGroup in ALL_EBA_ENTRY_POINTS:
+        for reportName, ep in reportGroup.items():
+            if ep == entryPoint:
+                return reportName
+    return None                 
+    
 def fileOpenExtender(cntlr, menu):
     menu.add_command(label=_('New EBA File...'), underline=0, command=lambda: customNewFile(cntlr) )
 
 __pluginInfo__ = {
     'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.8',
+    'version': '1.9',
     'description': "This module extends the File menu and regenerates EBA filing indicators if needed and removes unused contexts and units.",
     'license': 'Apache-2',
-    'author': 'Gregorio Mongelli (Acsone S. A.)',
-    'copyright': '(c) Copyright 2014, 2015 Acsone S. A.',
+    'author': 'Acsone S.A.',
+    'copyright': '(c) Copyright 2014, 2015 Acsone S.A.',
     # classes of mount points (required)
     'CntlrWinMain.Menu.Tools': improveEbaComplianceMenuExtender,
-    'CntlrWinMain.Menu.File.Open': fileOpenExtender
+    'CntlrWinMain.Menu.File.Open': fileOpenExtender,
+    'GetReportNameFromEntryPoint': getReportNameFromEntryPoint
 }

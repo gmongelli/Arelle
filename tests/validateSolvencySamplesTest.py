@@ -2,7 +2,7 @@
 import os, time
 import unittest
 from tests.ViewHelper import ViewHelper, initUI, isEquivalentLogFile, getTestDir
-from tests.SolvencySampleFiles import getSolvencyFiles
+from tests.SolvencyHelper import getSolvencyFiles, setSolvencyGuiEnvironment
 
 class CorepSampleTest(unittest.TestCase):
 
@@ -31,11 +31,11 @@ class CorepSampleTest(unittest.TestCase):
                 pass
         
         self.cntlrWinMain.logView.testMode = True
+        setSolvencyGuiEnvironment(self.cntlrWinMain)
+
         self.cntlrWinMain.fileOpenFile(testFilepath)               
         self.viewHelper = ViewHelper(self.cntlrWinMain.getModelXbrl(), self.testContext)
         
-        # make sure we use the proper disclosure system for validation
-        self.cntlrWinMain.config["disclosureSystem"] = "EIOPA Filing Rules"
         
         self.cntlrWinMain.validate()
         if self.saveLogAndCompare:

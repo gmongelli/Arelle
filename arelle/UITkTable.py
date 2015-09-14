@@ -85,6 +85,8 @@ class TableCombobox(_Combobox):
             return
         value = self.get()
         values = self["values"]
+        if not values:
+            return
         tooltipText = value
         idx = 0
         for v in values:

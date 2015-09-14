@@ -7,8 +7,10 @@ A flag can be manually set to create references.
 import os, time
 import unittest
 from arelle.plugin import DevTesting
-from arelle.plugin.EbaCompliance import (EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE, EBA_TAXONOMY_VERSION_2_3_1)
+from arelle.plugin.EbaCompliance import (EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE, EBA_TAXONOMY_VERSION_2_3_1, EBA_TAXONOMY_VERSION_2_4)
 from tests.ViewHelper import ViewHelper, initUI
+from tests.CorepHelper import setCorepGuiEnvironment
+from tests.SolvencyHelper import setSolvencyGuiEnvironment
 
 #TODO: CAUTION: this test should be adapted to setup proper config parameters...
 #      (I lost a couple of hours figuring out why disabled cells were no more shown as
@@ -40,7 +42,7 @@ def getEbaEntryPoints():
     for reportType, v in sorted(EBA_ENTRY_POINTS_BY_VERSION_BY_REPORT_TYPE.items()):
         for version, entry in sorted(v.items()):
             # too much when all versions...
-            if version == EBA_TAXONOMY_VERSION_2_3_1:
+            if version == EBA_TAXONOMY_VERSION_2_4 or version == EBA_TAXONOMY_VERSION_2_3_1:
                 for reportName, entryPoint in entry.items():
                     entryPointInfos.append(EntryPointInfo(version, reportType, reportName, entryPoint))
     return entryPointInfos
@@ -101,7 +103,6 @@ class ThisTest:
         # No need to explicitly quit and consume events
         #self.cntlrWinMain.quit()
         #application.mainloop()
-        print("newSaveViewClose took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 1494s")
         assert numFailures == 0, "Number of failing entry points: " + str(numFailures)    
     
     '''
@@ -137,16 +138,22 @@ class TestNewSaveViewClose(unittest.TestCase):
         test = ThisTest()
         initUI(test)  
         test.saveReferences = False # <- set this to create new references
+        startedAt = time.time()
         
         if False:
             test.runTest(smallEntryPoint) # only this small one
-        else:
-            test.entryPointInfos = []
+        else:            
             if True:
+                setCorepGuiEnvironment(test.cntlrWinMain)
+                test.entryPointInfos = []
                 test.entryPointInfos.extend(getEbaEntryPoints())
+                test.runTest()
             if True:
+                setSolvencyGuiEnvironment(test.cntlrWinMain)
+                test.entryPointInfos = []
                 test.entryPointInfos.extend(getSolvencyEntryPoints())
-            test.runTest()
+                test.runTest()
+        print("newSaveViewClose took " + "{:.2f}".format(time.time() - startedAt) + " (Typical time: 2396s")
             
 if __name__ == '__main__':
     unittest.main()

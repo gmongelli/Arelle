@@ -5,7 +5,7 @@ load the report, display each table and then close the report instance.
 import os, time
 import unittest
 from tests.ViewHelper import ViewHelper, initUI
-from tests.CorepSampleFiles import getCorepFiles
+from tests.CorepHelper import getCorepFiles
 
 class CorepSampleTest(unittest.TestCase):
          

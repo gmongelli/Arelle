@@ -399,9 +399,8 @@ class CntlrWinMain (Cntlr.Cntlr):
                 filename = "Unnamed"
             else:
                 filename = os.path.basename(modelXbrl.modelDocument.uri)
-        else:
-            if modelXbrl is not None and modelXbrl.reportName is not None:
-                reportName = modelXbrl.reportName
+        if modelXbrl is not None and modelXbrl.reportName is not None:
+            reportName = modelXbrl.reportName
         if reportName is None:
             self.parent.title(_("arelle - {0}").format(filename))
         else:
@@ -798,8 +797,19 @@ class CntlrWinMain (Cntlr.Cntlr):
             self.addToLog(msg);
             self.showStatus(_("Loading terminated, unrecoverable error"), 20000)
             return
-        if modelXbrl and modelXbrl.modelDocument:
-            modelXbrl.reportName = filesource.reportName
+        if modelXbrl and modelXbrl.modelDocument:           
+            if filesource.reportName is None:
+                entryPoint = modelXbrl.getSingleSchemaRef()
+                if entryPoint is not None:
+                    for pluginMethod in pluginClassMethods("GetReportNameFromEntryPoint"):
+                        reportName = pluginMethod(self, entryPoint)
+                        if reportName is not None:
+                            modelXbrl.reportName = reportName
+                            break
+                    # try the hard way
+                    self.modelManager.getReportNameFromSchemaRef(entryPoint)
+            else:
+                modelXbrl.reportName = filesource.reportName
             statTime = time.time() - startedAt
             modelXbrl.profileStat(profileStat, statTime)
             self.addToLog(format_string(self.modelManager.locale, 
