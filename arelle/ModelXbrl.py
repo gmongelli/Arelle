@@ -1441,6 +1441,66 @@ class ModelXbrl:
         self.reportName = self.modelManager.getReportNameFromSchemaRef(self.getSingleSchemaRef())
         return self.reportName
     
+    def deleteNilFacts(self):
+        nilFacts = self.nilFacts()
+        parent = None
+        for fact in nilFacts:
+            parent = self.removeFactInModel(fact)
+        contextsDeleted = self.deleteUnusedContexts()
+        unitsDeleted = self.deleteUnusedUnits()
+        if contextsDeleted or unitsDeleted:
+            # Validate everything
+            XmlValidate.validate(self, self.modelDocument.xmlRootElement)
+        elif parent is not None:
+            XmlValidate.validate(self, parent)
+        numberOfNilFacts = len(nilFacts)
+        if numberOfNilFacts > 0:
+            self.setIsModified()
+        return numberOfNilFacts
+    
+    def removeFactInModel(self, fact):
+        self.removeFact(fact)
+        self.facts.remove(fact)
+        if fact in self.undefinedFacts:
+            self.undefinedFacts.remove(fact)
+        self.modelObjects[fact.objectIndex] = None # objects found by index, can't remove position from list        
+        parent = fact.getparent()
+        parent.remove(fact)
+        fact.clear()
+        return parent
+    
+    def deleteUnusedContexts(self):
+        allContexts = self.contexts
+        cntxIDs = _DICT_SET(allContexts.keys())
+        unusedCntxIDs = cntxIDs - {fact.contextID for fact in self.factsInInstance if fact.contextID}
+        for cntxID in unusedCntxIDs:
+            context = allContexts[cntxID]
+            if context is not None: # ignore already deleted contexts
+                allContexts[cntxID] = None # contexts cannot be deleted in this list because of the context numbering
+                parent = context.getparent()
+                parent.remove(context)
+        someContextsHaveBeenDeleted = len(unusedCntxIDs) > 0
+        if someContextsHaveBeenDeleted:
+            self.setIsModified()
+        return someContextsHaveBeenDeleted
+    
+    def deleteUnusedUnits(self):
+        allUnits = self.units
+        unitIDs = _DICT_SET(allUnits.keys())
+        unusedUnitIDs = unitIDs - {fact.unitID for fact in self.factsInInstance if fact.unitID}
+        for unitID in unusedUnitIDs:
+            unit = allUnits[unitID]
+            if unit is not None: # ignore already deleted units
+                allUnits[unitID] = None # units cannot be deleted in this list because of the unit numbering
+                parent = unit.getparent()
+                parent.remove(unit)
+        someUnitsHaveBeenDeleted = len(unusedUnitIDs) > 0
+        if someUnitsHaveBeenDeleted:
+            self.setIsModified()
+        return someUnitsHaveBeenDeleted
+
+
+    
 class FactsByDimMemQnameCache:
     def __init__(self, modelXbrl):
         self.modelXbrl = modelXbrl

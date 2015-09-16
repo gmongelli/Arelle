@@ -375,11 +375,6 @@ def improveEbaCompliance(modelXbrl, cntlr, lang="en"):
         for modelTable, order in sorted(modelTables, key=lambda x: x[1]):  # @UnusedVariable
             viewTable(modelTable, factWalkingAction)
 
-        #TODO: remove this and cleanup
-        oldStuff = False
-        if oldStuff:
-            createOrReplaceFilingIndicators(modelXbrl, factWalkingAction.allFilingIndicatorCodes, newFactItemOptions)
-            
         updateFactItemOptions(modelXbrl, newFactItemOptions, cntlr)
         modelXbrl.modelManager.showStatus(_("EBA compliance improved"), 5000)
         cntlr.reloadTableView(modelXbrl)
@@ -389,92 +384,14 @@ def improveEbaCompliance(modelXbrl, cntlr, lang="en"):
             modelXbrl=modelXbrl,
             exc_info=True)
 
-def deleteUnusedUnits(dts):
-    allUnits = dts.units
-    unitIDs = set(allUnits.keys())
-    unusedUnitIDs = unitIDs - {fact.unitID 
-                                       for fact in dts.factsInInstance
-                                       if fact.unitID}
-    for unitID in unusedUnitIDs:
-        unit = allUnits[unitID]
-        if unit is not None: # ignore already deleted units
-            allUnits[unitID] = None # units cannot be deleted in this list because of the unit numbering
-            parent = unit.getparent()
-            parent.remove(unit)
-    someUnitsHaveBeenDeleted = len(unusedUnitIDs)>0
-    if someUnitsHaveBeenDeleted:
-        dts.setIsModified()
-    return someUnitsHaveBeenDeleted
-
 def deleteNilFacts(modelXbrl, contlr):
     contlr.addToLog(_("Removal of empty facts and unused contexts started."))
-    nilFacts = modelXbrl.nilFacts()
-    parent = None
-    for fact in nilFacts:
-        parent = removeFactInModel(modelXbrl, fact)
-    contextsDeleted = deleteUnusedContexts(modelXbrl)
-    unitsDeleted = deleteUnusedUnits(modelXbrl)
-    if contextsDeleted or unitsDeleted:
-        # Validate everything
-        XmlValidate.validate(modelXbrl, modelXbrl.modelDocument.xmlRootElement)
-    elif parent is not None:
-        XmlValidate.validate(modelXbrl, parent)
-    numberOfNilFacts = len(nilFacts)
-    if numberOfNilFacts>0:
-        modelXbrl.setIsModified()
+    numberOfNilFacts = modelXbrl.deleteNilFacts()
     contlr.addToLog(_("Removal of empty facts and unused contexts finished successfully. %s empty facts deleted." % numberOfNilFacts))
 
-def removeFactInModel(modelXbrl, fact):
-    modelXbrl.removeFact(fact)
-    modelXbrl.facts.remove(fact)
-    if fact in modelXbrl.undefinedFacts:
-        modelXbrl.undefinedFacts.remove(fact)
-    modelXbrl.modelObjects[fact.objectIndex] = None # objects found by index, can't remove position from list
-    
-    parent = fact.getparent()
-    parent.remove(fact)
-    fact.clear()
-    return parent
-
-def deleteUnusedContexts(dts):
-    allContexts = dts.contexts
-    cntxIDs = set(allContexts.keys())
-    unusedCntxIDs = cntxIDs - {fact.contextID 
-                                       for fact in dts.factsInInstance
-                                       if fact.contextID}
-    for cntxID in unusedCntxIDs:
-        context = allContexts[cntxID]
-        if context is not None: # ignore already deleted contexts
-            allContexts[cntxID] = None # contexts cannot be deleted in this list because of the context numbering
-            parent = context.getparent()
-            parent.remove(context)
-    someContextsHaveBeenDeleted = len(unusedCntxIDs)>0
-    if someContextsHaveBeenDeleted:
-        dts.setIsModified()
-    return someContextsHaveBeenDeleted
-
-def createOrReplaceFilingIndicators(dts, allFilingIndicatorCodes, newFactItemOptions):
-    filingIndicatorsElements = dts.factsByQname(qnFindFilingIndicators, set())
-    if len(filingIndicatorsElements)>0:
-        filingIndicatorsElement = filingIndicatorsElements.pop()
-    else:
-        filingIndicatorsElement = None
-    if filingIndicatorsElement is not None:
-        parent = filingIndicatorsElement.getparent()
-        removeUselessFilingIndicatorsInModel(dts)
-        XmlValidate.validate(dts, parent) # must validate after content is deleted
-    if len(allFilingIndicatorCodes)>0:
-        filingIndicatorsElement = createFilingIndicatorsElement(dts, newFactItemOptions)
-        for filingIndicatorCode in allFilingIndicatorCodes:
-            dts.createFact(qnFindFilingIndicator, 
-                           parent=filingIndicatorsElement,
-                           attributes={"contextRef": "c"}, 
-                           text=filingIndicatorCode,
-                           validate=False)
-        XmlValidate.validate(dts, filingIndicatorsElement) # must validate after content is created
-
+'''
 def removeUselessFilingIndicatorsInModel(modelXbrl):
-    ''':type dts: ModelXbrl'''
+    '' ':type dts: ModelXbrl'' '
     # First remove the context
     if 'c' in modelXbrl.contexts:
         context = modelXbrl.contexts["c"]
@@ -484,13 +401,14 @@ def removeUselessFilingIndicatorsInModel(modelXbrl):
     # Remove the elements from the facts and factsInInstance data structure
     filingIndicatorsElements = modelXbrl.factsByQname(qnFindFilingIndicators, set())
     for fact in filingIndicatorsElements:
-        removeFactInModel(modelXbrl, fact)
+        modelXbrl.removeFactInModel(fact)
     filingIndicatorElements = modelXbrl.factsByQname(qnFindFilingIndicator, set())
     for fact in filingIndicatorElements:
         modelXbrl.removeFact(fact)
         # non-top-level elements are not in 'facts'
     modelXbrl.setIsModified()
 
+    
 def createFilingIndicatorsElement(dts, newFactItemOptions):
     dts.createContext(newFactItemOptions.entityIdentScheme,
         newFactItemOptions.entityIdentValue,
@@ -504,6 +422,7 @@ def createFilingIndicatorsElement(dts, newFactItemOptions):
     filingIndicatorsTuple = dts.createFact(qnFindFilingIndicators,
                                            validate=False)
     return filingIndicatorsTuple
+'''
 
 def updateFactItemOptions(modelXbrl, newFactItemOptions, contlr):
     ''':type dts: ModelXbrl
@@ -570,9 +489,9 @@ def fileOpenExtender(cntlr, menu):
     menu.add_command(label=_('New EBA File...'), underline=0, command=lambda: customNewFile(cntlr) )
 
 __pluginInfo__ = {
-    'name': 'Improve EBA compliance of XBRL instances',
-    'version': '1.9',
-    'description': "This module extends the File menu and regenerates EBA filing indicators if needed and removes unused contexts and units.",
+    'name': 'Improve EBA compliance and help create new EBA report',
+    'version': '1.10',
+    'description': "This module extends the menus, helps choosing a new EBA report and if needed removes nil facts and unused contexts and units.",
     'license': 'Apache-2',
     'author': 'Acsone S.A.',
     'copyright': '(c) Copyright 2014, 2015 Acsone S.A.',

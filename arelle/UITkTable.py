@@ -552,22 +552,23 @@ class XbrlTable(TkTableWrapper.Table):
             col = self.index(index, 'col')
             self.objectIds[row, col] = objectId
 
-
     def clearModificationStatus(self):
         self.modifiedCells.clear()
-
 
     def getObjectId(self, coordinate):
         return str(self.objectIds[coordinate.y, coordinate.x])
 
+    def getObjectIdFromXY(self, x, y):
+        return str(self.objectIds[y, x])
 
     def setObjectId(self, coordinate, objectId):
         self.objectIds[coordinate.y, coordinate.x] = objectId
 
-
     def getTableValue(self, coordinate):
         return self.data[coordinate.y, coordinate.x]
 
+    def getTableValueFromXY(self, x, y):
+        return self.data[y, x]
 
     def isHeaderCell(self, coordinate):
         return (coordinate.y < self.titleRows 
@@ -578,8 +579,7 @@ class XbrlTable(TkTableWrapper.Table):
                 or coordinate.x < self.titleColumns)
 
     def getCoordinatesOfModifiedCells(self):
-        return self.modifiedCells.keys()
-    
+        return self.modifiedCells.keys()    
     
     def getCurrentCellCoordinates(self):
         return self.currentCellCoordinates
@@ -602,31 +602,58 @@ class XbrlTable(TkTableWrapper.Table):
         indexValue = {cellIndex:value}
         self.set(objectId=objectId, **indexValue)
 
-
+    def clearCellValueFromXY(self, x, y):
+        value = ""
+        objectId = self.objectIds[y, x]
+        cellIndex = '%i,%i'% (y, x)
+        indexValue = {cellIndex:value}
+        self.modifiedCells[Coordinate(y, x)] = True
+        self.set(objectId=objectId, **indexValue)
+        
     def _setValueFromCombobox(self, event):
         combobox = event.widget
         indexValue = {combobox.tableIndex:combobox.get()}
         self.set(**indexValue)
         return "OK"
 
+    def initFilledFirstCellOpenRow(self, label, x, y, objectId=None, command=None):
+        #TODO: change this ugly button + label cell content and add a dedicated table column
+        #      for the delete button (with some prettier face)
+        #      and at least make those borders look better.
+        cellIndex = '%i,%i'% (y, x)
+        frame = Frame(self)
+        frame.columnconfigure(0, weight=0)
+        frame.columnconfigure(1, weight=1)
+        
+        b = Button(frame, text="X", command=command, width=2)
+        ToolTip(b, text=_("Delete Line"))
+        b.grid(row=0, column=0, sticky=(N, E, S, W), padx=0, pady=0)
+        
+        lbl = Label(frame, text=label, background='#d00d00d00', anchor=E)
+        lbl.grid(row=0, column=1, sticky=(N, E, S, W), padx=0, pady=0)
+        self.window_configure(cellIndex, window=frame, sticky=(N, E, S, W))            
 
     def initCellCombobox(self, value, values, x, y, isOpen=False,
                          objectId=None, selectindex=None, 
-                         comboboxselected=None, codes=dict()):
+                         comboboxselected=None, codes=dict(), isDisabled=False):
         '''
         Initialise the content of a cell as a combobox.
         If isOpen=False, the combobox will be read-only, no new value can
         be added to the combobox.
         '''
         cellIndex = '%i,%i'% (y, x)
-        combobox = TableCombobox(self, values=values,
-                                 state='active' if isOpen else 'readonly')
+        if isDisabled:
+            state = 'disabled'
+        else:
+            state = 'active' if isOpen else 'readonly'
+        combobox = TableCombobox(self, values=values, state=state)
         combobox.codes = codes
         combobox.tableIndex = cellIndex
         if selectindex is not None:
             combobox.current(selectindex)
         elif value:
             combobox.set(value)
+            
         try:
             contextMenuBinding = self.bind(self.contextMenuClick)
             if contextMenuBinding:
@@ -646,8 +673,8 @@ class XbrlTable(TkTableWrapper.Table):
         indexValue = {cellIndex:combobox.get()}
         self.set(objectId=objectId, **indexValue)
         combobox.objectId = objectId
+        
         return combobox
-
 
     def initReadonlyCell(self, x, y):
         '''
@@ -758,7 +785,7 @@ class XbrlTable(TkTableWrapper.Table):
                            rowspan=0, isOpen=True, objectId=None,
                            selectindex=None, comboboxselected=None,
                            codes=dict(),
-                           isRollUp=False):
+                           isRollUp=False, isDisabled=False):
         '''
         Initialise the read-only content of a header cell as a combobox.
         New values can be added to the combobox if isOpen==True.
@@ -776,7 +803,7 @@ class XbrlTable(TkTableWrapper.Table):
         return self.initCellCombobox(value, values, x, y, isOpen=isOpen,
                                      objectId=objectId, selectindex=selectindex,
                                      comboboxselected=comboboxselected,
-                                     codes=codes)
+                                     codes=codes, isDisabled=isDisabled)
 
 
     def drawBordersAroundCell(self, x, y, borders):

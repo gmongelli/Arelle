@@ -99,6 +99,88 @@ def viewRenderedGrid(modelXbrl, tabWin, lang=None):
     view.blockMenuEvents = 0
     return view
 
+
+class CellInfo:
+    #See TableInfo
+    def __init__(self, x, y, isHeader=False, isValue=False, isChoice=False, isOpen=False):
+        self.x = x
+        self.y = y
+        self.isHeader = isHeader
+        self.isValue = isValue
+        self.isChoice = isChoice
+        self.isOpen = isOpen
+
+    def __repr__(self):
+        s = "x={0} y={1} isHeader={2} isValue={3} isChoice={4} isOpen={5}".format(
+            str(self.x), str(self.y), str(self.isHeader), str(self.isValue), str(self.isChoice), str(self.isOpen))
+        return s
+    
+class TableInfo:
+    '''
+    This class gives easy cell coordinate based access to rendered grid information.
+    It is presently only populated and used in case of tables with X or Y filled open axis.
+    '''
+    def __init__(self):
+        self.maxColIndex = -1
+        self.maxRowIndex = -1
+        # cols indexed by row number (starting at 0)
+        self.cols = {}
+        self.fillTable = False
+    
+    def setHeaderCell(self, x, y):
+        if not self.fillTable:
+            return
+        c = CellInfo(x, y, isHeader=True)
+        self.setCell(c)
+    
+    def setValueCell(self, x, y):
+        if not self.fillTable:
+            return
+        c = CellInfo(x, y, isValue=True)
+        self.setCell(c)
+    
+    def setChoiceCell(self, x, y):
+        if not self.fillTable:
+            return
+        c = CellInfo(x, y, isChoice=True)
+        self.setCell(c)
+    
+    def setOpenValueCell(self, x, y):
+        if not self.fillTable:
+            return
+        c = CellInfo(x, y, isOpen=True)
+        self.setCell(c)
+    
+    def setCell(self, cell):
+        try:
+            col = self.cols[cell.y]
+        except KeyError:
+            col = {}
+            self.cols[cell.y] = col
+        col[cell.x] = cell
+        if self.maxRowIndex < cell.x:
+            self.maxRowIndex = cell.x
+        if self.maxColIndex < cell.y:
+            self.maxColIndex = cell.y
+
+    def getCol(self, y):
+        try:
+            col = self.cols[y]
+            return col
+        except KeyError:
+            return None
+                    
+    def getCell(self, x, y):
+        try:
+            col = self.cols[y]
+        except KeyError:
+            return None
+        try:
+            cell = col[x]
+            return cell
+        except KeyError:
+            return None
+    
 class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
     def __init__(self, modelXbrl, tabWin, lang):
         viewTitle = _("Table")
@@ -120,6 +202,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         formulaEvaluatorInit() # one-time module initialization
         self.factsByDimMemQnameCache = ModelXbrl.FactsByDimMemQnameCache(modelXbrl)
         self.conceptMessageIssued = False
+        self.tableInfo = None
             
     def refreshTitle(self):
         tid = str(self.modelXbrl.guiViews.tableView.viewFrame)
@@ -221,6 +304,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
         '''
         startedAt = time.time()
         self.factsByDimMemQnameCache.clear()
+        self.tableInfo = TableInfo()
         
         self.testMode = self.modelXbrl.modelManager.cntlr.testMode
         self.blockMenuEvents += 1
@@ -732,6 +816,12 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
                                     pluginMethod(headerLabel, xValue, yValue)     
                                     break           
+                            if False: #TODO: complete X open case
+                                if xStructuralNode.contextItemBinding is not None and xStructuralNode.contextItemBinding.yieldedFact is not None:
+                                    yf = xStructuralNode.contextItemBinding.yieldedFact
+                                    if not(isinstance(yf, FactPrototype)):
+                                        print("Open X node with value " + label + " x=" + str(xValue) + " y=" + str(yValue))
+                            
                             self.table.initHeaderCellValue(headerLabel,
                                                            xValue, yValue,
                                                            columnspan-1,
@@ -822,15 +912,38 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 for pluginMethod in pluginClassMethods("DevTesting.InitHeaderCellValue"):
                                     pluginMethod(headerLabel, xValue, yValue)  
                                     break              
-                            self.table.initHeaderCellValue(headerLabel,
-                                                           xValue, yValue,
-                                                           columnspan-1,
-                                                           (nestRow - row if isAbstract else 1)-1,
-                                                           (XbrlTable.TG_LEFT_JUSTIFIED
-                                                            if isNonAbstract or nestRow == row
-                                                            else XbrlTable.TG_CENTERED),
-                                                           objectId=yStructuralNode.objectId(),
-                                                           isRollUp=columnspan>1 and isNonAbstract and (len(yStructuralNode.childStructuralNodes)>1 or (len(yStructuralNode.childStructuralNodes)==1 and not(yStructuralNode.childStructuralNodes[0].isAbstract))))
+                            
+                            allowDeleteOpenLine = True
+                            isFilledOpenLine = False
+                            if allowDeleteOpenLine:
+                                if yStructuralNode.contextItemBinding is not None and yStructuralNode.contextItemBinding.yieldedFact is not None:
+                                    yf = yStructuralNode.contextItemBinding.yieldedFact
+                                    if not(isinstance(yf, FactPrototype)):
+                                        #print("Open Y node with value " + label + " x=" + str(xValue) + " y=" + str(yValue))
+                                        isFilledOpenLine = True
+                            #TODO for X open axis
+                            if isFilledOpenLine:
+                                yValue = row-1
+                                xValue = leftCol-1
+                                objectId = yStructuralNode.objectId()
+                                #TODO for other cases than starting with first column (e.g. multiple breakdowns in Y)
+                                if xValue == 0:
+                                    self.tableInfo.fillTable = True
+                                    self.table.initFilledFirstCellOpenRow(headerLabel, xValue, yValue, objectId=objectId,
+                                                                          command=lambda x=xValue, y=yValue: self.deleteFilledOpenRow(x, y)) #closed arg. values
+                                else:    
+                                    self.table.initHeaderCellValue(headerLabel, xValue, yValue, 0, 0, XbrlTable.TG_RIGHT_JUSTIFIED, objectId=objectId)
+                                self.tableInfo.setOpenValueCell(xValue, yValue)
+                            else:            
+                                self.table.initHeaderCellValue(headerLabel,
+                                                               xValue, yValue,
+                                                               columnspan-1,
+                                                               (nestRow - row if isAbstract else 1)-1,
+                                                               (XbrlTable.TG_LEFT_JUSTIFIED
+                                                                if isNonAbstract or nestRow == row
+                                                                else XbrlTable.TG_CENTERED),
+                                                               objectId=yStructuralNode.objectId(),
+                                                               isRollUp=columnspan>1 and isNonAbstract and (len(yStructuralNode.childStructuralNodes)>1 or (len(yStructuralNode.childStructuralNodes)==1 and not(yStructuralNode.childStructuralNodes[0].isAbstract))))
                         else:
                             self.aspectEntryObjectIdsNode[yStructuralNode.aspectEntryObjectId] = yStructuralNode
                             if TRACE_HEADERS:
@@ -1019,14 +1132,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 except ValueError:
                                     effectiveValue = enumerationValues[0]
                                     selectedIdx = 0
+                                xValue = self.dataFirstCol + i-1
+                                yValue = row-1
                                 if self.testMode:
                                     for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
-                                        pluginMethod(effectiveValue, enumerationValues, self.dataFirstCol + i-1, row-1) 
+                                        pluginMethod(effectiveValue, enumerationValues, xValue, yValue) 
                                         break               
+                                self.tableInfo.setChoiceCell(xValue, yValue)
                                 self.table.initCellCombobox(effectiveValue,
                                                             enumerationValues,
-                                                            self.dataFirstCol + i-1,
-                                                            row-1,
+                                                            xValue,
+                                                            yValue,
                                                             objectId=objectId,
                                                             selectindex=selectedIdx,
                                                             codes=enumerationDict)
@@ -1061,13 +1177,16 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 else:
                                     newAspectValues = None
                                 if newAspectValues is None:
+                                    xValue = self.dataFirstCol + i-1
+                                    yValue = row-1
                                     if self.testMode:
                                         for pluginMethod in pluginClassMethods("DevTesting.InitCellValue"):
-                                            pluginMethod(value, self.dataFirstCol + i-1, row-1)     
+                                            pluginMethod(value, xValue, yValue)     
                                             break           
+                                    self.tableInfo.setValueCell(xValue, yValue)
                                     self.table.initCellValue(value,
-                                                             self.dataFirstCol + i-1,
-                                                             row-1,
+                                                             xValue,
+                                                             yValue,
                                                              justification=justify,
                                                              objectId=objectId,
                                                              backgroundColourTag=self.getbackgroundColor(fp))
@@ -1079,14 +1198,17 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     except ValueError:
                                         effectiveValue = qNameValues[0]
                                         selectedIdx = 0
+                                    xValue = self.dataFirstCol + i-1
+                                    yValue = row-1
                                     if self.testMode:
                                         for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
-                                            pluginMethod(effectiveValue, qNameValues, self.dataFirstCol + i-1, row-1)   
+                                            pluginMethod(effectiveValue, qNameValues, xValue, yValue)   
                                             break             
+                                    self.tableInfo.setChoiceCell(xValue, yValue)
                                     self.table.initCellCombobox(effectiveValue,
                                                                 qNameValues,
-                                                                self.dataFirstCol + i-1,
-                                                                row-1,
+                                                                xValue,
+                                                                yValue,
                                                                 objectId=objectId,
                                                                 selectindex=selectedIdx,
                                                                 codes=newAspectQNames)
@@ -1100,24 +1222,30 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 except ValueError:
                                     effectiveValue = booleanValues[0]
                                     selectedIdx = 0
+                                xValue = self.dataFirstCol + i-1
+                                yValue = row-1
                                 if self.testMode:
                                     for pluginMethod in pluginClassMethods("DevTesting.InitCellCombobox"):
-                                        pluginMethod(effectiveValue, booleanValues, self.dataFirstCol + i-1, row-1)  
+                                        pluginMethod(effectiveValue, booleanValues, xValue, yValue)  
                                         break              
+                                self.tableInfo.setChoiceCell(xValue, yValue)
                                 self.table.initCellCombobox(effectiveValue,
                                                             booleanValues,
-                                                            self.dataFirstCol + i-1,
-                                                            row-1,
+                                                            xValue,
+                                                            yValue,
                                                             objectId=objectId,
                                                             selectindex=selectedIdx)
                             else:
+                                xValue = self.dataFirstCol + i-1
+                                yValue = row-1
                                 if self.testMode:
                                     for pluginMethod in pluginClassMethods("DevTesting.InitCellValue"):
-                                        pluginMethod(value, self.dataFirstCol + i-1, row-1)       
+                                        pluginMethod(value, xValue, yValue)       
                                         break         
+                                self.tableInfo.setValueCell(xValue, yValue)
                                 self.table.initCellValue(value,
-                                                         self.dataFirstCol + i-1,
-                                                         row-1,
+                                                         xValue,
+                                                         yValue,
                                                          justification=justify,
                                                          objectId=objectId,
                                                          backgroundColourTag=self.getbackgroundColor(fp))
@@ -1225,7 +1353,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         if objId and objId[0] == "f":
                             # fact prototype
                             viewableObject = self.factPrototypes[int(objId[1:])]
-                        elif objId[0] != "a":
+                        elif objId[0] != "a": #TODO: clarify what this "a" means
                             # instance fact
                             viewableObject = self.modelXbrl.modelObject(objId)
                         else:
@@ -1350,6 +1478,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 if self.factPrototypes[factPrototypeIndex] is not None:
                                     self.factPrototypes[factPrototypeIndex].clear()
                                 self.factPrototypes[factPrototypeIndex] = None #dereference fact prototype
+                            #TODO: clarify what this "a" means
                             elif objId[0] != "a": # instance fact, not prototype
                                 fact = self.modelXbrl.modelObject(objId)
                                 if fact.concept.isNumeric:
@@ -1372,6 +1501,9 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                 if fact.value != str(value):
                                     if fact.isNil != (not value):
                                         fact.isNil = not value
+                                        if fact.isNil:
+                                            pass
+                                            #TODO: clear out nil facts
                                         instance.updateFactIndex(fact) # for the time being, only the isNil value can change
                                     if fact.concept.isNumeric and (not fact.isNil): # if nil, there is no need to update these values
                                         fact.decimals = decimals
@@ -1564,6 +1696,33 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                         headerValues[header] = rel.toModelObject.qname
             structuralNode.aspectEntryHeaderValues = headerValues
         return sorted(valueHeaders)
+    
+    def deleteFilledOpenRow(self, x, y):
+        '''
+        This method is used as callback to delete a filled open axis row or column.
+        This is done the closest possible way to the GUI way: all fact cell values
+        are just cleared as if the user had wiped the cell contents.
+        Then the normal "update instance from fact prototype" processing
+        is triggered. Then the delete nil facts method will scan and delete orphan facts,
+        contexts and units.
+        And finally, the view must be redrawn.
+        '''
+        #TODO: complete case for X open axis
+        #TODO: examine the possibility of moving nil facts removal to updateInstanceFromFactPrototypes 
+        col = self.tableInfo.getCol(y)
+        for x, cell in col.items():
+            print(str(cell))
+            objectId = self.table.getObjectIdFromXY(x, y)
+            #print("objectId= " + objectId)
+            if cell.isValue:
+                value = self.table.getTableValueFromXY(x, y)
+                if value is not None and objectId[0] != "f":
+                    #print("value= " + value)
+                    self.table.clearCellValueFromXY(x, y)
+        self.updateInstanceFromFactPrototypes()
+        self.modelXbrl.deleteNilFacts()
+        self.view()
+
                 
 # import after other modules resolved to prevent circular references
 from arelle.FunctionXfi import concept_relationships
