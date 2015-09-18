@@ -39,7 +39,7 @@ __pluginInfo__ = {
     'version': '1.0',
     'description': "This plugin contains non-GUI extensions for EBA and EIOPA (e.g. filing indicators)",
     'license': 'Apache-2',
-    'author': 'Acsone',
+    'author': 'Acsone S. A.',
     'copyright': '(c) Copyright 2015 Acsone S. A.',
     # classes of mount points (required)
     'CntlrWinMain.Modeling.LoadFilingIndicators': loadFilingIndicators,

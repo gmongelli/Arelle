@@ -50,9 +50,10 @@ def fileOpenExtender(cntlr, menu):
 __pluginInfo__ = {
     'name': 'New SolvencyReport 2.0',
     'version': '1.2',
-    'description': "Open the report selection dialog using the latest SolvencyII taxonomy",
+    'description': '''New 'File' menu entry called 'New Solvency Report...' that opens a report selection dialog
+using the latest Solvency II taxonomy''',
     'license': 'Apache-2',
-    'author': 'acsone',
+    'author': 'Acsone S. A.',
     'copyright': '(c) Copyright 2014, 2015 Acsone S. A.',
     # classes of mount points (required)
     'CntlrWinMain.Menu.File.Open': fileOpenExtender,

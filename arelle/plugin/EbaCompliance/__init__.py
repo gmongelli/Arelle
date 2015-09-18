@@ -89,7 +89,7 @@ EBA_ENTRY_POINTS_INDIVIDUAL_2_4 = {
      'Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-08-31/mod/sbp_ind.xsd',
      'Initial Market Valuation for Supervisory Benchmarking Portfolios' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cp-2014-07/2015-08-31/mod/sbpimv_ind.xsd',     
      'Financial Reporting, National GAAP' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02-ind/2015-08-31/mod/finrep_ind_gaap.xsd',
-     'Financial Reporting, IFRS<' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02-ind/2015-08-31/mod/finrep_ind_ifrs.xsd'
+     'Financial Reporting, IFRS' : 'http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/finrep/its-2015-02-ind/2015-08-31/mod/finrep_ind_ifrs.xsd'
      
       }
 EBA_ENTRY_POINTS_INDIVIDUAL_BY_VERSION = {
@@ -491,7 +491,9 @@ def fileOpenExtender(cntlr, menu):
 __pluginInfo__ = {
     'name': 'Improve EBA compliance and help create new EBA report',
     'version': '1.10',
-    'description': "This module extends the menus, helps choosing a new EBA report and if needed removes nil facts and unused contexts and units.",
+    'description': '''This module extends the File menu with the 'New EBA File...' entry
+that helps choosing a new EBA report.
+When saving XBRL instances, it also removes any nil facts and unused contexts and units.''',
     'license': 'Apache-2',
     'author': 'Acsone S.A.',
     'copyright': '(c) Copyright 2014, 2015 Acsone S.A.',

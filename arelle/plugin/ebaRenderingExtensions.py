@@ -130,9 +130,10 @@ def saveNewFileFromGUI(cntlrWinMain):
 __pluginInfo__ = {
     'name': 'EBA Rendering extensions',
     'version': '1.1',
-    'description': "This plugin contains GUI extensions for EBA and EIOPA (e.g update of filing indicators)",
+    'description': '''This plugin contains GUI extensions for EBA and EIOPA (update of filing indicators
+or forced saving of XBRL instances at creation time)''',
     'license': 'Apache-2',
-    'author': 'Acsone',
+    'author': 'Acsone S. A.',
     'copyright': '(c) Copyright 2015 Acsone S. A.',
     # classes of mount points (required)
     'CntlrWinMain.Rendering.CheckUpdateFilingIndicator': checkUpdateFilingIndicator,
