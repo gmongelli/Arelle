@@ -7,11 +7,15 @@ import math
 
 class RecordedTableLayout:
     def __init__(self):
-        self.tableInfo = []
+        self.tableData = {} # dictionary of columns by row number
     
-    def add(self, msg):
-        #print(msg)
-        self.tableInfo.append(msg)
+    def add(self, x, y, cellType, value):
+        c = [cellType, value]
+        try:
+            col = self.tableData[str(y)]
+        except:
+            col = self.tableData[str(y)] = {}
+        col[str(x)] = c
         
 class TestContext:
     def __init__(self):
@@ -75,19 +79,19 @@ def getFilePath(cntlrWinMain, modelXbrl):
 
 def initCellValue(value, x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("v: " + str(value) + " " + str(x) + " " + str(y))
+        __testContext.tableLayout.add(x, y, "v", value)
 
 def initCellCombobox(value, values, x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("cb: " + str(value) + " "+ str(values) + " " + str(x) + " " + str(y))
+        __testContext.tableLayout.add(x, y, "cb", value)
 
 def initHeaderCellValue(headerLabel, x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("h: " + str(headerLabel) + " " + str(x) + " " + str(y))
+        __testContext.tableLayout.add(x, y, "h", headerLabel)
 
 def initHeaderCombobox(x, y):
     if __testContext.recordTableLayout:
-        __testContext.tableLayout.add("hcb: " + str(x) + " " + str(y))
+        __testContext.tableLayout.add(x, y, "hcb", None)
     
 def humanizeSize(size):
     size = abs(size)

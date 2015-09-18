@@ -7,6 +7,7 @@ from tkinter import (Tk)
 from arelle.CntlrWinMain import CntlrWinMain
 from arelle.PluginManager import pluginClassMethods
 from arelle.ViewWinRenderedGrid import getTableAxisArcroles
+from arelle.plugin.DevTesting import RecordedTableLayout
 
 def initUI(testObject):
     testObject.saveReferences = False # <- set this to create new references
@@ -108,18 +109,21 @@ class ViewHelper:
             tblLinkroleUri, table = tpl
             print(tableName)
             
-            self.testContext.tableLayout.tableInfo = []
+            del self.testContext.tableLayout
+            self.testContext.tableLayout = RecordedTableLayout()
             tableView.view(viewTblELR=tblLinkroleUri)
-            testData[tableName] = self.testContext.tableLayout.tableInfo
+            testData[tableName] = self.testContext.tableLayout.tableData
+        del self.testContext.tableLayout
+        self.testContext.tableLayout = RecordedTableLayout()
         return testData    
 
-    def dumpDiffTables(self, filename, tableName, testTableInfo, refTableInfo):
+    def dumpDiffTables(self, filename, tableName, testTableData, refTableData):
         filePath = getTestDir() + "/tmp/"  + filename + "_" + tableName + "_ref.json"
         with open(filePath, 'w') as outfile:
-            json.dump(refTableInfo, outfile, indent=1)
+            json.dump(refTableData, outfile, indent=1, sort_keys=True)
         filePath = getTestDir() + "/tmp/"  + filename + "_" + tableName + "_res.json"
         with open(filePath, 'w') as outfile:
-            json.dump(testTableInfo, outfile, indent=1)
+            json.dump(testTableData, outfile, indent=1, sort_keys=True)
         
         
     def compareTables(self, saveReferences, referencesDir, filename, testData):
@@ -127,7 +131,7 @@ class ViewHelper:
         result = True
         if saveReferences:
             with open(testDataFilename, 'w') as outfile:
-                json.dump(testData, outfile, indent=1)
+                json.dump(testData, outfile, indent=1, sort_keys=True)
         else:
             with open(testDataFilename, 'r') as inputfile:
                 refData = json.load(inputfile)
@@ -137,27 +141,43 @@ class ViewHelper:
                 result = False
             else:            
                 for tableEntry in refData.items():
-                    tableName, refTableInfo = tableEntry
-                    testTableInfo = testData[tableName]
-                    if len(testTableInfo) != len(refTableInfo):
-                        print("Not same number of cells for table " + tableName + " " + filename)
-                        self.dumpDiffTables(filename, tableName, testTableInfo, refTableInfo)
-                        result = False
-                    else:
-                        for idx in range(len(testTableInfo)):
-                            ref = refTableInfo[idx]
-                            tst = testTableInfo[idx]
-                            msg = "Not same cell idx=" + str(idx) + " for table " + tableName + " " + filename + " ref=" + ref + " tst=" + tst
-                            if tst != ref:
-                                print(msg)
-                                self.dumpDiffTables(filename, tableName, testTableInfo, refTableInfo)
-                                result = False
+                    tableName, refTableData = tableEntry
+                    testTableData = testData[tableName]
+                    sameTables = True
+                    for rowNumber in sorted(refTableData.keys()):
+                        refCol = refTableData[rowNumber]
+                        try:
+                            testCol = testTableData[rowNumber]
+                        except KeyError:
+                            print("Row does not exist in test table row={0} {1} {2}".format(str(rowNumber), tableName, filename))
+                            sameTables = False
+                            break
+                        if len(refCol) != len(testCol):
+                            print("Not same number of column entries row={0} {1} {2}".format(str(rowNumber), tableName, filename))
+                            break
+                        for colNumber in sorted(refCol.keys()):
+                            refCell = refCol[colNumber]                                
+                            try:
+                                testCell = testCol[colNumber]
+                            except KeyError:
+                                print("Column does not exist in test table col={0} row={1} {2} {3}".format(str(colNumber), str(rowNumber), tableName, filename))
+                                sameTables = False
                                 break
+                            if refCell[0] != testCell[0] or refCell[1] != testCell[1]:
+                                print("Not same cell {0} <> {1} (ref) col={2} row={3} {4} {5}".format(str(testCell), str(refCell), str(colNumber), str(rowNumber), tableName, filename))
+                                sameTables = False
+                                break
+                        if not sameTables:
+                            break
+                    if not(sameTables):
+                        self.dumpDiffTables(filename, tableName, testTableData, refTableData)
+                        result = False
+                            
             resultFilePath = getTestDir() + "/tmp/"  + filename + ".json"
             if not(result):
                 print("Creating a result file")
                 with open(resultFilePath, 'w') as outfile:
-                    json.dump(testData, outfile, indent=1)
+                    json.dump(testData, outfile, indent=1, sort_keys=True)
             else:
                 try:
                     os.remove(resultFilePath)

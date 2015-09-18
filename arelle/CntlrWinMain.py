@@ -897,7 +897,7 @@ class CntlrWinMain (Cntlr.Cntlr):
                 if modelXbrl.modelDocument.type in (ModelDocument.Type.INSTANCE, ModelDocument.Type.INLINEXBRL, ModelDocument.Type.INLINEXBRLDOCUMENTSET):
                     currentAction = "table view of facts"
                     if not modelXbrl.hasTableRendering: # table view only if not grid rendered view
-                        ViewWinFactTable.viewFacts(modelXbrl, self.tabWinTopRt, linkrole=firstTableLinkroleURI, lang=self.labelLang, expandAll=firstTableLinkroleURI)
+                        modelXbrl.guiViews.factTableView = ViewWinFactTable.viewFacts(modelXbrl, self.tabWinTopRt, linkrole=firstTableLinkroleURI, lang=self.labelLang, expandAll=firstTableLinkroleURI)
                         if topView is None: topView = modelXbrl.views[-1]
                     if displayTaxonomyTabs:
                         currentAction = "tree/list of facts"

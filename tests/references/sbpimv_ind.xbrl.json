@@ -1,57 +1,234 @@
 {
- "S_00.01": [
-  "h: S 00.01 0 0",
-  "h:           5 0",
-  "h: Nature of Report 5 1",
-  "h: 36694 5 3",
-  "h: 010 5 4",
-  "h: Memorandum items 0 5",
-  "h: Accounting framework 1 5",
-  "h: 36695 3 5",
-  "h: 010 4 5",
-  "h: Reporting Level 1 6",
-  "h: 36696 3 6",
-  "h: 020 4 6",
-  "cb: National GAAP ['', 'National GAAP', 'IFRS'] 5 5",
-  "cb: Individual ['', 'Individual', 'Consolidated'] 5 6"
- ],
- "C_106.00": [
-  "h: C 106.00 0 0",
-  "h:           3 0",
-  "h: Portfolio Modelled for Var + SVaR (YES/NO) 3 1",
-  "h: 36676 3 3",
-  "h: 020 3 4",
-  "h: Portfolio Modelled for IRC (YES/NO) 4 1",
-  "h: 36978 4 3",
-  "h: 030 4 4",
-  "h: Portfolio Modelled for Correlation Trading (YES/NO) 5 1",
-  "h: 36979 5 3",
-  "h: 040 5 4",
-  "h: Rationale for Exclusion 6 1",
-  "h: 36980 6 3",
-  "h: 050 6 4",
-  "h: Free text box 7 1",
-  "h: 36981 7 3",
-  "h: 060 7 4",
-  "h: Initial Market Valuation 8 1",
-  "h: 36982 8 3",
-  "h: 070 8 4",
-  "h: 33 0 5",
-  "h: 36977 1 5",
-  "h: 010 2 5",
-  "h: 36977 1 6",
-  "h: 010 2 6",
-  "cb: true ['', 'true', 'false'] 3 5",
-  "cb: true ['', 'true', 'false'] 4 5",
-  "cb: true ['', 'true', 'false'] 5 5",
-  "cb: Other rationale for exclusion ['', 'Model not authorised by regulator', 'Model not authorised internally', 'Other rationale for exclusion'] 6 5",
-  "v: 9342 7 5",
-  "v: 1,916,000.0000 8 5",
-  "cb:  ['', 'true', 'false'] 3 6",
-  "cb:  ['', 'true', 'false'] 4 6",
-  "cb:  ['', 'true', 'false'] 5 6",
-  "cb:  ['', 'Model not authorised by regulator', 'Model not authorised internally', 'Other rationale for exclusion'] 6 6",
-  "v: None 7 6",
-  "v: None 8 6"
- ]
+ "C_106.00": {
+  "0": {
+   "0": [
+    "h",
+    "C 106.00"
+   ],
+   "3": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "3": [
+    "h",
+    "Portfolio Modelled for Var + SVaR (YES/NO)"
+   ],
+   "4": [
+    "h",
+    "Portfolio Modelled for IRC (YES/NO)"
+   ],
+   "5": [
+    "h",
+    "Portfolio Modelled for Correlation Trading (YES/NO)"
+   ],
+   "6": [
+    "h",
+    "Rationale for Exclusion"
+   ],
+   "7": [
+    "h",
+    "Free text box"
+   ],
+   "8": [
+    "h",
+    "Initial Market Valuation"
+   ]
+  },
+  "3": {
+   "3": [
+    "h",
+    "36676"
+   ],
+   "4": [
+    "h",
+    "36978"
+   ],
+   "5": [
+    "h",
+    "36979"
+   ],
+   "6": [
+    "h",
+    "36980"
+   ],
+   "7": [
+    "h",
+    "36981"
+   ],
+   "8": [
+    "h",
+    "36982"
+   ]
+  },
+  "4": {
+   "3": [
+    "h",
+    "020"
+   ],
+   "4": [
+    "h",
+    "030"
+   ],
+   "5": [
+    "h",
+    "040"
+   ],
+   "6": [
+    "h",
+    "050"
+   ],
+   "7": [
+    "h",
+    "060"
+   ],
+   "8": [
+    "h",
+    "070"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "33"
+   ],
+   "1": [
+    "h",
+    "36977"
+   ],
+   "2": [
+    "h",
+    "010"
+   ],
+   "3": [
+    "cb",
+    "true"
+   ],
+   "4": [
+    "cb",
+    "true"
+   ],
+   "5": [
+    "cb",
+    "true"
+   ],
+   "6": [
+    "cb",
+    "Other rationale for exclusion"
+   ],
+   "7": [
+    "v",
+    "9342"
+   ],
+   "8": [
+    "v",
+    "1,916,000.0000"
+   ]
+  },
+  "6": {
+   "1": [
+    "h",
+    "36977"
+   ],
+   "2": [
+    "h",
+    "010"
+   ],
+   "3": [
+    "cb",
+    ""
+   ],
+   "4": [
+    "cb",
+    ""
+   ],
+   "5": [
+    "cb",
+    ""
+   ],
+   "6": [
+    "cb",
+    ""
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ]
+  }
+ },
+ "S_00.01": {
+  "0": {
+   "0": [
+    "h",
+    "S 00.01"
+   ],
+   "5": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "5": [
+    "h",
+    "Nature of Report"
+   ]
+  },
+  "3": {
+   "5": [
+    "h",
+    "36694"
+   ]
+  },
+  "4": {
+   "5": [
+    "h",
+    "010"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "Memorandum items"
+   ],
+   "1": [
+    "h",
+    "Accounting framework"
+   ],
+   "3": [
+    "h",
+    "36695"
+   ],
+   "4": [
+    "h",
+    "010"
+   ],
+   "5": [
+    "cb",
+    "National GAAP"
+   ]
+  },
+  "6": {
+   "1": [
+    "h",
+    "Reporting Level"
+   ],
+   "3": [
+    "h",
+    "36696"
+   ],
+   "4": [
+    "h",
+    "020"
+   ],
+   "5": [
+    "cb",
+    "Individual"
+   ]
+  }
+ }
 }

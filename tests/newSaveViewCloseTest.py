@@ -126,10 +126,12 @@ class ThisTest:
         diffMem = memSize - self.prevMemConsumed
         self.prevMemConsumed = memSize
     
+        result = self.viewHelper.compareTables(self.saveReferences, self.referencesDir, entryPointInfo.uniqueName, testData)
+        del testData
+        
         print("Memory consumed: " + DevTesting.humanizeSize(memSize) + " diff=" + DevTesting.humanizeSize(diffMem) + " max= " + DevTesting.humanizeSize(self.maxSize))
         assert memSize < 2000000000, "Check memory leaks regression: should never use 2Gb after instance close"
         
-        result = self.viewHelper.compareTables(self.saveReferences, self.referencesDir, entryPointInfo.uniqueName, testData)
         return result
 
 class TestNewSaveViewClose(unittest.TestCase):

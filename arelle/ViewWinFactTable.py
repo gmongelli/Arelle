@@ -38,6 +38,7 @@ def viewFacts(modelXbrl, tabWin, header="Fact Table", arcrole=XbrlConst.parentCh
         #saveMenu = Menu(view.viewFrame, tearoff=0)
         #saveMenu.add_command(label=_("HTML file"), underline=0, command=lambda: view.modelXbrl.modelManager.cntlr.fileSave(view=view, fileType="html"))
         #menu.add_cascade(label=_("Save"), menu=saveMenu, underline=0)
+    return view
     
 class ViewFactTable(ViewWinTree.ViewTree):
     def __init__(self, modelXbrl, tabWin, header, arcrole, linkrole=None, linkqname=None, arcqname=None, lang=None, expandAll=False):

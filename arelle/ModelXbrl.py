@@ -111,6 +111,7 @@ class GuiViews:
         self.tableIndexView = None # actually used to refresh tab label with filename
         self.tableView = None # holds the ViewRenderedGrid corresponding to an instance (used e.g. to synch after table index selection)
         self.propertiesView = None
+        self.factTableView = None
             
 class ModelXbrl:
     """

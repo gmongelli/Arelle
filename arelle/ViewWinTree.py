@@ -14,7 +14,7 @@ from arelle.PluginManager import pluginClassMethods
 import os
 
 class ViewTree:
-    def __init__(self, modelXbrl, tabWin, tabTitle, hasToolTip=False, lang=None, editableColumns=[]):
+    def __init__(self, modelXbrl, tabWin, tabTitle, hasToolTip=False, lang=None, editableColumns=[], valueChangedCallback=None):
         self.tabWin = tabWin
         self.viewFrame = Frame(tabWin)
         self.viewFrame.view = self
@@ -77,6 +77,7 @@ class ViewTree:
             if not lang: 
                 self.lang = modelXbrl.modelManager.defaultLang
         self.editableColumns = editableColumns
+        self.valueChangedCallback = valueChangedCallback
         self.entryPopup = None
 
     def refreshTitle(self):
@@ -460,11 +461,15 @@ class ViewTree:
     
         # place Entry popup properly
         data = self.treeView.set(rowID, column=column)
-        self.entryPopup = EntryPopup(self.treeView, rowID, column, data)
+        self.entryPopup = EntryPopup(self.treeView, rowID, column, data, self.valueChanged)
         self.entryPopup.place( x=x, y=y+pady, anchor=W, relwidth=1)
+        
+    def valueChanged(self, rowID, column, value):
+        if self.valueChangedCallback is not None:
+            self.valueChangedCallback(rowID, column, value)
 
 class EntryPopup(Entry):
-    def __init__(self, parent, rowID, column, text, **kw):
+    def __init__(self, parent, rowID, column, text, callback, **kw):
         ''' If relwidth is set, then width is ignored '''
         super().__init__(parent, **kw)
 
@@ -475,6 +480,7 @@ class EntryPopup(Entry):
         self.column = column
         self.parent = parent
         self['exportselection'] = False
+        self.callback = callback
 
         self.focus_force()
         if text is not None:
@@ -493,6 +499,7 @@ class EntryPopup(Entry):
 
     def valueChanged(self, value):
         self.parent.set(self.rowID, self.column, value.get())
+        self.callback(self.rowID, self.column, value.get())
 
     def restoreValue(self, text):
         self.valueVar.set(text)

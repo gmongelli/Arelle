@@ -1,1263 +1,5348 @@
 {
- "P_02.04": [
-  "h: P 02.04 0 0",
-  "h:           8 0",
-  "h: Actual current position 8 1",
-  "h: 32099 8 3",
-  "h: 010 8 4",
-  "h: Planned Year 1 Position 9 1",
-  "h: 32100 9 3",
-  "h: 020 9 4",
-  "h: Comments section (required) 10 1",
-  "h: 32101 10 3",
-  "h: 030 10 4",
-  "h:  0 5",
-  "h: Price level on loan stock on balance sheet 1 5",
-  "h: Loans to households 2 5",
-  "h: 32103 6 5",
-  "h: 010 7 5",
-  "h: o/w domestic operations 3 6",
-  "h: 32104 6 6",
-  "h: 020 7 6",
-  "h: o/w international operations 3 7",
-  "h: 32105 6 7",
-  "h: 030 7 7",
-  "h: Loans to corporates 2 8",
-  "h: 32106 6 8",
-  "h: 040 7 8",
-  "h: o/w loans to non-financial corporates 3 9",
-  "h: 32107 6 9",
-  "h: 050 7 9",
-  "h: o/w domestic operations 4 10",
-  "h: 32108 6 10",
-  "h: 060 7 10",
-  "h: o/w international operations 4 11",
-  "h: 32109 6 11",
-  "h: 070 7 11",
-  "h: o/w loans to financial corporates 3 12",
-  "h: 32110 6 12",
-  "h: 080 7 12",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 8 8",
-  "v: None 9 8",
-  "v: None 8 9",
-  "v: None 9 9",
-  "v: None 8 10",
-  "v: None 9 10",
-  "v: None 8 11",
-  "v: None 9 11",
-  "v: None 8 12",
-  "v: None 9 12"
- ],
- "P_03.00": [
-  "h: P 03.00 0 0",
-  "h: Funding plan 3 0",
-  "h: LEI code 3 1",
-  "h: 32183 3 3",
-  "h: 010 3 4",
-  "h: 32184 1 5",
-  "h: 020 2 5",
-  "v: None 3 5"
- ],
- "P_02.05": [
-  "h: P 02.05 0 0",
-  "h:           8 0",
-  "h: Actual current position 8 1",
-  "h: 32111 8 3",
-  "h: 010 8 4",
-  "h: Planned Year 1 Position 9 1",
-  "h: 32112 9 3",
-  "h: 020 9 4",
-  "h: Comments section (required) 10 1",
-  "h: 32113 10 3",
-  "h: 030 10 4",
-  "h: Accounting portfolios for financial liabilities other than classified as held for sale 0 5",
-  "h: Price level on deposit stock on balance sheet 1 5",
-  "h: Deposits from households 2 5",
-  "h: 32115 6 5",
-  "h: 010 7 5",
-  "h: o/w domestic operations 3 6",
-  "h: 32116 6 6",
-  "h: 020 7 6",
-  "h: o/w international operations 3 7",
-  "h: 32117 6 7",
-  "h: 030 7 7",
-  "h: Deposits from corporates 2 8",
-  "h: 32118 6 8",
-  "h: 040 7 8",
-  "h: o/w deposits from non-financial corporates 3 9",
-  "h: 32119 6 9",
-  "h: 050 7 9",
-  "h: o/w domestic operations 4 10",
-  "h: 32120 6 10",
-  "h: 060 7 10",
-  "h: o/w international operations 4 11",
-  "h: 32121 6 11",
-  "h: 070 7 11",
-  "h: o/w deposits from financial corporates 3 12",
-  "h: 32122 6 12",
-  "h: 080 7 12",
-  "h: Short Term Debt Securities (<1year) 2 13",
-  "h: 32123 6 13",
-  "h: 090 7 13",
-  "h: Long Term Debt Securities (>=1year) 2 14",
-  "h: 32124 6 14",
-  "h: 100 7 14",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 8 8",
-  "v: None 9 8",
-  "v: None 8 9",
-  "v: None 9 9",
-  "v: None 8 10",
-  "v: None 9 10",
-  "v: None 8 11",
-  "v: None 9 11",
-  "v: None 8 12",
-  "v: None 9 12",
-  "v: None 8 13",
-  "v: None 9 13",
-  "v: None 8 14",
-  "v: None 9 14"
- ],
- "P_00.01": [
-  "h: P 00.01 0 0",
-  "h:           5 0",
-  "h: Nature of Report 5 1",
-  "h: 37289 5 3",
-  "h: 010 5 4",
-  "h: Memorandum items 0 5",
-  "h: Accounting framework 1 5",
-  "h: 37290 3 5",
-  "h: 010 4 5",
-  "h: Reporting Level 1 6",
-  "h: 37291 3 6",
-  "h: 020 4 6",
-  "cb:  ['', 'National GAAP', 'IFRS'] 5 5",
-  "cb:  ['', 'Individual', 'Consolidated'] 5 6"
- ],
- "P_02.03": [
-  "h: P 02.03 0 0",
-  "h: Funding plan 8 0",
-  "h: Actual current position 8 1",
-  "h: 32088 8 3",
-  "h: 010 8 4",
-  "h: Planned 6 month position 9 1",
-  "h: 32089 9 3",
-  "h: 020 9 4",
-  "h: Planned Year 1 Position 10 1",
-  "h: 32090 10 3",
-  "h: 030 10 4",
-  "h: Planned Year 2 Position 11 1",
-  "h: 32091 11 3",
-  "h: 040 11 4",
-  "h: Planned Year 3 Position 12 1",
-  "h: 32092 12 3",
-  "h: 050 12 4",
-  "h: Comments section 13 1",
-  "h: 32093 13 3",
-  "h: 060 13 4",
-  "h: Innovative debt-like instruments 0 5",
-  "h: Innovative funding structures 1 5",
-  "h: Current debt or debt-like innovative funding structures in issue, including innovative deposit-like instruments, which include the following: 2 5",
-  "h: 32095 6 5",
-  "h: 010 7 5",
-  "h: o/w sold to SME clients 3 6",
-  "h: 32096 6 6",
-  "h: 020 7 6",
-  "h: o/w sold to retail clients (exclude SME) 3 7",
-  "h: 32097 6 7",
-  "h: 030 7 7",
-  "h: o/w offered to customers already holding deposits at the bank 4 8",
-  "h: 32098 6 8",
-  "h: 040 7 8",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 11 5",
-  "v: None 12 5",
-  "v: None 13 5",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 11 6",
-  "v: None 12 6",
-  "v: None 13 6",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 10 7",
-  "v: None 11 7",
-  "v: None 12 7",
-  "v: None 13 7",
-  "v: None 8 8",
-  "v: None 9 8",
-  "v: None 10 8",
-  "v: None 11 8",
-  "v: None 12 8",
-  "v: None 13 8"
- ],
- "P_01.02": [
-  "h: P 01.02 0 0",
-  "h: Funding plan 9 0",
-  "h: Actual current position 9 1",
-  "h: 37107 9 3",
-  "h: 010 9 4",
-  "h: Planned 6 month position 10 1",
-  "h: 37108 10 3",
-  "h: 020 10 4",
-  "h: Planned Year 1 Position 11 1",
-  "h: 37109 11 3",
-  "h: 030 11 4",
-  "h: Planned Year 2 Position 12 1",
-  "h: 37110 12 3",
-  "h: 040 12 4",
-  "h: Planned Year 3 Position 13 1",
-  "h: 37111 13 3",
-  "h: 050 13 4",
-  "h:           0 5",
-  "h: Liabilities 1 5",
-  "h: Repurchase agreements 2 5",
-  "h: 37113 7 5",
-  "h: 010 8 5",
-  "h: Deposits from households 2 6",
-  "h: 37114 7 6",
-  "h: 020 8 6",
-  "h: o/w Domestic operations 3 7",
-  "h: 37115 7 7",
-  "h: 030 8 7",
-  "h: o/w from residents 4 8",
-  "h: 37116 7 8",
-  "h: 040 8 8",
-  "h: o/w International operations 3 9",
-  "h: 37117 7 9",
-  "h: 050 8 9",
-  "h: Deposits from private non-financial corporates 2 10",
-  "h: 37118 7 10",
-  "h: 060 8 10",
-  "h: o/w Domestic operations 3 11",
-  "h: 37119 7 11",
-  "h: 070 8 11",
-  "h: o/w from residents 4 12",
-  "h: 37120 7 12",
-  "h: 080 8 12",
-  "h: o/w SME 4 13",
-  "h: 37121 7 13",
-  "h: 090 8 13",
-  "h: o/w Large corporates 4 14",
-  "h: 37122 7 14",
-  "h: 100 8 14",
-  "h: o/w International operations 3 15",
-  "h: 37123 7 15",
-  "h: 110 8 15",
-  "h: Deposits from financial corporates 2 16",
-  "h: 37124 7 16",
-  "h: 120 8 16",
-  "h: o/w credit institutions 3 17",
-  "h: 37125 7 17",
-  "h: 130 8 17",
-  "h: o/w other financial corporates 3 18",
-  "h: 37126 7 18",
-  "h: 140 8 18",
-  "h: Short-term Debt Securities (original maturity <1 year) 2 19",
-  "h: 37127 7 19",
-  "h: 150 8 19",
-  "h: o/w unsecured 3 20",
-  "h: 37128 7 20",
-  "h: 160 8 20",
-  "h: o/w secured 3 21",
-  "h: 37129 7 21",
-  "h: 170 8 21",
-  "h: Long-term Debt Securities (original maturity >= 1 year) 2 22",
-  "h: 37130 7 22",
-  "h: 180 8 22",
-  "h: Total long term unsecured 3 23",
-  "h: 37131 7 23",
-  "h: 190 8 23",
-  "h: maturing (gross outflow) 4 24",
-  "h: 37132 7 24",
-  "h: 200 8 24",
-  "h: planned issuance (gross inflow) 4 25",
-  "h: 37133 7 25",
-  "h: 210 8 25",
-  "h: Total long term secured 3 26",
-  "h: 37134 7 26",
-  "h: 220 8 26",
-  "h: maturing (gross outflow) 4 27",
-  "h: 37135 7 27",
-  "h: 230 8 27",
-  "h: planned issuance (gross inflow) 4 28",
-  "h: 37136 7 28",
-  "h: 240 8 28",
-  "h: o/w covered bonds 4 29",
-  "h: 37137 7 29",
-  "h: 250 8 29",
-  "h: maturing (gross outflow) 5 30",
-  "h: 37138 7 30",
-  "h: 260 8 30",
-  "h: planned issuance (gross inflow) 5 31",
-  "h: 37139 7 31",
-  "h: 270 8 31",
-  "h: o/w ABS in issue 4 32",
-  "h: 37140 7 32",
-  "h: 280 8 32",
-  "h: maturing (gross outflow) 5 33",
-  "h: 37141 7 33",
-  "h: 290 8 33",
-  "h: planned issuance (gross inflow) 5 34",
-  "h: 37142 7 34",
-  "h: 300 8 34",
-  "h: o/w other secured long term debt in issue 4 35",
-  "h: 37143 7 35",
-  "h: 310 8 35",
-  "h: maturing (gross outflow) 5 36",
-  "h: 37144 7 36",
-  "h: 320 8 36",
-  "h: planned issuance (gross inflow) 5 37",
-  "h: 37145 7 37",
-  "h: 330 8 37",
-  "h: Total Debt securities issued 2 38",
-  "h: 37146 7 38",
-  "h: 340 8 38",
-  "h: o/w (original maturity >= 3 years) 3 39",
-  "h: 37147 7 39",
-  "h: 350 8 39",
-  "h: Derivatives 2 40",
-  "h: 37148 7 40",
-  "h: 360 8 40",
-  "h: Total Equity 2 41",
-  "h: 37149 7 41",
-  "h: 370 8 41",
-  "h: Other Liabilities 2 42",
-  "h: 37150 7 42",
-  "h: 380 8 42",
-  "h: Total Liabilities and Equity 2 43",
-  "h: 37151 7 43",
-  "h: 390 8 43",
-  "h: Deposits from other group entities not within this consolidated group 2 44",
-  "h: 37152 7 44",
-  "h: 400 8 44",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 11 5",
-  "v: None 12 5",
-  "v: None 13 5",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 11 6",
-  "v: None 12 6",
-  "v: None 13 6",
-  "v: None 9 7",
-  "v: None 10 7",
-  "v: None 11 7",
-  "v: None 12 7",
-  "v: None 13 7",
-  "v: None 9 8",
-  "v: None 10 8",
-  "v: None 11 8",
-  "v: None 12 8",
-  "v: None 13 8",
-  "v: None 9 9",
-  "v: None 10 9",
-  "v: None 11 9",
-  "v: None 12 9",
-  "v: None 13 9",
-  "v: None 9 10",
-  "v: None 10 10",
-  "v: None 11 10",
-  "v: None 12 10",
-  "v: None 13 10",
-  "v: None 9 11",
-  "v: None 10 11",
-  "v: None 11 11",
-  "v: None 12 11",
-  "v: None 13 11",
-  "v: None 9 12",
-  "v: None 10 12",
-  "v: None 11 12",
-  "v: None 12 12",
-  "v: None 13 12",
-  "v: None 9 13",
-  "v: None 10 13",
-  "v: None 11 13",
-  "v: None 12 13",
-  "v: None 13 13",
-  "v: None 9 14",
-  "v: None 10 14",
-  "v: None 11 14",
-  "v: None 12 14",
-  "v: None 13 14",
-  "v: None 9 15",
-  "v: None 10 15",
-  "v: None 11 15",
-  "v: None 12 15",
-  "v: None 13 15",
-  "v: None 9 16",
-  "v: None 10 16",
-  "v: None 11 16",
-  "v: None 12 16",
-  "v: None 13 16",
-  "v: None 9 17",
-  "v: None 10 17",
-  "v: None 11 17",
-  "v: None 12 17",
-  "v: None 13 17",
-  "v: None 9 18",
-  "v: None 10 18",
-  "v: None 11 18",
-  "v: None 12 18",
-  "v: None 13 18",
-  "v: None 9 19",
-  "v: None 10 19",
-  "v: None 11 19",
-  "v: None 12 19",
-  "v: None 13 19",
-  "v: None 9 20",
-  "v: None 10 20",
-  "v: None 11 20",
-  "v: None 12 20",
-  "v: None 13 20",
-  "v: None 9 21",
-  "v: None 10 21",
-  "v: None 11 21",
-  "v: None 12 21",
-  "v: None 13 21",
-  "v: None 9 22",
-  "v: None 10 22",
-  "v: None 11 22",
-  "v: None 12 22",
-  "v: None 13 22",
-  "v: None 9 23",
-  "v: None 10 23",
-  "v: None 11 23",
-  "v: None 12 23",
-  "v: None 13 23",
-  "v: None 10 24",
-  "v: None 11 24",
-  "v: None 12 24",
-  "v: None 13 24",
-  "v: None 10 25",
-  "v: None 11 25",
-  "v: None 12 25",
-  "v: None 13 25",
-  "v: None 9 26",
-  "v: None 10 26",
-  "v: None 11 26",
-  "v: None 12 26",
-  "v: None 13 26",
-  "v: None 10 27",
-  "v: None 11 27",
-  "v: None 12 27",
-  "v: None 13 27",
-  "v: None 10 28",
-  "v: None 11 28",
-  "v: None 12 28",
-  "v: None 13 28",
-  "v: None 9 29",
-  "v: None 10 29",
-  "v: None 11 29",
-  "v: None 12 29",
-  "v: None 13 29",
-  "v: None 10 30",
-  "v: None 11 30",
-  "v: None 12 30",
-  "v: None 13 30",
-  "v: None 10 31",
-  "v: None 11 31",
-  "v: None 12 31",
-  "v: None 13 31",
-  "v: None 9 32",
-  "v: None 10 32",
-  "v: None 11 32",
-  "v: None 12 32",
-  "v: None 13 32",
-  "v: None 10 33",
-  "v: None 11 33",
-  "v: None 12 33",
-  "v: None 13 33",
-  "v: None 10 34",
-  "v: None 11 34",
-  "v: None 12 34",
-  "v: None 13 34",
-  "v: None 9 35",
-  "v: None 10 35",
-  "v: None 11 35",
-  "v: None 12 35",
-  "v: None 13 35",
-  "v: None 10 36",
-  "v: None 11 36",
-  "v: None 12 36",
-  "v: None 13 36",
-  "v: None 10 37",
-  "v: None 11 37",
-  "v: None 12 37",
-  "v: None 13 37",
-  "v: None 9 38",
-  "v: None 10 38",
-  "v: None 11 38",
-  "v: None 12 38",
-  "v: None 13 38",
-  "v: None 9 39",
-  "v: None 10 39",
-  "v: None 11 39",
-  "v: None 12 39",
-  "v: None 13 39",
-  "v: None 9 40",
-  "v: None 10 40",
-  "v: None 11 40",
-  "v: None 12 40",
-  "v: None 13 40",
-  "v: None 9 41",
-  "v: None 10 41",
-  "v: None 11 41",
-  "v: None 12 41",
-  "v: None 13 41",
-  "v: None 9 42",
-  "v: None 10 42",
-  "v: None 11 42",
-  "v: None 12 42",
-  "v: None 13 42",
-  "v: None 9 43",
-  "v: None 10 43",
-  "v: None 11 43",
-  "v: None 12 43",
-  "v: None 13 43",
-  "v: None 9 44",
-  "v: None 10 44",
-  "v: None 11 44",
-  "v: None 12 44",
-  "v: None 13 44"
- ],
- "P_02.08": [
-  "h: P 02.08 0 0",
-  "h:           8 0",
-  "h: Actual current position 8 1",
-  "h: 37022 8 3",
-  "h: 010 8 4",
-  "h: Planned 6 month position 9 1",
-  "h: 37023 9 3",
-  "h: 020 9 4",
-  "h: Planned Year 1 Position 10 1",
-  "h: 37024 10 3",
-  "h: 030 10 4",
-  "h: Planned Year 2 Position 11 1",
-  "h: 37025 11 3",
-  "h: 040 11 4",
-  "h: Planned Year 3 Position 12 1",
-  "h: 37026 12 3",
-  "h: 050 12 4",
-  "h:  0 5",
-  "h: Deposit Liabilities Acquisition and Disposal Plans 1 5",
-  "h: Deposits from households 2 5",
-  "h: 37028 6 5",
-  "h: 010 7 5",
-  "h: o/w Domestic operations 3 6",
-  "h: 37029 6 6",
-  "h: 020 7 6",
-  "h: o/w from residents 4 7",
-  "h: 37030 6 7",
-  "h: 030 7 7",
-  "h: o/w International operations 3 8",
-  "h: 37031 6 8",
-  "h: 040 7 8",
-  "h: Deposits from private non-financial corporates 2 9",
-  "h: 37032 6 9",
-  "h: 050 7 9",
-  "h: o/w Domestic operations 3 10",
-  "h: 37033 6 10",
-  "h: 060 7 10",
-  "h: o/w from residents 4 11",
-  "h: 37034 6 11",
-  "h: 070 7 11",
-  "h: o/w SME 4 12",
-  "h: 37035 6 12",
-  "h: 080 7 12",
-  "h: o/w Large corporates 4 13",
-  "h: 37036 6 13",
-  "h: 090 7 13",
-  "h: o/w International operations 3 14",
-  "h: 37037 6 14",
-  "h: 100 7 14",
-  "h: Deposits from financial corporates 2 15",
-  "h: 37038 6 15",
-  "h: 110 7 15",
-  "h: o/w credit institutions 3 16",
-  "h: 37039 6 16",
-  "h: 120 7 16",
-  "h: o/w other financial corporates 3 17",
-  "h: 37040 6 17",
-  "h: 130 7 17",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 11 5",
-  "v: None 12 5",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 11 6",
-  "v: None 12 6",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 10 7",
-  "v: None 11 7",
-  "v: None 12 7",
-  "v: None 8 8",
-  "v: None 9 8",
-  "v: None 10 8",
-  "v: None 11 8",
-  "v: None 12 8",
-  "v: None 8 9",
-  "v: None 9 9",
-  "v: None 10 9",
-  "v: None 11 9",
-  "v: None 12 9",
-  "v: None 8 10",
-  "v: None 9 10",
-  "v: None 10 10",
-  "v: None 11 10",
-  "v: None 12 10",
-  "v: None 8 11",
-  "v: None 9 11",
-  "v: None 10 11",
-  "v: None 11 11",
-  "v: None 12 11",
-  "v: None 8 12",
-  "v: None 9 12",
-  "v: None 10 12",
-  "v: None 11 12",
-  "v: None 12 12",
-  "v: None 8 13",
-  "v: None 9 13",
-  "v: None 10 13",
-  "v: None 11 13",
-  "v: None 12 13",
-  "v: None 8 14",
-  "v: None 9 14",
-  "v: None 10 14",
-  "v: None 11 14",
-  "v: None 12 14",
-  "v: None 8 15",
-  "v: None 9 15",
-  "v: None 10 15",
-  "v: None 11 15",
-  "v: None 12 15",
-  "v: None 8 16",
-  "v: None 9 16",
-  "v: None 10 16",
-  "v: None 11 16",
-  "v: None 12 16",
-  "v: None 8 17",
-  "v: None 9 17",
-  "v: None 10 17",
-  "v: None 11 17",
-  "v: None 12 17"
- ],
- "P_02.06": [
-  "h: P 02.06 0 0",
-  "h: Material Currency 6 0",
-  "hcb: 7 0",
-  "h: Funding plan 6 1",
-  "h: Actual current position 6 2",
-  "h: 32125 6 4",
-  "h: 010 6 5",
-  "h: Planned 6 month position 7 2",
-  "h: 32126 7 4",
-  "h: 020 7 5",
-  "h: Planned Year 1 Position 8 2",
-  "h: 32127 8 4",
-  "h: 030 8 5",
-  "h: Planned Year 2 Position 9 2",
-  "h: 32128 9 4",
-  "h: 040 9 5",
-  "h: Planned Year 3 Position 10 2",
-  "h: 32129 10 4",
-  "h: 050 10 5",
-  "h:           0 6",
-  "h: Gross Loan assets on balance sheet - before effect of FX forward or Cross-currency swaps 1 6",
-  "h: Loans to households and private non-financial corporates (domestic operations) 2 6",
-  "h: 32131 4 6",
-  "h: 010 5 6",
-  "h: Loans to households and private non-financial corporates (international operations) 2 7",
-  "h: 32132 4 7",
-  "h: 020 5 7",
-  "h: Loans to financial corporates (domestic and international operations) 2 8",
-  "h: 32133 4 8",
-  "h: 030 5 8",
-  "h: Deposits from households and private non-financial corporates (domestic operations) 2 9",
-  "h: 32134 4 9",
-  "h: 040 5 9",
-  "h: Gross Deposit Liabilities on balance sheet - before effect of FX forward or Cross-currency swaps 1 10",
-  "h: Deposits from households and private non-financial corporates (international operations) 2 10",
-  "h: 32136 4 10",
-  "h: 050 5 10",
-  "h: Deposits from financial corporates (domestic and international operations) 2 11",
-  "h: 32137 4 11",
-  "h: 060 5 11",
-  "h: Short Term Debt Securities (<1year) 2 12",
-  "h: 32138 4 12",
-  "h: 070 5 12",
-  "h: Long Term Debt Securities (>=1year) 2 13",
-  "h: 32139 4 13",
-  "h: 080 5 13",
-  "v: None 6 6",
-  "v: None 7 6",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 6 7",
-  "v: None 7 7",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 10 7",
-  "v: None 6 8",
-  "v: None 7 8",
-  "v: None 8 8",
-  "v: None 9 8",
-  "v: None 10 8",
-  "v: None 6 9",
-  "v: None 7 9",
-  "v: None 8 9",
-  "v: None 9 9",
-  "v: None 10 9",
-  "v: None 6 10",
-  "v: None 7 10",
-  "v: None 8 10",
-  "v: None 9 10",
-  "v: None 10 10",
-  "v: None 6 11",
-  "v: None 7 11",
-  "v: None 8 11",
-  "v: None 9 11",
-  "v: None 10 11",
-  "v: None 6 12",
-  "v: None 7 12",
-  "v: None 8 12",
-  "v: None 9 12",
-  "v: None 10 12",
-  "v: None 6 13",
-  "v: None 7 13",
-  "v: None 8 13",
-  "v: None 9 13",
-  "v: None 10 13"
- ],
- "P_01.01": [
-  "h: P 01.01 0 0",
-  "h: Funding plan 9 0",
-  "h: Actual current position 9 1",
-  "h: 31984 9 3",
-  "h: 010 9 4",
-  "h: Planned 6 month position 10 1",
-  "h: 31985 10 3",
-  "h: 020 10 4",
-  "h: Planned Year 1 Position 11 1",
-  "h: 31986 11 3",
-  "h: 030 11 4",
-  "h: Planned Year 2 Position 12 1",
-  "h: 31987 12 3",
-  "h: 040 12 4",
-  "h: Planned Year 3 Position 13 1",
-  "h: 31988 13 3",
-  "h: 050 13 4",
-  "h:           0 5",
-  "h: Assets 1 5",
-  "h: Cash and cash balances at central banks 2 5",
-  "h: 31990 7 5",
-  "h: 010 8 5",
-  "h: Reverse repurchase agreements 2 6",
-  "h: 31991 7 6",
-  "h: 020 8 6",
-  "h: Loans to households (exc reverse repos) 2 7",
-  "h: 31992 7 7",
-  "h: 030 8 7",
-  "h: o/w Domestic operations 3 8",
-  "h: 31993 7 8",
-  "h: 040 8 8",
-  "h: o/w to resident borrowers 4 9",
-  "h: 31994 7 9",
-  "h: 050 8 9",
-  "h: For which credit provision taken (memo item) 5 10",
-  "h: 31995 7 10",
-  "h: 060 8 10",
-  "h: o/w Mortgages 4 11",
-  "h: 31996 7 11",
-  "h: 070 8 11",
-  "h: o/w Other 4 12",
-  "h: 31997 7 12",
-  "h: 080 8 12",
-  "h: o/w International operations 3 13",
-  "h: 31998 7 13",
-  "h: 090 8 13",
-  "h: Loans to private non-financial corporates (exc reverse repos) 2 14",
-  "h: 31999 7 14",
-  "h: 100 8 14",
-  "h: o/w Domestic operations 3 15",
-  "h: 32000 7 15",
-  "h: 110 8 15",
-  "h: o/w to resident borrowers 4 16",
-  "h: 32001 7 16",
-  "h: 120 8 16",
-  "h: For which credit provision taken (memo item) 5 17",
-  "h: 32002 7 17",
-  "h: 130 8 17",
-  "h: o/w SMEs 4 18",
-  "h: 32003 7 18",
-  "h: 140 8 18",
-  "h: o/w Large corporates 4 19",
-  "h: 32004 7 19",
-  "h: 150 8 19",
-  "h: o/w International operations 3 20",
-  "h: 32005 7 20",
-  "h: 160 8 20",
-  "h: Loans to financial corporates (exc reverse repos) 2 21",
-  "h: 32006 7 21",
-  "h: 170 8 21",
-  "h: o/w credit institutions 3 22",
-  "h: 32007 7 22",
-  "h: 180 8 22",
-  "h: o/w other financial corporates 3 23",
-  "h: 32008 7 23",
-  "h: 190 8 23",
-  "h: Derivatives 2 24",
-  "h: 32009 7 24",
-  "h: 200 8 24",
-  "h: Other assets 2 25",
-  "h: 32010 7 25",
-  "h: 210 8 25",
-  "h: Total Assets 2 26",
-  "h: 32011 7 26",
-  "h: 220 8 26",
-  "h: Undrawn committed credit lines (loan commitments) 2 27",
-  "h: 32012 7 27",
-  "h: 230 8 27",
-  "h: Loans to other group entities not within this consolidated group 2 28",
-  "h: 32013 7 28",
-  "h: 240 8 28",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 11 5",
-  "v: None 12 5",
-  "v: None 13 5",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 11 6",
-  "v: None 12 6",
-  "v: None 13 6",
-  "v: None 9 7",
-  "v: None 10 7",
-  "v: None 11 7",
-  "v: None 12 7",
-  "v: None 13 7",
-  "v: None 9 8",
-  "v: None 10 8",
-  "v: None 11 8",
-  "v: None 12 8",
-  "v: None 13 8",
-  "v: None 9 9",
-  "v: None 10 9",
-  "v: None 11 9",
-  "v: None 12 9",
-  "v: None 13 9",
-  "v: None 9 10",
-  "v: None 10 10",
-  "v: None 11 10",
-  "v: None 12 10",
-  "v: None 13 10",
-  "v: None 9 11",
-  "v: None 10 11",
-  "v: None 11 11",
-  "v: None 12 11",
-  "v: None 13 11",
-  "v: None 9 12",
-  "v: None 10 12",
-  "v: None 11 12",
-  "v: None 12 12",
-  "v: None 13 12",
-  "v: None 9 13",
-  "v: None 10 13",
-  "v: None 11 13",
-  "v: None 12 13",
-  "v: None 13 13",
-  "v: None 9 14",
-  "v: None 10 14",
-  "v: None 11 14",
-  "v: None 12 14",
-  "v: None 13 14",
-  "v: None 9 15",
-  "v: None 10 15",
-  "v: None 11 15",
-  "v: None 12 15",
-  "v: None 13 15",
-  "v: None 9 16",
-  "v: None 10 16",
-  "v: None 11 16",
-  "v: None 12 16",
-  "v: None 13 16",
-  "v: None 9 17",
-  "v: None 10 17",
-  "v: None 11 17",
-  "v: None 12 17",
-  "v: None 13 17",
-  "v: None 9 18",
-  "v: None 10 18",
-  "v: None 11 18",
-  "v: None 12 18",
-  "v: None 13 18",
-  "v: None 9 19",
-  "v: None 10 19",
-  "v: None 11 19",
-  "v: None 12 19",
-  "v: None 13 19",
-  "v: None 9 20",
-  "v: None 10 20",
-  "v: None 11 20",
-  "v: None 12 20",
-  "v: None 13 20",
-  "v: None 9 21",
-  "v: None 10 21",
-  "v: None 11 21",
-  "v: None 12 21",
-  "v: None 13 21",
-  "v: None 9 22",
-  "v: None 10 22",
-  "v: None 11 22",
-  "v: None 12 22",
-  "v: None 13 22",
-  "v: None 9 23",
-  "v: None 10 23",
-  "v: None 11 23",
-  "v: None 12 23",
-  "v: None 13 23",
-  "v: None 9 24",
-  "v: None 10 24",
-  "v: None 11 24",
-  "v: None 12 24",
-  "v: None 13 24",
-  "v: None 9 25",
-  "v: None 10 25",
-  "v: None 11 25",
-  "v: None 12 25",
-  "v: None 13 25",
-  "v: None 9 26",
-  "v: None 10 26",
-  "v: None 11 26",
-  "v: None 12 26",
-  "v: None 13 26",
-  "v: None 9 27",
-  "v: None 10 27",
-  "v: None 11 27",
-  "v: None 12 27",
-  "v: None 13 27",
-  "v: None 9 28",
-  "v: None 10 28",
-  "v: None 11 28",
-  "v: None 12 28",
-  "v: None 13 28"
- ],
- "P_01.03": [
-  "h: P 01.03 0 0",
-  "h: Funding plan 6 0",
-  "h: Actual current position 6 1",
-  "h: 32060 6 3",
-  "h: 010 6 4",
-  "h: Planned 6 month position 7 1",
-  "h: 32061 7 3",
-  "h: 020 7 4",
-  "h: Planned Year 1 Position 8 1",
-  "h: 32062 8 3",
-  "h: 030 8 4",
-  "h: Planned Year 2 Position 9 1",
-  "h: 32063 9 3",
-  "h: 040 9 4",
-  "h: Planned Year 3 Position 10 1",
-  "h: 32064 10 3",
-  "h: 050 10 4",
-  "h: Memorandum items 0 5",
-  "h: Forecast of Liquidity Ratios 1 5",
-  "h: Net Stable Funding Ratio (per cent) 2 5",
-  "h: 32066 4 5",
-  "h: 010 5 5",
-  "h: NSFR surplus/(deficit) 2 6",
-  "h: 32067 4 6",
-  "h: 020 5 6",
-  "h: Liquidity Coverage Ratio (per cent) 2 7",
-  "h: 32068 4 7",
-  "h: 030 5 7",
-  "h: LCR surplus/(deficit) 2 8",
-  "h: 32069 4 8",
-  "h: 040 5 8",
-  "v: None 6 5",
-  "v: None 7 5",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 6 6",
-  "v: None 7 6",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 6 7",
-  "v: None 7 7",
-  "v: None 8 7",
-  "v: None 6 8",
-  "v: None 7 8",
-  "v: None 8 8"
- ],
- "P_02.07": [
-  "h: P 02.07 0 0",
-  "h:           9 0",
-  "h: Actual current position 9 1",
-  "h: 36999 9 3",
-  "h: 010 9 4",
-  "h: Planned 6 month position 10 1",
-  "h: 37000 10 3",
-  "h: 020 10 4",
-  "h: Planned Year 1 Position 11 1",
-  "h: 37001 11 3",
-  "h: 030 11 4",
-  "h: Planned Year 2 Position 12 1",
-  "h: 37002 12 3",
-  "h: 040 12 4",
-  "h: Planned Year 3 Position 13 1",
-  "h: 37003 13 3",
-  "h: 050 13 4",
-  "h:  0 5",
-  "h: Loan Assets Acquisitions, Run-Offs and Disposals Plans 1 5",
-  "h: Loans to households (exc reverse repos) 2 5",
-  "h: 37005 7 5",
-  "h: 010 8 5",
-  "h: o/w Domestic operations 3 6",
-  "h: 37006 7 6",
-  "h: 020 8 6",
-  "h: o/w to resident borrowers 4 7",
-  "h: 37007 7 7",
-  "h: 030 8 7",
-  "h: For which credit provision taken (memo item) 5 8",
-  "h: 37008 7 8",
-  "h: 040 8 8",
-  "h: o/w Mortgages 4 9",
-  "h: 37009 7 9",
-  "h: 050 8 9",
-  "h: o/w Other 4 10",
-  "h: 37010 7 10",
-  "h: 060 8 10",
-  "h: o/w International operations 3 11",
-  "h: 37011 7 11",
-  "h: 070 8 11",
-  "h: Loans to private non-financial corporates (exc reverse repos) 2 12",
-  "h: 37012 7 12",
-  "h: 080 8 12",
-  "h: o/w Domestic operations 3 13",
-  "h: 37013 7 13",
-  "h: 090 8 13",
-  "h: o/w to resident borrowers 4 14",
-  "h: 37014 7 14",
-  "h: 100 8 14",
-  "h: For which credit provision taken (memo item) 5 15",
-  "h: 37015 7 15",
-  "h: 110 8 15",
-  "h: o/w SMEs 4 16",
-  "h: 37016 7 16",
-  "h: 120 8 16",
-  "h: o/w Large corporates 4 17",
-  "h: 37017 7 17",
-  "h: 130 8 17",
-  "h: o/w International operations 3 18",
-  "h: 37018 7 18",
-  "h: 140 8 18",
-  "h: Loans to financial corporates (exc reverse repos) 2 19",
-  "h: 37019 7 19",
-  "h: 150 8 19",
-  "h: o/w credit institutions 3 20",
-  "h: 37020 7 20",
-  "h: 160 8 20",
-  "h: o/w other financial corporates 3 21",
-  "h: 37021 7 21",
-  "h: 170 8 21",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 11 5",
-  "v: None 12 5",
-  "v: None 13 5",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 11 6",
-  "v: None 12 6",
-  "v: None 13 6",
-  "v: None 9 7",
-  "v: None 10 7",
-  "v: None 11 7",
-  "v: None 12 7",
-  "v: None 13 7",
-  "v: None 9 8",
-  "v: None 10 8",
-  "v: None 11 8",
-  "v: None 12 8",
-  "v: None 13 8",
-  "v: None 9 9",
-  "v: None 10 9",
-  "v: None 11 9",
-  "v: None 12 9",
-  "v: None 13 9",
-  "v: None 9 10",
-  "v: None 10 10",
-  "v: None 11 10",
-  "v: None 12 10",
-  "v: None 13 10",
-  "v: None 9 11",
-  "v: None 10 11",
-  "v: None 11 11",
-  "v: None 12 11",
-  "v: None 13 11",
-  "v: None 9 12",
-  "v: None 10 12",
-  "v: None 11 12",
-  "v: None 12 12",
-  "v: None 13 12",
-  "v: None 9 13",
-  "v: None 10 13",
-  "v: None 11 13",
-  "v: None 12 13",
-  "v: None 13 13",
-  "v: None 9 14",
-  "v: None 10 14",
-  "v: None 11 14",
-  "v: None 12 14",
-  "v: None 13 14",
-  "v: None 9 15",
-  "v: None 10 15",
-  "v: None 11 15",
-  "v: None 12 15",
-  "v: None 13 15",
-  "v: None 9 16",
-  "v: None 10 16",
-  "v: None 11 16",
-  "v: None 12 16",
-  "v: None 13 16",
-  "v: None 9 17",
-  "v: None 10 17",
-  "v: None 11 17",
-  "v: None 12 17",
-  "v: None 13 17",
-  "v: None 9 18",
-  "v: None 10 18",
-  "v: None 11 18",
-  "v: None 12 18",
-  "v: None 13 18",
-  "v: None 9 19",
-  "v: None 10 19",
-  "v: None 11 19",
-  "v: None 12 19",
-  "v: None 13 19",
-  "v: None 9 20",
-  "v: None 10 20",
-  "v: None 11 20",
-  "v: None 12 20",
-  "v: None 13 20",
-  "v: None 9 21",
-  "v: None 10 21",
-  "v: None 11 21",
-  "v: None 12 21",
-  "v: None 13 21"
- ],
- "P_02.01": [
-  "h: P 02.01 0 0",
-  "h: Funding plan 6 0",
-  "h: Actual current position 6 1",
-  "h: 32070 6 3",
-  "h: 010 6 4",
-  "h: Planned 6 month position 7 1",
-  "h: 32071 7 3",
-  "h: 020 7 4",
-  "h: Planned Year 1 Position 8 1",
-  "h: 32072 8 3",
-  "h: 030 8 4",
-  "h: Planned Year 2 Position 9 1",
-  "h: 32073 9 3",
-  "h: 040 9 4",
-  "h: Planned Year 3 Position 10 1",
-  "h: 32074 10 3",
-  "h: 050 10 4",
-  "h:  0 5",
-  "h: Insured and uninsured deposits and uninsured deposit-like financial instruments 1 5",
-  "h: Deposits covered by a Deposit Guarantee Scheme according to Directive 94/19/EC or an equivalent deposit guarantee scheme in a third country 2 5",
-  "h: 32076 4 5",
-  "h: 010 5 5",
-  "h: Deposits not covered by a Deposit Guarantee Scheme according to Directive 94/19/EC or an equivalent deposit guarantee scheme in a third country 2 6",
-  "h: 32077 4 6",
-  "h: 020 5 6",
-  "h: Deposit-like financial instruments which are like deposit but not deposits and are sold to retail customers. 2 7",
-  "h: 32078 4 7",
-  "h: 030 5 7",
-  "v: None 6 5",
-  "v: None 7 5",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 6 6",
-  "v: None 7 6",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 6 7",
-  "v: None 7 7",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 10 7"
- ],
- "P_02.02": [
-  "h: P 02.02 0 0",
-  "h: Funding plan 6 0",
-  "h: Actual current position 6 1",
-  "h: 32079 6 3",
-  "h: 010 6 4",
-  "h: Planned 6 month position 7 1",
-  "h: 32080 7 3",
-  "h: 020 7 4",
-  "h: Planned Year 1 Position 8 1",
-  "h: 32081 8 3",
-  "h: 030 8 4",
-  "h: Planned Year 2 Position 9 1",
-  "h: 32082 9 3",
-  "h: 040 9 4",
-  "h: Planned Year 3 Position 10 1",
-  "h: 32083 10 3",
-  "h: 050 10 4",
-  "h:  0 5",
-  "h: Public sector sources of funding 1 5",
-  "h: National and supra-national term (greater than one year) repo funding programmes - amount of funding outstanding 2 5",
-  "h: 32085 4 5",
-  "h: 010 5 5",
-  "h: National and supra-national term (greater than one year) credit guarantee funding programmes - amount of funding outstanding under such programmes 2 6",
-  "h: 32086 4 6",
-  "h: 020 5 6",
-  "h: National and supra-national term (greater than one year) credit supply incentive scheme to the real economy - amount of funding outstanding under such programmes 2 7",
-  "h: 32087 4 7",
-  "h: 030 5 7",
-  "v: None 6 5",
-  "v: None 7 5",
-  "v: None 8 5",
-  "v: None 9 5",
-  "v: None 10 5",
-  "v: None 6 6",
-  "v: None 7 6",
-  "v: None 8 6",
-  "v: None 9 6",
-  "v: None 10 6",
-  "v: None 6 7",
-  "v: None 7 7",
-  "v: None 8 7",
-  "v: None 9 7",
-  "v: None 10 7"
- ]
+ "P_00.01": {
+  "0": {
+   "0": [
+    "h",
+    "P 00.01"
+   ],
+   "5": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "5": [
+    "h",
+    "Nature of Report"
+   ]
+  },
+  "3": {
+   "5": [
+    "h",
+    "37289"
+   ]
+  },
+  "4": {
+   "5": [
+    "h",
+    "010"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "Memorandum items"
+   ],
+   "1": [
+    "h",
+    "Accounting framework"
+   ],
+   "3": [
+    "h",
+    "37290"
+   ],
+   "4": [
+    "h",
+    "010"
+   ],
+   "5": [
+    "cb",
+    ""
+   ]
+  },
+  "6": {
+   "1": [
+    "h",
+    "Reporting Level"
+   ],
+   "3": [
+    "h",
+    "37291"
+   ],
+   "4": [
+    "h",
+    "020"
+   ],
+   "5": [
+    "cb",
+    ""
+   ]
+  }
+ },
+ "P_01.01": {
+  "0": {
+   "0": [
+    "h",
+    "P 01.01"
+   ],
+   "9": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "11": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "12": [
+    "h",
+    "Planned Year 2 Position"
+   ],
+   "13": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "9": [
+    "h",
+    "Actual current position"
+   ]
+  },
+  "10": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "For which credit provision taken (memo item)"
+   ],
+   "7": [
+    "h",
+    "31995"
+   ],
+   "8": [
+    "h",
+    "060"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Mortgages"
+   ],
+   "7": [
+    "h",
+    "31996"
+   ],
+   "8": [
+    "h",
+    "070"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Other"
+   ],
+   "7": [
+    "h",
+    "31997"
+   ],
+   "8": [
+    "h",
+    "080"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "13": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "7": [
+    "h",
+    "31998"
+   ],
+   "8": [
+    "h",
+    "090"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "14": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to private non-financial corporates (exc reverse repos)"
+   ],
+   "7": [
+    "h",
+    "31999"
+   ],
+   "8": [
+    "h",
+    "100"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "15": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "7": [
+    "h",
+    "32000"
+   ],
+   "8": [
+    "h",
+    "110"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "16": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w to resident borrowers"
+   ],
+   "7": [
+    "h",
+    "32001"
+   ],
+   "8": [
+    "h",
+    "120"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "17": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "For which credit provision taken (memo item)"
+   ],
+   "7": [
+    "h",
+    "32002"
+   ],
+   "8": [
+    "h",
+    "130"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "18": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w SMEs"
+   ],
+   "7": [
+    "h",
+    "32003"
+   ],
+   "8": [
+    "h",
+    "140"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "19": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Large corporates"
+   ],
+   "7": [
+    "h",
+    "32004"
+   ],
+   "8": [
+    "h",
+    "150"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "20": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "7": [
+    "h",
+    "32005"
+   ],
+   "8": [
+    "h",
+    "160"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "21": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to financial corporates (exc reverse repos)"
+   ],
+   "7": [
+    "h",
+    "32006"
+   ],
+   "8": [
+    "h",
+    "170"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "22": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w credit institutions"
+   ],
+   "7": [
+    "h",
+    "32007"
+   ],
+   "8": [
+    "h",
+    "180"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "23": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w other financial corporates"
+   ],
+   "7": [
+    "h",
+    "32008"
+   ],
+   "8": [
+    "h",
+    "190"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "24": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Derivatives"
+   ],
+   "7": [
+    "h",
+    "32009"
+   ],
+   "8": [
+    "h",
+    "200"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "25": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Other assets"
+   ],
+   "7": [
+    "h",
+    "32010"
+   ],
+   "8": [
+    "h",
+    "210"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "26": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Total Assets"
+   ],
+   "7": [
+    "h",
+    "32011"
+   ],
+   "8": [
+    "h",
+    "220"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "27": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Undrawn committed credit lines (loan commitments)"
+   ],
+   "7": [
+    "h",
+    "32012"
+   ],
+   "8": [
+    "h",
+    "230"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "28": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to other group entities not within this consolidated group"
+   ],
+   "7": [
+    "h",
+    "32013"
+   ],
+   "8": [
+    "h",
+    "240"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "31985"
+   ],
+   "11": [
+    "h",
+    "31986"
+   ],
+   "12": [
+    "h",
+    "31987"
+   ],
+   "13": [
+    "h",
+    "31988"
+   ],
+   "9": [
+    "h",
+    "31984"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "020"
+   ],
+   "11": [
+    "h",
+    "030"
+   ],
+   "12": [
+    "h",
+    "040"
+   ],
+   "13": [
+    "h",
+    "050"
+   ],
+   "9": [
+    "h",
+    "010"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Assets"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Cash and cash balances at central banks"
+   ],
+   "7": [
+    "h",
+    "31990"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Reverse repurchase agreements"
+   ],
+   "7": [
+    "h",
+    "31991"
+   ],
+   "8": [
+    "h",
+    "020"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to households (exc reverse repos)"
+   ],
+   "7": [
+    "h",
+    "31992"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "7": [
+    "h",
+    "31993"
+   ],
+   "8": [
+    "h",
+    "040"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w to resident borrowers"
+   ],
+   "7": [
+    "h",
+    "31994"
+   ],
+   "8": [
+    "h",
+    "050"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_01.02": {
+  "0": {
+   "0": [
+    "h",
+    "P 01.02"
+   ],
+   "9": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "11": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "12": [
+    "h",
+    "Planned Year 2 Position"
+   ],
+   "13": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "9": [
+    "h",
+    "Actual current position"
+   ]
+  },
+  "10": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from private non-financial corporates"
+   ],
+   "7": [
+    "h",
+    "37118"
+   ],
+   "8": [
+    "h",
+    "060"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "7": [
+    "h",
+    "37119"
+   ],
+   "8": [
+    "h",
+    "070"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w from residents"
+   ],
+   "7": [
+    "h",
+    "37120"
+   ],
+   "8": [
+    "h",
+    "080"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "13": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w SME"
+   ],
+   "7": [
+    "h",
+    "37121"
+   ],
+   "8": [
+    "h",
+    "090"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "14": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Large corporates"
+   ],
+   "7": [
+    "h",
+    "37122"
+   ],
+   "8": [
+    "h",
+    "100"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "15": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "7": [
+    "h",
+    "37123"
+   ],
+   "8": [
+    "h",
+    "110"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "16": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from financial corporates"
+   ],
+   "7": [
+    "h",
+    "37124"
+   ],
+   "8": [
+    "h",
+    "120"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "17": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w credit institutions"
+   ],
+   "7": [
+    "h",
+    "37125"
+   ],
+   "8": [
+    "h",
+    "130"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "18": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w other financial corporates"
+   ],
+   "7": [
+    "h",
+    "37126"
+   ],
+   "8": [
+    "h",
+    "140"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "19": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Short-term Debt Securities (original maturity <1 year)"
+   ],
+   "7": [
+    "h",
+    "37127"
+   ],
+   "8": [
+    "h",
+    "150"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "20": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w unsecured"
+   ],
+   "7": [
+    "h",
+    "37128"
+   ],
+   "8": [
+    "h",
+    "160"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "21": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w secured"
+   ],
+   "7": [
+    "h",
+    "37129"
+   ],
+   "8": [
+    "h",
+    "170"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "22": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Long-term Debt Securities (original maturity >= 1 year)"
+   ],
+   "7": [
+    "h",
+    "37130"
+   ],
+   "8": [
+    "h",
+    "180"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "23": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "Total long term unsecured"
+   ],
+   "7": [
+    "h",
+    "37131"
+   ],
+   "8": [
+    "h",
+    "190"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "24": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "maturing (gross outflow)"
+   ],
+   "7": [
+    "h",
+    "37132"
+   ],
+   "8": [
+    "h",
+    "200"
+   ]
+  },
+  "25": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "planned issuance (gross inflow)"
+   ],
+   "7": [
+    "h",
+    "37133"
+   ],
+   "8": [
+    "h",
+    "210"
+   ]
+  },
+  "26": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "Total long term secured"
+   ],
+   "7": [
+    "h",
+    "37134"
+   ],
+   "8": [
+    "h",
+    "220"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "27": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "maturing (gross outflow)"
+   ],
+   "7": [
+    "h",
+    "37135"
+   ],
+   "8": [
+    "h",
+    "230"
+   ]
+  },
+  "28": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "planned issuance (gross inflow)"
+   ],
+   "7": [
+    "h",
+    "37136"
+   ],
+   "8": [
+    "h",
+    "240"
+   ]
+  },
+  "29": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w covered bonds"
+   ],
+   "7": [
+    "h",
+    "37137"
+   ],
+   "8": [
+    "h",
+    "250"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "37108"
+   ],
+   "11": [
+    "h",
+    "37109"
+   ],
+   "12": [
+    "h",
+    "37110"
+   ],
+   "13": [
+    "h",
+    "37111"
+   ],
+   "9": [
+    "h",
+    "37107"
+   ]
+  },
+  "30": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "maturing (gross outflow)"
+   ],
+   "7": [
+    "h",
+    "37138"
+   ],
+   "8": [
+    "h",
+    "260"
+   ]
+  },
+  "31": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "planned issuance (gross inflow)"
+   ],
+   "7": [
+    "h",
+    "37139"
+   ],
+   "8": [
+    "h",
+    "270"
+   ]
+  },
+  "32": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w ABS in issue"
+   ],
+   "7": [
+    "h",
+    "37140"
+   ],
+   "8": [
+    "h",
+    "280"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "33": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "maturing (gross outflow)"
+   ],
+   "7": [
+    "h",
+    "37141"
+   ],
+   "8": [
+    "h",
+    "290"
+   ]
+  },
+  "34": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "planned issuance (gross inflow)"
+   ],
+   "7": [
+    "h",
+    "37142"
+   ],
+   "8": [
+    "h",
+    "300"
+   ]
+  },
+  "35": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w other secured long term debt in issue"
+   ],
+   "7": [
+    "h",
+    "37143"
+   ],
+   "8": [
+    "h",
+    "310"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "36": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "maturing (gross outflow)"
+   ],
+   "7": [
+    "h",
+    "37144"
+   ],
+   "8": [
+    "h",
+    "320"
+   ]
+  },
+  "37": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "planned issuance (gross inflow)"
+   ],
+   "7": [
+    "h",
+    "37145"
+   ],
+   "8": [
+    "h",
+    "330"
+   ]
+  },
+  "38": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Total Debt securities issued"
+   ],
+   "7": [
+    "h",
+    "37146"
+   ],
+   "8": [
+    "h",
+    "340"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "39": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w (original maturity >= 3 years)"
+   ],
+   "7": [
+    "h",
+    "37147"
+   ],
+   "8": [
+    "h",
+    "350"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "020"
+   ],
+   "11": [
+    "h",
+    "030"
+   ],
+   "12": [
+    "h",
+    "040"
+   ],
+   "13": [
+    "h",
+    "050"
+   ],
+   "9": [
+    "h",
+    "010"
+   ]
+  },
+  "40": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Derivatives"
+   ],
+   "7": [
+    "h",
+    "37148"
+   ],
+   "8": [
+    "h",
+    "360"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "41": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Total Equity"
+   ],
+   "7": [
+    "h",
+    "37149"
+   ],
+   "8": [
+    "h",
+    "370"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "42": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Other Liabilities"
+   ],
+   "7": [
+    "h",
+    "37150"
+   ],
+   "8": [
+    "h",
+    "380"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "43": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Total Liabilities and Equity"
+   ],
+   "7": [
+    "h",
+    "37151"
+   ],
+   "8": [
+    "h",
+    "390"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "44": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from other group entities not within this consolidated group"
+   ],
+   "7": [
+    "h",
+    "37152"
+   ],
+   "8": [
+    "h",
+    "400"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Liabilities"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Repurchase agreements"
+   ],
+   "7": [
+    "h",
+    "37113"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from households"
+   ],
+   "7": [
+    "h",
+    "37114"
+   ],
+   "8": [
+    "h",
+    "020"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "7": [
+    "h",
+    "37115"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w from residents"
+   ],
+   "7": [
+    "h",
+    "37116"
+   ],
+   "8": [
+    "h",
+    "040"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "7": [
+    "h",
+    "37117"
+   ],
+   "8": [
+    "h",
+    "050"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_01.03": {
+  "0": {
+   "0": [
+    "h",
+    "P 01.03"
+   ],
+   "6": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "6": [
+    "h",
+    "Actual current position"
+   ],
+   "7": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "8": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "9": [
+    "h",
+    "Planned Year 2 Position"
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "32064"
+   ],
+   "6": [
+    "h",
+    "32060"
+   ],
+   "7": [
+    "h",
+    "32061"
+   ],
+   "8": [
+    "h",
+    "32062"
+   ],
+   "9": [
+    "h",
+    "32063"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "050"
+   ],
+   "6": [
+    "h",
+    "010"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "h",
+    "040"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "Memorandum items"
+   ],
+   "1": [
+    "h",
+    "Forecast of Liquidity Ratios"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Net Stable Funding Ratio (per cent)"
+   ],
+   "4": [
+    "h",
+    "32066"
+   ],
+   "5": [
+    "h",
+    "010"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "NSFR surplus/(deficit)"
+   ],
+   "4": [
+    "h",
+    "32067"
+   ],
+   "5": [
+    "h",
+    "020"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "2": [
+    "h",
+    "Liquidity Coverage Ratio (per cent)"
+   ],
+   "4": [
+    "h",
+    "32068"
+   ],
+   "5": [
+    "h",
+    "030"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "2": [
+    "h",
+    "LCR surplus/(deficit)"
+   ],
+   "4": [
+    "h",
+    "32069"
+   ],
+   "5": [
+    "h",
+    "040"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.01": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.01"
+   ],
+   "6": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "6": [
+    "h",
+    "Actual current position"
+   ],
+   "7": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "8": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "9": [
+    "h",
+    "Planned Year 2 Position"
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "32074"
+   ],
+   "6": [
+    "h",
+    "32070"
+   ],
+   "7": [
+    "h",
+    "32071"
+   ],
+   "8": [
+    "h",
+    "32072"
+   ],
+   "9": [
+    "h",
+    "32073"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "050"
+   ],
+   "6": [
+    "h",
+    "010"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "h",
+    "040"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    ""
+   ],
+   "1": [
+    "h",
+    "Insured and uninsured deposits and uninsured deposit-like financial instruments"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits covered by a Deposit Guarantee Scheme according to Directive 94/19/EC or an equivalent deposit guarantee scheme in a third country"
+   ],
+   "4": [
+    "h",
+    "32076"
+   ],
+   "5": [
+    "h",
+    "010"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits not covered by a Deposit Guarantee Scheme according to Directive 94/19/EC or an equivalent deposit guarantee scheme in a third country"
+   ],
+   "4": [
+    "h",
+    "32077"
+   ],
+   "5": [
+    "h",
+    "020"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposit-like financial instruments which are like deposit but not deposits and are sold to retail customers."
+   ],
+   "4": [
+    "h",
+    "32078"
+   ],
+   "5": [
+    "h",
+    "030"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.02": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.02"
+   ],
+   "6": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "6": [
+    "h",
+    "Actual current position"
+   ],
+   "7": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "8": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "9": [
+    "h",
+    "Planned Year 2 Position"
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "32083"
+   ],
+   "6": [
+    "h",
+    "32079"
+   ],
+   "7": [
+    "h",
+    "32080"
+   ],
+   "8": [
+    "h",
+    "32081"
+   ],
+   "9": [
+    "h",
+    "32082"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "050"
+   ],
+   "6": [
+    "h",
+    "010"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "h",
+    "040"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    ""
+   ],
+   "1": [
+    "h",
+    "Public sector sources of funding"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "National and supra-national term (greater than one year) repo funding programmes - amount of funding outstanding"
+   ],
+   "4": [
+    "h",
+    "32085"
+   ],
+   "5": [
+    "h",
+    "010"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "National and supra-national term (greater than one year) credit guarantee funding programmes - amount of funding outstanding under such programmes"
+   ],
+   "4": [
+    "h",
+    "32086"
+   ],
+   "5": [
+    "h",
+    "020"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "National and supra-national term (greater than one year) credit supply incentive scheme to the real economy - amount of funding outstanding under such programmes"
+   ],
+   "4": [
+    "h",
+    "32087"
+   ],
+   "5": [
+    "h",
+    "030"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.03": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.03"
+   ],
+   "8": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "11": [
+    "h",
+    "Planned Year 2 Position"
+   ],
+   "12": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "13": [
+    "h",
+    "Comments section"
+   ],
+   "8": [
+    "h",
+    "Actual current position"
+   ],
+   "9": [
+    "h",
+    "Planned 6 month position"
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "32090"
+   ],
+   "11": [
+    "h",
+    "32091"
+   ],
+   "12": [
+    "h",
+    "32092"
+   ],
+   "13": [
+    "h",
+    "32093"
+   ],
+   "8": [
+    "h",
+    "32088"
+   ],
+   "9": [
+    "h",
+    "32089"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "030"
+   ],
+   "11": [
+    "h",
+    "040"
+   ],
+   "12": [
+    "h",
+    "050"
+   ],
+   "13": [
+    "h",
+    "060"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "h",
+    "020"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "Innovative debt-like instruments"
+   ],
+   "1": [
+    "h",
+    "Innovative funding structures"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Current debt or debt-like innovative funding structures in issue, including innovative deposit-like instruments, which include the following:"
+   ],
+   "6": [
+    "h",
+    "32095"
+   ],
+   "7": [
+    "h",
+    "010"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w sold to SME clients"
+   ],
+   "6": [
+    "h",
+    "32096"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w sold to retail clients (exclude SME)"
+   ],
+   "6": [
+    "h",
+    "32097"
+   ],
+   "7": [
+    "h",
+    "030"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w offered to customers already holding deposits at the bank"
+   ],
+   "6": [
+    "h",
+    "32098"
+   ],
+   "7": [
+    "h",
+    "040"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.04": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.04"
+   ],
+   "8": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Comments section (required)"
+   ],
+   "8": [
+    "h",
+    "Actual current position"
+   ],
+   "9": [
+    "h",
+    "Planned Year 1 Position"
+   ]
+  },
+  "10": {
+   "4": [
+    "h",
+    "o/w domestic operations"
+   ],
+   "6": [
+    "h",
+    "32108"
+   ],
+   "7": [
+    "h",
+    "060"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "4": [
+    "h",
+    "o/w international operations"
+   ],
+   "6": [
+    "h",
+    "32109"
+   ],
+   "7": [
+    "h",
+    "070"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "3": [
+    "h",
+    "o/w loans to financial corporates"
+   ],
+   "6": [
+    "h",
+    "32110"
+   ],
+   "7": [
+    "h",
+    "080"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "32101"
+   ],
+   "8": [
+    "h",
+    "32099"
+   ],
+   "9": [
+    "h",
+    "32100"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "030"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "h",
+    "020"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    ""
+   ],
+   "1": [
+    "h",
+    "Price level on loan stock on balance sheet"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to households"
+   ],
+   "6": [
+    "h",
+    "32103"
+   ],
+   "7": [
+    "h",
+    "010"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "3": [
+    "h",
+    "o/w domestic operations"
+   ],
+   "6": [
+    "h",
+    "32104"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "3": [
+    "h",
+    "o/w international operations"
+   ],
+   "6": [
+    "h",
+    "32105"
+   ],
+   "7": [
+    "h",
+    "030"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "2": [
+    "h",
+    "Loans to corporates"
+   ],
+   "6": [
+    "h",
+    "32106"
+   ],
+   "7": [
+    "h",
+    "040"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "3": [
+    "h",
+    "o/w loans to non-financial corporates"
+   ],
+   "6": [
+    "h",
+    "32107"
+   ],
+   "7": [
+    "h",
+    "050"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.05": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.05"
+   ],
+   "8": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Comments section (required)"
+   ],
+   "8": [
+    "h",
+    "Actual current position"
+   ],
+   "9": [
+    "h",
+    "Planned Year 1 Position"
+   ]
+  },
+  "10": {
+   "4": [
+    "h",
+    "o/w domestic operations"
+   ],
+   "6": [
+    "h",
+    "32120"
+   ],
+   "7": [
+    "h",
+    "060"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "4": [
+    "h",
+    "o/w international operations"
+   ],
+   "6": [
+    "h",
+    "32121"
+   ],
+   "7": [
+    "h",
+    "070"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "3": [
+    "h",
+    "o/w deposits from financial corporates"
+   ],
+   "6": [
+    "h",
+    "32122"
+   ],
+   "7": [
+    "h",
+    "080"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "13": {
+   "2": [
+    "h",
+    "Short Term Debt Securities (<1year)"
+   ],
+   "6": [
+    "h",
+    "32123"
+   ],
+   "7": [
+    "h",
+    "090"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "14": {
+   "2": [
+    "h",
+    "Long Term Debt Securities (>=1year)"
+   ],
+   "6": [
+    "h",
+    "32124"
+   ],
+   "7": [
+    "h",
+    "100"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "32113"
+   ],
+   "8": [
+    "h",
+    "32111"
+   ],
+   "9": [
+    "h",
+    "32112"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "030"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "h",
+    "020"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    "Accounting portfolios for financial liabilities other than classified as held for sale"
+   ],
+   "1": [
+    "h",
+    "Price level on deposit stock on balance sheet"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from households"
+   ],
+   "6": [
+    "h",
+    "32115"
+   ],
+   "7": [
+    "h",
+    "010"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "3": [
+    "h",
+    "o/w domestic operations"
+   ],
+   "6": [
+    "h",
+    "32116"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "3": [
+    "h",
+    "o/w international operations"
+   ],
+   "6": [
+    "h",
+    "32117"
+   ],
+   "7": [
+    "h",
+    "030"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "2": [
+    "h",
+    "Deposits from corporates"
+   ],
+   "6": [
+    "h",
+    "32118"
+   ],
+   "7": [
+    "h",
+    "040"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "3": [
+    "h",
+    "o/w deposits from non-financial corporates"
+   ],
+   "6": [
+    "h",
+    "32119"
+   ],
+   "7": [
+    "h",
+    "050"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.06": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.06"
+   ],
+   "6": [
+    "h",
+    "Material Currency"
+   ],
+   "7": [
+    "hcb",
+    null
+   ]
+  },
+  "1": {
+   "6": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "10": {
+   "1": [
+    "h",
+    "Gross Deposit Liabilities on balance sheet - before effect of FX forward or Cross-currency swaps"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from households and private non-financial corporates (international operations)"
+   ],
+   "4": [
+    "h",
+    "32136"
+   ],
+   "5": [
+    "h",
+    "050"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from financial corporates (domestic and international operations)"
+   ],
+   "4": [
+    "h",
+    "32137"
+   ],
+   "5": [
+    "h",
+    "060"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Short Term Debt Securities (<1year)"
+   ],
+   "4": [
+    "h",
+    "32138"
+   ],
+   "5": [
+    "h",
+    "070"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "13": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Long Term Debt Securities (>=1year)"
+   ],
+   "4": [
+    "h",
+    "32139"
+   ],
+   "5": [
+    "h",
+    "080"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "2": {
+   "10": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "6": [
+    "h",
+    "Actual current position"
+   ],
+   "7": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "8": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "9": [
+    "h",
+    "Planned Year 2 Position"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "32129"
+   ],
+   "6": [
+    "h",
+    "32125"
+   ],
+   "7": [
+    "h",
+    "32126"
+   ],
+   "8": [
+    "h",
+    "32127"
+   ],
+   "9": [
+    "h",
+    "32128"
+   ]
+  },
+  "5": {
+   "10": [
+    "h",
+    "050"
+   ],
+   "6": [
+    "h",
+    "010"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "h",
+    "040"
+   ]
+  },
+  "6": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Gross Loan assets on balance sheet - before effect of FX forward or Cross-currency swaps"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to households and private non-financial corporates (domestic operations)"
+   ],
+   "4": [
+    "h",
+    "32131"
+   ],
+   "5": [
+    "h",
+    "010"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to households and private non-financial corporates (international operations)"
+   ],
+   "4": [
+    "h",
+    "32132"
+   ],
+   "5": [
+    "h",
+    "020"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to financial corporates (domestic and international operations)"
+   ],
+   "4": [
+    "h",
+    "32133"
+   ],
+   "5": [
+    "h",
+    "030"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "10": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from households and private non-financial corporates (domestic operations)"
+   ],
+   "4": [
+    "h",
+    "32134"
+   ],
+   "5": [
+    "h",
+    "040"
+   ],
+   "6": [
+    "v",
+    null
+   ],
+   "7": [
+    "v",
+    null
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.07": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.07"
+   ],
+   "9": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned 6 month position"
+   ],
+   "11": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "12": [
+    "h",
+    "Planned Year 2 Position"
+   ],
+   "13": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "9": [
+    "h",
+    "Actual current position"
+   ]
+  },
+  "10": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Other"
+   ],
+   "7": [
+    "h",
+    "37010"
+   ],
+   "8": [
+    "h",
+    "060"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "7": [
+    "h",
+    "37011"
+   ],
+   "8": [
+    "h",
+    "070"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to private non-financial corporates (exc reverse repos)"
+   ],
+   "7": [
+    "h",
+    "37012"
+   ],
+   "8": [
+    "h",
+    "080"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "13": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "7": [
+    "h",
+    "37013"
+   ],
+   "8": [
+    "h",
+    "090"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "14": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w to resident borrowers"
+   ],
+   "7": [
+    "h",
+    "37014"
+   ],
+   "8": [
+    "h",
+    "100"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "15": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "For which credit provision taken (memo item)"
+   ],
+   "7": [
+    "h",
+    "37015"
+   ],
+   "8": [
+    "h",
+    "110"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "16": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w SMEs"
+   ],
+   "7": [
+    "h",
+    "37016"
+   ],
+   "8": [
+    "h",
+    "120"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "17": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Large corporates"
+   ],
+   "7": [
+    "h",
+    "37017"
+   ],
+   "8": [
+    "h",
+    "130"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "18": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "7": [
+    "h",
+    "37018"
+   ],
+   "8": [
+    "h",
+    "140"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "19": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to financial corporates (exc reverse repos)"
+   ],
+   "7": [
+    "h",
+    "37019"
+   ],
+   "8": [
+    "h",
+    "150"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "20": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w credit institutions"
+   ],
+   "7": [
+    "h",
+    "37020"
+   ],
+   "8": [
+    "h",
+    "160"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "21": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w other financial corporates"
+   ],
+   "7": [
+    "h",
+    "37021"
+   ],
+   "8": [
+    "h",
+    "170"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "37000"
+   ],
+   "11": [
+    "h",
+    "37001"
+   ],
+   "12": [
+    "h",
+    "37002"
+   ],
+   "13": [
+    "h",
+    "37003"
+   ],
+   "9": [
+    "h",
+    "36999"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "020"
+   ],
+   "11": [
+    "h",
+    "030"
+   ],
+   "12": [
+    "h",
+    "040"
+   ],
+   "13": [
+    "h",
+    "050"
+   ],
+   "9": [
+    "h",
+    "010"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    ""
+   ],
+   "1": [
+    "h",
+    "Loan Assets Acquisitions, Run-Offs and Disposals Plans"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Loans to households (exc reverse repos)"
+   ],
+   "7": [
+    "h",
+    "37005"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "7": [
+    "h",
+    "37006"
+   ],
+   "8": [
+    "h",
+    "020"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w to resident borrowers"
+   ],
+   "7": [
+    "h",
+    "37007"
+   ],
+   "8": [
+    "h",
+    "030"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "5": [
+    "h",
+    "For which credit provision taken (memo item)"
+   ],
+   "7": [
+    "h",
+    "37008"
+   ],
+   "8": [
+    "h",
+    "040"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "13": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Mortgages"
+   ],
+   "7": [
+    "h",
+    "37009"
+   ],
+   "8": [
+    "h",
+    "050"
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_02.08": {
+  "0": {
+   "0": [
+    "h",
+    "P 02.08"
+   ],
+   "8": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "10": [
+    "h",
+    "Planned Year 1 Position"
+   ],
+   "11": [
+    "h",
+    "Planned Year 2 Position"
+   ],
+   "12": [
+    "h",
+    "Planned Year 3 Position"
+   ],
+   "8": [
+    "h",
+    "Actual current position"
+   ],
+   "9": [
+    "h",
+    "Planned 6 month position"
+   ]
+  },
+  "10": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "6": [
+    "h",
+    "37033"
+   ],
+   "7": [
+    "h",
+    "060"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w from residents"
+   ],
+   "6": [
+    "h",
+    "37034"
+   ],
+   "7": [
+    "h",
+    "070"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "12": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w SME"
+   ],
+   "6": [
+    "h",
+    "37035"
+   ],
+   "7": [
+    "h",
+    "080"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "13": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w Large corporates"
+   ],
+   "6": [
+    "h",
+    "37036"
+   ],
+   "7": [
+    "h",
+    "090"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "14": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "6": [
+    "h",
+    "37037"
+   ],
+   "7": [
+    "h",
+    "100"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "15": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from financial corporates"
+   ],
+   "6": [
+    "h",
+    "37038"
+   ],
+   "7": [
+    "h",
+    "110"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "16": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w credit institutions"
+   ],
+   "6": [
+    "h",
+    "37039"
+   ],
+   "7": [
+    "h",
+    "120"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "17": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w other financial corporates"
+   ],
+   "6": [
+    "h",
+    "37040"
+   ],
+   "7": [
+    "h",
+    "130"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "3": {
+   "10": [
+    "h",
+    "37024"
+   ],
+   "11": [
+    "h",
+    "37025"
+   ],
+   "12": [
+    "h",
+    "37026"
+   ],
+   "8": [
+    "h",
+    "37022"
+   ],
+   "9": [
+    "h",
+    "37023"
+   ]
+  },
+  "4": {
+   "10": [
+    "h",
+    "030"
+   ],
+   "11": [
+    "h",
+    "040"
+   ],
+   "12": [
+    "h",
+    "050"
+   ],
+   "8": [
+    "h",
+    "010"
+   ],
+   "9": [
+    "h",
+    "020"
+   ]
+  },
+  "5": {
+   "0": [
+    "h",
+    ""
+   ],
+   "1": [
+    "h",
+    "Deposit Liabilities Acquisition and Disposal Plans"
+   ],
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from households"
+   ],
+   "6": [
+    "h",
+    "37028"
+   ],
+   "7": [
+    "h",
+    "010"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w Domestic operations"
+   ],
+   "6": [
+    "h",
+    "37029"
+   ],
+   "7": [
+    "h",
+    "020"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "7": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "4": [
+    "h",
+    "o/w from residents"
+   ],
+   "6": [
+    "h",
+    "37030"
+   ],
+   "7": [
+    "h",
+    "030"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "8": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "3": [
+    "h",
+    "o/w International operations"
+   ],
+   "6": [
+    "h",
+    "37031"
+   ],
+   "7": [
+    "h",
+    "040"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  },
+  "9": {
+   "10": [
+    "v",
+    null
+   ],
+   "11": [
+    "v",
+    null
+   ],
+   "12": [
+    "v",
+    null
+   ],
+   "2": [
+    "h",
+    "Deposits from private non-financial corporates"
+   ],
+   "6": [
+    "h",
+    "37032"
+   ],
+   "7": [
+    "h",
+    "050"
+   ],
+   "8": [
+    "v",
+    null
+   ],
+   "9": [
+    "v",
+    null
+   ]
+  }
+ },
+ "P_03.00": {
+  "0": {
+   "0": [
+    "h",
+    "P 03.00"
+   ],
+   "3": [
+    "h",
+    "Funding plan"
+   ]
+  },
+  "1": {
+   "3": [
+    "h",
+    "LEI code"
+   ]
+  },
+  "3": {
+   "3": [
+    "h",
+    "32183"
+   ]
+  },
+  "4": {
+   "3": [
+    "h",
+    "010"
+   ]
+  },
+  "5": {
+   "1": [
+    "h",
+    "32184"
+   ],
+   "2": [
+    "h",
+    "020"
+   ],
+   "3": [
+    "v",
+    null
+   ]
+  }
+ }
 }

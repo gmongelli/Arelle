@@ -1,121 +1,532 @@
 {
- "S.01.02.04.01": [
-  "h: Basic information - General 0 0",
-  "h:           4 0",
-  "h:           4 1",
-  "h: C0010 4 3",
-  "h:           0 4",
-  "h: Participating undertaking name 1 4",
-  "h: R0010 3 4",
-  "h: Group identification code 1 5",
-  "h: R0020 3 5",
-  "h: Country of the group supervisor 1 6",
-  "h: R0050 3 6",
-  "h: Sub-group information 1 7",
-  "h: R0060 3 7",
-  "h: Language of reporting 1 8",
-  "h: R0070 3 8",
-  "h: Reporting submission date 1 9",
-  "h: R0080 3 9",
-  "h: Reporting reference date 1 10",
-  "h: R0090 3 10",
-  "h: Regular/Ad-hoc submission 1 11",
-  "h: R0100 3 11",
-  "h: Currency used for reporting 1 12",
-  "h: R0110 3 12",
-  "h: Accounting standards 1 13",
-  "h: R0120 3 13",
-  "h: Method of Calculation of the group SCR 1 14",
-  "h: R0130 3 14",
-  "h: Use of group specific parameters 1 15",
-  "h: R0140 3 15",
-  "h: Ring-fenced funds 1 16",
-  "h: R0150 3 16",
-  "h: Method of group solvency calculation 1 17",
-  "h: R0160 3 17",
-  "h: Matching adjustment 1 18",
-  "h: R0170 3 18",
-  "h: Volatility adjustment 1 19",
-  "h: R0180 3 19",
-  "h: Transitional measure on the risk-free interest rate 1 20",
-  "h: R0190 3 20",
-  "h: Transitional measure on technical provisions 1 21",
-  "h: R0200 3 21",
-  "h: Initial submission or re-submission 1 22",
-  "h: R0210 3 22",
-  "v: None 4 4",
-  "v: None 4 5",
-  "cb:  ['', 'AUSTRIA', 'BELGIUM', 'BULGARIA', 'CROATIA', 'CYPRUS', 'CZECH REPUBLIC', 'DENMARK', 'ESTONIA', 'FINLAND', 'FRANCE', 'GERMANY', 'GREECE', 'HUNGARY', 'ICELAND', 'IRELAND', 'ITALY', 'LATVIA', 'LIECHTENSTEIN', 'LITHUANIA', 'LUXEMBOURG', 'MALTA', 'NETHERLANDS', 'NORWAY', 'POLAND', 'PORTUGAL', 'ROMANIA', 'SLOVAKIA', 'SLOVENIA', 'SPAIN', 'SWEDEN', 'UNITED KINGDOM'] 4 6",
-  "cb:  ['', '1 - No sub-group information', '2 - Sub-group information'] 4 7",
-  "cb:  ['', 'Abkhazian', 'Afar', 'Afrikaans', 'Akan', 'Albanian', 'Amharic', 'Arabic', 'Aragonese', 'Armenian', 'Assamese', 'Avaric', 'Avestan', 'Aymara', 'Azerbaijani', 'Bambara', 'Bashkir', 'Basque', 'Belarusian', 'Bengali', 'Bihari languages', 'Bislama', 'Bosnian', 'Breton', 'Bulgarian', 'Burmese', 'Catalan', 'Central Khmer', 'Chamorro', 'Chechen', 'Chinese', 'Church Slavic', 'Chuvash', 'Cornish', 'Corsican', 'Cree', 'Croatian', 'Czech', 'Danish', 'Dhivehi', 'Dutch', 'Dzongkha', 'English', 'Esperanto', 'Estonian', 'Ewe', 'Faroese', 'Fijian', 'Finnish', 'French', 'Fulah', 'Galician', 'Ganda', 'Georgian', 'German', 'Guarani', 'Gujarati', 'Haitian', 'Hausa', 'Hebrew', 'Herero', 'Hindi', 'Hiri Motu', 'Hungarian', 'Icelandic', 'Ido', 'Igbo', 'Indonesian', 'Interlingua (International Auxiliary Language Association)', 'Interlingue', 'Inuktitut', 'Inupiaq', 'Irish', 'Italian', 'Japanese', 'Javanese', 'Kalaallisut', 'Kannada', 'Kanuri', 'Kashmiri', 'Kazakh', 'Kikuyu', 'Kinyarwanda', 'Kirghiz', 'Komi', 'Kongo', 'Korean', 'Kuanyama', 'Kurdish', 'Lao', 'Latvian', 'Limburgan', 'Lingala', 'Lithuanian', 'Luba-Katanga', 'Luxembourgish', 'Macedonian', 'Malagasy', 'Malay (macrolanguage)', 'Malayalam', 'Maltese', 'Manx', 'Maori', 'Marathi', 'Marshallese', 'Modern Greek (1453-)', 'Mongolian', 'Nauru', 'Navajo', 'Ndonga', 'Nepali (macrolanguage)', 'North Ndebele', 'Northern Sami', 'Norwegian', 'Norwegian Bokm\u00e5l', 'Norwegian Nynorsk', 'Nyanja', 'Occitan (post 1500)', 'Ojibwa', 'Oriya (macrolanguage)', 'Oromo', 'Ossetian', 'Pali', 'Panjabi', 'Persian', 'Polish', 'Portuguese', 'Pushto', 'Quechua', 'Romanian', 'Romansh', 'Rundi', 'Russian', 'Samoan', 'Sango', 'Sardinian', 'Scottish Gaelic', 'Serbian', 'Serbo-Croatian', 'Shona', 'Sichuan Yi', 'Sindhi', 'Sinhala', 'Slovak', 'Slovenian', 'Somali', 'South Ndebele', 'Southern Sotho', 'Spanish', 'Standard Moroccan Tamazight', 'Sundanese', 'Swahili (macrolanguage)', 'Swati', 'Swedish', 'Tagalog', 'Tahitian', 'Tajik', 'Tamil', 'Tatar', 'Telugu', 'Thai', 'Tibetan', 'Tigrinya', 'Tonga (Tonga Islands)', 'Total/NA', 'Tsonga', 'Tswana', 'Turkish', 'Turkmen', 'Twi', 'Uighur', 'Ukrainian', 'Urdu', 'Uzbek', 'Venda', 'Vietnamese', 'Volap\u00fck', 'Walloon', 'Welsh', 'Western Frisian', 'Wolof', 'Xhosa', 'Yiddish', 'Yoruba', 'Zhuang', 'Zulu'] 4 8",
-  "v: None 4 9",
-  "v: None 4 10",
-  "cb:  ['', '1 - Regular reporting', '2 - Ad-hoc reporting'] 4 11",
-  "cb:  ['', 'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BOV', 'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CHE', 'CHF', 'CHW', 'CLF', 'CLP', 'CNY', 'COP', 'COU', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EEK', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', 'MXV', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'STD', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'USN', 'USS', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XAG', 'XAU', 'XBA', 'XBB', 'XBC', 'XBD', 'XCD', 'XDR', 'XFU', 'XOF', 'XPD', 'XPF', 'XPT', 'XTS', 'YER', 'ZAR', 'ZMK', 'ZWL'] 4 12",
-  "cb:  ['', '1 - IFRS', '2 - Local GAAP'] 4 13",
-  "cb:  ['', '1 \u2013 Standard formula', '2 - Partial internal model', '3 - Full internal model'] 4 14",
-  "cb:  ['', '1 - Use of group specific parameters', '2 - Don\u2019t use group specific parameters'] 4 15",
-  "cb:  ['', '1 - Reporting activity by RFF', '2 - Not reporting activity by RFF'] 4 16",
-  "cb:  ['', '1 - Method 1 is used exclusively', '2 - Method 2 is used exclusively ', '3 - A combination of method 1 and method 2 is used'] 4 17",
-  "cb:  ['', '1- Use of matching adjustment', '2 - No use of matching adjustment'] 4 18",
-  "cb:  ['', '1- Use of volatility adjustment', '2 - No use of volatility adjustment'] 4 19",
-  "cb:  ['', '1 - Use of transitional measure on the risk-free interest rate', '2 - No use of transitional measure on the risk-free interest rate'] 4 20",
-  "cb:  ['', '1 - Use of transitional measure on technical provisions', '2 - No use of transitional measure on technical provisions'] 4 21",
-  "cb:  ['', '1 \u2013 Initial submission', '2 \u2013 Re-submission'] 4 22"
- ],
- "S.40.01.10.01": [
-  "h: Profit or Loss sharing 0 0",
-  "h:           4 0",
-  "h:           4 1",
-  "h: C0010 4 3",
-  "h:           0 4",
-  "h: Discretionary benefits (profit or loss sharing) allocated to policyholders. 1 4",
-  "h: R0010 3 4",
-  "v: None 4 4"
- ],
- "S.01.01.12.01": [
-  "h: Content of the submission 0 0",
-  "h:           5 0",
-  "h:           5 1",
-  "h: C0010 5 3",
-  "h:           0 4",
-  "h: Template Code - Template name 1 4",
-  "h: S.01.02.04 - Basic Information - General 2 4",
-  "h: R0010 4 4",
-  "h: S.14.01.10 - Life obligations analysis 2 5",
-  "h: R0250 4 5",
-  "h: S.38.01.10 - Duration of liabilities 2 6",
-  "h: R0950 4 6",
-  "h: S.40.01.10 - Profit or loss sharing 2 7",
-  "h: R0970 4 7",
-  "cb:  ['', '1 \u2013 Reported'] 5 4",
-  "cb:  ['', '0 - Not reported other reason (in this case special justification is needed)', '1 - Reported', '2 - Not reported as no life and health SLT business'] 5 5",
-  "cb:  ['', '0 - Not reported other reason (in this case special justification is needed)', '1 - Reported'] 5 6",
-  "cb:  ['', '0 - Not reported other reason (in this case special justification is needed)', '1 - Reported'] 5 7"
- ],
- "S.38.01.10.01": [
-  "h: Duration of technical provisions 0 0",
-  "h:           4 0",
-  "h:           4 1",
-  "h: C0010 4 3",
-  "h:           0 4",
-  "h: Duration of technical provisions, Life excluding unit-linked 1 4",
-  "h: R0010 3 4",
-  "h: Duration of technical provisions, Non-Life 1 5",
-  "h: R0020 3 5",
-  "v: None 4 4",
-  "v: None 4 5"
- ],
- "S.14.01.10.01": [
-  "h: Information on homogenous risk group 0 0",
-  "h:           3 0",
-  "h: Best Estimate 3 1",
-  "h: C0180 3 3",
-  "h: Annualised guaranteed rate (over average duration of guarantee) 4 1",
-  "h: C0210 4 3",
-  "h: *natural key* 1 4",
-  "h: C0170 2 4",
-  "v: None 3 4",
-  "v: None 4 4"
- ]
+ "S.01.01.12.01": {
+  "0": {
+   "0": [
+    "h",
+    "Content of the submission"
+   ],
+   "5": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "5": [
+    "h",
+    "         "
+   ]
+  },
+  "3": {
+   "5": [
+    "h",
+    "C0010"
+   ]
+  },
+  "4": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Template Code - Template name"
+   ],
+   "2": [
+    "h",
+    "S.01.02.04 - Basic Information - General"
+   ],
+   "4": [
+    "h",
+    "R0010"
+   ],
+   "5": [
+    "cb",
+    ""
+   ]
+  },
+  "5": {
+   "2": [
+    "h",
+    "S.14.01.10 - Life obligations analysis"
+   ],
+   "4": [
+    "h",
+    "R0250"
+   ],
+   "5": [
+    "cb",
+    ""
+   ]
+  },
+  "6": {
+   "2": [
+    "h",
+    "S.38.01.10 - Duration of liabilities"
+   ],
+   "4": [
+    "h",
+    "R0950"
+   ],
+   "5": [
+    "cb",
+    ""
+   ]
+  },
+  "7": {
+   "2": [
+    "h",
+    "S.40.01.10 - Profit or loss sharing"
+   ],
+   "4": [
+    "h",
+    "R0970"
+   ],
+   "5": [
+    "cb",
+    ""
+   ]
+  }
+ },
+ "S.01.02.04.01": {
+  "0": {
+   "0": [
+    "h",
+    "Basic information - General"
+   ],
+   "4": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "4": [
+    "h",
+    "         "
+   ]
+  },
+  "10": {
+   "1": [
+    "h",
+    "Reporting reference date"
+   ],
+   "3": [
+    "h",
+    "R0090"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  },
+  "11": {
+   "1": [
+    "h",
+    "Regular/Ad-hoc submission"
+   ],
+   "3": [
+    "h",
+    "R0100"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "12": {
+   "1": [
+    "h",
+    "Currency used for reporting"
+   ],
+   "3": [
+    "h",
+    "R0110"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "13": {
+   "1": [
+    "h",
+    "Accounting standards"
+   ],
+   "3": [
+    "h",
+    "R0120"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "14": {
+   "1": [
+    "h",
+    "Method of Calculation of the group SCR"
+   ],
+   "3": [
+    "h",
+    "R0130"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "15": {
+   "1": [
+    "h",
+    "Use of group specific parameters"
+   ],
+   "3": [
+    "h",
+    "R0140"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "16": {
+   "1": [
+    "h",
+    "Ring-fenced funds"
+   ],
+   "3": [
+    "h",
+    "R0150"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "17": {
+   "1": [
+    "h",
+    "Method of group solvency calculation"
+   ],
+   "3": [
+    "h",
+    "R0160"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "18": {
+   "1": [
+    "h",
+    "Matching adjustment"
+   ],
+   "3": [
+    "h",
+    "R0170"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "19": {
+   "1": [
+    "h",
+    "Volatility adjustment"
+   ],
+   "3": [
+    "h",
+    "R0180"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "20": {
+   "1": [
+    "h",
+    "Transitional measure on the risk-free interest rate"
+   ],
+   "3": [
+    "h",
+    "R0190"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "21": {
+   "1": [
+    "h",
+    "Transitional measure on technical provisions"
+   ],
+   "3": [
+    "h",
+    "R0200"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "22": {
+   "1": [
+    "h",
+    "Initial submission or re-submission"
+   ],
+   "3": [
+    "h",
+    "R0210"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "3": {
+   "4": [
+    "h",
+    "C0010"
+   ]
+  },
+  "4": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Participating undertaking name"
+   ],
+   "3": [
+    "h",
+    "R0010"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  },
+  "5": {
+   "1": [
+    "h",
+    "Group identification code"
+   ],
+   "3": [
+    "h",
+    "R0020"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  },
+  "6": {
+   "1": [
+    "h",
+    "Country of the group supervisor"
+   ],
+   "3": [
+    "h",
+    "R0050"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "7": {
+   "1": [
+    "h",
+    "Sub-group information"
+   ],
+   "3": [
+    "h",
+    "R0060"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "8": {
+   "1": [
+    "h",
+    "Language of reporting"
+   ],
+   "3": [
+    "h",
+    "R0070"
+   ],
+   "4": [
+    "cb",
+    ""
+   ]
+  },
+  "9": {
+   "1": [
+    "h",
+    "Reporting submission date"
+   ],
+   "3": [
+    "h",
+    "R0080"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  }
+ },
+ "S.14.01.10.01": {
+  "0": {
+   "0": [
+    "h",
+    "Information on homogenous risk group"
+   ],
+   "3": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "3": [
+    "h",
+    "Best Estimate"
+   ],
+   "4": [
+    "h",
+    "Annualised guaranteed rate (over average duration of guarantee)"
+   ]
+  },
+  "3": {
+   "3": [
+    "h",
+    "C0180"
+   ],
+   "4": [
+    "h",
+    "C0210"
+   ]
+  },
+  "4": {
+   "1": [
+    "h",
+    "*natural key*"
+   ],
+   "2": [
+    "h",
+    "C0170"
+   ],
+   "3": [
+    "v",
+    null
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  }
+ },
+ "S.38.01.10.01": {
+  "0": {
+   "0": [
+    "h",
+    "Duration of technical provisions"
+   ],
+   "4": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "4": [
+    "h",
+    "         "
+   ]
+  },
+  "3": {
+   "4": [
+    "h",
+    "C0010"
+   ]
+  },
+  "4": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Duration of technical provisions, Life excluding unit-linked"
+   ],
+   "3": [
+    "h",
+    "R0010"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  },
+  "5": {
+   "1": [
+    "h",
+    "Duration of technical provisions, Non-Life"
+   ],
+   "3": [
+    "h",
+    "R0020"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  }
+ },
+ "S.40.01.10.01": {
+  "0": {
+   "0": [
+    "h",
+    "Profit or Loss sharing"
+   ],
+   "4": [
+    "h",
+    "         "
+   ]
+  },
+  "1": {
+   "4": [
+    "h",
+    "         "
+   ]
+  },
+  "3": {
+   "4": [
+    "h",
+    "C0010"
+   ]
+  },
+  "4": {
+   "0": [
+    "h",
+    "         "
+   ],
+   "1": [
+    "h",
+    "Discretionary benefits (profit or loss sharing) allocated to policyholders."
+   ],
+   "3": [
+    "h",
+    "R0010"
+   ],
+   "4": [
+    "v",
+    null
+   ]
+  }
+ }
 }

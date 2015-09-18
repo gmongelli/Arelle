@@ -510,7 +510,8 @@ class ModelFact(ModelObject):
                  ("decimals", self.decimals),
                  ("precision", self.precision),
                  ("xsi:nil", self.xsiNil),
-                 ("value", self.effectiveValue.strip(), None, "editable"))
+                 ("value", self.effectiveValue.strip(), None, "editable"),
+                 ("modelFact", self) )
                  if self.isItem else () ))
         
     def __repr__(self):
