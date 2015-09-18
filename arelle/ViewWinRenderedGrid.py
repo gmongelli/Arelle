@@ -913,7 +913,7 @@ class ViewRenderedGrid(ViewWinTkTable.ViewTkTable):
                                     pluginMethod(headerLabel, xValue, yValue)  
                                     break              
                             
-                            allowDeleteOpenLine = True
+                            allowDeleteOpenLine = False # temporarily off since not yet complete
                             isFilledOpenLine = False
                             if allowDeleteOpenLine:
                                 if yStructuralNode.contextItemBinding is not None and yStructuralNode.contextItemBinding.yieldedFact is not None:

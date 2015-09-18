@@ -2,6 +2,7 @@
 import unittest
 from tests.ViewHelper import ViewHelper, initUI, getTestDir
 from arelle.plugin.EbaCompliance import improveEbaCompliance
+from tests.CorepHelper import setCorepGuiEnvironment
 
 class FilingIndicatoContextTest(unittest.TestCase):
 
@@ -12,6 +13,7 @@ class FilingIndicatoContextTest(unittest.TestCase):
         
         print("Load file")
         self.cntlrWinMain.logView.testMode = True
+        setCorepGuiEnvironment(self.cntlrWinMain)
         self.cntlrWinMain.fileOpenFile(inputFilePath)               
         self.viewHelper = ViewHelper(self.cntlrWinMain.getModelXbrl(), self.testContext)
         
